@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Data and model artifacts (released separately)
+data/generated/
+*.parquet
+*.onnx
+checkpoints/
+
+# Editors and OS
+.idea/
+.vscode/
+.DS_Store
