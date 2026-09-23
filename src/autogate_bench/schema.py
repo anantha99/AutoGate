@@ -7,7 +7,7 @@ module contains policy; policy lives in ``policy.py``.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import StrEnum
 
 # --------------------------------------------------------------------------- #
@@ -160,6 +160,23 @@ class ActuationClass(StrEnum):
     RESTRICTED = "restricted"  # ADAS off, door unlock, trunk, park brake: parked only
 
 
+class Consequence(StrEnum):
+    """What executing the intent does that the driver may want to confirm first.
+
+    NONE: read-only, no side effect (queries, status, playback of existing media).
+    REVERSIBLE: a side effect the driver can undo with one more utterance
+    (temperature, volume, route, a reminder).
+    IRREVERSIBLE: a side effect the driver cannot take back, usually because
+    another party sees it (a sent message, a placed call, a booking, an
+    invite). The policy gate asks for confirmation before executing these;
+    it is a deterministic rule, not a learned route.
+    """
+
+    NONE = "none"
+    REVERSIBLE = "reversible"
+    IRREVERSIBLE = "irreversible"
+
+
 @dataclass(frozen=True, slots=True)
 class Intent:
     """One entry in the intent taxonomy."""
@@ -170,8 +187,11 @@ class Intent:
     distraction: DistractionLevel
     actuation: ActuationClass = ActuationClass.NONE
     description: str = ""
+    consequence: Consequence = field(kw_only=True)
 
     def __post_init__(self) -> None:
+        if self.actuation is not ActuationClass.NONE and self.consequence is Consequence.NONE:
+            raise ValueError(f"{self.name}: a vehicle command always has a side effect")
         if (
             self.actuation is not ActuationClass.NONE
             and self.group is not IntentGroup.VEHICLE_CONTROL

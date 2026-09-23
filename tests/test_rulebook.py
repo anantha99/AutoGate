@@ -8,6 +8,7 @@ from autogate_bench import (
     ActuationClass,
     Capability,
     Connectivity,
+    Consequence,
     Context,
     Decision,
     DistractionLevel,
@@ -226,6 +227,7 @@ def test_restricted_actuation_beats_distraction():
         Capability.LOCAL_OK,
         DistractionLevel.HIGH,
         ActuationClass.RESTRICTED,
+        consequence=Consequence.REVERSIBLE,
     )
     ctx = Context(SpeedBucket.LOW, Connectivity.GOOD, Workload.LOW)
     assert route(both, ctx).reason is Reason.RESTRICTED_ACTUATION
@@ -296,12 +298,19 @@ def test_intent_rejects_actuation_outside_vehicle_control():
             Capability.LOCAL_OK,
             DistractionLevel.LOW,
             ActuationClass.COMFORT,
+            consequence=Consequence.REVERSIBLE,
         )
 
 
 def test_intent_requires_actuation_for_vehicle_control():
     with pytest.raises(ValueError, match="need an actuation class"):
-        Intent("x", IntentGroup.VEHICLE_CONTROL, Capability.LOCAL_OK, DistractionLevel.LOW)
+        Intent(
+            "x",
+            IntentGroup.VEHICLE_CONTROL,
+            Capability.LOCAL_OK,
+            DistractionLevel.LOW,
+            consequence=Consequence.REVERSIBLE,
+        )
 
 
 def test_intent_rejects_cloud_vehicle_command():
@@ -312,6 +321,7 @@ def test_intent_rejects_cloud_vehicle_command():
             Capability.NEEDS_CLOUD,
             DistractionLevel.LOW,
             ActuationClass.COMFORT,
+            consequence=Consequence.REVERSIBLE,
         )
 
 
