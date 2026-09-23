@@ -5,14 +5,14 @@ LLM assistant should answer on the head unit (`LOCAL`), in the cloud
 (`CLOUD`), in the cloud with sensitive spans masked (`CLOUD_MASKED`), wait
 for connectivity (`DEFER`), or not run at all (`REFUSE`).
 
-Status: week 1. The rulebook and policy tables are in place; the intent
-taxonomy, data pipeline, router, and evaluation harness follow.
+Status: week 1. The rulebook, policy tables, and intent taxonomy are in place;
+the data pipeline, router, and evaluation harness follow.
 
 ## Layout
 
 | Package | Contents |
 | --- | --- |
-| `autogate_bench` | Schema, policy tables, rulebook labeler, seed intents |
+| `autogate_bench` | Schema, policy tables, rulebook labeler, intent taxonomy (`docs/taxonomy.md`) |
 | `autogate_router` | Training, export, inference (week 3) |
 | `autogate_eval` | Cost matrix, safety-weighted error, policy gate (weeks 1-3) |
 

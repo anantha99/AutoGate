@@ -23,8 +23,8 @@ from autogate_bench import (
     Workload,
     route,
 )
+from autogate_bench.intents import INTENTS
 from autogate_bench.intents import INTENTS_BY_NAME as I
-from autogate_bench.intents import SEED_INTENTS
 from autogate_bench.rulebook import distraction_demand, driving_demand
 
 D = DrivingDemand
@@ -215,12 +215,29 @@ def test_refuse_beats_defer(offline):
 
 
 def test_restricted_actuation_beats_distraction():
-    """pair_bluetooth_device is both RESTRICTED and HIGH distraction; actuation fires first."""
+    """If an intent were both RESTRICTED and HIGH distraction, actuation fires first.
+
+    The taxonomy keeps the two REFUSE mechanisms disjoint (see test_intents.py), so this
+    uses a synthetic intent to pin the precedence of the tree itself.
+    """
+    both = Intent(
+        "synthetic_restricted_and_distracting",
+        IntentGroup.VEHICLE_CONTROL,
+        Capability.LOCAL_OK,
+        DistractionLevel.HIGH,
+        ActuationClass.RESTRICTED,
+    )
     ctx = Context(SpeedBucket.LOW, Connectivity.GOOD, Workload.LOW)
-    assert route(I["pair_bluetooth_device"], ctx).reason is Reason.RESTRICTED_ACTUATION
+    assert route(both, ctx).reason is Reason.RESTRICTED_ACTUATION
 
 
-# ---- Exhaustive invariants over every seed intent x every context ------------ #
+def test_screen_heavy_setup_is_refused_by_distraction():
+    """pair_bluetooth_device is a HIGH-distraction setup flow, not an actuation."""
+    ctx = Context(SpeedBucket.LOW, Connectivity.GOOD, Workload.LOW)
+    assert route(I["pair_bluetooth_device"], ctx).reason is Reason.DISTRACTION
+
+
+# ---- Exhaustive invariants over every intent x every context ------------ #
 
 
 def _all_contexts():
@@ -237,7 +254,7 @@ def test_context_space_size():
     assert len(ALL_CONTEXTS) == 4 * 3 * 3 * 2 * 2 * 2
 
 
-@pytest.mark.parametrize("intent", SEED_INTENTS, ids=lambda i: i.name)
+@pytest.mark.parametrize("intent", INTENTS, ids=lambda i: i.name)
 def test_invariants_hold_for_every_context(intent):
     for ctx in ALL_CONTEXTS:
         for sensitive in (False, True):
@@ -296,13 +313,6 @@ def test_intent_rejects_cloud_vehicle_command():
             DistractionLevel.LOW,
             ActuationClass.COMFORT,
         )
-
-
-def test_seed_intents_cover_every_tag_value():
-    assert {i.group for i in SEED_INTENTS} == set(IntentGroup)
-    assert {i.capability for i in SEED_INTENTS} == set(Capability)
-    assert {i.distraction for i in SEED_INTENTS} == set(DistractionLevel)
-    assert {i.actuation for i in SEED_INTENTS} == set(ActuationClass)
 
 
 def test_context_prefix_serialization():
