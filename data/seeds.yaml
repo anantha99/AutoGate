@@ -1,0 +1,398 @@
+# AutoGate seed phrasings.
+#
+# One top-level key per intent, in the order of autogate_bench.intents.INTENTS.
+# Each value is a list of 3 to 5 hand-written seeds: {text: ..., style: ...}.
+# Seeds are the unit of the train/val/test split; each is later expanded into
+# paraphrases, so seeds within one intent are genuinely different ways of
+# asking, never synonyms of each other.
+#
+# Styles (exactly one per seed):
+#   command   an imperative                          "turn on the ac"
+#   outcome   a need or situation, no action named   "i need a clean washroom"
+#   question  a request phrased as a question        "can you make it a bit quieter"
+#   indirect  conversational, the action is implied  "the kids are complaining about the heat"
+#   fragment  the terse thing people actually say    "ac off"
+#
+# Slots are written as {name}. Sensitive slots (filled from synthetic pools,
+# offsets recorded for masking): contact, phone, address, otp, card.
+# Other slots: place, city, temperature, fan_level, song, artist, station,
+# podcast, time, date, duration, team, topic, note_text, message_text,
+# event_title, drive_mode, color, speed, seat, window, number.
+# {message_text} is always a body the driver dictates, never a received message.
+#
+# Text rules: plain English, lowercase, ASCII, at most 12 words, no trailing
+# punctuation. Checked by tests/test_seeds.py and autogate_bench.seeds.load_seeds.
+
+# --------------------------------------------------------------------------- #
+# vehicle_control
+# --------------------------------------------------------------------------- #
+defrost_windshield:
+  - {text: "turn on the front defrost", style: command}
+  - {text: "the windshield is fogging up and i can't see", style: outcome}
+  - {text: "can you clear the mist off the front glass", style: question}
+  - {text: "demist", style: fragment}
+wipers_on:
+  - {text: "turn the wipers on", style: command}
+  - {text: "it's raining really hard now", style: outcome}
+  - {text: "that bus just splashed muddy water all over the glass", style: indirect}
+  - {text: "wipers on full", style: fragment}
+hazard_lights_on:
+  - {text: "put the hazards on", style: command}
+  - {text: "i've got a flat and need to pull over", style: outcome}
+  - {text: "sudden jam ahead and the car behind is too close", style: indirect}
+  - {text: "hazard lights", style: fragment}
+headlights_on:
+  - {text: "switch on the headlights", style: command}
+  - {text: "it's getting really dark out here", style: outcome}
+  - {text: "that oncoming car keeps flashing at me", style: indirect}
+  - {text: "headlights", style: fragment}
+emergency_call:
+  - {text: "call an ambulance now", style: command}
+  - {text: "there's been an accident and someone is badly hurt", style: outcome}
+  - {text: "can you get the police on the line", style: question}
+  - {text: "my father is having chest pains in the back seat", style: indirect}
+  - {text: "sos", style: fragment}
+set_cabin_temperature:
+  - {text: "set the temperature to {temperature}", style: command}
+  - {text: "it's a bit too warm in the cabin", style: outcome}
+  - {text: "can you make it a couple of degrees cooler", style: question}
+  - {text: "the kids are complaining about the heat", style: indirect}
+  - {text: "{temperature} degrees", style: fragment}
+set_fan_speed:
+  - {text: "set the fan to {fan_level}", style: command}
+  - {text: "i can barely feel any air from the vents", style: outcome}
+  - {text: "can you turn the blower down a bit", style: question}
+  - {text: "my mother says the air is hitting her face too hard", style: indirect}
+  - {text: "fan max", style: fragment}
+climate_on_off:
+  - {text: "turn on the ac", style: command}
+  - {text: "the car is like an oven after standing in the sun", style: outcome}
+  - {text: "can you switch the climate off", style: question}
+  - {text: "my wife says the ac is giving her a cold", style: indirect}
+  - {text: "ac off", style: fragment}
+set_recirculation:
+  - {text: "switch to recirculation mode", style: command}
+  - {text: "the smoke from that truck is coming inside", style: outcome}
+  - {text: "can you let fresh air in through the vents", style: question}
+  - {text: "recirc on", style: fragment}
+seat_ventilation_on:
+  - {text: "turn on the seat cooling", style: command}
+  - {text: "my back is all sweaty against the seat", style: outcome}
+  - {text: "can you cool the {seat} seat a bit more", style: question}
+  - {text: "seat ventilation", style: fragment}
+seat_heater_on:
+  - {text: "heat the {seat} seat", style: command}
+  - {text: "my lower back feels cold and stiff", style: outcome}
+  - {text: "can you warm up my seat", style: question}
+  - {text: "seat warmer", style: fragment}
+adjust_window:
+  - {text: "open the {window} window halfway", style: command}
+  - {text: "dust is blowing in on my side", style: outcome}
+  - {text: "can you roll up the back windows", style: question}
+  - {text: "we're at the toll booth now", style: indirect}
+  - {text: "window down", style: fragment}
+set_audio_volume:
+  - {text: "turn the volume up", style: command}
+  - {text: "i can hardly hear anything over the engine", style: outcome}
+  - {text: "can you make it a bit quieter", style: question}
+  - {text: "the baby just fell asleep in the back", style: indirect}
+  - {text: "volume {number}", style: fragment}
+set_drive_mode:
+  - {text: "switch to {drive_mode} mode", style: command}
+  - {text: "i want to save petrol on this long drive", style: outcome}
+  - {text: "can you put it in sport", style: question}
+  - {text: "eco mode", style: fragment}
+set_ambient_lighting:
+  - {text: "change the mood lighting to {color}", style: command}
+  - {text: "the cabin lights are too bright at night", style: outcome}
+  - {text: "can you dim the ambient lights", style: question}
+  - {text: "ambient light {color}", style: fragment}
+set_cruise_speed:
+  - {text: "set cruise control to {speed}", style: command}
+  - {text: "the cruise is set too slow for this highway", style: outcome}
+  - {text: "can you bump the cruise speed up by five", style: question}
+  - {text: "cruise down a bit", style: fragment}
+disable_lane_assist:
+  - {text: "turn off lane keep assist", style: command}
+  - {text: "is there a way to switch off the lane keeping thing", style: question}
+  - {text: "the wheel keeps pulling me back on these bad markings", style: indirect}
+  - {text: "lane assist off", style: fragment}
+unlock_doors:
+  - {text: "unlock all the doors", style: command}
+  - {text: "can you unlock the back door for my friend", style: question}
+  - {text: "my mother is standing outside waiting to get in", style: indirect}
+  - {text: "unlock", style: fragment}
+open_trunk:
+  - {text: "open the boot", style: command}
+  - {text: "can you pop the dickey open", style: question}
+  - {text: "i need to put the shopping bags in the back", style: indirect}
+  - {text: "tailgate", style: fragment}
+set_parking_brake:
+  - {text: "put the handbrake on", style: command}
+  - {text: "can you release the parking brake", style: question}
+  - {text: "the car keeps rolling back on this slope", style: outcome}
+  - {text: "park brake", style: fragment}
+disable_child_locks:
+  - {text: "turn off the child lock on the rear doors", style: command}
+  - {text: "can you let the back doors open from inside", style: question}
+  - {text: "my uncle in the back can't open his door", style: indirect}
+  - {text: "child lock off", style: fragment}
+fold_mirrors:
+  - {text: "fold the side mirrors", style: command}
+  - {text: "can you tuck the mirrors in", style: question}
+  - {text: "this lane is really narrow with bikes on both sides", style: indirect}
+  - {text: "mirrors in", style: fragment}
+
+# --------------------------------------------------------------------------- #
+# navigation
+# --------------------------------------------------------------------------- #
+next_turn:
+  - {text: "tell me the next turn", style: command}
+  - {text: "where do i turn next", style: question}
+  - {text: "i'm not sure which exit to take", style: outcome}
+  - {text: "left or right here", style: fragment}
+cancel_route:
+  - {text: "stop the navigation", style: command}
+  - {text: "i know the way from here", style: outcome}
+  - {text: "can you end the route", style: question}
+  - {text: "plans changed we're not going there anymore", style: indirect}
+  - {text: "cancel directions", style: fragment}
+navigate_home:
+  - {text: "take me home", style: command}
+  - {text: "i need to get home fast", style: outcome}
+  - {text: "can you start directions to work", style: question}
+  - {text: "the meeting got cancelled so back to the office", style: indirect}
+  - {text: "home", style: fragment}
+eta_to_destination:
+  - {text: "tell me the arrival time", style: command}
+  - {text: "when will we reach", style: question}
+  - {text: "i need to know if i'll make it by {time}", style: outcome}
+  - {text: "the kids keep asking how much longer", style: indirect}
+  - {text: "eta", style: fragment}
+navigate_to_contact_address:
+  - {text: "navigate to {contact}'s house", style: command}
+  - {text: "can you get me to where {contact} lives", style: question}
+  - {text: "i need to pick up {contact} from home", style: outcome}
+  - {text: "{contact} said to come over to {address}", style: indirect}
+  - {text: "{contact} home", style: fragment}
+find_nearby_place:
+  - {text: "find a {place} near me", style: command}
+  - {text: "i need a clean washroom", style: outcome}
+  - {text: "is there a good {place} around here", style: question}
+  - {text: "the kids want ice cream", style: indirect}
+  - {text: "nearest atm", style: fragment}
+traffic_on_route:
+  - {text: "check traffic on my route", style: command}
+  - {text: "how's the traffic on the way", style: question}
+  - {text: "i can't afford to get stuck in a jam today", style: outcome}
+  - {text: "i heard there's a rally on the main road", style: indirect}
+  - {text: "traffic ahead", style: fragment}
+add_stop_along_route:
+  - {text: "add a {place} stop on the way", style: command}
+  - {text: "i need a tea break somewhere on this route", style: outcome}
+  - {text: "can we stop at a {place} somewhere along the route", style: question}
+  - {text: "the baby needs a diaper change before the expressway", style: indirect}
+  - {text: "petrol bunk on the way", style: fragment}
+
+# --------------------------------------------------------------------------- #
+# communication
+# --------------------------------------------------------------------------- #
+call_contact:
+  - {text: "call {contact}", style: command}
+  - {text: "can you dial {phone} for me", style: question}
+  - {text: "i need to talk to {contact} right now", style: outcome}
+  - {text: "{contact} has been trying to reach me all morning", style: indirect}
+  - {text: "ring {contact}", style: fragment}
+lookup_contact_info:
+  - {text: "tell me {contact}'s office address", style: command}
+  - {text: "what's {contact}'s number", style: question}
+  - {text: "i need {contact}'s address for the courier", style: outcome}
+  - {text: "{contact} number", style: fragment}
+send_text_message:
+  - {text: "text {contact} {message_text}", style: command}
+  - {text: "can you send a message to {contact} saying {message_text}", style: question}
+  - {text: "i want {contact} to know i'll be {duration} late", style: outcome}
+  - {text: "{contact} is waiting on that otp it's {otp}", style: indirect}
+  - {text: "message {contact}", style: fragment}
+reply_to_message:
+  - {text: "reply saying {message_text}", style: command}
+  - {text: "can you write back to {contact} that {message_text}", style: question}
+  - {text: "{contact} needs an answer from me", style: outcome}
+  - {text: "sure {time} works for me i'll be there", style: indirect}
+  - {text: "reply {otp}", style: fragment}
+read_messages:
+  - {text: "read my new messages", style: command}
+  - {text: "what did {contact} just send me", style: question}
+  - {text: "i've missed a bunch of messages while driving", style: outcome}
+  - {text: "my phone kept buzzing all through the meeting", style: indirect}
+  - {text: "unread messages", style: fragment}
+summarize_group_chat:
+  - {text: "summarise the family group chat", style: command}
+  - {text: "what's been going on in the office group", style: question}
+  - {text: "the college group has like two hundred new messages", style: indirect}
+  - {text: "group chat summary", style: fragment}
+play_voicemail:
+  - {text: "play my voicemail", style: command}
+  - {text: "do i have any voice messages", style: question}
+  - {text: "i missed a call from the school and they left a message", style: indirect}
+  - {text: "voicemail", style: fragment}
+start_video_call:
+  - {text: "video call {contact}", style: command}
+  - {text: "can you start a video chat with {contact}", style: question}
+  - {text: "i want {contact} to see the new house", style: outcome}
+  - {text: "mom wants to see the grandkids", style: indirect}
+compose_long_email:
+  - {text: "draft a long email to {contact} about {topic}", style: command}
+  - {text: "can you help me write a proper email to {contact}", style: question}
+  - {text: "i need to write up the whole project update for my boss", style: outcome}
+  - {text: "the client is expecting a detailed proposal from me today", style: indirect}
+
+# --------------------------------------------------------------------------- #
+# media
+# --------------------------------------------------------------------------- #
+play_music:
+  - {text: "play {song} by {artist}", style: command}
+  - {text: "can you put on some {artist}", style: question}
+  - {text: "i need something upbeat to stay awake", style: outcome}
+  - {text: "nobody's talking and the drive is getting boring", style: indirect}
+  - {text: "{artist} songs", style: fragment}
+pause_playback:
+  - {text: "pause the music", style: command}
+  - {text: "can you start the song again from where it stopped", style: question}
+  - {text: "hang on i need to talk to the security guard", style: indirect}
+  - {text: "resume", style: fragment}
+skip_track:
+  - {text: "skip this song", style: command}
+  - {text: "i can't stand this track", style: outcome}
+  - {text: "can you go back to the last song", style: question}
+  - {text: "next", style: fragment}
+tune_radio_station:
+  - {text: "tune to {station}", style: command}
+  - {text: "i want the local news on the radio", style: outcome}
+  - {text: "can you find a station playing old songs", style: question}
+  - {text: "fm {number}", style: fragment}
+play_podcast:
+  - {text: "play the latest episode of {podcast}", style: command}
+  - {text: "can you continue the podcast i was listening to", style: question}
+  - {text: "i'd rather listen to people talking than music", style: outcome}
+  - {text: "{podcast} podcast", style: fragment}
+play_video:
+  - {text: "play the {topic} video on the screen", style: command}
+  - {text: "can you put on a cartoon for the kids", style: question}
+  - {text: "the kids are bored waiting in the parking lot", style: indirect}
+  - {text: "{topic} video", style: fragment}
+show_photos:
+  - {text: "show the photos from {date}", style: command}
+  - {text: "can you pull up the pictures from the wedding", style: question}
+  - {text: "grandma wants to see the trip pictures", style: indirect}
+  - {text: "photo gallery", style: fragment}
+
+# --------------------------------------------------------------------------- #
+# information
+# --------------------------------------------------------------------------- #
+weather_now:
+  - {text: "tell me the weather for tomorrow", style: command}
+  - {text: "will it rain in {city} today", style: question}
+  - {text: "i need to know if i should carry an umbrella", style: outcome}
+  - {text: "weather {city}", style: fragment}
+current_time:
+  - {text: "tell me today's date", style: command}
+  - {text: "what time is it", style: question}
+  - {text: "my phone died and i don't know the time", style: outcome}
+  - {text: "time", style: fragment}
+sports_score:
+  - {text: "give me the latest cricket score", style: command}
+  - {text: "what's the score in the {team} match", style: question}
+  - {text: "everyone at office is watching the match except me", style: indirect}
+  - {text: "{team} score", style: fragment}
+general_knowledge_question:
+  - {text: "tell me who invented the telephone", style: command}
+  - {text: "how high is the tallest mountain in india", style: question}
+  - {text: "i can't remember when india got independence", style: outcome}
+  - {text: "my son is asking why the sky is blue", style: indirect}
+  - {text: "population of {city}", style: fragment}
+explain_topic_in_depth:
+  - {text: "explain {topic} to me in detail", style: command}
+  - {text: "can you walk me through how {topic} works", style: question}
+  - {text: "i want to properly understand {topic}", style: outcome}
+  - {text: "i've got an hour to kill and {topic} has always confused me", style: indirect}
+  - {text: "deep dive on {topic}", style: fragment}
+vehicle_manual_question:
+  - {text: "explain how the auto hold button works", style: command}
+  - {text: "what does the orange engine light mean", style: question}
+  - {text: "there's a tyre symbol flashing on the dashboard", style: outcome}
+  - {text: "abs light meaning", style: fragment}
+fuel_range:
+  - {text: "tell me the remaining range", style: command}
+  - {text: "how far can i go on this petrol", style: question}
+  - {text: "the fuel light just came on", style: outcome}
+  - {text: "the next bunk is {number} kilometres away", style: indirect}
+  - {text: "range left", style: fragment}
+
+# --------------------------------------------------------------------------- #
+# planning
+# --------------------------------------------------------------------------- #
+plan_multi_day_trip:
+  - {text: "plan a {duration} trip to {city}", style: command}
+  - {text: "can you put together a weekend trip to the hills", style: question}
+  - {text: "we have a long weekend and want to go somewhere", style: outcome}
+  - {text: "road trip to {city} {duration}", style: fragment}
+plan_day_itinerary:
+  - {text: "plan my stops for today", style: command}
+  - {text: "what's the best order to do my errands today", style: question}
+  - {text: "i've got the bank tailor and pharmacy to cover today", style: outcome}
+  - {text: "we only have today in {city} and want to see everything", style: indirect}
+book_restaurant:
+  - {text: "book a table for {number} at {place} at {time}", style: command}
+  - {text: "can you get us a dinner reservation somewhere nice", style: question}
+  - {text: "it's our anniversary and i haven't booked dinner", style: indirect}
+  - {text: "table for {number} tonight", style: fragment}
+plan_charging_stops:
+  - {text: "plan charging stops for the drive to {city}", style: command}
+  - {text: "where should i charge on the way to {city}", style: question}
+  - {text: "the battery won't cover the full trip to {city}", style: outcome}
+  - {text: "first time taking the ev out on the highway", style: indirect}
+
+# --------------------------------------------------------------------------- #
+# productivity
+# --------------------------------------------------------------------------- #
+calendar_today:
+  - {text: "read out today's meetings", style: command}
+  - {text: "what's on my calendar today", style: question}
+  - {text: "i need to know if i'm free this afternoon", style: outcome}
+  - {text: "today's schedule", style: fragment}
+add_reminder:
+  - {text: "remind me to {note_text} at {time}", style: command}
+  - {text: "can you remind me to pay the card ending {card} tomorrow", style: question}
+  - {text: "i keep forgetting to pick up the dry cleaning", style: outcome}
+  - {text: "reminder medicine at {time}", style: fragment}
+add_calendar_event:
+  - {text: "add {event_title} to my calendar on {date} at {time}", style: command}
+  - {text: "can you block {duration} on {date} for {event_title}", style: question}
+  - {text: "{contact} and i agreed to meet {date} at {time}", style: indirect}
+  - {text: "meeting {date} {time}", style: fragment}
+take_note:
+  - {text: "note down {note_text}", style: command}
+  - {text: "can you save the card ending {card} in my notes", style: question}
+  - {text: "i need to remember this idea before i lose it", style: outcome}
+  - {text: "quick note otp {otp}", style: fragment}
+edit_note:
+  - {text: "change the second line of my last note", style: command}
+  - {text: "can you fix a few things in my shopping list note", style: question}
+  - {text: "i got the address wrong in that note i made", style: indirect}
+  - {text: "edit last note", style: fragment}
+read_document:
+  - {text: "open the {topic} report on screen", style: command}
+  - {text: "can you pull up the contract my lawyer sent", style: question}
+  - {text: "i need to go over the presentation before the meeting", style: outcome}
+  - {text: "{topic} document", style: fragment}
+pair_bluetooth_device:
+  - {text: "pair my new phone", style: command}
+  - {text: "can you connect my wife's phone to the car", style: question}
+  - {text: "i just changed my phone and the car doesn't know it", style: indirect}
+  - {text: "bluetooth pairing", style: fragment}
+browse_web:
+  - {text: "open the {topic} website", style: command}
+  - {text: "can you open that news site on the screen", style: question}
+  - {text: "i want to read about the election results on screen", style: outcome}
+  - {text: "browser", style: fragment}
