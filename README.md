@@ -5,16 +5,19 @@ LLM assistant should answer on the head unit (`LOCAL`), in the cloud
 (`CLOUD`), in the cloud with sensitive spans masked (`CLOUD_MASKED`), wait
 for connectivity (`DEFER`), or not run at all (`REFUSE`).
 
-Status: week 1. The rulebook, policy tables, and intent taxonomy are in place;
-the data pipeline, router, and evaluation harness follow.
+Status: week 1. The rulebook, policy tables, intent taxonomy, seed-only data
+pipeline, cost matrix, metrics and rules baseline are in place; paraphrasing
+and the router follow.
 
 ## Layout
 
 | Package | Contents |
 | --- | --- |
-| `autogate_bench` | Schema, policy tables, rulebook labeler, intent taxonomy (`docs/taxonomy.md`) |
+| `autogate_bench` | Schema, policy tables, rulebook labeler, intent taxonomy (`docs/taxonomy.md`), seeds, span injector, context sampler, splits, dataset writer |
 | `autogate_router` | Training, export, inference (week 3) |
-| `autogate_eval` | Cost matrix, safety-weighted error, policy gate (weeks 1-3) |
+| `autogate_eval` | Cost matrix, safety-weighted error and other metrics, rules baseline, policy gate (weeks 1-3) |
+| `configs/` | `cost_matrix.json`: the PRD cost matrix behind safety-weighted error |
+| `docs/pilot.md` | The seed-only pilot: commands, counts, flip profiles, rules baseline results |
 
 ## The rulebook
 
@@ -70,6 +73,17 @@ same set Android Automotive's UX restrictions block while moving.
 Distraction blocks are `REFUSE`, not `DEFER`: deferring means the car acts
 later without being asked again, which is right for a dropped signal and
 wrong for reading your messages aloud the moment you park.
+
+## Generate the pilot
+
+```
+uv run python -m autogate_bench.generate --out data/generated/pilot --rng-seed 0
+uv run python -m autogate_eval.baselines.rules --rows data/generated/pilot/rows.jsonl
+```
+
+The first writes `rows.jsonl`, `rows.parquet` and `manifest.json` (`rows.jsonl` is
+byte-identical for the same arguments); the second prints the rules baseline's report. Counts
+and results are in `docs/pilot.md`.
 
 ## Development
 
