@@ -26,7 +26,7 @@ def offline() -> Context:
 
 
 # --------------------------------------------------------------------------- #
-# Pilot rows as dicts, and written to a temporary rows.jsonl
+# Router fixtures: pilot rows and a tiny random backbone (nothing downloaded)
 # --------------------------------------------------------------------------- #
 
 
@@ -46,3 +46,20 @@ def pilot_jsonl(tmp_path_factory, pilot_rows):
         for r in pilot_rows:
             f.write(json.dumps(r) + "\n")
     return path
+
+
+@pytest.fixture(scope="session")
+def tiny_backbone(tmp_path_factory, pilot_rows):
+    """A tiny random Qwen3 (hidden 32, 2 layers, 2 heads) and a BPE tokenizer trained here."""
+    pytest.importorskip("torch")
+    pytest.importorskip("transformers")
+    from autogate_router.tiny import build_tiny_backbone
+
+    return build_tiny_backbone(tmp_path_factory.mktemp("tiny") / "backbone", pilot_rows)
+
+
+@pytest.fixture(scope="session")
+def tiny_tokenizer(tiny_backbone):
+    from autogate_router.model import load_tokenizer
+
+    return load_tokenizer(tiny_backbone)

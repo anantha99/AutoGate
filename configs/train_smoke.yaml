@@ -1,0 +1,36 @@
+# CPU smoke run: the tiny random backbone on the seed-only pilot, a few dozen steps.
+# Build the backbone first (no download):
+#   python -m autogate_router.tiny --out checkpoints/tiny-qwen3 --rows data/generated/pilot/rows.jsonl
+# then
+#   python -m autogate_router.train --config configs/train_smoke.yaml
+# Its numbers only show that the loop runs. It fine-tunes the whole tiny model (lora: false):
+# LoRA leaves the embeddings frozen, and a frozen *random* embedding gives the adapters almost
+# nothing to work with. Pass --lora to exercise the LoRA path anyway.
+rows: data/generated/pilot/rows.jsonl
+train_split: train
+val_split: val
+out_dir: checkpoints/smoke
+backbone: checkpoints/tiny-qwen3
+pooling: mean
+context: true
+max_length: 96
+lora: false
+lora_r: 4
+lora_alpha: 8
+lora_dropout: 0.0
+lora_target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+head_dropout: 0.0
+lambda_intent: 0.5
+lambda_span: 1.0
+epochs: 4
+batch_size: 16
+eval_batch_size: 64
+lr: 3.0e-3
+head_lr: 3.0e-3
+warmup_ratio: 0.1
+grad_accum: 1
+precision: fp32
+device: cpu
+seed: 0
+log_every: 10
+eval_n_boot: 50
