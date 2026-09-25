@@ -6,14 +6,15 @@ LLM assistant should answer on the head unit (`LOCAL`), in the cloud
 for connectivity (`DEFER`), or not run at all (`REFUSE`).
 
 Status: week 1. The rulebook, policy tables, intent taxonomy, seed-only data
-pipeline, cost matrix, metrics and rules baseline are in place; paraphrasing
+pipeline, cost matrix, metrics and rules baseline are in place, as are the
+paraphrase format, validator and ASR augmenter; the paraphrases themselves
 and the router follow.
 
 ## Layout
 
 | Package | Contents |
 | --- | --- |
-| `autogate_bench` | Schema, policy tables, rulebook labeler, intent taxonomy (`docs/taxonomy.md`), seeds, span injector, context sampler, splits, dataset writer |
+| `autogate_bench` | Schema, policy tables, rulebook labeler, intent taxonomy (`docs/taxonomy.md`), seeds, paraphrase format and validator (`docs/paraphrase-spec.md`), ASR augmenter, span injector, context sampler, splits, dataset writer |
 | `autogate_router` | Training, export, inference (week 3) |
 | `autogate_eval` | Cost matrix, safety-weighted error and other metrics, rules baseline, policy gate (weeks 1-3) |
 | `configs/` | `cost_matrix.json`: the PRD cost matrix behind safety-weighted error |
@@ -84,6 +85,31 @@ uv run python -m autogate_eval.baselines.rules --rows data/generated/pilot/rows.
 The first writes `rows.jsonl`, `rows.parquet` and `manifest.json` (`rows.jsonl` is
 byte-identical for the same arguments); the second prints the rules baseline's report. Counts
 and results are in `docs/pilot.md`.
+
+## Paraphrases
+
+Each seed is expanded into 40 paraphrases (24 plain, 6 Hinglish, 4
+Kannada-English, 6 disfluent) in `data/paraphrases/<intent>.yaml`, written by
+generation agents that follow `docs/paraphrase-spec.md`. Four ASR-noised
+copies per seed are added in code at generation time
+(`autogate_bench.asr_noise`). Every paraphrase inherits its seed's split,
+style and slots.
+
+```
+uv run python -m autogate_bench.paraphrases validate --strict [--intents a,b]
+uv run python -m autogate_bench.paraphrases status
+uv run python -m autogate_bench.generate --out data/generated/full --paraphrases data/paraphrases
+```
+
+`validate` prints counts per intent and variant and every error and warning
+as `file:seed:line`, and exits non-zero on an error; `status` shows how far
+each intent is from its quota. To regenerate paraphrases with your own
+Anthropic key instead (prompt in `prompts/paraphrase.md`):
+
+```
+uv sync --extra api
+uv run python -m autogate_bench.paraphrase_api --intents call_contact,wipers_on --out data/paraphrases --resume
+```
 
 ## Development
 
