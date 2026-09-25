@@ -11,6 +11,8 @@ common sense. No proprietary supplier or OEM intent list was used.
 
 Invariants (checked in ``tests/test_intents.py``):
 
+* ``needs_cloud`` is DEFER offline; ``cloud_preferred`` falls back to LOCAL
+  offline because onboard data can answer, less well.
 * Vehicle-control intents are LOCAL_OK and LOW distraction: the command
   itself is short. They are refused, if at all, by their actuation class.
 * Everything else is refused, if at all, by its distraction level. No intent
@@ -281,7 +283,7 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "navigate_to_contact_address",
         G.NAVIGATION,
-        C.NEEDS_CLOUD,
+        C.CLOUD_PREFERRED,
         L.LOW,
         description="Start navigation to a contact's address",
         consequence=Q.REVERSIBLE,
@@ -289,7 +291,7 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "find_nearby_place",
         G.NAVIGATION,
-        C.NEEDS_CLOUD,
+        C.CLOUD_PREFERRED,
         L.MEDIUM,
         description="Find and compare nearby places such as restaurants or fuel stations",
         consequence=Q.NONE,
@@ -305,7 +307,7 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "add_stop_along_route",
         G.NAVIGATION,
-        C.NEEDS_CLOUD,
+        C.CLOUD_PREFERRED,
         L.MEDIUM,
         description="Add a stop, such as coffee or a charger, along the current route",
         consequence=Q.REVERSIBLE,
@@ -533,7 +535,7 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "plan_charging_stops",
         G.PLANNING,
-        C.NEEDS_CLOUD,
+        C.CLOUD_PREFERRED,
         L.MEDIUM,
         description="Plan charging stops for an electric-vehicle journey",
         consequence=Q.NONE,

@@ -151,6 +151,40 @@ def test_weak_connectivity_can_be_excluded_by_policy():
     assert route(I["weather_now"], ctx, policy=policy).route is Route.DEFER
 
 
+def test_cloud_preferred_falls_back_to_local_offline(offline):
+    d = route(I["find_nearby_place"], offline)
+    assert d == Decision(Route.LOCAL, Reason.LOCAL_FALLBACK, D.LOW)
+
+
+def test_cloud_preferred_goes_to_cloud_when_connected():
+    ctx = Context(SpeedBucket.LOW, Connectivity.GOOD, Workload.LOW)
+    assert route(I["find_nearby_place"], ctx).route is Route.CLOUD
+
+
+def test_cloud_preferred_is_masked_when_connected_with_spans():
+    ctx = Context(SpeedBucket.LOW, Connectivity.GOOD, Workload.LOW)
+    d = route(I["navigate_to_contact_address"], ctx, has_sensitive_spans=True)
+    assert d.route is Route.CLOUD_MASKED
+
+
+def test_cloud_preferred_offline_with_spans_stays_local(offline):
+    d = route(I["navigate_to_contact_address"], offline, has_sensitive_spans=True)
+    assert d == Decision(Route.LOCAL, Reason.LOCAL_FALLBACK, D.LOW)
+
+
+def test_degradation_split_between_defer_and_local_fallback():
+    """Forcing connectivity to none shifts needs_cloud to DEFER and cloud_preferred to LOCAL."""
+    connected = Context(SpeedBucket.LOW, Connectivity.GOOD, Workload.LOW)
+    offline = Context(SpeedBucket.LOW, Connectivity.NONE, Workload.LOW)
+    for intent in INTENTS:
+        if intent.capability is Capability.NEEDS_CLOUD:
+            assert route(intent, connected).route in (Route.CLOUD, Route.REFUSE)
+            assert route(intent, offline).route in (Route.DEFER, Route.REFUSE)
+        if intent.capability is Capability.CLOUD_PREFERRED:
+            assert route(intent, connected).route in (Route.CLOUD, Route.REFUSE)
+            assert route(intent, offline).route in (Route.LOCAL, Route.REFUSE)
+
+
 def test_defer_beats_masking(offline):
     d = route(I["plan_multi_day_trip"], offline, has_sensitive_spans=True)
     assert d.route is Route.DEFER
@@ -273,6 +307,9 @@ def test_invariants_hold_for_every_context(intent):
             # Strict privacy never sends sensitive spans out at all.
             if sensitive and ctx.privacy_mode is PrivacyMode.STRICT:
                 assert d.route not in (Route.CLOUD, Route.CLOUD_MASKED)
+            # cloud_preferred never waits: offline it runs on the head unit.
+            if intent.capability is Capability.CLOUD_PREFERRED:
+                assert d.route is not Route.DEFER
             # Nothing cloud-bound without connectivity.
             if ctx.connectivity is Connectivity.NONE:
                 assert d.route not in (Route.CLOUD, Route.CLOUD_MASKED)

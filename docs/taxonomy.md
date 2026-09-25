@@ -20,6 +20,11 @@ proprietary supplier or OEM intent list was used or reconstructed.
 
 **Rules the tags follow.**
 
+- `needs_cloud` means the request cannot be answered without the cloud, so
+  offline it is DEFER. `cloud_preferred` means the cloud answers it better but
+  onboard data can answer it now, so offline it is LOCAL. The degradation
+  study relies on this split: forcing connectivity to none must shift the
+  first group to DEFER and the second to LOCAL.
 - Every intent also carries a `consequence` tag: `none` (read-only),
   `reversible` (the driver can undo it with one more utterance), or
   `irreversible` (another party sees it: a sent message, a placed call, a
@@ -52,7 +57,8 @@ information 7, planning 4, productivity 8.
 | --- | --- | --- | --- | --- |
 | local_ok | 37 | 2 | 4 | 43 |
 | needs_small_local | 5 | 2 | 1 | 8 |
-| needs_cloud | 4 | 7 | 3 | 14 |
+| needs_cloud | 3 | 4 | 3 | 10 |
+| cloud_preferred | 1 | 3 | 0 | 4 |
 | total | 46 | 11 | 8 | 65 |
 
 Actuation: safety_critical 5, comfort 11, restricted 6, none 43.
@@ -69,7 +75,8 @@ Which tag makes the label depend on context:
 | distraction `medium` | driving demand (refused at high demand) | 11 |
 | distraction `high` | parked vs moving | 8 |
 | actuation `restricted` | parked vs moving (raw demand, no passenger relaxation) | 6 |
-| capability `needs_cloud` | connectivity (DEFER when offline) | 14 |
+| capability `needs_cloud` | connectivity (DEFER when offline) | 10 |
+| capability `cloud_preferred` | connectivity (LOCAL when offline) | 4 |
 | capability `needs_small_local` | local model tier (LOCAL on small, cloud on tiny) | 8 |
 
 ## vehicle_control
@@ -107,10 +114,10 @@ Which tag makes the label depend on context:
 | cancel_route | local_ok | low | none | reversible | Stop the active navigation | A single command to the navigation app. |
 | navigate_home | local_ok | low | none | reversible | Start navigation to a saved place such as home or work | Saved destination plus onboard maps; no search or live data needed *(judgment)*. |
 | eta_to_destination | local_ok | low | none | none | Ask when the car will arrive at the current destination | The active navigation engine already holds the ETA; the assistant only reads it *(judgment)*. |
-| navigate_to_contact_address | needs_cloud | low | none | reversible | Start navigation to a contact's address | Geocoding a free-text address uses online maps; the address is a sensitive span, so this is the canonical CLOUD_MASKED case *(judgment)*. |
-| find_nearby_place | needs_cloud | medium | none | none | Find and compare nearby places such as restaurants or fuel stations | Live place data; comparing candidates is a decision, and typed search is blocked by `UX_RESTRICTIONS_NO_KEYBOARD`. |
+| navigate_to_contact_address | cloud_preferred | low | none | reversible | Start navigation to a contact's address | Online maps geocode a free-text address best, but onboard maps can do it offline, so LOCAL rather than DEFER when there is no signal. The address is a sensitive span, so connected this is the standard CLOUD_MASKED example. |
+| find_nearby_place | cloud_preferred | medium | none | none | Find and compare nearby places such as restaurants or fuel stations | Live ratings and opening hours need the cloud, but onboard POI data answers offline, so LOCAL rather than DEFER when there is no signal. |
 | traffic_on_route | needs_cloud | low | none | none | Ask about traffic or delays on the current route | Live traffic data, answered in one sentence. |
-| add_stop_along_route | needs_cloud | medium | none | reversible | Add a stop, such as coffee or a charger, along the current route | Live search along the route; choosing among candidates is a decision (`UX_RESTRICTIONS_LIMIT_CONTENT` caps list browsing). |
+| add_stop_along_route | cloud_preferred | medium | none | reversible | Add a stop, such as coffee or a charger, along the current route | Cloud search finds the best stop; the onboard POI database can still add one offline, so LOCAL rather than DEFER. |
 
 ## communication
 
@@ -157,7 +164,7 @@ Which tag makes the label depend on context:
 | plan_multi_day_trip | needs_cloud | medium | none | none | Plan a trip spanning several days | Live data plus multi-constraint reasoning; the spoken plan is long and invites decisions. |
 | plan_day_itinerary | needs_cloud | medium | none | none | Plan a sequence of stops for today | Opening hours and travel times are live; ordering stops is a decision. |
 | book_restaurant | needs_cloud | medium | none | irreversible | Find and reserve a table at a restaurant | Live availability and a booking service; confirming time and party size is a spoken decision, not a screen form *(judgment)*. |
-| plan_charging_stops | needs_cloud | medium | none | none | Plan charging stops for an electric-vehicle journey | Live charger availability combined with `EV_BATTERY_LEVEL` / `RANGE_REMAINING`; choosing stops is a decision. |
+| plan_charging_stops | cloud_preferred | medium | none | none | Plan charging stops for an electric-vehicle journey | Live charger availability needs the cloud; the onboard charger database gives a usable plan offline, so LOCAL rather than DEFER. |
 
 ## productivity
 

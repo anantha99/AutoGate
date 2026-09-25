@@ -133,7 +133,8 @@ class Capability(StrEnum):
 
     LOCAL_OK = "local_ok"  # any head-unit model can do it
     NEEDS_SMALL_LOCAL = "needs_small_local"  # ok on a <= 8B local model, else cloud
-    NEEDS_CLOUD = "needs_cloud"  # needs live data or a frontier model
+    NEEDS_CLOUD = "needs_cloud"  # needs live data or a frontier model; offline -> DEFER
+    CLOUD_PREFERRED = "cloud_preferred"  # better in the cloud, usable offline; offline -> LOCAL
 
 
 class DistractionLevel(StrEnum):

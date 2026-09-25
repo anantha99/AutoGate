@@ -26,6 +26,7 @@ safety-critical command       -> LOCAL
 restricted actuation, moving  -> REFUSE
 too distracting for demand    -> REFUSE
 local model can handle it     -> LOCAL
+no connectivity, cloud-preferred -> LOCAL (onboard fallback)
 no connectivity               -> DEFER
 sensitive spans, strict mode  -> LOCAL   (configurable)
 sensitive spans               -> CLOUD_MASKED

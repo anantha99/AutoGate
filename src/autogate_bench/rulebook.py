@@ -5,6 +5,7 @@ Plain-text order, from the PRD:
     safety-critical command        -> LOCAL
     unsafe for driving state       -> REFUSE   (restricted actuation, then distraction)
     no cloud capability needed     -> LOCAL
+    no connectivity, cloud-preferred -> LOCAL (degraded, onboard fallback)
     no connectivity                -> DEFER
     sensitive spans, strict mode   -> policy.strict_privacy_route (LOCAL by default)
     sensitive spans                -> CLOUD_MASKED
@@ -41,6 +42,7 @@ class Reason(StrEnum):
     RESTRICTED_ACTUATION = "restricted_actuation"
     DISTRACTION = "distraction"
     LOCAL_CAPABLE = "local_capable"
+    LOCAL_FALLBACK = "local_fallback"
     NO_CONNECTIVITY = "no_connectivity"
     STRICT_PRIVACY = "strict_privacy"
     SENSITIVE_SPANS = "sensitive_spans"
@@ -105,8 +107,11 @@ def route(
     if locally_capable(intent, context):
         return Decision(Route.LOCAL, Reason.LOCAL_CAPABLE, demand)
 
-    # 4. Cloud needed but unreachable.
+    # 4. Cloud unreachable: fall back to the head unit if the intent allows it,
+    #    otherwise queue until the signal returns.
     if context.connectivity not in policy.cloud_connectivity:
+        if intent.capability is Capability.CLOUD_PREFERRED:
+            return Decision(Route.LOCAL, Reason.LOCAL_FALLBACK, demand)
         return Decision(Route.DEFER, Reason.NO_CONNECTIVITY, demand)
 
     # 5. Sensitive spans.
