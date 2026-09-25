@@ -16,6 +16,10 @@ dev = [
     "pytest>=8",
     "ruff>=0.6",
 ]
+# Only for autogate_bench.paraphrase_api (regenerating paraphrases with your own key).
+api = [
+    "anthropic>=1.8",
+]
 
 [build-system]
 requires = ["hatchling"]
