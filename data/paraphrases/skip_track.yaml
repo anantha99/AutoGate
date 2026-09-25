@@ -1,0 +1,176 @@
+# Paraphrases of the skip_track seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): skip this song
+"0":
+  - {text: "next song please", variant: plain}
+  - {text: "move to the next track", variant: plain}
+  - {text: "change this song", variant: plain}
+  - {text: "jump ahead to the next one", variant: plain}
+  - {text: "skip it", variant: plain}
+  - {text: "go to the next song", variant: plain}
+  - {text: "play the next track", variant: plain}
+  - {text: "get rid of this song", variant: plain}
+  - {text: "skip ahead", variant: plain}
+  - {text: "not this one skip", variant: plain}
+  - {text: "put the next song on", variant: plain}
+  - {text: "change the track", variant: plain}
+  - {text: "switch songs", variant: plain}
+  - {text: "skip past this one", variant: plain}
+  - {text: "hop to another track", variant: plain}
+  - {text: "skip na", variant: plain}
+  - {text: "move on to another song", variant: plain}
+  - {text: "change it change it", variant: plain}
+  - {text: "skip the current track", variant: plain}
+  - {text: "next one", variant: plain}
+  - {text: "drop this song and go next", variant: plain}
+  - {text: "give me the next song", variant: plain}
+  - {text: "do one thing skip this", variant: plain}
+  - {text: "onto the next one", variant: plain}
+  - {text: "ye gaana badlo", variant: hinglish}
+  - {text: "agla gaana lagao", variant: hinglish}
+  - {text: "next song chala do yaar", variant: hinglish}
+  - {text: "is song ko skip karo", variant: hinglish}
+  - {text: "ye wala hatao agla chalao", variant: hinglish}
+  - {text: "gaana change kar do", variant: hinglish}
+  - {text: "next haadu haaku", variant: kannada_english}
+  - {text: "ee song skip maadu", variant: kannada_english}
+  - {text: "bere haadu haaku guru", variant: kannada_english}
+  - {text: "haadu change maadi", variant: kannada_english}
+  - {text: "uh skip the the song", variant: disfluent}
+  - {text: "pause no wait skip this song", variant: disfluent}
+  - {text: "er change this um change this track", variant: disfluent}
+  - {text: "so um just go to the like next one", variant: disfluent}
+  - {text: "skip it skip it uh please", variant: disfluent}
+  - {text: "um get get this song off", variant: disfluent}
+
+# seed 1 (outcome): i can't stand this track
+"1":
+  - {text: "this song is so annoying", variant: plain}
+  - {text: "ugh i hate this one", variant: plain}
+  - {text: "this track is driving me mad", variant: plain}
+  - {text: "i'm really not in the mood for this song", variant: plain}
+  - {text: "this song gets on my nerves", variant: plain}
+  - {text: "not a fan of this track at all", variant: plain}
+  - {text: "this one is terrible", variant: plain}
+  - {text: "i've heard this song way too many times", variant: plain}
+  - {text: "this particular song is giving me a headache", variant: plain}
+  - {text: "who put this song on it's awful", variant: plain}
+  - {text: "this track is so depressing", variant: plain}
+  - {text: "my ears are bleeding with this one", variant: plain}
+  - {text: "i really dislike this song", variant: plain}
+  - {text: "this number is so irritating", variant: plain}
+  - {text: "i'm bored of this track", variant: plain}
+  - {text: "this song again seriously", variant: plain}
+  - {text: "enough of this track already", variant: plain}
+  - {text: "i can't bear listening to this", variant: plain}
+  - {text: "this song is the worst", variant: plain}
+  - {text: "this one's really not working for me", variant: plain}
+  - {text: "i'm sick of this song", variant: plain}
+  - {text: "this track is ruining my mood", variant: plain}
+  - {text: "this remix is horrible", variant: plain}
+  - {text: "this song is way too slow and sleepy", variant: plain}
+  - {text: "ye gaana bilkul bakwas hai", variant: hinglish}
+  - {text: "yaar ye song sun sun ke pak gaya", variant: hinglish}
+  - {text: "mujhe ye gaana pasand nahi hai", variant: hinglish}
+  - {text: "kya bekaar track hai", variant: hinglish}
+  - {text: "is gaane se sar dard ho raha hai", variant: hinglish}
+  - {text: "ye wala song bahut boring hai yaar", variant: hinglish}
+  - {text: "ee haadu chennagilla", variant: kannada_english}
+  - {text: "ee song bore aagide guru", variant: kannada_english}
+  - {text: "ee track keloke aagalla", variant: kannada_english}
+  - {text: "yaake ee haadu saar thumba bore", variant: kannada_english}
+  - {text: "ugh this this song is uh just awful", variant: disfluent}
+  - {text: "i um i really can't deal with this track", variant: disfluent}
+  - {text: "er this one is like so irritating you know", variant: disfluent}
+  - {text: "the beat is uh no the whole song is just bad", variant: disfluent}
+  - {text: "so um i'm totally bored of this uh number", variant: disfluent}
+  - {text: "uh who who picked this track it's terrible", variant: disfluent}
+
+# seed 2 (question): can you go back to the last song
+"2":
+  - {text: "could you play the previous track?", variant: plain}
+  - {text: "can we go back one song", variant: plain}
+  - {text: "would you replay the song before this", variant: plain}
+  - {text: "can you put the last one on again", variant: plain}
+  - {text: "could you take it back a track?", variant: plain}
+  - {text: "will you play the one before this", variant: plain}
+  - {text: "can i hear the previous song again", variant: plain}
+  - {text: "mind going back to the earlier song", variant: plain}
+  - {text: "can you skip back a song", variant: plain}
+  - {text: "could you bring back the previous one?", variant: plain}
+  - {text: "is it possible to hear that last song again?", variant: plain}
+  - {text: "how about the song that just played?", variant: plain}
+  - {text: "can we have the one before back", variant: plain}
+  - {text: "would you jump back to the previous track?", variant: plain}
+  - {text: "could you go one track back", variant: plain}
+  - {text: "can you play what was on before this?", variant: plain}
+  - {text: "will you put the earlier track back on", variant: plain}
+  - {text: "can the last song play again", variant: plain}
+  - {text: "could we go back to that song we just heard", variant: plain}
+  - {text: "any chance of the previous track?", variant: plain}
+  - {text: "can you switch back to the last number", variant: plain}
+  - {text: "would you mind playing the last song again", variant: plain}
+  - {text: "can you do previous track", variant: plain}
+  - {text: "could you return to the song from before", variant: plain}
+  - {text: "pichla gaana phir se laga sakte ho?", variant: hinglish}
+  - {text: "kya previous song chala doge", variant: hinglish}
+  - {text: "wapas pichle song pe ja sakte ho kya", variant: hinglish}
+  - {text: "jo abhi baja tha wo gaana dobara chalaoge?", variant: hinglish}
+  - {text: "last wala track wapas lagaoge kya", variant: hinglish}
+  - {text: "ek gaana peeche ja sakte ho?", variant: hinglish}
+  - {text: "hinde haadu haakthira?", variant: kannada_english}
+  - {text: "last song matte play maadbahuda", variant: kannada_english}
+  - {text: "ondu song hinde hogbahuda?", variant: kannada_english}
+  - {text: "munche bandidda haadu matte haakthiya", variant: kannada_english}
+  - {text: "um can you go back to the uh the previous one", variant: disfluent}
+  - {text: "could you uh skip no go back a song", variant: disfluent}
+  - {text: "can you can you uh go back a track", variant: disfluent}
+  - {text: "er would you um put the earlier song back on", variant: disfluent}
+  - {text: "so uh can we like go back one", variant: disfluent}
+  - {text: "uh the the song before this can you play it again", variant: disfluent}
+
+# seed 3 (fragment): next
+"3":
+  - {text: "next track", variant: plain}
+  - {text: "next please", variant: plain}
+  - {text: "next song", variant: plain}
+  - {text: "skip", variant: plain}
+  - {text: "the next one", variant: plain}
+  - {text: "skip song", variant: plain}
+  - {text: "another song", variant: plain}
+  - {text: "next number", variant: plain}
+  - {text: "forward", variant: plain}
+  - {text: "skip forward", variant: plain}
+  - {text: "track forward", variant: plain}
+  - {text: "change song", variant: plain}
+  - {text: "next tune", variant: plain}
+  - {text: "on to the next", variant: plain}
+  - {text: "skip track", variant: plain}
+  - {text: "moving on", variant: plain}
+  - {text: "go next", variant: plain}
+  - {text: "next na", variant: plain}
+  - {text: "next in the playlist", variant: plain}
+  - {text: "skip over", variant: plain}
+  - {text: "skip this", variant: plain}
+  - {text: "nope next", variant: plain}
+  - {text: "change it", variant: plain}
+  - {text: "skip ahead one", variant: plain}
+  - {text: "agla gaana", variant: hinglish}
+  - {text: "agla", variant: hinglish}
+  - {text: "next karo", variant: hinglish}
+  - {text: "aage karo", variant: hinglish}
+  - {text: "dusra gaana", variant: hinglish}
+  - {text: "agla wala", variant: hinglish}
+  - {text: "next haaku", variant: kannada_english}
+  - {text: "mundina haadu", variant: kannada_english}
+  - {text: "bere haaku", variant: kannada_english}
+  - {text: "next maadi", variant: kannada_english}
+  - {text: "uh next", variant: disfluent}
+  - {text: "um next one", variant: disfluent}
+  - {text: "er back no next", variant: disfluent}
+  - {text: "next uh the next song", variant: disfluent}
+  - {text: "so um the next track", variant: disfluent}
+  - {text: "wait uh next please", variant: disfluent}

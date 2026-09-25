@@ -1,0 +1,176 @@
+# Paraphrases of the calendar_today seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): read out today's meetings
+"0":
+  - {text: "tell me what meetings i have today", variant: plain}
+  - {text: "go through my meetings for today", variant: plain}
+  - {text: "list today's meetings", variant: plain}
+  - {text: "read me my calls and meetings for the day", variant: plain}
+  - {text: "give me today's meeting list", variant: plain}
+  - {text: "run through my appointments today", variant: plain}
+  - {text: "let me hear what meetings are lined up today", variant: plain}
+  - {text: "brief me on today's meetings", variant: plain}
+  - {text: "play back my meeting schedule for today", variant: plain}
+  - {text: "walk me through today's calendar", variant: plain}
+  - {text: "tell me all my meetings for the day one by one", variant: plain}
+  - {text: "say out my meetings for today", variant: plain}
+  - {text: "give me a rundown of today's meetings", variant: plain}
+  - {text: "today's lineup of meetings read it to me", variant: plain}
+  - {text: "just read my meetings for the day", variant: plain}
+  - {text: "rattle off today's meetings", variant: plain}
+  - {text: "read aloud the meetings i've got today", variant: plain}
+  - {text: "do a quick read of today's meeting list", variant: plain}
+  - {text: "list out everything booked in my calendar for today", variant: plain}
+  - {text: "give me the timings of my meetings today", variant: plain}
+  - {text: "pull up today's meetings and read them", variant: plain}
+  - {text: "announce my meetings for the day please", variant: plain}
+  - {text: "start with my first meeting today and go through the lot", variant: plain}
+  - {text: "read today's calendar out to me", variant: plain}
+  - {text: "aaj ki meetings padh ke sunao", variant: hinglish}
+  - {text: "aaj kaun kaun si meetings hain batao", variant: hinglish}
+  - {text: "meri aaj ki saari meetings bata do", variant: hinglish}
+  - {text: "aaj ke meetings ek ek karke sunao", variant: hinglish}
+  - {text: "aaj kya kya meetings hain zara read out karo", variant: hinglish}
+  - {text: "yaar aaj ka meeting list suna do", variant: hinglish}
+  - {text: "ivattina meetings odi helu", variant: kannada_english}
+  - {text: "ivattu yaava meetings ide antha helu", variant: kannada_english}
+  - {text: "ivattu meetings list odu", variant: kannada_english}
+  - {text: "nanna ivattina meetings yella heli", variant: kannada_english}
+  - {text: "uh read out my um the meetings for today", variant: disfluent}
+  - {text: "read out tomorrow's sorry i mean today's meetings", variant: disfluent}
+  - {text: "um go through like the meetings for today", variant: disfluent}
+  - {text: "er list list today's meetings for me", variant: disfluent}
+  - {text: "so uh the meetings today just i mean read them out", variant: disfluent}
+  - {text: "um tell me the er meetings i've got you know today", variant: disfluent}
+
+# seed 1 (question): what's on my calendar today
+"1":
+  - {text: "what do i have scheduled for today?", variant: plain}
+  - {text: "anything on my calendar for today", variant: plain}
+  - {text: "what does my day look like?", variant: plain}
+  - {text: "how busy am i today", variant: plain}
+  - {text: "what have i got lined up today?", variant: plain}
+  - {text: "do i have anything booked today", variant: plain}
+  - {text: "what are my appointments for today?", variant: plain}
+  - {text: "is my calendar full today", variant: plain}
+  - {text: "can you tell me what's scheduled for me today", variant: plain}
+  - {text: "any meetings or events today?", variant: plain}
+  - {text: "what's in my diary for today", variant: plain}
+  - {text: "how packed is today's schedule?", variant: plain}
+  - {text: "what all is there for me today", variant: plain}
+  - {text: "which events are on for me today", variant: plain}
+  - {text: "is there anything on the calendar today?", variant: plain}
+  - {text: "what's my agenda for today", variant: plain}
+  - {text: "which meetings have i got today?", variant: plain}
+  - {text: "could you check what's on for me today", variant: plain}
+  - {text: "am i booked up today", variant: plain}
+  - {text: "what does the calendar say about today?", variant: plain}
+  - {text: "any commitments lined up for me today", variant: plain}
+  - {text: "what's today got in store for me", variant: plain}
+  - {text: "how's my schedule looking today?", variant: plain}
+  - {text: "got any meetings for me today", variant: plain}
+  - {text: "aaj mere calendar mein kya hai?", variant: hinglish}
+  - {text: "aaj ka schedule kya hai", variant: hinglish}
+  - {text: "aaj mera din kaisa hai calendar mein", variant: hinglish}
+  - {text: "calendar pe aaj kya kya laga hua hai?", variant: hinglish}
+  - {text: "aaj koi meeting hai kya", variant: hinglish}
+  - {text: "aaj ke liye calendar mein kuch rakha hai kya", variant: hinglish}
+  - {text: "ivattu calendar alli enu ide?", variant: kannada_english}
+  - {text: "ivattu nange enu schedule ide", variant: kannada_english}
+  - {text: "ivattu enaadru meeting ideya", variant: kannada_english}
+  - {text: "ivattina calendar alli enenu ide guru", variant: kannada_english}
+  - {text: "uh what um what have i got on the calendar for today", variant: disfluent}
+  - {text: "so what what do i have today on the calendar", variant: disfluent}
+  - {text: "tomorrow's calendar no sorry what's on today", variant: disfluent}
+  - {text: "um what have i got like today?", variant: disfluent}
+  - {text: "er how's my day uh looking on the calendar", variant: disfluent}
+  - {text: "what's what's lined up for me today you know", variant: disfluent}
+
+# seed 2 (outcome): i need to know if i'm free this afternoon
+"2":
+  - {text: "wondering whether my afternoon is open", variant: plain}
+  - {text: "i've got to find out if anything's on after lunch", variant: plain}
+  - {text: "not sure if i have anything this afternoon", variant: plain}
+  - {text: "keen to know whether my afternoon is clear", variant: plain}
+  - {text: "hoping the afternoon is empty but i can't say for sure", variant: plain}
+  - {text: "need to figure out if i've got time after lunch today", variant: plain}
+  - {text: "i can't remember if there are meetings this afternoon", variant: plain}
+  - {text: "unsure whether my post lunch slot is free", variant: plain}
+  - {text: "have to know if my afternoon is booked or open", variant: plain}
+  - {text: "no idea if i'm busy this afternoon", variant: plain}
+  - {text: "i'm trying to work out if my afternoon is open", variant: plain}
+  - {text: "lost track of whether anything's on later today", variant: plain}
+  - {text: "i don't know if my afternoon has any meetings", variant: plain}
+  - {text: "i must know if the afternoon is free or not", variant: plain}
+  - {text: "my afternoon might be free but i'm not certain", variant: plain}
+  - {text: "i need to be sure i'm not tied up this afternoon", variant: plain}
+  - {text: "it's important for me to know if i'm available later today", variant: plain}
+  - {text: "i have to confirm whether the afternoon is empty", variant: plain}
+  - {text: "i'm not sure what my afternoon looks like", variant: plain}
+  - {text: "i'd better know whether i'm booked after lunch", variant: plain}
+  - {text: "i need to see if there's a gap in my afternoon", variant: plain}
+  - {text: "whether i'm free later today is the thing i need", variant: plain}
+  - {text: "someone's asking for my afternoon and i don't know my schedule", variant: plain}
+  - {text: "can't commit to anything till i know my afternoon's clear", variant: plain}
+  - {text: "mujhe jaanna hai aaj dopahar free hoon ya nahi", variant: hinglish}
+  - {text: "pata nahi aaj afternoon mein kuch hai ya nahi", variant: hinglish}
+  - {text: "dopahar ko main khaali hoon kya yeh jaanna hai", variant: hinglish}
+  - {text: "aaj lunch ke baad free hoon ki nahi pata karna hai", variant: hinglish}
+  - {text: "afternoon free hai ya busy mujhe nahi pata", variant: hinglish}
+  - {text: "aaj dopahar ka slot khaali hai ya nahi jaanna hai", variant: hinglish}
+  - {text: "ivattu madhyaahna naanu free idini na gottilla", variant: kannada_english}
+  - {text: "afternoon free idya illva gottagbeku", variant: kannada_english}
+  - {text: "ivattu oota aadmele enaadru ideya gottilla", variant: kannada_english}
+  - {text: "madhyaahna nange time ideya antha gottagbeku", variant: kannada_english}
+  - {text: "uh i need to know um am i free no wait if the afternoon is free", variant: disfluent}
+  - {text: "so the afternoon um i'm not sure if i'm free you know", variant: disfluent}
+  - {text: "er i gotta find out if uh anything's on after lunch", variant: disfluent}
+  - {text: "um this morning no this afternoon i need to know if it's open", variant: disfluent}
+  - {text: "i don't i don't know if i've got stuff this afternoon", variant: disfluent}
+  - {text: "uh whether i'm like free later today i need to figure that out", variant: disfluent}
+
+# seed 3 (fragment): today's schedule
+"3":
+  - {text: "my schedule for today", variant: plain}
+  - {text: "today's agenda", variant: plain}
+  - {text: "meetings today", variant: plain}
+  - {text: "calendar for today", variant: plain}
+  - {text: "today's appointments", variant: plain}
+  - {text: "the day's calendar", variant: plain}
+  - {text: "today's lineup", variant: plain}
+  - {text: "agenda for the day", variant: plain}
+  - {text: "my day's meetings", variant: plain}
+  - {text: "today on the calendar", variant: plain}
+  - {text: "today schedule please", variant: plain}
+  - {text: "today's events", variant: plain}
+  - {text: "my diary today", variant: plain}
+  - {text: "today's meeting list", variant: plain}
+  - {text: "today's timetable", variant: plain}
+  - {text: "schedule for the day", variant: plain}
+  - {text: "my commitments today", variant: plain}
+  - {text: "today's diary", variant: plain}
+  - {text: "all of today's meetings", variant: plain}
+  - {text: "what's on today", variant: plain}
+  - {text: "today calendar check", variant: plain}
+  - {text: "today's slots", variant: plain}
+  - {text: "my appointments for the day", variant: plain}
+  - {text: "day's schedule", variant: plain}
+  - {text: "aaj ka schedule", variant: hinglish}
+  - {text: "aaj ki meetings", variant: hinglish}
+  - {text: "aaj ka pura program", variant: hinglish}
+  - {text: "aaj ka calendar batao", variant: hinglish}
+  - {text: "aaj ke appointments", variant: hinglish}
+  - {text: "aaj ka din calendar mein", variant: hinglish}
+  - {text: "ivattina schedule", variant: kannada_english}
+  - {text: "ivattu meetings yenu", variant: kannada_english}
+  - {text: "ivattina calendar helu", variant: kannada_english}
+  - {text: "ivattu program enu", variant: kannada_english}
+  - {text: "uh today's um schedule", variant: disfluent}
+  - {text: "um schedule for er today", variant: disfluent}
+  - {text: "today's no tomorrow's no today's schedule", variant: disfluent}
+  - {text: "er the the calendar for today", variant: disfluent}
+  - {text: "so like today's meetings uh", variant: disfluent}
+  - {text: "um my you know agenda for today", variant: disfluent}

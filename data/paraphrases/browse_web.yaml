@@ -1,0 +1,176 @@
+# Paraphrases of the browse_web seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): open the {topic} website
+"0":
+  - {text: "go to the {topic} site", variant: plain}
+  - {text: "pull up the {topic} webpage", variant: plain}
+  - {text: "load the {topic} site on the screen", variant: plain}
+  - {text: "take me to the {topic} website", variant: plain}
+  - {text: "show the {topic} web page", variant: plain}
+  - {text: "open {topic} dot com", variant: plain}
+  - {text: "bring up the website for {topic}", variant: plain}
+  - {text: "browse {topic} online for me", variant: plain}
+  - {text: "put the {topic} page up", variant: plain}
+  - {text: "launch the browser with the {topic} site", variant: plain}
+  - {text: "get the {topic} homepage open", variant: plain}
+  - {text: "visit the {topic} website", variant: plain}
+  - {text: "check the {topic} site online", variant: plain}
+  - {text: "search for the {topic} website and open it", variant: plain}
+  - {text: "go online and open {topic}'s website", variant: plain}
+  - {text: "display the {topic} site", variant: plain}
+  - {text: "load up {topic} in the browser", variant: plain}
+  - {text: "{topic} website open it up", variant: plain}
+  - {text: "do one thing open the {topic} site", variant: plain}
+  - {text: "bring the {topic} webpage on screen", variant: plain}
+  - {text: "head to the {topic} webpage", variant: plain}
+  - {text: "fire up the {topic} website", variant: plain}
+  - {text: "hit the {topic} site in the browser", variant: plain}
+  - {text: "show me {topic}'s site", variant: plain}
+  - {text: "{topic} ki website kholo", variant: hinglish}
+  - {text: "{topic} wali site open karo", variant: hinglish}
+  - {text: "{topic} ka website dikhao", variant: hinglish}
+  - {text: "zara {topic} ki site laga do", variant: hinglish}
+  - {text: "browser mein {topic} website kholo", variant: hinglish}
+  - {text: "{topic} ka web page khol do", variant: hinglish}
+  - {text: "{topic} website open maadu", variant: kannada_english}
+  - {text: "{topic} site thorisu", variant: kannada_english}
+  - {text: "{topic} web page haaku", variant: kannada_english}
+  - {text: "browser alli {topic} site open maadi", variant: kannada_english}
+  - {text: "uh {topic} um open their website", variant: disfluent}
+  - {text: "open the {topic} app no the {topic} website", variant: disfluent}
+  - {text: "um go to that {topic} er page", variant: disfluent}
+  - {text: "so er pull up {topic} like the website", variant: disfluent}
+  - {text: "open open the {topic} webpage", variant: disfluent}
+  - {text: "uh {topic}'s er site bring that up", variant: disfluent}
+
+# seed 1 (question): can you open that news site on the screen
+"1":
+  - {text: "could you put that news website up on the display?", variant: plain}
+  - {text: "can i get that news portal on the display", variant: plain}
+  - {text: "would you pull up that news website for me", variant: plain}
+  - {text: "will you load that news page on the screen?", variant: plain}
+  - {text: "can we browse that news site here", variant: plain}
+  - {text: "is it possible to show that news website now?", variant: plain}
+  - {text: "could you bring up the news portal i read", variant: plain}
+  - {text: "mind opening that news site i like", variant: plain}
+  - {text: "can you get the news website going on the display?", variant: plain}
+  - {text: "would you put that news page on screen", variant: plain}
+  - {text: "can you show that news website on the big display?", variant: plain}
+  - {text: "could you open my usual news site", variant: plain}
+  - {text: "will you head over to that news website", variant: plain}
+  - {text: "can i have that news site on the head unit?", variant: plain}
+  - {text: "could you throw that news site on screen", variant: plain}
+  - {text: "can you load my regular news website?", variant: plain}
+  - {text: "would you mind showing that news portal", variant: plain}
+  - {text: "can you bring that news site up in the browser?", variant: plain}
+  - {text: "could you launch the news website i always read", variant: plain}
+  - {text: "will you pull that news site onto the display?", variant: plain}
+  - {text: "can you open the same news site as last time", variant: plain}
+  - {text: "could you get that news page up for me?", variant: plain}
+  - {text: "would you put up the news site in the car", variant: plain}
+  - {text: "any chance you can open that news site here", variant: plain}
+  - {text: "woh news site screen pe khol doge?", variant: hinglish}
+  - {text: "kya woh news website dikha sakte ho", variant: hinglish}
+  - {text: "news wali site screen par open karoge?", variant: hinglish}
+  - {text: "news wali website chala doge kya", variant: hinglish}
+  - {text: "wo akhbaar wali site screen pe laga doge?", variant: hinglish}
+  - {text: "mera news site dikhaoge kya", variant: hinglish}
+  - {text: "aa news site screen alli open maadtira?", variant: kannada_english}
+  - {text: "aa news website thoristira", variant: kannada_english}
+  - {text: "news site na screen mele haaktira?", variant: kannada_english}
+  - {text: "aa news page open maadoke aagutta", variant: kannada_english}
+  - {text: "um that news site can you uh put it on screen", variant: disfluent}
+  - {text: "could you open that that news website", variant: disfluent}
+  - {text: "could you put the uh news channel no the news site up", variant: disfluent}
+  - {text: "um would you like pull up that news site?", variant: disfluent}
+  - {text: "so er can you put that news website up", variant: disfluent}
+  - {text: "can you can you pull that news page up", variant: disfluent}
+
+# seed 2 (outcome): i want to read about the election results on screen
+"2":
+  - {text: "i'd love to read the election results on the display", variant: plain}
+  - {text: "i'd like the results of the polls in front of me to read", variant: plain}
+  - {text: "i need the full election story on the screen", variant: plain}
+  - {text: "the election results are out and i want to read them here", variant: plain}
+  - {text: "i'm keen to go through the election news on screen", variant: plain}
+  - {text: "i want to see the poll results on the big screen", variant: plain}
+  - {text: "i need to read up on the election results properly", variant: plain}
+  - {text: "i'd like the counting day updates on the screen", variant: plain}
+  - {text: "i want to read the election coverage while we wait", variant: plain}
+  - {text: "i'm itching to read everything about the election results", variant: plain}
+  - {text: "i'd really like to go through the vote counts on screen", variant: plain}
+  - {text: "i want the election articles on the display", variant: plain}
+  - {text: "i'm curious to read how the election went", variant: plain}
+  - {text: "i need the latest on the election results in front of me", variant: plain}
+  - {text: "while parked i'd like to go through the poll outcome on screen", variant: plain}
+  - {text: "i want to read what happened in the election", variant: plain}
+  - {text: "counting's over and i'm keen to read about the election now", variant: plain}
+  - {text: "i need the election result pages on the display", variant: plain}
+  - {text: "i'd like to track the vote tally on this display", variant: plain}
+  - {text: "i'm eager to read the vote count news", variant: plain}
+  - {text: "i'm after some election analysis to read over here", variant: plain}
+  - {text: "i want the constituency wise results to read", variant: plain}
+  - {text: "i feel like reading up on who won the election", variant: plain}
+  - {text: "i'd love to scroll through the election results state by state", variant: plain}
+  - {text: "election results screen pe padhne hain", variant: hinglish}
+  - {text: "mujhe election ka result padhna hai screen pe", variant: hinglish}
+  - {text: "chunav ke results dekhne hain screen par", variant: hinglish}
+  - {text: "election mein kya hua woh padhna hai", variant: hinglish}
+  - {text: "mujhe counting ka update screen pe chahiye", variant: hinglish}
+  - {text: "election results ke baare mein padhna hai abhi", variant: hinglish}
+  - {text: "election results screen alli odbeku", variant: kannada_english}
+  - {text: "election result bagge odbeku guru", variant: kannada_english}
+  - {text: "election enaaytu antha screen alli nodbeku", variant: kannada_english}
+  - {text: "chunavane results odoke beku", variant: kannada_english}
+  - {text: "so uh the election results um i want to go through them", variant: disfluent}
+  - {text: "the the results i mean the election ones i wanna read those", variant: disfluent}
+  - {text: "i'd like to watch no read the uh poll results", variant: disfluent}
+  - {text: "um who won like i want to read up on the uh voting", variant: disfluent}
+  - {text: "so er i'd like the election results up to read", variant: disfluent}
+  - {text: "i need i need to see how the er election went on screen", variant: disfluent}
+
+# seed 3 (fragment): browser
+"3":
+  - {text: "web browser", variant: plain}
+  - {text: "internet", variant: plain}
+  - {text: "open browser", variant: plain}
+  - {text: "browser please", variant: plain}
+  - {text: "the browser", variant: plain}
+  - {text: "internet browser", variant: plain}
+  - {text: "browser on screen", variant: plain}
+  - {text: "launch browser", variant: plain}
+  - {text: "web", variant: plain}
+  - {text: "browser app", variant: plain}
+  - {text: "surf the web", variant: plain}
+  - {text: "open the internet", variant: plain}
+  - {text: "browse", variant: plain}
+  - {text: "web page", variant: plain}
+  - {text: "start browser", variant: plain}
+  - {text: "show browser", variant: plain}
+  - {text: "internet please", variant: plain}
+  - {text: "go online", variant: plain}
+  - {text: "browsing mode", variant: plain}
+  - {text: "open a webpage", variant: plain}
+  - {text: "full browser", variant: plain}
+  - {text: "new tab", variant: plain}
+  - {text: "browser window", variant: plain}
+  - {text: "browser now", variant: plain}
+  - {text: "browser kholo", variant: hinglish}
+  - {text: "internet chalu karo", variant: hinglish}
+  - {text: "browser chalao", variant: hinglish}
+  - {text: "browser dikhao", variant: hinglish}
+  - {text: "net kholo zara", variant: hinglish}
+  - {text: "browser shuru karo", variant: hinglish}
+  - {text: "browser tegiri", variant: kannada_english}
+  - {text: "internet haaku", variant: kannada_english}
+  - {text: "browser thorisu", variant: kannada_english}
+  - {text: "browser haaku guru", variant: kannada_english}
+  - {text: "uh browser", variant: disfluent}
+  - {text: "um the uh browser thing", variant: disfluent}
+  - {text: "browser er you know for the web", variant: disfluent}
+  - {text: "maps no browser", variant: disfluent}
+  - {text: "er open the um browser", variant: disfluent}
+  - {text: "browser like the internet one", variant: disfluent}

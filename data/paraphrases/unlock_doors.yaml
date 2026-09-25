@@ -1,0 +1,176 @@
+# Paraphrases of the unlock_doors seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): unlock all the doors
+"0":
+  - {text: "open the locks on every door", variant: plain}
+  - {text: "release the central lock", variant: plain}
+  - {text: "pop all the locks", variant: plain}
+  - {text: "take the central locking off", variant: plain}
+  - {text: "unlock every door", variant: plain}
+  - {text: "drop the door locks", variant: plain}
+  - {text: "get all four doors unlocked", variant: plain}
+  - {text: "switch off the central lock", variant: plain}
+  - {text: "unlock everything", variant: plain}
+  - {text: "undo the central locking", variant: plain}
+  - {text: "let everyone in unlock the doors", variant: plain}
+  - {text: "release all door locks", variant: plain}
+  - {text: "put all doors on unlock", variant: plain}
+  - {text: "open the central locking for everyone", variant: plain}
+  - {text: "clear the locks on all the doors", variant: plain}
+  - {text: "disable the door locks", variant: plain}
+  - {text: "get the locks off all doors", variant: plain}
+  - {text: "unlock both sides", variant: plain}
+  - {text: "unlock front and back doors", variant: plain}
+  - {text: "remove the lock from all the doors", variant: plain}
+  - {text: "set every door to unlocked", variant: plain}
+  - {text: "hit central unlock", variant: plain}
+  - {text: "open all locks for the passengers", variant: plain}
+  - {text: "undo all the door locks", variant: plain}
+  - {text: "saare darwaze unlock kar do", variant: hinglish}
+  - {text: "saare doors ka lock khol do", variant: hinglish}
+  - {text: "central lock hata do", variant: hinglish}
+  - {text: "gaadi unlock karo", variant: hinglish}
+  - {text: "doors unlock kar do jaldi", variant: hinglish}
+  - {text: "lock khol do sab ka", variant: hinglish}
+  - {text: "ella doors unlock maadi", variant: kannada_english}
+  - {text: "central lock tegi", variant: kannada_english}
+  - {text: "car unlock maadu guru", variant: kannada_english}
+  - {text: "ella bagilu lock tegi", variant: kannada_english}
+  - {text: "uh the doors um get them all unlocked", variant: disfluent}
+  - {text: "unlock um you know unlock everything", variant: disfluent}
+  - {text: "lock the no sorry unlock the doors all of them", variant: disfluent}
+  - {text: "er the central lock just like release it", variant: disfluent}
+  - {text: "open the front one no wait unlock all of them", variant: disfluent}
+  - {text: "um all four doors er unlock", variant: disfluent}
+
+# seed 1 (question): can you unlock the back door for my friend
+"1":
+  - {text: "would you open the door behind me for my friend?", variant: plain}
+  - {text: "would you let my friend in at the back", variant: plain}
+  - {text: "can you pop the back lock so my friend can get in", variant: plain}
+  - {text: "mind unlocking the rear door for my pal?", variant: plain}
+  - {text: "could my friend's door at the back be unlocked?", variant: plain}
+  - {text: "could you release the lock at the back my friend is getting in", variant: plain}
+  - {text: "will you unlock the rear for my buddy", variant: plain}
+  - {text: "can you let my friend into the back seat", variant: plain}
+  - {text: "could you open up the back so my friend can hop in?", variant: plain}
+  - {text: "mind unlocking behind so my friend can sit?", variant: plain}
+  - {text: "would you mind unlocking the rear side for my friend?", variant: plain}
+  - {text: "my friend is getting in the back can you unlock it", variant: plain}
+  - {text: "could you free up the lock behind for my friend", variant: plain}
+  - {text: "would you unlock behind me my friend's sitting there", variant: plain}
+  - {text: "could you pop the lock at the back my friend's waiting?", variant: plain}
+  - {text: "can we get my friend's side at the back unlocked?", variant: plain}
+  - {text: "any chance of unlocking the rear for my friend?", variant: plain}
+  - {text: "can you undo the lock on the rear door for my friend", variant: plain}
+  - {text: "will you unlock the back quickly my friend's hopping in", variant: plain}
+  - {text: "shall we unlock the back for my friend?", variant: plain}
+  - {text: "is it possible to unlock the back for my friend", variant: plain}
+  - {text: "could my friend get in the back if you unlock it", variant: plain}
+  - {text: "can you open the back door lock my friend's here", variant: plain}
+  - {text: "do you mind unlocking the back for my friend", variant: plain}
+  - {text: "mere dost ke liye peeche ka door unlock kar doge?", variant: hinglish}
+  - {text: "peeche wala darwaza khol sakte ho kya dost baithega", variant: hinglish}
+  - {text: "dost ke liye back door ka lock khol doge", variant: hinglish}
+  - {text: "kya peeche ka lock hata sakte ho mera friend aa raha hai", variant: hinglish}
+  - {text: "back door unlock karoge kya mere friend ke liye", variant: hinglish}
+  - {text: "yaar peeche ka darwaza unlock kar sakte ho?", variant: hinglish}
+  - {text: "nan friend ge hinde door unlock maadtira?", variant: kannada_english}
+  - {text: "hinde bagilu lock tegiyoke aagutta friend bartidaane", variant: kannada_english}
+  - {text: "back door unlock maadbahuda nan friend ge", variant: kannada_english}
+  - {text: "friend hinde koothkotaane door unlock maadtiya guru?", variant: kannada_english}
+  - {text: "my friend's uh getting in can you um unlock the back", variant: disfluent}
+  - {text: "could you could you er the back door my friend needs to get in", variant: disfluent}
+  - {text: "can you open the the front no sorry back door my friend's coming", variant: disfluent}
+  - {text: "um would you like unlock the back for my friend?", variant: disfluent}
+  - {text: "so can you er sort out the back door my friend's standing there", variant: disfluent}
+  - {text: "can you unlock the the rear door my friend is uh waiting", variant: disfluent}
+
+# seed 2 (indirect): my mother is standing outside waiting to get in
+"2":
+  - {text: "amma's been waiting outside the car for a while", variant: plain}
+  - {text: "my mum is standing at the door and can't get in", variant: plain}
+  - {text: "my mother's outside tapping on the window", variant: plain}
+  - {text: "mom is waiting by the passenger side", variant: plain}
+  - {text: "my mother just came out of the temple and is at the car", variant: plain}
+  - {text: "mummy is standing in the sun at the door", variant: plain}
+  - {text: "my mother's been pulling the handle and it won't budge", variant: plain}
+  - {text: "my old mother is outside and the door won't open for her", variant: plain}
+  - {text: "amma is waiting at the back door", variant: plain}
+  - {text: "my mother's right outside and wants to sit in", variant: plain}
+  - {text: "my mum's stuck outside next to the car", variant: plain}
+  - {text: "mother is at the car with her bags waiting", variant: plain}
+  - {text: "mother's back from the shop and she's out there", variant: plain}
+  - {text: "my mother came down and is waiting by the car", variant: plain}
+  - {text: "ma is knocking on the glass", variant: plain}
+  - {text: "there's my mother at the door wanting to sit inside", variant: plain}
+  - {text: "she's been waiting at the door for five minutes my mother", variant: plain}
+  - {text: "mom is out there waiting to sit in", variant: plain}
+  - {text: "my mother is standing near the rear door", variant: plain}
+  - {text: "my mother can't get into the car", variant: plain}
+  - {text: "amma's waiting outside in the rain", variant: plain}
+  - {text: "it's too hot to keep my mother waiting outside like this", variant: plain}
+  - {text: "mom's right here at the door", variant: plain}
+  - {text: "look my mother's at the window", variant: plain}
+  - {text: "mummy bahar khadi hain andar aana hai unko", variant: hinglish}
+  - {text: "maa bahar wait kar rahi hain", variant: hinglish}
+  - {text: "amma darwaze pe khadi hain", variant: hinglish}
+  - {text: "meri mummy bahar se handle kheench rahi hain", variant: hinglish}
+  - {text: "maa ko andar baithna hai woh bahar hain", variant: hinglish}
+  - {text: "mummy kab se bahar khadi hain yaar", variant: hinglish}
+  - {text: "amma horage kaaytidaare", variant: kannada_english}
+  - {text: "amma bagilu hatra nintidaare", variant: kannada_english}
+  - {text: "nam amma horage idaare olage barbeku antidaare", variant: kannada_english}
+  - {text: "amma bisilalli horage nintidaare", variant: kannada_english}
+  - {text: "uh my mother she's um been standing outside a while now", variant: disfluent}
+  - {text: "my mum she's like right outside the door", variant: disfluent}
+  - {text: "um amma is outside she's you know waiting", variant: disfluent}
+  - {text: "my mother's at the the door waiting", variant: disfluent}
+  - {text: "er mom is outside trying to get in", variant: disfluent}
+  - {text: "my father no my mother is waiting outside", variant: disfluent}
+
+# seed 3 (fragment): unlock
+"3":
+  - {text: "unlock please", variant: plain}
+  - {text: "unlock now", variant: plain}
+  - {text: "unlock it", variant: plain}
+  - {text: "unlock quick", variant: plain}
+  - {text: "just unlock", variant: plain}
+  - {text: "unlock the car", variant: plain}
+  - {text: "locks off", variant: plain}
+  - {text: "central lock off", variant: plain}
+  - {text: "release locks", variant: plain}
+  - {text: "door unlock", variant: plain}
+  - {text: "unlocked", variant: plain}
+  - {text: "no lock", variant: plain}
+  - {text: "unlock time", variant: plain}
+  - {text: "door locks open", variant: plain}
+  - {text: "doors unlocked please", variant: plain}
+  - {text: "release the doors", variant: plain}
+  - {text: "unlock doors", variant: plain}
+  - {text: "unlock the lot", variant: plain}
+  - {text: "unlock for them", variant: plain}
+  - {text: "hit unlock", variant: plain}
+  - {text: "unlock first", variant: plain}
+  - {text: "unlock fast", variant: plain}
+  - {text: "unlock bro", variant: plain}
+  - {text: "unlock button", variant: plain}
+  - {text: "unlock karo", variant: hinglish}
+  - {text: "lock kholo", variant: hinglish}
+  - {text: "unlock kar do jaldi", variant: hinglish}
+  - {text: "darwaza unlock", variant: hinglish}
+  - {text: "lock hatao", variant: hinglish}
+  - {text: "khol do lock", variant: hinglish}
+  - {text: "unlock maadi", variant: kannada_english}
+  - {text: "lock tegi", variant: kannada_english}
+  - {text: "bagilu unlock maadu", variant: kannada_english}
+  - {text: "swalpa unlock maadu", variant: kannada_english}
+  - {text: "uh unlock", variant: disfluent}
+  - {text: "unlock um unlock", variant: disfluent}
+  - {text: "er unlock the uh doors", variant: disfluent}
+  - {text: "lock sorry unlock", variant: disfluent}
+  - {text: "unlock uh like right away", variant: disfluent}
+  - {text: "um just unlock yeah", variant: disfluent}

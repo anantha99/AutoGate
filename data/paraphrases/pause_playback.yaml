@@ -1,0 +1,176 @@
+# Paraphrases of the pause_playback seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): pause the music
+"0":
+  - {text: "hit pause", variant: plain}
+  - {text: "pause whatever's playing", variant: plain}
+  - {text: "hold the song for a sec", variant: plain}
+  - {text: "stop the song where it is", variant: plain}
+  - {text: "put the music on hold", variant: plain}
+  - {text: "freeze the track right there", variant: plain}
+  - {text: "give the music a break for a minute", variant: plain}
+  - {text: "stop playback for now", variant: plain}
+  - {text: "pause this track", variant: plain}
+  - {text: "put the song on pause", variant: plain}
+  - {text: "halt the song here", variant: plain}
+  - {text: "pause the playlist", variant: plain}
+  - {text: "pause the player na", variant: plain}
+  - {text: "do one thing pause the song", variant: plain}
+  - {text: "just pause it", variant: plain}
+  - {text: "stop the music for a bit", variant: plain}
+  - {text: "hold the playback till i say", variant: plain}
+  - {text: "pause the audio quickly", variant: plain}
+  - {text: "keep the song paused", variant: plain}
+  - {text: "press pause on this", variant: plain}
+  - {text: "quick pause please", variant: plain}
+  - {text: "pause the tunes", variant: plain}
+  - {text: "stop the track for a second", variant: plain}
+  - {text: "pause it right now", variant: plain}
+  - {text: "gaana pause karo", variant: hinglish}
+  - {text: "music thoda rok do", variant: hinglish}
+  - {text: "song ko pause kar do yaar", variant: hinglish}
+  - {text: "abhi music roko", variant: hinglish}
+  - {text: "gaana ek minute ke liye rok do", variant: hinglish}
+  - {text: "pause kar do na", variant: hinglish}
+  - {text: "music pause maadu", variant: kannada_english}
+  - {text: "haadu pause maadi", variant: kannada_english}
+  - {text: "song swalpa nillisu", variant: kannada_english}
+  - {text: "guru music ondu nimisha nillisu", variant: kannada_english}
+  - {text: "uh pause the the music real quick", variant: disfluent}
+  - {text: "skip the uh no just pause the song", variant: disfluent}
+  - {text: "um stop the uh the music i mean pause it", variant: disfluent}
+  - {text: "wait er put the song on um hold", variant: disfluent}
+  - {text: "so like just pause it for a sec you know", variant: disfluent}
+  - {text: "hold hold the track um for a minute", variant: disfluent}
+
+# seed 1 (question): can you start the song again from where it stopped
+"1":
+  - {text: "could you resume the song?", variant: plain}
+  - {text: "can you unpause the music", variant: plain}
+  - {text: "would you continue the track from where it left off?", variant: plain}
+  - {text: "can you pick the song up where it paused", variant: plain}
+  - {text: "will you carry on playing the song from that point", variant: plain}
+  - {text: "could you get the music going again from the same spot?", variant: plain}
+  - {text: "can we resume playback now", variant: plain}
+  - {text: "would you mind unpausing the track", variant: plain}
+  - {text: "is it possible to continue the song from where we stopped?", variant: plain}
+  - {text: "can the music carry on now?", variant: plain}
+  - {text: "could you play the rest of the song", variant: plain}
+  - {text: "can you bring the music back where it was", variant: plain}
+  - {text: "how about resuming the song now?", variant: plain}
+  - {text: "will you let the song continue", variant: plain}
+  - {text: "can i have the music back on", variant: plain}
+  - {text: "could you continue from the pause?", variant: plain}
+  - {text: "can you hit play on the song", variant: plain}
+  - {text: "would you turn the paused song back on", variant: plain}
+  - {text: "can you resume from the same point?", variant: plain}
+  - {text: "could we have the track playing again from there", variant: plain}
+  - {text: "mind continuing the song?", variant: plain}
+  - {text: "can you play from where i paused it", variant: plain}
+  - {text: "would you start the music back up", variant: plain}
+  - {text: "any chance you can continue the track?", variant: plain}
+  - {text: "gaana wahi se chalu kar sakte ho?", variant: hinglish}
+  - {text: "kya jahan ruka tha wahan se song chala sakte ho", variant: hinglish}
+  - {text: "music phir se chalu karoge?", variant: hinglish}
+  - {text: "kya gaana resume kar doge", variant: hinglish}
+  - {text: "ruka hua gaana dobara chala doge kya", variant: hinglish}
+  - {text: "song ko aage continue karoge kya", variant: hinglish}
+  - {text: "haadu alli inda continue maadtira?", variant: kannada_english}
+  - {text: "music matte haakthira?", variant: kannada_english}
+  - {text: "nilsida kade inda song play maadbahuda", variant: kannada_english}
+  - {text: "guru haadu resume maadtiya", variant: kannada_english}
+  - {text: "um can you like resume the song", variant: disfluent}
+  - {text: "can you uh start it from the beginning no no just carry on from the pause", variant: disfluent}
+  - {text: "er would you um carry on with the song", variant: disfluent}
+  - {text: "so uh can the music can the music continue now", variant: disfluent}
+  - {text: "uh could you unpause the uh the track", variant: disfluent}
+  - {text: "um will you get the song going again you know", variant: disfluent}
+
+# seed 2 (indirect): hang on i need to talk to the security guard
+"2":
+  - {text: "one sec the watchman wants to ask me something", variant: plain}
+  - {text: "wait the guard is saying something to me", variant: plain}
+  - {text: "hold on let me speak to the security uncle", variant: plain}
+  - {text: "give me a minute i have to answer the guard", variant: plain}
+  - {text: "the security guy is waving at me to stop and talk", variant: plain}
+  - {text: "just a second the gate guard has a question", variant: plain}
+  - {text: "wait wait the watchman is asking where we're going", variant: plain}
+  - {text: "the guard at the gate needs a word with me", variant: plain}
+  - {text: "let me sort this out with security first", variant: plain}
+  - {text: "hold on security is asking for my flat number", variant: plain}
+  - {text: "i've got to tell the guard which block we're visiting", variant: plain}
+  - {text: "one minute i have to talk to this security fellow", variant: plain}
+  - {text: "the watchman is saying something i can't hear him", variant: plain}
+  - {text: "security wants to check something let me talk to him", variant: plain}
+  - {text: "the guard just walked up to the car", variant: plain}
+  - {text: "wait i need to explain to the guard who we're meeting", variant: plain}
+  - {text: "hang on the gatekeeper is asking me something", variant: plain}
+  - {text: "security is stopping us i'll have to talk", variant: plain}
+  - {text: "the guard needs the visitor details from me", variant: plain}
+  - {text: "just a moment the security person is talking to me", variant: plain}
+  - {text: "let me answer the watchman first", variant: plain}
+  - {text: "the society guard wants to know who we're here to see", variant: plain}
+  - {text: "wait up i have to have a word with the guard", variant: plain}
+  - {text: "the guard's asking me to sign the register", variant: plain}
+  - {text: "ruko guard se baat karni hai", variant: hinglish}
+  - {text: "ek minute security wala kuch pooch raha hai", variant: hinglish}
+  - {text: "watchman kuch bol raha hai zara ruko", variant: hinglish}
+  - {text: "mujhe guard ko jawab dena hai", variant: hinglish}
+  - {text: "security uncle se baat karne do ek second", variant: hinglish}
+  - {text: "gate pe guard rok raha hai baat karni padegi", variant: hinglish}
+  - {text: "swalpa iri security jothe maathadbeku", variant: kannada_english}
+  - {text: "guard enu kelthidaare ondu nimisha", variant: kannada_english}
+  - {text: "watchman jothe maathaadi bartini", variant: kannada_english}
+  - {text: "ondu second security avru kareetha idaare", variant: kannada_english}
+  - {text: "uh wait the um the guard wants a word", variant: disfluent}
+  - {text: "one sec i gotta um talk to the watchman i mean the security guy", variant: disfluent}
+  - {text: "er hold on hold on security's asking me something", variant: disfluent}
+  - {text: "so um the guard he's like trying to tell me something", variant: disfluent}
+  - {text: "wait wait uh let me just answer this guard", variant: disfluent}
+  - {text: "um the the security fellow needs to see my uh pass", variant: disfluent}
+
+# seed 3 (fragment): resume
+"3":
+  - {text: "play", variant: plain}
+  - {text: "unpause", variant: plain}
+  - {text: "continue", variant: plain}
+  - {text: "carry on", variant: plain}
+  - {text: "resume playback", variant: plain}
+  - {text: "resume the song", variant: plain}
+  - {text: "back to it", variant: plain}
+  - {text: "keep playing", variant: plain}
+  - {text: "continue playing", variant: plain}
+  - {text: "music back on", variant: plain}
+  - {text: "start it back up", variant: plain}
+  - {text: "play it", variant: plain}
+  - {text: "go on", variant: plain}
+  - {text: "song on again", variant: plain}
+  - {text: "unpause the track", variant: plain}
+  - {text: "play from there", variant: plain}
+  - {text: "resume music", variant: plain}
+  - {text: "get the song going", variant: plain}
+  - {text: "let it roll", variant: plain}
+  - {text: "continue the track", variant: plain}
+  - {text: "okay resume", variant: plain}
+  - {text: "unpause please", variant: plain}
+  - {text: "play on", variant: plain}
+  - {text: "play na", variant: plain}
+  - {text: "chalu karo", variant: hinglish}
+  - {text: "aage chalao", variant: hinglish}
+  - {text: "gaana chalu", variant: hinglish}
+  - {text: "wapas chala do", variant: hinglish}
+  - {text: "ab chalao", variant: hinglish}
+  - {text: "music chalu kar do", variant: hinglish}
+  - {text: "play maadi", variant: kannada_english}
+  - {text: "continue maadu", variant: kannada_english}
+  - {text: "matte haaku", variant: kannada_english}
+  - {text: "resume maadu guru", variant: kannada_english}
+  - {text: "uh resume", variant: disfluent}
+  - {text: "pause no wait resume", variant: disfluent}
+  - {text: "er unpause unpause it", variant: disfluent}
+  - {text: "so um carry on", variant: disfluent}
+  - {text: "uh okay you can um play", variant: disfluent}
+  - {text: "er back to the uh music", variant: disfluent}

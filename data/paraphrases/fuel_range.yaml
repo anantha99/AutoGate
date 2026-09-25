@@ -1,0 +1,219 @@
+# Paraphrases of the fuel_range seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): tell me the remaining range
+"0":
+  - {text: "check how many kilometres i have left", variant: plain}
+  - {text: "give me the distance to empty", variant: plain}
+  - {text: "show the range left on this tank", variant: plain}
+  - {text: "let me know the km left before empty", variant: plain}
+  - {text: "read out the range", variant: plain}
+  - {text: "say how much distance the fuel will cover", variant: plain}
+  - {text: "find out the range on the current fuel", variant: plain}
+  - {text: "check the fuel range", variant: plain}
+  - {text: "work out how many km i can still drive", variant: plain}
+  - {text: "give me the range figure", variant: plain}
+  - {text: "put the remaining range on the screen", variant: plain}
+  - {text: "announce the distance left in the tank", variant: plain}
+  - {text: "tell me how much driving range is left", variant: plain}
+  - {text: "calculate my range with what's in the tank", variant: plain}
+  - {text: "update me on the range", variant: plain}
+  - {text: "read me the km to empty", variant: plain}
+  - {text: "check what range we've got left", variant: plain}
+  - {text: "estimate my remaining kilometres", variant: plain}
+  - {text: "tell me the km remaining on this fuel", variant: plain}
+  - {text: "let me hear the current range", variant: plain}
+  - {text: "show me the distance until the tank runs dry", variant: plain}
+  - {text: "report the range i've got now", variant: plain}
+  - {text: "give me a range reading", variant: plain}
+  - {text: "find out the kilometres left before empty", variant: plain}
+  - {text: "kitni range bachi hai batao", variant: hinglish}
+  - {text: "fuel range dikhao screen pe", variant: hinglish}
+  - {text: "bachi hui range bata do", variant: hinglish}
+  - {text: "tank mein kitne km bache hain bata do", variant: hinglish}
+  - {text: "abhi ki range check karke batao", variant: hinglish}
+  - {text: "range batao yaar jaldi", variant: hinglish}
+  - {text: "range eshtu ide heli", variant: kannada_english}
+  - {text: "ulidiro range thorisu", variant: kannada_english}
+  - {text: "innu eshtu km odisbahudu heli", variant: kannada_english}
+  - {text: "fuel range check maadu", variant: kannada_english}
+  - {text: "uh give me the like the range i mean what's left", variant: disfluent}
+  - {text: "uh the fuel level no actually the range give me that", variant: disfluent}
+  - {text: "um read out the uh distance to empty", variant: disfluent}
+  - {text: "so er the range tell me what it is", variant: disfluent}
+  - {text: "show me the um how many km i have left thing", variant: disfluent}
+  - {text: "tell me the er remaining fuel i mean the remaining range", variant: disfluent}
+
+# seed 1 (question): how far can i go on this petrol
+"1":
+  - {text: "how many kilometres will this petrol last?", variant: plain}
+  - {text: "how much further can i drive with what's in the tank", variant: plain}
+  - {text: "what distance will the remaining fuel get me?", variant: plain}
+  - {text: "will this tank take me much further", variant: plain}
+  - {text: "how long will the petrol hold out in km", variant: plain}
+  - {text: "can i keep going for a while on this petrol", variant: plain}
+  - {text: "how far will what's left in the tank take us", variant: plain}
+  - {text: "how many km do i have before the tank's empty?", variant: plain}
+  - {text: "what's my range on the current petrol", variant: plain}
+  - {text: "how much more driving can i do before i need fuel", variant: plain}
+  - {text: "how far does this tank get me?", variant: plain}
+  - {text: "is there enough petrol to go a good distance", variant: plain}
+  - {text: "how much road can i cover on this fuel", variant: plain}
+  - {text: "what's the distance i can still do with this petrol?", variant: plain}
+  - {text: "how long before the petrol runs out in kilometres", variant: plain}
+  - {text: "how many more kms can the car do on this tank", variant: plain}
+  - {text: "roughly how far till i'm out of petrol?", variant: plain}
+  - {text: "will the petrol keep us going for a good distance yet", variant: plain}
+  - {text: "what kind of distance is left in this tank", variant: plain}
+  - {text: "could you tell me how far the car will go on this fuel", variant: plain}
+  - {text: "how far can the car run on the petrol that's left?", variant: plain}
+  - {text: "at this rate how many km till empty", variant: plain}
+  - {text: "how much distance can this petrol give me?", variant: plain}
+  - {text: "till where can i go on this fuel", variant: plain}
+  - {text: "is petrol mein kitna door ja sakte hain?", variant: hinglish}
+  - {text: "kitne km aur chalegi gaadi is tank pe", variant: hinglish}
+  - {text: "bacha hua petrol kahan tak le jaayega?", variant: hinglish}
+  - {text: "abhi ke fuel mein aur kitna chal paayenge", variant: hinglish}
+  - {text: "tank mein jitna hai usme kitne km niklenge?", variant: hinglish}
+  - {text: "yaar is petrol se kitni door tak jaa paunga", variant: hinglish}
+  - {text: "ee petrol alli eshtu doora hogbahudu?", variant: kannada_english}
+  - {text: "innu eshtu km hogutte ee tank alli", variant: kannada_english}
+  - {text: "ulidiro petrol alli yelli thanka hogbahudu?", variant: kannada_english}
+  - {text: "ee fuel alli innu eshtu doora hogona", variant: kannada_english}
+  - {text: "uh how many km will like this petrol last us", variant: disfluent}
+  - {text: "so how much further can i um go with the diesel no the petrol", variant: disfluent}
+  - {text: "will the tank uh will it take me much further?", variant: disfluent}
+  - {text: "um what distance can i like still do on this fuel", variant: disfluent}
+  - {text: "er how long no how far will the fuel last?", variant: disfluent}
+  - {text: "how much petrol is left i mean how far can the car go on it", variant: disfluent}
+
+# seed 2 (outcome): the fuel light just came on
+"2":
+  - {text: "the petrol warning just lit up", variant: plain}
+  - {text: "we've hit reserve", variant: plain}
+  - {text: "the low fuel sign is glowing now", variant: plain}
+  - {text: "fuel's on reserve all of a sudden", variant: plain}
+  - {text: "the tank indicator just went orange", variant: plain}
+  - {text: "the pump symbol just started glowing", variant: plain}
+  - {text: "the needle's dropped into the red zone", variant: plain}
+  - {text: "the reserve light has come on", variant: plain}
+  - {text: "the car just beeped for low fuel", variant: plain}
+  - {text: "i just saw the fuel lamp light up", variant: plain}
+  - {text: "petrol's running low and the warning is on", variant: plain}
+  - {text: "the gauge is on empty and the light is on", variant: plain}
+  - {text: "that little fuel pump icon just popped up", variant: plain}
+  - {text: "we're down to the last bar of petrol", variant: plain}
+  - {text: "low fuel warning just now", variant: plain}
+  - {text: "the fuel indicator started blinking a minute ago", variant: plain}
+  - {text: "the dash just flashed a low fuel alert", variant: plain}
+  - {text: "the tank's almost dry and the light came on", variant: plain}
+  - {text: "the petrol light's glowing on the meter now", variant: plain}
+  - {text: "the empty tank warning has appeared", variant: plain}
+  - {text: "the low petrol chime just sounded", variant: plain}
+  - {text: "just got the low fuel ping", variant: plain}
+  - {text: "the fuel gauge light turned on right now", variant: plain}
+  - {text: "the car says fuel low", variant: plain}
+  - {text: "petrol ki light abhi abhi jal gayi", variant: hinglish}
+  - {text: "reserve lag gaya hai", variant: hinglish}
+  - {text: "fuel ki warning aa gayi abhi", variant: hinglish}
+  - {text: "gaadi reserve pe aa gayi yaar", variant: hinglish}
+  - {text: "petrol khatam hone wala hai light jal rahi hai", variant: hinglish}
+  - {text: "tank ka indicator laal ho gaya", variant: hinglish}
+  - {text: "petrol light eega bantu", variant: kannada_english}
+  - {text: "reserve ge bandide guru", variant: kannada_english}
+  - {text: "fuel warning light on aaytu", variant: kannada_english}
+  - {text: "petrol kammi aagide light hattide", variant: kannada_english}
+  - {text: "uh so the like petrol light is on now", variant: disfluent}
+  - {text: "the engine no the fuel light just lit up", variant: disfluent}
+  - {text: "um we're on uh reserve i think", variant: disfluent}
+  - {text: "that er that low fuel thing just popped up", variant: disfluent}
+  - {text: "er the tank light the little pump one yeah it's on now", variant: disfluent}
+  - {text: "i think the um petrol warning just uh started", variant: disfluent}
+
+# seed 3 (indirect): the next bunk is {number} kilometres away
+"3":
+  - {text: "the nearest petrol pump is {number} km from here", variant: plain}
+  - {text: "maps says the next fuel station is {number} kilometres off", variant: plain}
+  - {text: "there's no pump for another {number} kilometres", variant: plain}
+  - {text: "{number} km to the next bunk", variant: plain}
+  - {text: "the next filling station is still {number} kilometres ahead", variant: plain}
+  - {text: "we won't see a bunk for {number} km", variant: plain}
+  - {text: "the closest fuel stop is {number} kilometres down the road", variant: plain}
+  - {text: "the map shows the next pump {number} km away", variant: plain}
+  - {text: "apparently the next bunk comes only after {number} kilometres", variant: plain}
+  - {text: "no petrol stations for the next {number} km", variant: plain}
+  - {text: "it's {number} kilometres till the next bunk on this highway", variant: plain}
+  - {text: "the nearest fuel is {number} km ahead of us", variant: plain}
+  - {text: "the bunk sign said {number} km", variant: plain}
+  - {text: "we have {number} kilometres before any petrol pump", variant: plain}
+  - {text: "i just saw a board saying fuel in {number} km", variant: plain}
+  - {text: "{number} kilometres more before the next filling station", variant: plain}
+  - {text: "the next pump on this stretch is {number} km out", variant: plain}
+  - {text: "someone at the dhaba said the next bunk is {number} km on", variant: plain}
+  - {text: "the next place to fill up is {number} kilometres from here", variant: plain}
+  - {text: "we're {number} km away from the nearest pump", variant: plain}
+  - {text: "there won't be a bunk for {number} kilometres on this ghat road", variant: plain}
+  - {text: "{number} km of nothing before the next petrol station", variant: plain}
+  - {text: "looks like the next outlet is {number} km ahead", variant: plain}
+  - {text: "highway board says fuel after {number} km", variant: plain}
+  - {text: "agla petrol pump {number} km door hai", variant: hinglish}
+  - {text: "{number} kilometre tak koi bunk nahi hai", variant: hinglish}
+  - {text: "next bunk abhi {number} km aage hai yaar", variant: hinglish}
+  - {text: "board pe likha tha petrol pump {number} km baad", variant: hinglish}
+  - {text: "{number} km tak kuch nahi milega fuel ke liye", variant: hinglish}
+  - {text: "sabse paas wala pump bhi {number} km door hai", variant: hinglish}
+  - {text: "mundina bunk {number} km doora ide", variant: kannada_english}
+  - {text: "{number} kilometre thanka yaava bunk illa", variant: kannada_english}
+  - {text: "hattira iro pump {number} km ide", variant: kannada_english}
+  - {text: "innu {number} km hogbeku bunk sigakke", variant: kannada_english}
+  - {text: "so the um next pump is uh {number} km from here i think", variant: disfluent}
+  - {text: "the bunk's {number} no wait {number} kilometres ahead", variant: disfluent}
+  - {text: "uh there's no fuel for like {number} km you know", variant: disfluent}
+  - {text: "um maps says er the nearest bunk is {number} kilometres off", variant: disfluent}
+  - {text: "next petrol station is uh what {number} km away", variant: disfluent}
+  - {text: "we won't get er get fuel for {number} km or so", variant: disfluent}
+
+# seed 4 (fragment): range left
+"4":
+  - {text: "km left", variant: plain}
+  - {text: "remaining range", variant: plain}
+  - {text: "distance to empty", variant: plain}
+  - {text: "how much range", variant: plain}
+  - {text: "range now", variant: plain}
+  - {text: "kilometres till empty", variant: plain}
+  - {text: "range check", variant: plain}
+  - {text: "fuel range", variant: plain}
+  - {text: "remaining km please", variant: plain}
+  - {text: "km to empty", variant: plain}
+  - {text: "range on this tank", variant: plain}
+  - {text: "current range", variant: plain}
+  - {text: "how many km left", variant: plain}
+  - {text: "distance left in the tank", variant: plain}
+  - {text: "range status", variant: plain}
+  - {text: "empty in how many km", variant: plain}
+  - {text: "driving range", variant: plain}
+  - {text: "range on the petrol", variant: plain}
+  - {text: "km on the tank", variant: plain}
+  - {text: "fuel left in km", variant: plain}
+  - {text: "range estimate", variant: plain}
+  - {text: "what's my range", variant: plain}
+  - {text: "leftover range", variant: plain}
+  - {text: "tank range", variant: plain}
+  - {text: "range kitni hai", variant: hinglish}
+  - {text: "bachi range", variant: hinglish}
+  - {text: "kitne km bache", variant: hinglish}
+  - {text: "range batao", variant: hinglish}
+  - {text: "tank mein kitna chalega", variant: hinglish}
+  - {text: "abhi ki range", variant: hinglish}
+  - {text: "range eshtu", variant: kannada_english}
+  - {text: "innu eshtu km", variant: kannada_english}
+  - {text: "ulidiro range", variant: kannada_english}
+  - {text: "range eshtu ide guru", variant: kannada_english}
+  - {text: "uh range um left", variant: disfluent}
+  - {text: "the range uh what's left", variant: disfluent}
+  - {text: "km left i mean range", variant: disfluent}
+  - {text: "um distance to uh empty", variant: disfluent}
+  - {text: "fuel no range remaining", variant: disfluent}
+  - {text: "like how much uh range", variant: disfluent}

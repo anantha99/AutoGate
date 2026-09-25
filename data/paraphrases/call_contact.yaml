@@ -1,0 +1,219 @@
+# Paraphrases of the call_contact seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): call {contact}
+"0":
+  - {text: "get {contact} on the phone", variant: plain}
+  - {text: "give {contact} a call", variant: plain}
+  - {text: "dial {contact} for me", variant: plain}
+  - {text: "phone {contact}", variant: plain}
+  - {text: "put a call through to {contact}", variant: plain}
+  - {text: "make a call to {contact} now", variant: plain}
+  - {text: "connect me to {contact}", variant: plain}
+  - {text: "do one thing dial {contact}", variant: plain}
+  - {text: "place a call to {contact}", variant: plain}
+  - {text: "try {contact}'s phone", variant: plain}
+  - {text: "put me through to {contact}", variant: plain}
+  - {text: "buzz {contact}", variant: plain}
+  - {text: "start a call with {contact}", variant: plain}
+  - {text: "get {contact} on the line quickly", variant: plain}
+  - {text: "call up {contact} for me", variant: plain}
+  - {text: "dial up {contact} on my mobile", variant: plain}
+  - {text: "phone up {contact} right away", variant: plain}
+  - {text: "try calling {contact}", variant: plain}
+  - {text: "ring {contact}'s mobile", variant: plain}
+  - {text: "go ahead and phone {contact}", variant: plain}
+  - {text: "just get me {contact}", variant: plain}
+  - {text: "call {contact}'s number", variant: plain}
+  - {text: "make {contact}'s phone ring", variant: plain}
+  - {text: "quickly connect a call to {contact}", variant: plain}
+  - {text: "{contact} ko call karo", variant: hinglish}
+  - {text: "{contact} ko phone lagao", variant: hinglish}
+  - {text: "{contact} ka number milao", variant: hinglish}
+  - {text: "zara {contact} ko call laga do", variant: hinglish}
+  - {text: "{contact} se baat karao phone pe", variant: hinglish}
+  - {text: "abhi {contact} ko phone karo na", variant: hinglish}
+  - {text: "{contact} ge call maadu", variant: kannada_english}
+  - {text: "{contact} ge phone haaku", variant: kannada_english}
+  - {text: "{contact} ge ondu call maadi", variant: kannada_english}
+  - {text: "swalpa {contact} ge phone maadi guru", variant: kannada_english}
+  - {text: "uh call um {contact}", variant: disfluent}
+  - {text: "text {contact} no wait just call {contact}", variant: disfluent}
+  - {text: "get uh get me through to {contact} um now", variant: disfluent}
+  - {text: "so um dial like {contact} for me", variant: disfluent}
+  - {text: "er phone {contact} er yeah {contact} please", variant: disfluent}
+  - {text: "um put me through to uh you know {contact}", variant: disfluent}
+
+# seed 1 (question): can you dial {phone} for me
+"1":
+  - {text: "could you ring {phone} for me?", variant: plain}
+  - {text: "will you call {phone}", variant: plain}
+  - {text: "can you put a call through to {phone}?", variant: plain}
+  - {text: "would you phone {phone} please", variant: plain}
+  - {text: "can i get a call going to {phone}", variant: plain}
+  - {text: "could you punch in {phone} and call it?", variant: plain}
+  - {text: "mind dialling {phone} for me", variant: plain}
+  - {text: "can we call {phone} now?", variant: plain}
+  - {text: "would you connect me to {phone}", variant: plain}
+  - {text: "can you try {phone}", variant: plain}
+  - {text: "is it possible to call {phone} right now", variant: plain}
+  - {text: "could you place a call to {phone}?", variant: plain}
+  - {text: "will you get {phone} on the line", variant: plain}
+  - {text: "how about calling {phone}", variant: plain}
+  - {text: "can you ring this number {phone}", variant: plain}
+  - {text: "could you dial out to {phone}", variant: plain}
+  - {text: "would you mind calling {phone} for me?", variant: plain}
+  - {text: "can you make a call to {phone} quickly", variant: plain}
+  - {text: "any chance you could call {phone}?", variant: plain}
+  - {text: "shall we try calling {phone}", variant: plain}
+  - {text: "do you mind dialling {phone}", variant: plain}
+  - {text: "could you call the number {phone} please?", variant: plain}
+  - {text: "can the car call {phone} for me", variant: plain}
+  - {text: "can you give {phone} a ring?", variant: plain}
+  - {text: "{phone} pe call kar doge?", variant: hinglish}
+  - {text: "{phone} number laga doge kya", variant: hinglish}
+  - {text: "kya tum {phone} dial kar sakte ho", variant: hinglish}
+  - {text: "{phone} ko call kar sakte ho kya", variant: hinglish}
+  - {text: "zara {phone} milaoge?", variant: hinglish}
+  - {text: "{phone} pe ek call karoge kya", variant: hinglish}
+  - {text: "{phone} ge call maadtira?", variant: kannada_english}
+  - {text: "{phone} number dial maadtiya", variant: kannada_english}
+  - {text: "{phone} ge ondu call maadoke aagutta?", variant: kannada_english}
+  - {text: "swalpa {phone} ge phone maadbahuda?", variant: kannada_english}
+  - {text: "um can you like uh ring up {phone}", variant: disfluent}
+  - {text: "could you like call um {phone}?", variant: disfluent}
+  - {text: "can you can you ring {phone} please", variant: disfluent}
+  - {text: "uh would you text no call {phone} for me", variant: disfluent}
+  - {text: "so er can you get {phone} on the line", variant: disfluent}
+  - {text: "um is it possible to like dial {phone}", variant: disfluent}
+
+# seed 2 (outcome): i need to talk to {contact} right now
+"2":
+  - {text: "i have to speak with {contact} urgently", variant: plain}
+  - {text: "it's urgent i get hold of {contact}", variant: plain}
+  - {text: "i've got to reach {contact} immediately", variant: plain}
+  - {text: "i must speak to {contact} asap", variant: plain}
+  - {text: "i really need {contact} on the line now", variant: plain}
+  - {text: "need a word with {contact} right away", variant: plain}
+  - {text: "there's something i have to discuss with {contact} immediately", variant: plain}
+  - {text: "i can't wait any longer to speak to {contact}", variant: plain}
+  - {text: "getting hold of {contact} is urgent", variant: plain}
+  - {text: "it's important that i speak with {contact} now", variant: plain}
+  - {text: "something's come up and i need {contact} on the phone", variant: plain}
+  - {text: "{contact} has to hear this from me right now", variant: plain}
+  - {text: "i've got to have a chat with {contact} this minute", variant: plain}
+  - {text: "i urgently need to connect with {contact}", variant: plain}
+  - {text: "this can't wait i need a word with {contact}", variant: plain}
+  - {text: "my priority right now is getting through to {contact}", variant: plain}
+  - {text: "i need to have a conversation with {contact} urgently", variant: plain}
+  - {text: "{contact} is the one person i need to speak to now", variant: plain}
+  - {text: "i have to sort something out with {contact} over the phone right away", variant: plain}
+  - {text: "i'm desperate to talk with {contact}", variant: plain}
+  - {text: "it's really important i reach {contact} now", variant: plain}
+  - {text: "i need to get through to {contact} quickly", variant: plain}
+  - {text: "i must get {contact} on the phone this minute", variant: plain}
+  - {text: "i'm in a hurry to speak to {contact}", variant: plain}
+  - {text: "mujhe abhi {contact} se baat karni hai", variant: hinglish}
+  - {text: "{contact} se turant baat karna zaroori hai", variant: hinglish}
+  - {text: "abhi ke abhi {contact} se baat karni padegi yaar", variant: hinglish}
+  - {text: "jaldi se {contact} se baat honi chahiye", variant: hinglish}
+  - {text: "{contact} se baat kiye bina nahi chalega abhi", variant: hinglish}
+  - {text: "bahut urgent hai {contact} se kuch kehna hai", variant: hinglish}
+  - {text: "nanage {contact} jothe eega maathaadbeku", variant: kannada_english}
+  - {text: "eega le {contact} hatra maathaadbeku", variant: kannada_english}
+  - {text: "{contact} jothe urgent aagi maathaadodu ide guru", variant: kannada_english}
+  - {text: "{contact} jothe swalpa maathu ide eega", variant: kannada_english}
+  - {text: "i uh i gotta talk with um {contact} this second", variant: disfluent}
+  - {text: "i need to um speak to {contact} like right away", variant: disfluent}
+  - {text: "so i have to i have to talk to {contact} now", variant: disfluent}
+  - {text: "uh i really need to reach er {contact} immediately", variant: disfluent}
+  - {text: "er i need a word with {contact} like you know right now", variant: disfluent}
+  - {text: "um it's like really urgent i uh reach {contact}", variant: disfluent}
+
+# seed 3 (indirect): {contact} has been trying to reach me all morning
+"3":
+  - {text: "{contact} keeps calling me and i keep missing it", variant: plain}
+  - {text: "i've got a bunch of missed calls from {contact}", variant: plain}
+  - {text: "{contact} has been ringing me since the morning", variant: plain}
+  - {text: "looks like {contact} has called me a few times today", variant: plain}
+  - {text: "{contact} must have called me ten times by now", variant: plain}
+  - {text: "my phone shows {contact} tried calling again and again", variant: plain}
+  - {text: "{contact} has been chasing me on the phone all day", variant: plain}
+  - {text: "i keep missing {contact}'s calls today", variant: plain}
+  - {text: "{contact} was calling nonstop since breakfast", variant: plain}
+  - {text: "seems {contact} really wants to get hold of me", variant: plain}
+  - {text: "poor {contact} has been at it since breakfast trying to get me", variant: plain}
+  - {text: "{contact} called me back to back while i was in the meeting", variant: plain}
+  - {text: "i think {contact} needs me urgently they've been calling for hours", variant: plain}
+  - {text: "every time i look at the phone there's another missed call from {contact}", variant: plain}
+  - {text: "{contact}'s been after me the whole morning", variant: plain}
+  - {text: "{contact} wouldn't stop phoning me earlier", variant: plain}
+  - {text: "i owe {contact} a call they rang so many times", variant: plain}
+  - {text: "oh {contact} has been trying to get me for hours", variant: plain}
+  - {text: "there's a string of missed calls from {contact}", variant: plain}
+  - {text: "{contact} seems desperate to talk to me", variant: plain}
+  - {text: "since early morning {contact} has been calling", variant: plain}
+  - {text: "i haven't picked up any of {contact}'s calls today", variant: plain}
+  - {text: "{contact} probably thinks i'm ignoring their calls", variant: plain}
+  - {text: "{contact} rang while i was driving and i couldn't answer", variant: plain}
+  - {text: "{contact} subah se call kar raha hai", variant: hinglish}
+  - {text: "{contact} ke itne missed calls aaye hain yaar", variant: hinglish}
+  - {text: "subah se {contact} mujhe pakadne ki koshish kar raha hai", variant: hinglish}
+  - {text: "{contact} ka phone baar baar aa raha tha", variant: hinglish}
+  - {text: "lagta hai {contact} ko kuch urgent hai kab se call kar raha hai", variant: hinglish}
+  - {text: "{contact} ne aaj bahut baar phone kiya", variant: hinglish}
+  - {text: "{contact} beligge inda call maadtidaare", variant: kannada_english}
+  - {text: "{contact} tumba sala phone maadidru", variant: kannada_english}
+  - {text: "{contact} inda thumba missed calls ide guru", variant: kannada_english}
+  - {text: "beligge inda {contact} nanna hudukthidaare", variant: kannada_english}
+  - {text: "uh {contact} has um has been after me since like morning", variant: disfluent}
+  - {text: "so {contact} has been like calling me since you know morning", variant: disfluent}
+  - {text: "{contact} {contact}'s been um calling me nonstop", variant: disfluent}
+  - {text: "er i think {contact} called me like a hundred times", variant: disfluent}
+  - {text: "um {contact}'s been trying to reach no chasing me all morning", variant: disfluent}
+  - {text: "i've uh missed like missed so many of {contact}'s calls", variant: disfluent}
+
+# seed 4 (fragment): ring {contact}
+"4":
+  - {text: "{contact} on mobile", variant: plain}
+  - {text: "dial {contact}", variant: plain}
+  - {text: "buzz {contact} now", variant: plain}
+  - {text: "try {contact}", variant: plain}
+  - {text: "connect to {contact}", variant: plain}
+  - {text: "{contact} on the phone", variant: plain}
+  - {text: "{contact} on the line please", variant: plain}
+  - {text: "quick call to {contact}", variant: plain}
+  - {text: "voice call {contact}", variant: plain}
+  - {text: "{contact}'s mobile", variant: plain}
+  - {text: "ring up {contact} quick", variant: plain}
+  - {text: "give {contact} a ring", variant: plain}
+  - {text: "{contact} phone now", variant: plain}
+  - {text: "{contact}'s phone right now", variant: plain}
+  - {text: "{contact} call please", variant: plain}
+  - {text: "put phone to {contact}", variant: plain}
+  - {text: "ring through to {contact}", variant: plain}
+  - {text: "one call to {contact}", variant: plain}
+  - {text: "phone {contact} immediately", variant: plain}
+  - {text: "get me {contact}", variant: plain}
+  - {text: "a buzz to {contact}", variant: plain}
+  - {text: "dial {contact}'s number", variant: plain}
+  - {text: "a quick call for {contact}", variant: plain}
+  - {text: "call up {contact}", variant: plain}
+  - {text: "{contact} ko ring karo", variant: hinglish}
+  - {text: "{contact} ka phone lagao", variant: hinglish}
+  - {text: "jaldi {contact} ko call", variant: hinglish}
+  - {text: "{contact} ko ek call", variant: hinglish}
+  - {text: "{contact} ko milao", variant: hinglish}
+  - {text: "phone karo {contact} ko", variant: hinglish}
+  - {text: "{contact} ge call", variant: kannada_english}
+  - {text: "{contact} ge phone maadu", variant: kannada_english}
+  - {text: "{contact} ge ring maadi", variant: kannada_english}
+  - {text: "bega {contact} ge phone haaku", variant: kannada_english}
+  - {text: "uh ring um {contact}", variant: disfluent}
+  - {text: "ring uh ring {contact} quick", variant: disfluent}
+  - {text: "um get {contact} on the uh phone", variant: disfluent}
+  - {text: "message no ring {contact}", variant: disfluent}
+  - {text: "er dial like {contact}", variant: disfluent}
+  - {text: "so uh {contact} call please", variant: disfluent}

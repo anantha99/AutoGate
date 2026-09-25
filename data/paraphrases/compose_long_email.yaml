@@ -1,0 +1,176 @@
+# Paraphrases of the compose_long_email seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): draft a long email to {contact} about {topic}
+"0":
+  - {text: "write a detailed email to {contact} on {topic}", variant: plain}
+  - {text: "work up a long mail for {contact} regarding {topic}", variant: plain}
+  - {text: "start an email to {contact} on {topic} and make it thorough", variant: plain}
+  - {text: "compose a proper long email about {topic} for {contact}", variant: plain}
+  - {text: "help me write {contact} a lengthy email on {topic}", variant: plain}
+  - {text: "let's draft a big mail to {contact} covering {topic}", variant: plain}
+  - {text: "take down a long email for {contact} as i dictate it on {topic}", variant: plain}
+  - {text: "begin a detailed mail to {contact} on the {topic} matter", variant: plain}
+  - {text: "email {contact} a full write up on {topic}", variant: plain}
+  - {text: "kick off a lengthy email to {contact} where i explain {topic}", variant: plain}
+  - {text: "prepare an email for {contact} explaining {topic} in detail", variant: plain}
+  - {text: "on the {topic} thing draft {contact} a proper long mail", variant: plain}
+  - {text: "do one thing write a big email to {contact} about {topic}", variant: plain}
+  - {text: "open a new email to {contact} and let me dictate a long one on {topic}", variant: plain}
+  - {text: "set up a draft to {contact} going into {topic} properly", variant: plain}
+  - {text: "make a long detailed email for {contact} on {topic}", variant: plain}
+  - {text: "type out a long mail to {contact} on {topic} as i speak", variant: plain}
+  - {text: "start drafting a detailed note on {topic} to {contact} over email", variant: plain}
+  - {text: "write up {topic} for {contact} as a long email", variant: plain}
+  - {text: "compose a mail to {contact} laying out {topic} in full", variant: plain}
+  - {text: "let me dictate a long email to {contact} regarding {topic}", variant: plain}
+  - {text: "frame a lengthy email to {contact} on {topic}", variant: plain}
+  - {text: "prepare a long mail about {topic} and address it to {contact}", variant: plain}
+  - {text: "get me started on a long email to {contact} about {topic}", variant: plain}
+  - {text: "{contact} ko {topic} ke baare mein ek lamba email likho", variant: hinglish}
+  - {text: "{topic} pe {contact} ke liye detailed mail draft karo", variant: hinglish}
+  - {text: "{contact} ko ek lambi mail bhejni hai {topic} par draft kar do", variant: hinglish}
+  - {text: "ek badi email likho {contact} ko {topic} ke upar", variant: hinglish}
+  - {text: "{topic} wala lamba email {contact} ke liye tayyar karo", variant: hinglish}
+  - {text: "{contact} ke liye {topic} par poora email likhne mein madad karo", variant: hinglish}
+  - {text: "{contact} ge {topic} bagge ondu long email bari", variant: kannada_english}
+  - {text: "{topic} bagge {contact} ge detailed mail draft maadu", variant: kannada_english}
+  - {text: "{contact} ge doddha email ready maadu {topic} bagge", variant: kannada_english}
+  - {text: "{topic} vishaya {contact} ge email bariyona", variant: kannada_english}
+  - {text: "write {contact} an email uh a long one you know about {topic}", variant: disfluent}
+  - {text: "email {contact} no wait draft it first a long mail about {topic}", variant: disfluent}
+  - {text: "er start a detailed email to um {contact} it's about {topic}", variant: disfluent}
+  - {text: "the email to {contact} about uh {topic} make it long and um detailed", variant: disfluent}
+  - {text: "draft a text no an email a proper long one to {contact} on {topic}", variant: disfluent}
+  - {text: "okay um compose a mail for {contact} about uh {topic} a detailed one", variant: disfluent}
+
+# seed 1 (question): can you help me write a proper email to {contact}
+"1":
+  - {text: "could you help me put together a proper mail to {contact}?", variant: plain}
+  - {text: "will you help me draft a decent email for {contact}", variant: plain}
+  - {text: "can we write a formal email to {contact} together", variant: plain}
+  - {text: "would you help me compose a well written email to {contact}?", variant: plain}
+  - {text: "can you take down a proper email for {contact}", variant: plain}
+  - {text: "can i dictate a serious email to {contact}?", variant: plain}
+  - {text: "any chance you can help me with a formal mail to {contact}", variant: plain}
+  - {text: "could you draft a properly worded email to {contact}", variant: plain}
+  - {text: "would you mind helping me write to {contact} over email", variant: plain}
+  - {text: "can you assist with a professional email for {contact}?", variant: plain}
+  - {text: "mind helping me word an email to {contact}", variant: plain}
+  - {text: "is it possible to write a nice formal email to {contact} now", variant: plain}
+  - {text: "could we work on a proper mail for {contact}?", variant: plain}
+  - {text: "can you help me frame an email to {contact}", variant: plain}
+  - {text: "will you help me get an email to {contact} right", variant: plain}
+  - {text: "how about helping me write {contact} a good email", variant: plain}
+  - {text: "can you do a neat email for {contact} with me?", variant: plain}
+  - {text: "would you type up a proper email to {contact} as i talk", variant: plain}
+  - {text: "could you help me get the wording right in a mail to {contact}", variant: plain}
+  - {text: "do you think you can help with a well drafted mail to {contact}", variant: plain}
+  - {text: "shall we compose a proper email to {contact}?", variant: plain}
+  - {text: "can you make a polished email to {contact} with me", variant: plain}
+  - {text: "any way you could help me write {contact} a formal mail?", variant: plain}
+  - {text: "can you help me organise my thoughts into an email for {contact}", variant: plain}
+  - {text: "{contact} ko ek proper email likhne mein help karoge?", variant: hinglish}
+  - {text: "kya tum {contact} ke liye achha sa email likhwa sakte ho", variant: hinglish}
+  - {text: "{contact} ke liye formal mail likhne mein madad karoge kya", variant: hinglish}
+  - {text: "{contact} ko dhang ka email likhna hai help kar doge?", variant: hinglish}
+  - {text: "kya {contact} ko ek sahi email draft kar sakte ho", variant: hinglish}
+  - {text: "{contact} ke liye email likhna hai thoda madad kar sakte ho?", variant: hinglish}
+  - {text: "{contact} ge ondu proper email bariyoke help maadtiya?", variant: kannada_english}
+  - {text: "{contact} ge formal mail bariyoke sahaya maadthira", variant: kannada_english}
+  - {text: "{contact} ge email bariyakke help maadbahuda?", variant: kannada_english}
+  - {text: "{contact} ge chennagiro email bariyoke aagutha?", variant: kannada_english}
+  - {text: "um could you help me uh write an email to {contact} a proper one", variant: disfluent}
+  - {text: "can you can you um sort out an email for {contact}?", variant: disfluent}
+  - {text: "would you like help me draft a text no an email to {contact}", variant: disfluent}
+  - {text: "so uh would it be possible to like do a formal one for {contact} an email i mean", variant: disfluent}
+  - {text: "could you er help me get a mail to {contact} sorted properly", variant: disfluent}
+  - {text: "uh shall we um do a proper you know mail for {contact}", variant: disfluent}
+
+# seed 2 (outcome): i need to write up the whole project update for my boss
+"2":
+  - {text: "i have to pull together the full project update for my manager", variant: plain}
+  - {text: "my boss is waiting for a complete project status write up", variant: plain}
+  - {text: "i've got to send my boss a detailed update on the project", variant: plain}
+  - {text: "the whole project update for my boss still needs writing", variant: plain}
+  - {text: "i owe my manager a full write up on where the project stands", variant: plain}
+  - {text: "i need to finish the project status report for my boss", variant: plain}
+  - {text: "my manager wants the entire project update in writing", variant: plain}
+  - {text: "i still haven't written the project update my boss asked for", variant: plain}
+  - {text: "i must draft the complete project progress note for my boss", variant: plain}
+  - {text: "there's a long project update i need to get out to my boss", variant: plain}
+  - {text: "i've got a big project summary to write for my manager", variant: plain}
+  - {text: "my boss needs the full project rundown from me", variant: plain}
+  - {text: "i need to explain the whole project status to my boss in writing", variant: plain}
+  - {text: "the project update for my boss is going to be a long one", variant: plain}
+  - {text: "my boss wants a proper write up covering every bit of the project", variant: plain}
+  - {text: "my manager asked for a detailed status mail on the project", variant: plain}
+  - {text: "i need to update my boss on the whole project by mail", variant: plain}
+  - {text: "writing the full project update for my boss is on my plate", variant: plain}
+  - {text: "i have a lengthy project update to prepare for my boss", variant: plain}
+  - {text: "the boss wants every detail of the project written up", variant: plain}
+  - {text: "i need to type out the full project progress for my boss", variant: plain}
+  - {text: "i haven't finished the big project update email to my boss", variant: plain}
+  - {text: "it's time to write my boss the complete project report", variant: plain}
+  - {text: "my team lead is expecting the full project update from me", variant: plain}
+  - {text: "mujhe boss ke liye poora project update likhna hai", variant: hinglish}
+  - {text: "boss ko pure project ka update bhejna hai likh ke", variant: hinglish}
+  - {text: "boss ke liye project ka detailed update likhna padega", variant: hinglish}
+  - {text: "project ka saara update boss ko likhna baaki hai", variant: hinglish}
+  - {text: "mere boss ko pura project update chahiye mujhse", variant: hinglish}
+  - {text: "manager ko project ki poori report likhni hai", variant: hinglish}
+  - {text: "boss ge poora project update bariyabeku", variant: kannada_english}
+  - {text: "nanna boss ge project update ella bariyodu ide", variant: kannada_english}
+  - {text: "manager ge project bagge detailed update kalisbeku", variant: kannada_english}
+  - {text: "project update full aagi boss ge bariyakke ide", variant: kannada_english}
+  - {text: "so um my boss uh he needs the like the entire project thing written up", variant: disfluent}
+  - {text: "so the project update for my like my boss i have to write it all", variant: disfluent}
+  - {text: "for my team no for my boss i've gotta um do this big project update", variant: disfluent}
+  - {text: "um my boss wants the er the full project update written up", variant: disfluent}
+  - {text: "i uh i gotta do the entire project write up for the boss you know", variant: disfluent}
+  - {text: "er the project the update i mean for the boss it's still not uh written", variant: disfluent}
+
+# seed 3 (indirect): the client is expecting a detailed proposal from me today
+"3":
+  - {text: "the client wants a full proposal from me by end of day", variant: plain}
+  - {text: "i promised the client a detailed proposal before tonight", variant: plain}
+  - {text: "my client is waiting on a proper proposal from me today", variant: plain}
+  - {text: "the customer is expecting a thorough proposal today", variant: plain}
+  - {text: "i owe the client a detailed pitch document by this evening", variant: plain}
+  - {text: "the client needs my proposal in their inbox today", variant: plain}
+  - {text: "i told the client they'd have the full proposal today", variant: plain}
+  - {text: "today's the deadline for the client's detailed proposal", variant: plain}
+  - {text: "the client has been chasing me all week and the proposal is due today", variant: plain}
+  - {text: "i've got to get the client their proposal by tonight", variant: plain}
+  - {text: "the client meeting is tomorrow and they want the proposal today", variant: plain}
+  - {text: "my client is expecting a long detailed proposal before the day ends", variant: plain}
+  - {text: "the proposal the client asked for is due today", variant: plain}
+  - {text: "the client's waiting for a complete proposal from my side", variant: plain}
+  - {text: "i still owe the client that detailed proposal and it's due today", variant: plain}
+  - {text: "by tonight the client expects a proper proposal from me", variant: plain}
+  - {text: "the client said they need the whole proposal today without fail", variant: plain}
+  - {text: "there's a detailed proposal the client wants from me by evening", variant: plain}
+  - {text: "the client is going to call if the proposal isn't in today", variant: plain}
+  - {text: "the customer expects a full write up of the proposal from me today", variant: plain}
+  - {text: "the client proposal has to go out before tonight", variant: plain}
+  - {text: "i've committed a detailed proposal to the client for today", variant: plain}
+  - {text: "the client is counting on my proposal landing today", variant: plain}
+  - {text: "the client will be upset if the proposal isn't with them today", variant: plain}
+  - {text: "client ko aaj hi detailed proposal chahiye mujhse", variant: hinglish}
+  - {text: "client aaj proposal ka wait kar raha hai", variant: hinglish}
+  - {text: "aaj client ko poora proposal bhejna hai", variant: hinglish}
+  - {text: "client ne bola aaj tak proposal chahiye", variant: hinglish}
+  - {text: "client ka proposal aaj hi jaana hai detail mein", variant: hinglish}
+  - {text: "mujhe aaj client ke liye lamba proposal ready karna hai", variant: hinglish}
+  - {text: "client ge ivattu detailed proposal beku", variant: kannada_english}
+  - {text: "client ivattu proposal kaaythidaare", variant: kannada_english}
+  - {text: "ivattu client ge proposal kalisbeku", variant: kannada_english}
+  - {text: "client ge poorthi proposal ivattu kodbeku", variant: kannada_english}
+  - {text: "the client um they're expecting a detailed uh proposal today", variant: disfluent}
+  - {text: "so uh the client wants the like the full proposal from me today", variant: disfluent}
+  - {text: "the client no the investor sorry the client needs my proposal today", variant: disfluent}
+  - {text: "er i have to send the client a um detailed proposal by tonight", variant: disfluent}
+  - {text: "the proposal for the uh client it's due today you know", variant: disfluent}
+  - {text: "um the client's uh still waiting on a proper proposal from me", variant: disfluent}

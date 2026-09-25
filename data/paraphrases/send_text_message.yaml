@@ -1,0 +1,219 @@
+# Paraphrases of the send_text_message seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): text {contact} {message_text}
+"0":
+  - {text: "send {contact} a text saying {message_text}", variant: plain}
+  - {text: "message {contact} {message_text}", variant: plain}
+  - {text: "shoot {contact} a message {message_text}", variant: plain}
+  - {text: "drop {contact} a text {message_text}", variant: plain}
+  - {text: "tell {contact} by text {message_text}", variant: plain}
+  - {text: "sms {contact} {message_text}", variant: plain}
+  - {text: "whatsapp {contact} {message_text}", variant: plain}
+  - {text: "send a message to {contact} {message_text}", variant: plain}
+  - {text: "{message_text} text that to {contact}", variant: plain}
+  - {text: "write to {contact} {message_text}", variant: plain}
+  - {text: "ping {contact} {message_text}", variant: plain}
+  - {text: "let {contact} know by message {message_text}", variant: plain}
+  - {text: "put one message to {contact} saying {message_text}", variant: plain}
+  - {text: "dictate a text to {contact} {message_text}", variant: plain}
+  - {text: "send an sms to {contact} saying {message_text}", variant: plain}
+  - {text: "fire off {message_text} to {contact}", variant: plain}
+  - {text: "inform {contact} over sms {message_text}", variant: plain}
+  - {text: "send {contact} this {message_text}", variant: plain}
+  - {text: "do one thing message {contact} {message_text}", variant: plain}
+  - {text: "just send {contact} {message_text}", variant: plain}
+  - {text: "pass on {message_text} to {contact} by text", variant: plain}
+  - {text: "write {contact} a quick text {message_text}", variant: plain}
+  - {text: "put {message_text} in a text for {contact}", variant: plain}
+  - {text: "go ahead and text this to {contact} {message_text}", variant: plain}
+  - {text: "{contact} ko message bhejo {message_text}", variant: hinglish}
+  - {text: "{contact} ko text kar do ki {message_text}", variant: hinglish}
+  - {text: "{contact} ko bol do message pe {message_text}", variant: hinglish}
+  - {text: "ek sms bhejo {contact} ko {message_text}", variant: hinglish}
+  - {text: "{message_text} yeh {contact} ko bhej do", variant: hinglish}
+  - {text: "{contact} ko likh ke bhejo {message_text}", variant: hinglish}
+  - {text: "{contact} ge message kalsu {message_text}", variant: kannada_english}
+  - {text: "{contact} ge text maadi {message_text}", variant: kannada_english}
+  - {text: "{message_text} antha {contact} ge message haaku", variant: kannada_english}
+  - {text: "{contact} ge ondu sms kalisi {message_text}", variant: kannada_english}
+  - {text: "text uh {contact} um {message_text}", variant: disfluent}
+  - {text: "send uh {contact} um you know a message {message_text}", variant: disfluent}
+  - {text: "call no text {contact} {message_text}", variant: disfluent}
+  - {text: "so uh message {contact} like {message_text}", variant: disfluent}
+  - {text: "er text um {contact} no wait text {contact} this {message_text}", variant: disfluent}
+  - {text: "um drop uh {contact} like a quick text {message_text}", variant: disfluent}
+
+# seed 1 (question): can you send a message to {contact} saying {message_text}
+"1":
+  - {text: "could you text {contact} {message_text}", variant: plain}
+  - {text: "will you message {contact} that {message_text}?", variant: plain}
+  - {text: "can you drop {contact} a text saying {message_text}", variant: plain}
+  - {text: "would you send {contact} an sms {message_text}?", variant: plain}
+  - {text: "can we text {contact} {message_text}", variant: plain}
+  - {text: "is it possible to message {contact} {message_text}", variant: plain}
+  - {text: "would you let {contact} know by sms {message_text}?", variant: plain}
+  - {text: "can i get a text off to {contact} saying {message_text}", variant: plain}
+  - {text: "would you mind texting {contact} {message_text}", variant: plain}
+  - {text: "mind sending {contact} a quick message {message_text}?", variant: plain}
+  - {text: "can you whatsapp this to {contact} {message_text}", variant: plain}
+  - {text: "can you tell {contact} on whatsapp {message_text}", variant: plain}
+  - {text: "will you ping {contact} with {message_text}", variant: plain}
+  - {text: "can you pass {message_text} on to {contact} by text?", variant: plain}
+  - {text: "could you fire off a quick one to {contact} {message_text}", variant: plain}
+  - {text: "how about texting {contact} {message_text}", variant: plain}
+  - {text: "can the car send {contact} a text {message_text}", variant: plain}
+  - {text: "would you write {contact} a message {message_text}?", variant: plain}
+  - {text: "any chance of messaging {contact} {message_text}", variant: plain}
+  - {text: "could we send {contact} {message_text} as a text?", variant: plain}
+  - {text: "can you put a text for {contact} {message_text}", variant: plain}
+  - {text: "do you mind messaging {contact} {message_text}?", variant: plain}
+  - {text: "shall we send {message_text} over to {contact}", variant: plain}
+  - {text: "can you sms {contact} {message_text}", variant: plain}
+  - {text: "{contact} ko message bhej doge ki {message_text}?", variant: hinglish}
+  - {text: "kya tum {contact} ko text kar sakte ho {message_text}", variant: hinglish}
+  - {text: "{contact} ko ek message bhej sakte ho {message_text}", variant: hinglish}
+  - {text: "{contact} ko bata doge message mein {message_text}?", variant: hinglish}
+  - {text: "zara {contact} ko likh doge {message_text}", variant: hinglish}
+  - {text: "{contact} ko sms karoge kya {message_text}", variant: hinglish}
+  - {text: "{contact} ge message kalsthira {message_text}?", variant: kannada_english}
+  - {text: "{contact} ge ondu text maadtira {message_text}", variant: kannada_english}
+  - {text: "{message_text} antha {contact} ge kalisbahuda?", variant: kannada_english}
+  - {text: "swalpa {contact} ge sms maadoke aagutta {message_text}", variant: kannada_english}
+  - {text: "um can you like send {contact} uh this message {message_text}", variant: disfluent}
+  - {text: "could you uh could you ping {contact} with like {message_text}", variant: disfluent}
+  - {text: "um would you like message {contact} {message_text}?", variant: disfluent}
+  - {text: "can you call no text {contact} saying {message_text}", variant: disfluent}
+  - {text: "so er can you tell {contact} over text uh {message_text}", variant: disfluent}
+  - {text: "uh is it um possible to like send {contact} {message_text}", variant: disfluent}
+
+# seed 2 (outcome): i want {contact} to know i'll be {duration} late
+"2":
+  - {text: "{contact} should know i'm running {duration} behind", variant: plain}
+  - {text: "i'm going to be {duration} late and {contact} needs to know", variant: plain}
+  - {text: "{contact} ought to hear that i'm {duration} late", variant: plain}
+  - {text: "i'll be {duration} late and {contact} is expecting me", variant: plain}
+  - {text: "i'd like {contact} to be aware i'm {duration} behind schedule", variant: plain}
+  - {text: "{contact} needs a heads up that i'll be {duration} late", variant: plain}
+  - {text: "i don't want {contact} waiting i'm {duration} late", variant: plain}
+  - {text: "it'd be good if {contact} knew i'm {duration} delayed", variant: plain}
+  - {text: "i'm stuck in traffic and will be {duration} late for {contact}", variant: plain}
+  - {text: "i'm running about {duration} late and {contact} doesn't know yet", variant: plain}
+  - {text: "{contact} is waiting on me and i'm {duration} behind", variant: plain}
+  - {text: "i need {contact} to be in the loop that i'm {duration} late", variant: plain}
+  - {text: "i want {contact} updated that i'm delayed by {duration}", variant: plain}
+  - {text: "{contact} shouldn't be left wondering i'm {duration} late", variant: plain}
+  - {text: "i'm delayed by {duration} and {contact} is waiting at the other end", variant: plain}
+  - {text: "{contact} will worry if they don't hear i'm {duration} late", variant: plain}
+  - {text: "traffic is bad and {contact} should know i'll be {duration} late", variant: plain}
+  - {text: "looks like i'm {duration} late and {contact} has no idea", variant: plain}
+  - {text: "it's only fair {contact} knows i'm {duration} behind", variant: plain}
+  - {text: "i'd hate for {contact} to wait without knowing i'm {duration} late", variant: plain}
+  - {text: "{contact} is expecting me on time but i'm {duration} late", variant: plain}
+  - {text: "i'll turn up {duration} late and {contact} ought to know", variant: plain}
+  - {text: "running {duration} late {contact} should be aware", variant: plain}
+  - {text: "{contact} has to find out i'm {duration} late before they leave", variant: plain}
+  - {text: "{contact} ko pata hona chahiye main {duration} late hoon", variant: hinglish}
+  - {text: "main {duration} late ho jaunga {contact} ko khabar honi chahiye", variant: hinglish}
+  - {text: "{contact} ko maloom ho ki mujhe {duration} der hogi", variant: hinglish}
+  - {text: "{contact} wait kar raha hai aur main {duration} late hoon", variant: hinglish}
+  - {text: "{contact} ko idea hona chahiye ki main {duration} der se aaunga", variant: hinglish}
+  - {text: "{duration} late hoon yaar {contact} ko pata nahi hai", variant: hinglish}
+  - {text: "naanu {duration} late aagtini antha {contact} ge gottagbeku", variant: kannada_english}
+  - {text: "{contact} ge gotthirli naanu {duration} late", variant: kannada_english}
+  - {text: "{duration} late aagutte {contact} ge gottilla", variant: kannada_english}
+  - {text: "{contact} kaaytha iddare naanu {duration} late aagtini", variant: kannada_english}
+  - {text: "i want uh {contact} to um you know i'm gonna be {duration} late", variant: disfluent}
+  - {text: "{contact} should know that i'm uh i'm {duration} late", variant: disfluent}
+  - {text: "um i'm like running uh {duration} late and {contact} has no clue", variant: disfluent}
+  - {text: "so er {contact} needs to know i'm running {duration} no {duration} behind", variant: disfluent}
+  - {text: "so {contact} is gonna wonder where i am uh i'm {duration} late", variant: disfluent}
+  - {text: "uh {contact} is waiting and i'm um {duration} late", variant: disfluent}
+
+# seed 3 (indirect): {contact} is waiting on that otp it's {otp}
+"3":
+  - {text: "{contact} needs the otp from my phone it's {otp}", variant: plain}
+  - {text: "the code {contact} is asking for is {otp}", variant: plain}
+  - {text: "{contact} is still waiting for the otp which is {otp}", variant: plain}
+  - {text: "{otp} is the otp {contact} wanted", variant: plain}
+  - {text: "{contact} can't log in without the otp and it's {otp}", variant: plain}
+  - {text: "that verification code for {contact} is {otp}", variant: plain}
+  - {text: "{contact} has been waiting for the code it came as {otp}", variant: plain}
+  - {text: "the otp came to my phone {otp} and {contact} needs it", variant: plain}
+  - {text: "{contact} is stuck at the counter waiting on the otp {otp}", variant: plain}
+  - {text: "i got the otp {contact} was after it's {otp}", variant: plain}
+  - {text: "{contact} asked me for the code and it's {otp}", variant: plain}
+  - {text: "oh {otp} that's what {contact} is expecting", variant: plain}
+  - {text: "{contact} is on hold for the otp it says {otp}", variant: plain}
+  - {text: "{contact} won't be able to proceed till they get {otp}", variant: plain}
+  - {text: "{contact} is standing at the gate for the otp {otp}", variant: plain}
+  - {text: "{otp} that's the code {contact} has been waiting on", variant: plain}
+  - {text: "{contact} needs {otp} to finish the booking", variant: plain}
+  - {text: "the one time password {contact} needs is {otp}", variant: plain}
+  - {text: "{contact}'s transaction is pending on the otp {otp}", variant: plain}
+  - {text: "the otp just came in {otp} {contact} will be waiting", variant: plain}
+  - {text: "{contact} keeps asking for the otp it's {otp}", variant: plain}
+  - {text: "{contact} is held up until they get the code {otp}", variant: plain}
+  - {text: "{otp} is what {contact} has been asking for", variant: plain}
+  - {text: "{contact} wanted the otp and i've got it here {otp}", variant: plain}
+  - {text: "{contact} otp ka wait kar raha hai woh {otp} hai", variant: hinglish}
+  - {text: "{contact} ko otp chahiye {otp} aaya hai", variant: hinglish}
+  - {text: "otp {otp} hai {contact} kab se maang raha hai", variant: hinglish}
+  - {text: "{contact} ruka hua hai otp ke liye {otp} hai woh", variant: hinglish}
+  - {text: "{contact} ko code chahiye tha {otp}", variant: hinglish}
+  - {text: "yaar {contact} otp ke bina aage nahi badh sakta {otp} hai", variant: hinglish}
+  - {text: "{contact} otp ge kaaythidaare adu {otp}", variant: kannada_english}
+  - {text: "{contact} ge {otp} beku guru", variant: kannada_english}
+  - {text: "otp {otp} bandide {contact} kelthidru", variant: kannada_english}
+  - {text: "{contact} code gaagi wait maadthidaare {otp}", variant: kannada_english}
+  - {text: "so uh {contact} has been um waiting and the otp is {otp}", variant: disfluent}
+  - {text: "um the otp {contact} needs is uh {otp}", variant: disfluent}
+  - {text: "so {contact} is like waiting for the code you know {otp}", variant: disfluent}
+  - {text: "{contact} needs the the code it's uh {otp}", variant: disfluent}
+  - {text: "er {contact} needs the otp it's {otp} i think yeah {otp}", variant: disfluent}
+  - {text: "uh {contact} {contact}'s been asking for that um otp {otp}", variant: disfluent}
+
+# seed 4 (fragment): message {contact}
+"4":
+  - {text: "text {contact}", variant: plain}
+  - {text: "new message to {contact}", variant: plain}
+  - {text: "sms {contact}", variant: plain}
+  - {text: "a text to {contact}", variant: plain}
+  - {text: "write to {contact}", variant: plain}
+  - {text: "whatsapp {contact}", variant: plain}
+  - {text: "quick text to {contact}", variant: plain}
+  - {text: "ping {contact}", variant: plain}
+  - {text: "one text to {contact}", variant: plain}
+  - {text: "send {contact} a message", variant: plain}
+  - {text: "drop {contact} a line", variant: plain}
+  - {text: "note to {contact}", variant: plain}
+  - {text: "text for {contact} now", variant: plain}
+  - {text: "open a new text for {contact}", variant: plain}
+  - {text: "an sms for {contact} please", variant: plain}
+  - {text: "message on whatsapp for {contact}", variant: plain}
+  - {text: "dm {contact}", variant: plain}
+  - {text: "text over to {contact}", variant: plain}
+  - {text: "texting {contact}", variant: plain}
+  - {text: "a quick sms {contact}", variant: plain}
+  - {text: "reach {contact} by text", variant: plain}
+  - {text: "short note {contact}", variant: plain}
+  - {text: "line to {contact}", variant: plain}
+  - {text: "whatsapp to {contact} now", variant: plain}
+  - {text: "{contact} ko message karo", variant: hinglish}
+  - {text: "{contact} ko ek text bhejo", variant: hinglish}
+  - {text: "{contact} ko sms bhej do", variant: hinglish}
+  - {text: "{contact} ko whatsapp karo", variant: hinglish}
+  - {text: "message bhejo {contact} ko", variant: hinglish}
+  - {text: "{contact} ke liye message", variant: hinglish}
+  - {text: "{contact} ge message maadu", variant: kannada_english}
+  - {text: "{contact} ge ondu text kalsu", variant: kannada_english}
+  - {text: "{contact} ge sms haaku", variant: kannada_english}
+  - {text: "{contact} ge whatsapp maadi", variant: kannada_english}
+  - {text: "uh message um {contact}", variant: disfluent}
+  - {text: "text uh {contact} please", variant: disfluent}
+  - {text: "call no message {contact}", variant: disfluent}
+  - {text: "send uh send a text um to {contact}", variant: disfluent}
+  - {text: "er like text {contact} quick", variant: disfluent}
+  - {text: "um {contact} a message you know", variant: disfluent}

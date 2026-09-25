@@ -1,0 +1,176 @@
+# Paraphrases of the play_podcast seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): play the latest episode of {podcast}
+"0":
+  - {text: "put on the newest {podcast} episode", variant: plain}
+  - {text: "start the latest {podcast}", variant: plain}
+  - {text: "play {podcast}'s new episode", variant: plain}
+  - {text: "get the most recent {podcast} going", variant: plain}
+  - {text: "queue up the latest from {podcast}", variant: plain}
+  - {text: "play the new {podcast} episode", variant: plain}
+  - {text: "stream the fresh {podcast} episode", variant: plain}
+  - {text: "put on whatever {podcast} released this week", variant: plain}
+  - {text: "start {podcast} from the newest episode", variant: plain}
+  - {text: "open {podcast} and play the latest one", variant: plain}
+  - {text: "play this week's {podcast}", variant: plain}
+  - {text: "get me the new {podcast} episode", variant: plain}
+  - {text: "put the latest {podcast} on", variant: plain}
+  - {text: "load the most recent episode of {podcast}", variant: plain}
+  - {text: "start playing the new {podcast}", variant: plain}
+  - {text: "play whatever's new on {podcast}", variant: plain}
+  - {text: "find the latest {podcast} and play it", variant: plain}
+  - {text: "put on {podcast}'s latest drop", variant: plain}
+  - {text: "play the most recent {podcast}", variant: plain}
+  - {text: "do one thing put on the new {podcast}", variant: plain}
+  - {text: "start the new episode of {podcast}", variant: plain}
+  - {text: "fire up the latest {podcast} episode", variant: plain}
+  - {text: "just play the newest {podcast} for me", variant: plain}
+  - {text: "go to {podcast} and start the latest", variant: plain}
+  - {text: "{podcast} ka latest episode lagao", variant: hinglish}
+  - {text: "{podcast} ka naya episode chala do", variant: hinglish}
+  - {text: "{podcast} ka jo naya aaya hai wo chalao", variant: hinglish}
+  - {text: "naya {podcast} laga do yaar", variant: hinglish}
+  - {text: "{podcast} ka sabse recent episode play karo", variant: hinglish}
+  - {text: "latest {podcast} chalao abhi", variant: hinglish}
+  - {text: "{podcast} latest episode haaku", variant: kannada_english}
+  - {text: "{podcast} hosa episode play maadi", variant: kannada_english}
+  - {text: "{podcast} alli hosadu haaku guru", variant: kannada_english}
+  - {text: "latest {podcast} play maadu", variant: kannada_english}
+  - {text: "uh {podcast} um put on the uh newest one", variant: disfluent}
+  - {text: "play the old no wait the latest one of {podcast}", variant: disfluent}
+  - {text: "er start {podcast} um the latest one", variant: disfluent}
+  - {text: "so um like put on {podcast} the recent episode", variant: disfluent}
+  - {text: "the latest uh {podcast} episode um play that", variant: disfluent}
+  - {text: "um {podcast} uh {podcast} new episode please", variant: disfluent}
+
+# seed 1 (question): can you continue the podcast i was listening to
+"1":
+  - {text: "could you pick up the podcast where i left off?", variant: plain}
+  - {text: "can you resume my podcast", variant: plain}
+  - {text: "would you carry on with the podcast from earlier", variant: plain}
+  - {text: "can we get back to that podcast i had on?", variant: plain}
+  - {text: "will you put that half heard podcast back on", variant: plain}
+  - {text: "could you finish the podcast episode i was halfway through", variant: plain}
+  - {text: "can the podcast continue from where i stopped", variant: plain}
+  - {text: "would you bring back the podcast i was on", variant: plain}
+  - {text: "mind resuming the podcast episode from before?", variant: plain}
+  - {text: "can you get my half done podcast going again", variant: plain}
+  - {text: "is it possible to continue my podcast?", variant: plain}
+  - {text: "could you start the podcast i didn't finish", variant: plain}
+  - {text: "can i go back to my unfinished podcast", variant: plain}
+  - {text: "how about continuing the podcast i paused?", variant: plain}
+  - {text: "can you play my podcast from the same spot", variant: plain}
+  - {text: "will you keep going with that podcast episode", variant: plain}
+  - {text: "could you resume the podcast show i was hearing", variant: plain}
+  - {text: "can you put the podcast on again where it stopped", variant: plain}
+  - {text: "would you open up the podcast i'd been listening to", variant: plain}
+  - {text: "any chance you can resume that podcast?", variant: plain}
+  - {text: "can we pick my podcast back up", variant: plain}
+  - {text: "could you load the podcast i left midway", variant: plain}
+  - {text: "do you remember the podcast i was on can you continue it", variant: plain}
+  - {text: "can you take me back into that podcast episode", variant: plain}
+  - {text: "jo podcast sun raha tha wo continue kar sakte ho?", variant: hinglish}
+  - {text: "mera podcast wahi se chalaoge kya", variant: hinglish}
+  - {text: "kya pichla podcast aage chala sakte ho", variant: hinglish}
+  - {text: "adha suna hua podcast phir se laga doge?", variant: hinglish}
+  - {text: "podcast wahan se shuru karoge jahan ruka tha", variant: hinglish}
+  - {text: "mera wala podcast resume kar doge kya", variant: hinglish}
+  - {text: "naanu kelthidda podcast continue maadthira?", variant: kannada_english}
+  - {text: "podcast alli inda matte haakthira?", variant: kannada_english}
+  - {text: "nan podcast resume maadbahuda", variant: kannada_english}
+  - {text: "ardha kelida podcast haakthiya guru?", variant: kannada_english}
+  - {text: "um can you continue the uh podcast from before", variant: disfluent}
+  - {text: "could you resume the the song no the podcast i was on", variant: disfluent}
+  - {text: "er can we uh go back to my podcast", variant: disfluent}
+  - {text: "so um would you like play my podcast again from where it was", variant: disfluent}
+  - {text: "can you uh can you finish that podcast episode", variant: disfluent}
+  - {text: "uh the podcast i was listening to um can you put it back", variant: disfluent}
+
+# seed 2 (outcome): i'd rather listen to people talking than music
+"2":
+  - {text: "i'm in the mood for some conversation instead of songs", variant: plain}
+  - {text: "i'm tired of songs i want to hear people chatting", variant: plain}
+  - {text: "hearing a proper chat would be nicer than music", variant: plain}
+  - {text: "i feel like hearing a discussion not songs", variant: plain}
+  - {text: "enough songs for today i'd prefer people chatting", variant: plain}
+  - {text: "i'd enjoy a good chat show more than music", variant: plain}
+  - {text: "i want something with talking not singing", variant: plain}
+  - {text: "music is boring me i'd rather hear a conversation", variant: plain}
+  - {text: "i'd love to listen to some interesting discussion", variant: plain}
+  - {text: "something spoken would be better than songs", variant: plain}
+  - {text: "i'd like to hear people discuss stuff for a change", variant: plain}
+  - {text: "i'm more in the mood for talk than tunes", variant: plain}
+  - {text: "a good conversation would beat songs on this drive", variant: plain}
+  - {text: "i'd prefer listening to hosts chatting", variant: plain}
+  - {text: "songs aren't doing it for me i want to hear people talk", variant: plain}
+  - {text: "i want voices not music", variant: plain}
+  - {text: "i've had enough music i want to hear some talking", variant: plain}
+  - {text: "honestly i'd rather hear an interview than songs", variant: plain}
+  - {text: "i'm craving some good conversation to listen to", variant: plain}
+  - {text: "listening to people chat sounds better than music right now", variant: plain}
+  - {text: "i want to hear some smart people talking", variant: plain}
+  - {text: "i'd rather have a discussion playing than a playlist", variant: plain}
+  - {text: "talk would suit this long trip better than songs", variant: plain}
+  - {text: "i'm not feeling music i want some spoken stuff", variant: plain}
+  - {text: "gaane nahi yaar kuch baat cheet sunni hai", variant: hinglish}
+  - {text: "music se bor ho gaya log baat karte hue sunna hai", variant: hinglish}
+  - {text: "songs ki jagah koi discussion sunne ka mann hai", variant: hinglish}
+  - {text: "mujhe gaano se zyada baatein sunni hain", variant: hinglish}
+  - {text: "aaj music nahi kuch talk wala sunna hai", variant: hinglish}
+  - {text: "koi baat karta hua sunna hai gaane bahut ho gaye", variant: hinglish}
+  - {text: "haadu beda yaaradru maathadodu kelbeku", variant: kannada_english}
+  - {text: "music saaku swalpa maathukathe kelona", variant: kannada_english}
+  - {text: "haadu bore aaytu yaaradru maathaadodu beku", variant: kannada_english}
+  - {text: "songs gintha maathu kelodu ishta", variant: kannada_english}
+  - {text: "uh i'm kind of done with music um i want like people talking", variant: disfluent}
+  - {text: "i want uh songs no actually some people chatting would be better", variant: disfluent}
+  - {text: "er i'd like to hear um a conversation not music", variant: disfluent}
+  - {text: "so uh no more songs i'd prefer um voices", variant: disfluent}
+  - {text: "like i just um i want somebody talking not music", variant: disfluent}
+  - {text: "music is uh music is tiring me um i'd rather hear a discussion", variant: disfluent}
+
+# seed 3 (fragment): {podcast} podcast
+"3":
+  - {text: "{podcast} please", variant: plain}
+  - {text: "put on {podcast}", variant: plain}
+  - {text: "{podcast} now", variant: plain}
+  - {text: "play {podcast}", variant: plain}
+  - {text: "{podcast} show", variant: plain}
+  - {text: "{podcast} episode", variant: plain}
+  - {text: "some {podcast}", variant: plain}
+  - {text: "time for some {podcast}", variant: plain}
+  - {text: "{podcast} on the podcast app", variant: plain}
+  - {text: "start {podcast}", variant: plain}
+  - {text: "{podcast} na", variant: plain}
+  - {text: "my podcast {podcast} please", variant: plain}
+  - {text: "{podcast} for the drive", variant: plain}
+  - {text: "just {podcast}", variant: plain}
+  - {text: "an episode of {podcast}", variant: plain}
+  - {text: "listen to {podcast}", variant: plain}
+  - {text: "{podcast} audio", variant: plain}
+  - {text: "the podcast called {podcast}", variant: plain}
+  - {text: "go to {podcast}", variant: plain}
+  - {text: "open {podcast}", variant: plain}
+  - {text: "the {podcast} talk show", variant: plain}
+  - {text: "queue {podcast}", variant: plain}
+  - {text: "that {podcast} thing", variant: plain}
+  - {text: "{podcast} in the car", variant: plain}
+  - {text: "{podcast} lagao", variant: hinglish}
+  - {text: "{podcast} wala podcast chalao", variant: hinglish}
+  - {text: "{podcast} chala do", variant: hinglish}
+  - {text: "{podcast} sunna hai", variant: hinglish}
+  - {text: "{podcast} podcast laga do yaar", variant: hinglish}
+  - {text: "{podcast} sunao", variant: hinglish}
+  - {text: "{podcast} haaku", variant: kannada_english}
+  - {text: "{podcast} podcast haaku guru", variant: kannada_english}
+  - {text: "{podcast} haaki saar", variant: kannada_english}
+  - {text: "{podcast} kelona", variant: kannada_english}
+  - {text: "uh {podcast}", variant: disfluent}
+  - {text: "um {podcast} podcast please", variant: disfluent}
+  - {text: "{podcast} uh no wait {podcast} podcast", variant: disfluent}
+  - {text: "er the uh {podcast} one", variant: disfluent}
+  - {text: "so um {podcast} you know", variant: disfluent}
+  - {text: "podcast um the {podcast} podcast", variant: disfluent}

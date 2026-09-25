@@ -1,0 +1,176 @@
+# Paraphrases of the read_document seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): open the {topic} report on screen
+"0":
+  - {text: "show the {topic} report on the display", variant: plain}
+  - {text: "pull up the {topic} report", variant: plain}
+  - {text: "put the {topic} report up for me", variant: plain}
+  - {text: "bring the {topic} report onto the display", variant: plain}
+  - {text: "display my {topic} report", variant: plain}
+  - {text: "get the {topic} report open", variant: plain}
+  - {text: "open up that {topic} report", variant: plain}
+  - {text: "{topic} report get it up on the display", variant: plain}
+  - {text: "load the {topic} report here", variant: plain}
+  - {text: "launch the {topic} report file", variant: plain}
+  - {text: "throw the {topic} report up there", variant: plain}
+  - {text: "open my {topic} report so i can read it", variant: plain}
+  - {text: "let me see the {topic} report on the screen", variant: plain}
+  - {text: "show me the {topic} report", variant: plain}
+  - {text: "fetch the {topic} report and open it", variant: plain}
+  - {text: "bring up the latest {topic} report", variant: plain}
+  - {text: "go find the {topic} report for me", variant: plain}
+  - {text: "put up the {topic} report on the dashboard screen", variant: plain}
+  - {text: "bring up that report about {topic}", variant: plain}
+  - {text: "display the report about {topic}", variant: plain}
+  - {text: "get that {topic} report in front of me", variant: plain}
+  - {text: "open that report for {topic} on the display", variant: plain}
+  - {text: "show the {topic} report file here", variant: plain}
+  - {text: "do one thing open the {topic} report", variant: plain}
+  - {text: "{topic} report screen pe kholo", variant: hinglish}
+  - {text: "{topic} wali report dikhao", variant: hinglish}
+  - {text: "screen par {topic} report open karo", variant: hinglish}
+  - {text: "{topic} ki report khol do", variant: hinglish}
+  - {text: "zara {topic} report screen pe laao", variant: hinglish}
+  - {text: "mujhe {topic} report dikhao abhi", variant: hinglish}
+  - {text: "{topic} report screen alli open maadu", variant: kannada_english}
+  - {text: "{topic} report thorisu", variant: kannada_english}
+  - {text: "{topic} report na open maadi", variant: kannada_english}
+  - {text: "screen mele {topic} report haaku", variant: kannada_english}
+  - {text: "um that er {topic} report yeah open that", variant: disfluent}
+  - {text: "uh show that {topic} er that {topic} report", variant: disfluent}
+  - {text: "open the {topic} email no sorry i mean the report on {topic}", variant: disfluent}
+  - {text: "um put up the like {topic} report", variant: disfluent}
+  - {text: "so er bring up that {topic} report on the display", variant: disfluent}
+  - {text: "open open er the {topic} one the report", variant: disfluent}
+
+# seed 1 (question): can you pull up the contract my lawyer sent
+"1":
+  - {text: "could you open the contract my lawyer emailed me?", variant: plain}
+  - {text: "can i see the contract the lawyer sent over", variant: plain}
+  - {text: "would you bring up the agreement from my lawyer?", variant: plain}
+  - {text: "will you show the contract my advocate sent", variant: plain}
+  - {text: "can you open the contract that came from my lawyer?", variant: plain}
+  - {text: "could you put the lawyer's contract on screen", variant: plain}
+  - {text: "mind opening the contract my lawyer forwarded", variant: plain}
+  - {text: "is it possible to see the lawyer's contract now?", variant: plain}
+  - {text: "can you find the contract my lawyer shared and open it", variant: plain}
+  - {text: "would you display the agreement the advocate mailed?", variant: plain}
+  - {text: "could i have a look at the contract from the lawyer", variant: plain}
+  - {text: "can you find the contract my lawyer sent this morning", variant: plain}
+  - {text: "will you open that agreement my lawyer sent across?", variant: plain}
+  - {text: "do you mind showing me the lawyer's contract", variant: plain}
+  - {text: "could you bring the legal contract from my lawyer on screen?", variant: plain}
+  - {text: "can you open the papers my lawyer sent for signing?", variant: plain}
+  - {text: "would you pull the contract my lawyer sent onto the display", variant: plain}
+  - {text: "can you show the draft contract from my lawyer?", variant: plain}
+  - {text: "could you dig out the contract the lawyer sent", variant: plain}
+  - {text: "will you put up the agreement my lawyer sent me", variant: plain}
+  - {text: "can i read the contract from my lawyer on this screen?", variant: plain}
+  - {text: "could you fetch the contract from my advocate", variant: plain}
+  - {text: "would you mind opening the lawyer's agreement for me", variant: plain}
+  - {text: "any chance you could bring the lawyer's deal contract up", variant: plain}
+  - {text: "vakil ne jo contract bheja tha woh khol doge?", variant: hinglish}
+  - {text: "lawyer ka bheja hua contract dikha sakte ho?", variant: hinglish}
+  - {text: "kya mere lawyer wala contract open kar sakte ho", variant: hinglish}
+  - {text: "vakil ka contract screen pe dikhaoge kya", variant: hinglish}
+  - {text: "lawyer ne contract bheja hai khol sakte ho?", variant: hinglish}
+  - {text: "mere advocate ka agreement dikha doge kya", variant: hinglish}
+  - {text: "lawyer kalsida contract open maadtira?", variant: kannada_english}
+  - {text: "nanna lawyer contract thorisbahuda?", variant: kannada_english}
+  - {text: "lawyer kalsiro agreement open maadoke aagutta", variant: kannada_english}
+  - {text: "vakilru kalsida contract screen alli thoristira?", variant: kannada_english}
+  - {text: "um my lawyer sent a contract uh can you pull it up", variant: disfluent}
+  - {text: "could you er the lawyer's contract open it?", variant: disfluent}
+  - {text: "can you show the invoice no the contract my lawyer sent", variant: disfluent}
+  - {text: "um would you like open the contract that uh my lawyer mailed", variant: disfluent}
+  - {text: "so can you er bring up that contract my lawyer sent", variant: disfluent}
+  - {text: "can you can you pull up my lawyer's contract", variant: disfluent}
+
+# seed 2 (outcome): i need to go over the presentation before the meeting
+"2":
+  - {text: "i have to review my slides before the meeting starts", variant: plain}
+  - {text: "i want one last look at the deck before i walk in", variant: plain}
+  - {text: "the presentation needs a final check before the client meeting", variant: plain}
+  - {text: "i haven't looked at the slides and the meeting is soon", variant: plain}
+  - {text: "i should revise the presentation before i present", variant: plain}
+  - {text: "need to run through the deck before the meeting", variant: plain}
+  - {text: "the meeting is in a bit and i haven't gone through the slides", variant: plain}
+  - {text: "i'd like to read through the presentation one more time first", variant: plain}
+  - {text: "i want to prepare with the slides before we start", variant: plain}
+  - {text: "my pitch deck needs another look before the meeting", variant: plain}
+  - {text: "i should brush up on the presentation before we begin", variant: plain}
+  - {text: "i'm walking in unprepared unless i see the slides again", variant: plain}
+  - {text: "i have to go through the deck once before the board meeting", variant: plain}
+  - {text: "i need a quick look at the ppt before the meeting", variant: plain}
+  - {text: "i want to check the ppt before i present it", variant: plain}
+  - {text: "before the meeting i must study the presentation", variant: plain}
+  - {text: "i need to refresh my memory on the slides before the meeting", variant: plain}
+  - {text: "i barely remember what's in the deck and the meeting is soon", variant: plain}
+  - {text: "i must be ready with the slides for the meeting", variant: plain}
+  - {text: "i've got to look at the ppt again before the review", variant: plain}
+  - {text: "i want to rehearse my presentation before the meeting", variant: plain}
+  - {text: "the slides need one more pass before the meeting", variant: plain}
+  - {text: "i'm presenting soon and need to see the slides again", variant: plain}
+  - {text: "before i reach office i need to go through the ppt", variant: plain}
+  - {text: "meeting se pehle presentation dekhni hai", variant: hinglish}
+  - {text: "mujhe meeting se pehle slides check karni hain", variant: hinglish}
+  - {text: "presentation ek baar dekhna hai meeting ke pehle", variant: hinglish}
+  - {text: "meeting shuru hone se pehle ppt padhni hai", variant: hinglish}
+  - {text: "abhi ppt revise karni hai meeting hai", variant: hinglish}
+  - {text: "meeting se pehle deck pe nazar daalni hai", variant: hinglish}
+  - {text: "meeting munche presentation nodbeku", variant: kannada_english}
+  - {text: "meeting ge munche slides ondu sala nodbeku", variant: kannada_english}
+  - {text: "ppt na meeting munche check maadbeku", variant: kannada_english}
+  - {text: "meeting ide presentation swalpa nodbeku guru", variant: kannada_english}
+  - {text: "uh before the meeting i um need to look over the deck", variant: disfluent}
+  - {text: "the the slides i haven't checked them and the meeting's soon", variant: disfluent}
+  - {text: "so uh the meeting is soon and i need to see the deck", variant: disfluent}
+  - {text: "i need to look at the report no the presentation before the meeting", variant: disfluent}
+  - {text: "um before the meeting i like need to review the ppt", variant: disfluent}
+  - {text: "i gotta er go through the slides you know before the meeting", variant: disfluent}
+
+# seed 3 (fragment): {topic} document
+"3":
+  - {text: "{topic} file", variant: plain}
+  - {text: "{topic} doc", variant: plain}
+  - {text: "{topic} pdf", variant: plain}
+  - {text: "{topic} papers", variant: plain}
+  - {text: "open the {topic} document", variant: plain}
+  - {text: "a document about {topic}", variant: plain}
+  - {text: "{topic} writeup", variant: plain}
+  - {text: "show me {topic} doc", variant: plain}
+  - {text: "{topic} attachment", variant: plain}
+  - {text: "{topic} spreadsheet", variant: plain}
+  - {text: "{topic} draft", variant: plain}
+  - {text: "{topic} proposal", variant: plain}
+  - {text: "that {topic} word file", variant: plain}
+  - {text: "{topic} pdf on screen", variant: plain}
+  - {text: "{topic} paperwork", variant: plain}
+  - {text: "the {topic} one pager", variant: plain}
+  - {text: "{topic} brief", variant: plain}
+  - {text: "{topic} memo", variant: plain}
+  - {text: "{topic} handout", variant: plain}
+  - {text: "the file about {topic}", variant: plain}
+  - {text: "{topic} doc on the display", variant: plain}
+  - {text: "{topic} summary sheet", variant: plain}
+  - {text: "{topic} whitepaper", variant: plain}
+  - {text: "{topic} case study", variant: plain}
+  - {text: "{topic} wala document kholo", variant: hinglish}
+  - {text: "{topic} ka doc kholo", variant: hinglish}
+  - {text: "{topic} ki file dikhao", variant: hinglish}
+  - {text: "{topic} ke documents dikhao", variant: hinglish}
+  - {text: "{topic} pdf kholo zara", variant: hinglish}
+  - {text: "{topic} wali file screen pe", variant: hinglish}
+  - {text: "{topic} kaagada thorisu", variant: kannada_english}
+  - {text: "{topic} file open maadu", variant: kannada_english}
+  - {text: "nanage {topic} doc beku", variant: kannada_english}
+  - {text: "{topic} pdf file haaku", variant: kannada_english}
+  - {text: "uh {topic} um document", variant: disfluent}
+  - {text: "the {topic} doc uh document", variant: disfluent}
+  - {text: "{topic} file no {topic} document", variant: disfluent}
+  - {text: "um that {topic} document", variant: disfluent}
+  - {text: "er {topic} pdf you know", variant: disfluent}
+  - {text: "{topic} um the pdf no the doc", variant: disfluent}

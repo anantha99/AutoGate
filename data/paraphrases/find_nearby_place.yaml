@@ -1,0 +1,219 @@
+# Paraphrases of the find_nearby_place seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): find a {place} near me
+"0":
+  - {text: "look for a {place} close by", variant: plain}
+  - {text: "search for the nearest {place}", variant: plain}
+  - {text: "show me {place} options around here", variant: plain}
+  - {text: "locate a {place} in this area", variant: plain}
+  - {text: "pull up a {place} close to where we are", variant: plain}
+  - {text: "find me the closest {place}", variant: plain}
+  - {text: "check for a {place} in this locality", variant: plain}
+  - {text: "show nearby {place} spots", variant: plain}
+  - {text: "look up a {place} a few minutes away", variant: plain}
+  - {text: "search {place} near my location", variant: plain}
+  - {text: "find the nearest {place} to us", variant: plain}
+  - {text: "list the {place} options nearby with ratings", variant: plain}
+  - {text: "show me which {place} is closest", variant: plain}
+  - {text: "hunt for a {place} nearby", variant: plain}
+  - {text: "bring up {place} results near us", variant: plain}
+  - {text: "find some {place} around my current spot", variant: plain}
+  - {text: "search the map for a {place} close by", variant: plain}
+  - {text: "get me the nearest {place} with good reviews", variant: plain}
+  - {text: "tell me about {place} options close to here", variant: plain}
+  - {text: "scan the area for a {place}", variant: plain}
+  - {text: "do one thing find a {place} somewhere close", variant: plain}
+  - {text: "compare a few {place} options near us", variant: plain}
+  - {text: "point out the closest {place}", variant: plain}
+  - {text: "show the top rated {place} near here", variant: plain}
+  - {text: "paas mein koi {place} dhoondo", variant: hinglish}
+  - {text: "nazdeek ka {place} dikhao", variant: hinglish}
+  - {text: "yahan aas paas {place} dhundho", variant: hinglish}
+  - {text: "sabse paas wala {place} batao", variant: hinglish}
+  - {text: "{place} search karo idhar hi", variant: hinglish}
+  - {text: "mere paas koi accha {place} dikhao", variant: hinglish}
+  - {text: "hattira yelli {place} ide nodu", variant: kannada_english}
+  - {text: "illi hattira ondu {place} hudku", variant: kannada_english}
+  - {text: "nearest {place} torsu", variant: kannada_english}
+  - {text: "hattiradalli {place} yaavdu ide hudki kodi", variant: kannada_english}
+  - {text: "find me a um what's it a {place} around us", variant: disfluent}
+  - {text: "um search for like whichever {place} is uh closest", variant: disfluent}
+  - {text: "show me a um no find me a {place} nearby", variant: disfluent}
+  - {text: "er look for a {place} close to uh close to us", variant: disfluent}
+  - {text: "so um get me the the closest {place}", variant: disfluent}
+  - {text: "i mean just find any {place} nearby you know", variant: disfluent}
+
+# seed 1 (outcome): i need a clean washroom
+"1":
+  - {text: "i really need to use a toilet", variant: plain}
+  - {text: "nature's calling badly", variant: plain}
+  - {text: "i'm desperate for a restroom", variant: plain}
+  - {text: "someone needs a proper loo right now", variant: plain}
+  - {text: "i can't hold it much longer", variant: plain}
+  - {text: "i need a decent bathroom urgently", variant: plain}
+  - {text: "we need a hygienic toilet for the ladies", variant: plain}
+  - {text: "urgently need to freshen up somewhere clean", variant: plain}
+  - {text: "my bladder is about to burst", variant: plain}
+  - {text: "a clean restroom would be a lifesaver now", variant: plain}
+  - {text: "i've been holding it for ages", variant: plain}
+  - {text: "i gotta pee and it has to be somewhere clean", variant: plain}
+  - {text: "need a loo that isn't filthy", variant: plain}
+  - {text: "the kids need the washroom", variant: plain}
+  - {text: "my wife needs a clean toilet", variant: plain}
+  - {text: "i need to wash up somewhere hygienic", variant: plain}
+  - {text: "any public toilet won't do it has to be clean", variant: plain}
+  - {text: "i'm dying to use the bathroom", variant: plain}
+  - {text: "urgent toilet situation here", variant: plain}
+  - {text: "we need a washroom that's actually usable", variant: plain}
+  - {text: "i need a sanitary restroom quickly", variant: plain}
+  - {text: "no dirty toilets for me i need a clean one", variant: plain}
+  - {text: "a neat and clean loo is all i need", variant: plain}
+  - {text: "i need a toilet with proper water and soap", variant: plain}
+  - {text: "mujhe saaf washroom chahiye", variant: hinglish}
+  - {text: "bahut zor se toilet aayi hai", variant: hinglish}
+  - {text: "koi saaf suthra toilet chahiye yaar", variant: hinglish}
+  - {text: "bathroom jaana hai urgently", variant: hinglish}
+  - {text: "ganda toilet nahi chalega saaf wala chahiye", variant: hinglish}
+  - {text: "bacchi ko washroom jaana hai jaldi", variant: hinglish}
+  - {text: "ondu clean washroom beku", variant: kannada_english}
+  - {text: "toilet ge hogbeku swalpa urgent", variant: kannada_english}
+  - {text: "chennagiro bathroom beku guru", variant: kannada_english}
+  - {text: "galeej toilet beda clean irbeku", variant: kannada_english}
+  - {text: "i uh really need a washroom but um a clean one", variant: disfluent}
+  - {text: "i really have to um you know go to the loo", variant: disfluent}
+  - {text: "i need a toilet no a clean toilet like proper clean", variant: disfluent}
+  - {text: "so uh nature's calling and um it has to be clean", variant: disfluent}
+  - {text: "er i'm desperate for the the restroom", variant: disfluent}
+  - {text: "we need um a washroom that's uh not dirty", variant: disfluent}
+
+# seed 2 (question): is there a good {place} around here
+"2":
+  - {text: "any decent {place} nearby?", variant: plain}
+  - {text: "do you know a nice {place} close by", variant: plain}
+  - {text: "where's the best {place} in this area?", variant: plain}
+  - {text: "can you find a well rated {place} near us", variant: plain}
+  - {text: "what's a good {place} in this locality?", variant: plain}
+  - {text: "are there any nice {place} options close to us", variant: plain}
+  - {text: "any good {place} a few minutes from here?", variant: plain}
+  - {text: "which {place} near here has good reviews", variant: plain}
+  - {text: "know any solid {place} in this neighbourhood?", variant: plain}
+  - {text: "could you suggest a {place} nearby", variant: plain}
+  - {text: "where can i find a decent {place} around?", variant: plain}
+  - {text: "any {place} worth going to around here", variant: plain}
+  - {text: "what's the top rated {place} near us?", variant: plain}
+  - {text: "is there some {place} nearby with good ratings", variant: plain}
+  - {text: "which is the best {place} close by?", variant: plain}
+  - {text: "how about a good {place} somewhere near?", variant: plain}
+  - {text: "do we have a nice {place} nearby", variant: plain}
+  - {text: "can you recommend a {place} in the area?", variant: plain}
+  - {text: "got any good {place} suggestions near here", variant: plain}
+  - {text: "is there a {place} around that people like?", variant: plain}
+  - {text: "where's a {place} that isn't bad around here", variant: plain}
+  - {text: "would you know of a nice {place} close to us?", variant: plain}
+  - {text: "which {place} nearby would you pick", variant: plain}
+  - {text: "any highly rated {place} close to where we are?", variant: plain}
+  - {text: "yahan paas mein koi accha {place} hai kya?", variant: hinglish}
+  - {text: "aas paas koi badhiya {place} hai", variant: hinglish}
+  - {text: "koi achha {place} pata hai idhar?", variant: hinglish}
+  - {text: "is area mein best {place} kaunsa hai", variant: hinglish}
+  - {text: "nazdeek koi dhang ka {place} milega kya?", variant: hinglish}
+  - {text: "idhar ka sabse mast {place} kaunsa hai?", variant: hinglish}
+  - {text: "illi hattira olle {place} ideya?", variant: kannada_english}
+  - {text: "ee area alli chennagiro {place} yaavdu?", variant: kannada_english}
+  - {text: "hattira olle {place} yelli ide guru", variant: kannada_english}
+  - {text: "illi yaavdadru best {place} ideya saar", variant: kannada_english}
+  - {text: "is there uh like any {place} that's um good nearby", variant: disfluent}
+  - {text: "um any like decent {place} you know in this area?", variant: disfluent}
+  - {text: "is there a good um no the best {place} close by", variant: disfluent}
+  - {text: "so uh where's a nice {place} around you know", variant: disfluent}
+  - {text: "do you know er any good {place} in this in this area", variant: disfluent}
+  - {text: "are there any um good {place} options around", variant: disfluent}
+
+# seed 3 (indirect): the kids want ice cream
+"3":
+  - {text: "the little ones are begging for ice cream", variant: plain}
+  - {text: "my daughter's been asking for a cone", variant: plain}
+  - {text: "the children are craving something cold and sweet", variant: plain}
+  - {text: "the boys won't stop talking about ice cream", variant: plain}
+  - {text: "someone in the back wants a kulfi", variant: plain}
+  - {text: "the kids have been promised a sundae", variant: plain}
+  - {text: "my son is throwing a fit for ice cream", variant: plain}
+  - {text: "the back seat is chanting ice cream ice cream", variant: plain}
+  - {text: "i told the kids we'd get them a scoop", variant: plain}
+  - {text: "the kids are in the mood for a cone", variant: plain}
+  - {text: "the little one wants chocolate ice cream", variant: plain}
+  - {text: "my niece keeps saying she wants ice cream", variant: plain}
+  - {text: "everyone in the back is dreaming of ice cream", variant: plain}
+  - {text: "the children deserve an ice cream treat after the exam", variant: plain}
+  - {text: "the kids are melting and want something frozen", variant: plain}
+  - {text: "my two keep whining for a softy", variant: plain}
+  - {text: "the twins are fighting over which flavour they want", variant: plain}
+  - {text: "the kids are demanding gelato", variant: plain}
+  - {text: "junior won't settle until he gets ice cream", variant: plain}
+  - {text: "the girls want a scoop of vanilla", variant: plain}
+  - {text: "the kids just spotted an ad and now they want ice cream", variant: plain}
+  - {text: "it's so hot the kids are asking for kulfi", variant: plain}
+  - {text: "my kid's sulking because there's no ice cream", variant: plain}
+  - {text: "the young ones are hungry for dessert", variant: plain}
+  - {text: "bacchon ko ice cream khani hai", variant: hinglish}
+  - {text: "bacche kulfi maang rahe hain", variant: hinglish}
+  - {text: "chhote ko ice cream chahiye yaar", variant: hinglish}
+  - {text: "bacche kab se ice cream ke liye ro rahe hain", variant: hinglish}
+  - {text: "bacchi bol rahi hai softy khani hai", variant: hinglish}
+  - {text: "peeche bacche ice cream ice cream chilla rahe hain", variant: hinglish}
+  - {text: "makkalige ice cream beku antha", variant: kannada_english}
+  - {text: "makkalu ice cream kelthidaare", variant: kannada_english}
+  - {text: "magu ge kulfi beku anthe", variant: kannada_english}
+  - {text: "hindgade makkalu ice cream ice cream antha galaate maadthidaare", variant: kannada_english}
+  - {text: "the kids uh they're all um after ice cream now", variant: disfluent}
+  - {text: "so the little ones are like totally uh ice cream mad", variant: disfluent}
+  - {text: "my son no both the kids want ice cream", variant: disfluent}
+  - {text: "um the children are uh craving a cone you know", variant: disfluent}
+  - {text: "er the kids want chocolate no just any ice cream", variant: disfluent}
+  - {text: "the back seat is um asking for uh kulfi", variant: disfluent}
+
+# seed 4 (fragment): nearest atm
+"4":
+  - {text: "closest atm", variant: plain}
+  - {text: "atm nearby", variant: plain}
+  - {text: "cash machine near us", variant: plain}
+  - {text: "atm around here", variant: plain}
+  - {text: "nearest cash point", variant: plain}
+  - {text: "any atm close by", variant: plain}
+  - {text: "atm please", variant: plain}
+  - {text: "need an atm", variant: plain}
+  - {text: "atms in this area", variant: plain}
+  - {text: "the closest cash machine", variant: plain}
+  - {text: "atm nearest to me", variant: plain}
+  - {text: "atm spots near here", variant: plain}
+  - {text: "cash withdrawal point", variant: plain}
+  - {text: "working atm near us", variant: plain}
+  - {text: "atm with cash", variant: plain}
+  - {text: "atm around the corner", variant: plain}
+  - {text: "atm in the neighbourhood", variant: plain}
+  - {text: "atm in walking distance", variant: plain}
+  - {text: "cash from an atm", variant: plain}
+  - {text: "atm locator", variant: plain}
+  - {text: "an atm quick", variant: plain}
+  - {text: "atm close to here", variant: plain}
+  - {text: "nearby cash machine", variant: plain}
+  - {text: "atm in this locality", variant: plain}
+  - {text: "paas wala atm", variant: hinglish}
+  - {text: "nazdeeki atm kahan hai", variant: hinglish}
+  - {text: "atm dikhao jaldi", variant: hinglish}
+  - {text: "koi atm idhar", variant: hinglish}
+  - {text: "atm chahiye paas mein", variant: hinglish}
+  - {text: "sabse paas atm", variant: hinglish}
+  - {text: "hattira atm", variant: kannada_english}
+  - {text: "atm yelli ide", variant: kannada_english}
+  - {text: "illi atm ideya", variant: kannada_english}
+  - {text: "hattirada atm torsu", variant: kannada_english}
+  - {text: "uh nearest um atm", variant: disfluent}
+  - {text: "atm uh any atm", variant: disfluent}
+  - {text: "er bank no atm nearby", variant: disfluent}
+  - {text: "the the closest um atm", variant: disfluent}
+  - {text: "um like an atm close by", variant: disfluent}
+  - {text: "so uh cash machine near here", variant: disfluent}

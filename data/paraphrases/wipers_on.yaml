@@ -1,0 +1,176 @@
+# Paraphrases of the wipers_on seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): turn the wipers on
+"0":
+  - {text: "switch on the wipers", variant: plain}
+  - {text: "start the wipers", variant: plain}
+  - {text: "get the wipers going", variant: plain}
+  - {text: "put the wipers on", variant: plain}
+  - {text: "run the windscreen wipers", variant: plain}
+  - {text: "start wiping the windshield", variant: plain}
+  - {text: "put on the wiper for the front glass", variant: plain}
+  - {text: "flick the wipers on", variant: plain}
+  - {text: "give the windscreen a wipe", variant: plain}
+  - {text: "set the wipers running", variant: plain}
+  - {text: "switch the wiper on na", variant: plain}
+  - {text: "do one thing start the wipers", variant: plain}
+  - {text: "clear the glass with the wipers", variant: plain}
+  - {text: "get the wiper blades moving", variant: plain}
+  - {text: "start the windshield wipers now", variant: plain}
+  - {text: "turn the wiper on for me", variant: plain}
+  - {text: "wipe the front glass", variant: plain}
+  - {text: "use the wipers on the windscreen", variant: plain}
+  - {text: "kick the wipers in", variant: plain}
+  - {text: "on the wipers quickly", variant: plain}
+  - {text: "wipers going please", variant: plain}
+  - {text: "make the wipers work", variant: plain}
+  - {text: "wipers on right now", variant: plain}
+  - {text: "get those wipers swiping", variant: plain}
+  - {text: "wiper chalu karo", variant: hinglish}
+  - {text: "wiper on kar do jaldi", variant: hinglish}
+  - {text: "wiper chala do bhai", variant: hinglish}
+  - {text: "sheesha saaf karne ke liye wiper chalao", variant: hinglish}
+  - {text: "wipers start karo na", variant: hinglish}
+  - {text: "abhi wiper laga do", variant: hinglish}
+  - {text: "wiper haaku", variant: kannada_english}
+  - {text: "wiper on maadi", variant: kannada_english}
+  - {text: "wipers start maadu guru", variant: kannada_english}
+  - {text: "swalpa wiper haaku saar", variant: kannada_english}
+  - {text: "uh get the um the wipers moving", variant: disfluent}
+  - {text: "the wipers er the wipers start them up", variant: disfluent}
+  - {text: "switch on the lights no sorry the wipers", variant: disfluent}
+  - {text: "er start the uh windscreen wipers", variant: disfluent}
+  - {text: "so um just get the wipers going you know", variant: disfluent}
+  - {text: "switch on the washer no wait the wipers", variant: disfluent}
+
+# seed 1 (outcome): it's raining really hard now
+"1":
+  - {text: "it's pouring outside", variant: plain}
+  - {text: "the rain is coming down in buckets", variant: plain}
+  - {text: "heavy downpour just started", variant: plain}
+  - {text: "it's absolutely lashing now", variant: plain}
+  - {text: "i can't see a thing in this rain", variant: plain}
+  - {text: "the rain's hammering the windscreen", variant: plain}
+  - {text: "monsoon has hit big time", variant: plain}
+  - {text: "it just started bucketing down", variant: plain}
+  - {text: "this is a proper cloudburst", variant: plain}
+  - {text: "water is streaming down the glass", variant: plain}
+  - {text: "the rain is really heavy here", variant: plain}
+  - {text: "suddenly it's raining cats and dogs", variant: plain}
+  - {text: "there's so much rain on the windshield", variant: plain}
+  - {text: "we've driven straight into a massive shower", variant: plain}
+  - {text: "the drizzle has turned into a downpour", variant: plain}
+  - {text: "rain's gotten crazy out there", variant: plain}
+  - {text: "it's tipping down now", variant: plain}
+  - {text: "the glass is covered in rain water", variant: plain}
+  - {text: "we're in the middle of a huge storm", variant: plain}
+  - {text: "it's pelting down all of a sudden", variant: plain}
+  - {text: "rain is lashing the front glass", variant: plain}
+  - {text: "such heavy rain i can barely see the road", variant: plain}
+  - {text: "the skies have opened up", variant: plain}
+  - {text: "it's raining nonstop and hard", variant: plain}
+  - {text: "bahut tez baarish ho rahi hai", variant: hinglish}
+  - {text: "baarish zor se aa gayi", variant: hinglish}
+  - {text: "itni baarish mein kuch dikh nahi raha", variant: hinglish}
+  - {text: "bahar mooslaadhaar baarish hai yaar", variant: hinglish}
+  - {text: "baarish ne toh hadd kar di", variant: hinglish}
+  - {text: "glass pe paani hi paani hai", variant: hinglish}
+  - {text: "jor male barta ide", variant: kannada_english}
+  - {text: "tumba male hodita ide", variant: kannada_english}
+  - {text: "male jaasti aagide guru", variant: kannada_english}
+  - {text: "glass mele full neeru ide", variant: kannada_english}
+  - {text: "it's uh it's really pouring now", variant: disfluent}
+  - {text: "man the rain is um like crazy heavy now", variant: disfluent}
+  - {text: "oh man it's it's bucketing down", variant: disfluent}
+  - {text: "er the rain just got really bad", variant: disfluent}
+  - {text: "so um it's raining super hard now", variant: disfluent}
+  - {text: "it's drizzling no it's actually pouring now", variant: disfluent}
+
+# seed 2 (indirect): that bus just splashed muddy water all over the glass
+"2":
+  - {text: "that truck just threw a load of slush on my windscreen", variant: plain}
+  - {text: "an auto went through a puddle and now the glass is brown", variant: plain}
+  - {text: "ugh that lorry drenched the windshield in mud", variant: plain}
+  - {text: "the car ahead sprayed dirty water right onto the front glass", variant: plain}
+  - {text: "some tempo just hit a pothole and soaked the windscreen", variant: plain}
+  - {text: "a big splash of mud from the bus has covered the screen", variant: plain}
+  - {text: "the whole windscreen is caked in mud thanks to that van", variant: plain}
+  - {text: "a tanker went past and splattered muck across the glass", variant: plain}
+  - {text: "that bike rider kicked up puddle water onto my windshield", variant: plain}
+  - {text: "i can't see through all this mud that bus threw at us", variant: plain}
+  - {text: "the gutter water from that bus is all over the front", variant: plain}
+  - {text: "that jeep drove through the puddle and now i'm blind", variant: plain}
+  - {text: "dirty water just smacked into the windscreen from the side", variant: plain}
+  - {text: "the lorry in front is spraying brown water back at us", variant: plain}
+  - {text: "there's mud streaked all across the windshield after that splash", variant: plain}
+  - {text: "we just got drenched by a passing truck", variant: plain}
+  - {text: "a cab ran through a pothole and the glass is filthy now", variant: plain}
+  - {text: "that bus soaked us completely", variant: plain}
+  - {text: "muck from the road just coated the whole front glass", variant: plain}
+  - {text: "the tractor ahead is flinging mud onto the windscreen", variant: plain}
+  - {text: "some car just splashed us from the puddle", variant: plain}
+  - {text: "look at that the windshield is all brown with road water", variant: plain}
+  - {text: "a big wave of puddle water just hit the glass", variant: plain}
+  - {text: "that city bus went through the ditch and blinded us", variant: plain}
+  - {text: "us bus ne pura glass keechad se bhar diya", variant: hinglish}
+  - {text: "truck ne ganda paani uchhaal diya sheeshe pe", variant: hinglish}
+  - {text: "yaar sheeshe pe keechad hi keechad hai ab", variant: hinglish}
+  - {text: "us gaadi ne gaddhe ka paani glass pe maar diya", variant: hinglish}
+  - {text: "bus ne windscreen pura ganda kar diya", variant: hinglish}
+  - {text: "aage wale truck se mitti wala paani aa gaya glass pe", variant: hinglish}
+  - {text: "aa bus glass mele full kesaru neeru haakitu", variant: kannada_english}
+  - {text: "glass ella kesaru aagide aa lorry inda", variant: kannada_english}
+  - {text: "aa truck neeru splash maaditu guru", variant: kannada_english}
+  - {text: "windscreen full mud aagide saar", variant: kannada_english}
+  - {text: "that um that bus just splashed uh mud all over", variant: disfluent}
+  - {text: "whoa the the truck no the bus just soaked the glass", variant: disfluent}
+  - {text: "er some lorry just threw like muddy water on us", variant: disfluent}
+  - {text: "uh the windscreen's all covered in um mud now", variant: disfluent}
+  - {text: "so that bus it just uh drenched the whole front", variant: disfluent}
+  - {text: "the car no the bus in front sprayed muck on us", variant: disfluent}
+
+# seed 3 (fragment): wipers on full
+"3":
+  - {text: "full speed wipers", variant: plain}
+  - {text: "max wipers", variant: plain}
+  - {text: "wipers fastest setting", variant: plain}
+  - {text: "wipers on high", variant: plain}
+  - {text: "fast wipers now", variant: plain}
+  - {text: "wiper speed max", variant: plain}
+  - {text: "wipers flat out", variant: plain}
+  - {text: "top speed on the wipers", variant: plain}
+  - {text: "highest wiper speed", variant: plain}
+  - {text: "wipers at maximum", variant: plain}
+  - {text: "fastest wipe please", variant: plain}
+  - {text: "wiper to full", variant: plain}
+  - {text: "wipers full blast", variant: plain}
+  - {text: "wipers full throttle", variant: plain}
+  - {text: "high speed wiping", variant: plain}
+  - {text: "wipers top setting", variant: plain}
+  - {text: "rapid wipers", variant: plain}
+  - {text: "wipers on max now", variant: plain}
+  - {text: "full power wipers", variant: plain}
+  - {text: "wiper on the last setting", variant: plain}
+  - {text: "crank the wipers up", variant: plain}
+  - {text: "maximum wiping", variant: plain}
+  - {text: "wipers as fast as possible", variant: plain}
+  - {text: "quickest wiper mode", variant: plain}
+  - {text: "wiper full speed pe karo", variant: hinglish}
+  - {text: "wiper tez karo", variant: hinglish}
+  - {text: "wiper fast chalao", variant: hinglish}
+  - {text: "wiper full pe daal do", variant: hinglish}
+  - {text: "wiper sabse tez", variant: hinglish}
+  - {text: "wiper ekdum fast", variant: hinglish}
+  - {text: "wiper full speed haaku", variant: kannada_english}
+  - {text: "wiper fast maadu", variant: kannada_english}
+  - {text: "wiper jaasti speed maadi", variant: kannada_english}
+  - {text: "wiper full haaku guru", variant: kannada_english}
+  - {text: "uh wipers um all the way up", variant: disfluent}
+  - {text: "wipers on low no full", variant: disfluent}
+  - {text: "um the wipers er maximum", variant: disfluent}
+  - {text: "wipers the uh fastest one", variant: disfluent}
+  - {text: "er full speed on the um wipers", variant: disfluent}
+  - {text: "the wipers uh put them on full", variant: disfluent}

@@ -1,0 +1,219 @@
+# Paraphrases of the play_music seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): play {song} by {artist}
+"0":
+  - {text: "put on {song} by {artist}", variant: plain}
+  - {text: "play {artist}'s {song}", variant: plain}
+  - {text: "start {song} from {artist}", variant: plain}
+  - {text: "let's hear {song} by {artist}", variant: plain}
+  - {text: "put {artist}'s {song} on", variant: plain}
+  - {text: "queue up {song} by {artist}", variant: plain}
+  - {text: "get {song} by {artist} going", variant: plain}
+  - {text: "play the track {song} sung by {artist}", variant: plain}
+  - {text: "throw on {artist}'s {song} track", variant: plain}
+  - {text: "give me {artist}'s {song}", variant: plain}
+  - {text: "blast {song} by {artist}", variant: plain}
+  - {text: "put on that {artist} track {song}", variant: plain}
+  - {text: "play {song} the {artist} one", variant: plain}
+  - {text: "start playing {song} by {artist} on spotify", variant: plain}
+  - {text: "do one thing play {song} by {artist}", variant: plain}
+  - {text: "find {song} by {artist} and play it", variant: plain}
+  - {text: "fire up {song} the one {artist} sang", variant: plain}
+  - {text: "look for {song} and play the {artist} version", variant: plain}
+  - {text: "play {artist} singing {song}", variant: plain}
+  - {text: "let me listen to {song} from {artist}", variant: plain}
+  - {text: "switch to {song} by {artist}", variant: plain}
+  - {text: "bring on {artist}'s {song}", variant: plain}
+  - {text: "go ahead and play {artist}'s {song}", variant: plain}
+  - {text: "that {artist} song {song} stick it on", variant: plain}
+  - {text: "{artist} ka {song} bajao", variant: hinglish}
+  - {text: "{song} laga do {artist} wala", variant: hinglish}
+  - {text: "{artist} ka gaana {song} chalao", variant: hinglish}
+  - {text: "{song} bajao jo {artist} ne gaaya hai", variant: hinglish}
+  - {text: "zara {artist} ka {song} play karo", variant: hinglish}
+  - {text: "{artist} ka woh {song} laga do", variant: hinglish}
+  - {text: "{artist} du {song} haaku", variant: kannada_english}
+  - {text: "{artist} haadida {song} kelsu", variant: kannada_english}
+  - {text: "{artist} avara {song} play maadu", variant: kannada_english}
+  - {text: "{song} haaki {artist} haadiddu", variant: kannada_english}
+  - {text: "um that {song} uh the {artist} song play that", variant: disfluent}
+  - {text: "play {song} no wait the {artist} version of {song}", variant: disfluent}
+  - {text: "put on uh {artist} i mean just {artist}'s {song}", variant: disfluent}
+  - {text: "so like play {song} you know the {artist} one", variant: disfluent}
+  - {text: "er get me the the {artist} song um {song}", variant: disfluent}
+  - {text: "play the uh {artist} one what's it called {song}", variant: disfluent}
+
+# seed 1 (question): can you put on some {artist}
+"1":
+  - {text: "could you play some {artist}?", variant: plain}
+  - {text: "can we listen to {artist} for a bit", variant: plain}
+  - {text: "will you put {artist} on", variant: plain}
+  - {text: "can you play something by {artist}?", variant: plain}
+  - {text: "how about some {artist}", variant: plain}
+  - {text: "can i get some {artist} songs", variant: plain}
+  - {text: "would you play a few {artist} tracks?", variant: plain}
+  - {text: "can we have {artist} on the speakers", variant: plain}
+  - {text: "mind putting on {artist}", variant: plain}
+  - {text: "could you throw on some {artist} music", variant: plain}
+  - {text: "can you play {artist}'s hits?", variant: plain}
+  - {text: "is it possible to put {artist} on now", variant: plain}
+  - {text: "any chance of some {artist}?", variant: plain}
+  - {text: "could we switch to {artist}", variant: plain}
+  - {text: "can you queue up some {artist} for me", variant: plain}
+  - {text: "why don't you play some {artist}", variant: plain}
+  - {text: "can you shuffle {artist}?", variant: plain}
+  - {text: "would you mind playing {artist}", variant: plain}
+  - {text: "shall we put on {artist}?", variant: plain}
+  - {text: "could you find me some {artist} songs", variant: plain}
+  - {text: "can you start an {artist} playlist", variant: plain}
+  - {text: "can we do some {artist} now?", variant: plain}
+  - {text: "any classic {artist} numbers you can put on", variant: plain}
+  - {text: "do you have any {artist} to play?", variant: plain}
+  - {text: "{artist} ke gaane laga doge?", variant: hinglish}
+  - {text: "kya tum {artist} baja sakte ho", variant: hinglish}
+  - {text: "thoda {artist} chala doge?", variant: hinglish}
+  - {text: "{artist} ka kuch sunaoge kya", variant: hinglish}
+  - {text: "{artist} ke songs play kar sakte ho?", variant: hinglish}
+  - {text: "kya {artist} ke kuch gaane chal sakte hain", variant: hinglish}
+  - {text: "{artist} haadu haaktiya?", variant: kannada_english}
+  - {text: "swalpa {artist} songs haaktira", variant: kannada_english}
+  - {text: "{artist} du enadru play maadbahuda?", variant: kannada_english}
+  - {text: "{artist} haadugalu haakoke aagutha", variant: kannada_english}
+  - {text: "can you um you know get some {artist} going", variant: disfluent}
+  - {text: "er could you like find a few {artist} tracks", variant: disfluent}
+  - {text: "can you play some old no some new {artist}", variant: disfluent}
+  - {text: "uh would you er throw on a bit of {artist}", variant: disfluent}
+  - {text: "so um is it possible to like play {artist}", variant: disfluent}
+  - {text: "can we uh can we get some {artist} going", variant: disfluent}
+
+# seed 2 (outcome): i need something upbeat to stay awake
+"2":
+  - {text: "i'm getting drowsy i need some peppy songs", variant: plain}
+  - {text: "something energetic would keep me awake", variant: plain}
+  - {text: "a few fast numbers would stop me dozing off", variant: plain}
+  - {text: "i'm feeling sleepy i need something lively", variant: plain}
+  - {text: "i could really use some high energy music", variant: plain}
+  - {text: "my eyes are closing a good beat would wake me up", variant: plain}
+  - {text: "something with a bit of josh would help me stay alert", variant: plain}
+  - {text: "i need foot tapping stuff to keep me going", variant: plain}
+  - {text: "it's late and i need something lively to stay awake", variant: plain}
+  - {text: "i need some dance numbers to fight this sleepiness", variant: plain}
+  - {text: "a few party songs would really help me stay up", variant: plain}
+  - {text: "i'm nodding off here need something with energy", variant: plain}
+  - {text: "something loud and fast would wake me up", variant: plain}
+  - {text: "i want pumping tracks to keep my eyes open", variant: plain}
+  - {text: "i need some bollywood dance tracks to stay sharp", variant: plain}
+  - {text: "i'm yawning nonstop need something punchy", variant: plain}
+  - {text: "i need beats that'll keep me from falling asleep", variant: plain}
+  - {text: "something cheerful would help me not doze off", variant: plain}
+  - {text: "i need a bit of energy in the car to stay awake", variant: plain}
+  - {text: "all this driving is making me sleepy i need peppy tunes", variant: plain}
+  - {text: "i need fast tempo songs to keep alert", variant: plain}
+  - {text: "i'm half asleep i need some zing in the speakers", variant: plain}
+  - {text: "some upbeat tunes would keep me awake at the wheel", variant: plain}
+  - {text: "my energy's dropping i need lively music", variant: plain}
+  - {text: "neend aa rahi hai kuch fast gaane chahiye", variant: hinglish}
+  - {text: "mujhe jagne ke liye kuch peppy chahiye", variant: hinglish}
+  - {text: "kuch josh wala chahiye warna so jaunga", variant: hinglish}
+  - {text: "aankh band ho rahi hai kuch dhamakedar sunna hai", variant: hinglish}
+  - {text: "kuch upbeat chahiye yaar neend bhagani hai", variant: hinglish}
+  - {text: "mujhe jaage rehne ke liye kuch masti wala chahiye", variant: hinglish}
+  - {text: "nidde barthide swalpa fast songs beku", variant: kannada_english}
+  - {text: "eccharavaagirakke enadru upbeat beku", variant: kannada_english}
+  - {text: "nidde odisakke jolly songs beku guru", variant: kannada_english}
+  - {text: "kannu muchkothide enadru peppy beku", variant: kannada_english}
+  - {text: "um i'm like so sleepy i need uh something peppy", variant: disfluent}
+  - {text: "i want something slow no something fast to wake me up", variant: disfluent}
+  - {text: "uh something upbeat i need it or i'll doze off", variant: disfluent}
+  - {text: "so my eyes are like er closing need some energy here", variant: disfluent}
+  - {text: "i need i need some peppy stuff um or i'll fall asleep", variant: disfluent}
+  - {text: "er some high energy stuff would you know keep me awake", variant: disfluent}
+
+# seed 3 (indirect): nobody's talking and the drive is getting boring
+"3":
+  - {text: "it's way too quiet in here", variant: plain}
+  - {text: "everyone's gone silent and the road is so dull", variant: plain}
+  - {text: "this drive is dragging and no one's saying anything", variant: plain}
+  - {text: "the car's dead silent and i'm getting bored", variant: plain}
+  - {text: "we've run out of things to talk about", variant: plain}
+  - {text: "such a boring stretch and it's so quiet in here", variant: plain}
+  - {text: "nobody's said a word in the last half hour", variant: plain}
+  - {text: "the silence in here is killing me", variant: plain}
+  - {text: "this highway is endless and everyone's quiet", variant: plain}
+  - {text: "the kids have gone quiet and it's super boring now", variant: plain}
+  - {text: "hours of total silence not fun at all", variant: plain}
+  - {text: "it's so quiet you could hear a pin drop", variant: plain}
+  - {text: "everyone's on their phones and the drive is dull", variant: plain}
+  - {text: "we're all just staring out the window", variant: plain}
+  - {text: "no one's in the mood to chat and it's getting tedious", variant: plain}
+  - {text: "this trip has become really boring", variant: plain}
+  - {text: "it's like a library in here", variant: plain}
+  - {text: "the conversation has totally died", variant: plain}
+  - {text: "i'm bored out of my mind on this drive", variant: plain}
+  - {text: "hours of road and zero chatter", variant: plain}
+  - {text: "it's been silent for ages and i'm losing it", variant: plain}
+  - {text: "everybody's dozed off and it's dull", variant: plain}
+  - {text: "there's nothing happening and this ride feels endless", variant: plain}
+  - {text: "man this ride is getting monotonous and nobody's speaking", variant: plain}
+  - {text: "koi baat nahi kar raha bahut bore ho raha hai", variant: hinglish}
+  - {text: "gaadi mein ekdum sannata hai yaar", variant: hinglish}
+  - {text: "sab chup hain aur safar boring ho gaya", variant: hinglish}
+  - {text: "itna lamba raasta aur koi bol bhi nahi raha", variant: hinglish}
+  - {text: "bore ho gaye yaar kuch ho hi nahi raha", variant: hinglish}
+  - {text: "sab so gaye drive bilkul boring hai", variant: hinglish}
+  - {text: "yaaru maathadtha illa bore aagthide", variant: kannada_english}
+  - {text: "car alli thumba silent ide guru", variant: kannada_english}
+  - {text: "drive thumba bore aagthide yaaru enu heltha illa", variant: kannada_english}
+  - {text: "ella sumne kootidaare bore aagthide", variant: kannada_english}
+  - {text: "nobody's uh nobody's saying anything and it's like boring", variant: disfluent}
+  - {text: "so um the drive is getting you know kind of dull", variant: disfluent}
+  - {text: "it's uh it's too quiet in here and um i'm bored", variant: disfluent}
+  - {text: "everyone's gone er silent and this road is like endless", variant: disfluent}
+  - {text: "the drive is getting um boring no super boring nobody's chatting", variant: disfluent}
+  - {text: "uh man it's so quiet you know nobody's talking", variant: disfluent}
+
+# seed 4 (fragment): {artist} songs
+"4":
+  - {text: "{artist} please", variant: plain}
+  - {text: "{artist} hits", variant: plain}
+  - {text: "{artist} music", variant: plain}
+  - {text: "best of {artist}", variant: plain}
+  - {text: "{artist} playlist", variant: plain}
+  - {text: "{artist} tracks now", variant: plain}
+  - {text: "top tracks of {artist}", variant: plain}
+  - {text: "{artist} on shuffle", variant: plain}
+  - {text: "something by {artist}", variant: plain}
+  - {text: "old {artist} numbers", variant: plain}
+  - {text: "latest {artist} album", variant: plain}
+  - {text: "{artist} all the way", variant: plain}
+  - {text: "{artist} mix", variant: plain}
+  - {text: "just {artist}", variant: plain}
+  - {text: "more {artist}", variant: plain}
+  - {text: "greatest hits {artist} please", variant: plain}
+  - {text: "{artist} back to back", variant: plain}
+  - {text: "{artist} romantic ones", variant: plain}
+  - {text: "{artist} party numbers", variant: plain}
+  - {text: "{artist} for the drive", variant: plain}
+  - {text: "a bit of {artist}", variant: plain}
+  - {text: "{artist} classics", variant: plain}
+  - {text: "{artist} collection", variant: plain}
+  - {text: "evergreen {artist} numbers", variant: plain}
+  - {text: "{artist} ke gaane", variant: hinglish}
+  - {text: "{artist} ka gaana lagao", variant: hinglish}
+  - {text: "{artist} wale gaane", variant: hinglish}
+  - {text: "{artist} ke hits bajao", variant: hinglish}
+  - {text: "thoda {artist} sunao", variant: hinglish}
+  - {text: "{artist} ki playlist chalao", variant: hinglish}
+  - {text: "{artist} haadugalu", variant: kannada_english}
+  - {text: "{artist} du haadu haaku", variant: kannada_english}
+  - {text: "swalpa {artist} haadu", variant: kannada_english}
+  - {text: "{artist} avara haadu kelona", variant: kannada_english}
+  - {text: "uh {artist} songs um", variant: disfluent}
+  - {text: "um {artist} like the old ones", variant: disfluent}
+  - {text: "er some uh {artist}", variant: disfluent}
+  - {text: "{artist} you know the hits", variant: disfluent}
+  - {text: "so um {artist} songs please", variant: disfluent}
+  - {text: "like {artist} uh the playlist one", variant: disfluent}

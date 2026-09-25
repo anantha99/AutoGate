@@ -1,0 +1,176 @@
+# Paraphrases of the weather_now seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): tell me the weather for tomorrow
+"0":
+  - {text: "give me tomorrow's forecast", variant: plain}
+  - {text: "check what the weather's like tomorrow", variant: plain}
+  - {text: "read out the forecast for tomorrow", variant: plain}
+  - {text: "let me know how tomorrow's weather looks", variant: plain}
+  - {text: "find out if tomorrow will be sunny or rainy", variant: plain}
+  - {text: "get the weather report for tomorrow", variant: plain}
+  - {text: "say what the weather is going to be tomorrow", variant: plain}
+  - {text: "pull up tomorrow's weather", variant: plain}
+  - {text: "do one thing check tomorrow's forecast", variant: plain}
+  - {text: "look up the weather for tomorrow morning", variant: plain}
+  - {text: "update me on tomorrow's weather", variant: plain}
+  - {text: "brief me on the weather tomorrow", variant: plain}
+  - {text: "tell me what tomorrow looks like weather wise", variant: plain}
+  - {text: "see if it's going to be hot tomorrow", variant: plain}
+  - {text: "give me an idea of tomorrow's weather", variant: plain}
+  - {text: "just check the forecast for tomorrow na", variant: plain}
+  - {text: "find me the weather for tomorrow before we set off", variant: plain}
+  - {text: "check what's coming tomorrow weather wise", variant: plain}
+  - {text: "check tomorrow's rain chances and temperature outside", variant: plain}
+  - {text: "show tomorrow's forecast on the screen", variant: plain}
+  - {text: "quickly tell me how the weather will be tomorrow", variant: plain}
+  - {text: "fetch the forecast for tomorrow", variant: plain}
+  - {text: "let me hear tomorrow's forecast", variant: plain}
+  - {text: "run me through tomorrow's weather", variant: plain}
+  - {text: "kal ka weather batao", variant: hinglish}
+  - {text: "kal mausam kaisa rahega bata do", variant: hinglish}
+  - {text: "kal ke weather ka update do", variant: hinglish}
+  - {text: "zara kal ka forecast check karo", variant: hinglish}
+  - {text: "mujhe batao kal baarish hogi ya dhoop", variant: hinglish}
+  - {text: "kal ka mausam sunao", variant: hinglish}
+  - {text: "naale weather hegide heli", variant: kannada_english}
+  - {text: "naale forecast swalpa check maadi", variant: kannada_english}
+  - {text: "naale weather enu antha helu", variant: kannada_english}
+  - {text: "naale male barutta nodi heli", variant: kannada_english}
+  - {text: "uh tomorrow um how's it looking weather wise just tell me", variant: disfluent}
+  - {text: "uh give me today's no tomorrow's forecast", variant: disfluent}
+  - {text: "so um check the weather for like tomorrow", variant: disfluent}
+  - {text: "er let me know let me know what tomorrow's weather is", variant: disfluent}
+  - {text: "the forecast um tomorrow's forecast read it out", variant: disfluent}
+  - {text: "um tell me how the uh sky looks tomorrow you know the weather", variant: disfluent}
+
+# seed 1 (question): will it rain in {city} today
+"1":
+  - {text: "is it going to rain in {city} today?", variant: plain}
+  - {text: "any chance of rain in {city} today", variant: plain}
+  - {text: "do you think {city} will get rain today", variant: plain}
+  - {text: "should i expect showers in {city} today?", variant: plain}
+  - {text: "is rain expected in {city} later today", variant: plain}
+  - {text: "are they predicting rain for {city} today", variant: plain}
+  - {text: "will {city} see any rain today?", variant: plain}
+  - {text: "is {city} getting a downpour today", variant: plain}
+  - {text: "what are the chances of rain in {city} today", variant: plain}
+  - {text: "does the forecast show rain in {city} today?", variant: plain}
+  - {text: "will the skies open up over {city} today", variant: plain}
+  - {text: "any showers forecast for {city} today?", variant: plain}
+  - {text: "will there be rain over {city} today", variant: plain}
+  - {text: "could {city} get wet today", variant: plain}
+  - {text: "is today a rainy day in {city}", variant: plain}
+  - {text: "can you tell me if it'll rain in {city} today", variant: plain}
+  - {text: "will the rain hit {city} today?", variant: plain}
+  - {text: "how likely is rain in {city} today", variant: plain}
+  - {text: "are we looking at rain in {city} today?", variant: plain}
+  - {text: "do they say rain for {city} today", variant: plain}
+  - {text: "will {city} stay dry today or get rain", variant: plain}
+  - {text: "rain in {city} today or not?", variant: plain}
+  - {text: "is the monsoon going to hit {city} today", variant: plain}
+  - {text: "would it rain in {city} today do you know", variant: plain}
+  - {text: "{city} mein aaj baarish hogi kya?", variant: hinglish}
+  - {text: "aaj {city} mein baarish ka chance hai kya", variant: hinglish}
+  - {text: "kya aaj {city} mein paani girega", variant: hinglish}
+  - {text: "{city} mein aaj rain aayegi?", variant: hinglish}
+  - {text: "aaj {city} ka mausam baarish wala hai kya", variant: hinglish}
+  - {text: "{city} side aaj baarish hone wali hai?", variant: hinglish}
+  - {text: "ivattu {city} alli male barutta?", variant: kannada_english}
+  - {text: "{city} alli ivattu male baratta illva", variant: kannada_english}
+  - {text: "ivattu {city} nalli male chance ideya", variant: kannada_english}
+  - {text: "{city} kade male aagutta ivattu?", variant: kannada_english}
+  - {text: "uh {city} today is there um any rain coming", variant: disfluent}
+  - {text: "is it um gonna pour in {city} like today?", variant: disfluent}
+  - {text: "rain in er {city} no wait in {city} today is it coming", variant: disfluent}
+  - {text: "so um any rain in {city} today you know", variant: disfluent}
+  - {text: "will it be sunny no i mean will it rain in {city} today", variant: disfluent}
+  - {text: "er does the forecast say um rain for {city} today", variant: disfluent}
+
+# seed 2 (outcome): i need to know if i should carry an umbrella
+"2":
+  - {text: "not sure if i need an umbrella today", variant: plain}
+  - {text: "wondering whether to take the umbrella along", variant: plain}
+  - {text: "i don't want to get caught in the rain on the way", variant: plain}
+  - {text: "i'm trying to decide whether to grab my umbrella", variant: plain}
+  - {text: "i'll be walking from the parking so i have to know about rain", variant: plain}
+  - {text: "i left my umbrella at home and i'm worried about rain", variant: plain}
+  - {text: "i have to decide if the umbrella goes in the dickey", variant: plain}
+  - {text: "i don't want to get drenched walking to the office", variant: plain}
+  - {text: "wondering if it's umbrella weather today", variant: plain}
+  - {text: "want to know if i'll get wet walking to the metro", variant: plain}
+  - {text: "not sure whether to pack the raincoat or not", variant: plain}
+  - {text: "i'd hate to carry an umbrella for nothing", variant: plain}
+  - {text: "i have a meeting outside and i don't know if it'll rain", variant: plain}
+  - {text: "the umbrella is in the dickey and i'm not sure i need it", variant: plain}
+  - {text: "i'm deciding whether the kids need umbrellas for school", variant: plain}
+  - {text: "no idea if i should take the umbrella when i get out", variant: plain}
+  - {text: "i need to know if it's going to rain when i step out", variant: plain}
+  - {text: "i can't tell if i'll need an umbrella later", variant: plain}
+  - {text: "i'm confused whether to take an umbrella or not today", variant: plain}
+  - {text: "i should know if rain is coming before i park and walk", variant: plain}
+  - {text: "my suit will get ruined if it rains so i need to know", variant: plain}
+  - {text: "i'm heading out on foot and don't know about rain", variant: plain}
+  - {text: "the sky looks dark and i'm not sure about taking an umbrella", variant: plain}
+  - {text: "i have to walk a lot today and i don't want to get soaked", variant: plain}
+  - {text: "samajh nahi aa raha umbrella le jaun ya nahi", variant: hinglish}
+  - {text: "mujhe pata karna hai chhatri chahiye ya nahi", variant: hinglish}
+  - {text: "pata nahi aaj chhata lena padega ya nahi", variant: hinglish}
+  - {text: "baarish mein bheegna nahi hai mujhe aaj", variant: hinglish}
+  - {text: "umbrella dickey mein rakhu ya nahi confuse hoon", variant: hinglish}
+  - {text: "bahar paidal jaana hai pata nahi baarish hogi ya nahi", variant: hinglish}
+  - {text: "umbrella tagondu hogbeka gottilla", variant: kannada_english}
+  - {text: "male bandre kashta umbrella beka antha gottagbeku", variant: kannada_english}
+  - {text: "ivattu kode beku illva antha gottilla", variant: kannada_english}
+  - {text: "male alli neneyodu beda ivattu", variant: kannada_english}
+  - {text: "so i'm wondering like whether i um take the umbrella", variant: disfluent}
+  - {text: "uh the umbrella i don't know if i should bring it", variant: disfluent}
+  - {text: "i need a raincoat no an umbrella um not sure if i need one", variant: disfluent}
+  - {text: "er i'm not sure if the the umbrella is needed today", variant: disfluent}
+  - {text: "um i don't want to get wet you know walking out later", variant: disfluent}
+  - {text: "so like i can't figure out if it's um umbrella weather", variant: disfluent}
+
+# seed 3 (fragment): weather {city}
+"3":
+  - {text: "{city} forecast", variant: plain}
+  - {text: "current weather in {city}", variant: plain}
+  - {text: "rain in {city}", variant: plain}
+  - {text: "{city} temperature today", variant: plain}
+  - {text: "weather report for {city}", variant: plain}
+  - {text: "{city} climate right now", variant: plain}
+  - {text: "{city} conditions at the moment", variant: plain}
+  - {text: "{city} sky today", variant: plain}
+  - {text: "forecast over {city} please", variant: plain}
+  - {text: "{city} sunny or rainy", variant: plain}
+  - {text: "{city} hot or cold", variant: plain}
+  - {text: "any rain {city}", variant: plain}
+  - {text: "{city} local weather update", variant: plain}
+  - {text: "weather check on {city}", variant: plain}
+  - {text: "{city} outlook for today", variant: plain}
+  - {text: "rain or shine in {city}", variant: plain}
+  - {text: "{city} weather this week", variant: plain}
+  - {text: "{city} monsoon update", variant: plain}
+  - {text: "latest weather news {city}", variant: plain}
+  - {text: "{city} rain chances", variant: plain}
+  - {text: "weather status {city} please", variant: plain}
+  - {text: "{city} humidity now", variant: plain}
+  - {text: "outside temperature in {city}", variant: plain}
+  - {text: "{city} heat today", variant: plain}
+  - {text: "{city} ka mausam", variant: hinglish}
+  - {text: "{city} ka weather batao", variant: hinglish}
+  - {text: "{city} mein aaj ka mausam", variant: hinglish}
+  - {text: "{city} ka forecast kya hai", variant: hinglish}
+  - {text: "{city} mein kitni garmi hai", variant: hinglish}
+  - {text: "{city} ka temperature abhi", variant: hinglish}
+  - {text: "{city} alli climate hegide", variant: kannada_english}
+  - {text: "{city} alli male ideya", variant: kannada_english}
+  - {text: "{city} havamaana heli", variant: kannada_english}
+  - {text: "{city} weather report kodi", variant: kannada_english}
+  - {text: "weather um weather in {city} please", variant: disfluent}
+  - {text: "uh {city} forecast i mean the weather", variant: disfluent}
+  - {text: "the forecast um for like {city}", variant: disfluent}
+  - {text: "er {city} temperature no the {city} weather", variant: disfluent}
+  - {text: "um {city} you know the the weather there", variant: disfluent}
+  - {text: "so uh rain status for {city}", variant: disfluent}

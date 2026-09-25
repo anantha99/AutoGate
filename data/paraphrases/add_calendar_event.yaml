@@ -1,0 +1,176 @@
+# Paraphrases of the add_calendar_event seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): add {event_title} to my calendar on {date} at {time}
+"0":
+  - {text: "put {event_title} in the diary for {date} {time}", variant: plain}
+  - {text: "schedule {event_title} on {date} at {time}", variant: plain}
+  - {text: "create a calendar event {event_title} {date} {time}", variant: plain}
+  - {text: "pencil in {event_title} {time} {date}", variant: plain}
+  - {text: "make an entry for {event_title} in my calendar {date} {time}", variant: plain}
+  - {text: "mark {event_title} down for {date} at {time}", variant: plain}
+  - {text: "{event_title} is on {date} at {time} get it into my calendar", variant: plain}
+  - {text: "set up {event_title} for {date} from {time}", variant: plain}
+  - {text: "log {event_title} in my schedule {time} {date}", variant: plain}
+  - {text: "slot {event_title} into {date} at {time}", variant: plain}
+  - {text: "write {event_title} down against {date} {time}", variant: plain}
+  - {text: "create an event called {event_title} on {date} at {time}", variant: plain}
+  - {text: "add an event {event_title} for {time} on {date}", variant: plain}
+  - {text: "fix {event_title} in my calendar {date} {time}", variant: plain}
+  - {text: "i've got {event_title} {date} at {time} stick that on the calendar", variant: plain}
+  - {text: "get {event_title} onto the calendar {date} {time}", variant: plain}
+  - {text: "throw {event_title} in there for {date} starting {time}", variant: plain}
+  - {text: "there's {event_title} {date} at {time} add it", variant: plain}
+  - {text: "calendar {event_title} {date} {time} please", variant: plain}
+  - {text: "go ahead and schedule {event_title} {date} {time}", variant: plain}
+  - {text: "lock in {event_title} for {date} {time}", variant: plain}
+  - {text: "save {event_title} as an event on {date} from {time}", variant: plain}
+  - {text: "make sure {event_title} shows on my calendar {date} {time}", variant: plain}
+  - {text: "new calendar item {event_title} on {date} at {time}", variant: plain}
+  - {text: "{date} ko {time} pe {event_title} calendar mein daal do", variant: hinglish}
+  - {text: "{event_title} ko mere calendar mein {date} {time} pe add karo", variant: hinglish}
+  - {text: "calendar mein {event_title} likh do {date} ko {time} ke liye", variant: hinglish}
+  - {text: "{date} ko {time} ka {event_title} schedule kar do", variant: hinglish}
+  - {text: "mere calendar pe {event_title} daalo {date} {time}", variant: hinglish}
+  - {text: "yaar {event_title} ka event bana do {date} ko {time} pe", variant: hinglish}
+  - {text: "{date} {time} ge {event_title} calendar ge haaku", variant: kannada_english}
+  - {text: "{event_title} na nanna calendar alli {date} {time} ge add maadu", variant: kannada_english}
+  - {text: "{date} alli {time} ge {event_title} event maadi", variant: kannada_english}
+  - {text: "calendar alli {event_title} haaki {time} ge {date} dina", variant: kannada_english}
+  - {text: "put {event_title} on the uh the calendar {date} er {time}", variant: disfluent}
+  - {text: "schedule um {event_title} for {date} no wait {date} {time}", variant: disfluent}
+  - {text: "um so {event_title} is like {date} {time} get it on the calendar", variant: disfluent}
+  - {text: "add add {event_title} um {date} {time} yeah calendar it", variant: disfluent}
+  - {text: "er create an event for um {event_title} you know {date} at {time}", variant: disfluent}
+  - {text: "remind me no sorry calendar {event_title} for {date} {time}", variant: disfluent}
+
+# seed 1 (question): can you block {duration} on {date} for {event_title}
+"1":
+  - {text: "could you hold {duration} on {date} for {event_title}?", variant: plain}
+  - {text: "will you set aside {duration} of {date} so there's room for {event_title}", variant: plain}
+  - {text: "can i reserve {duration} of my calendar on {date} for {event_title}", variant: plain}
+  - {text: "would you mark {duration} on {date} as {event_title}?", variant: plain}
+  - {text: "could we keep {date} free for {duration} to do {event_title}", variant: plain}
+  - {text: "is it possible to carve out {duration} on {date} for {event_title}", variant: plain}
+  - {text: "mind blocking off {duration} of {date} for {event_title}?", variant: plain}
+  - {text: "will you lock away {duration} with {event_title} in it on {date}?", variant: plain}
+  - {text: "can we set {duration} aside for {event_title} on {date}", variant: plain}
+  - {text: "would you schedule {duration} of {event_title} on {date}", variant: plain}
+  - {text: "is there a way to ringfence {duration} on {date} for {event_title}", variant: plain}
+  - {text: "how about giving {event_title} a {duration} chunk of my {date}?", variant: plain}
+  - {text: "would you grab {duration} in my calendar {date} for {event_title}", variant: plain}
+  - {text: "what if we block {duration} off for {event_title} on {date}", variant: plain}
+  - {text: "could {date} have {duration} cleared for {event_title}", variant: plain}
+  - {text: "would you mind holding {duration} for {event_title} on {date}?", variant: plain}
+  - {text: "can {event_title} get a {duration} block on {date}", variant: plain}
+  - {text: "could you put aside {duration} on {date} so i can do {event_title}", variant: plain}
+  - {text: "could {event_title} be pencilled in for {duration} on {date}", variant: plain}
+  - {text: "can i have {duration} blocked on {date} for {event_title}?", variant: plain}
+  - {text: "would it be possible to keep {duration} of {date} aside for {event_title}", variant: plain}
+  - {text: "can you save me {duration} on {date} to work on {event_title}", variant: plain}
+  - {text: "any chance of a {duration} hold on {date} for {event_title}", variant: plain}
+  - {text: "a {duration} window on {date} for {event_title} is that doable?", variant: plain}
+  - {text: "{date} ko {event_title} ke liye {duration} block kar doge?", variant: hinglish}
+  - {text: "kya {date} pe {duration} {event_title} ke liye rakh sakte ho", variant: hinglish}
+  - {text: "{event_title} ke liye {date} ko {duration} khaali rakhoge?", variant: hinglish}
+  - {text: "{date} ko {duration} ka slot {event_title} ke liye bana doge", variant: hinglish}
+  - {text: "{event_title} wala {duration} ka time {date} ko reserve hoga kya", variant: hinglish}
+  - {text: "mere calendar mein {date} ko {duration} {event_title} ke naam kar doge?", variant: hinglish}
+  - {text: "{date} alli {event_title} ge {duration} block maadtira?", variant: kannada_english}
+  - {text: "{event_title} ge {date} {duration} reserve maadoke aagutta", variant: kannada_english}
+  - {text: "{date} dina {duration} {event_title} ge ittu kodtiya?", variant: kannada_english}
+  - {text: "{date} {duration} slot {event_title} ge haaktira guru", variant: kannada_english}
+  - {text: "er {date} i mean could you like keep um {duration} aside for {event_title}", variant: disfluent}
+  - {text: "um will you put wait block off {duration} of {date} for {event_title}", variant: disfluent}
+  - {text: "um would you set aside you know {duration} for {event_title} {date}", variant: disfluent}
+  - {text: "so can we can we keep {duration} for {event_title} free on {date}?", variant: disfluent}
+  - {text: "er can i get {duration} blocked uh for {event_title} {date}", variant: disfluent}
+  - {text: "uh could you um for {event_title} i need {duration} on {date} can you hold that", variant: disfluent}
+
+# seed 2 (indirect): {contact} and i agreed to meet {date} at {time}
+"2":
+  - {text: "{contact} and i are catching up {date} at {time}", variant: plain}
+  - {text: "just fixed a meeting with {contact} for {date} {time}", variant: plain}
+  - {text: "{contact} said {date} at {time} works for us", variant: plain}
+  - {text: "we settled on {date} {time} with {contact}", variant: plain}
+  - {text: "so {contact} is seeing me {date} around {time}", variant: plain}
+  - {text: "it's confirmed {contact} and me on {date} {time}", variant: plain}
+  - {text: "{contact} wanted {time} {date} and i said okay fine", variant: plain}
+  - {text: "looks like i'm meeting {contact} {date} at {time}", variant: plain}
+  - {text: "{date} at {time} is when {contact} and i are getting together", variant: plain}
+  - {text: "{contact} just said yes to {time} on {date}", variant: plain}
+  - {text: "i told {contact} i'd see them {date} at {time}", variant: plain}
+  - {text: "we're on for {date} at {time} {contact} just confirmed", variant: plain}
+  - {text: "{contact} is coming over to meet me {date} {time}", variant: plain}
+  - {text: "got off the phone with {contact} lunch is {date} {time}", variant: plain}
+  - {text: "{date} {time} it is with {contact}", variant: plain}
+  - {text: "i've promised {contact} a meeting {date} at {time}", variant: plain}
+  - {text: "{contact} and i locked in {time} on {date}", variant: plain}
+  - {text: "turns out {contact} is free {date} at {time} so that's our slot", variant: plain}
+  - {text: "meeting {contact} at {time} on {date} that's been decided", variant: plain}
+  - {text: "{contact} picked {date} at {time} to meet up", variant: plain}
+  - {text: "we just finalised {date} {time} {contact} and me", variant: plain}
+  - {text: "{contact} confirmed our meetup for {date} at {time}", variant: plain}
+  - {text: "my catch up with {contact} is set for {time} {date}", variant: plain}
+  - {text: "okay so it's {contact} at {time} on {date} then", variant: plain}
+  - {text: "{contact} ke saath {date} ko {time} pe milna tay hua hai", variant: hinglish}
+  - {text: "{contact} aur main {date} ko {time} pe mil rahe hain", variant: hinglish}
+  - {text: "{contact} bola {date} {time} pe milte hain", variant: hinglish}
+  - {text: "{date} ko {time} pe {contact} se meeting fix ho gayi", variant: hinglish}
+  - {text: "{contact} se baat ho gayi {date} {time} pe milenge", variant: hinglish}
+  - {text: "{contact} ne {date} ko {time} ka time diya hai milne ka", variant: hinglish}
+  - {text: "{contact} jothe {date} {time} ge meet maadtini", variant: kannada_english}
+  - {text: "{contact} mathu naanu {date} {time} ge sigona antha helidivi", variant: kannada_english}
+  - {text: "{date} {time} ge {contact} na meet maadodu fix aaytu", variant: kannada_english}
+  - {text: "{contact} {date} {time} ge sigthini antha helidru", variant: kannada_english}
+  - {text: "so uh {contact} and i we settled on um {date} at {time}", variant: disfluent}
+  - {text: "{contact} and me are uh meeting {date} no {time} i mean {date} at {time}", variant: disfluent}
+  - {text: "um {contact} said like {date} at er {time} to meet", variant: disfluent}
+  - {text: "{contact} and i agreed on um {date} yeah {date} at {time}", variant: disfluent}
+  - {text: "er me and {contact} uh we're catching up {date} {time}", variant: disfluent}
+  - {text: "i'm um seeing {contact} you know {date} like {time}", variant: disfluent}
+
+# seed 3 (fragment): meeting {date} {time}
+"3":
+  - {text: "meeting on {date} at {time}", variant: plain}
+  - {text: "new event {date} {time}", variant: plain}
+  - {text: "calendar entry {date} {time}", variant: plain}
+  - {text: "{date} {time} meeting please add", variant: plain}
+  - {text: "schedule a sit down {date} {time}", variant: plain}
+  - {text: "{time} on {date} catch up", variant: plain}
+  - {text: "event at {time} {date}", variant: plain}
+  - {text: "appointment {date} {time}", variant: plain}
+  - {text: "put in a meet {date} {time}", variant: plain}
+  - {text: "{date} {time} calendar it", variant: plain}
+  - {text: "slot {date} {time} for the meeting", variant: plain}
+  - {text: "sync up {date} {time}", variant: plain}
+  - {text: "discussion {date} at {time}", variant: plain}
+  - {text: "fix a meeting {date} {time}", variant: plain}
+  - {text: "meet {date} {time} add it", variant: plain}
+  - {text: "office meeting {date} {time} onwards", variant: plain}
+  - {text: "{date} {time} appointment in calendar", variant: plain}
+  - {text: "quick huddle {date} {time}", variant: plain}
+  - {text: "team meeting {date} by {time}", variant: plain}
+  - {text: "meeting pencilled for {date} {time}", variant: plain}
+  - {text: "one more meeting {date} {time}", variant: plain}
+  - {text: "an event on {date} {time}", variant: plain}
+  - {text: "{date} meeting starting {time} sharp", variant: plain}
+  - {text: "{time} {date} save the slot", variant: plain}
+  - {text: "{date} ko {time} pe meeting", variant: hinglish}
+  - {text: "meeting {date} {time} pe daalo yaar", variant: hinglish}
+  - {text: "{date} {time} ki meeting rakh do", variant: hinglish}
+  - {text: "{time} ko ek meeting hai {date}", variant: hinglish}
+  - {text: "calendar mein {date} ka {time} meeting", variant: hinglish}
+  - {text: "{date} wali meeting {time} se", variant: hinglish}
+  - {text: "{date} {time} ge ondu meeting", variant: kannada_english}
+  - {text: "meeting haaku {date} alli {time} ge", variant: kannada_english}
+  - {text: "{date} dina {time} ge meeting ide", variant: kannada_english}
+  - {text: "{time} ge meeting fix maadi {date}", variant: kannada_english}
+  - {text: "uh meeting um {date} er {time}", variant: disfluent}
+  - {text: "meeting {date} no wait {date} {time}", variant: disfluent}
+  - {text: "um a meeting on like {date} around {time}", variant: disfluent}
+  - {text: "so uh the meeting's at {time} {date}", variant: disfluent}
+  - {text: "er calendar meeting you know {date} {time}", variant: disfluent}
+  - {text: "meeting at {time} no sorry {date} at {time}", variant: disfluent}

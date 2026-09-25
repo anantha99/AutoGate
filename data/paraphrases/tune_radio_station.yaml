@@ -1,0 +1,176 @@
+# Paraphrases of the tune_radio_station seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): tune to {station}
+"0":
+  - {text: "put on {station}", variant: plain}
+  - {text: "switch the radio to {station}", variant: plain}
+  - {text: "change the station to {station}", variant: plain}
+  - {text: "{station} on the radio please", variant: plain}
+  - {text: "play {station}", variant: plain}
+  - {text: "go to {station}", variant: plain}
+  - {text: "get {station} on", variant: plain}
+  - {text: "set the fm to {station}", variant: plain}
+  - {text: "turn on {station}", variant: plain}
+  - {text: "stick the fm on {station}", variant: plain}
+  - {text: "tune in to {station} now", variant: plain}
+  - {text: "find {station} for me", variant: plain}
+  - {text: "bring up {station}", variant: plain}
+  - {text: "switch over to {station}", variant: plain}
+  - {text: "let's have {station}", variant: plain}
+  - {text: "jump to {station}", variant: plain}
+  - {text: "radio to {station}", variant: plain}
+  - {text: "change over to {station} on fm", variant: plain}
+  - {text: "put {station} on for me", variant: plain}
+  - {text: "take the radio over to {station}", variant: plain}
+  - {text: "do one thing put {station}", variant: plain}
+  - {text: "{station} please", variant: plain}
+  - {text: "set it to {station}", variant: plain}
+  - {text: "go to {station} on the fm", variant: plain}
+  - {text: "{station} lagao", variant: hinglish}
+  - {text: "radio pe {station} chalao", variant: hinglish}
+  - {text: "{station} laga do yaar", variant: hinglish}
+  - {text: "{station} pe kar do", variant: hinglish}
+  - {text: "fm {station} pe set karo", variant: hinglish}
+  - {text: "radio {station} pe tune karo", variant: hinglish}
+  - {text: "{station} haaku", variant: kannada_english}
+  - {text: "radio alli {station} haaku", variant: kannada_english}
+  - {text: "{station} ge change maadi", variant: kannada_english}
+  - {text: "fm {station} ge tune maadu", variant: kannada_english}
+  - {text: "uh put on um {station}", variant: disfluent}
+  - {text: "tune to uh {station} no wait {station} yeah", variant: disfluent}
+  - {text: "er switch it to um to {station}", variant: disfluent}
+  - {text: "so um put the radio on like {station}", variant: disfluent}
+  - {text: "go to {station} um go to {station} please", variant: disfluent}
+  - {text: "um just get {station} on uh please", variant: disfluent}
+
+# seed 1 (outcome): i want the local news on the radio
+"1":
+  - {text: "i'd like to hear the city news on the radio", variant: plain}
+  - {text: "would be nice to catch the local bulletin on fm", variant: plain}
+  - {text: "i need the local radio news right now", variant: plain}
+  - {text: "i feel like listening to the news from around here on the radio", variant: plain}
+  - {text: "i'm curious what's happening in town according to the radio", variant: plain}
+  - {text: "local news on fm is what i want", variant: plain}
+  - {text: "i'm in the mood for the regional news bulletin on the radio", variant: plain}
+  - {text: "some local radio news would be good", variant: plain}
+  - {text: "i want to hear what the fm news people are saying about the city", variant: plain}
+  - {text: "i could do with the local headlines on the radio", variant: plain}
+  - {text: "i need to catch the city bulletin on fm", variant: plain}
+  - {text: "the local fm news would be great right now", variant: plain}
+  - {text: "i want city updates from the radio", variant: plain}
+  - {text: "i'd love some local news on fm while we drive", variant: plain}
+  - {text: "i'm keen to hear the regional radio bulletin", variant: plain}
+  - {text: "i want to catch up on local happenings via the radio", variant: plain}
+  - {text: "i need the news on fm for my area", variant: plain}
+  - {text: "hearing the city headlines on the radio would help", variant: plain}
+  - {text: "all i want is the local bulletin from fm", variant: plain}
+  - {text: "the news for our city on fm is what i'm after", variant: plain}
+  - {text: "i'm dying to know the local news from the radio", variant: plain}
+  - {text: "i want some news from the radio about our area", variant: plain}
+  - {text: "the fm news for this area would be perfect now", variant: plain}
+  - {text: "what's going on around town is what i want to hear on the radio", variant: plain}
+  - {text: "mujhe radio pe local news sunni hai", variant: hinglish}
+  - {text: "radio pe shehar ki khabar chahiye", variant: hinglish}
+  - {text: "local news sunna hai fm pe", variant: hinglish}
+  - {text: "abhi city ki news sunni hai radio pe", variant: hinglish}
+  - {text: "yahan ki khabrein fm pe sunne ka mann hai", variant: hinglish}
+  - {text: "thodi local khabar chahiye radio se", variant: hinglish}
+  - {text: "radio alli local news kelbeku", variant: kannada_english}
+  - {text: "namma ooru news fm alli beku", variant: kannada_english}
+  - {text: "fm nalli local suddhi kelona", variant: kannada_english}
+  - {text: "ivattu ooralli enaaytu antha radio news beku", variant: kannada_english}
+  - {text: "uh i kind of want like the local news um from the radio", variant: disfluent}
+  - {text: "um i'd like the national no the local news on the radio", variant: disfluent}
+  - {text: "so er some city news on fm would be um nice", variant: disfluent}
+  - {text: "the uh local bulletin i want that on the radio you know", variant: disfluent}
+  - {text: "er i need to hear uh what's happening locally on the radio", variant: disfluent}
+  - {text: "i want the uh traffic no the local news on fm", variant: disfluent}
+
+# seed 2 (question): can you find a station playing old songs
+"2":
+  - {text: "could you look for an fm channel with retro music?", variant: plain}
+  - {text: "can you get a radio station with old hindi songs", variant: plain}
+  - {text: "is there a station playing golden oldies?", variant: plain}
+  - {text: "would you search for a channel that plays old classics", variant: plain}
+  - {text: "can you tune into something with old film songs", variant: plain}
+  - {text: "any station with old melodies you can find?", variant: plain}
+  - {text: "could you scan for a channel doing oldies?", variant: plain}
+  - {text: "can we get old songs on the radio somewhere", variant: plain}
+  - {text: "will you find fm with evergreen hits", variant: plain}
+  - {text: "do you have a radio channel with old numbers?", variant: plain}
+  - {text: "could you hunt down a station for retro hits", variant: plain}
+  - {text: "can you check which station has old songs on", variant: plain}
+  - {text: "would you put on a channel with vintage music", variant: plain}
+  - {text: "is there any fm playing seventies and eighties songs?", variant: plain}
+  - {text: "can you locate a radio station for classic bollywood", variant: plain}
+  - {text: "could you find me an oldies channel on fm", variant: plain}
+  - {text: "can the radio find something with old ghazals", variant: plain}
+  - {text: "will you scan the fm for retro tracks", variant: plain}
+  - {text: "any chance of a channel with nineties songs?", variant: plain}
+  - {text: "could the radio find me some old classics", variant: plain}
+  - {text: "could you search the stations for old melodies", variant: plain}
+  - {text: "how about finding a channel with old bollywood songs?", variant: plain}
+  - {text: "can you switch to wherever they're playing old songs", variant: plain}
+  - {text: "is there a channel with the old evergreen songs on fm", variant: plain}
+  - {text: "purane gaane wala station dhund sakte ho?", variant: hinglish}
+  - {text: "koi fm pe purane gaane chal rahe hain kya", variant: hinglish}
+  - {text: "kya koi radio station hai jahan old songs aate hain", variant: hinglish}
+  - {text: "purane gaanon ka channel laga sakte ho?", variant: hinglish}
+  - {text: "retro gaane wala fm milega kya", variant: hinglish}
+  - {text: "purane songs wala koi station dhundoge?", variant: hinglish}
+  - {text: "hale haadu haakuva station sigutha?", variant: kannada_english}
+  - {text: "yaavdadru fm alli old songs barthideya", variant: kannada_english}
+  - {text: "hale haadina channel hudukthira?", variant: kannada_english}
+  - {text: "old songs station yelli ide nodthira", variant: kannada_english}
+  - {text: "um can you like find uh some channel with old songs", variant: disfluent}
+  - {text: "is there a uh a station doing oldies", variant: disfluent}
+  - {text: "could you find a station with new songs no wait old ones", variant: disfluent}
+  - {text: "er can you look for um retro music on fm", variant: disfluent}
+  - {text: "so uh would you would you search for oldies on the radio", variant: disfluent}
+  - {text: "uh is there any any channel with old classics", variant: disfluent}
+
+# seed 3 (fragment): fm {number}
+"3":
+  - {text: "radio {number}", variant: plain}
+  - {text: "station {number}", variant: plain}
+  - {text: "frequency {number}", variant: plain}
+  - {text: "{number} megahertz", variant: plain}
+  - {text: "tune {number}", variant: plain}
+  - {text: "{number} on the fm", variant: plain}
+  - {text: "put on fm {number}", variant: plain}
+  - {text: "switch radio to {number}", variant: plain}
+  - {text: "channel {number}", variant: plain}
+  - {text: "fm band at {number}", variant: plain}
+  - {text: "tune fm to {number}", variant: plain}
+  - {text: "{number} mhz", variant: plain}
+  - {text: "tune in at {number}", variant: plain}
+  - {text: "radio on {number} please", variant: plain}
+  - {text: "fm {number} right now", variant: plain}
+  - {text: "go to station {number}", variant: plain}
+  - {text: "{number} on the radio dial", variant: plain}
+  - {text: "fm frequency {number} please", variant: plain}
+  - {text: "tuner {number}", variant: plain}
+  - {text: "dial in {number} fm", variant: plain}
+  - {text: "set the radio to {number}", variant: plain}
+  - {text: "frequency {number} on the tuner", variant: plain}
+  - {text: "fm {number} for a bit", variant: plain}
+  - {text: "our usual fm {number}", variant: plain}
+  - {text: "fm {number} laga do na", variant: hinglish}
+  - {text: "{number} pe radio lagao", variant: hinglish}
+  - {text: "radio {number} pe kar do", variant: hinglish}
+  - {text: "{number} wala station chalao", variant: hinglish}
+  - {text: "fm {number} pe tune karo", variant: hinglish}
+  - {text: "{number} fm chala do yaar", variant: hinglish}
+  - {text: "fm {number} haakbidi guru", variant: kannada_english}
+  - {text: "radio {number} ge haaku", variant: kannada_english}
+  - {text: "{number} station haaku guru", variant: kannada_english}
+  - {text: "fm {number} ge tune maadi", variant: kannada_english}
+  - {text: "uh fm um {number}", variant: disfluent}
+  - {text: "fm {number} no wait fm {number}", variant: disfluent}
+  - {text: "er radio to um {number}", variant: disfluent}
+  - {text: "so like {number} on fm", variant: disfluent}
+  - {text: "um the the {number} station", variant: disfluent}
+  - {text: "tune to uh {number} please", variant: disfluent}

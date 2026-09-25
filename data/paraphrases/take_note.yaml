@@ -1,0 +1,176 @@
+# Paraphrases of the take_note seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): note down {note_text}
+"0":
+  - {text: "write this down {note_text}", variant: plain}
+  - {text: "make a note {note_text}", variant: plain}
+  - {text: "save a note saying {note_text}", variant: plain}
+  - {text: "put {note_text} in my notes", variant: plain}
+  - {text: "jot down {note_text}", variant: plain}
+  - {text: "add a new note {note_text}", variant: plain}
+  - {text: "take a quick note {note_text}", variant: plain}
+  - {text: "just write {note_text} in notes", variant: plain}
+  - {text: "store this as a note {note_text}", variant: plain}
+  - {text: "open a fresh note and put {note_text}", variant: plain}
+  - {text: "{note_text} put that in a note", variant: plain}
+  - {text: "{note_text} save it as a note for me", variant: plain}
+  - {text: "note this for me {note_text}", variant: plain}
+  - {text: "record a note {note_text}", variant: plain}
+  - {text: "keep a note of {note_text}", variant: plain}
+  - {text: "make an entry in my notes {note_text}", variant: plain}
+  - {text: "do one thing note {note_text}", variant: plain}
+  - {text: "quickly save {note_text} to notes", variant: plain}
+  - {text: "capture this in my notes {note_text}", variant: plain}
+  - {text: "write a note that says {note_text}", variant: plain}
+  - {text: "add {note_text} to my notes app", variant: plain}
+  - {text: "log this under notes {note_text}", variant: plain}
+  - {text: "take this down {note_text}", variant: plain}
+  - {text: "start a note with {note_text}", variant: plain}
+  - {text: "{note_text} note kar lo", variant: hinglish}
+  - {text: "ek note bana do {note_text}", variant: hinglish}
+  - {text: "yeh likh lo {note_text}", variant: hinglish}
+  - {text: "notes mein daal do {note_text}", variant: hinglish}
+  - {text: "{note_text} ye note mein save karo", variant: hinglish}
+  - {text: "jaldi se note karo {note_text}", variant: hinglish}
+  - {text: "{note_text} note maadi", variant: kannada_english}
+  - {text: "idanna bardko {note_text}", variant: kannada_english}
+  - {text: "notes alli haaku {note_text}", variant: kannada_english}
+  - {text: "ondu note maadu {note_text}", variant: kannada_english}
+  - {text: "uh note down um {note_text}", variant: disfluent}
+  - {text: "text no not a text just note down {note_text}", variant: disfluent}
+  - {text: "so er take a note um {note_text}", variant: disfluent}
+  - {text: "write it write it in a note uh {note_text}", variant: disfluent}
+  - {text: "remind me no wait just write a note {note_text}", variant: disfluent}
+  - {text: "okay um jot this down like {note_text}", variant: disfluent}
+
+# seed 1 (question): can you save the card ending {card} in my notes
+"1":
+  - {text: "could you note down the card ending {card}?", variant: plain}
+  - {text: "will you put the card that ends in {card} into my notes", variant: plain}
+  - {text: "can i save my credit card ending {card} as a note?", variant: plain}
+  - {text: "would you keep a note of the debit card ending with {card}", variant: plain}
+  - {text: "can you jot down card number ending {card} for me", variant: plain}
+  - {text: "mind adding the {card} card to my notes?", variant: plain}
+  - {text: "could you store my card's last digits {card} in notes", variant: plain}
+  - {text: "can we make a note that my card ends with {card}", variant: plain}
+  - {text: "is it possible to add the card ending {card} to notes", variant: plain}
+  - {text: "would you mind noting my card ending {card}?", variant: plain}
+  - {text: "can you create a note with the card ending {card} in it", variant: plain}
+  - {text: "could i get my card ending {card} saved in the notes app?", variant: plain}
+  - {text: "do you mind putting card ending {card} in a note", variant: plain}
+  - {text: "can you log my card ending {card} under notes?", variant: plain}
+  - {text: "could you make a quick note about the card ending {card}", variant: plain}
+  - {text: "will you save that card ending {card} as a note for later?", variant: plain}
+  - {text: "any chance you can note the card ending {card} somewhere", variant: plain}
+  - {text: "can the card ending {card} go into my notes please", variant: plain}
+  - {text: "would you write the card ending {card} into notes?", variant: plain}
+  - {text: "could you keep the office card ending {card} noted", variant: plain}
+  - {text: "can you hang on to my card ending {card} as a note", variant: plain}
+  - {text: "will you note that the company card ends with {card}?", variant: plain}
+  - {text: "can you add the new card ending {card} to a note", variant: plain}
+  - {text: "could you save the card ending {card} to notes before i forget?", variant: plain}
+  - {text: "card ending {card} ko notes mein save kar doge?", variant: hinglish}
+  - {text: "kya tum {card} wala card notes mein daal sakte ho", variant: hinglish}
+  - {text: "{card} pe khatam hone wala card note kar loge?", variant: hinglish}
+  - {text: "mere notes mein card ending {card} likh doge kya", variant: hinglish}
+  - {text: "card ending {card} save kar sakte ho kya notes mein", variant: hinglish}
+  - {text: "ye card ending {card} note mein rakh sakte ho?", variant: hinglish}
+  - {text: "card ending {card} notes alli save maadtira?", variant: kannada_english}
+  - {text: "{card} card na notes ge haakbahuda?", variant: kannada_english}
+  - {text: "nanna notes alli card ending {card} bardkoltira", variant: kannada_english}
+  - {text: "card ending {card} note maadoke aagutta?", variant: kannada_english}
+  - {text: "uh the card er ending {card} can that go in a note", variant: disfluent}
+  - {text: "could you could you jot my card um ending {card}", variant: disfluent}
+  - {text: "um would you stick the card uh the one that ends {card} into notes", variant: disfluent}
+  - {text: "would you er save the card no the card ending {card} to notes?", variant: disfluent}
+  - {text: "can you text no sorry note the card ending {card} for me", variant: disfluent}
+  - {text: "so uh will you like store my card um ending {card} as a note", variant: disfluent}
+
+# seed 2 (outcome): i need to remember this idea before i lose it
+"2":
+  - {text: "this thought is going to slip away if i don't catch it", variant: plain}
+  - {text: "i just had a brilliant idea and i'll forget it by the next signal", variant: plain}
+  - {text: "got a great idea and my memory is terrible", variant: plain}
+  - {text: "i don't want to forget what i just thought of", variant: plain}
+  - {text: "this idea has to stay with me somehow", variant: plain}
+  - {text: "my head is full of ideas and they keep vanishing", variant: plain}
+  - {text: "i've got something in my head that i can't afford to forget", variant: plain}
+  - {text: "an idea just struck me and it's already fading", variant: plain}
+  - {text: "i'll lose this thought by the time i reach home", variant: plain}
+  - {text: "this is a good one and i always forget these", variant: plain}
+  - {text: "i want to hold on to this idea for later", variant: plain}
+  - {text: "something just came to mind and i don't want it gone", variant: plain}
+  - {text: "by the time i park this idea will be gone", variant: plain}
+  - {text: "i must keep this idea safe before it disappears", variant: plain}
+  - {text: "just thought of something important and my memory is like a sieve", variant: plain}
+  - {text: "there's a plan in my head i need to hang on to", variant: plain}
+  - {text: "good ideas always come to me while driving and then vanish", variant: plain}
+  - {text: "i have a thought i shouldn't let go of", variant: plain}
+  - {text: "this idea will fly out of my head any second now", variant: plain}
+  - {text: "a new business idea just popped up and i can't let it go", variant: plain}
+  - {text: "okay this one is too good to forget", variant: plain}
+  - {text: "my brain just came up with something worth keeping", variant: plain}
+  - {text: "i'll kick myself if this idea is gone later", variant: plain}
+  - {text: "a thought just hit me and i can't risk losing it", variant: plain}
+  - {text: "ek idea aaya hai bhool na jaaun", variant: hinglish}
+  - {text: "yeh idea yaad rakhna hai mujhe warna bhool jaunga", variant: hinglish}
+  - {text: "abhi abhi dimaag mein kuch aaya hai bhoolna nahi hai", variant: hinglish}
+  - {text: "mera ye idea kahin chala na jaaye", variant: hinglish}
+  - {text: "bahut mast idea hai yaad rehna chahiye", variant: hinglish}
+  - {text: "ye soch bhool gaya toh gadbad ho jayegi", variant: hinglish}
+  - {text: "ondu idea bantu marethu hogbaaradu", variant: kannada_english}
+  - {text: "ee idea nenapu irbeku guru", variant: kannada_english}
+  - {text: "ee thought swalpa hothu aadmele marethu hogutte", variant: kannada_english}
+  - {text: "olle idea bandide adu mareyabaaradu", variant: kannada_english}
+  - {text: "i uh i've got this idea um and it's going to vanish", variant: disfluent}
+  - {text: "wait wait i've got an idea and uh i'll forget it", variant: disfluent}
+  - {text: "so um there's this idea and like i can't lose it", variant: disfluent}
+  - {text: "i had a thing no an idea just now and er i need to hold onto it", variant: disfluent}
+  - {text: "uh this idea is going to um slip my mind you know", variant: disfluent}
+  - {text: "hang on i just thought of something uh i don't want to forget it", variant: disfluent}
+
+# seed 3 (fragment): quick note otp {otp}
+"3":
+  - {text: "otp {otp} jot it", variant: plain}
+  - {text: "save this otp {otp}", variant: plain}
+  - {text: "{otp} into notes", variant: plain}
+  - {text: "note the code {otp}", variant: plain}
+  - {text: "otp {otp} save quickly", variant: plain}
+  - {text: "memo one time password {otp}", variant: plain}
+  - {text: "fast memo {otp} otp", variant: plain}
+  - {text: "{otp} write it down", variant: plain}
+  - {text: "note down otp {otp}", variant: plain}
+  - {text: "store the otp {otp}", variant: plain}
+  - {text: "otp {otp} to notes quick", variant: plain}
+  - {text: "code {otp} in my notes", variant: plain}
+  - {text: "{otp} that's the otp note it", variant: plain}
+  - {text: "keep {otp} in notes", variant: plain}
+  - {text: "just note {otp}", variant: plain}
+  - {text: "otp for later {otp}", variant: plain}
+  - {text: "add {otp} as a note", variant: plain}
+  - {text: "log {otp} quickly", variant: plain}
+  - {text: "jot this code {otp}", variant: plain}
+  - {text: "notes otp {otp}", variant: plain}
+  - {text: "new note with {otp}", variant: plain}
+  - {text: "otp number {otp} save", variant: plain}
+  - {text: "{otp} otp remember that", variant: plain}
+  - {text: "scribble {otp} down", variant: plain}
+  - {text: "otp {otp} note karo", variant: hinglish}
+  - {text: "{otp} likh lo jaldi", variant: hinglish}
+  - {text: "otp {otp} save kar", variant: hinglish}
+  - {text: "ye otp {otp} rakh lo", variant: hinglish}
+  - {text: "{otp} notes mein daalo", variant: hinglish}
+  - {text: "otp likho {otp}", variant: hinglish}
+  - {text: "otp {otp} note maadu", variant: kannada_english}
+  - {text: "{otp} bardko", variant: kannada_english}
+  - {text: "otp {otp} save maadi", variant: kannada_english}
+  - {text: "{otp} notes ge haaku", variant: kannada_english}
+  - {text: "uh the otp um {otp} quick note it", variant: disfluent}
+  - {text: "otp is uh {otp} note that", variant: disfluent}
+  - {text: "the the otp {otp} write that", variant: disfluent}
+  - {text: "um save no note otp {otp}", variant: disfluent}
+  - {text: "quick uh jot {otp} down", variant: disfluent}
+  - {text: "er code no otp {otp} note it", variant: disfluent}

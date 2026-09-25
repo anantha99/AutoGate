@@ -1,0 +1,176 @@
+# Paraphrases of the add_reminder seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): remind me to {note_text} at {time}
+"0":
+  - {text: "set a reminder for {time} to {note_text}", variant: plain}
+  - {text: "at {time} tell me i have to {note_text}", variant: plain}
+  - {text: "give me a nudge at {time} to {note_text}", variant: plain}
+  - {text: "don't let me forget to {note_text} at {time}", variant: plain}
+  - {text: "sound an alert at {time} so i remember to {note_text}", variant: plain}
+  - {text: "put {note_text} on my reminders for {time}", variant: plain}
+  - {text: "come {time} tell me to {note_text}", variant: plain}
+  - {text: "buzz me when it's {time} so i {note_text}", variant: plain}
+  - {text: "i have to {note_text} at {time} so set a reminder", variant: plain}
+  - {text: "nudge me around {time} about needing to {note_text}", variant: plain}
+  - {text: "jog my memory at {time} to {note_text}", variant: plain}
+  - {text: "ping me at {time} i need to {note_text}", variant: plain}
+  - {text: "make sure {note_text} doesn't slip my mind come {time}", variant: plain}
+  - {text: "drop me a reminder at {time} {note_text}", variant: plain}
+  - {text: "once it's {time} remind me i've got to {note_text}", variant: plain}
+  - {text: "please buzz me later at {time} i've got to {note_text}", variant: plain}
+  - {text: "{note_text} is the reminder for {time} set it up", variant: plain}
+  - {text: "give me a shout at {time} for {note_text}", variant: plain}
+  - {text: "{time} reminder please i need to {note_text}", variant: plain}
+  - {text: "make sure i get reminded at {time} to {note_text}", variant: plain}
+  - {text: "flag it for {time} that i should {note_text}", variant: plain}
+  - {text: "when the clock hits {time} remind me about {note_text}", variant: plain}
+  - {text: "keep a reminder going for {time} {note_text}", variant: plain}
+  - {text: "{note_text} at {time} poke me about it", variant: plain}
+  - {text: "{time} pe mujhe yaad dila dena {note_text}", variant: hinglish}
+  - {text: "mujhe {time} ko {note_text} ke liye remind karo", variant: hinglish}
+  - {text: "{note_text} ka reminder {time} pe laga do", variant: hinglish}
+  - {text: "{time} ko ping karna {note_text} karna hai", variant: hinglish}
+  - {text: "yaar {time} ke liye reminder set karo {note_text}", variant: hinglish}
+  - {text: "{time} hote hi yaad dilana ki {note_text}", variant: hinglish}
+  - {text: "{time} ge {note_text} antha remind maadu", variant: kannada_english}
+  - {text: "{time} ge nange nenapisu {note_text}", variant: kannada_english}
+  - {text: "{note_text} reminder {time} ge haaku", variant: kannada_english}
+  - {text: "guru {time} ge ondu reminder set maadi {note_text}", variant: kannada_english}
+  - {text: "uh reminder for er {time} i mean set one to like {note_text}", variant: disfluent}
+  - {text: "ping me at {time} no make it {time} to {note_text}", variant: disfluent}
+  - {text: "so um at {time} i need to {note_text} remind me yeah", variant: disfluent}
+  - {text: "er at {time} don't let me um don't let me skip {note_text}", variant: disfluent}
+  - {text: "um give me a nudge you know around {time} to uh {note_text}", variant: disfluent}
+  - {text: "so {note_text} um i need a reminder er at {time}", variant: disfluent}
+
+# seed 1 (question): can you remind me to pay the card ending {card} tomorrow
+"1":
+  - {text: "could you nudge me tomorrow about the credit card bill for {card}?", variant: plain}
+  - {text: "will you jog my memory tomorrow about paying the {card} card", variant: plain}
+  - {text: "can i get a reminder for tomorrow to clear the dues on {card}", variant: plain}
+  - {text: "would you set a reminder tomorrow for my {card} card payment?", variant: plain}
+  - {text: "mind reminding me tomorrow that the card ending {card} is due", variant: plain}
+  - {text: "could you ping me tomorrow so i pay off card {card}", variant: plain}
+  - {text: "can you remember to flag the {card} card bill to me tomorrow", variant: plain}
+  - {text: "will you remind me to settle the card that ends with {card} tomorrow", variant: plain}
+  - {text: "could you remind me tomorrow the {card} credit card payment is pending?", variant: plain}
+  - {text: "is it possible to get a nudge tomorrow on the card with last digits {card}", variant: plain}
+  - {text: "would you ping me tomorrow for the {card} card due?", variant: plain}
+  - {text: "can you alert me tomorrow to make the payment on the card ending {card}", variant: plain}
+  - {text: "could tomorrow's reminders include paying off {card}", variant: plain}
+  - {text: "will you remind me tomorrow to clear the outstanding on {card}", variant: plain}
+  - {text: "can you make me remember to pay my {card} card tomorrow?", variant: plain}
+  - {text: "would you mind reminding me about the card ending {card} bill tomorrow", variant: plain}
+  - {text: "can you put in a reminder that {card} needs paying tomorrow", variant: plain}
+  - {text: "will you give me a heads up tomorrow on the {card} card bill?", variant: plain}
+  - {text: "any chance of a reminder tomorrow so the {card} card gets paid", variant: plain}
+  - {text: "can you poke me tomorrow so the card ending {card} gets paid", variant: plain}
+  - {text: "how about a reminder tomorrow to pay the card ending {card}?", variant: plain}
+  - {text: "could i have a reminder tomorrow for the credit card ending {card}", variant: plain}
+  - {text: "do you think you can remind me the {card} bill has to go tomorrow", variant: plain}
+  - {text: "could you make tomorrow the day you remind me about card {card}", variant: plain}
+  - {text: "kal mujhe {card} wale card ka bill bharne ki yaad dila doge?", variant: hinglish}
+  - {text: "kya tum kal yaad dila sakte ho ki {card} card ka payment karna hai", variant: hinglish}
+  - {text: "{card} card ka payment kal karna hai remind karoge?", variant: hinglish}
+  - {text: "kal ke liye reminder laga doge {card} card pay karne ka", variant: hinglish}
+  - {text: "{card} wala card kal bharna hai bata doge time pe?", variant: hinglish}
+  - {text: "kya kal mujhe ping karoge {card} card ka bill bharne ke liye", variant: hinglish}
+  - {text: "naale {card} card bill kattoke nenapisthiya?", variant: kannada_english}
+  - {text: "naale {card} card payment ge remind maadtira?", variant: kannada_english}
+  - {text: "{card} card pay maadbeku naale nenapu maadi kodtira", variant: kannada_english}
+  - {text: "naale {card} ending card ge reminder haaktiya guru", variant: kannada_english}
+  - {text: "uh could you um remind me the {card} card is due er tomorrow", variant: disfluent}
+  - {text: "could you could you give me a ping tomorrow er for card {card}", variant: disfluent}
+  - {text: "um can you like flag the {card} card payment for today no tomorrow", variant: disfluent}
+  - {text: "so uh will you like nudge me tomorrow for the {card} bill", variant: disfluent}
+  - {text: "er can i get a reminder um tomorrow for the card ending in {card}?", variant: disfluent}
+  - {text: "would you nudge me tomorrow on the uh {card} i mean the card ending {card}", variant: disfluent}
+
+# seed 2 (outcome): i keep forgetting to pick up the dry cleaning
+"2":
+  - {text: "the dry cleaning has been lying at the shop for days because i forget", variant: plain}
+  - {text: "every single day i forget to collect my clothes from the dry cleaner", variant: plain}
+  - {text: "my dry cleaning is still sitting there and it keeps slipping my mind", variant: plain}
+  - {text: "i've missed collecting the dry cleaning three days running", variant: plain}
+  - {text: "it totally slips my mind to get the dry cleaned stuff back", variant: plain}
+  - {text: "my suit is at the dry cleaner's and i never remember to grab it", variant: plain}
+  - {text: "collecting the dry cleaning keeps falling off my radar", variant: plain}
+  - {text: "the dry cleaner must think i've abandoned my shirts", variant: plain}
+  - {text: "somehow i never remember the dry cleaning on my way home", variant: plain}
+  - {text: "i'm hopeless at remembering to fetch the dry cleaning", variant: plain}
+  - {text: "my memory fails me every time with the dry cleaning pickup", variant: plain}
+  - {text: "the dry cleaner's shop keeps going out of my head", variant: plain}
+  - {text: "been meaning to get the dry cleaning for a week now", variant: plain}
+  - {text: "dry cleaning pickup keeps getting forgotten", variant: plain}
+  - {text: "i drive past the dry cleaner daily and still forget my clothes", variant: plain}
+  - {text: "those shirts at the dry cleaner's i just never collect them", variant: plain}
+  - {text: "forgetting the dry cleaning again and again is getting embarrassing", variant: plain}
+  - {text: "my wife's saree is still at the dry cleaners because it slips my mind", variant: plain}
+  - {text: "the pickup at the dry cleaner never stays in my head", variant: plain}
+  - {text: "again forgot to get the clothes back from dry cleaning", variant: plain}
+  - {text: "there's a pile of my stuff at the dry cleaner and i keep missing it", variant: plain}
+  - {text: "the dry cleaning ticket is in my wallet and i still don't go", variant: plain}
+  - {text: "i'm always blanking on the dry cleaning collection", variant: plain}
+  - {text: "by the time i think of the dry cleaning the shop's shut", variant: plain}
+  - {text: "dry cleaning se kapde lana hamesha bhool jaata hoon", variant: hinglish}
+  - {text: "yaar dry cleaner ke yahan se kapde uthana yaad hi nahi rehta", variant: hinglish}
+  - {text: "roz bhool jaata hoon dry cleaning pick karna", variant: hinglish}
+  - {text: "mere kapde dry cleaner ke paas pade hain aur dimag se nikal jaata hai", variant: hinglish}
+  - {text: "dry cleaning lene ki baat har baar bhool jaata hoon", variant: hinglish}
+  - {text: "kitne din ho gaye dry cleaning uthani reh gayi", variant: hinglish}
+  - {text: "dry cleaning pick up maadodu yavaglu marethu hogutte", variant: kannada_english}
+  - {text: "dry cleaner hatra batte ide aadre nange nenapirolla", variant: kannada_english}
+  - {text: "dry cleaning tagolodu dina marthu hogtini", variant: kannada_english}
+  - {text: "guru dry cleaning collect maadoke yaavaglu marethogthini", variant: kannada_english}
+  - {text: "i keep uh i keep forgetting the um dry cleaning", variant: disfluent}
+  - {text: "so the dry cleaning like it just slips my mind every time", variant: disfluent}
+  - {text: "um i forget to pick up the er the laundry no the dry cleaning", variant: disfluent}
+  - {text: "the dry cleaning you know i never remember to uh get it", variant: disfluent}
+  - {text: "er my clothes at the dry cleaner i um never end up collecting them", variant: disfluent}
+  - {text: "uh again i forgot the dry cleaning again", variant: disfluent}
+
+# seed 3 (fragment): reminder medicine at {time}
+"3":
+  - {text: "remind medicines {time}", variant: plain}
+  - {text: "{time} tablets reminder", variant: plain}
+  - {text: "remind me meds at {time}", variant: plain}
+  - {text: "pills at {time} nudge me", variant: plain}
+  - {text: "medicine time {time}", variant: plain}
+  - {text: "{time} medicine alert", variant: plain}
+  - {text: "reminder for my tablets {time}", variant: plain}
+  - {text: "meds {time} ping me", variant: plain}
+  - {text: "tablet reminder for {time}", variant: plain}
+  - {text: "{time} pill reminder", variant: plain}
+  - {text: "nudge me medicine {time}", variant: plain}
+  - {text: "medication nudge at {time}", variant: plain}
+  - {text: "medicine at {time} don't forget", variant: plain}
+  - {text: "my {time} dose reminder", variant: plain}
+  - {text: "ping at {time} for medicine", variant: plain}
+  - {text: "reminder to take pills {time}", variant: plain}
+  - {text: "medicines due {time}", variant: plain}
+  - {text: "{time} remind me tablets", variant: plain}
+  - {text: "{time} dose reminder please", variant: plain}
+  - {text: "alert for my meds at {time}", variant: plain}
+  - {text: "tablets at {time} nudge", variant: plain}
+  - {text: "set medicine reminder {time}", variant: plain}
+  - {text: "{time} meds alert", variant: plain}
+  - {text: "medicine dose at {time}", variant: plain}
+  - {text: "{time} pe dawai ka reminder", variant: hinglish}
+  - {text: "dawai {time} ko yaad dilana", variant: hinglish}
+  - {text: "{time} ko goli yaad dila dena", variant: hinglish}
+  - {text: "{time} ko medicine yaad dilao", variant: hinglish}
+  - {text: "{time} dawa lene ka reminder", variant: hinglish}
+  - {text: "tablet ka reminder {time} ko", variant: hinglish}
+  - {text: "{time} ge maatre reminder", variant: kannada_english}
+  - {text: "maatre tagoloke {time} ge nenapisu", variant: kannada_english}
+  - {text: "{time} ge medicine reminder haaku", variant: kannada_english}
+  - {text: "tablet {time} ge nenapu maadu", variant: kannada_english}
+  - {text: "uh medicine reminder for er {time}", variant: disfluent}
+  - {text: "reminder for um tablets no medicine at {time}", variant: disfluent}
+  - {text: "um {time} uh meds reminder", variant: disfluent}
+  - {text: "er pills at like {time} remind me", variant: disfluent}
+  - {text: "so reminder um my medicine you know {time}", variant: disfluent}
+  - {text: "{time} no wait {time} medicine reminder", variant: disfluent}

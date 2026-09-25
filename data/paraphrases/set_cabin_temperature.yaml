@@ -1,0 +1,219 @@
+# Paraphrases of the set_cabin_temperature seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): set the temperature to {temperature}
+"0":
+  - {text: "make it {temperature} degrees inside", variant: plain}
+  - {text: "put the temperature on {temperature}", variant: plain}
+  - {text: "bring the cabin to {temperature} degrees", variant: plain}
+  - {text: "change the temp to {temperature}", variant: plain}
+  - {text: "keep the car at {temperature} degrees", variant: plain}
+  - {text: "adjust the climate to {temperature}", variant: plain}
+  - {text: "go to {temperature} on the temperature", variant: plain}
+  - {text: "dial in {temperature} degrees", variant: plain}
+  - {text: "change over to {temperature} on the climate", variant: plain}
+  - {text: "hold it at {temperature} degrees for the whole drive", variant: plain}
+  - {text: "set it at {temperature} for now", variant: plain}
+  - {text: "fix the inside temperature at {temperature}", variant: plain}
+  - {text: "do one thing make it {temperature}", variant: plain}
+  - {text: "put the ac on {temperature} degrees", variant: plain}
+  - {text: "just set {temperature} degrees in the car", variant: plain}
+  - {text: "take it to {temperature} degrees", variant: plain}
+  - {text: "{temperature} degrees on the climate please", variant: plain}
+  - {text: "make the cabin {temperature} degrees", variant: plain}
+  - {text: "set the ac temperature at {temperature} for the kids", variant: plain}
+  - {text: "change the climate setting to {temperature} degrees", variant: plain}
+  - {text: "keep the ac at {temperature} till we reach", variant: plain}
+  - {text: "put it on {temperature} degrees please", variant: plain}
+  - {text: "adjust the temp to {temperature} before we hit the highway", variant: plain}
+  - {text: "set the climate to {temperature} on both sides", variant: plain}
+  - {text: "temperature {temperature} pe set karo", variant: hinglish}
+  - {text: "ac {temperature} degree pe rakh do", variant: hinglish}
+  - {text: "andar ka temperature {temperature} kar do", variant: hinglish}
+  - {text: "{temperature} degree kar do yaar", variant: hinglish}
+  - {text: "temp ko {temperature} pe laao", variant: hinglish}
+  - {text: "gaadi ka temperature {temperature} rakho abhi", variant: hinglish}
+  - {text: "temperature {temperature} ge set maadu", variant: kannada_english}
+  - {text: "ac {temperature} degree ge haaku", variant: kannada_english}
+  - {text: "{temperature} degree maadi saar", variant: kannada_english}
+  - {text: "guru car olage {temperature} degree maadu", variant: kannada_english}
+  - {text: "uh the the cabin er make it {temperature}", variant: disfluent}
+  - {text: "make it twenty no wait {temperature} degrees", variant: disfluent}
+  - {text: "so um put the temp on like {temperature}", variant: disfluent}
+  - {text: "temperature to {temperature} er {temperature} degrees yeah", variant: disfluent}
+  - {text: "change the fan no sorry the temperature to {temperature}", variant: disfluent}
+  - {text: "uh you know just keep it at {temperature} degrees", variant: disfluent}
+
+# seed 1 (outcome): it's a bit too warm in the cabin
+"1":
+  - {text: "i'm sweating a little in here", variant: plain}
+  - {text: "feels kind of hot inside the car", variant: plain}
+  - {text: "it's warmer than i'd like in here", variant: plain}
+  - {text: "getting a bit toasty in the front", variant: plain}
+  - {text: "the cabin's a little on the warm side", variant: plain}
+  - {text: "too hot in here for my liking", variant: plain}
+  - {text: "this car is slightly too warm", variant: plain}
+  - {text: "it's stuffy and warm in here", variant: plain}
+  - {text: "bit too hot inside right now", variant: plain}
+  - {text: "i'm feeling the heat a little in here", variant: plain}
+  - {text: "too warm for this long drive", variant: plain}
+  - {text: "my forehead's getting sweaty in here", variant: plain}
+  - {text: "the temperature inside is a touch high", variant: plain}
+  - {text: "it's getting warm in here", variant: plain}
+  - {text: "we're all a bit hot in the rear", variant: plain}
+  - {text: "honestly it's a little too warm", variant: plain}
+  - {text: "warm in the car today", variant: plain}
+  - {text: "the inside feels a few degrees too hot", variant: plain}
+  - {text: "feeling slightly overheated in this car", variant: plain}
+  - {text: "it's too warm to concentrate on driving", variant: plain}
+  - {text: "the heat in the cabin is a bit much", variant: plain}
+  - {text: "i'm a little uncomfortable it's warm", variant: plain}
+  - {text: "hot hot in here today", variant: plain}
+  - {text: "the afternoon sun is making the cabin warm", variant: plain}
+  - {text: "andar thoda zyada garmi hai", variant: hinglish}
+  - {text: "gaadi mein garam lag raha hai yaar", variant: hinglish}
+  - {text: "thodi garmi ho rahi hai andar", variant: hinglish}
+  - {text: "thoda garam hai cabin mein", variant: hinglish}
+  - {text: "mujhe andar garmi lag rahi hai", variant: hinglish}
+  - {text: "yaar car ke andar thoda hot hai", variant: hinglish}
+  - {text: "olage swalpa jaasti bisi ide", variant: kannada_english}
+  - {text: "car alli swalpa seke aagtide", variant: kannada_english}
+  - {text: "swalpa bisi guru illi", variant: kannada_english}
+  - {text: "cabin swalpa hot ide saar", variant: kannada_english}
+  - {text: "it's uh it's a bit warm in here", variant: disfluent}
+  - {text: "um i'm kind of like sweating in the cabin", variant: disfluent}
+  - {text: "the the cabin is you know a little too hot", variant: disfluent}
+  - {text: "it's cold no i mean it's warm too warm in here", variant: disfluent}
+  - {text: "so er it's getting hot inside um", variant: disfluent}
+  - {text: "warm it's a bit uh warm in the car honestly", variant: disfluent}
+
+# seed 2 (question): can you make it a couple of degrees cooler
+"2":
+  - {text: "could you drop the temp by two degrees?", variant: plain}
+  - {text: "can we bring it down two degrees", variant: plain}
+  - {text: "would you cool it down by a degree or two?", variant: plain}
+  - {text: "can you lower the temperature slightly", variant: plain}
+  - {text: "mind taking it down a couple of degrees?", variant: plain}
+  - {text: "could the cabin be two degrees colder", variant: plain}
+  - {text: "can i get it a little cooler in here?", variant: plain}
+  - {text: "will you knock the temp down by two", variant: plain}
+  - {text: "any chance of making it two degrees cooler?", variant: plain}
+  - {text: "can you reduce the temp a bit", variant: plain}
+  - {text: "could we go a couple of degrees lower?", variant: plain}
+  - {text: "would you mind cooling the cabin a notch", variant: plain}
+  - {text: "how about taking it two degrees down?", variant: plain}
+  - {text: "can you set it slightly colder", variant: plain}
+  - {text: "could you make the car a bit cooler", variant: plain}
+  - {text: "is it possible to lower the temp by two degrees", variant: plain}
+  - {text: "can the temperature come down a little", variant: plain}
+  - {text: "will you turn the temperature down a touch?", variant: plain}
+  - {text: "can you take a degree or two off the temp", variant: plain}
+  - {text: "could you chill it down a couple of notches", variant: plain}
+  - {text: "shall we make it a little colder in here", variant: plain}
+  - {text: "can we have it two degrees less?", variant: plain}
+  - {text: "would it be ok to drop it by a couple of degrees", variant: plain}
+  - {text: "do you think you can lower it two degrees", variant: plain}
+  - {text: "temperature do degree kam kar sakte ho?", variant: hinglish}
+  - {text: "thoda thanda kar doge kya", variant: hinglish}
+  - {text: "do degree neeche karoge kya", variant: hinglish}
+  - {text: "kya temp thoda kam ho sakta hai", variant: hinglish}
+  - {text: "ac thoda aur thanda kar sakte ho?", variant: hinglish}
+  - {text: "thoda sa temperature ghata doge", variant: hinglish}
+  - {text: "swalpa temperature kammi maadtira?", variant: kannada_english}
+  - {text: "eradu degree kammi maadbahuda", variant: kannada_english}
+  - {text: "swalpa cool maadoke aagutta", variant: kannada_english}
+  - {text: "temp eradu degree kelage maadtiya", variant: kannada_english}
+  - {text: "can you uh make it like two degrees cooler", variant: disfluent}
+  - {text: "could you um drop the the temp a bit", variant: disfluent}
+  - {text: "can you uh warm no cool it down like two degrees", variant: disfluent}
+  - {text: "uh would you er bring the temperature down a little?", variant: disfluent}
+  - {text: "is it um possible to cool it by like two degrees", variant: disfluent}
+  - {text: "can you can you take it down a degree or two", variant: disfluent}
+
+# seed 3 (indirect): the kids are complaining about the heat
+"3":
+  - {text: "the little ones keep saying they're melting back there", variant: plain}
+  - {text: "my son keeps whining that it's too hot", variant: plain}
+  - {text: "the kids are all cranky saying it's boiling", variant: plain}
+  - {text: "the kids won't stop moaning about how hot it is", variant: plain}
+  - {text: "my daughter says she's boiling back there", variant: plain}
+  - {text: "the gang in the back is fussing about the heat", variant: plain}
+  - {text: "the kids keep telling me it's too warm", variant: plain}
+  - {text: "both kids are cribbing that they're feeling hot", variant: plain}
+  - {text: "my little one is crying saying it's hot", variant: plain}
+  - {text: "the children say it's like a sauna in the back", variant: plain}
+  - {text: "the boys are fighting and saying it's too hot", variant: plain}
+  - {text: "my niece is waving a notebook at her face", variant: plain}
+  - {text: "the kids in the back are getting irritable from the heat", variant: plain}
+  - {text: "my son just told me he's feeling hot", variant: plain}
+  - {text: "the children are asking why it's so warm in here", variant: plain}
+  - {text: "the youngsters in the back keep complaining it's hot", variant: plain}
+  - {text: "my kid's face is all red from the heat", variant: plain}
+  - {text: "the twins are whining that they're too warm", variant: plain}
+  - {text: "my daughter keeps pulling at her collar saying it's warm", variant: plain}
+  - {text: "the kids have been grumbling about the warmth for ten minutes", variant: plain}
+  - {text: "my son says his hands are sweaty from the heat", variant: plain}
+  - {text: "the children are going on and on about the heat", variant: plain}
+  - {text: "the kids said it's too hot and they can't sleep", variant: plain}
+  - {text: "baby is getting fussy because it's warm in here", variant: plain}
+  - {text: "bachche bol rahe hain bahut garmi hai", variant: hinglish}
+  - {text: "bacchon ko garmi lag rahi hai peeche", variant: hinglish}
+  - {text: "beta keh raha hai usko garam lag raha hai", variant: hinglish}
+  - {text: "peeche bachche garmi se pareshan hain", variant: hinglish}
+  - {text: "bitiya bol rahi hai bahut hot hai yaar", variant: hinglish}
+  - {text: "kids shikayat kar rahe hain garmi ki", variant: hinglish}
+  - {text: "makkalu tumba bisi antha heltidare", variant: kannada_english}
+  - {text: "hinde makkalige bisi aagtide antha", variant: kannada_english}
+  - {text: "magu bisi bisi antha alta ide", variant: kannada_english}
+  - {text: "makkalu seke antha complain maadtidare", variant: kannada_english}
+  - {text: "the kids are uh the kids keep saying it's hot", variant: disfluent}
+  - {text: "um my son is like complaining about the heat", variant: disfluent}
+  - {text: "the children are er you know whining about how warm it is", variant: disfluent}
+  - {text: "the kids are cold no sorry they're saying they're hot", variant: disfluent}
+  - {text: "so uh the little ones are complaining it's um too hot", variant: disfluent}
+  - {text: "my daughter is um she's saying it's like really hot back there", variant: disfluent}
+
+# seed 4 (fragment): {temperature} degrees
+"4":
+  - {text: "temp {temperature}", variant: plain}
+  - {text: "{temperature} please", variant: plain}
+  - {text: "make it {temperature}", variant: plain}
+  - {text: "{temperature} on the climate", variant: plain}
+  - {text: "cabin at {temperature}", variant: plain}
+  - {text: "{temperature} inside", variant: plain}
+  - {text: "temperature {temperature}", variant: plain}
+  - {text: "set {temperature}", variant: plain}
+  - {text: "{temperature} degrees in here", variant: plain}
+  - {text: "keep it {temperature}", variant: plain}
+  - {text: "ac at {temperature}", variant: plain}
+  - {text: "{temperature} degree celsius", variant: plain}
+  - {text: "just {temperature}", variant: plain}
+  - {text: "{temperature} is good", variant: plain}
+  - {text: "{temperature} degrees for now", variant: plain}
+  - {text: "{temperature} for me", variant: plain}
+  - {text: "go {temperature}", variant: plain}
+  - {text: "{temperature} degrees on both sides", variant: plain}
+  - {text: "{temperature} flat", variant: plain}
+  - {text: "climate {temperature}", variant: plain}
+  - {text: "{temperature} degrees on my side", variant: plain}
+  - {text: "{temperature} that's it", variant: plain}
+  - {text: "put {temperature}", variant: plain}
+  - {text: "{temperature} is fine thanks", variant: plain}
+  - {text: "{temperature} degree karo", variant: hinglish}
+  - {text: "temp {temperature} pe rakho", variant: hinglish}
+  - {text: "{temperature} kar do", variant: hinglish}
+  - {text: "{temperature} degree pe set karo", variant: hinglish}
+  - {text: "bas {temperature} degree", variant: hinglish}
+  - {text: "{temperature} rakh do yaar", variant: hinglish}
+  - {text: "{temperature} degree maadu", variant: kannada_english}
+  - {text: "{temperature} ge set maadi", variant: kannada_english}
+  - {text: "temp {temperature} ge haaku", variant: kannada_english}
+  - {text: "{temperature} irli saar", variant: kannada_english}
+  - {text: "uh just {temperature} degrees", variant: disfluent}
+  - {text: "um make it like {temperature}", variant: disfluent}
+  - {text: "{temperature} no wait {temperature} degrees", variant: disfluent}
+  - {text: "er temp uh {temperature}", variant: disfluent}
+  - {text: "so um {temperature} degrees yeah", variant: disfluent}
+  - {text: "the the temp {temperature} please", variant: disfluent}

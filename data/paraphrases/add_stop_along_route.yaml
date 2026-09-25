@@ -1,0 +1,219 @@
+# Paraphrases of the add_stop_along_route seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): add a {place} stop on the way
+"0":
+  - {text: "put a {place} on the route as a stop", variant: plain}
+  - {text: "include a {place} in the route", variant: plain}
+  - {text: "squeeze in a {place} stop before we reach", variant: plain}
+  - {text: "throw a {place} into the trip as a waypoint", variant: plain}
+  - {text: "stop at a {place} en route", variant: plain}
+  - {text: "work a {place} into the current route", variant: plain}
+  - {text: "make a detour to a {place} on the way", variant: plain}
+  - {text: "plan a {place} halt along this route", variant: plain}
+  - {text: "insert a {place} as a waypoint", variant: plain}
+  - {text: "drop a {place} stop in before the destination", variant: plain}
+  - {text: "break the journey at a {place}", variant: plain}
+  - {text: "add a waypoint for a {place}", variant: plain}
+  - {text: "fit a {place} somewhere into this drive", variant: plain}
+  - {text: "route us via a {place}", variant: plain}
+  - {text: "tack on a {place} stop to the trip", variant: plain}
+  - {text: "pencil in a {place} before we get there", variant: plain}
+  - {text: "swing by a {place} on this route", variant: plain}
+  - {text: "halt at a {place} on the road ahead", variant: plain}
+  - {text: "put in a quick {place} stop along the way", variant: plain}
+  - {text: "take us through a {place} before the destination", variant: plain}
+  - {text: "set a {place} as an intermediate stop", variant: plain}
+  - {text: "include a {place} break on the drive", variant: plain}
+  - {text: "do one thing add a {place} en route", variant: plain}
+  - {text: "stop by a {place} midway", variant: plain}
+  - {text: "raste mein ek {place} stop add karo", variant: hinglish}
+  - {text: "route mein {place} daal do", variant: hinglish}
+  - {text: "beech mein {place} pe rukna hai stop lagao", variant: hinglish}
+  - {text: "{place} ko route mein add kar do", variant: hinglish}
+  - {text: "raste ka koi {place} stop mein jodo", variant: hinglish}
+  - {text: "beech raste {place} pe halt daal do", variant: hinglish}
+  - {text: "daari alli ondu {place} stop haaku", variant: kannada_english}
+  - {text: "route ge {place} add maadi", variant: kannada_english}
+  - {text: "hogthaa {place} alli nillsu", variant: kannada_english}
+  - {text: "madhyadalli ondu {place} stop serisu", variant: kannada_english}
+  - {text: "uh add um let's see a {place} somewhere on the route", variant: disfluent}
+  - {text: "add a {place} no wait make it a {place} halt midway", variant: disfluent}
+  - {text: "so um throw in a like {place} stop before we reach", variant: disfluent}
+  - {text: "er make a stop at a um at a {place} along the way", variant: disfluent}
+  - {text: "add a uh detour no a {place} stop on this route", variant: disfluent}
+  - {text: "um you know squeeze a {place} into the the route", variant: disfluent}
+
+# seed 1 (outcome): i need a tea break somewhere on this route
+"1":
+  - {text: "i could really use a chai stop on this drive", variant: plain}
+  - {text: "i'm dying for a cup of chai before we reach", variant: plain}
+  - {text: "a tea halt along the way would be great", variant: plain}
+  - {text: "i need some chai to stay awake on this stretch", variant: plain}
+  - {text: "my head's aching and i need tea somewhere en route", variant: plain}
+  - {text: "need to break for tea at some point on this drive", variant: plain}
+  - {text: "a quick chai somewhere along the road would help", variant: plain}
+  - {text: "i'm getting sleepy and need tea on the way", variant: plain}
+  - {text: "we should have a tea pause before we reach", variant: plain}
+  - {text: "i won't last the drive without a tea break", variant: plain}
+  - {text: "some cutting chai on the route would be perfect", variant: plain}
+  - {text: "i'm craving tea and we still have a long way to go", variant: plain}
+  - {text: "a pit stop for tea is what i need right now", variant: plain}
+  - {text: "i need my chai fix somewhere on this highway", variant: plain}
+  - {text: "i'm drowsy and a tea stop along the road would save me", variant: plain}
+  - {text: "haven't had my tea yet and i need it on the way", variant: plain}
+  - {text: "i need to stretch my legs and have tea on this route", variant: plain}
+  - {text: "a roadside tea stall halt would be nice on this drive", variant: plain}
+  - {text: "i want a tea somewhere between here and the destination", variant: plain}
+  - {text: "i need a chai before we hit the highway", variant: plain}
+  - {text: "my eyes are closing i need some tea on the route", variant: plain}
+  - {text: "i'm desperate for tea somewhere along this road", variant: plain}
+  - {text: "a hot tea en route would really help me", variant: plain}
+  - {text: "without tea i can't do this whole drive", variant: plain}
+  - {text: "raste mein kahin chai peeni hai", variant: hinglish}
+  - {text: "chai break chahiye yaar raste mein", variant: hinglish}
+  - {text: "neend aa rahi hai beech mein chai chahiye", variant: hinglish}
+  - {text: "is route pe kahin chai ke liye rukna hai", variant: hinglish}
+  - {text: "ek cutting chai mil jaaye raste mein toh maza aa jaaye", variant: hinglish}
+  - {text: "bina chai ke aage nahi chal paunga", variant: hinglish}
+  - {text: "daari alli ondu tea beku", variant: kannada_english}
+  - {text: "madhyadalli swalpa tea kudibeku", variant: kannada_english}
+  - {text: "route alli yelladru chai break beku guru", variant: kannada_english}
+  - {text: "nidde barthide madhye ondu chai kudiyona", variant: kannada_english}
+  - {text: "i uh i badly need a um chai break on this drive", variant: disfluent}
+  - {text: "i could really um use some chai you know on the way", variant: disfluent}
+  - {text: "some coffee no wait tea is what i um need along the way", variant: disfluent}
+  - {text: "so like i'm sleepy and um need tea along the way", variant: disfluent}
+  - {text: "er a tea break on this uh on this drive would help", variant: disfluent}
+  - {text: "i need um i need my chai somewhere before we reach", variant: disfluent}
+
+# seed 2 (question): can we stop at a {place} somewhere along the route
+"2":
+  - {text: "could you add a {place} to our route?", variant: plain}
+  - {text: "can you fit in a {place} stop on the way", variant: plain}
+  - {text: "will you put a {place} halt on this route?", variant: plain}
+  - {text: "is it possible to stop at a {place} on the way there", variant: plain}
+  - {text: "any chance of a {place} stop before we reach?", variant: plain}
+  - {text: "shall we halt at a {place} en route", variant: plain}
+  - {text: "could we swing by a {place} on this drive?", variant: plain}
+  - {text: "can a {place} be added as a stop on the way", variant: plain}
+  - {text: "would you plan a {place} stop along the road?", variant: plain}
+  - {text: "how about a {place} stop on the way", variant: plain}
+  - {text: "can we break the journey at a {place}?", variant: plain}
+  - {text: "is there time to pull over at a {place} en route", variant: plain}
+  - {text: "could you include a {place} on the way to the destination", variant: plain}
+  - {text: "can i get a {place} added along this route?", variant: plain}
+  - {text: "mind adding a {place} as a waypoint?", variant: plain}
+  - {text: "will you route us past a {place} so we can stop", variant: plain}
+  - {text: "can we make a detour to a {place} on this drive", variant: plain}
+  - {text: "could we do a quick {place} stop midway?", variant: plain}
+  - {text: "can you find a {place} on our route and add it", variant: plain}
+  - {text: "would it be possible to take a {place} break before we arrive", variant: plain}
+  - {text: "is a {place} stop along the way doable?", variant: plain}
+  - {text: "can we squeeze a {place} into this trip", variant: plain}
+  - {text: "could you work a {place} into the route?", variant: plain}
+  - {text: "shall we stop by a {place} somewhere on the road", variant: plain}
+  - {text: "raste mein kisi {place} pe ruk sakte hain kya?", variant: hinglish}
+  - {text: "route mein ek {place} add kar sakte ho", variant: hinglish}
+  - {text: "beech mein {place} pe rukenge kya?", variant: hinglish}
+  - {text: "jaate hue kisi {place} pe halt le sakte hain", variant: hinglish}
+  - {text: "kya {place} ka stop daal sakte ho raste mein?", variant: hinglish}
+  - {text: "{place} pe thoda ruk jaayein kya raste mein", variant: hinglish}
+  - {text: "daari alli yaavdadru {place} alli nilsbahuda?", variant: kannada_english}
+  - {text: "route alli ondu {place} stop haakthira", variant: kannada_english}
+  - {text: "madhyadalli {place} alli nilsona aa?", variant: kannada_english}
+  - {text: "hogthaa ondu {place} ge hogbahuda guru", variant: kannada_english}
+  - {text: "can we uh can we stop at a {place} on the way", variant: disfluent}
+  - {text: "could you um squeeze in a {place} uh along this drive?", variant: disfluent}
+  - {text: "could we pull in at a um no wait at a {place} along the drive", variant: disfluent}
+  - {text: "so like is it possible to uh stop at a {place} en route", variant: disfluent}
+  - {text: "er would you put a {place} stop somewhere uh on the way", variant: disfluent}
+  - {text: "um how about we you know halt at a {place} midway", variant: disfluent}
+
+# seed 3 (indirect): the baby needs a diaper change before the expressway
+"3":
+  - {text: "the little one's nappy is full and the highway is coming up", variant: plain}
+  - {text: "my baby needs changing before we hit the expressway", variant: plain}
+  - {text: "the baby's diaper is soaked and there's no stopping once we're on the expressway", variant: plain}
+  - {text: "we have to change the baby before we get on the highway", variant: plain}
+  - {text: "the infant needs a fresh nappy before the long stretch", variant: plain}
+  - {text: "junior needs a diaper change before the toll", variant: plain}
+  - {text: "my wife says the baby needs changing before the fast road", variant: plain}
+  - {text: "the baby's been crying and needs a new diaper before the expressway", variant: plain}
+  - {text: "the baby's wet and the expressway has no stops for ages", variant: plain}
+  - {text: "the little one needs a clean diaper before we enter the expressway", variant: plain}
+  - {text: "our baby is due for a change before the highway starts", variant: plain}
+  - {text: "the baby needs a nappy change and the expressway's next", variant: plain}
+  - {text: "my son's diaper needs changing before the expressway", variant: plain}
+  - {text: "baby's leaking and we need to change her before the highway", variant: plain}
+  - {text: "the baby is uncomfortable and needs changing before the big road", variant: plain}
+  - {text: "there's a dirty diaper situation back here before the expressway", variant: plain}
+  - {text: "the baby needs attention before we're stuck on the expressway", variant: plain}
+  - {text: "she needs a fresh diaper before we go onto the highway", variant: plain}
+  - {text: "the baby's smelly and we're about to join the expressway", variant: plain}
+  - {text: "we need to sort the baby's nappy before the expressway section", variant: plain}
+  - {text: "the toddler has to be changed ahead of the toll plaza", variant: plain}
+  - {text: "once we're on the expressway there's nowhere to change the baby", variant: plain}
+  - {text: "the baby has pooped and the expressway's coming", variant: plain}
+  - {text: "nappy emergency back here and the expressway is right ahead", variant: plain}
+  - {text: "baby ka diaper badalna hai expressway se pehle", variant: hinglish}
+  - {text: "expressway aane se pehle bacche ka diaper change karna padega", variant: hinglish}
+  - {text: "munna ka diaper geela hai highway se pehle rukna padega", variant: hinglish}
+  - {text: "baby rone laga hai diaper badalna hai highway se pehle", variant: hinglish}
+  - {text: "expressway pe chadhne se pehle baby ko change karna hai", variant: hinglish}
+  - {text: "chhote ka nappy full hai expressway se pehle", variant: hinglish}
+  - {text: "expressway ge munche magu diaper change maadbeku", variant: kannada_english}
+  - {text: "magu diaper odde aagide highway ge hogo mundhe", variant: kannada_english}
+  - {text: "expressway modalu paapu ge diaper badlisbeku", variant: kannada_english}
+  - {text: "paapu aluthide highway barodrolage nappy change aagbeku", variant: kannada_english}
+  - {text: "the baby uh she's um due a nappy change before we join the expressway", variant: disfluent}
+  - {text: "so um the little one needs changing like before the highway", variant: disfluent}
+  - {text: "the little one's hungry no wait she needs changing before the highway", variant: disfluent}
+  - {text: "er we have to change the baby's uh nappy before the expressway", variant: disfluent}
+  - {text: "the baby's um you know wet and the expressway is coming", variant: disfluent}
+  - {text: "um before the the expressway we've got to sort out a dirty nappy", variant: disfluent}
+
+# seed 4 (fragment): petrol bunk on the way
+"4":
+  - {text: "fuel stop en route", variant: plain}
+  - {text: "petrol pump on the route", variant: plain}
+  - {text: "gas station along the way", variant: plain}
+  - {text: "petrol stop on this route", variant: plain}
+  - {text: "fuel halt before destination", variant: plain}
+  - {text: "diesel pump en route", variant: plain}
+  - {text: "bunk stop midway", variant: plain}
+  - {text: "petrol halt midway", variant: plain}
+  - {text: "fuel stop along the route", variant: plain}
+  - {text: "refuel stop on route", variant: plain}
+  - {text: "petrol en route", variant: plain}
+  - {text: "add a petrol bunk stop", variant: plain}
+  - {text: "cng stop on the way", variant: plain}
+  - {text: "fuel bunk along the way", variant: plain}
+  - {text: "petrol pump midway", variant: plain}
+  - {text: "tank up en route", variant: plain}
+  - {text: "pump stop before the highway", variant: plain}
+  - {text: "a fuel station on this road", variant: plain}
+  - {text: "via a petrol pump", variant: plain}
+  - {text: "top up stop on the route", variant: plain}
+  - {text: "filling station en route", variant: plain}
+  - {text: "fuel point along the drive", variant: plain}
+  - {text: "pit stop for petrol", variant: plain}
+  - {text: "petrol bunk stopover", variant: plain}
+  - {text: "raste mein petrol pump", variant: hinglish}
+  - {text: "beech mein petrol bunk pe rukna", variant: hinglish}
+  - {text: "petrol daalne ka stop raste mein", variant: hinglish}
+  - {text: "jaate hue petrol pump", variant: hinglish}
+  - {text: "route pe petrol pump daalo", variant: hinglish}
+  - {text: "tanki full karwani hai raste mein", variant: hinglish}
+  - {text: "daari alli petrol bunk", variant: kannada_english}
+  - {text: "madhye petrol haaksona", variant: kannada_english}
+  - {text: "route alli bunk stop haaku", variant: kannada_english}
+  - {text: "hogthaa petrol bunk", variant: kannada_english}
+  - {text: "uh some petrol um bunk en route", variant: disfluent}
+  - {text: "diesel no petrol bunk en route", variant: disfluent}
+  - {text: "um a fuel uh fuel stop midway", variant: disfluent}
+  - {text: "the the pump um for petrol midway", variant: disfluent}
+  - {text: "so like a petrol stop on the way", variant: disfluent}
+  - {text: "er bunk uh on the route please", variant: disfluent}

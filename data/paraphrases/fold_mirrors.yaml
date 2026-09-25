@@ -1,0 +1,176 @@
+# Paraphrases of the fold_mirrors seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): fold the side mirrors
+"0":
+  - {text: "close the side mirrors", variant: plain}
+  - {text: "fold in the outside mirrors", variant: plain}
+  - {text: "pull both mirrors in", variant: plain}
+  - {text: "retract the wing mirrors", variant: plain}
+  - {text: "fold both side mirrors now", variant: plain}
+  - {text: "shut the mirrors", variant: plain}
+  - {text: "get the mirrors folded", variant: plain}
+  - {text: "fold the orvms", variant: plain}
+  - {text: "close the orvms before someone hits them", variant: plain}
+  - {text: "flip the side mirrors in", variant: plain}
+  - {text: "fold in the mirrors on both sides", variant: plain}
+  - {text: "do one thing fold the mirrors", variant: plain}
+  - {text: "bring both mirrors flat against the doors", variant: plain}
+  - {text: "just close up both mirrors", variant: plain}
+  - {text: "shut both mirrors for this tight gap", variant: plain}
+  - {text: "fold the door mirrors flat", variant: plain}
+  - {text: "collapse the side mirrors", variant: plain}
+  - {text: "get the mirrors to fold away", variant: plain}
+  - {text: "fold the mirrors we're parking in a tight spot", variant: plain}
+  - {text: "go ahead and fold the wing mirrors", variant: plain}
+  - {text: "close both outside mirrors against the car", variant: plain}
+  - {text: "quickly fold the mirrors before that truck passes", variant: plain}
+  - {text: "fold up the side mirrors for the parking", variant: plain}
+  - {text: "get both orvms folded in", variant: plain}
+  - {text: "side mirror band karo", variant: hinglish}
+  - {text: "mirror fold kar do", variant: hinglish}
+  - {text: "dono mirror andar kar do", variant: hinglish}
+  - {text: "orvm fold karo jaldi", variant: hinglish}
+  - {text: "side ke sheeshe band kar do", variant: hinglish}
+  - {text: "mirror andar mod do yaar", variant: hinglish}
+  - {text: "mirror fold maadi", variant: kannada_english}
+  - {text: "side mirror muchchu", variant: kannada_english}
+  - {text: "eradu mirror fold maadu", variant: kannada_english}
+  - {text: "orvm olage maadi guru", variant: kannada_english}
+  - {text: "uh the mirrors on the side um fold them", variant: disfluent}
+  - {text: "adjust no sorry fold the side mirrors", variant: disfluent}
+  - {text: "so both side mirrors um go ahead and fold those", variant: disfluent}
+  - {text: "so um fold like both the mirrors you know", variant: disfluent}
+  - {text: "er mirrors fold the mirrors please", variant: disfluent}
+  - {text: "fold the the orvms um now", variant: disfluent}
+
+# seed 1 (question): can you tuck the mirrors in
+"1":
+  - {text: "could you fold the mirrors in?", variant: plain}
+  - {text: "can we pull the side mirrors in", variant: plain}
+  - {text: "would you close the mirrors for me?", variant: plain}
+  - {text: "mind folding the orvms", variant: plain}
+  - {text: "can the mirrors go in", variant: plain}
+  - {text: "any chance you can fold the side mirrors?", variant: plain}
+  - {text: "can you bring the wing mirrors in close", variant: plain}
+  - {text: "will you fold both mirrors?", variant: plain}
+  - {text: "is it possible to retract the mirrors", variant: plain}
+  - {text: "could the side mirrors be folded", variant: plain}
+  - {text: "can you shut the orvms quickly?", variant: plain}
+  - {text: "how about folding in the mirrors", variant: plain}
+  - {text: "would you mind pulling the mirrors back in?", variant: plain}
+  - {text: "can you tuck both side mirrors against the car", variant: plain}
+  - {text: "should we fold the mirrors in here?", variant: plain}
+  - {text: "can you do the mirror fold thing", variant: plain}
+  - {text: "is there a way to flip the mirrors inward?", variant: plain}
+  - {text: "can the orvms fold up for a bit", variant: plain}
+  - {text: "can you please close the side mirrors", variant: plain}
+  - {text: "can the mirrors be tucked away", variant: plain}
+  - {text: "you think you can fold the mirrors now", variant: plain}
+  - {text: "can you get the wing mirrors folded?", variant: plain}
+  - {text: "would it be possible to close the orvms", variant: plain}
+  - {text: "can you pull in the mirrors before this gap", variant: plain}
+  - {text: "mirror andar kar doge kya?", variant: hinglish}
+  - {text: "side mirror fold kar sakte ho?", variant: hinglish}
+  - {text: "zara mirror fold kar doge", variant: hinglish}
+  - {text: "orvm andar ho sakte hain kya", variant: hinglish}
+  - {text: "kya dono mirror fold ho jayenge?", variant: hinglish}
+  - {text: "sheeshe andar mod sakte ho kya", variant: hinglish}
+  - {text: "mirror fold maadtiya?", variant: kannada_english}
+  - {text: "side mirror olage maadbahuda?", variant: kannada_english}
+  - {text: "orvm fold maadoke aagutta guru", variant: kannada_english}
+  - {text: "mirror swalpa muchchtira?", variant: kannada_english}
+  - {text: "um the mirrors uh would you mind tucking those in", variant: disfluent}
+  - {text: "the side mirrors er could you like fold them now?", variant: disfluent}
+  - {text: "can you open no close the mirrors?", variant: disfluent}
+  - {text: "er is it possible for the mirrors to um go in?", variant: disfluent}
+  - {text: "so can you um fold the you know the mirrors", variant: disfluent}
+  - {text: "can you uh pull no fold the mirrors in", variant: disfluent}
+
+# seed 2 (indirect): this lane is really narrow with bikes on both sides
+"2":
+  - {text: "this gully is so tight scooters are squeezing past on both sides", variant: plain}
+  - {text: "barely any room here with two wheelers on either side", variant: plain}
+  - {text: "these bikes are brushing right past us on both sides", variant: plain}
+  - {text: "the road's super narrow and there are bikes everywhere", variant: plain}
+  - {text: "there's hardly a foot of space on each side with all these bikes", variant: plain}
+  - {text: "look at this lane it's tiny and packed with scooters", variant: plain}
+  - {text: "one more inch and that bike will scrape us", variant: plain}
+  - {text: "we're squeezing through between two rows of bikes", variant: plain}
+  - {text: "this old city street is way too tight", variant: plain}
+  - {text: "two wheelers are cutting past so close on both sides", variant: plain}
+  - {text: "the gap between us and the bikes is almost nothing", variant: plain}
+  - {text: "i'm worried that delivery guy will clip us on the left", variant: plain}
+  - {text: "autos on one side bikes on the other and no space", variant: plain}
+  - {text: "this bylane wasn't made for a car", variant: plain}
+  - {text: "every bike here is passing inches from the doors", variant: plain}
+  - {text: "such a narrow road and all these scooties", variant: plain}
+  - {text: "we'll get scratched with bikes this close", variant: plain}
+  - {text: "the market lane is jammed with parked bikes both sides", variant: plain}
+  - {text: "man it's a tight squeeze with these motorcycles all around", variant: plain}
+  - {text: "there's no room at all between these bikes", variant: plain}
+  - {text: "bikes this side bikes that side and the lane is so thin", variant: plain}
+  - {text: "careful this road is barely wide enough for us", variant: plain}
+  - {text: "these two wheelers keep coming right up to the car", variant: plain}
+  - {text: "it's so cramped here that bike almost touched us", variant: plain}
+  - {text: "yeh gali bahut tight hai dono taraf bikes hain", variant: hinglish}
+  - {text: "yaar dono side se bike wale ekdum paas se nikal rahe hain", variant: hinglish}
+  - {text: "itni patli road hai aur bikes hi bikes", variant: hinglish}
+  - {text: "jagah hi nahi hai dono taraf scooter khade hain", variant: hinglish}
+  - {text: "yeh lane kitni sankri hai bike wale chipak ke ja rahe", variant: hinglish}
+  - {text: "bhai bikes bilkul sat ke nikal rahi hain", variant: hinglish}
+  - {text: "ee road tumba narrow ide eradu kade bike ide", variant: kannada_english}
+  - {text: "guru ee gully alli jaaga ne illa bikes jaasti", variant: kannada_english}
+  - {text: "eradu side bike tumba hattira bartide", variant: kannada_english}
+  - {text: "ee lane tumba chikkadu saar bike ge jaaga illa", variant: kannada_english}
+  - {text: "uh this lane is like really narrow and there are bikes um on both sides", variant: disfluent}
+  - {text: "the road is so the road is so tight with these bikes", variant: disfluent}
+  - {text: "whoa these bikes on the left no on both sides are so close", variant: disfluent}
+  - {text: "um it's you know super narrow here with all the uh bikes", variant: disfluent}
+  - {text: "er this gully is tight and bikes are um everywhere", variant: disfluent}
+  - {text: "so like there's bikes here and bikes there and no space", variant: disfluent}
+
+# seed 3 (fragment): mirrors in
+"3":
+  - {text: "fold mirrors", variant: plain}
+  - {text: "mirrors folded", variant: plain}
+  - {text: "side mirrors in please", variant: plain}
+  - {text: "orvms in", variant: plain}
+  - {text: "fold the orvms now", variant: plain}
+  - {text: "mirror fold", variant: plain}
+  - {text: "mirrors closed", variant: plain}
+  - {text: "fold the wing mirrors", variant: plain}
+  - {text: "both mirrors folded in", variant: plain}
+  - {text: "close the mirrors", variant: plain}
+  - {text: "mirrors shut", variant: plain}
+  - {text: "outer mirrors fold please", variant: plain}
+  - {text: "fold both orvms", variant: plain}
+  - {text: "mirrors away", variant: plain}
+  - {text: "pull the mirrors in", variant: plain}
+  - {text: "retract mirrors", variant: plain}
+  - {text: "orvm fold quick", variant: plain}
+  - {text: "side mirrors close", variant: plain}
+  - {text: "mirrors flat against the car", variant: plain}
+  - {text: "in with the mirrors", variant: plain}
+  - {text: "mirrors folded for parking", variant: plain}
+  - {text: "fold side mirrors now", variant: plain}
+  - {text: "orvm close", variant: plain}
+  - {text: "tuck in the orvms", variant: plain}
+  - {text: "mirror andar", variant: hinglish}
+  - {text: "dono mirror fold karo", variant: hinglish}
+  - {text: "sheeshe band", variant: hinglish}
+  - {text: "mirror band kar do", variant: hinglish}
+  - {text: "dono side ke mirror mod do", variant: hinglish}
+  - {text: "orvm band karo", variant: hinglish}
+  - {text: "mirror olage", variant: kannada_english}
+  - {text: "orvm muchchu", variant: kannada_english}
+  - {text: "orvm fold maadu", variant: kannada_english}
+  - {text: "side mirror olage haaku", variant: kannada_english}
+  - {text: "uh mirrors um in", variant: disfluent}
+  - {text: "mirrors out no in", variant: disfluent}
+  - {text: "those um those mirrors fold", variant: disfluent}
+  - {text: "uh fold the the side ones", variant: disfluent}
+  - {text: "er fold the mirrors like now", variant: disfluent}
+  - {text: "mirrors you know tuck them in", variant: disfluent}

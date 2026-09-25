@@ -1,0 +1,176 @@
+# Paraphrases of the next_turn seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): tell me the next turn
+"0":
+  - {text: "say the next turn", variant: plain}
+  - {text: "read out my next turn", variant: plain}
+  - {text: "give me the upcoming turn", variant: plain}
+  - {text: "announce the next direction", variant: plain}
+  - {text: "let me know where the next turn is", variant: plain}
+  - {text: "call out the next manoeuvre", variant: plain}
+  - {text: "repeat the next direction for me", variant: plain}
+  - {text: "tell me which way to go at the next junction", variant: plain}
+  - {text: "speak out the coming turn", variant: plain}
+  - {text: "remind me of the next turn", variant: plain}
+  - {text: "show the upcoming turn on screen", variant: plain}
+  - {text: "just say where i have to turn", variant: plain}
+  - {text: "do one thing tell me the coming turn", variant: plain}
+  - {text: "next instruction please", variant: plain}
+  - {text: "read me the upcoming instruction", variant: plain}
+  - {text: "update me on the next turn", variant: plain}
+  - {text: "let me hear the next direction again", variant: plain}
+  - {text: "give the next turn once more", variant: plain}
+  - {text: "flag the next turn for me early", variant: plain}
+  - {text: "brief me on the next junction", variant: plain}
+  - {text: "guide me through the next turn", variant: plain}
+  - {text: "name the road for my next turn", variant: plain}
+  - {text: "say the next direction out loud", variant: plain}
+  - {text: "give me a heads up on the next turn", variant: plain}
+  - {text: "agla turn batao", variant: hinglish}
+  - {text: "mujhe agla mod batao", variant: hinglish}
+  - {text: "next turn kaunsa hai bata do", variant: hinglish}
+  - {text: "aage kahan mudna hai batao", variant: hinglish}
+  - {text: "agla direction bol do", variant: hinglish}
+  - {text: "next turn ka bata do yaar", variant: hinglish}
+  - {text: "next turn helu", variant: kannada_english}
+  - {text: "munde yelli turn antha heli", variant: kannada_english}
+  - {text: "mundina turn enu antha helu", variant: kannada_english}
+  - {text: "next direction swalpa heli", variant: kannada_english}
+  - {text: "uh tell me um which way the route goes next", variant: disfluent}
+  - {text: "read out the next exit no sorry the next turn", variant: disfluent}
+  - {text: "so like read out the the next turn", variant: disfluent}
+  - {text: "er give me the next um direction you know", variant: disfluent}
+  - {text: "the upcoming turn tell me er what it is", variant: disfluent}
+  - {text: "um the next turn uh just say it", variant: disfluent}
+
+# seed 1 (question): where do i turn next
+"1":
+  - {text: "which way do i go next?", variant: plain}
+  - {text: "what's my next turn", variant: plain}
+  - {text: "where's the next turn?", variant: plain}
+  - {text: "which road do i take after this", variant: plain}
+  - {text: "what's the next move on the route?", variant: plain}
+  - {text: "where am i supposed to turn?", variant: plain}
+  - {text: "which turning do i take", variant: plain}
+  - {text: "when's my next turn coming", variant: plain}
+  - {text: "do i turn soon", variant: plain}
+  - {text: "what direction after this signal?", variant: plain}
+  - {text: "which side do i go at the junction ahead", variant: plain}
+  - {text: "where do we go from here", variant: plain}
+  - {text: "is my turn coming soon", variant: plain}
+  - {text: "where exactly do i need to take the turn?", variant: plain}
+  - {text: "after the flyover where do i go", variant: plain}
+  - {text: "what's the next instruction?", variant: plain}
+  - {text: "whereabouts is my next turning", variant: plain}
+  - {text: "so where next", variant: plain}
+  - {text: "which way at the upcoming junction?", variant: plain}
+  - {text: "how soon is my next turn?", variant: plain}
+  - {text: "where should i be turning next", variant: plain}
+  - {text: "where do we have to go after this stretch", variant: plain}
+  - {text: "what's the turn after this one", variant: plain}
+  - {text: "which way does the route go now", variant: plain}
+  - {text: "ab kidhar mudna hai?", variant: hinglish}
+  - {text: "agla turn kahan hai", variant: hinglish}
+  - {text: "aage kaunsa mod lena hai?", variant: hinglish}
+  - {text: "ab kis taraf jaana hai", variant: hinglish}
+  - {text: "next turn kahan pe hai?", variant: hinglish}
+  - {text: "yahan se kidhar jaun", variant: hinglish}
+  - {text: "munde yelli turn maadbeku?", variant: kannada_english}
+  - {text: "next turn yelli", variant: kannada_english}
+  - {text: "ivaga yaava kade hogbeku", variant: kannada_english}
+  - {text: "munde yelli tirugbeku guru", variant: kannada_english}
+  - {text: "uh the next turn um where is it", variant: disfluent}
+  - {text: "which way do i er where's my turn after this?", variant: disfluent}
+  - {text: "so um now where do we like head", variant: disfluent}
+  - {text: "um where's my next like turn?", variant: disfluent}
+  - {text: "er is it this turn no which one's next for me", variant: disfluent}
+  - {text: "after this signal uh which side do i go", variant: disfluent}
+
+# seed 2 (outcome): i'm not sure which exit to take
+"2":
+  - {text: "i don't know which exit is mine", variant: plain}
+  - {text: "no idea which exit we need", variant: plain}
+  - {text: "confused about the exit here", variant: plain}
+  - {text: "i can't tell which way off this flyover", variant: plain}
+  - {text: "these exits all look the same to me", variant: plain}
+  - {text: "i might miss our exit", variant: plain}
+  - {text: "not clear which slip road is ours", variant: plain}
+  - {text: "i'm lost at this roundabout", variant: plain}
+  - {text: "which exit to get off at is a mystery to me", variant: plain}
+  - {text: "the signboards aren't helping me pick an exit", variant: plain}
+  - {text: "i keep getting the exits mixed up", variant: plain}
+  - {text: "i'm unsure which way to leave the highway", variant: plain}
+  - {text: "there are three exits and i don't know ours", variant: plain}
+  - {text: "i have no clue where to get off the ring road", variant: plain}
+  - {text: "i'm totally confused at this junction", variant: plain}
+  - {text: "worried i'll take the wrong exit", variant: plain}
+  - {text: "the exit coming up i'm not certain it's ours", variant: plain}
+  - {text: "i can't figure out the right exit", variant: plain}
+  - {text: "this interchange has me confused", variant: plain}
+  - {text: "i'm doubtful about the exit here", variant: plain}
+  - {text: "don't know if i should get off here or at the next one", variant: plain}
+  - {text: "i'm second guessing which exit", variant: plain}
+  - {text: "the flyover splits and i'm not sure where to go", variant: plain}
+  - {text: "these ramps are confusing me", variant: plain}
+  - {text: "samajh nahi aa raha kaunsa exit lena hai", variant: hinglish}
+  - {text: "mujhe pata nahi kaunsa exit apna hai", variant: hinglish}
+  - {text: "exit ko leke confuse ho gaya hoon", variant: hinglish}
+  - {text: "yaar kaunse exit se nikalna hai pata nahi", variant: hinglish}
+  - {text: "yahan bahut saare exit hain samajh nahi aa raha", variant: hinglish}
+  - {text: "galat exit na le loon", variant: hinglish}
+  - {text: "yaava exit tagobeku gottilla", variant: kannada_english}
+  - {text: "exit gottagtilla guru", variant: kannada_english}
+  - {text: "illi yaava exit antha confuse aagide", variant: kannada_english}
+  - {text: "namma exit yavdu antha gottilla saar", variant: kannada_english}
+  - {text: "not sure uh which of these um exits is ours", variant: disfluent}
+  - {text: "um i'm lost like which exit we're supposed to take", variant: disfluent}
+  - {text: "this exit or no i don't know which exit", variant: disfluent}
+  - {text: "so like i'm confused about the um the exit", variant: disfluent}
+  - {text: "er i can't tell which exit you know", variant: disfluent}
+  - {text: "i think it's this one no wait i'm not sure which exit", variant: disfluent}
+
+# seed 3 (fragment): left or right here
+"3":
+  - {text: "left or right now", variant: plain}
+  - {text: "which way here", variant: plain}
+  - {text: "right or left at this signal", variant: plain}
+  - {text: "turn here which side", variant: plain}
+  - {text: "this junction which way", variant: plain}
+  - {text: "straight or turn", variant: plain}
+  - {text: "which side at the signal", variant: plain}
+  - {text: "next turn left or right", variant: plain}
+  - {text: "which way at this circle", variant: plain}
+  - {text: "turn here or not", variant: plain}
+  - {text: "which direction now", variant: plain}
+  - {text: "left side or right side", variant: plain}
+  - {text: "which way at the fork", variant: plain}
+  - {text: "this cut which way", variant: plain}
+  - {text: "u turn or left", variant: plain}
+  - {text: "at this point which side", variant: plain}
+  - {text: "which turning here", variant: plain}
+  - {text: "left right which one", variant: plain}
+  - {text: "crossing coming which side", variant: plain}
+  - {text: "go left or go right", variant: plain}
+  - {text: "turn at this signal or not", variant: plain}
+  - {text: "the next cut left or right", variant: plain}
+  - {text: "which road here", variant: plain}
+  - {text: "go straight or take the turn", variant: plain}
+  - {text: "left ya right", variant: hinglish}
+  - {text: "yahan se kidhar", variant: hinglish}
+  - {text: "idhar mudna hai kya", variant: hinglish}
+  - {text: "left wala mod ya right wala", variant: hinglish}
+  - {text: "ab kaunsi side", variant: hinglish}
+  - {text: "seedha ya mudna hai", variant: hinglish}
+  - {text: "left aa right aa", variant: kannada_english}
+  - {text: "illi yaava kade", variant: kannada_english}
+  - {text: "illi turn aa", variant: kannada_english}
+  - {text: "edakka balakka illi", variant: kannada_english}
+  - {text: "uh this one um left or right", variant: disfluent}
+  - {text: "left no wait right hmm which side here", variant: disfluent}
+  - {text: "so like left or right at this uh", variant: disfluent}
+  - {text: "um here which way left right", variant: disfluent}
+  - {text: "er is it left or or right", variant: disfluent}
+  - {text: "right no hang on which way here", variant: disfluent}

@@ -1,0 +1,176 @@
+# Paraphrases of the show_photos seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): show the photos from {date}
+"0":
+  - {text: "pull up the pictures from {date}", variant: plain}
+  - {text: "open the gallery for {date}", variant: plain}
+  - {text: "put {date}'s photos on the screen", variant: plain}
+  - {text: "display the pics we took on {date}", variant: plain}
+  - {text: "bring up whatever photos i clicked on {date}", variant: plain}
+  - {text: "go to the {date} photos", variant: plain}
+  - {text: "put the {date} snaps up on the display", variant: plain}
+  - {text: "let me see the snaps from {date}", variant: plain}
+  - {text: "open my pictures from {date}", variant: plain}
+  - {text: "find the photos taken on {date}", variant: plain}
+  - {text: "scroll through the {date} pictures", variant: plain}
+  - {text: "load up the pics from {date}", variant: plain}
+  - {text: "show me what we shot on {date}", variant: plain}
+  - {text: "get the {date} album up", variant: plain}
+  - {text: "flip through the photos from {date} for me", variant: plain}
+  - {text: "jump to {date} in the gallery", variant: plain}
+  - {text: "do one thing open the {date} pics", variant: plain}
+  - {text: "throw the photos from {date} on the big screen", variant: plain}
+  - {text: "take me to the pictures of {date}", variant: plain}
+  - {text: "filter the gallery to {date}", variant: plain}
+  - {text: "search my photos for {date}", variant: plain}
+  - {text: "put up the snaps we clicked {date}", variant: plain}
+  - {text: "start a slideshow of the {date} photos", variant: plain}
+  - {text: "just show the {date} pictures na", variant: plain}
+  - {text: "{date} wali photos dikhao", variant: hinglish}
+  - {text: "{date} ki pictures screen pe lagao", variant: hinglish}
+  - {text: "mujhe {date} ke photos dikha do", variant: hinglish}
+  - {text: "gallery kholo aur {date} ki photos nikalo", variant: hinglish}
+  - {text: "{date} ko jo photos khiche the woh dikhao", variant: hinglish}
+  - {text: "zara {date} ki pics screen pe daal do", variant: hinglish}
+  - {text: "{date} photos torisu", variant: kannada_english}
+  - {text: "{date} dina photos screen alli haaku", variant: kannada_english}
+  - {text: "{date} pictures swalpa torsi", variant: kannada_english}
+  - {text: "{date} alli tegdiro photos open maadu", variant: kannada_english}
+  - {text: "uh bring the um the {date} photos up", variant: disfluent}
+  - {text: "open the photos from like {date} you know", variant: disfluent}
+  - {text: "open the {date} videos no wait photos", variant: disfluent}
+  - {text: "um those pictures we took uh on {date} put them on", variant: disfluent}
+  - {text: "so the photos from {date} um put them up", variant: disfluent}
+  - {text: "er the gallery go to go to {date}", variant: disfluent}
+
+# seed 1 (question): can you pull up the pictures from the wedding
+"1":
+  - {text: "could you show the wedding photos?", variant: plain}
+  - {text: "can we see the wedding snaps on the screen", variant: plain}
+  - {text: "will you open the wedding album", variant: plain}
+  - {text: "can i have a look at the wedding pics?", variant: plain}
+  - {text: "would you bring up the photos from the marriage function", variant: plain}
+  - {text: "can you find the wedding photos in the gallery", variant: plain}
+  - {text: "mind putting the wedding pictures on the display?", variant: plain}
+  - {text: "could we go through the wedding photos", variant: plain}
+  - {text: "any chance you can open the pics from the wedding?", variant: plain}
+  - {text: "can you show everyone the wedding album", variant: plain}
+  - {text: "could you get the reception photos up on screen", variant: plain}
+  - {text: "how about showing the wedding pictures?", variant: plain}
+  - {text: "would you mind opening the photos from the wedding", variant: plain}
+  - {text: "can you load the wedding snaps", variant: plain}
+  - {text: "where are the wedding photos can you pull them up", variant: plain}
+  - {text: "can we look at the marriage photos now?", variant: plain}
+  - {text: "could you display the pictures we took at the wedding", variant: plain}
+  - {text: "will you put the wedding pics on the big screen?", variant: plain}
+  - {text: "is it possible to see the wedding photos here", variant: plain}
+  - {text: "can you get me the wedding album on the screen", variant: plain}
+  - {text: "you have the wedding photos na can you open them", variant: plain}
+  - {text: "could you pull the wedding photos up for my cousin", variant: plain}
+  - {text: "can you scroll through the wedding pictures for us?", variant: plain}
+  - {text: "would you show the wedding photos from my phone", variant: plain}
+  - {text: "shaadi ki photos dikha sakte ho?", variant: hinglish}
+  - {text: "wedding wali pictures screen pe laga doge", variant: hinglish}
+  - {text: "kya tum shaadi ke photos khol sakte ho", variant: hinglish}
+  - {text: "shaadi ki pics dikhaoge zara?", variant: hinglish}
+  - {text: "wedding album khol doge kya", variant: hinglish}
+  - {text: "kya shaadi wali photos nikal sakte ho", variant: hinglish}
+  - {text: "wedding photos torsthiya?", variant: kannada_english}
+  - {text: "maduve photos open maadtiya", variant: kannada_english}
+  - {text: "maduve pictures swalpa torisbahuda?", variant: kannada_english}
+  - {text: "wedding album screen alli haaktiya", variant: kannada_english}
+  - {text: "can you um those wedding uh pictures can you get them up", variant: disfluent}
+  - {text: "the wedding photos could you like um put them on?", variant: disfluent}
+  - {text: "can you open the reception no the wedding pictures", variant: disfluent}
+  - {text: "uh can you can you bring up the wedding pics", variant: disfluent}
+  - {text: "so um would you show those pictures from the wedding you know", variant: disfluent}
+  - {text: "er can we see the photos from um the wedding", variant: disfluent}
+
+# seed 2 (indirect): grandma wants to see the trip pictures
+"2":
+  - {text: "nani keeps asking about the holiday photos", variant: plain}
+  - {text: "my grandmother hasn't seen the pics from our trip yet", variant: plain}
+  - {text: "paati wants a look at the vacation snaps", variant: plain}
+  - {text: "ajji was asking how the trip photos came out", variant: plain}
+  - {text: "grandma's been dying to see where we went", variant: plain}
+  - {text: "granny in the back seat wants to see the beach trip photos", variant: plain}
+  - {text: "dadi wants to see what we clicked on the trip", variant: plain}
+  - {text: "grandma says she never got to see the trip photos", variant: plain}
+  - {text: "nani is asking for the pictures from our tour", variant: plain}
+  - {text: "my granny would love to see the holiday pics", variant: plain}
+  - {text: "we promised grandma we'd show her the trip photos", variant: plain}
+  - {text: "grandma missed the trip so she wants to see the photos", variant: plain}
+  - {text: "dadi's been asking about the vacation pictures ever since we left", variant: plain}
+  - {text: "grandmother wants to see how the kids looked on the trip", variant: plain}
+  - {text: "nani hasn't stopped talking about seeing our trip snaps", variant: plain}
+  - {text: "ajji is curious about the photos from our outing", variant: plain}
+  - {text: "grandma wants to look at the pictures we took on holiday", variant: plain}
+  - {text: "my grandma's asking to see the travel photos", variant: plain}
+  - {text: "paati keeps saying she wants the trip pics", variant: plain}
+  - {text: "grandma never saw the photos from the hill station trip", variant: plain}
+  - {text: "the trip pictures are what nani wants right now", variant: plain}
+  - {text: "dadi is keen on the holiday snaps", variant: plain}
+  - {text: "grandma's sitting at the back asking about the trip photos", variant: plain}
+  - {text: "our grandmother would like to go through the vacation pictures", variant: plain}
+  - {text: "dadi ko trip ki photos dekhni hain", variant: hinglish}
+  - {text: "nani bol rahi hai trip wali pics dikhao", variant: hinglish}
+  - {text: "nani kab se trip ke photos maang rahi hai", variant: hinglish}
+  - {text: "dadi ne abhi tak trip ki pictures nahi dekhi", variant: hinglish}
+  - {text: "dadi puch rahi hai trip ke photos kaise aaye", variant: hinglish}
+  - {text: "nani ko ghoomne wali photos dekhni hai yaar", variant: hinglish}
+  - {text: "ajji ge trip photos nodbeku antha", variant: kannada_english}
+  - {text: "ajji trip pictures kelthidaare", variant: kannada_english}
+  - {text: "ajji innu trip photos nodilla", variant: kannada_english}
+  - {text: "namma ajji ge trip alli tegda photos nodbeku", variant: kannada_english}
+  - {text: "grandma um she really wants the uh trip pictures", variant: disfluent}
+  - {text: "so nani was like asking about the the trip photos", variant: disfluent}
+  - {text: "uh dadi wants to see the wedding no the trip pictures", variant: disfluent}
+  - {text: "my grandma you know she hasn't seen the um trip pics", variant: disfluent}
+  - {text: "er grandma's asking for the holiday uh the trip photos", variant: disfluent}
+  - {text: "ajji wants to um like see the pictures from the trip", variant: disfluent}
+
+# seed 3 (fragment): photo gallery
+"3":
+  - {text: "gallery", variant: plain}
+  - {text: "photos", variant: plain}
+  - {text: "open gallery", variant: plain}
+  - {text: "my pictures", variant: plain}
+  - {text: "pics please", variant: plain}
+  - {text: "photos on screen", variant: plain}
+  - {text: "the photo album", variant: plain}
+  - {text: "picture gallery", variant: plain}
+  - {text: "show photos", variant: plain}
+  - {text: "camera roll", variant: plain}
+  - {text: "my photos", variant: plain}
+  - {text: "gallery app", variant: plain}
+  - {text: "saved pictures", variant: plain}
+  - {text: "photo viewer", variant: plain}
+  - {text: "pictures on the display", variant: plain}
+  - {text: "snaps", variant: plain}
+  - {text: "all my pics", variant: plain}
+  - {text: "photo library", variant: plain}
+  - {text: "gallery please", variant: plain}
+  - {text: "family photos", variant: plain}
+  - {text: "recent photos", variant: plain}
+  - {text: "the pictures folder", variant: plain}
+  - {text: "phone photos", variant: plain}
+  - {text: "image gallery", variant: plain}
+  - {text: "photos dikhao", variant: hinglish}
+  - {text: "gallery kholo", variant: hinglish}
+  - {text: "meri pics", variant: hinglish}
+  - {text: "photo wala app kholo", variant: hinglish}
+  - {text: "tasveerein dikhao", variant: hinglish}
+  - {text: "gallery khol do na", variant: hinglish}
+  - {text: "photos torisu", variant: kannada_english}
+  - {text: "gallery tegi", variant: kannada_english}
+  - {text: "nan photos", variant: kannada_english}
+  - {text: "pictures haaku", variant: kannada_english}
+  - {text: "uh gallery", variant: disfluent}
+  - {text: "um photo the photo gallery", variant: disfluent}
+  - {text: "photos uh photos please", variant: disfluent}
+  - {text: "er the the gallery", variant: disfluent}
+  - {text: "videos no photos", variant: disfluent}
+  - {text: "um like my pictures you know", variant: disfluent}

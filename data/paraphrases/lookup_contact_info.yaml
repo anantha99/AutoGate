@@ -1,0 +1,176 @@
+# Paraphrases of the lookup_contact_info seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): tell me {contact}'s office address
+"0":
+  - {text: "read out {contact}'s office address", variant: plain}
+  - {text: "give me the address of {contact}'s office", variant: plain}
+  - {text: "find {contact}'s work address", variant: plain}
+  - {text: "pull up where {contact}'s office is", variant: plain}
+  - {text: "look up {contact}'s office location", variant: plain}
+  - {text: "get me the office address for {contact}", variant: plain}
+  - {text: "say {contact}'s office address out loud", variant: plain}
+  - {text: "check where {contact} works and give me the address", variant: plain}
+  - {text: "find out the address of {contact}'s workplace", variant: plain}
+  - {text: "fetch {contact}'s office address from contacts", variant: plain}
+  - {text: "let me know {contact}'s office address", variant: plain}
+  - {text: "search contacts for {contact}'s work address", variant: plain}
+  - {text: "give me {contact}'s work location", variant: plain}
+  - {text: "tell me where {contact}'s office is", variant: plain}
+  - {text: "find the office address saved for {contact}", variant: plain}
+  - {text: "bring up the address of {contact}'s office", variant: plain}
+  - {text: "look for {contact}'s company address", variant: plain}
+  - {text: "read me the work address under {contact}", variant: plain}
+  - {text: "just give me {contact}'s office address quickly", variant: plain}
+  - {text: "get {contact}'s office location from the phonebook", variant: plain}
+  - {text: "spell out {contact}'s office address for me", variant: plain}
+  - {text: "check the phonebook for where {contact} works", variant: plain}
+  - {text: "find where {contact}'s office is located", variant: plain}
+  - {text: "dig out the address where {contact} works", variant: plain}
+  - {text: "{contact} ka office address batao", variant: hinglish}
+  - {text: "{contact} ke office ka pata bata do", variant: hinglish}
+  - {text: "mujhe batao {contact} ka office kahan hai", variant: hinglish}
+  - {text: "{contact} ka work address bolo", variant: hinglish}
+  - {text: "zara {contact} ke office ka address nikalo", variant: hinglish}
+  - {text: "{contact} ke daftar ka address batao", variant: hinglish}
+  - {text: "{contact} office address heli", variant: kannada_english}
+  - {text: "{contact} avara office yelli ide heli", variant: kannada_english}
+  - {text: "{contact} office address hudki kodu", variant: kannada_english}
+  - {text: "{contact} avara work address swalpa helu", variant: kannada_english}
+  - {text: "uh just er tell me the office address um for {contact}", variant: disfluent}
+  - {text: "give me {contact}'s home no office address", variant: disfluent}
+  - {text: "um can't remember so like find where {contact} works", variant: disfluent}
+  - {text: "read out read out where {contact}'s office is", variant: disfluent}
+  - {text: "so er tell me where {contact} um works the address", variant: disfluent}
+  - {text: "{contact}'s uh office address you know the work one", variant: disfluent}
+
+# seed 1 (question): what's {contact}'s number
+"1":
+  - {text: "what's {contact}'s phone number these days", variant: plain}
+  - {text: "do you have {contact}'s number", variant: plain}
+  - {text: "can you tell me {contact}'s mobile number?", variant: plain}
+  - {text: "what number do i have saved for {contact}", variant: plain}
+  - {text: "which number is {contact} on?", variant: plain}
+  - {text: "what's the mobile number for {contact}", variant: plain}
+  - {text: "could you read out {contact}'s number", variant: plain}
+  - {text: "what number should i use for {contact}", variant: plain}
+  - {text: "is {contact}'s number saved in the phone?", variant: plain}
+  - {text: "have i got any number for {contact}?", variant: plain}
+  - {text: "which is {contact}'s mobile number", variant: plain}
+  - {text: "{contact}'s number is what?", variant: plain}
+  - {text: "what's the contact number of {contact}", variant: plain}
+  - {text: "could you look up {contact}'s phone number", variant: plain}
+  - {text: "any idea which mobile {contact} has", variant: plain}
+  - {text: "would you find {contact}'s number for me?", variant: plain}
+  - {text: "what's the best number to reach {contact} on", variant: plain}
+  - {text: "got {contact}'s number?", variant: plain}
+  - {text: "can i get {contact}'s mobile number", variant: plain}
+  - {text: "do you know {contact}'s phone number?", variant: plain}
+  - {text: "which number have i stored for {contact}", variant: plain}
+  - {text: "is there a phone number for {contact}?", variant: plain}
+  - {text: "how can i find {contact}'s number", variant: plain}
+  - {text: "what number is {contact} using these days", variant: plain}
+  - {text: "{contact} ka number kya hai?", variant: hinglish}
+  - {text: "{contact} ka mobile number kitna hai", variant: hinglish}
+  - {text: "phone mein {contact} ka number saved hai?", variant: hinglish}
+  - {text: "mere paas {contact} ka koi number save hai", variant: hinglish}
+  - {text: "{contact} ka contact number bata sakte ho?", variant: hinglish}
+  - {text: "yaar {contact} ka phone number pata hai?", variant: hinglish}
+  - {text: "{contact} number enu?", variant: kannada_english}
+  - {text: "{contact} number gottha?", variant: kannada_english}
+  - {text: "{contact} mobile number yaavdu?", variant: kannada_english}
+  - {text: "{contact} number idya phone alli?", variant: kannada_english}
+  - {text: "um what's uh {contact}'s number", variant: disfluent}
+  - {text: "what's {contact}'s like what's {contact}'s phone number", variant: disfluent}
+  - {text: "uh have we got um {contact}'s number saved?", variant: disfluent}
+  - {text: "what's {contact}'s address no sorry number", variant: disfluent}
+  - {text: "so er what's the like the mobile {contact} uses", variant: disfluent}
+  - {text: "um could you tell me uh {contact}'s mobile number", variant: disfluent}
+
+# seed 2 (outcome): i need {contact}'s address for the courier
+"2":
+  - {text: "the courier guy is asking for {contact}'s address", variant: plain}
+  - {text: "i've got to put {contact}'s address on this parcel", variant: plain}
+  - {text: "i'm sending a package to {contact} and don't have the address", variant: plain}
+  - {text: "the delivery form needs {contact}'s address", variant: plain}
+  - {text: "i need to fill in {contact}'s address for a parcel", variant: plain}
+  - {text: "without {contact}'s address the courier can't go out", variant: plain}
+  - {text: "i'm booking a pickup for {contact} and need the address", variant: plain}
+  - {text: "i have to write {contact}'s address on the package", variant: plain}
+  - {text: "the courier boy needs to know where {contact} lives", variant: plain}
+  - {text: "i don't remember {contact}'s address and the parcel has to go today", variant: plain}
+  - {text: "{contact}'s address is needed for the delivery", variant: plain}
+  - {text: "i'm stuck at the courier counter without {contact}'s address", variant: plain}
+  - {text: "the courier office wants {contact}'s full address", variant: plain}
+  - {text: "i'm couriering something to {contact} and need where they stay", variant: plain}
+  - {text: "this parcel is for {contact} but i don't know the address", variant: plain}
+  - {text: "need the delivery address for {contact}", variant: plain}
+  - {text: "i'm missing {contact}'s address for the shipment", variant: plain}
+  - {text: "the package can't be booked till i have {contact}'s address", variant: plain}
+  - {text: "i've to send a gift to {contact} and the address is not with me", variant: plain}
+  - {text: "i'm filling out the courier slip for {contact}", variant: plain}
+  - {text: "i can't recall where {contact} lives and the courier is waiting", variant: plain}
+  - {text: "the parcel is packed but {contact}'s house address is missing", variant: plain}
+  - {text: "the courier needs {contact}'s pin code and address", variant: plain}
+  - {text: "{contact}'s address is the only thing missing on the courier form", variant: plain}
+  - {text: "courier ke liye {contact} ka address chahiye", variant: hinglish}
+  - {text: "mujhe {contact} ka pata chahiye parcel bhejna hai", variant: hinglish}
+  - {text: "courier wala {contact} ka address maang raha hai", variant: hinglish}
+  - {text: "{contact} ko parcel bhejna hai address nahi hai mere paas", variant: hinglish}
+  - {text: "delivery wala {contact} ke ghar ka pata pooch raha hai", variant: hinglish}
+  - {text: "parcel ke liye {contact} kahan rehta hai woh chahiye", variant: hinglish}
+  - {text: "courier ge {contact} address beku", variant: kannada_english}
+  - {text: "{contact} address beku parcel kalisbeku", variant: kannada_english}
+  - {text: "courier avanu {contact} address kelthidaane", variant: kannada_english}
+  - {text: "{contact} mane address beku delivery ge", variant: kannada_english}
+  - {text: "uh the parcel's ready but um {contact}'s address i don't have", variant: disfluent}
+  - {text: "the the courier guy is asking um where {contact} lives", variant: disfluent}
+  - {text: "um i need {contact}'s number no address for the parcel", variant: disfluent}
+  - {text: "so like i have to send a parcel to uh {contact} and need the address", variant: disfluent}
+  - {text: "er i don't have {contact}'s um address for the courier", variant: disfluent}
+  - {text: "i need uh you know {contact}'s address the courier's here", variant: disfluent}
+
+# seed 3 (fragment): {contact} number
+"3":
+  - {text: "{contact}'s phone number", variant: plain}
+  - {text: "the number for {contact}", variant: plain}
+  - {text: "cell number of {contact}", variant: plain}
+  - {text: "{contact}'s contact number", variant: plain}
+  - {text: "phone number of {contact}", variant: plain}
+  - {text: "{contact} mobile please", variant: plain}
+  - {text: "mobile of {contact}", variant: plain}
+  - {text: "{contact}'s cell", variant: plain}
+  - {text: "{contact}'s number quickly", variant: plain}
+  - {text: "{contact} phone number please", variant: plain}
+  - {text: "{contact}'s saved number", variant: plain}
+  - {text: "get {contact}'s number", variant: plain}
+  - {text: "{contact}'s landline", variant: plain}
+  - {text: "{contact}'s whatsapp number", variant: plain}
+  - {text: "saved number of {contact}", variant: plain}
+  - {text: "the number {contact} uses", variant: plain}
+  - {text: "{contact} phone", variant: plain}
+  - {text: "{contact}'s personal number", variant: plain}
+  - {text: "{contact}'s current number", variant: plain}
+  - {text: "just {contact}'s number", variant: plain}
+  - {text: "{contact}'s number from contacts", variant: plain}
+  - {text: "mobile number for {contact}", variant: plain}
+  - {text: "{contact}'s number on file", variant: plain}
+  - {text: "{contact} number from phonebook", variant: plain}
+  - {text: "{contact} ka number chahiye", variant: hinglish}
+  - {text: "{contact} ka mobile number batao", variant: hinglish}
+  - {text: "{contact} ka phone number jaldi", variant: hinglish}
+  - {text: "{contact} wala number bolo", variant: hinglish}
+  - {text: "{contact} ka number bolo zara", variant: hinglish}
+  - {text: "{contact} ka contact number do", variant: hinglish}
+  - {text: "{contact} avara number heli", variant: kannada_english}
+  - {text: "{contact} mobile number kodi", variant: kannada_english}
+  - {text: "swalpa {contact} number kodu", variant: kannada_english}
+  - {text: "{contact} phone number beku", variant: kannada_english}
+  - {text: "uh {contact} um number", variant: disfluent}
+  - {text: "{contact}'s uh number please", variant: disfluent}
+  - {text: "um number uh {contact}'s one", variant: disfluent}
+  - {text: "{contact} uh {contact}'s mobile number", variant: disfluent}
+  - {text: "um {contact}'s address no number", variant: disfluent}
+  - {text: "er like {contact}'s mobile you know", variant: disfluent}

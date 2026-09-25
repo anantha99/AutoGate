@@ -1,0 +1,176 @@
+# Paraphrases of the seat_heater_on seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): heat the {seat} seat
+"0":
+  - {text: "warm up the {seat} seat", variant: plain}
+  - {text: "switch on the seat heater for the {seat} seat", variant: plain}
+  - {text: "put the {seat} seat heating on", variant: plain}
+  - {text: "get some heat going in the {seat} seat", variant: plain}
+  - {text: "{seat} seat heater on", variant: plain}
+  - {text: "make the {seat} seat nice and toasty", variant: plain}
+  - {text: "turn the {seat} seat warmer on", variant: plain}
+  - {text: "give the {seat} seat a bit of heat", variant: plain}
+  - {text: "crank up the heat on the {seat} seat", variant: plain}
+  - {text: "start warming the {seat} seat", variant: plain}
+  - {text: "do one thing switch on heating for the {seat} seat", variant: plain}
+  - {text: "fire up the heater in the {seat} seat", variant: plain}
+  - {text: "warm the {seat} seat before we set off", variant: plain}
+  - {text: "heating on for {seat} seat please", variant: plain}
+  - {text: "turn up the warmth in the {seat} seat", variant: plain}
+  - {text: "seat warmer for the {seat} side please", variant: plain}
+  - {text: "whoever's sitting in the {seat} seat give them some heat", variant: plain}
+  - {text: "let the {seat} seat get warm", variant: plain}
+  - {text: "{seat} seat is freezing give it some warmth", variant: plain}
+  - {text: "heat it up in the {seat} seat", variant: plain}
+  - {text: "go ahead and warm the {seat} seat", variant: plain}
+  - {text: "bump the {seat} seat heating up a notch", variant: plain}
+  - {text: "that heater in the {seat} seat put it on na", variant: plain}
+  - {text: "low heat on the {seat} seat please", variant: plain}
+  - {text: "{seat} seat ka heater chalu karo", variant: hinglish}
+  - {text: "{seat} seat garam kar do", variant: hinglish}
+  - {text: "{seat} seat mein heating chalu karo", variant: hinglish}
+  - {text: "thoda {seat} seat ko garam karo yaar", variant: hinglish}
+  - {text: "{seat} wali seat ka seat warmer chala do", variant: hinglish}
+  - {text: "{seat} seat ki heating on kar do na", variant: hinglish}
+  - {text: "{seat} seat heater haaku", variant: kannada_english}
+  - {text: "{seat} seat swalpa bisi maadu", variant: kannada_english}
+  - {text: "{seat} seat heating on maadi", variant: kannada_english}
+  - {text: "{seat} seat ge heat kodu guru", variant: kannada_english}
+  - {text: "uh warm the the {seat} seat please", variant: disfluent}
+  - {text: "heat the {seat} no wait the {seat} seat yeah that one", variant: disfluent}
+  - {text: "um so the {seat} seat put the heater on", variant: disfluent}
+  - {text: "switch on the er the heating for um {seat} seat", variant: disfluent}
+  - {text: "cool the {seat} seat no no i mean warm it up", variant: disfluent}
+  - {text: "like just you know get the {seat} seat warm", variant: disfluent}
+
+# seed 1 (outcome): my lower back feels cold and stiff
+"1":
+  - {text: "i'm freezing and my lower spine hurts", variant: plain}
+  - {text: "it's so chilly my spine is aching", variant: plain}
+  - {text: "i'm shivering and my back has gone tight", variant: plain}
+  - {text: "this cold is getting into my back", variant: plain}
+  - {text: "my back is killing me in this cold", variant: plain}
+  - {text: "feels like i'm sitting on a block of ice", variant: plain}
+  - {text: "my waist is all cold and cramped", variant: plain}
+  - {text: "lower back is sore from the chill", variant: plain}
+  - {text: "this winter morning is wrecking my back", variant: plain}
+  - {text: "i've got a stiff back and it's freezing in here", variant: plain}
+  - {text: "my back muscles are all knotted from the cold", variant: plain}
+  - {text: "i can't feel my back it's that cold", variant: plain}
+  - {text: "the cold seat is giving me back pain", variant: plain}
+  - {text: "my back could use some warmth", variant: plain}
+  - {text: "my back's gone numb with the cold", variant: plain}
+  - {text: "the chill is going right into my spine", variant: plain}
+  - {text: "my back is cramping it's so cold", variant: plain}
+  - {text: "aching back and this seat is like ice", variant: plain}
+  - {text: "i could really use something warm behind me", variant: plain}
+  - {text: "this early morning cold has made my back rigid", variant: plain}
+  - {text: "my back hurts and everything feels cold", variant: plain}
+  - {text: "my old back pain is flaring in this cold weather", variant: plain}
+  - {text: "brr my back is frozen stiff", variant: plain}
+  - {text: "there's a cold ache right at the base of my back", variant: plain}
+  - {text: "meri kamar thand se akad gayi hai", variant: hinglish}
+  - {text: "yaar peeche kamar mein bahut thand lag rahi hai", variant: hinglish}
+  - {text: "kamar dard ho raha hai itni thand hai", variant: hinglish}
+  - {text: "seat bahut thandi hai kamar jam gayi", variant: hinglish}
+  - {text: "thand se meri back stiff ho gayi hai", variant: hinglish}
+  - {text: "lower back mein thand lag rahi hai yaar", variant: hinglish}
+  - {text: "nanna back tumba chali aagide", variant: kannada_english}
+  - {text: "swalpa chali aagta ide back ge", variant: kannada_english}
+  - {text: "seat tumba thanda ide back novu aagta ide", variant: kannada_english}
+  - {text: "ivattu tumba chali guru back stiff aagide", variant: kannada_english}
+  - {text: "uh my back my lower back is like really cold", variant: disfluent}
+  - {text: "um it's so cold and my back is uh stiff", variant: disfluent}
+  - {text: "my my back is freezing you know down low", variant: disfluent}
+  - {text: "er my neck no my lower back is all cold and tight", variant: disfluent}
+  - {text: "so like my back feels um frozen and sore", variant: disfluent}
+  - {text: "you know my lower uh lower back is just aching with cold", variant: disfluent}
+
+# seed 2 (question): can you warm up my seat
+"2":
+  - {text: "could you heat my seat please", variant: plain}
+  - {text: "can my seat get a bit warmer?", variant: plain}
+  - {text: "will you switch on my seat heater", variant: plain}
+  - {text: "would you turn the seat warmer on for me?", variant: plain}
+  - {text: "can i get some heat in my seat", variant: plain}
+  - {text: "is it possible to heat up where i'm sitting?", variant: plain}
+  - {text: "mind putting my seat heating on", variant: plain}
+  - {text: "could you make my seat toasty?", variant: plain}
+  - {text: "how about warming my seat a little", variant: plain}
+  - {text: "can you get the heater going under me", variant: plain}
+  - {text: "is there any way to warm the seat?", variant: plain}
+  - {text: "could i have the seat heater on", variant: plain}
+  - {text: "would you mind heating my seat?", variant: plain}
+  - {text: "can you put my seat on heat", variant: plain}
+  - {text: "any chance of a warm seat?", variant: plain}
+  - {text: "can we have seat heating on my side", variant: plain}
+  - {text: "will you heat up the seat i'm in?", variant: plain}
+  - {text: "shall we turn on my seat warmer", variant: plain}
+  - {text: "could you bring up the heat in my seat", variant: plain}
+  - {text: "can the seat heater come on for me?", variant: plain}
+  - {text: "would you get my seat warm quickly", variant: plain}
+  - {text: "is the seat heater something you can switch on for me?", variant: plain}
+  - {text: "why don't you warm my seat a bit", variant: plain}
+  - {text: "can you do the seat heating for me please?", variant: plain}
+  - {text: "meri seat garam kar doge kya", variant: hinglish}
+  - {text: "seat heater chala sakte ho?", variant: hinglish}
+  - {text: "kya meri seat thodi garam ho sakti hai", variant: hinglish}
+  - {text: "seat ki heating on karoge kya", variant: hinglish}
+  - {text: "kya tum seat warmer chalu kar sakte ho", variant: hinglish}
+  - {text: "thoda seat garam karoge yaar?", variant: hinglish}
+  - {text: "nanna seat swalpa bisi maadtira?", variant: kannada_english}
+  - {text: "seat heater haaktira", variant: kannada_english}
+  - {text: "nanna seat bisi maadoke aagutta?", variant: kannada_english}
+  - {text: "swalpa seat warm maadbahuda", variant: kannada_english}
+  - {text: "um could you uh warm my seat", variant: disfluent}
+  - {text: "can you can you heat the seat for me", variant: disfluent}
+  - {text: "would you er switch on the uh seat heater", variant: disfluent}
+  - {text: "could you cool my seat no sorry heat it up", variant: disfluent}
+  - {text: "is it um possible to like warm my seat a bit", variant: disfluent}
+  - {text: "so uh can my seat get heated you know", variant: disfluent}
+
+# seed 3 (fragment): seat warmer
+"3":
+  - {text: "seat heater", variant: plain}
+  - {text: "heated seat", variant: plain}
+  - {text: "seat heating on", variant: plain}
+  - {text: "warm seat please", variant: plain}
+  - {text: "heater for the seat", variant: plain}
+  - {text: "seat heat", variant: plain}
+  - {text: "my seat warm", variant: plain}
+  - {text: "toasty seat", variant: plain}
+  - {text: "heat under me", variant: plain}
+  - {text: "warm cushion", variant: plain}
+  - {text: "heat on my seat", variant: plain}
+  - {text: "the heated seat thing", variant: plain}
+  - {text: "seat warmth", variant: plain}
+  - {text: "heating the seat", variant: plain}
+  - {text: "heating for my seat", variant: plain}
+  - {text: "just the seat heat", variant: plain}
+  - {text: "seat on warm", variant: plain}
+  - {text: "seat warming", variant: plain}
+  - {text: "cushion heater", variant: plain}
+  - {text: "seat heater level one", variant: plain}
+  - {text: "a little seat warmth", variant: plain}
+  - {text: "full heat on the seat", variant: plain}
+  - {text: "heated cushion please", variant: plain}
+  - {text: "warm seat now", variant: plain}
+  - {text: "seat garam karo", variant: hinglish}
+  - {text: "heater wali seat chalu", variant: hinglish}
+  - {text: "thodi garmi seat mein", variant: hinglish}
+  - {text: "seat heater on karo", variant: hinglish}
+  - {text: "garam seat chahiye", variant: hinglish}
+  - {text: "warmer lagao seat pe", variant: hinglish}
+  - {text: "seat bisi maadu", variant: kannada_english}
+  - {text: "seat ge heater haaku", variant: kannada_english}
+  - {text: "swalpa seat warm maadi", variant: kannada_english}
+  - {text: "bisi seat beku", variant: kannada_english}
+  - {text: "uh the seat um the warmer thing", variant: disfluent}
+  - {text: "seat um heater please", variant: disfluent}
+  - {text: "seat cooling er no seat heating", variant: disfluent}
+  - {text: "um warm seat you know", variant: disfluent}
+  - {text: "like the seat heat uh on", variant: disfluent}
+  - {text: "so um the heater thing for the uh seat", variant: disfluent}

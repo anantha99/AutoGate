@@ -1,0 +1,176 @@
+# Paraphrases of the vehicle_manual_question seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): explain how the auto hold button works
+"0":
+  - {text: "tell me what the auto hold button does", variant: plain}
+  - {text: "fill me in on the auto hold feature", variant: plain}
+  - {text: "describe what happens when i press auto hold", variant: plain}
+  - {text: "go over the auto hold function for me", variant: plain}
+  - {text: "break down how auto hold works in this car", variant: plain}
+  - {text: "teach me how to use the auto hold button", variant: plain}
+  - {text: "give me the lowdown on this auto hold switch", variant: plain}
+  - {text: "let me know how auto hold actually works", variant: plain}
+  - {text: "tell me when auto hold kicks in and when it lets go", variant: plain}
+  - {text: "run me through the auto hold button's working", variant: plain}
+  - {text: "read out what the manual says about auto hold", variant: plain}
+  - {text: "explain that auto hold switch next to the gear lever", variant: plain}
+  - {text: "clarify how auto hold behaves at signals", variant: plain}
+  - {text: "check the manual and tell me how auto hold works", variant: plain}
+  - {text: "explain what auto hold does at a red light", variant: plain}
+  - {text: "help me understand the auto hold button", variant: plain}
+  - {text: "describe the auto hold feature properly", variant: plain}
+  - {text: "tell me how the brake hold thing on the console works", variant: plain}
+  - {text: "brief me on the auto hold button", variant: plain}
+  - {text: "look up auto hold in the owner's manual for me", variant: plain}
+  - {text: "tell me how auto hold behaves in stop and go traffic", variant: plain}
+  - {text: "give me a quick explanation of the auto hold", variant: plain}
+  - {text: "find out what that auto hold button is for", variant: plain}
+  - {text: "go through how auto hold works when i'm on a slope", variant: plain}
+  - {text: "auto hold button kaise kaam karta hai samjhao", variant: hinglish}
+  - {text: "yeh auto hold wala button kya karta hai batao", variant: hinglish}
+  - {text: "auto hold ka function explain karo", variant: hinglish}
+  - {text: "gear ke paas wala auto hold button ka kaam batao", variant: hinglish}
+  - {text: "auto hold kab lagta hai aur kab chhodta hai batao", variant: hinglish}
+  - {text: "mujhe auto hold ke baare mein samjha do", variant: hinglish}
+  - {text: "auto hold button hege work aagutte heli", variant: kannada_english}
+  - {text: "ee auto hold button enu maadutte heli", variant: kannada_english}
+  - {text: "auto hold feature bagge explain maadi", variant: kannada_english}
+  - {text: "auto hold yaavaga on aagutte antha heli kodi", variant: kannada_english}
+  - {text: "explain the uh the auto hold thing how it um operates", variant: disfluent}
+  - {text: "tell me how the auto park no auto hold button works", variant: disfluent}
+  - {text: "um so this auto hold button like what it does tell me that", variant: disfluent}
+  - {text: "er go through how auto hold works i mean the button near the gear", variant: disfluent}
+  - {text: "uh explain the hill hold no sorry the auto hold button", variant: disfluent}
+  - {text: "like the auto hold uh just explain what it's for", variant: disfluent}
+
+# seed 1 (question): what does the orange engine light mean
+"1":
+  - {text: "why is the engine symbol glowing orange?", variant: plain}
+  - {text: "what's that amber engine light telling me", variant: plain}
+  - {text: "that orange engine icon is warning me about what?", variant: plain}
+  - {text: "is the orange engine warning something serious?", variant: plain}
+  - {text: "what is the yellow engine light on the cluster for", variant: plain}
+  - {text: "should i worry about the orange check engine light?", variant: plain}
+  - {text: "when the engine light turns orange what's going on", variant: plain}
+  - {text: "why has the check engine lamp come on in amber?", variant: plain}
+  - {text: "what's the meaning of the engine warning in orange", variant: plain}
+  - {text: "is it safe to keep driving with the orange engine light on", variant: plain}
+  - {text: "what could the amber engine sign mean", variant: plain}
+  - {text: "why is there an orange engine shaped light up front?", variant: plain}
+  - {text: "what does the manual say about the orange engine warning", variant: plain}
+  - {text: "could you tell me what the orange engine lamp means", variant: plain}
+  - {text: "do you know why the engine light is orange", variant: plain}
+  - {text: "how bad is it if the engine light shows orange?", variant: plain}
+  - {text: "what's the orange engine indicator about", variant: plain}
+  - {text: "any idea what that orange engine symbol means?", variant: plain}
+  - {text: "why would the engine light go orange", variant: plain}
+  - {text: "what's this orange light with the engine picture", variant: plain}
+  - {text: "what am i supposed to do about the orange engine light", variant: plain}
+  - {text: "the amber engine light on the cluster means what?", variant: plain}
+  - {text: "what's wrong when the engine light glows orange", variant: plain}
+  - {text: "can you tell me what an orange engine warning means", variant: plain}
+  - {text: "yeh orange engine light ka kya matlab hai?", variant: hinglish}
+  - {text: "engine wali orange light kyun jal rahi hai", variant: hinglish}
+  - {text: "orange engine light aa gayi hai kya problem hai?", variant: hinglish}
+  - {text: "meter mein engine ka orange sign kya bata raha hai", variant: hinglish}
+  - {text: "engine light orange hai chinta ki baat hai kya?", variant: hinglish}
+  - {text: "yaar yeh peeli engine wali batti kyun aayi", variant: hinglish}
+  - {text: "ee orange engine light enu artha?", variant: kannada_english}
+  - {text: "engine light orange aagide yaake?", variant: kannada_english}
+  - {text: "orange engine symbol bandide enu problem?", variant: kannada_english}
+  - {text: "engine warning orange alli ide enu maadbeku?", variant: kannada_english}
+  - {text: "uh the engine light the orange one what's it um mean", variant: disfluent}
+  - {text: "what's the red no orange engine light for?", variant: disfluent}
+  - {text: "um why is the like the engine thing glowing orange", variant: disfluent}
+  - {text: "so er is that orange engine light uh something serious?", variant: disfluent}
+  - {text: "the orange uh engine lamp what does it you know indicate", variant: disfluent}
+  - {text: "er what's that um amber engine warning about?", variant: disfluent}
+
+# seed 2 (outcome): there's a tyre symbol flashing on the dashboard
+"2":
+  - {text: "a little tyre icon keeps blinking on the cluster", variant: plain}
+  - {text: "the tyre warning is flashing in front of me", variant: plain}
+  - {text: "some tyre shaped light just started blinking on the dash", variant: plain}
+  - {text: "i see a flashing tyre sign near the speedometer", variant: plain}
+  - {text: "the tyre pressure symbol is blinking at me", variant: plain}
+  - {text: "a tyre light won't stop flashing on the display", variant: plain}
+  - {text: "there's a blinking horseshoe icon with an exclamation mark inside", variant: plain}
+  - {text: "the dash is showing a tyre icon that keeps flashing", variant: plain}
+  - {text: "something that looks like a tyre is blinking on the instrument panel", variant: plain}
+  - {text: "my cluster has had a flashing tyre warning since the toll", variant: plain}
+  - {text: "the tyre symbol on the meter keeps going on and off", variant: plain}
+  - {text: "a yellow tyre light is flickering on the dash", variant: plain}
+  - {text: "i've got a flashing tyre icon up on the screen", variant: plain}
+  - {text: "the car just threw up a blinking tyre warning", variant: plain}
+  - {text: "a tyre sign keeps blinking every few seconds", variant: plain}
+  - {text: "a flat tyre looking symbol is flashing next to the gauges", variant: plain}
+  - {text: "since this morning the tyre light has been blinking", variant: plain}
+  - {text: "there's this blinking tyre thing on the meter console", variant: plain}
+  - {text: "the tyre indicator is flashing and won't go off", variant: plain}
+  - {text: "a tyre warning keeps popping up and blinking", variant: plain}
+  - {text: "that tyre icon on the dash started flashing after the pothole", variant: plain}
+  - {text: "the tpms light is blinking on the cluster", variant: plain}
+  - {text: "i noticed a tyre symbol blinking near the rpm meter", variant: plain}
+  - {text: "a small tyre picture is flashing on the dashboard", variant: plain}
+  - {text: "dashboard pe tyre ka sign blink ho raha hai", variant: hinglish}
+  - {text: "meter mein tyre wali light jal bujh rahi hai", variant: hinglish}
+  - {text: "yeh tyre ka symbol baar baar flash ho raha hai", variant: hinglish}
+  - {text: "tyre ki warning light blink kar rahi hai abhi", variant: hinglish}
+  - {text: "cluster pe ek tyre jaisa icon chamak raha hai", variant: hinglish}
+  - {text: "subah se tyre wala sign flash kar raha hai yaar", variant: hinglish}
+  - {text: "dashboard alli tyre symbol blink aagta ide", variant: kannada_english}
+  - {text: "meter alli tyre light flash aagta ide", variant: kannada_english}
+  - {text: "tyre icon ondu bandide blink aagta ide guru", variant: kannada_english}
+  - {text: "tyre sign baari baari on off aagta ide", variant: kannada_english}
+  - {text: "um so this tyre sign on the uh the cluster is flashing", variant: disfluent}
+  - {text: "a tyre light no wait a tyre symbol keeps blinking at me", variant: disfluent}
+  - {text: "uh something like a tyre is like blinking on the dash", variant: disfluent}
+  - {text: "the er the tyre warning is flashing you know on the meter", variant: disfluent}
+  - {text: "there's a flashing uh what is it a tyre icon up front", variant: disfluent}
+  - {text: "um the tyre light has been blinking since uh since the toll", variant: disfluent}
+
+# seed 3 (fragment): abs light meaning
+"3":
+  - {text: "abs warning light", variant: plain}
+  - {text: "what's the abs light", variant: plain}
+  - {text: "abs symbol meaning", variant: plain}
+  - {text: "abs light what's that about", variant: plain}
+  - {text: "abs light on why", variant: plain}
+  - {text: "abs lamp explained", variant: plain}
+  - {text: "abs indicator meaning", variant: plain}
+  - {text: "abs warning meaning", variant: plain}
+  - {text: "abs light glowing", variant: plain}
+  - {text: "abs light on the cluster", variant: plain}
+  - {text: "abs icon what's it mean", variant: plain}
+  - {text: "abs light significance", variant: plain}
+  - {text: "anti lock brake light", variant: plain}
+  - {text: "abs showing up in orange", variant: plain}
+  - {text: "abs light explanation", variant: plain}
+  - {text: "abs sign what for", variant: plain}
+  - {text: "abs light what does it mean", variant: plain}
+  - {text: "abs lamp meaning", variant: plain}
+  - {text: "that abs warning", variant: plain}
+  - {text: "abs light lit up", variant: plain}
+  - {text: "abs light info", variant: plain}
+  - {text: "brake abs light", variant: plain}
+  - {text: "abs light as per manual", variant: plain}
+  - {text: "abs symbol came on", variant: plain}
+  - {text: "abs light ka matlab", variant: hinglish}
+  - {text: "abs wali light kya hai", variant: hinglish}
+  - {text: "abs light kyun jali", variant: hinglish}
+  - {text: "abs ka sign kya bolta hai", variant: hinglish}
+  - {text: "yeh abs warning kya hai", variant: hinglish}
+  - {text: "abs indicator ka meaning batao", variant: hinglish}
+  - {text: "abs light artha enu", variant: kannada_english}
+  - {text: "abs light yaake bandide", variant: kannada_english}
+  - {text: "abs symbol enu heltide", variant: kannada_english}
+  - {text: "abs warning enu guru", variant: kannada_english}
+  - {text: "abs uh the abs light what's it mean", variant: disfluent}
+  - {text: "the er abs light like what's that", variant: disfluent}
+  - {text: "esp no abs light meaning", variant: disfluent}
+  - {text: "um abs warning thing you know what's it for", variant: disfluent}
+  - {text: "so uh the anti lock light um meaning", variant: disfluent}
+  - {text: "like the abs sign uh what is it", variant: disfluent}

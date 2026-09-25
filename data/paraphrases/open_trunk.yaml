@@ -1,0 +1,176 @@
+# Paraphrases of the open_trunk seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): open the boot
+"0":
+  - {text: "pop the boot", variant: plain}
+  - {text: "open up the dickey", variant: plain}
+  - {text: "release the tailgate", variant: plain}
+  - {text: "get the dickey lid up", variant: plain}
+  - {text: "unlatch the trunk", variant: plain}
+  - {text: "open the back hatch", variant: plain}
+  - {text: "lift the tailgate", variant: plain}
+  - {text: "pop the rear hatch", variant: plain}
+  - {text: "crack the dickey open", variant: plain}
+  - {text: "pop open the trunk", variant: plain}
+  - {text: "open the luggage space at the back", variant: plain}
+  - {text: "release the boot lid", variant: plain}
+  - {text: "flip the boot up", variant: plain}
+  - {text: "open the dickey for me", variant: plain}
+  - {text: "get the trunk up", variant: plain}
+  - {text: "free the dickey latch", variant: plain}
+  - {text: "raise the hatch", variant: plain}
+  - {text: "unlatch the dickey", variant: plain}
+  - {text: "swing the tailgate up", variant: plain}
+  - {text: "let the boot up", variant: plain}
+  - {text: "put the boot lid up", variant: plain}
+  - {text: "just open the trunk", variant: plain}
+  - {text: "throw the dickey open", variant: plain}
+  - {text: "pop the dickey for the luggage", variant: plain}
+  - {text: "dickey khol do", variant: hinglish}
+  - {text: "boot kholo jaldi", variant: hinglish}
+  - {text: "peeche ki dickey kholo", variant: hinglish}
+  - {text: "trunk open kar do", variant: hinglish}
+  - {text: "boot khol do yaar", variant: hinglish}
+  - {text: "dickey open karo na", variant: hinglish}
+  - {text: "dickey open maadi", variant: kannada_english}
+  - {text: "boot tegi", variant: kannada_english}
+  - {text: "hinde dickey tegi guru", variant: kannada_english}
+  - {text: "boot open maadu", variant: kannada_english}
+  - {text: "uh open the um boot", variant: disfluent}
+  - {text: "uh the back the dickey open it", variant: disfluent}
+  - {text: "open the bonnet no the boot", variant: disfluent}
+  - {text: "er pop the like the trunk", variant: disfluent}
+  - {text: "open the back uh the boot yeah", variant: disfluent}
+  - {text: "so um get the dickey open", variant: disfluent}
+
+# seed 1 (question): can you pop the dickey open
+"1":
+  - {text: "could you open the dickey?", variant: plain}
+  - {text: "would you pop the boot for me", variant: plain}
+  - {text: "can the dickey be opened", variant: plain}
+  - {text: "mind opening the trunk?", variant: plain}
+  - {text: "will you release the dickey", variant: plain}
+  - {text: "could you get the boot open?", variant: plain}
+  - {text: "can we get the dickey up", variant: plain}
+  - {text: "any chance you can open the boot", variant: plain}
+  - {text: "can you unlatch the trunk?", variant: plain}
+  - {text: "would you mind popping the tailgate", variant: plain}
+  - {text: "could you lift the hatch for me?", variant: plain}
+  - {text: "can i get the dickey opened", variant: plain}
+  - {text: "is it possible to open the boot from here?", variant: plain}
+  - {text: "can you crack open the trunk", variant: plain}
+  - {text: "could the boot be popped open?", variant: plain}
+  - {text: "will you open the rear hatch for me", variant: plain}
+  - {text: "could you quickly release the dickey?", variant: plain}
+  - {text: "would you open up the boot", variant: plain}
+  - {text: "can you raise the tailgate?", variant: plain}
+  - {text: "can you release the boot lid", variant: plain}
+  - {text: "could you let the dickey up", variant: plain}
+  - {text: "would you get the dickey open for us?", variant: plain}
+  - {text: "can you flip up the tailgate for me", variant: plain}
+  - {text: "do you mind opening the dickey", variant: plain}
+  - {text: "dickey khol sakte ho kya", variant: hinglish}
+  - {text: "boot khol doge?", variant: hinglish}
+  - {text: "kya dickey open kar doge", variant: hinglish}
+  - {text: "peeche ki dickey khol doge yaar?", variant: hinglish}
+  - {text: "trunk pop kar sakte ho?", variant: hinglish}
+  - {text: "dickey khologe kya zara", variant: hinglish}
+  - {text: "dickey open maadtira?", variant: kannada_english}
+  - {text: "boot tegiyoke aagutta?", variant: kannada_english}
+  - {text: "dickey swalpa open maadbahuda", variant: kannada_english}
+  - {text: "dickey open maadtiya guru", variant: kannada_english}
+  - {text: "can you uh the dickey can you um pop it", variant: disfluent}
+  - {text: "would you would you pop the uh boot lid", variant: disfluent}
+  - {text: "um would you like pop the trunk?", variant: disfluent}
+  - {text: "can you open the bonnet no sorry the dickey", variant: disfluent}
+  - {text: "so can you er get the the dickey open", variant: disfluent}
+  - {text: "um you know the boot could you like release it", variant: disfluent}
+
+# seed 2 (indirect): i need to put the shopping bags in the back
+"2":
+  - {text: "i've got a load of grocery bags to load in", variant: plain}
+  - {text: "these shopping bags won't fit up front with us", variant: plain}
+  - {text: "my hands are full of shopping bags", variant: plain}
+  - {text: "we just picked up groceries and they have to go behind", variant: plain}
+  - {text: "i'm standing at the rear with all the shopping", variant: plain}
+  - {text: "the vegetables and bags need space in the back", variant: plain}
+  - {text: "got a trolley full of stuff to load", variant: plain}
+  - {text: "i'm carrying the bags from the mall to the rear", variant: plain}
+  - {text: "we bought too much and the back seat is already full", variant: plain}
+  - {text: "i'm juggling these bags at the back of the car", variant: plain}
+  - {text: "there are some heavy bags that need to go at the back", variant: plain}
+  - {text: "i have a few bags from the supermarket to load up", variant: plain}
+  - {text: "the groceries have to go in somewhere", variant: plain}
+  - {text: "i'm at the rear with the supermarket bags", variant: plain}
+  - {text: "the shopping needs to go in the luggage space", variant: plain}
+  - {text: "i've come back with a lot of bags from the market", variant: plain}
+  - {text: "these bags won't fit on the seat", variant: plain}
+  - {text: "all this shopping has to go behind", variant: plain}
+  - {text: "the rice bag is too heavy to keep on my lap", variant: plain}
+  - {text: "i'm waiting at the back with the shopping", variant: plain}
+  - {text: "we have shopping bags to stow", variant: plain}
+  - {text: "i picked up the groceries and need to keep them in the back", variant: plain}
+  - {text: "the market stuff has to go somewhere back there", variant: plain}
+  - {text: "i'm loaded with bags and standing behind the car", variant: plain}
+  - {text: "shopping bags peeche rakhne hain", variant: hinglish}
+  - {text: "mere haath mein saamaan hai peeche daalna hai", variant: hinglish}
+  - {text: "ye thaile dickey mein rakhne hain", variant: hinglish}
+  - {text: "sabzi ke bags peeche rakhna hai yaar", variant: hinglish}
+  - {text: "bahut saara shopping hai peeche jagah chahiye", variant: hinglish}
+  - {text: "main peeche khada hoon bags leke", variant: hinglish}
+  - {text: "shopping bags hinde idbeku", variant: kannada_english}
+  - {text: "ee bags ella hinde haakbeku", variant: kannada_english}
+  - {text: "tarkari bags idoke hinde jaaga beku", variant: kannada_english}
+  - {text: "naanu hinde nintidini bags jothe", variant: kannada_english}
+  - {text: "um so these bags i've got to get them in the back", variant: disfluent}
+  - {text: "the shopping it's uh it's got to go in the back", variant: disfluent}
+  - {text: "i've got like a bunch of bags to you know load", variant: disfluent}
+  - {text: "um the bags the grocery bags need to go behind", variant: disfluent}
+  - {text: "all the shopping has to go on the back seat no no in the dickey", variant: disfluent}
+  - {text: "er i'm holding like six bags of uh groceries", variant: disfluent}
+
+# seed 3 (fragment): tailgate
+"3":
+  - {text: "boot", variant: plain}
+  - {text: "dickey", variant: plain}
+  - {text: "trunk", variant: plain}
+  - {text: "trunk open", variant: plain}
+  - {text: "boot please", variant: plain}
+  - {text: "dickey open", variant: plain}
+  - {text: "rear hatch", variant: plain}
+  - {text: "hatch up", variant: plain}
+  - {text: "tailgate up", variant: plain}
+  - {text: "tailgate open", variant: plain}
+  - {text: "boot lid", variant: plain}
+  - {text: "dickey please", variant: plain}
+  - {text: "trunk quickly", variant: plain}
+  - {text: "the dickey", variant: plain}
+  - {text: "boot release", variant: plain}
+  - {text: "trunk release", variant: plain}
+  - {text: "pop the hatch", variant: plain}
+  - {text: "tailgate now", variant: plain}
+  - {text: "luggage space", variant: plain}
+  - {text: "hatchback door", variant: plain}
+  - {text: "dickey now", variant: plain}
+  - {text: "boot up", variant: plain}
+  - {text: "tailgate please", variant: plain}
+  - {text: "rear boot", variant: plain}
+  - {text: "dickey kholo", variant: hinglish}
+  - {text: "boot khol", variant: hinglish}
+  - {text: "dickey zara", variant: hinglish}
+  - {text: "peeche ki dickey", variant: hinglish}
+  - {text: "trunk kholo", variant: hinglish}
+  - {text: "tailgate khol do", variant: hinglish}
+  - {text: "dickey tegi", variant: kannada_english}
+  - {text: "tailgate etthi", variant: kannada_english}
+  - {text: "dickey guru", variant: kannada_english}
+  - {text: "hinde dickey", variant: kannada_english}
+  - {text: "uh tailgate", variant: disfluent}
+  - {text: "um dickey i mean boot", variant: disfluent}
+  - {text: "boot no tailgate", variant: disfluent}
+  - {text: "er trunk please", variant: disfluent}
+  - {text: "er open the uh tailgate", variant: disfluent}
+  - {text: "um you know the boot", variant: disfluent}

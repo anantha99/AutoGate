@@ -1,0 +1,176 @@
+# Paraphrases of the defrost_windshield seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): turn on the front defrost
+"0":
+  - {text: "switch the front demister on", variant: plain}
+  - {text: "put the defroster on for the windscreen", variant: plain}
+  - {text: "defog the windshield", variant: plain}
+  - {text: "get the front defogger going", variant: plain}
+  - {text: "blast the defrost onto the front glass", variant: plain}
+  - {text: "start defrosting the windscreen", variant: plain}
+  - {text: "hit the front defrost button", variant: plain}
+  - {text: "demist the windscreen please", variant: plain}
+  - {text: "run the windshield defroster", variant: plain}
+  - {text: "give me front defrost", variant: plain}
+  - {text: "put on the demister for the front", variant: plain}
+  - {text: "do one thing switch on front defog", variant: plain}
+  - {text: "max defrost on the windscreen", variant: plain}
+  - {text: "turn the windshield defogger on", variant: plain}
+  - {text: "open the defrost vents at the front", variant: plain}
+  - {text: "set the front defroster going", variant: plain}
+  - {text: "just switch on the defroster", variant: plain}
+  - {text: "windscreen defrost on quickly", variant: plain}
+  - {text: "start the demister for the front windscreen", variant: plain}
+  - {text: "clear up the front glass with the defroster", variant: plain}
+  - {text: "put the front defrost", variant: plain}
+  - {text: "get some defog on the front glass", variant: plain}
+  - {text: "fire up the windscreen demist", variant: plain}
+  - {text: "defrost mode on for the front", variant: plain}
+  - {text: "front defrost chalu karo", variant: hinglish}
+  - {text: "windshield ka defogger on kar do", variant: hinglish}
+  - {text: "aage wale sheeshe ka demister chalu karo", variant: hinglish}
+  - {text: "defrost laga do front pe", variant: hinglish}
+  - {text: "defroster chala do aage ke glass pe", variant: hinglish}
+  - {text: "jaldi front demist on karo", variant: hinglish}
+  - {text: "front defrost haaku", variant: kannada_english}
+  - {text: "windshield defogger on maadi", variant: kannada_english}
+  - {text: "munde glass ge demister haaku", variant: kannada_english}
+  - {text: "front defrost swalpa on maadu", variant: kannada_english}
+  - {text: "uh the defrost the front one switch it on", variant: disfluent}
+  - {text: "switch on the rear no the front defroster", variant: disfluent}
+  - {text: "um put on the er the demister in front", variant: disfluent}
+  - {text: "so uh defrost the um windshield", variant: disfluent}
+  - {text: "er get the demister going on the uh front glass", variant: disfluent}
+  - {text: "like just put the front uh defog on you know", variant: disfluent}
+
+# seed 1 (outcome): the windshield is fogging up and i can't see
+"1":
+  - {text: "the front glass is all misted over", variant: plain}
+  - {text: "i can barely see through the windscreen", variant: plain}
+  - {text: "everything's gone foggy in front of me", variant: plain}
+  - {text: "the windscreen has steamed up completely", variant: plain}
+  - {text: "fog has formed on the inside of the windscreen", variant: plain}
+  - {text: "i can't see the road the glass is all white", variant: plain}
+  - {text: "my view is totally blocked by the mist", variant: plain}
+  - {text: "the windshield keeps misting up", variant: plain}
+  - {text: "visibility is zero the front glass is fogged", variant: plain}
+  - {text: "the glass is steaming up with all of us breathing in here", variant: plain}
+  - {text: "can't make out anything through the windscreen", variant: plain}
+  - {text: "it's all hazy on the inside of the front glass", variant: plain}
+  - {text: "i'm driving blind the windscreen is cloudy", variant: plain}
+  - {text: "the front glass went white all of a sudden", variant: plain}
+  - {text: "moisture is building up on the windshield", variant: plain}
+  - {text: "the whole windscreen is covered in condensation", variant: plain}
+  - {text: "there's a layer of mist on the front glass", variant: plain}
+  - {text: "i can't see the vehicle ahead through this mist on the glass", variant: plain}
+  - {text: "the windshield is so foggy it's dangerous", variant: plain}
+  - {text: "my windscreen's gone completely blurry", variant: plain}
+  - {text: "the front glass is sweating from inside", variant: plain}
+  - {text: "the inside of the windscreen is dripping with fog", variant: plain}
+  - {text: "i keep rubbing the glass with my hand but it's still misty", variant: plain}
+  - {text: "the windscreen is clouding over and the road's gone invisible", variant: plain}
+  - {text: "sheesha pura dhundla ho gaya hai kuch dikh nahi raha", variant: hinglish}
+  - {text: "aage ka glass fog se bhar gaya hai", variant: hinglish}
+  - {text: "windscreen pe bhaap jam gayi hai yaar", variant: hinglish}
+  - {text: "kuch nahi dikh raha glass pe mist hai", variant: hinglish}
+  - {text: "front glass dhundhla ho raha hai", variant: hinglish}
+  - {text: "windshield pe fog aa gaya mujhe road nahi dikh raha", variant: hinglish}
+  - {text: "munde glass full fog aagide", variant: kannada_english}
+  - {text: "windshield mele mist ide enu kaanista illa", variant: kannada_english}
+  - {text: "glass ella fog aagide guru road kaanalla", variant: kannada_english}
+  - {text: "windscreen mist aagtide saar yenu kaanalla", variant: kannada_english}
+  - {text: "the uh the windshield is all fogged and i can't um see", variant: disfluent}
+  - {text: "i can't see a thing the glass is uh misting up", variant: disfluent}
+  - {text: "oh no the side no the front glass is all foggy", variant: disfluent}
+  - {text: "um the windscreen it's like totally steamed up", variant: disfluent}
+  - {text: "so the front glass is er fogging and i can barely see", variant: disfluent}
+  - {text: "wait i can't i can't see anything it's misting over", variant: disfluent}
+
+# seed 2 (question): can you clear the mist off the front glass
+"2":
+  - {text: "could you defog the windscreen for me?", variant: plain}
+  - {text: "can the front glass be demisted", variant: plain}
+  - {text: "would you get rid of the fog on the windshield", variant: plain}
+  - {text: "can you do something about the misted up windscreen?", variant: plain}
+  - {text: "will you clear up the front glass", variant: plain}
+  - {text: "could you demist the windshield please", variant: plain}
+  - {text: "can we get the fog off the windscreen?", variant: plain}
+  - {text: "is there a way to clear the fogged front glass", variant: plain}
+  - {text: "mind clearing the steam off the front windshield", variant: plain}
+  - {text: "can you sort out the mist on the windscreen?", variant: plain}
+  - {text: "would you run the demister to clear the windscreen", variant: plain}
+  - {text: "could the defroster clear this windshield?", variant: plain}
+  - {text: "can you get the windscreen clear again", variant: plain}
+  - {text: "do you mind demisting the front glass?", variant: plain}
+  - {text: "could you blow the fog off the windscreen", variant: plain}
+  - {text: "can i get the front glass defogged?", variant: plain}
+  - {text: "will you get the mist off the windshield please", variant: plain}
+  - {text: "could you help clear the foggy windscreen", variant: plain}
+  - {text: "can you make the front glass see through again", variant: plain}
+  - {text: "would you mind defogging the front windshield", variant: plain}
+  - {text: "is it possible to clear the windscreen mist", variant: plain}
+  - {text: "can you get this condensation off the glass in front?", variant: plain}
+  - {text: "could you please unfog the windscreen", variant: plain}
+  - {text: "can the steamed up windshield be cleared quickly", variant: plain}
+  - {text: "front glass ka fog hata doge kya", variant: hinglish}
+  - {text: "sheeshe se mist saaf kar sakte ho?", variant: hinglish}
+  - {text: "kya windscreen ka fog clear kar doge", variant: hinglish}
+  - {text: "aage ke glass ki bhaap hata sakte ho kya", variant: hinglish}
+  - {text: "windshield ka mist hata sakte ho?", variant: hinglish}
+  - {text: "thoda front glass clear kar doge kya", variant: hinglish}
+  - {text: "front glass mist clear maadtira?", variant: kannada_english}
+  - {text: "windshield fog tegeyoke aagutta", variant: kannada_english}
+  - {text: "munde glass na mist clear maadbahuda?", variant: kannada_english}
+  - {text: "glass fog swalpa clear maadteera", variant: kannada_english}
+  - {text: "can you uh like clear the um windscreen of this fog", variant: disfluent}
+  - {text: "could you could you demist the windscreen", variant: disfluent}
+  - {text: "can you demist the back no sorry the front glass?", variant: disfluent}
+  - {text: "um would you get the the mist off the windshield", variant: disfluent}
+  - {text: "so like can you defog the uh front glass", variant: disfluent}
+  - {text: "er can the windscreen be um cleared of the fog", variant: disfluent}
+
+# seed 3 (fragment): demist
+"3":
+  - {text: "defog", variant: plain}
+  - {text: "front defrost", variant: plain}
+  - {text: "windscreen demist", variant: plain}
+  - {text: "defrost the glass", variant: plain}
+  - {text: "clear the windshield fog", variant: plain}
+  - {text: "demister please", variant: plain}
+  - {text: "defogger on", variant: plain}
+  - {text: "front glass defog", variant: plain}
+  - {text: "max defrost", variant: plain}
+  - {text: "windshield defrost now", variant: plain}
+  - {text: "demist front", variant: plain}
+  - {text: "defog the windscreen", variant: plain}
+  - {text: "fog off the glass", variant: plain}
+  - {text: "defrost quickly", variant: plain}
+  - {text: "demist the windshield", variant: plain}
+  - {text: "front demister", variant: plain}
+  - {text: "windscreen defogger", variant: plain}
+  - {text: "clear front glass", variant: plain}
+  - {text: "defrost on", variant: plain}
+  - {text: "demist mode", variant: plain}
+  - {text: "unfog the glass", variant: plain}
+  - {text: "fogged glass clear", variant: plain}
+  - {text: "front defog now", variant: plain}
+  - {text: "defroster", variant: plain}
+  - {text: "demist karo", variant: hinglish}
+  - {text: "fog hatao", variant: hinglish}
+  - {text: "defrost chalu", variant: hinglish}
+  - {text: "glass saaf karo jaldi", variant: hinglish}
+  - {text: "demister laga do", variant: hinglish}
+  - {text: "sheesha clear karo", variant: hinglish}
+  - {text: "demist maadu", variant: kannada_english}
+  - {text: "fog tegi", variant: kannada_english}
+  - {text: "defrost haaku", variant: kannada_english}
+  - {text: "glass clear maadi", variant: kannada_english}
+  - {text: "uh demist", variant: disfluent}
+  - {text: "demist um the front", variant: disfluent}
+  - {text: "de uh defrost", variant: disfluent}
+  - {text: "defog no demist yeah demist", variant: disfluent}
+  - {text: "um the the demister", variant: disfluent}
+  - {text: "er fog uh clear the fog", variant: disfluent}

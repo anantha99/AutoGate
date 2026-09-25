@@ -1,0 +1,176 @@
+# Paraphrases of the set_cruise_speed seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): set cruise control to {speed}
+"0":
+  - {text: "cruise at {speed}", variant: plain}
+  - {text: "lock the cruise at {speed} kmph", variant: plain}
+  - {text: "make the cruise speed {speed}", variant: plain}
+  - {text: "put cruise control at {speed}", variant: plain}
+  - {text: "keep us at {speed} on cruise", variant: plain}
+  - {text: "hold {speed} on cruise for this stretch", variant: plain}
+  - {text: "set the cruise to {speed} for the expressway", variant: plain}
+  - {text: "change the cruise speed to {speed}", variant: plain}
+  - {text: "fix cruise at {speed} kilometres per hour", variant: plain}
+  - {text: "keep the car cruising at {speed}", variant: plain}
+  - {text: "go to {speed} on cruise control", variant: plain}
+  - {text: "just hold it at {speed} with the cruise", variant: plain}
+  - {text: "make it cruise at {speed} from here", variant: plain}
+  - {text: "run the cruise at {speed}", variant: plain}
+  - {text: "put the cruise speed at {speed} na", variant: plain}
+  - {text: "do one thing set cruise to {speed}", variant: plain}
+  - {text: "move the cruise setting to {speed}", variant: plain}
+  - {text: "switch on cruise at {speed}", variant: plain}
+  - {text: "use {speed} as the cruise speed", variant: plain}
+  - {text: "let the cruise hold {speed} on this highway", variant: plain}
+  - {text: "bring the cruise to {speed} kmph", variant: plain}
+  - {text: "keep cruise locked on {speed} till the toll", variant: plain}
+  - {text: "adjust the cruise so it holds {speed}", variant: plain}
+  - {text: "have the car cruise at {speed} now", variant: plain}
+  - {text: "cruise {speed} pe set kar do", variant: hinglish}
+  - {text: "cruise control {speed} par rakho", variant: hinglish}
+  - {text: "speed {speed} pe lock karo cruise mein", variant: hinglish}
+  - {text: "cruise ko {speed} kar do yaar", variant: hinglish}
+  - {text: "{speed} pe cruise chala do", variant: hinglish}
+  - {text: "highway pe cruise {speed} rakh do na", variant: hinglish}
+  - {text: "cruise {speed} ge set maadi", variant: kannada_english}
+  - {text: "{speed} alli cruise haaku", variant: kannada_english}
+  - {text: "cruise speed {speed} maadu", variant: kannada_english}
+  - {text: "swalpa cruise {speed} ge fix maadi guru", variant: kannada_english}
+  - {text: "uh set the cruise to um {speed}", variant: disfluent}
+  - {text: "set cruise to uh what was it {speed}", variant: disfluent}
+  - {text: "put the the cruise at {speed} um yeah {speed}", variant: disfluent}
+  - {text: "er lock it in lock the cruise at {speed}", variant: disfluent}
+  - {text: "set the the speed limiter no sorry cruise to {speed}", variant: disfluent}
+  - {text: "make it um cruise at you know {speed}", variant: disfluent}
+
+# seed 1 (outcome): the cruise is set too slow for this highway
+"1":
+  - {text: "we're crawling on cruise and this road is wide open", variant: plain}
+  - {text: "everyone is overtaking us while cruise holds us back", variant: plain}
+  - {text: "this cruise speed is way too low for the expressway", variant: plain}
+  - {text: "cruise is dragging on such an empty road", variant: plain}
+  - {text: "at this cruise setting we'll reach tomorrow", variant: plain}
+  - {text: "cruise is holding a city pace on an expressway", variant: plain}
+  - {text: "trucks are passing me while i'm on cruise", variant: plain}
+  - {text: "i'm the slowest car on this highway with cruise on", variant: plain}
+  - {text: "cruise feels too sluggish for a road like this", variant: plain}
+  - {text: "feels like we're barely moving on cruise", variant: plain}
+  - {text: "the set speed is too low for this stretch", variant: plain}
+  - {text: "this highway can easily take more than what cruise is doing", variant: plain}
+  - {text: "i'm getting bored at this cruise pace", variant: plain}
+  - {text: "the speed limit here is much higher than my cruise", variant: plain}
+  - {text: "cruise feels like it's set for a school zone", variant: plain}
+  - {text: "we're holding up traffic on cruise", variant: plain}
+  - {text: "my cruise is stuck at a snail's pace on this six lane road", variant: plain}
+  - {text: "honestly the cruise is too lazy for the expressway", variant: plain}
+  - {text: "on this open stretch the cruise is far too slow", variant: plain}
+  - {text: "cruise pace is not matching this road at all", variant: plain}
+  - {text: "even the buses are faster than my cruise right now", variant: plain}
+  - {text: "the cruise is costing us time on this empty highway", variant: plain}
+  - {text: "i could be doing a lot more than this on cruise here", variant: plain}
+  - {text: "this is an expressway not a colony road but cruise doesn't know that", variant: plain}
+  - {text: "cruise bahut slow hai is highway ke liye", variant: hinglish}
+  - {text: "yaar cruise pe toh hum reng rahe hain", variant: hinglish}
+  - {text: "itna khula road hai aur cruise itna dheere", variant: hinglish}
+  - {text: "sab aage nikal rahe hain cruise pe hum peeche hain", variant: hinglish}
+  - {text: "cruise ki speed is expressway pe kam hai", variant: hinglish}
+  - {text: "is road pe cruise pe chalna boring ho raha hai", variant: hinglish}
+  - {text: "cruise tumba slow ide ee highway ge", variant: kannada_english}
+  - {text: "ee road alli cruise speed kammi aaytu", variant: kannada_english}
+  - {text: "cruise alli hogtidre tumba late aagatte guru", variant: kannada_english}
+  - {text: "ella overtake maadtidaare cruise alli naavu slow", variant: kannada_english}
+  - {text: "uh the cruise is um it's way too slow for this road", variant: disfluent}
+  - {text: "this this highway is so empty and the cruise is like crawling", variant: disfluent}
+  - {text: "um we're on cruise but it's you know too slow here", variant: disfluent}
+  - {text: "cruise is holding er way below what this road can take", variant: disfluent}
+  - {text: "so like everyone's passing us on cruise it's too slow", variant: disfluent}
+  - {text: "the speed on cruise i mean it's too low for a highway like this", variant: disfluent}
+
+# seed 2 (question): can you bump the cruise speed up by five
+"2":
+  - {text: "could you add five to the cruise?", variant: plain}
+  - {text: "can the cruise go up by five", variant: plain}
+  - {text: "would you raise the cruise by five kmph", variant: plain}
+  - {text: "mind taking the cruise up five?", variant: plain}
+  - {text: "can we do five more on cruise", variant: plain}
+  - {text: "could you push the cruise five higher?", variant: plain}
+  - {text: "will you nudge the cruise speed five up", variant: plain}
+  - {text: "can you make the cruise five faster?", variant: plain}
+  - {text: "can we go five kmph quicker on cruise", variant: plain}
+  - {text: "would you mind adding five km per hour to the cruise?", variant: plain}
+  - {text: "can cruise be five more than now", variant: plain}
+  - {text: "how about five up on the cruise?", variant: plain}
+  - {text: "could the cruise speed go five higher please", variant: plain}
+  - {text: "can i get five extra on cruise?", variant: plain}
+  - {text: "could we bump cruise by five", variant: plain}
+  - {text: "will you increase cruise by five?", variant: plain}
+  - {text: "any chance you can raise the cruise five kmph", variant: plain}
+  - {text: "can you tick the cruise up five?", variant: plain}
+  - {text: "could you set the cruise five above where it is", variant: plain}
+  - {text: "can you put the cruise five higher than it is now", variant: plain}
+  - {text: "can we cruise five kmph faster", variant: plain}
+  - {text: "is it possible to take cruise up by five?", variant: plain}
+  - {text: "shall we go five up on the cruise speed", variant: plain}
+  - {text: "would you up it by five on the cruise", variant: plain}
+  - {text: "cruise speed paanch badha doge?", variant: hinglish}
+  - {text: "cruise paanch se badha sakte ho kya", variant: hinglish}
+  - {text: "kya cruise paanch upar kar doge", variant: hinglish}
+  - {text: "cruise ko five aur badha sakte ho?", variant: hinglish}
+  - {text: "yaar cruise five kmph upar karoge kya", variant: hinglish}
+  - {text: "cruise pe paanch aur de sakte ho?", variant: hinglish}
+  - {text: "cruise speed five jaasti maadtira?", variant: kannada_english}
+  - {text: "cruise innu five up maadbahuda?", variant: kannada_english}
+  - {text: "cruise speed ge five add maadoke aagutta?", variant: kannada_english}
+  - {text: "swalpa cruise five hechchu maadtiya guru", variant: kannada_english}
+  - {text: "can you uh the cruise could it go like five up", variant: disfluent}
+  - {text: "could you could you make it five more on the cruise", variant: disfluent}
+  - {text: "can you raise the cruise by ten no by five?", variant: disfluent}
+  - {text: "um would you like push cruise up by five kmph", variant: disfluent}
+  - {text: "er can the cruise go up you know five more", variant: disfluent}
+  - {text: "so can you add um five to the to the cruise speed", variant: disfluent}
+
+# seed 3 (fragment): cruise down a bit
+"3":
+  - {text: "cruise lower", variant: plain}
+  - {text: "slower cruise", variant: plain}
+  - {text: "drop cruise a little", variant: plain}
+  - {text: "cruise speed down slightly", variant: plain}
+  - {text: "little less on cruise", variant: plain}
+  - {text: "ease the cruise", variant: plain}
+  - {text: "cruise down some", variant: plain}
+  - {text: "reduce cruise a touch", variant: plain}
+  - {text: "bring cruise down", variant: plain}
+  - {text: "cruise a notch lower", variant: plain}
+  - {text: "lower the cruise a bit", variant: plain}
+  - {text: "cruise slower than this", variant: plain}
+  - {text: "back off the cruise slightly", variant: plain}
+  - {text: "slightly slower on cruise", variant: plain}
+  - {text: "take cruise down a tad", variant: plain}
+  - {text: "cruise speed lower please", variant: plain}
+  - {text: "less cruise speed", variant: plain}
+  - {text: "cruise one step down", variant: plain}
+  - {text: "knock cruise down", variant: plain}
+  - {text: "softer on the cruise", variant: plain}
+  - {text: "dial the cruise back", variant: plain}
+  - {text: "trim the cruise speed", variant: plain}
+  - {text: "a bit less cruise", variant: plain}
+  - {text: "gentler cruise speed", variant: plain}
+  - {text: "cruise thoda kam karo", variant: hinglish}
+  - {text: "cruise speed thodi ghatao", variant: hinglish}
+  - {text: "cruise zara neeche", variant: hinglish}
+  - {text: "cruise halka kam kar do", variant: hinglish}
+  - {text: "thoda slow cruise", variant: hinglish}
+  - {text: "cruise ko neeche lo", variant: hinglish}
+  - {text: "cruise swalpa kammi maadi", variant: kannada_english}
+  - {text: "swalpa slow cruise", variant: kannada_english}
+  - {text: "cruise speed ilisi", variant: kannada_english}
+  - {text: "cruise kammi maadu guru", variant: kannada_english}
+  - {text: "uh cruise down a little", variant: disfluent}
+  - {text: "cruise um bring it lower", variant: disfluent}
+  - {text: "er bring the cruise down a bit", variant: disfluent}
+  - {text: "cruise up no down a touch", variant: disfluent}
+  - {text: "like slightly um less on cruise", variant: disfluent}
+  - {text: "the cruise uh down a bit yeah", variant: disfluent}

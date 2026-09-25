@@ -1,0 +1,176 @@
+# Paraphrases of the summarize_group_chat seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): summarise the family group chat
+"0":
+  - {text: "give me the gist of the family group", variant: plain}
+  - {text: "catch me up on the family chat", variant: plain}
+  - {text: "tell me what the family group has been talking about", variant: plain}
+  - {text: "quickly sum up the family whatsapp group", variant: plain}
+  - {text: "run me through what happened in the family group today", variant: plain}
+  - {text: "boil down the family group chat for me", variant: plain}
+  - {text: "summarize what everyone said on the family group", variant: plain}
+  - {text: "just give me the highlights from the relatives chat", variant: plain}
+  - {text: "brief me on the family group messages", variant: plain}
+  - {text: "do a quick recap of the family whatsapp", variant: plain}
+  - {text: "recap the family chat since morning", variant: plain}
+  - {text: "go through the family group and tell me the main points", variant: plain}
+  - {text: "read out a short summary of the family chat", variant: plain}
+  - {text: "fill me in on the family group", variant: plain}
+  - {text: "let me know the main stuff from the family group", variant: plain}
+  - {text: "do one thing summarise the family group for me", variant: plain}
+  - {text: "skim the family group and give me the short version", variant: plain}
+  - {text: "update me on what the relatives are discussing on the group", variant: plain}
+  - {text: "tell me in short what's happening on the family group", variant: plain}
+  - {text: "condense the family group chat into a few lines", variant: plain}
+  - {text: "pick out the important bits from the family group", variant: plain}
+  - {text: "give a rundown of the family conversation", variant: plain}
+  - {text: "check the family whatsapp and summarise it for me", variant: plain}
+  - {text: "don't read everything just summarise the family group", variant: plain}
+  - {text: "family group ka summary do", variant: hinglish}
+  - {text: "family group mein kya baat hui short mein batao", variant: hinglish}
+  - {text: "ghar walon ke group ka summary sunao", variant: hinglish}
+  - {text: "family chat ka saar bata do jaldi", variant: hinglish}
+  - {text: "family wale group ki saari baatein summarize karo", variant: hinglish}
+  - {text: "family group padh ke mujhe short mein batao", variant: hinglish}
+  - {text: "family group summary kodu", variant: kannada_english}
+  - {text: "family group alli enu maathadidaare swalpa helu", variant: kannada_english}
+  - {text: "family chat na summary maadi heli", variant: kannada_english}
+  - {text: "mane group alli enu nadithu short aagi helu", variant: kannada_english}
+  - {text: "so the family group um just give me the uh short version", variant: disfluent}
+  - {text: "summarise the uh office no sorry the family group", variant: disfluent}
+  - {text: "catch me up on the uh family whatsapp thing the group", variant: disfluent}
+  - {text: "er give me like a recap of the family chat you know", variant: disfluent}
+  - {text: "the family group uh just the short of it what they've been on about", variant: disfluent}
+  - {text: "i mean uh sum up the relatives group for me", variant: disfluent}
+
+# seed 1 (question): what's been going on in the office group
+"1":
+  - {text: "what's happening in the office group?", variant: plain}
+  - {text: "anything new in the office whatsapp group", variant: plain}
+  - {text: "what are people talking about on the work group?", variant: plain}
+  - {text: "what have i missed in the office group", variant: plain}
+  - {text: "can you tell me what the office group is discussing?", variant: plain}
+  - {text: "what's the latest on the office chat", variant: plain}
+  - {text: "any updates from the office group?", variant: plain}
+  - {text: "what are my colleagues saying in the office group", variant: plain}
+  - {text: "could you catch me up on the office group chat?", variant: plain}
+  - {text: "what's the buzz on the office whatsapp", variant: plain}
+  - {text: "has anything important come up in the office group", variant: plain}
+  - {text: "what's the team been chatting about on the work whatsapp", variant: plain}
+  - {text: "is there anything i should know from the office group", variant: plain}
+  - {text: "what's all the noise in the office group about?", variant: plain}
+  - {text: "how's the office group looking since morning", variant: plain}
+  - {text: "what went on in the work chat all morning?", variant: plain}
+  - {text: "did anything happen in the office group", variant: plain}
+  - {text: "can you give me the gist of the office group?", variant: plain}
+  - {text: "what's the office gang discussing", variant: plain}
+  - {text: "anything big going on in the office chat today", variant: plain}
+  - {text: "so what's the story with the work group lately", variant: plain}
+  - {text: "what have they been saying in the office whatsapp", variant: plain}
+  - {text: "would you sum up the office group for me", variant: plain}
+  - {text: "what's new with the office folks on the group?", variant: plain}
+  - {text: "office group mein kya chal raha hai?", variant: hinglish}
+  - {text: "office wale group pe kya baatein ho rahi hain", variant: hinglish}
+  - {text: "office group mein kuch important aaya kya?", variant: hinglish}
+  - {text: "office ke group mein aaj kya hua", variant: hinglish}
+  - {text: "kya office chat mein kuch naya hai", variant: hinglish}
+  - {text: "office walon ne group pe kya discuss kiya?", variant: hinglish}
+  - {text: "office group alli enu nadithide?", variant: kannada_english}
+  - {text: "office group alli yenu vishya ide", variant: kannada_english}
+  - {text: "office group nalli ella enu maathadthiddare?", variant: kannada_english}
+  - {text: "office chat alli enadru important bandideya", variant: kannada_english}
+  - {text: "um what's uh what's the office group up to", variant: disfluent}
+  - {text: "so like any er news from the the office chat?", variant: disfluent}
+  - {text: "the team group no the office group what's up there", variant: disfluent}
+  - {text: "er did i miss anything in um the office group", variant: disfluent}
+  - {text: "the office group uh what are they you know talking about", variant: disfluent}
+  - {text: "can you uh tell me like what's new on the office whatsapp", variant: disfluent}
+
+# seed 2 (indirect): the college group has like two hundred new messages
+"2":
+  - {text: "the college whatsapp group has blown up again", variant: plain}
+  - {text: "there are hundreds of messages piling up on the college group", variant: plain}
+  - {text: "my college group went crazy while i was on the road", variant: plain}
+  - {text: "i'm like two hundred messages behind on the college group", variant: plain}
+  - {text: "the college gang has been chatting nonstop all day", variant: plain}
+  - {text: "no way i'm scrolling through the whole college group", variant: plain}
+  - {text: "the college chat has exploded since morning", variant: plain}
+  - {text: "college group is on fire today", variant: plain}
+  - {text: "i can't possibly read everything in the college group", variant: plain}
+  - {text: "the batch group from college won't stop pinging", variant: plain}
+  - {text: "looks like the college group had a huge discussion", variant: plain}
+  - {text: "there's a mountain of messages in the college group", variant: plain}
+  - {text: "my old college friends have been going on and on in the group", variant: plain}
+  - {text: "i haven't opened the college group in days and it's piled up", variant: plain}
+  - {text: "the college group notifications are out of control", variant: plain}
+  - {text: "everyone from college is talking at once on the group", variant: plain}
+  - {text: "something big must have happened in the college group", variant: plain}
+  - {text: "the college reunion group has gone mad", variant: plain}
+  - {text: "i've got no clue what the college group is on about", variant: plain}
+  - {text: "too many messages in the college chat to keep up", variant: plain}
+  - {text: "the college whatsapp is flooded again", variant: plain}
+  - {text: "my college batch has sent like a million texts", variant: plain}
+  - {text: "the college group's been busy all afternoon", variant: plain}
+  - {text: "i've fallen way behind on the college group chat", variant: plain}
+  - {text: "college group mein do sau messages aa gaye hain", variant: hinglish}
+  - {text: "college wale group pe bahut saare messages pade hain", variant: hinglish}
+  - {text: "college group ne toh aaj pagal kar diya", variant: hinglish}
+  - {text: "college ke group mein pata nahi kya chal raha hai yaar", variant: hinglish}
+  - {text: "itne saare messages college group mein padhna mushkil hai", variant: hinglish}
+  - {text: "college gang ka group full bhara hua hai", variant: hinglish}
+  - {text: "college group alli thumba messages bandide", variant: kannada_english}
+  - {text: "college group alli innooru messages ide guru", variant: kannada_english}
+  - {text: "college group ella odoke aagalla", variant: kannada_english}
+  - {text: "college gang group alli jaasti chat aagide", variant: kannada_english}
+  - {text: "uh so the college group it's got um two hundred unread or something", variant: disfluent}
+  - {text: "so um the college chat has gone like crazy today", variant: disfluent}
+  - {text: "the the college whatsapp group is uh flooded you know", variant: disfluent}
+  - {text: "i'm er i'm so behind on the college group", variant: disfluent}
+  - {text: "the school no the college group has um tons of messages", variant: disfluent}
+  - {text: "man the college gang has like been messaging all uh day", variant: disfluent}
+
+# seed 3 (fragment): group chat summary
+"3":
+  - {text: "group recap", variant: plain}
+  - {text: "highlights from the groups", variant: plain}
+  - {text: "whatsapp group gist", variant: plain}
+  - {text: "group messages in short", variant: plain}
+  - {text: "quick group summary", variant: plain}
+  - {text: "summary of the group", variant: plain}
+  - {text: "groups in short", variant: plain}
+  - {text: "the group gist", variant: plain}
+  - {text: "group roundup", variant: plain}
+  - {text: "short version of the group", variant: plain}
+  - {text: "brief of group messages", variant: plain}
+  - {text: "what the group said", variant: plain}
+  - {text: "group updates summarised", variant: plain}
+  - {text: "group chat in a nutshell", variant: plain}
+  - {text: "digest of the group chats", variant: plain}
+  - {text: "whatsapp groups summary", variant: plain}
+  - {text: "group chat catch up", variant: plain}
+  - {text: "group chat main points", variant: plain}
+  - {text: "key points from the group", variant: plain}
+  - {text: "just the group highlights", variant: plain}
+  - {text: "group gossip in brief", variant: plain}
+  - {text: "the group in two lines", variant: plain}
+  - {text: "summarised group chat", variant: plain}
+  - {text: "group overview", variant: plain}
+  - {text: "group ka summary", variant: hinglish}
+  - {text: "group chat ka saar", variant: hinglish}
+  - {text: "group ki baatein short mein", variant: hinglish}
+  - {text: "sabhi groups ka summary", variant: hinglish}
+  - {text: "whatsapp group ka nichod", variant: hinglish}
+  - {text: "group mein kya hua short mein", variant: hinglish}
+  - {text: "group summary kodu", variant: kannada_english}
+  - {text: "chat summary beku guru", variant: kannada_english}
+  - {text: "group alli enu aaytu short aagi", variant: kannada_english}
+  - {text: "swalpa groups summary helu", variant: kannada_english}
+  - {text: "um the group chat like summary", variant: disfluent}
+  - {text: "uh the summary um for the groups", variant: disfluent}
+  - {text: "the chat no the group summary", variant: disfluent}
+  - {text: "er quick uh group recap", variant: disfluent}
+  - {text: "group um you know the highlights", variant: disfluent}
+  - {text: "so like group messages uh in short", variant: disfluent}

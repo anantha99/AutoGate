@@ -1,0 +1,219 @@
+# Paraphrases of the cancel_route seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): stop the navigation
+"0":
+  - {text: "end the navigation", variant: plain}
+  - {text: "turn off the directions", variant: plain}
+  - {text: "switch off navigation", variant: plain}
+  - {text: "kill the route", variant: plain}
+  - {text: "quit navigating", variant: plain}
+  - {text: "close the map directions", variant: plain}
+  - {text: "cancel the route", variant: plain}
+  - {text: "stop giving me directions", variant: plain}
+  - {text: "clear the route", variant: plain}
+  - {text: "no more navigation turn it off", variant: plain}
+  - {text: "drop the current route", variant: plain}
+  - {text: "get out of the navigation", variant: plain}
+  - {text: "stop the gps", variant: plain}
+  - {text: "shut the navigation off", variant: plain}
+  - {text: "end guidance now", variant: plain}
+  - {text: "switch off the turn by turn", variant: plain}
+  - {text: "get rid of this route", variant: plain}
+  - {text: "stop routing", variant: plain}
+  - {text: "remove the destination", variant: plain}
+  - {text: "abort the route", variant: plain}
+  - {text: "stop the directions please", variant: plain}
+  - {text: "close navigation", variant: plain}
+  - {text: "enough navigation shut it", variant: plain}
+  - {text: "do one thing stop the maps", variant: plain}
+  - {text: "navigation band karo", variant: hinglish}
+  - {text: "route cancel kar do", variant: hinglish}
+  - {text: "directions band kar do yaar", variant: hinglish}
+  - {text: "gps band karo abhi", variant: hinglish}
+  - {text: "navigation hata do", variant: hinglish}
+  - {text: "yeh route khatam karo", variant: hinglish}
+  - {text: "navigation nillisu", variant: kannada_english}
+  - {text: "navigation off maadi", variant: kannada_english}
+  - {text: "route cancel maadu guru", variant: kannada_english}
+  - {text: "gps nillisi", variant: kannada_english}
+  - {text: "uh the whole navigation thing stop that", variant: disfluent}
+  - {text: "stop the the directions no the whole navigation", variant: disfluent}
+  - {text: "so like end the navigation you know", variant: disfluent}
+  - {text: "um turn off the uh the route", variant: disfluent}
+  - {text: "the navigation um just stop it please", variant: disfluent}
+  - {text: "er pause no stop the navigation", variant: disfluent}
+
+# seed 1 (outcome): i know the way from here
+"1":
+  - {text: "i can manage from here", variant: plain}
+  - {text: "i've got it from here", variant: plain}
+  - {text: "i know this area well", variant: plain}
+  - {text: "i know these roads like the back of my hand", variant: plain}
+  - {text: "from here on i'm fine", variant: plain}
+  - {text: "this is my neighbourhood now", variant: plain}
+  - {text: "i drive this road every day", variant: plain}
+  - {text: "i'm familiar with the rest of the route", variant: plain}
+  - {text: "i can find it myself now", variant: plain}
+  - {text: "i'm good from this point", variant: plain}
+  - {text: "i remember the way now", variant: plain}
+  - {text: "the rest i know", variant: plain}
+  - {text: "i've been here a hundred times", variant: plain}
+  - {text: "i can take it from here", variant: plain}
+  - {text: "i know exactly where i'm going now", variant: plain}
+  - {text: "this part i can do blindfolded", variant: plain}
+  - {text: "there's a shortcut i know better", variant: plain}
+  - {text: "we're close enough i know it", variant: plain}
+  - {text: "i grew up around here", variant: plain}
+  - {text: "the way from this point is clear to me", variant: plain}
+  - {text: "i'm sorted for the rest of the drive", variant: plain}
+  - {text: "i've figured out the way", variant: plain}
+  - {text: "it's just round the corner from here i know it", variant: plain}
+  - {text: "all good i know where to go", variant: plain}
+  - {text: "yahan se rasta mujhe pata hai", variant: hinglish}
+  - {text: "aage ka main dekh lunga", variant: hinglish}
+  - {text: "yeh area mera jaana pehchana hai", variant: hinglish}
+  - {text: "ab main khud chala lunga", variant: hinglish}
+  - {text: "yahan se mujhe raasta yaad hai", variant: hinglish}
+  - {text: "yeh road toh roz ki hai", variant: hinglish}
+  - {text: "illinda daari gottu", variant: kannada_english}
+  - {text: "idu namma area guru", variant: kannada_english}
+  - {text: "munde naanu nodkotini", variant: kannada_english}
+  - {text: "ee road nange gottu saar", variant: kannada_english}
+  - {text: "uh from here i i know where i'm going", variant: disfluent}
+  - {text: "um i'll uh manage on my own from this point", variant: disfluent}
+  - {text: "so like i know these roads you know", variant: disfluent}
+  - {text: "i'm not sure no actually i know the way now", variant: disfluent}
+  - {text: "er from here i um know where to go", variant: disfluent}
+  - {text: "no it's fine uh i've got this part covered", variant: disfluent}
+
+# seed 2 (question): can you end the route
+"2":
+  - {text: "could you turn off the route?", variant: plain}
+  - {text: "can we stop the directions", variant: plain}
+  - {text: "would you clear the route?", variant: plain}
+  - {text: "can you switch off the gps", variant: plain}
+  - {text: "mind ending the navigation", variant: plain}
+  - {text: "can the route be cancelled?", variant: plain}
+  - {text: "will you close the directions", variant: plain}
+  - {text: "can you drop this route", variant: plain}
+  - {text: "is it possible to end the trip on the map?", variant: plain}
+  - {text: "can you kill the navigation for me", variant: plain}
+  - {text: "would you shut off the turn by turn", variant: plain}
+  - {text: "could we get rid of the route?", variant: plain}
+  - {text: "can you stop routing me", variant: plain}
+  - {text: "can the navigation go off now", variant: plain}
+  - {text: "would you mind ending the guidance?", variant: plain}
+  - {text: "can you remove the destination", variant: plain}
+  - {text: "any way to stop this route?", variant: plain}
+  - {text: "can you exit the navigation", variant: plain}
+  - {text: "can you please end the directions", variant: plain}
+  - {text: "could you abort the route", variant: plain}
+  - {text: "can you finish the navigation here?", variant: plain}
+  - {text: "shall we end the route now", variant: plain}
+  - {text: "can you quit the directions?", variant: plain}
+  - {text: "will you turn the navigation off", variant: plain}
+  - {text: "route band kar doge?", variant: hinglish}
+  - {text: "navigation band kar sakte ho kya", variant: hinglish}
+  - {text: "yeh directions hata doge?", variant: hinglish}
+  - {text: "gps band ho sakta hai kya", variant: hinglish}
+  - {text: "route khatam kar sakte ho?", variant: hinglish}
+  - {text: "kya navigation rok doge", variant: hinglish}
+  - {text: "route cancel maadtiya?", variant: kannada_english}
+  - {text: "navigation nillisbahuda", variant: kannada_english}
+  - {text: "gps off maadbahuda guru?", variant: kannada_english}
+  - {text: "route nillistira saar", variant: kannada_english}
+  - {text: "um the route uh could you just end it", variant: disfluent}
+  - {text: "could you could you stop the directions?", variant: disfluent}
+  - {text: "can you reroute no actually just end it", variant: disfluent}
+  - {text: "er can we like end the navigation?", variant: disfluent}
+  - {text: "can you um you know cancel the route", variant: disfluent}
+  - {text: "so can you turn the uh route off", variant: disfluent}
+
+# seed 3 (indirect): plans changed we're not going there anymore
+"3":
+  - {text: "change of plans we're skipping that place", variant: plain}
+  - {text: "forget it we're not heading there now", variant: plain}
+  - {text: "turns out the party's off so no point going", variant: plain}
+  - {text: "they called and said don't come", variant: plain}
+  - {text: "the shop is closed today so that trip is off", variant: plain}
+  - {text: "we've dropped the idea of going there", variant: plain}
+  - {text: "never mind that destination we're not going", variant: plain}
+  - {text: "scratch that the visit is cancelled", variant: plain}
+  - {text: "my friend cancelled so there's no reason to go", variant: plain}
+  - {text: "the event got postponed we're not going anymore", variant: plain}
+  - {text: "we decided against going there", variant: plain}
+  - {text: "that's off the table now", variant: plain}
+  - {text: "no need to go there after all", variant: plain}
+  - {text: "the whole plan fell through", variant: plain}
+  - {text: "they're not around so we won't bother", variant: plain}
+  - {text: "we're not doing that trip anymore", variant: plain}
+  - {text: "we changed our minds about that place", variant: plain}
+  - {text: "that's been called off", variant: plain}
+  - {text: "that trip isn't happening anymore", variant: plain}
+  - {text: "the booking got cancelled so we're not going", variant: plain}
+  - {text: "wife says we're not going there today", variant: plain}
+  - {text: "hold on we don't need to be there anymore", variant: plain}
+  - {text: "the appointment moved so no trip there today", variant: plain}
+  - {text: "we're giving that place a miss now", variant: plain}
+  - {text: "plan badal gaya wahan nahi jaa rahe", variant: hinglish}
+  - {text: "ab wahan nahi jaana hai", variant: hinglish}
+  - {text: "chhodo wahan jaane ka plan cancel", variant: hinglish}
+  - {text: "unhone mana kar diya ab wahan nahi jayenge", variant: hinglish}
+  - {text: "yaar plan change ho gaya", variant: hinglish}
+  - {text: "wahan jaane ka mood nahi hai ab", variant: hinglish}
+  - {text: "plan change aaytu alli hogalla", variant: kannada_english}
+  - {text: "alli hogodu beda ivattu", variant: kannada_english}
+  - {text: "namma plan cancel aaytu guru", variant: kannada_english}
+  - {text: "alli hogtilla ivaga", variant: kannada_english}
+  - {text: "uh so we're not um not going there after all", variant: disfluent}
+  - {text: "we're going there no actually we're not going anymore", variant: disfluent}
+  - {text: "so like the plan's off we're not you know going", variant: disfluent}
+  - {text: "um we're not we're no longer heading that side", variant: disfluent}
+  - {text: "er change of plans uh no trip there", variant: disfluent}
+  - {text: "the the plan changed so um not going there", variant: disfluent}
+
+# seed 4 (fragment): cancel directions
+"4":
+  - {text: "no directions", variant: plain}
+  - {text: "directions off", variant: plain}
+  - {text: "navigation off", variant: plain}
+  - {text: "end route", variant: plain}
+  - {text: "stop nav", variant: plain}
+  - {text: "cancel the route now", variant: plain}
+  - {text: "kill navigation", variant: plain}
+  - {text: "route off", variant: plain}
+  - {text: "no more guidance", variant: plain}
+  - {text: "clear route", variant: plain}
+  - {text: "stop directions", variant: plain}
+  - {text: "end navigation now", variant: plain}
+  - {text: "gps off", variant: plain}
+  - {text: "drop the route", variant: plain}
+  - {text: "cancel navigation", variant: plain}
+  - {text: "exit nav", variant: plain}
+  - {text: "done with directions", variant: plain}
+  - {text: "quit route", variant: plain}
+  - {text: "maps off", variant: plain}
+  - {text: "abort navigation", variant: plain}
+  - {text: "enough directions", variant: plain}
+  - {text: "route cancelled", variant: plain}
+  - {text: "stop the guidance", variant: plain}
+  - {text: "turn by turn off", variant: plain}
+  - {text: "navigation band", variant: hinglish}
+  - {text: "route cancel karo", variant: hinglish}
+  - {text: "directions band karo", variant: hinglish}
+  - {text: "gps band", variant: hinglish}
+  - {text: "rasta mat dikhao", variant: hinglish}
+  - {text: "navigation hatao", variant: hinglish}
+  - {text: "navigation beda", variant: kannada_english}
+  - {text: "route cancel maadi", variant: kannada_english}
+  - {text: "directions nillisi", variant: kannada_english}
+  - {text: "gps aarisu", variant: kannada_english}
+  - {text: "directions um cancel them", variant: disfluent}
+  - {text: "uh cancel um the directions", variant: disfluent}
+  - {text: "stop no cancel the route", variant: disfluent}
+  - {text: "um navigation off like now", variant: disfluent}
+  - {text: "er end the uh directions", variant: disfluent}
+  - {text: "so the directions just um kill them", variant: disfluent}

@@ -1,0 +1,176 @@
+# Paraphrases of the seat_ventilation_on seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): turn on the seat cooling
+"0":
+  - {text: "switch on the ventilated seat", variant: plain}
+  - {text: "put the cooled seats on", variant: plain}
+  - {text: "start the ventilated seats", variant: plain}
+  - {text: "get the seat cooling going", variant: plain}
+  - {text: "cool down the seat for me", variant: plain}
+  - {text: "put the seat ventilation on", variant: plain}
+  - {text: "get the seat cooler working", variant: plain}
+  - {text: "get some cool air through the seat", variant: plain}
+  - {text: "start cooling the seat", variant: plain}
+  - {text: "make the seat blow cool air", variant: plain}
+  - {text: "put my seat on cooling", variant: plain}
+  - {text: "do the seat cooling", variant: plain}
+  - {text: "give me the cool seat", variant: plain}
+  - {text: "run the seat ventilation", variant: plain}
+  - {text: "put the seat on cool mode", variant: plain}
+  - {text: "kick in the seat coolers", variant: plain}
+  - {text: "start seat ventilation it's hot outside", variant: plain}
+  - {text: "open the seat vents", variant: plain}
+  - {text: "make my seat cool", variant: plain}
+  - {text: "put on seat cooling for the drive", variant: plain}
+  - {text: "switch the ventilation on in the seats", variant: plain}
+  - {text: "start the seat air", variant: plain}
+  - {text: "do one thing switch on seat cooling", variant: plain}
+  - {text: "get the seat vents blowing", variant: plain}
+  - {text: "seat cooling on karo", variant: hinglish}
+  - {text: "seat ko thanda karo", variant: hinglish}
+  - {text: "seat ventilation chalu kar do", variant: hinglish}
+  - {text: "seat ki cooling laga do", variant: hinglish}
+  - {text: "seat mein thandi hawa chalao", variant: hinglish}
+  - {text: "cooled seat on kar do yaar", variant: hinglish}
+  - {text: "seat cooling on maadi saar", variant: kannada_english}
+  - {text: "nanna seat thanda maadu", variant: kannada_english}
+  - {text: "seat ventilation start maadu", variant: kannada_english}
+  - {text: "seat cooling haaki guru", variant: kannada_english}
+  - {text: "uh the heater no no the seat cooling switch that on", variant: disfluent}
+  - {text: "um the the seat cooling put it on", variant: disfluent}
+  - {text: "so like get the er ventilated seats going", variant: disfluent}
+  - {text: "er you know start cooling the uh the seat", variant: disfluent}
+  - {text: "seat cool uh seat cooling on please", variant: disfluent}
+  - {text: "uh the cooling in the seat switch it um on", variant: disfluent}
+
+# seed 1 (outcome): my back is all sweaty against the seat
+"1":
+  - {text: "my shirt is sticking to the seat", variant: plain}
+  - {text: "my back is soaking wet from the seat", variant: plain}
+  - {text: "the seat is making me sweat", variant: plain}
+  - {text: "i'm drenched where i'm leaning on the seat", variant: plain}
+  - {text: "my back feels damp and sticky", variant: plain}
+  - {text: "the seatback is so hot my shirt is wet", variant: plain}
+  - {text: "sweat is pouring down my back on this seat", variant: plain}
+  - {text: "my kurta is stuck to the seat with sweat", variant: plain}
+  - {text: "there's a sweat patch on my back already", variant: plain}
+  - {text: "the leather is making my back sweat", variant: plain}
+  - {text: "my back is sticking to this leather", variant: plain}
+  - {text: "i'm sweating through my shirt on this seat", variant: plain}
+  - {text: "my lower back is all wet", variant: plain}
+  - {text: "sitting here my back is a swamp", variant: plain}
+  - {text: "the seat is too hot and my back is sweating", variant: plain}
+  - {text: "my entire back is wet with sweat", variant: plain}
+  - {text: "my back is on fire against this seat", variant: plain}
+  - {text: "this seat won't let my back breathe", variant: plain}
+  - {text: "i can feel sweat running down my spine", variant: plain}
+  - {text: "my back's getting sticky on the seat", variant: plain}
+  - {text: "every time i lean back i feel wet", variant: plain}
+  - {text: "my shirt will have a sweat mark from this seat", variant: plain}
+  - {text: "i'm dripping sweat on this seat", variant: plain}
+  - {text: "i'm all clammy against the backrest", variant: plain}
+  - {text: "peeth pe pasina aa raha hai seat se", variant: hinglish}
+  - {text: "meri shirt seat se chipak gayi hai", variant: hinglish}
+  - {text: "seat pe baithe baithe peeth geeli ho gayi", variant: hinglish}
+  - {text: "yaar seat se pura pasina pasina ho gaya", variant: hinglish}
+  - {text: "peeth bilkul geeli hai pasine se", variant: hinglish}
+  - {text: "seat bahut garam hai peeth jal rahi hai", variant: hinglish}
+  - {text: "seat ge back ella beveru aagide", variant: kannada_english}
+  - {text: "nanna back full beveru guru", variant: kannada_english}
+  - {text: "seat inda shirt ella ottikondide", variant: kannada_english}
+  - {text: "bennu ella beveru seat alli", variant: kannada_english}
+  - {text: "my back is uh it's like soaked against the seat", variant: disfluent}
+  - {text: "my shirt it's um like glued to the seat", variant: disfluent}
+  - {text: "i'm sweating on my uh my back you know from the seat", variant: disfluent}
+  - {text: "my legs no i mean my back is soaked on this seat", variant: disfluent}
+  - {text: "so er the seat is making my back like sweaty", variant: disfluent}
+  - {text: "my back my back is um drenched from this seat", variant: disfluent}
+
+# seed 2 (question): can you cool the {seat} seat a bit more
+"2":
+  - {text: "could you make the {seat} seat cooler?", variant: plain}
+  - {text: "can the {seat} seat get a little more cooling", variant: plain}
+  - {text: "would you bump up the cooling on the {seat} seat", variant: plain}
+  - {text: "can we cool down the {seat} seat some more", variant: plain}
+  - {text: "mind turning up the ventilation on the {seat} seat?", variant: plain}
+  - {text: "can you increase the seat cooling for {seat}", variant: plain}
+  - {text: "could the {seat} seat be a bit colder", variant: plain}
+  - {text: "will you raise the ventilation level of the {seat} seat", variant: plain}
+  - {text: "is it possible to cool the {seat} seat further?", variant: plain}
+  - {text: "can i get the {seat} seat colder still", variant: plain}
+  - {text: "how about some extra cooling for the {seat} seat?", variant: plain}
+  - {text: "can you chill the {seat} seat a little extra", variant: plain}
+  - {text: "would you make the {seat} seat ventilation stronger", variant: plain}
+  - {text: "could you crank up the {seat} seat cooling?", variant: plain}
+  - {text: "shall we cool the {seat} seat one more level", variant: plain}
+  - {text: "can the {seat} seat ventilation go higher?", variant: plain}
+  - {text: "do you mind giving the {seat} seat more cool air", variant: plain}
+  - {text: "could we turn the {seat} seat cooling up a notch", variant: plain}
+  - {text: "can you put the {seat} seat on a higher cooling setting", variant: plain}
+  - {text: "would you mind cooling the {seat} seat a touch more", variant: plain}
+  - {text: "can the {seat} seat blow a little cooler", variant: plain}
+  - {text: "could you raise the cooling a little on the {seat} side?", variant: plain}
+  - {text: "will you make the {seat} seat vent harder", variant: plain}
+  - {text: "any chance the {seat} seat can be cooler?", variant: plain}
+  - {text: "{seat} seat ko thoda aur thanda kar sakte ho?", variant: hinglish}
+  - {text: "{seat} wali seat ki cooling badha doge", variant: hinglish}
+  - {text: "kya {seat} seat thodi aur cool ho sakti hai", variant: hinglish}
+  - {text: "{seat} seat ki ventilation thodi zyada kar doge?", variant: hinglish}
+  - {text: "{seat} seat pe thodi aur thandak de sakte ho", variant: hinglish}
+  - {text: "{seat} side ki seat aur thandi karoge kya", variant: hinglish}
+  - {text: "{seat} seat swalpa innu thanda maadtira?", variant: kannada_english}
+  - {text: "{seat} seat cooling swalpa jaasti maadbahuda", variant: kannada_english}
+  - {text: "{seat} seat ge innu swalpa cooling kodtira", variant: kannada_english}
+  - {text: "{seat} seat ventilation jaasti maadoke aagutta?", variant: kannada_english}
+  - {text: "um the {seat} seat can it get uh cooler", variant: disfluent}
+  - {text: "uh the {seat} seat could you like cool it more", variant: disfluent}
+  - {text: "would you uh warm up no i mean cool down the {seat} seat more", variant: disfluent}
+  - {text: "er is there any way to um get the {seat} seat cooler", variant: disfluent}
+  - {text: "can you can you give the {seat} seat more cooling", variant: disfluent}
+  - {text: "so uh could the {seat} one no the {seat} seat get colder", variant: disfluent}
+
+# seed 3 (fragment): seat ventilation
+"3":
+  - {text: "seat cooling", variant: plain}
+  - {text: "cooled seat please", variant: plain}
+  - {text: "ventilated seat", variant: plain}
+  - {text: "seat cooler on", variant: plain}
+  - {text: "cool seat", variant: plain}
+  - {text: "seat vents", variant: plain}
+  - {text: "vented seats on", variant: plain}
+  - {text: "seat air", variant: plain}
+  - {text: "cooling for my seat", variant: plain}
+  - {text: "ventilation on my seat", variant: plain}
+  - {text: "cold seat please", variant: plain}
+  - {text: "cool mode for the seat", variant: plain}
+  - {text: "air through the seat", variant: plain}
+  - {text: "chilled seat", variant: plain}
+  - {text: "ventilated seats please", variant: plain}
+  - {text: "seat ventilation mode on", variant: plain}
+  - {text: "backrest cooling", variant: plain}
+  - {text: "cooling in the seat", variant: plain}
+  - {text: "seat vent please", variant: plain}
+  - {text: "the cooled seat", variant: plain}
+  - {text: "cool air in the seat", variant: plain}
+  - {text: "vented seat now", variant: plain}
+  - {text: "seat coolers", variant: plain}
+  - {text: "ventilate the seat", variant: plain}
+  - {text: "seat ko cooling pe daalo", variant: hinglish}
+  - {text: "seat thandi karo", variant: hinglish}
+  - {text: "seat ki hawa on", variant: hinglish}
+  - {text: "thandi seat chahiye", variant: hinglish}
+  - {text: "seat ventilation laga do", variant: hinglish}
+  - {text: "seat cool kar do", variant: hinglish}
+  - {text: "cooling seat haaki saar", variant: kannada_english}
+  - {text: "seat thanda beku", variant: kannada_english}
+  - {text: "seat ge gaali beku", variant: kannada_english}
+  - {text: "seat gaali haaku", variant: kannada_english}
+  - {text: "uh seat um cooling", variant: disfluent}
+  - {text: "seat heating no seat cooling", variant: disfluent}
+  - {text: "uh the the vented seat", variant: disfluent}
+  - {text: "er seat ventilation you know", variant: disfluent}
+  - {text: "um cool uh cool seat", variant: disfluent}
+  - {text: "so like seat vents please", variant: disfluent}

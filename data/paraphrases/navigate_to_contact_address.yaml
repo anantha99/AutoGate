@@ -1,0 +1,219 @@
+# Paraphrases of the navigate_to_contact_address seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): navigate to {contact}'s house
+"0":
+  - {text: "take me to {contact}'s place", variant: plain}
+  - {text: "drive to {contact}'s home", variant: plain}
+  - {text: "set {contact}'s house as the destination", variant: plain}
+  - {text: "go to {contact}'s", variant: plain}
+  - {text: "head over to where {contact} stays", variant: plain}
+  - {text: "start directions to {contact}'s address", variant: plain}
+  - {text: "route me to {contact}'s flat", variant: plain}
+  - {text: "show me the way to {contact}'s house", variant: plain}
+  - {text: "get me to {contact}'s", variant: plain}
+  - {text: "{contact}'s house take me there", variant: plain}
+  - {text: "put {contact}'s address in the navigation", variant: plain}
+  - {text: "guide me to {contact}'s house", variant: plain}
+  - {text: "lead the way to {contact}'s home", variant: plain}
+  - {text: "plot a route to {contact}'s place", variant: plain}
+  - {text: "drop me at {contact}'s house", variant: plain}
+  - {text: "load {contact}'s address and start navigating", variant: plain}
+  - {text: "let's go to {contact}'s house", variant: plain}
+  - {text: "navigate me over to {contact}'s", variant: plain}
+  - {text: "start the route to {contact}'s building", variant: plain}
+  - {text: "directions to {contact}'s house please", variant: plain}
+  - {text: "do one thing take me to {contact}'s house", variant: plain}
+  - {text: "head to {contact}'s house now", variant: plain}
+  - {text: "open maps for {contact}'s home", variant: plain}
+  - {text: "steer us to {contact}'s apartment", variant: plain}
+  - {text: "{contact} ke ghar chalo", variant: hinglish}
+  - {text: "{contact} ke ghar ka rasta dikhao", variant: hinglish}
+  - {text: "navigation {contact} ke ghar pe lagao", variant: hinglish}
+  - {text: "{contact} ke yahan jaana hai navigation lagao", variant: hinglish}
+  - {text: "seedha {contact} ke makaan pe le jao", variant: hinglish}
+  - {text: "{contact} ka address daalo aur wahan le chalo", variant: hinglish}
+  - {text: "{contact} mane ge hogona", variant: kannada_english}
+  - {text: "{contact} avara mane ge route haaku", variant: kannada_english}
+  - {text: "{contact} mane ge dari torsu", variant: kannada_english}
+  - {text: "nange {contact} mane ge karkondu hogu", variant: kannada_english}
+  - {text: "take me to uh {contact}'s um house", variant: disfluent}
+  - {text: "navigate to {contact}'s office no wait {contact}'s house", variant: disfluent}
+  - {text: "uh go to the go to {contact}'s place", variant: disfluent}
+  - {text: "so um directions to like {contact}'s home", variant: disfluent}
+  - {text: "er set the destination to uh {contact}'s house", variant: disfluent}
+  - {text: "drive to {contact}'s um you know {contact}'s flat", variant: disfluent}
+
+# seed 1 (question): can you get me to where {contact} lives
+"1":
+  - {text: "could you take me to {contact}'s place?", variant: plain}
+  - {text: "will you drive me to {contact}'s house", variant: plain}
+  - {text: "can we head to {contact}'s home?", variant: plain}
+  - {text: "do you know the way to {contact}'s house", variant: plain}
+  - {text: "can you navigate to {contact}'s address", variant: plain}
+  - {text: "how do i get to {contact}'s place from here?", variant: plain}
+  - {text: "would you route me to where {contact} stays", variant: plain}
+  - {text: "can we go over to {contact}'s", variant: plain}
+  - {text: "any chance you can take me to {contact}'s flat?", variant: plain}
+  - {text: "could you set {contact}'s house as the destination", variant: plain}
+  - {text: "what's the way to {contact}'s house?", variant: plain}
+  - {text: "can you find {contact}'s home on the map and take me there", variant: plain}
+  - {text: "will you guide me to {contact}'s building?", variant: plain}
+  - {text: "how about directions to {contact}'s place", variant: plain}
+  - {text: "mind taking me to {contact}'s house", variant: plain}
+  - {text: "shall we go to {contact}'s house?", variant: plain}
+  - {text: "could you show me how to get to {contact}'s side", variant: plain}
+  - {text: "is it possible to navigate to {contact}'s place", variant: plain}
+  - {text: "can i get directions to {contact}'s residence?", variant: plain}
+  - {text: "would you mind getting us to {contact}'s home", variant: plain}
+  - {text: "which way to {contact}'s house?", variant: plain}
+  - {text: "you know where {contact} stays right can you take me there", variant: plain}
+  - {text: "can you plot a way to {contact}'s apartment?", variant: plain}
+  - {text: "will you put {contact}'s address in the navigation?", variant: plain}
+  - {text: "{contact} ke ghar le chaloge kya?", variant: hinglish}
+  - {text: "{contact} ke ghar ka rasta dikha sakte ho", variant: hinglish}
+  - {text: "kya mujhe {contact} ke ghar tak le ja sakte ho?", variant: hinglish}
+  - {text: "{contact} jahan rehta hai wahan tak le chaloge", variant: hinglish}
+  - {text: "{contact} ke yahan chal sakte hain kya", variant: hinglish}
+  - {text: "{contact} ke ghar ki navigation laga doge?", variant: hinglish}
+  - {text: "{contact} mane ge karkondu hogtiya?", variant: kannada_english}
+  - {text: "{contact} mane yelli ide alli ge hogbahuda", variant: kannada_english}
+  - {text: "{contact} mane ge route haakthiya guru?", variant: kannada_english}
+  - {text: "{contact} iro kade hogona aa?", variant: kannada_english}
+  - {text: "can you uh can you get me to {contact}'s place", variant: disfluent}
+  - {text: "could you um take me to where uh {contact} stays", variant: disfluent}
+  - {text: "can we go to {contact}'s office no {contact}'s house", variant: disfluent}
+  - {text: "so um would you like navigate to {contact}'s home", variant: disfluent}
+  - {text: "er can you find the the way to {contact}'s house", variant: disfluent}
+  - {text: "will you uh drive me over to um {contact}'s", variant: disfluent}
+
+# seed 2 (outcome): i need to pick up {contact} from home
+"2":
+  - {text: "{contact} is waiting at home for me to collect them", variant: plain}
+  - {text: "i've got to collect {contact} from their place", variant: plain}
+  - {text: "{contact} needs a ride from their house", variant: plain}
+  - {text: "i have to swing by {contact}'s house to get them", variant: plain}
+  - {text: "{contact} is at home waiting for a lift", variant: plain}
+  - {text: "i promised to fetch {contact} from their house", variant: plain}
+  - {text: "i'm supposed to get {contact} from home", variant: plain}
+  - {text: "{contact} needs picking up from their place", variant: plain}
+  - {text: "gotta grab {contact} from their house first", variant: plain}
+  - {text: "{contact} doesn't have a car today so i'm getting them from home", variant: plain}
+  - {text: "i'm collecting {contact} from their flat", variant: plain}
+  - {text: "{contact} is ready at home and needs a lift", variant: plain}
+  - {text: "my job now is to get {contact} from their house", variant: plain}
+  - {text: "{contact} asked me to come get them at home", variant: plain}
+  - {text: "i have to go get {contact} from where they stay", variant: plain}
+  - {text: "{contact}'s waiting outside their building for me", variant: plain}
+  - {text: "i've got a pickup at {contact}'s house", variant: plain}
+  - {text: "{contact} is stuck at home without a ride", variant: plain}
+  - {text: "i need to bring {contact} along from their place", variant: plain}
+  - {text: "first i have to collect {contact} at their house", variant: plain}
+  - {text: "{contact} wants me to come pick them up at their place", variant: plain}
+  - {text: "i'm on pickup duty for {contact} today", variant: plain}
+  - {text: "{contact} needs me at their door to take them along", variant: plain}
+  - {text: "i'm meant to drive {contact} over from their place", variant: plain}
+  - {text: "mujhe {contact} ko ghar se pick karna hai", variant: hinglish}
+  - {text: "{contact} ghar pe wait kar raha hai", variant: hinglish}
+  - {text: "{contact} ko uske ghar se lena hai", variant: hinglish}
+  - {text: "{contact} ko lene jaana hai ghar pe", variant: hinglish}
+  - {text: "pehle {contact} ko ghar se uthana hai", variant: hinglish}
+  - {text: "{contact} ghar pe ready hai usko lena hai", variant: hinglish}
+  - {text: "{contact} na mane inda pick up maadbeku", variant: kannada_english}
+  - {text: "{contact} mane alli kaaythidaare", variant: kannada_english}
+  - {text: "{contact} na karkondu barbeku mane inda", variant: kannada_english}
+  - {text: "{contact} ge mane hatra lift beku", variant: kannada_english}
+  - {text: "i need to um pick up {contact} from uh their place", variant: disfluent}
+  - {text: "i have to get {contact} no wait i have to collect {contact} from home", variant: disfluent}
+  - {text: "so {contact} is uh waiting at home for me", variant: disfluent}
+  - {text: "uh first i need to like grab {contact} from the the house", variant: disfluent}
+  - {text: "er {contact} needs a lift from um from home", variant: disfluent}
+  - {text: "i've got to you know fetch {contact} from their house", variant: disfluent}
+
+# seed 3 (indirect): {contact} said to come over to {address}
+"3":
+  - {text: "{contact} told me to drop by {address}", variant: plain}
+  - {text: "{contact}'s invited us over to {address}", variant: plain}
+  - {text: "{contact} wants us at {address}", variant: plain}
+  - {text: "{contact} asked us to swing by {address}", variant: plain}
+  - {text: "we're expected at {address} {contact} said so", variant: plain}
+  - {text: "{contact} is at {address} and wants me there", variant: plain}
+  - {text: "apparently {contact} wants us to come to {address}", variant: plain}
+  - {text: "{contact} gave me {address} and said come over", variant: plain}
+  - {text: "{contact} mentioned we should meet at {address}", variant: plain}
+  - {text: "{contact} is hosting at {address} and asked us to come", variant: plain}
+  - {text: "the plan is to go to {contact}'s at {address}", variant: plain}
+  - {text: "{contact} said they're waiting for us at {address}", variant: plain}
+  - {text: "{contact} called and said to head to {address}", variant: plain}
+  - {text: "{contact} lives at {address} and asked me over", variant: plain}
+  - {text: "{contact} wants me to come by {address}", variant: plain}
+  - {text: "we've been called over to {address} by {contact}", variant: plain}
+  - {text: "{contact} just rang saying come to {address}", variant: plain}
+  - {text: "{contact} asked me to reach {address}", variant: plain}
+  - {text: "{contact} is expecting us over at {address}", variant: plain}
+  - {text: "so {contact} wants everyone at {address}", variant: plain}
+  - {text: "{contact} insisted we come round to {address}", variant: plain}
+  - {text: "{contact} is at {address} asking us to join", variant: plain}
+  - {text: "{contact} moved to {address} and wants us over", variant: plain}
+  - {text: "{contact} has asked us to show up at {address}", variant: plain}
+  - {text: "{contact} ne bola {address} pe aa jao", variant: hinglish}
+  - {text: "{contact} bol raha tha {address} aana hai", variant: hinglish}
+  - {text: "{contact} ne {address} pe bulaya hai", variant: hinglish}
+  - {text: "{contact} {address} pe wait kar rahi hai aane ko bola", variant: hinglish}
+  - {text: "{contact} keh rahe the {address} chale aao", variant: hinglish}
+  - {text: "{contact} ka bulawa aaya hai {address} pe", variant: hinglish}
+  - {text: "{contact} {address} ge banni antha helidru", variant: kannada_english}
+  - {text: "{contact} {address} ge kardidaare", variant: kannada_english}
+  - {text: "{address} alli {contact} kaaythidaare barakke heliddaare", variant: kannada_english}
+  - {text: "{contact} namge {address} ge baroke heliddaare", variant: kannada_english}
+  - {text: "{contact} said uh something like come round to um {address}", variant: disfluent}
+  - {text: "so {contact} wants us at like {address} you know", variant: disfluent}
+  - {text: "{contact} told me to come to uh wait {address} yeah {address}", variant: disfluent}
+  - {text: "um {contact} asked us to drop by er {address}", variant: disfluent}
+  - {text: "{contact} is uh {contact} said we should come to {address}", variant: disfluent}
+  - {text: "er apparently {contact} wants me over at {address}", variant: disfluent}
+
+# seed 4 (fragment): {contact} home
+"4":
+  - {text: "{contact}'s house", variant: plain}
+  - {text: "{contact}'s place", variant: plain}
+  - {text: "over to {contact}'s", variant: plain}
+  - {text: "to {contact}'s address", variant: plain}
+  - {text: "route to {contact}'s home", variant: plain}
+  - {text: "{contact}'s flat", variant: plain}
+  - {text: "drive to {contact}'s", variant: plain}
+  - {text: "where {contact} stays", variant: plain}
+  - {text: "{contact} residence", variant: plain}
+  - {text: "{contact}'s apartment", variant: plain}
+  - {text: "navigate {contact}'s", variant: plain}
+  - {text: "{contact}'s building", variant: plain}
+  - {text: "{contact} house please", variant: plain}
+  - {text: "{contact}'s doorstep", variant: plain}
+  - {text: "{contact}'s gate", variant: plain}
+  - {text: "{contact}'s society", variant: plain}
+  - {text: "{contact}'s colony", variant: plain}
+  - {text: "straight to {contact}'s", variant: plain}
+  - {text: "{contact}'s villa", variant: plain}
+  - {text: "the way to {contact}'s", variant: plain}
+  - {text: "{contact}'s bungalow", variant: plain}
+  - {text: "off to {contact}'s", variant: plain}
+  - {text: "{contact}'s home now", variant: plain}
+  - {text: "{contact}'s quarters", variant: plain}
+  - {text: "{contact} ka ghar", variant: hinglish}
+  - {text: "{contact} ke ghar", variant: hinglish}
+  - {text: "{contact} ke yahan", variant: hinglish}
+  - {text: "{contact} ka makaan", variant: hinglish}
+  - {text: "{contact} ke ghar ka rasta", variant: hinglish}
+  - {text: "{contact} ki building", variant: hinglish}
+  - {text: "{contact} mane", variant: kannada_english}
+  - {text: "{contact} manege", variant: kannada_english}
+  - {text: "{contact} iro kade", variant: kannada_english}
+  - {text: "{contact} mane kade hogona", variant: kannada_english}
+  - {text: "uh {contact}'s um house", variant: disfluent}
+  - {text: "the um {contact}'s place", variant: disfluent}
+  - {text: "er {contact} no {contact}'s home", variant: disfluent}
+  - {text: "um to like {contact}'s flat", variant: disfluent}
+  - {text: "{contact}'s office no house", variant: disfluent}
+  - {text: "so uh to {contact}'s um address", variant: disfluent}

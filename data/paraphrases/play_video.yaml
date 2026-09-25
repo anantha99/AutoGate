@@ -1,0 +1,176 @@
+# Paraphrases of the play_video seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): play the {topic} video on the screen
+"0":
+  - {text: "put the {topic} video on the display", variant: plain}
+  - {text: "show me that {topic} clip on the display", variant: plain}
+  - {text: "start the {topic} video", variant: plain}
+  - {text: "put up the {topic} clip on the screen", variant: plain}
+  - {text: "play that {topic} video for us", variant: plain}
+  - {text: "bring up the {topic} video", variant: plain}
+  - {text: "get the {topic} video going up front", variant: plain}
+  - {text: "run the {topic} clip on the centre display", variant: plain}
+  - {text: "stream the {topic} video", variant: plain}
+  - {text: "load the {topic} video on the head unit", variant: plain}
+  - {text: "play me the {topic} video", variant: plain}
+  - {text: "show that {topic} video to us", variant: plain}
+  - {text: "throw the {topic} video up there", variant: plain}
+  - {text: "get the {topic} one playing on screen", variant: plain}
+  - {text: "have the {topic} clip playing", variant: plain}
+  - {text: "fire up that {topic} video", variant: plain}
+  - {text: "cast the {topic} video to the car screen", variant: plain}
+  - {text: "play that video on {topic}", variant: plain}
+  - {text: "put the {topic} video up for everyone", variant: plain}
+  - {text: "do one thing start that {topic} clip on the display", variant: plain}
+  - {text: "switch over to the {topic} clip on screen", variant: plain}
+  - {text: "let's watch the {topic} video", variant: plain}
+  - {text: "play the {topic} clip on the touchscreen", variant: plain}
+  - {text: "open the {topic} video on the monitor", variant: plain}
+  - {text: "{topic} wala video screen pe chalao", variant: hinglish}
+  - {text: "{topic} ka video laga do", variant: hinglish}
+  - {text: "screen pe {topic} video dikhao", variant: hinglish}
+  - {text: "{topic} video chala do yaar", variant: hinglish}
+  - {text: "wo {topic} wala video play karo", variant: hinglish}
+  - {text: "{topic} ki video screen pe laga do", variant: hinglish}
+  - {text: "{topic} video screen alli haaku", variant: kannada_english}
+  - {text: "{topic} video play maadi", variant: kannada_english}
+  - {text: "screen mele {topic} video haaku guru", variant: kannada_english}
+  - {text: "aa {topic} video haakbidi", variant: kannada_english}
+  - {text: "uh put the um the {topic} video up on screen", variant: disfluent}
+  - {text: "play the song no the {topic} video on the display", variant: disfluent}
+  - {text: "er begin um begin that {topic} clip", variant: disfluent}
+  - {text: "so um like show us that {topic} video", variant: disfluent}
+  - {text: "the {topic} thing uh stick it on the um display", variant: disfluent}
+  - {text: "um get the get the {topic} clip going", variant: disfluent}
+
+# seed 1 (question): can you put on a cartoon for the kids
+"1":
+  - {text: "could you play some cartoons for the children?", variant: plain}
+  - {text: "can you put on an animated show for the little ones", variant: plain}
+  - {text: "would you play a cartoon on the screen for the kids", variant: plain}
+  - {text: "will you find a kids' cartoon to keep them busy", variant: plain}
+  - {text: "can the kids watch a cartoon on the screen?", variant: plain}
+  - {text: "is there a cartoon you can play for the children", variant: plain}
+  - {text: "could you show the kids some animation", variant: plain}
+  - {text: "can you start a cartoon for the back row", variant: plain}
+  - {text: "would you mind playing a cartoon for my son and daughter", variant: plain}
+  - {text: "can we get a cartoon going for the kids?", variant: plain}
+  - {text: "could you get something animated going for the young ones", variant: plain}
+  - {text: "how about a cartoon for the kids on the screen?", variant: plain}
+  - {text: "can you put some cartoon videos on for the children", variant: plain}
+  - {text: "will you play something with cartoons for the kids", variant: plain}
+  - {text: "could you keep the kids busy with a cartoon", variant: plain}
+  - {text: "can the little ones have a cartoon on the screen", variant: plain}
+  - {text: "would you run an animated movie for the kids", variant: plain}
+  - {text: "can you find some cartoons the kids will like?", variant: plain}
+  - {text: "do you have any cartoons you can put on for the kids", variant: plain}
+  - {text: "could the kids get a cartoon on the back screen", variant: plain}
+  - {text: "can you play cartoons for the children in the back", variant: plain}
+  - {text: "mind putting on a cartoon for the kiddos?", variant: plain}
+  - {text: "could you get some kids' cartoons on the display", variant: plain}
+  - {text: "can you show a cartoon so the kids stay quiet", variant: plain}
+  - {text: "bachchon ke liye cartoon laga sakte ho?", variant: hinglish}
+  - {text: "kya bachchon ke liye koi cartoon chala doge", variant: hinglish}
+  - {text: "bachche cartoon dekhna chahte hain laga doge kya", variant: hinglish}
+  - {text: "kids ke liye cartoon chala sakte ho kya", variant: hinglish}
+  - {text: "screen pe chhote bachchon ke liye cartoon lagaoge?", variant: hinglish}
+  - {text: "koi cartoon video laga doge bachchon ko", variant: hinglish}
+  - {text: "makkalige cartoon haakthira?", variant: kannada_english}
+  - {text: "makkalige yaavdadru cartoon haakbahuda", variant: kannada_english}
+  - {text: "makkalu cartoon nodbeku haakthiya guru", variant: kannada_english}
+  - {text: "screen alli makkalige cartoon play maadthira", variant: kannada_english}
+  - {text: "um can you uh play like some cartoon for the children", variant: disfluent}
+  - {text: "would you show the news no no a cartoon for the children", variant: disfluent}
+  - {text: "er will you get the kids uh some cartoons going", variant: disfluent}
+  - {text: "so um can the kids like watch a cartoon", variant: disfluent}
+  - {text: "can you can you um find the kiddos some cartoon", variant: disfluent}
+  - {text: "uh would you um find a cartoon the kids can watch", variant: disfluent}
+
+# seed 2 (indirect): the kids are bored waiting in the parking lot
+"2":
+  - {text: "the children have nothing to do while we wait here in the parking", variant: plain}
+  - {text: "the little ones are getting restless in the car park", variant: plain}
+  - {text: "we've been sitting in this parking for ages and the kids are fed up", variant: plain}
+  - {text: "the children are looking for something to do while we wait here", variant: plain}
+  - {text: "my son and daughter are so bored sitting in the car here", variant: plain}
+  - {text: "the kids in the back are getting cranky waiting for daddy", variant: plain}
+  - {text: "the kids are whining we're stuck waiting in the lot", variant: plain}
+  - {text: "the kids have been waiting forever and they're climbing the walls", variant: plain}
+  - {text: "it's going to be a long wait in the basement parking and the kids are already fidgety", variant: plain}
+  - {text: "the kids can't sit still we're still waiting for their mom", variant: plain}
+  - {text: "nothing to keep the little ones busy while we're parked", variant: plain}
+  - {text: "the kids are driving me nuts waiting here", variant: plain}
+  - {text: "we're parked and waiting and the children are bored stiff", variant: plain}
+  - {text: "the young ones are yawning in the back while we wait", variant: plain}
+  - {text: "the kids have run out of things to do in the parking", variant: plain}
+  - {text: "waiting at the mall parking with two bored kids", variant: plain}
+  - {text: "the children keep complaining that waiting is boring", variant: plain}
+  - {text: "the kids are restless and mom's shopping is taking forever", variant: plain}
+  - {text: "we're stuck in the car park and the kids need something to do", variant: plain}
+  - {text: "the kids are fighting in the back out of boredom while we're parked", variant: plain}
+  - {text: "the kids are sulking since we're just sitting here parked", variant: plain}
+  - {text: "we'll be waiting in the lot a while and the kids are already bored", variant: plain}
+  - {text: "my kids are totally bored here in the parking area", variant: plain}
+  - {text: "the backseat gang is losing it waiting at the parking", variant: plain}
+  - {text: "bachche parking mein bore ho rahe hain", variant: hinglish}
+  - {text: "yahan wait karte karte bachche pak gaye", variant: hinglish}
+  - {text: "parking mein baithe baithe bachchon ka mann nahi lag raha", variant: hinglish}
+  - {text: "bachche bol rahe hain bahut bore ho raha hai yahan", variant: hinglish}
+  - {text: "kab se parking mein ruke hain bachche pareshan ho gaye", variant: hinglish}
+  - {text: "bachchon ke paas karne ko kuch nahi hai yahan", variant: hinglish}
+  - {text: "makkalu parking alli bore aagthidaare", variant: kannada_english}
+  - {text: "illi kaaytha kaaytha makkalige bore aaytu", variant: kannada_english}
+  - {text: "makkalige illi enu maadodu gottagtilla", variant: kannada_english}
+  - {text: "parking alli thumba hothu aaythu makkalu galata maadthidaare", variant: kannada_english}
+  - {text: "the kids are uh the kids are so bored in this um parking", variant: disfluent}
+  - {text: "um the little ones are like getting restless waiting here", variant: disfluent}
+  - {text: "so er we're parked and the kids uh have nothing to do", variant: disfluent}
+  - {text: "the kids are hungry no bored they're bored of waiting", variant: disfluent}
+  - {text: "uh the children you know they're fed up sitting in the parking", variant: disfluent}
+  - {text: "er my kids are um totally bored out of their minds back there", variant: disfluent}
+
+# seed 3 (fragment): {topic} video
+"3":
+  - {text: "{topic} clip", variant: plain}
+  - {text: "the {topic} video please", variant: plain}
+  - {text: "a video on {topic}", variant: plain}
+  - {text: "{topic} on screen", variant: plain}
+  - {text: "play {topic}", variant: plain}
+  - {text: "{topic} clip on the display", variant: plain}
+  - {text: "some {topic} videos", variant: plain}
+  - {text: "{topic} footage", variant: plain}
+  - {text: "that {topic} one", variant: plain}
+  - {text: "watch {topic}", variant: plain}
+  - {text: "{topic} on youtube", variant: plain}
+  - {text: "{topic} film", variant: plain}
+  - {text: "video of {topic} now", variant: plain}
+  - {text: "{topic} reel", variant: plain}
+  - {text: "show the {topic} clip", variant: plain}
+  - {text: "{topic} documentary", variant: plain}
+  - {text: "{topic} vid", variant: plain}
+  - {text: "put on {topic}", variant: plain}
+  - {text: "{topic} on the back screen", variant: plain}
+  - {text: "{topic} video for the ride", variant: plain}
+  - {text: "any video about {topic}", variant: plain}
+  - {text: "{topic} clip for the screen", variant: plain}
+  - {text: "{topic} vlog", variant: plain}
+  - {text: "stream {topic}", variant: plain}
+  - {text: "{topic} wala video dikhao na", variant: hinglish}
+  - {text: "{topic} ka video lagao", variant: hinglish}
+  - {text: "{topic} ka video chalao zara", variant: hinglish}
+  - {text: "{topic} ki video dikhao", variant: hinglish}
+  - {text: "{topic} wala clip laga do", variant: hinglish}
+  - {text: "{topic} ka clip chala do", variant: hinglish}
+  - {text: "{topic} video swalpa haaku", variant: kannada_english}
+  - {text: "{topic} clip haaku guru", variant: kannada_english}
+  - {text: "{topic} video haakbidi saar", variant: kannada_english}
+  - {text: "{topic} bagge video haaki", variant: kannada_english}
+  - {text: "uh {topic} um video", variant: disfluent}
+  - {text: "the uh the {topic} one", variant: disfluent}
+  - {text: "{topic} song no {topic} video", variant: disfluent}
+  - {text: "er that {topic} um clip", variant: disfluent}
+  - {text: "so like {topic} video you know", variant: disfluent}
+  - {text: "video uh the {topic} video", variant: disfluent}

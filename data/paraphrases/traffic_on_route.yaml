@@ -1,0 +1,219 @@
+# Paraphrases of the traffic_on_route seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): check traffic on my route
+"0":
+  - {text: "see how the roads are looking up ahead", variant: plain}
+  - {text: "show me the traffic along this route", variant: plain}
+  - {text: "pull up the live traffic for this drive", variant: plain}
+  - {text: "tell me if there are jams on my way", variant: plain}
+  - {text: "find out how bad the traffic is en route", variant: plain}
+  - {text: "check for congestion on the route", variant: plain}
+  - {text: "give me a traffic update for this trip", variant: plain}
+  - {text: "scan the route for jams", variant: plain}
+  - {text: "show the traffic colours on the map", variant: plain}
+  - {text: "look up delays on the road we're taking", variant: plain}
+  - {text: "check if there's any jam before we reach", variant: plain}
+  - {text: "let me know how the roads look till the destination", variant: plain}
+  - {text: "run a traffic check for my drive", variant: plain}
+  - {text: "see whether the route is clear", variant: plain}
+  - {text: "check the traffic situation till we get there", variant: plain}
+  - {text: "turn on the traffic layer for my route", variant: plain}
+  - {text: "tell me how congested my route is", variant: plain}
+  - {text: "report the traffic on the road i'm taking", variant: plain}
+  - {text: "find any slowdowns on this route", variant: plain}
+  - {text: "do one thing check the traffic on this route", variant: plain}
+  - {text: "get me the traffic status for this journey", variant: plain}
+  - {text: "quickly check if the road is jammed", variant: plain}
+  - {text: "look for any blockages on my route", variant: plain}
+  - {text: "show me where the jams are on the route", variant: plain}
+  - {text: "route pe traffic check karo", variant: hinglish}
+  - {text: "raste mein traffic kaisa hai dekho", variant: hinglish}
+  - {text: "mere route ka traffic dikhao", variant: hinglish}
+  - {text: "aage jam hai kya check kar lo", variant: hinglish}
+  - {text: "traffic update do is raste ka", variant: hinglish}
+  - {text: "zara dekho road pe kitna traffic hai", variant: hinglish}
+  - {text: "route alli traffic nodu", variant: kannada_english}
+  - {text: "ee daari alli traffic eshtide check maadi", variant: kannada_english}
+  - {text: "traffic update kodi route du", variant: kannada_english}
+  - {text: "jam ideya nodu swalpa", variant: kannada_english}
+  - {text: "uh look at the um the jams on my route", variant: disfluent}
+  - {text: "look at the weather no the traffic on my route", variant: disfluent}
+  - {text: "so um show me the the traffic for this drive", variant: disfluent}
+  - {text: "er check if there's like any jam on the way", variant: disfluent}
+  - {text: "um give me the uh traffic update for the route", variant: disfluent}
+  - {text: "check traffic on on the route you know till we reach", variant: disfluent}
+
+# seed 1 (question): how's the traffic on the way
+"1":
+  - {text: "what's traffic looking like ahead?", variant: plain}
+  - {text: "is the road clear up to the destination", variant: plain}
+  - {text: "any jams on our route?", variant: plain}
+  - {text: "how bad is the traffic going to be", variant: plain}
+  - {text: "are there delays along this route?", variant: plain}
+  - {text: "is it moving smoothly ahead or stuck", variant: plain}
+  - {text: "what's the traffic situation till we reach?", variant: plain}
+  - {text: "how congested is the road ahead", variant: plain}
+  - {text: "can you tell me how the roads are looking?", variant: plain}
+  - {text: "is there heavy traffic on this route", variant: plain}
+  - {text: "any slowdowns i should know about?", variant: plain}
+  - {text: "how's the road looking up ahead", variant: plain}
+  - {text: "is traffic bad on our side today?", variant: plain}
+  - {text: "what are the roads like right now on this drive", variant: plain}
+  - {text: "will we hit any jams?", variant: plain}
+  - {text: "is it bumper to bumper ahead", variant: plain}
+  - {text: "how's the flow on this road?", variant: plain}
+  - {text: "could you check if there's traffic on the route", variant: plain}
+  - {text: "is the route green all the way?", variant: plain}
+  - {text: "how heavy is traffic between here and the destination", variant: plain}
+  - {text: "what does the traffic look like on my route?", variant: plain}
+  - {text: "is there a pile up somewhere ahead", variant: plain}
+  - {text: "are the roads free right now", variant: plain}
+  - {text: "do you see any traffic ahead of us?", variant: plain}
+  - {text: "aage traffic kaisa hai?", variant: hinglish}
+  - {text: "route pe jam hai kya", variant: hinglish}
+  - {text: "road clear hai kya aage?", variant: hinglish}
+  - {text: "kitna traffic hai raste mein", variant: hinglish}
+  - {text: "aaj traffic zyada hai kya is route pe?", variant: hinglish}
+  - {text: "aage kahin jam toh nahi hai na", variant: hinglish}
+  - {text: "daari alli traffic hegide?", variant: kannada_english}
+  - {text: "munde jam ideya?", variant: kannada_english}
+  - {text: "route alli traffic jaasti ideya guru", variant: kannada_english}
+  - {text: "ivattu road hegide traffic?", variant: kannada_english}
+  - {text: "how's um how's it looking traffic wise up ahead", variant: disfluent}
+  - {text: "is there uh is there any jam ahead", variant: disfluent}
+  - {text: "what's the weather no i mean how's the traffic ahead", variant: disfluent}
+  - {text: "so like how bad is uh the traffic on our route", variant: disfluent}
+  - {text: "er are the roads um clear up ahead?", variant: disfluent}
+  - {text: "how's the how's the traffic looking you know", variant: disfluent}
+
+# seed 2 (outcome): i can't afford to get stuck in a jam today
+"2":
+  - {text: "i really can't be late because of traffic today", variant: plain}
+  - {text: "getting held up in traffic today would be a disaster", variant: plain}
+  - {text: "i have zero time to waste in jams today", variant: plain}
+  - {text: "today of all days i can't sit in traffic", variant: plain}
+  - {text: "a traffic jam right now would ruin my day", variant: plain}
+  - {text: "i'm in a big hurry and traffic would kill me", variant: plain}
+  - {text: "no way can i be stuck on the road today", variant: plain}
+  - {text: "i need a smooth drive with no jams today", variant: plain}
+  - {text: "i've got no margin for traffic delays", variant: plain}
+  - {text: "being caught in a jam today is not an option", variant: plain}
+  - {text: "i'm running tight so traffic is my biggest worry", variant: plain}
+  - {text: "i'm worried about congestion making me late", variant: plain}
+  - {text: "the last thing i need today is a jam", variant: plain}
+  - {text: "i hope we don't hit traffic i'm in a rush", variant: plain}
+  - {text: "i can't lose time crawling along today", variant: plain}
+  - {text: "if i get caught in traffic today i'm finished", variant: plain}
+  - {text: "i'm already late so any jam will be a problem", variant: plain}
+  - {text: "today's too important to waste in a jam", variant: plain}
+  - {text: "a slowdown on the road would really hurt me today", variant: plain}
+  - {text: "i can't handle a traffic mess today", variant: plain}
+  - {text: "i'm nervous about traffic holding me up", variant: plain}
+  - {text: "i've got something important and traffic can't delay me", variant: plain}
+  - {text: "every minute counts today so no jams for me", variant: plain}
+  - {text: "i simply can't be delayed by traffic", variant: plain}
+  - {text: "aaj jam mein phasna bilkul nahi chalega", variant: hinglish}
+  - {text: "aaj traffic mein atakne ka time nahi hai", variant: hinglish}
+  - {text: "late ho raha hoon traffic nahi chahiye aaj", variant: hinglish}
+  - {text: "aaj jaldi pahunchna hai jam ka tension hai", variant: hinglish}
+  - {text: "traffic mein phas gaye toh gaye aaj", variant: hinglish}
+  - {text: "aaj ek minute bhi waste nahi kar sakta traffic mein", variant: hinglish}
+  - {text: "ivattu traffic alli sikkakobaardu", variant: kannada_english}
+  - {text: "ivattu jam alli time waste maadoke aagalla", variant: kannada_english}
+  - {text: "late aagthide traffic beda ivattu", variant: kannada_english}
+  - {text: "ivattu traffic sikkidre kathe mugithu", variant: kannada_english}
+  - {text: "i can't uh i really can't get stuck in traffic today", variant: disfluent}
+  - {text: "so um today of all days a jam would be like terrible", variant: disfluent}
+  - {text: "i'm late and um you know i can't sit in a jam", variant: disfluent}
+  - {text: "er getting stuck in a uh in a jam today is not okay", variant: disfluent}
+  - {text: "i can't afford to be um late no i can't get held up today", variant: disfluent}
+  - {text: "um any traffic today would like totally ruin things", variant: disfluent}
+
+# seed 3 (indirect): i heard there's a rally on the main road
+"3":
+  - {text: "someone said there's a protest on the main road", variant: plain}
+  - {text: "apparently there's a procession on the highway today", variant: plain}
+  - {text: "my friend mentioned a march blocking the main stretch", variant: plain}
+  - {text: "the radio said there's a dharna on the big road", variant: plain}
+  - {text: "i think a political rally is going on up ahead", variant: plain}
+  - {text: "word is there's a morcha on the main road", variant: plain}
+  - {text: "there's supposed to be a festival procession on our road", variant: plain}
+  - {text: "people are saying a rally has blocked the main junction", variant: plain}
+  - {text: "i read that some rally is happening near the flyover", variant: plain}
+  - {text: "apparently the main road is closed for a rally", variant: plain}
+  - {text: "i heard a vip convoy is passing through the main road", variant: plain}
+  - {text: "there's talk of a bandh with a march on the main road", variant: plain}
+  - {text: "a colleague said the main road is full of rally people", variant: plain}
+  - {text: "i heard some party workers are marching on the highway", variant: plain}
+  - {text: "the news mentioned a big gathering on the main road", variant: plain}
+  - {text: "somebody told me there's a protest blocking the junction", variant: plain}
+  - {text: "looks like there's a rally planned on the main road", variant: plain}
+  - {text: "they said a ganesh procession is on the main road", variant: plain}
+  - {text: "i got to know there's a strike march on our road", variant: plain}
+  - {text: "rumour is the main road has a rally going on", variant: plain}
+  - {text: "i heard the police have closed the main road for a march", variant: plain}
+  - {text: "apparently a huge crowd is marching down the main road", variant: plain}
+  - {text: "i've been told there's a demonstration on the main road", variant: plain}
+  - {text: "my brother said the rally is on the road we're taking", variant: plain}
+  - {text: "suna hai main road pe rally hai", variant: hinglish}
+  - {text: "main road pe koi juloos nikal raha hai", variant: hinglish}
+  - {text: "kisi ne bola highway pe dharna chal raha hai", variant: hinglish}
+  - {text: "aaj main road pe morcha hai aisa suna", variant: hinglish}
+  - {text: "sunne mein aaya ki bade raste pe rally hai", variant: hinglish}
+  - {text: "news mein bataya main road band hai rally ki wajah se", variant: hinglish}
+  - {text: "main road alli rally ide antha kelide", variant: kannada_english}
+  - {text: "main road alli protest nadithide antha helidru", variant: kannada_english}
+  - {text: "highway alli yaavdo rally ide anthe", variant: kannada_english}
+  - {text: "ivattu main road alli juloos ide antha kelde", variant: kannada_english}
+  - {text: "i uh heard some rally thing is happening on the uh main road", variant: disfluent}
+  - {text: "so um someone said there's like a protest on the highway", variant: disfluent}
+  - {text: "some procession no wait a political rally is um blocking the big road", variant: disfluent}
+  - {text: "er they're saying the uh the main road is packed with rally people", variant: disfluent}
+  - {text: "i heard uh you know some march on the main road", variant: disfluent}
+  - {text: "um word is there's a rally on the uh the big road", variant: disfluent}
+
+# seed 4 (fragment): traffic ahead
+"4":
+  - {text: "jams ahead", variant: plain}
+  - {text: "traffic on route", variant: plain}
+  - {text: "road ahead clear", variant: plain}
+  - {text: "congestion ahead", variant: plain}
+  - {text: "traffic status", variant: plain}
+  - {text: "any jams", variant: plain}
+  - {text: "live traffic", variant: plain}
+  - {text: "traffic update", variant: plain}
+  - {text: "delays on the way", variant: plain}
+  - {text: "traffic till destination", variant: plain}
+  - {text: "how's the road ahead", variant: plain}
+  - {text: "jam check", variant: plain}
+  - {text: "my route's traffic", variant: plain}
+  - {text: "slowdowns ahead", variant: plain}
+  - {text: "traffic conditions now", variant: plain}
+  - {text: "blockages on route", variant: plain}
+  - {text: "road congestion", variant: plain}
+  - {text: "traffic report", variant: plain}
+  - {text: "traffic on this road", variant: plain}
+  - {text: "any delays ahead", variant: plain}
+  - {text: "traffic situation", variant: plain}
+  - {text: "traffic up front", variant: plain}
+  - {text: "clear road or not", variant: plain}
+  - {text: "bumper to bumper ahead", variant: plain}
+  - {text: "aage traffic", variant: hinglish}
+  - {text: "raste ka traffic", variant: hinglish}
+  - {text: "jam hai kya aage", variant: hinglish}
+  - {text: "traffic kitna hai", variant: hinglish}
+  - {text: "road ka haal", variant: hinglish}
+  - {text: "traffic batao", variant: hinglish}
+  - {text: "munde traffic", variant: kannada_english}
+  - {text: "traffic hegide", variant: kannada_english}
+  - {text: "daari alli jam", variant: kannada_english}
+  - {text: "road hegide munde", variant: kannada_english}
+  - {text: "uh traffic um ahead", variant: disfluent}
+  - {text: "traffic ahead er jams ahead", variant: disfluent}
+  - {text: "um any uh jams", variant: disfluent}
+  - {text: "the the jams up front", variant: disfluent}
+  - {text: "er weather no traffic ahead", variant: disfluent}
+  - {text: "so like traffic on route", variant: disfluent}

@@ -1,0 +1,176 @@
+# Paraphrases of the plan_charging_stops seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): plan charging stops for the drive to {city}
+"0":
+  - {text: "map out the charging stops for my trip to {city}", variant: plain}
+  - {text: "figure out ev charging points for the ride to {city}", variant: plain}
+  - {text: "set up a charging plan for the {city} drive", variant: plain}
+  - {text: "i'm driving to {city} work out my charges", variant: plain}
+  - {text: "give me a charging schedule for the run to {city}", variant: plain}
+  - {text: "line up chargers for the whole drive to {city}", variant: plain}
+  - {text: "sort out charge stops between here and {city}", variant: plain}
+  - {text: "build a route to {city} with charging breaks", variant: plain}
+  - {text: "{city} drive please plan the charging halts", variant: plain}
+  - {text: "pick the best chargers for going to {city}", variant: plain}
+  - {text: "work out how many times i'll need to plug in going to {city}", variant: plain}
+  - {text: "do the charger planning for {city}", variant: plain}
+  - {text: "plan out the kwh top ups on the highway to {city}", variant: plain}
+  - {text: "let's plan where the car charges on the {city} journey", variant: plain}
+  - {text: "suggest fast chargers en route to {city}", variant: plain}
+  - {text: "work out the ev top ups for the {city} journey", variant: plain}
+  - {text: "mark charging stations on the way to {city} for me", variant: plain}
+  - {text: "schedule charging halts for the {city} highway drive", variant: plain}
+  - {text: "arrange my recharges before we head to {city}", variant: plain}
+  - {text: "get the charge points planned for driving down to {city}", variant: plain}
+  - {text: "just plan the charges for {city}", variant: plain}
+  - {text: "tell me the charging plan to reach {city}", variant: plain}
+  - {text: "check which chargers i should hit on the {city} run and plan it", variant: plain}
+  - {text: "for the {city} drive work out the charging breaks", variant: plain}
+  - {text: "{city} tak ke raste mein charging stops plan karo", variant: hinglish}
+  - {text: "{city} jaane ke liye charging points dekh ke plan kar do", variant: hinglish}
+  - {text: "{city} wali drive mein charging ka plan bana do", variant: hinglish}
+  - {text: "{city} tak kahan kahan charge karna hai woh set karo", variant: hinglish}
+  - {text: "raste mein charger halts fix kar do {city} wali drive ke liye", variant: hinglish}
+  - {text: "yaar {city} drive ke liye charger stops nikalo", variant: hinglish}
+  - {text: "{city} ge hogo daari alli charging stops plan maadu", variant: kannada_english}
+  - {text: "{city} drive ge charging plan maadi kodu", variant: kannada_english}
+  - {text: "{city} varegu elli elli charge maadbeku antha plan maadu", variant: kannada_english}
+  - {text: "guru {city} drive ge charger stops haaku", variant: kannada_english}
+  - {text: "uh plan the um charging stops to {city}", variant: disfluent}
+  - {text: "uh work out fuel stops no sorry charging stops for {city}", variant: disfluent}
+  - {text: "so um figure out like where to charge for the {city} trip", variant: disfluent}
+  - {text: "map the map the chargers for er the {city} drive", variant: disfluent}
+  - {text: "er for the {city} run uh plan where we charge", variant: disfluent}
+  - {text: "plan the route to {city} wait i mean the charging stops on it", variant: disfluent}
+
+# seed 1 (question): where should i charge on the way to {city}
+"1":
+  - {text: "where can i top up the battery on the drive to {city}?", variant: plain}
+  - {text: "which chargers should i use going to {city}", variant: plain}
+  - {text: "where do i stop to charge before reaching {city}", variant: plain}
+  - {text: "what are the good charging points between here and {city}?", variant: plain}
+  - {text: "how should i split up charging on the {city} route", variant: plain}
+  - {text: "where are the fast chargers en route to {city}?", variant: plain}
+  - {text: "can you tell me where to charge heading to {city}", variant: plain}
+  - {text: "where's the best place to plug in on the road to {city}", variant: plain}
+  - {text: "which stations make sense for charging on the {city} trip?", variant: plain}
+  - {text: "at what points should i charge driving to {city}", variant: plain}
+  - {text: "where would you charge if you were driving to {city}", variant: plain}
+  - {text: "any good spots to charge along the highway to {city}?", variant: plain}
+  - {text: "where do people usually charge going to {city}", variant: plain}
+  - {text: "how many times do i charge and where for {city}", variant: plain}
+  - {text: "where do i need to plug the car in for the {city} run", variant: plain}
+  - {text: "what's the smartest place to charge before {city}?", variant: plain}
+  - {text: "which charging stations are there on the {city} highway", variant: plain}
+  - {text: "where does the ev take a charge on the way down to {city}", variant: plain}
+  - {text: "is there a decent charger roughly halfway to {city}?", variant: plain}
+  - {text: "where can we halt for a charge heading to {city}", variant: plain}
+  - {text: "which chargers on the {city} route should i pick?", variant: plain}
+  - {text: "could you suggest where i recharge en route to {city}", variant: plain}
+  - {text: "where do i charge between here and {city}", variant: plain}
+  - {text: "do you know where i can recharge on the {city} route?", variant: plain}
+  - {text: "{city} jaate waqt kahan charge karun?", variant: hinglish}
+  - {text: "{city} ke raste mein charging kahan karni chahiye", variant: hinglish}
+  - {text: "{city} tak jaane mein kahan kahan charge karna padega?", variant: hinglish}
+  - {text: "raste mein {city} se pehle charger kahan milega", variant: hinglish}
+  - {text: "{city} ki taraf jaate hue gaadi kahan charge karein", variant: hinglish}
+  - {text: "batao na {city} jaate hue best charging point kaunsa hai", variant: hinglish}
+  - {text: "{city} ge hogbekadre elli charge maadli?", variant: kannada_english}
+  - {text: "{city} daari alli elli charge maadbeku", variant: kannada_english}
+  - {text: "{city} ge hogovaga charger yelli sigutte?", variant: kannada_english}
+  - {text: "guru {city} trip alli yelli charge maadodu", variant: kannada_english}
+  - {text: "um where where should i charge going to {city}", variant: disfluent}
+  - {text: "so uh where do i like stop to charge for {city}", variant: disfluent}
+  - {text: "where should i uh stop no i mean plug in before {city}", variant: disfluent}
+  - {text: "er which chargers um should i use for the {city} drive?", variant: disfluent}
+  - {text: "where can i you know plug in uh before {city}", variant: disfluent}
+  - {text: "um on the road to er {city} where do i charge", variant: disfluent}
+
+# seed 2 (outcome): the battery won't cover the full trip to {city}
+"2":
+  - {text: "there's not enough charge to make it all the way to {city}", variant: plain}
+  - {text: "i won't reach {city} on a single charge", variant: plain}
+  - {text: "the ev can't do {city} in one go", variant: plain}
+  - {text: "this battery isn't going to last till {city}", variant: plain}
+  - {text: "{city} is too far for one full charge", variant: plain}
+  - {text: "we'll run out of juice before we get to {city}", variant: plain}
+  - {text: "no way the charge holds up for the whole {city} drive", variant: plain}
+  - {text: "one charge won't get me to {city}", variant: plain}
+  - {text: "i'm going to be short on battery for the {city} run", variant: plain}
+  - {text: "the battery will die somewhere before {city}", variant: plain}
+  - {text: "{city} is beyond what this pack can manage", variant: plain}
+  - {text: "my ev won't make the whole journey to {city}", variant: plain}
+  - {text: "the charge won't stretch all the way to {city}", variant: plain}
+  - {text: "the drive to {city} is longer than the battery lasts", variant: plain}
+  - {text: "we'll be out of charge well before {city}", variant: plain}
+  - {text: "not enough kwh in the pack for the {city} trip", variant: plain}
+  - {text: "the {city} drive needs more battery than i have", variant: plain}
+  - {text: "battery's not going to hold out on the {city} highway", variant: plain}
+  - {text: "i'm pretty sure the ev dies before {city}", variant: plain}
+  - {text: "did the maths and the battery falls short of {city}", variant: plain}
+  - {text: "we're heading to {city} and the battery won't go the distance", variant: plain}
+  - {text: "even fully charged it can't do the {city} run nonstop", variant: plain}
+  - {text: "getting to {city} takes more than one battery's worth", variant: plain}
+  - {text: "halfway to {city} is about all this charge will manage", variant: plain}
+  - {text: "battery {city} tak nahi chalegi", variant: hinglish}
+  - {text: "ek charge mein {city} nahi pahunch paayenge", variant: hinglish}
+  - {text: "{city} tak ki trip ke liye battery kam padegi", variant: hinglish}
+  - {text: "itni battery mein {city} tak nahi jaa sakte yaar", variant: hinglish}
+  - {text: "gaadi ki battery {city} tak saath nahi degi", variant: hinglish}
+  - {text: "{city} bahut door hai battery raste mein khatam ho jayegi", variant: hinglish}
+  - {text: "battery {city} tanaka baralla", variant: kannada_english}
+  - {text: "ondu charge alli {city} reach aagalla", variant: kannada_english}
+  - {text: "{city} trip ge battery saakagalla guru", variant: kannada_english}
+  - {text: "ee battery inda {city} varegu hogoke aagalla", variant: kannada_english}
+  - {text: "the battery won't uh won't last to {city}", variant: disfluent}
+  - {text: "so um this charge you know it won't get us to {city}", variant: disfluent}
+  - {text: "the tank no the battery isn't enough for uh {city}", variant: disfluent}
+  - {text: "er i don't think the charge will like get us to {city}", variant: disfluent}
+  - {text: "uh the ev the ev can't do the full {city} trip", variant: disfluent}
+  - {text: "um {city} is too far for the er the battery", variant: disfluent}
+
+# seed 3 (indirect): first time taking the ev out on the highway
+"3":
+  - {text: "never done a long highway run in the electric car before", variant: plain}
+  - {text: "this is my first proper out of town drive in the ev", variant: plain}
+  - {text: "we've only ever driven the ev around town till now", variant: plain}
+  - {text: "first big highway outing since we bought the electric", variant: plain}
+  - {text: "haven't taken this ev beyond the city limits before", variant: plain}
+  - {text: "new ev and today's the first time on the expressway", variant: plain}
+  - {text: "i've never charged anywhere except at home", variant: plain}
+  - {text: "first outstation trip with the ev today", variant: plain}
+  - {text: "bit nervous taking the electric out on the national highway", variant: plain}
+  - {text: "the ev has only done office runs so far and now we're going intercity", variant: plain}
+  - {text: "my maiden highway trip in a battery car", variant: plain}
+  - {text: "we just got the ev and this is its first big journey", variant: plain}
+  - {text: "honestly i've no idea how the ev handles a long highway stretch", variant: plain}
+  - {text: "usually the ev stays in the city but today it's a long haul", variant: plain}
+  - {text: "first time i'm trusting the electric for an intercity drive", variant: plain}
+  - {text: "our first long distance run in the electric is today", variant: plain}
+  - {text: "no clue about chargers out on the highway this is all new", variant: plain}
+  - {text: "the ev and i have never left town together", variant: plain}
+  - {text: "today's the day we test the ev on a real highway run", variant: plain}
+  - {text: "never been more than fifty kilometres from home in this ev", variant: plain}
+  - {text: "taking the battery car on the expressway is new for me", variant: plain}
+  - {text: "i've only ever plugged in at home so this highway run is a first", variant: plain}
+  - {text: "so far it's been city driving only now the ev hits the open road", variant: plain}
+  - {text: "our electric has never been beyond the ring road before", variant: plain}
+  - {text: "pehli baar ev leke highway pe ja raha hoon", variant: hinglish}
+  - {text: "ev mein kabhi highway trip nahi ki yaar", variant: hinglish}
+  - {text: "electric gaadi ka pehla lamba safar hai aaj", variant: hinglish}
+  - {text: "abhi tak ev sirf sheher mein chalayi hai aaj bahar ja rahe hain", variant: hinglish}
+  - {text: "pehli baar electric car se outstation ja rahe hain", variant: hinglish}
+  - {text: "ev leke kabhi lambi drive nahi ki pehle", variant: hinglish}
+  - {text: "modala sala ev highway ge thagondu hogtha iddini", variant: kannada_english}
+  - {text: "ee ev alli yavaglu highway trip maadilla", variant: kannada_english}
+  - {text: "electric car alli first time highway ge hogtidini guru", variant: kannada_english}
+  - {text: "ivattu ev highway ge modala sala hogtide", variant: kannada_english}
+  - {text: "uh i've never i've never done a highway drive in the ev", variant: disfluent}
+  - {text: "first time on the er the expressway with the electric car you know", variant: disfluent}
+  - {text: "um we're taking the ev out of town for like the first time", variant: disfluent}
+  - {text: "er the ev has never done a long no wait any highway trip before", variant: disfluent}
+  - {text: "so the battery car um first proper highway run today", variant: disfluent}
+  - {text: "the the electric's never been past the city uh this is new", variant: disfluent}

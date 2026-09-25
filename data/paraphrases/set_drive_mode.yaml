@@ -1,0 +1,176 @@
+# Paraphrases of the set_drive_mode seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): switch to {drive_mode} mode
+"0":
+  - {text: "put it in {drive_mode} mode", variant: plain}
+  - {text: "change the drive mode to {drive_mode}", variant: plain}
+  - {text: "go to {drive_mode}", variant: plain}
+  - {text: "{drive_mode} mode on", variant: plain}
+  - {text: "set {drive_mode} mode", variant: plain}
+  - {text: "make it {drive_mode}", variant: plain}
+  - {text: "shift over to {drive_mode} driving", variant: plain}
+  - {text: "select the {drive_mode} setting", variant: plain}
+  - {text: "drive in {drive_mode} now", variant: plain}
+  - {text: "use {drive_mode} mode from here", variant: plain}
+  - {text: "let's go {drive_mode}", variant: plain}
+  - {text: "change over to {drive_mode}", variant: plain}
+  - {text: "put the car in {drive_mode}", variant: plain}
+  - {text: "flip it over to {drive_mode}", variant: plain}
+  - {text: "{drive_mode} mode please", variant: plain}
+  - {text: "set the driving mode as {drive_mode}", variant: plain}
+  - {text: "do one thing put {drive_mode} mode", variant: plain}
+  - {text: "move to the {drive_mode} profile", variant: plain}
+  - {text: "turn on {drive_mode}", variant: plain}
+  - {text: "get the car into {drive_mode}", variant: plain}
+  - {text: "keep it on {drive_mode} for now", variant: plain}
+  - {text: "switch the car over to {drive_mode}", variant: plain}
+  - {text: "pick {drive_mode} as the mode", variant: plain}
+  - {text: "set the car to {drive_mode}", variant: plain}
+  - {text: "{drive_mode} mode pe daal do", variant: hinglish}
+  - {text: "gaadi {drive_mode} mode mein karo", variant: hinglish}
+  - {text: "{drive_mode} mode chalu karo", variant: hinglish}
+  - {text: "drive mode {drive_mode} kar do yaar", variant: hinglish}
+  - {text: "{drive_mode} pe switch karo", variant: hinglish}
+  - {text: "abhi {drive_mode} mode lagao", variant: hinglish}
+  - {text: "{drive_mode} mode haaku", variant: kannada_english}
+  - {text: "gaadi {drive_mode} mode ge haaku guru", variant: kannada_english}
+  - {text: "{drive_mode} ge change maadu", variant: kannada_english}
+  - {text: "drive mode {drive_mode} maadi", variant: kannada_english}
+  - {text: "switch it to um you know {drive_mode}", variant: disfluent}
+  - {text: "um put it in the the {drive_mode} one", variant: disfluent}
+  - {text: "go to the the {drive_mode} setting", variant: disfluent}
+  - {text: "{drive_mode} no sorry {drive_mode} mode please", variant: disfluent}
+  - {text: "er set the uh drive mode to {drive_mode}", variant: disfluent}
+  - {text: "so like make it {drive_mode} um now", variant: disfluent}
+
+# seed 1 (outcome): i want to save petrol on this long drive
+"1":
+  - {text: "better mileage is what i need on this trip", variant: plain}
+  - {text: "fuel is expensive and there's a long highway run ahead", variant: plain}
+  - {text: "i'd like the tank to last the whole way", variant: plain}
+  - {text: "we've many hours of highway ahead and i want a good average", variant: plain}
+  - {text: "trying to squeeze more kilometres out of the tank", variant: plain}
+  - {text: "i'd like to be gentle on fuel today", variant: plain}
+  - {text: "long trip ahead i need maximum mileage", variant: plain}
+  - {text: "petrol prices are crazy i want to stretch this tank", variant: plain}
+  - {text: "don't want to burn too much fuel on this journey", variant: plain}
+  - {text: "i'd like to be fuel efficient on this trip", variant: plain}
+  - {text: "it's a long way and i want to use less diesel", variant: plain}
+  - {text: "i want better average till we get back", variant: plain}
+  - {text: "i want the car to sip fuel on this highway", variant: plain}
+  - {text: "saving fuel matters on this highway run", variant: plain}
+  - {text: "i need to be economical on this long stretch", variant: plain}
+  - {text: "long drive ahead and fuel efficiency is my priority", variant: plain}
+  - {text: "i'd rather not waste petrol on this trip", variant: plain}
+  - {text: "i want every litre to stretch further on this run", variant: plain}
+  - {text: "lots of kilometres ahead so i'd like to conserve fuel", variant: plain}
+  - {text: "need to keep fuel consumption low on this run", variant: plain}
+  - {text: "i'm trying to get the most out of this tank", variant: plain}
+  - {text: "this is a long haul and i want to drive economically", variant: plain}
+  - {text: "my goal is to burn less fuel on this highway", variant: plain}
+  - {text: "i want good kmpl on this outstation trip", variant: plain}
+  - {text: "lambi drive hai petrol bachana hai", variant: hinglish}
+  - {text: "is trip pe mileage achha chahiye yaar", variant: hinglish}
+  - {text: "petrol kam khaye aisa chahiye", variant: hinglish}
+  - {text: "highway lamba hai fuel bachana padega", variant: hinglish}
+  - {text: "mujhe achha average chahiye is safar mein", variant: hinglish}
+  - {text: "petrol mehenga hai zyada kharch nahi karna", variant: hinglish}
+  - {text: "long drive ide petrol ulisbeku", variant: kannada_english}
+  - {text: "mileage jaasti beku guru", variant: kannada_english}
+  - {text: "petrol kammi kharchu aagbeku", variant: kannada_english}
+  - {text: "doora hogbeku fuel save aagbeku", variant: kannada_english}
+  - {text: "um it's a long uh long drive i need to save fuel", variant: disfluent}
+  - {text: "so uh i want better mileage on this trip", variant: disfluent}
+  - {text: "er the tank i want the uh tank to last", variant: disfluent}
+  - {text: "i need to i need to be careful with petrol today", variant: disfluent}
+  - {text: "you know it's a long drive so um fuel saving", variant: disfluent}
+  - {text: "like i don't want to burn uh too much fuel", variant: disfluent}
+
+# seed 2 (question): can you put it in sport
+"2":
+  - {text: "could you switch to sport?", variant: plain}
+  - {text: "will you change to sport mode", variant: plain}
+  - {text: "can we go sporty?", variant: plain}
+  - {text: "would you set the drive mode to sport", variant: plain}
+  - {text: "how about sport mode?", variant: plain}
+  - {text: "can the car go into sport", variant: plain}
+  - {text: "mind flipping it to sport", variant: plain}
+  - {text: "is sport mode possible right now?", variant: plain}
+  - {text: "could you make it sport", variant: plain}
+  - {text: "can we try the sport setting?", variant: plain}
+  - {text: "would you put the car in sport mode", variant: plain}
+  - {text: "shall we go to sport", variant: plain}
+  - {text: "any chance of sport mode for this stretch", variant: plain}
+  - {text: "can i get sport mode on?", variant: plain}
+  - {text: "could we have the sporty setting please", variant: plain}
+  - {text: "can you turn on sport", variant: plain}
+  - {text: "is it possible to shift into sport?", variant: plain}
+  - {text: "will you switch the mode to sport for the ghat road", variant: plain}
+  - {text: "can we use sport on this highway", variant: plain}
+  - {text: "would you mind changing it to sport?", variant: plain}
+  - {text: "could sport mode come on", variant: plain}
+  - {text: "how about some sport driving on this empty road?", variant: plain}
+  - {text: "can you move it to sport now", variant: plain}
+  - {text: "why don't we switch to sport", variant: plain}
+  - {text: "sport mode mein daal doge?", variant: hinglish}
+  - {text: "kya sport pe kar sakte ho", variant: hinglish}
+  - {text: "gaadi sport mode mein karoge kya", variant: hinglish}
+  - {text: "sport mode chalu kar sakte ho?", variant: hinglish}
+  - {text: "thoda sport mode try karein kya", variant: hinglish}
+  - {text: "sport pe switch karoge yaar", variant: hinglish}
+  - {text: "sport mode haaktira?", variant: kannada_english}
+  - {text: "sport ge change maadbahuda", variant: kannada_english}
+  - {text: "gaadi sport alli haakoke aagutta?", variant: kannada_english}
+  - {text: "sport mode on maadtira guru", variant: kannada_english}
+  - {text: "could you uh put it in um sport mode", variant: disfluent}
+  - {text: "could we er could we try sport", variant: disfluent}
+  - {text: "will you put it in eco no i mean sport", variant: disfluent}
+  - {text: "um is it like possible to uh do sport", variant: disfluent}
+  - {text: "so can you uh switch it to sport you know", variant: disfluent}
+  - {text: "er would you change it over to sport please", variant: disfluent}
+
+# seed 3 (fragment): eco mode
+"3":
+  - {text: "eco", variant: plain}
+  - {text: "economy mode", variant: plain}
+  - {text: "eco driving", variant: plain}
+  - {text: "fuel saving mode", variant: plain}
+  - {text: "eco on", variant: plain}
+  - {text: "eco setting please", variant: plain}
+  - {text: "economy drive", variant: plain}
+  - {text: "go eco", variant: plain}
+  - {text: "put eco", variant: plain}
+  - {text: "mileage mode", variant: plain}
+  - {text: "eco now", variant: plain}
+  - {text: "the eco one", variant: plain}
+  - {text: "efficient mode", variant: plain}
+  - {text: "save fuel mode", variant: plain}
+  - {text: "economy", variant: plain}
+  - {text: "fuel economy setting", variant: plain}
+  - {text: "eco profile", variant: plain}
+  - {text: "switch eco", variant: plain}
+  - {text: "eco for highway", variant: plain}
+  - {text: "set eco", variant: plain}
+  - {text: "mileage setting", variant: plain}
+  - {text: "economy please", variant: plain}
+  - {text: "that eco thing", variant: plain}
+  - {text: "petrol saver mode", variant: plain}
+  - {text: "eco kar do", variant: hinglish}
+  - {text: "eco pe daalo", variant: hinglish}
+  - {text: "eco chalu", variant: hinglish}
+  - {text: "petrol bachane wala mode", variant: hinglish}
+  - {text: "eco lagao yaar", variant: hinglish}
+  - {text: "zyada mileage wala", variant: hinglish}
+  - {text: "eco haaku", variant: kannada_english}
+  - {text: "eco maadi guru", variant: kannada_english}
+  - {text: "mileage ge haaku", variant: kannada_english}
+  - {text: "eco ge change maadu", variant: kannada_english}
+  - {text: "uh eco um mode", variant: disfluent}
+  - {text: "eco the uh the eco setting", variant: disfluent}
+  - {text: "sport no no eco", variant: disfluent}
+  - {text: "like you know economy mode", variant: disfluent}
+  - {text: "er eco uh please", variant: disfluent}
+  - {text: "so um fuel saving uh mode", variant: disfluent}

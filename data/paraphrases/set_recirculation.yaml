@@ -1,0 +1,176 @@
+# Paraphrases of the set_recirculation seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): switch to recirculation mode
+"0":
+  - {text: "put it on recirculate", variant: plain}
+  - {text: "turn on air recirculation", variant: plain}
+  - {text: "use the inside air", variant: plain}
+  - {text: "go to recirc", variant: plain}
+  - {text: "stop taking air from outside", variant: plain}
+  - {text: "switch the air to inside circulation", variant: plain}
+  - {text: "change to recirc mode", variant: plain}
+  - {text: "put the ac on recirculation", variant: plain}
+  - {text: "press the recirc button", variant: plain}
+  - {text: "set the air to recirculate", variant: plain}
+  - {text: "keep the air circulating inside", variant: plain}
+  - {text: "make it recirculate the cabin air", variant: plain}
+  - {text: "change the air mode to inside", variant: plain}
+  - {text: "recirculate the air please", variant: plain}
+  - {text: "cut off the outside air", variant: plain}
+  - {text: "use recirculation for a bit", variant: plain}
+  - {text: "turn the recirc on", variant: plain}
+  - {text: "flip to inside air mode", variant: plain}
+  - {text: "do the recirculation thing", variant: plain}
+  - {text: "put the car on internal air", variant: plain}
+  - {text: "start recirculating the air", variant: plain}
+  - {text: "switch over to cabin air only", variant: plain}
+  - {text: "go on recirculation before the tunnel", variant: plain}
+  - {text: "shift to recirc mode in this traffic", variant: plain}
+  - {text: "recirculation mode pe daal do", variant: hinglish}
+  - {text: "recirc on kar do", variant: hinglish}
+  - {text: "andar ki hawa ghumao", variant: hinglish}
+  - {text: "recirc mode laga do", variant: hinglish}
+  - {text: "ac ko recirculation pe rakho", variant: hinglish}
+  - {text: "recirculation chalu karo abhi", variant: hinglish}
+  - {text: "recirculation mode haaku", variant: kannada_english}
+  - {text: "recirc on maadu", variant: kannada_english}
+  - {text: "olage gaali recirc maadi", variant: kannada_english}
+  - {text: "recirculation ge haaku guru", variant: kannada_english}
+  - {text: "put it on fresh air no wait recirculation", variant: disfluent}
+  - {text: "um go to the the recirc mode", variant: disfluent}
+  - {text: "so like use the uh inside air", variant: disfluent}
+  - {text: "er recirculation uh turn that on", variant: disfluent}
+  - {text: "you know change it to um recirculate", variant: disfluent}
+  - {text: "uh the recirc thing switch it on", variant: disfluent}
+
+# seed 1 (outcome): the smoke from that truck is coming inside
+"1":
+  - {text: "that lorry's exhaust is getting into the car", variant: plain}
+  - {text: "i can smell diesel fumes in here", variant: plain}
+  - {text: "black smoke from the bus is filling the cabin", variant: plain}
+  - {text: "the fumes from the tanker ahead are coming in", variant: plain}
+  - {text: "it stinks of smoke inside now", variant: plain}
+  - {text: "that auto's smoke is entering the car", variant: plain}
+  - {text: "we're breathing in the truck's exhaust", variant: plain}
+  - {text: "the pollution from outside is seeping in", variant: plain}
+  - {text: "the dust and smoke are coming through the vents", variant: plain}
+  - {text: "there's a burning smell coming inside from that truck", variant: plain}
+  - {text: "i'm choking on the smoke from the vehicle in front", variant: plain}
+  - {text: "the diesel smell from the lorry is all over the cabin", variant: plain}
+  - {text: "that bus is pumping its fumes straight into our car", variant: plain}
+  - {text: "the outside air smells terrible here", variant: plain}
+  - {text: "smoke from the garbage fire is coming in", variant: plain}
+  - {text: "my eyes are burning from the traffic smoke in here", variant: plain}
+  - {text: "the kid is coughing from the exhaust coming in", variant: plain}
+  - {text: "we're stuck behind a smoky truck and it's getting inside", variant: plain}
+  - {text: "the stench from that tempo is coming into the car", variant: plain}
+  - {text: "this traffic smoke is filling up the inside", variant: plain}
+  - {text: "the whole car smells of exhaust now", variant: plain}
+  - {text: "the tractor in front is blowing smoke into us", variant: plain}
+  - {text: "the air coming in is full of soot", variant: plain}
+  - {text: "the fumes from the jam are getting inside", variant: plain}
+  - {text: "truck ka dhuaan andar aa raha hai", variant: hinglish}
+  - {text: "bahar ka dhuaan gaadi mein ghus raha hai", variant: hinglish}
+  - {text: "bus ki smell andar aa rahi hai yaar", variant: hinglish}
+  - {text: "diesel ki badboo aa rahi hai andar", variant: hinglish}
+  - {text: "aage wali lorry ka dhuaan cabin mein bhar gaya", variant: hinglish}
+  - {text: "pollution andar aa raha hai bahut", variant: hinglish}
+  - {text: "lorry hoge olage bartide", variant: kannada_english}
+  - {text: "mundhe iro truck hoge illi barta ide", variant: kannada_english}
+  - {text: "diesel vaasane olage bartide guru", variant: kannada_english}
+  - {text: "horagina dhool hoge ella olage bartide", variant: kannada_english}
+  - {text: "that truck's uh smoke is um getting inside", variant: disfluent}
+  - {text: "um i can smell like diesel fumes in the the car", variant: disfluent}
+  - {text: "the dust no the smoke from that bus is coming in", variant: disfluent}
+  - {text: "so er there's exhaust you know coming inside", variant: disfluent}
+  - {text: "the the fumes are uh coming in from outside", variant: disfluent}
+  - {text: "uh that lorry is um we're getting all its smoke", variant: disfluent}
+
+# seed 2 (question): can you let fresh air in through the vents
+"2":
+  - {text: "could you switch to outside air?", variant: plain}
+  - {text: "can we get some fresh air through the ac", variant: plain}
+  - {text: "would you turn off recirculation", variant: plain}
+  - {text: "can you bring in air from outside", variant: plain}
+  - {text: "could the vents pull in fresh air", variant: plain}
+  - {text: "mind switching the air intake to outside?", variant: plain}
+  - {text: "can we have fresh air mode on", variant: plain}
+  - {text: "will you stop recirculating the air", variant: plain}
+  - {text: "is it possible to take in outside air through the vents", variant: plain}
+  - {text: "can you turn recirc off?", variant: plain}
+  - {text: "could you let some outside air into the cabin", variant: plain}
+  - {text: "can the ac use fresh air instead", variant: plain}
+  - {text: "how about some fresh air from outside?", variant: plain}
+  - {text: "would you open the fresh air vents", variant: plain}
+  - {text: "can i get fresh air coming in", variant: plain}
+  - {text: "could we change to fresh air mode?", variant: plain}
+  - {text: "can you stop using the inside air", variant: plain}
+  - {text: "would you mind putting it on outside air", variant: plain}
+  - {text: "shall we let in some fresh air through the ac", variant: plain}
+  - {text: "can you switch the recirculation off?", variant: plain}
+  - {text: "could you get new air flowing in?", variant: plain}
+  - {text: "can you swap to fresh air from outside", variant: plain}
+  - {text: "do you think we can get outside air into the car", variant: plain}
+  - {text: "would you let the outside air circulate", variant: plain}
+  - {text: "bahar ki fresh hawa andar la sakte ho?", variant: hinglish}
+  - {text: "fresh air mode on kar doge", variant: hinglish}
+  - {text: "recirculation band kar sakte ho kya", variant: hinglish}
+  - {text: "thodi taazi hawa vents se aane doge?", variant: hinglish}
+  - {text: "kya bahar ki hawa andar aa sakti hai", variant: hinglish}
+  - {text: "recirc hata ke fresh air laga doge?", variant: hinglish}
+  - {text: "horagina gaali olage bidtira?", variant: kannada_english}
+  - {text: "fresh air mode haakbahuda", variant: kannada_english}
+  - {text: "recirculation off maadtira", variant: kannada_english}
+  - {text: "swalpa fresh gaali vent inda barli?", variant: kannada_english}
+  - {text: "can you uh let some um fresh air in", variant: disfluent}
+  - {text: "uh could you put it on um the outside air setting", variant: disfluent}
+  - {text: "can you turn on no sorry turn off the recirc", variant: disfluent}
+  - {text: "is it like possible to get um fresh air through the vents", variant: disfluent}
+  - {text: "would you uh you know bring in outside air", variant: disfluent}
+  - {text: "can we can we have fresh air coming in", variant: disfluent}
+
+# seed 3 (fragment): recirc on
+"3":
+  - {text: "recirculation on", variant: plain}
+  - {text: "inside air", variant: plain}
+  - {text: "recirc please", variant: plain}
+  - {text: "recirculate", variant: plain}
+  - {text: "recirc mode", variant: plain}
+  - {text: "cabin air only", variant: plain}
+  - {text: "air recirculation", variant: plain}
+  - {text: "recirculation mode now", variant: plain}
+  - {text: "no outside air", variant: plain}
+  - {text: "recirc button", variant: plain}
+  - {text: "internal air", variant: plain}
+  - {text: "recirc now", variant: plain}
+  - {text: "block outside air", variant: plain}
+  - {text: "recirculate the air", variant: plain}
+  - {text: "inner air mode", variant: plain}
+  - {text: "recirc for the tunnel", variant: plain}
+  - {text: "recycle air mode", variant: plain}
+  - {text: "start recirculation", variant: plain}
+  - {text: "recirculation please", variant: plain}
+  - {text: "keep the cabin air in", variant: plain}
+  - {text: "recirc on the ac", variant: plain}
+  - {text: "inside circulation", variant: plain}
+  - {text: "recirc on for the traffic", variant: plain}
+  - {text: "no fresh air now", variant: plain}
+  - {text: "recirc chalu karo", variant: hinglish}
+  - {text: "recirculation laga do", variant: hinglish}
+  - {text: "andar wali hawa", variant: hinglish}
+  - {text: "recirc daal do", variant: hinglish}
+  - {text: "bahar ki hawa band", variant: hinglish}
+  - {text: "recirculation pe karo", variant: hinglish}
+  - {text: "recirc haaku", variant: kannada_english}
+  - {text: "recirculation maadi", variant: kannada_english}
+  - {text: "olagina gaali haaku", variant: kannada_english}
+  - {text: "recirc on maadi saar", variant: kannada_english}
+  - {text: "uh recirc um on", variant: disfluent}
+  - {text: "fresh air no wait recirc", variant: disfluent}
+  - {text: "the the recirculation", variant: disfluent}
+  - {text: "er inside air uh mode", variant: disfluent}
+  - {text: "um recirc you know on", variant: disfluent}
+  - {text: "so like recirculate", variant: disfluent}

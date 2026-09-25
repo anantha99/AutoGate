@@ -1,0 +1,176 @@
+# Paraphrases of the edit_note seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): change the second line of my last note
+"0":
+  - {text: "fix line two in the note i just made", variant: plain}
+  - {text: "edit the second line of my latest note", variant: plain}
+  - {text: "rewrite line number two of the last note", variant: plain}
+  - {text: "go to my last note and change line two", variant: plain}
+  - {text: "in my most recent note redo the second line", variant: plain}
+  - {text: "update the second line on my previous note", variant: plain}
+  - {text: "swap out the second line of the note i made last", variant: plain}
+  - {text: "modify line two of the most recent note", variant: plain}
+  - {text: "open the last note and edit the second line", variant: plain}
+  - {text: "that last note of mine change its line two", variant: plain}
+  - {text: "correct line two in my newest note", variant: plain}
+  - {text: "make a change to the second line of the latest note", variant: plain}
+  - {text: "replace what's on line two of my last note", variant: plain}
+  - {text: "take my last note and fix its second line", variant: plain}
+  - {text: "alter the second line in the note from just now", variant: plain}
+  - {text: "pull up my latest note and rework line two", variant: plain}
+  - {text: "redo line two of the note i saved last", variant: plain}
+  - {text: "go into the previous note and correct the second line", variant: plain}
+  - {text: "tweak the second line in my last note", variant: plain}
+  - {text: "the note i made last fix its second line please", variant: plain}
+  - {text: "in the note i took last change line two", variant: plain}
+  - {text: "amend the second line of my previous note", variant: plain}
+  - {text: "do one thing change line two of my last note", variant: plain}
+  - {text: "overwrite the second line of the recent note", variant: plain}
+  - {text: "last note ki second line badal do", variant: hinglish}
+  - {text: "meri pichli note mein doosri line change karo", variant: hinglish}
+  - {text: "aakhri note ka line two edit kar do", variant: hinglish}
+  - {text: "last wale note ki doosri line theek karo", variant: hinglish}
+  - {text: "second line change karo last note mein", variant: hinglish}
+  - {text: "pichle note mein line do badlo", variant: hinglish}
+  - {text: "last note alli second line change maadu", variant: kannada_english}
+  - {text: "kone note na eradane line badalisu", variant: kannada_english}
+  - {text: "nanna last note second line edit maadi", variant: kannada_english}
+  - {text: "kone note alli eradane saalu sari maadi", variant: kannada_english}
+  - {text: "uh the last note um the second line of it change that", variant: disfluent}
+  - {text: "edit the first no sorry second line in the latest note", variant: disfluent}
+  - {text: "uh in my last note change the er line two", variant: disfluent}
+  - {text: "so um the last note change its second line yeah", variant: disfluent}
+  - {text: "open the the last note and uh fix line two", variant: disfluent}
+  - {text: "change the second no wait yeah the second line in my latest note", variant: disfluent}
+
+# seed 1 (question): can you fix a few things in my shopping list note
+"1":
+  - {text: "could you make some changes to my shopping list note?", variant: plain}
+  - {text: "can we edit a couple of items in the grocery list note", variant: plain}
+  - {text: "would you correct a few bits in my shopping note", variant: plain}
+  - {text: "will you help me update the shopping list note?", variant: plain}
+  - {text: "can i change a few things on my grocery list note?", variant: plain}
+  - {text: "mind tweaking a few items in the shopping list note", variant: plain}
+  - {text: "could you sort out a couple of mistakes in my shopping list?", variant: plain}
+  - {text: "is it possible to edit my shopping list note a bit", variant: plain}
+  - {text: "can you update some items in the grocery note", variant: plain}
+  - {text: "would you fix up my shopping list note for me?", variant: plain}
+  - {text: "could we go through my shopping list note and change a few things", variant: plain}
+  - {text: "can you make a few edits to the list of things to buy", variant: plain}
+  - {text: "will you let me change some stuff in my shopping note?", variant: plain}
+  - {text: "can you correct the shopping list i noted down", variant: plain}
+  - {text: "could you open my grocery note and fix a couple of lines?", variant: plain}
+  - {text: "would you mind editing a few entries in my shopping list", variant: plain}
+  - {text: "can my shopping list note be changed in a few places?", variant: plain}
+  - {text: "could you help me redo parts of the shopping list note", variant: plain}
+  - {text: "can you fix some items on my kirana list note", variant: plain}
+  - {text: "will you modify a few things in my groceries note?", variant: plain}
+  - {text: "could you touch up the shopping list i saved", variant: plain}
+  - {text: "do you mind changing a few lines in the shopping note?", variant: plain}
+  - {text: "can you make a couple of corrections to my market list note", variant: plain}
+  - {text: "would you edit the vegetable list note a little?", variant: plain}
+  - {text: "shopping list note mein kuch cheezein theek kar doge?", variant: hinglish}
+  - {text: "mere grocery note mein thoda change kar sakte ho kya", variant: hinglish}
+  - {text: "kya shopping list wale note ko edit kar sakte ho?", variant: hinglish}
+  - {text: "shopping list mein do teen cheezein badal doge", variant: hinglish}
+  - {text: "kirana list note mein kuch galtiyan hain theek karoge?", variant: hinglish}
+  - {text: "shopping note mein kuch changes karwa sakte ho?", variant: hinglish}
+  - {text: "shopping list note alli swalpa change maadtira?", variant: kannada_english}
+  - {text: "nanna grocery note na edit maadoke aagutta?", variant: kannada_english}
+  - {text: "shopping list alli kelavu things sari maadtira", variant: kannada_english}
+  - {text: "shopping note alli swalpa correct maadbahuda?", variant: kannada_english}
+  - {text: "can you uh my shopping list note um fix a few bits in it", variant: disfluent}
+  - {text: "could you edit my to do no my shopping list note a bit", variant: disfluent}
+  - {text: "can you can you change some stuff in the shopping note", variant: disfluent}
+  - {text: "um would you like correct a couple of things in my grocery list?", variant: disfluent}
+  - {text: "so er can you fix my shopping list note like a few bits", variant: disfluent}
+  - {text: "can you delete er no just correct some stuff in the grocery list note", variant: disfluent}
+
+# seed 2 (indirect): i got the address wrong in that note i made
+"2":
+  - {text: "the address in that note is not correct", variant: plain}
+  - {text: "the address in my note is from the old flat", variant: plain}
+  - {text: "that note has the wrong address in it", variant: plain}
+  - {text: "i messed up the address when i saved that note", variant: plain}
+  - {text: "oops the address in my note is off", variant: plain}
+  - {text: "the address i noted earlier is a mistake", variant: plain}
+  - {text: "i think i put the old address in that note", variant: plain}
+  - {text: "my note has an address that's totally wrong", variant: plain}
+  - {text: "that address i jotted down was wrong", variant: plain}
+  - {text: "the note i made earlier has a mistake in the address", variant: plain}
+  - {text: "i made a mess of the address in that note", variant: plain}
+  - {text: "turns out the address in my note is incorrect", variant: plain}
+  - {text: "i noted the wrong building earlier", variant: plain}
+  - {text: "the address part of that note is all wrong", variant: plain}
+  - {text: "the address came out wrong when i dictated that note", variant: plain}
+  - {text: "the pincode in that address note is wrong", variant: plain}
+  - {text: "i got the flat number wrong in my note", variant: plain}
+  - {text: "my note's address doesn't match the actual one", variant: plain}
+  - {text: "no point having that note if the address is off", variant: plain}
+  - {text: "i mixed up the address in the note from before", variant: plain}
+  - {text: "i mentioned a wrong address while making that note", variant: plain}
+  - {text: "there's a wrong address sitting in my note", variant: plain}
+  - {text: "the location i saved in that note isn't right", variant: plain}
+  - {text: "looks like i botched the address in my notes", variant: plain}
+  - {text: "us note mein address galat likh diya maine", variant: hinglish}
+  - {text: "note mein jo address hai woh galat hai", variant: hinglish}
+  - {text: "maine note mein address galat daal diya yaar", variant: hinglish}
+  - {text: "address wala note galat ho gaya", variant: hinglish}
+  - {text: "us note ka address sahi nahi hai", variant: hinglish}
+  - {text: "note mein address mistake ho gayi", variant: hinglish}
+  - {text: "aa note alli address tappu ide", variant: kannada_english}
+  - {text: "note alli address tappagi bardidini", variant: kannada_english}
+  - {text: "nanna note address sari illa guru", variant: kannada_english}
+  - {text: "aa note nalli address mistake aagide", variant: kannada_english}
+  - {text: "so uh that address um i got it wrong in the note", variant: disfluent}
+  - {text: "the the address in my note is wrong i think", variant: disfluent}
+  - {text: "so that note i made uh the address is off", variant: disfluent}
+  - {text: "i wrote the phone no the address wrong in that note", variant: disfluent}
+  - {text: "um that note er has like the wrong address", variant: disfluent}
+  - {text: "the address in that uh that note it's not right", variant: disfluent}
+
+# seed 3 (fragment): edit last note
+"3":
+  - {text: "change last note", variant: plain}
+  - {text: "fix my last note", variant: plain}
+  - {text: "latest note edit", variant: plain}
+  - {text: "redo previous note", variant: plain}
+  - {text: "correct the last note", variant: plain}
+  - {text: "modify recent note", variant: plain}
+  - {text: "update newest note", variant: plain}
+  - {text: "edit previous note", variant: plain}
+  - {text: "last note changes", variant: plain}
+  - {text: "rework that last note", variant: plain}
+  - {text: "edit the note i just made", variant: plain}
+  - {text: "my latest note fix it", variant: plain}
+  - {text: "amend last note", variant: plain}
+  - {text: "change the recent note", variant: plain}
+  - {text: "edit my most recent note", variant: plain}
+  - {text: "last note needs edits", variant: plain}
+  - {text: "tweak last note", variant: plain}
+  - {text: "editing the last note", variant: plain}
+  - {text: "fix up my previous note", variant: plain}
+  - {text: "last note correction", variant: plain}
+  - {text: "open last note to edit", variant: plain}
+  - {text: "last note needs a fix", variant: plain}
+  - {text: "redo my latest note", variant: plain}
+  - {text: "open the newest note for editing", variant: plain}
+  - {text: "aakhri wala note edit karo", variant: hinglish}
+  - {text: "pichla note badlo", variant: hinglish}
+  - {text: "aakhri note change kar do", variant: hinglish}
+  - {text: "last wala note theek karo", variant: hinglish}
+  - {text: "pichhla note edit karna hai", variant: hinglish}
+  - {text: "last note mein changes karo", variant: hinglish}
+  - {text: "kone note edit maadu", variant: kannada_english}
+  - {text: "kone note change maadi", variant: kannada_english}
+  - {text: "last note sari maadu", variant: kannada_english}
+  - {text: "hinde note edit maadbeku", variant: kannada_english}
+  - {text: "uh edit the um last note", variant: disfluent}
+  - {text: "edit last no the last note", variant: disfluent}
+  - {text: "um change my er last note", variant: disfluent}
+  - {text: "last note uh edit it", variant: disfluent}
+  - {text: "edit the the newest uh note", variant: disfluent}
+  - {text: "so uh fix the last note", variant: disfluent}

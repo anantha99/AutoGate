@@ -1,0 +1,176 @@
+# Paraphrases of the disable_lane_assist seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): turn off lane keep assist
+"0":
+  - {text: "switch off the lane keeping", variant: plain}
+  - {text: "disable lane assist", variant: plain}
+  - {text: "kill the lane keep feature", variant: plain}
+  - {text: "shut that lane keeping system off", variant: plain}
+  - {text: "stop the lane assist", variant: plain}
+  - {text: "put lane keep off for now", variant: plain}
+  - {text: "get rid of the lane keep assist for this drive", variant: plain}
+  - {text: "switch the lane assist thing off", variant: plain}
+  - {text: "cancel lane keep assist", variant: plain}
+  - {text: "disengage lane keeping", variant: plain}
+  - {text: "drop the lane assist for today", variant: plain}
+  - {text: "take away the lane keep help", variant: plain}
+  - {text: "let me drive without lane assist", variant: plain}
+  - {text: "cut the lane keeping help", variant: plain}
+  - {text: "stop the lane keeping from steering", variant: plain}
+  - {text: "turn lane assist off for this stretch", variant: plain}
+  - {text: "disable the steering nudges for the lane", variant: plain}
+  - {text: "remove the lane keep assist", variant: plain}
+  - {text: "off the lane assist na", variant: plain}
+  - {text: "please disable lane keeping on this road", variant: plain}
+  - {text: "just turn off the lane thing", variant: plain}
+  - {text: "shut down lane keep for now", variant: plain}
+  - {text: "i'll steer myself turn the lane assist off", variant: plain}
+  - {text: "deactivate lane keeping right now", variant: plain}
+  - {text: "lane assist band karo", variant: hinglish}
+  - {text: "lane keep assist off kar do", variant: hinglish}
+  - {text: "ye lane wala system band kar do yaar", variant: hinglish}
+  - {text: "lane keeping hata do abhi", variant: hinglish}
+  - {text: "lane assist band kar do na mujhe khud chalana hai", variant: hinglish}
+  - {text: "lane keep ko off karo jaldi", variant: hinglish}
+  - {text: "lane assist off maadi", variant: kannada_english}
+  - {text: "lane keep assist aarisu", variant: kannada_english}
+  - {text: "lane keeping beda off maadu", variant: kannada_english}
+  - {text: "ee lane assist aarisi guru", variant: kannada_english}
+  - {text: "uh the lane keep assist um just turn that off", variant: disfluent}
+  - {text: "switch that er that lane keeping thing off", variant: disfluent}
+  - {text: "cruise off no no not cruise i mean lane assist off", variant: disfluent}
+  - {text: "er just like kill the lane assist yeah", variant: disfluent}
+  - {text: "um that lane keeping just like kill it", variant: disfluent}
+  - {text: "so disable the uh you know lane keeping", variant: disfluent}
+
+# seed 1 (question): is there a way to switch off the lane keeping thing
+"1":
+  - {text: "can you turn off the lane keeping?", variant: plain}
+  - {text: "any way to shut off that lane assist thing", variant: plain}
+  - {text: "could you switch the lane keep off", variant: plain}
+  - {text: "can we disable this lane assist thing", variant: plain}
+  - {text: "is it possible to turn the lane keeping off?", variant: plain}
+  - {text: "would you shut the lane keep feature off for me", variant: plain}
+  - {text: "can the lane assist be switched off?", variant: plain}
+  - {text: "could we do without the lane keeping for a bit", variant: plain}
+  - {text: "mind turning off that lane keep assist?", variant: plain}
+  - {text: "can i get the lane keeping thing off", variant: plain}
+  - {text: "is there some way you can kill the lane assist?", variant: plain}
+  - {text: "will you turn that lane keeping thing off", variant: plain}
+  - {text: "any chance you can disable lane assist?", variant: plain}
+  - {text: "can you stop the lane keep feature for now", variant: plain}
+  - {text: "could you get rid of the lane assist?", variant: plain}
+  - {text: "is the lane keeping something you can switch off for me", variant: plain}
+  - {text: "can we switch that lane thing off?", variant: plain}
+  - {text: "would you mind disabling the lane keep", variant: plain}
+  - {text: "can you put lane assist off?", variant: plain}
+  - {text: "do you think you can shut the lane keeping off", variant: plain}
+  - {text: "could the lane keep assist go off for now?", variant: plain}
+  - {text: "can you deactivate this lane keeping help", variant: plain}
+  - {text: "is there an option to turn this lane assist off for me", variant: plain}
+  - {text: "can you let me drive without the lane keeping?", variant: plain}
+  - {text: "lane keeping wala band ho sakta hai kya", variant: hinglish}
+  - {text: "ye lane assist off kar sakte ho?", variant: hinglish}
+  - {text: "kya lane keep band kar doge", variant: hinglish}
+  - {text: "yaar lane assist hatane ka koi tarika hai?", variant: hinglish}
+  - {text: "lane keeping thing ko off kar sakte ho kya", variant: hinglish}
+  - {text: "lane assist band karoge kya abhi", variant: hinglish}
+  - {text: "lane keeping off maadoke aagutta?", variant: kannada_english}
+  - {text: "ee lane assist aarisbahuda?", variant: kannada_english}
+  - {text: "lane keep off maadtira saar", variant: kannada_english}
+  - {text: "lane assist off maadbahuda guru", variant: kannada_english}
+  - {text: "is there um like some way to get the lane keeping off", variant: disfluent}
+  - {text: "um can you like switch off the lane assist thing", variant: disfluent}
+  - {text: "could you er the lane keep thing can it go off?", variant: disfluent}
+  - {text: "can you shut off the cruise wait no the lane keeping", variant: disfluent}
+  - {text: "so um any way to like kill the lane keeping?", variant: disfluent}
+  - {text: "can you can you get that lane assist thing to stop", variant: disfluent}
+
+# seed 2 (indirect): the wheel keeps pulling me back on these bad markings
+"2":
+  - {text: "the steering keeps tugging me every time the lines fade", variant: plain}
+  - {text: "this road's lane lines are a mess and the car keeps fighting me", variant: plain}
+  - {text: "the car keeps yanking the wheel on these faded lines", variant: plain}
+  - {text: "i'm fighting the steering because the markings here are all wrong", variant: plain}
+  - {text: "every few seconds the wheel jerks back on this patchy road", variant: plain}
+  - {text: "the car thinks i'm drifting but these lines are just badly painted", variant: plain}
+  - {text: "the steering is nudging me around because of the broken markings", variant: plain}
+  - {text: "these half painted lanes are making the wheel tug at me", variant: plain}
+  - {text: "it keeps correcting my steering on this dug up stretch", variant: plain}
+  - {text: "the markings here are all over the place and the wheel won't let me move", variant: plain}
+  - {text: "with this road work the car keeps pushing me into lanes that don't exist", variant: plain}
+  - {text: "my hands are wrestling the steering on these useless lines", variant: plain}
+  - {text: "the wheel is jerking around because of these old markings", variant: plain}
+  - {text: "the car keeps steering me toward the wrong line here", variant: plain}
+  - {text: "these diversions have confused the car and it keeps tugging the wheel", variant: plain}
+  - {text: "the steering resists every time i move around a pothole", variant: plain}
+  - {text: "every pothole i dodge the wheel drags me back", variant: plain}
+  - {text: "there's no proper marking here and the wheel keeps twitching", variant: plain}
+  - {text: "these zig zag lines are making the steering go crazy", variant: plain}
+  - {text: "the steering feels like it has a mind of its own on this stretch", variant: plain}
+  - {text: "it keeps dragging me back to some line only it can see", variant: plain}
+  - {text: "on this highway the wheel keeps correcting me for no reason", variant: plain}
+  - {text: "the car is fighting me every time i avoid a pothole on this road", variant: plain}
+  - {text: "i have to hold the wheel tight because the paint here is all rubbed off", variant: plain}
+  - {text: "ye steering baar baar kheench raha hai kharab lines ki wajah se", variant: hinglish}
+  - {text: "yaar lines itni kharab hain ki wheel mujhe peeche kheench raha hai", variant: hinglish}
+  - {text: "is road pe steering apne aap ghoom raha hai", variant: hinglish}
+  - {text: "markings theek nahi hain aur gaadi wheel pakad rahi hai", variant: hinglish}
+  - {text: "har pothole pe steering mujhe wapas kheench leti hai", variant: hinglish}
+  - {text: "steering se ladna pad raha hai in lines pe", variant: hinglish}
+  - {text: "ee road alli lines sari illa steering eleyuttide", variant: kannada_english}
+  - {text: "wheel nanna hinde eleyutte guru lines ella kettogide", variant: kannada_english}
+  - {text: "ee markings inda steering tumba jerk aagtide", variant: kannada_english}
+  - {text: "illi paint ella hogide car nanna steering hidkotide", variant: kannada_english}
+  - {text: "the the steering wheel it's um pulling me back every time the lines go funny", variant: disfluent}
+  - {text: "the steering is it's like fighting me every time the markings go", variant: disfluent}
+  - {text: "uh these markings are so bad and the wheel just keeps tugging", variant: disfluent}
+  - {text: "the steering keeps um you know yanking me back to the lines here", variant: disfluent}
+  - {text: "i'm trying to go around the the potholes and the steering pulls me back", variant: disfluent}
+  - {text: "so the wheel it keeps correcting me on these er faded lines", variant: disfluent}
+
+# seed 3 (fragment): lane assist off
+"3":
+  - {text: "no lane assist", variant: plain}
+  - {text: "lane keeping off", variant: plain}
+  - {text: "off with lane keep", variant: plain}
+  - {text: "lane help off", variant: plain}
+  - {text: "without lane assist", variant: plain}
+  - {text: "lane assist disable", variant: plain}
+  - {text: "lane keep off please", variant: plain}
+  - {text: "stop lane keeping", variant: plain}
+  - {text: "lane thing off", variant: plain}
+  - {text: "lane support off", variant: plain}
+  - {text: "no lane keeping now", variant: plain}
+  - {text: "drop lane assist", variant: plain}
+  - {text: "lane keeping enough", variant: plain}
+  - {text: "lane keeping disabled", variant: plain}
+  - {text: "lane correction off", variant: plain}
+  - {text: "switch off lane keep", variant: plain}
+  - {text: "steering assist off", variant: plain}
+  - {text: "lane keep gone", variant: plain}
+  - {text: "cancel lane keeping", variant: plain}
+  - {text: "lane nudging off", variant: plain}
+  - {text: "lane assist out", variant: plain}
+  - {text: "kill the lane keeping aid", variant: plain}
+  - {text: "no lane keep please", variant: plain}
+  - {text: "stop the lane nagging", variant: plain}
+  - {text: "lane assist band", variant: hinglish}
+  - {text: "lane keep hatao", variant: hinglish}
+  - {text: "lane wala band karo", variant: hinglish}
+  - {text: "lane assist nahi chahiye", variant: hinglish}
+  - {text: "lane keeping hatao yaar", variant: hinglish}
+  - {text: "abhi lane keep band", variant: hinglish}
+  - {text: "lane assist beda", variant: kannada_english}
+  - {text: "lane keep aarisu", variant: kannada_english}
+  - {text: "lane sahaaya beda", variant: kannada_english}
+  - {text: "lane keeping beda guru", variant: kannada_english}
+  - {text: "uh that lane thing off please", variant: disfluent}
+  - {text: "lane um lane keep off", variant: disfluent}
+  - {text: "lane assist no wait lane keeping off", variant: disfluent}
+  - {text: "er no more of the lane assist", variant: disfluent}
+  - {text: "the lane thing uh off", variant: disfluent}
+  - {text: "lane keep off like now", variant: disfluent}

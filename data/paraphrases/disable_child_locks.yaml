@@ -1,0 +1,176 @@
+# Paraphrases of the disable_child_locks seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): turn off the child lock on the rear doors
+"0":
+  - {text: "switch the child lock off for the back doors", variant: plain}
+  - {text: "take the child lock off the back", variant: plain}
+  - {text: "disable the rear door child lock", variant: plain}
+  - {text: "release the child locks in the back", variant: plain}
+  - {text: "remove the child safety lock from the back doors", variant: plain}
+  - {text: "get rid of the child lock on the back doors", variant: plain}
+  - {text: "kill the child lock at the rear", variant: plain}
+  - {text: "put off the child lock for the rear seats", variant: plain}
+  - {text: "just switch off the kiddie lock at the back", variant: plain}
+  - {text: "turn the back door child locks off for now", variant: plain}
+  - {text: "no kids today so disable the child lock in the back", variant: plain}
+  - {text: "do one thing remove the child lock on both back doors", variant: plain}
+  - {text: "that rear door child lock switch it off", variant: plain}
+  - {text: "free up the rear doors from the child lock", variant: plain}
+  - {text: "cancel the child lock at the back", variant: plain}
+  - {text: "turn child safety off on the back doors", variant: plain}
+  - {text: "drop the child lock for the rear passengers", variant: plain}
+  - {text: "rear child locks off both sides please", variant: plain}
+  - {text: "only adults in the back today so switch off the child locks", variant: plain}
+  - {text: "shut off the child lock on the back side", variant: plain}
+  - {text: "child lock at the back switch it off now", variant: plain}
+  - {text: "make the rear doors normal no child lock", variant: plain}
+  - {text: "clear the child lock setting on the rear doors", variant: plain}
+  - {text: "undo the child lock on the back doors", variant: plain}
+  - {text: "peeche ka child lock band karo", variant: hinglish}
+  - {text: "child lock hata do rear doors ka", variant: hinglish}
+  - {text: "back door ka child lock off kar do", variant: hinglish}
+  - {text: "peeche wale darwaze ka child lock nikaal do", variant: hinglish}
+  - {text: "yaar peeche ka child lock band kar do abhi", variant: hinglish}
+  - {text: "rear child lock hatao jaldi", variant: hinglish}
+  - {text: "hindhe door child lock tegi", variant: kannada_english}
+  - {text: "child lock aarisu hindhe", variant: kannada_english}
+  - {text: "rear door child lock off maadi", variant: kannada_english}
+  - {text: "hindhe baagilu child lock off maadu guru", variant: kannada_english}
+  - {text: "uh turn off the the child lock at the back", variant: disfluent}
+  - {text: "switch off the um the rear child lock you know", variant: disfluent}
+  - {text: "put the child lock on no wait i mean off for the back doors", variant: disfluent}
+  - {text: "er the child lock in the back just um take it off", variant: disfluent}
+  - {text: "so like disable the front no the rear door child lock", variant: disfluent}
+  - {text: "um rear doors uh the child the child lock remove it", variant: disfluent}
+
+# seed 1 (question): can you let the back doors open from inside
+"1":
+  - {text: "could you make the rear doors open from the inside?", variant: plain}
+  - {text: "can the back passengers open their own doors", variant: plain}
+  - {text: "is it possible to let the rear doors work from inside", variant: plain}
+  - {text: "would you let the folks in the back open their doors?", variant: plain}
+  - {text: "can we have the back doors openable from inside", variant: plain}
+  - {text: "any way to let the back seat people open the doors themselves?", variant: plain}
+  - {text: "can you sort the back doors out so they work from inside", variant: plain}
+  - {text: "mind letting the rear doors open from within?", variant: plain}
+  - {text: "can my friends in the back get out on their own", variant: plain}
+  - {text: "will you allow the rear doors to be opened from inside", variant: plain}
+  - {text: "can you turn off whatever stops the back doors opening from inside?", variant: plain}
+  - {text: "is there a way the back seat can open its doors", variant: plain}
+  - {text: "can you make it so the inside handles in the back work", variant: plain}
+  - {text: "could you free up the rear door handles from inside?", variant: plain}
+  - {text: "can the rear inside handles be made to work", variant: plain}
+  - {text: "would it be okay to let the back doors open from in there", variant: plain}
+  - {text: "can you let people in the rear seats open the doors?", variant: plain}
+  - {text: "any chance the back doors can open from inside now", variant: plain}
+  - {text: "can you switch it so the rear doors open from within", variant: plain}
+  - {text: "could you let the passengers at the back step out by themselves?", variant: plain}
+  - {text: "can you take off the child lock so the back doors open", variant: plain}
+  - {text: "can the people behind me open their doors without help?", variant: plain}
+  - {text: "can the inner handles on the back doors work again", variant: plain}
+  - {text: "how about letting the back doors open from inside for them", variant: plain}
+  - {text: "peeche ke darwaze andar se khul sakte hain kya?", variant: hinglish}
+  - {text: "child lock hata ke peeche ka door andar se khulwa doge?", variant: hinglish}
+  - {text: "peeche wale andar se door khol payenge kya", variant: hinglish}
+  - {text: "rear door andar se open ho jayega kya?", variant: hinglish}
+  - {text: "peeche baithe log khud bahar nikal sakte hain kya", variant: hinglish}
+  - {text: "andar se peeche ka door khulega kya yaar", variant: hinglish}
+  - {text: "hindhe door olaginda open aagutta?", variant: kannada_english}
+  - {text: "hindhe baagilu olaginda tegiyoke aagutta", variant: kannada_english}
+  - {text: "back door olaginda open maadbahuda?", variant: kannada_english}
+  - {text: "hindhe kootavru door open maadbahuda saar", variant: kannada_english}
+  - {text: "um the folks at the back uh can you like let them get out", variant: disfluent}
+  - {text: "er could you sort it so they uh the rear doors work from in there", variant: disfluent}
+  - {text: "so uh can the back seat folks like open their doors?", variant: disfluent}
+  - {text: "can you lock no sorry i mean free up the rear doors so they open", variant: disfluent}
+  - {text: "er is there a way um the rear doors can open from in there", variant: disfluent}
+  - {text: "er the ones in the back can they you know open their doors", variant: disfluent}
+
+# seed 2 (indirect): my uncle in the back can't open his door
+"2":
+  - {text: "chacha is stuck in the back the door won't open for him", variant: plain}
+  - {text: "grandpa's trying to get out but his door is jammed from inside", variant: plain}
+  - {text: "the back door isn't opening for my aunty", variant: plain}
+  - {text: "my dad keeps pulling the handle in the back and nothing happens", variant: plain}
+  - {text: "nani can't get out from the back seat", variant: plain}
+  - {text: "my father in law is struggling with the rear door handle", variant: plain}
+  - {text: "the passenger behind me can't get his door open", variant: plain}
+  - {text: "mama's been pulling at the back door and it won't budge", variant: plain}
+  - {text: "my cousin in the rear is locked in from inside", variant: plain}
+  - {text: "the inside handle at the back does nothing for my uncle", variant: plain}
+  - {text: "my friend sitting behind can't let himself out", variant: plain}
+  - {text: "grandma's been trying her door at the back for a while now", variant: plain}
+  - {text: "periappa can't get out his side at the back", variant: plain}
+  - {text: "the rear door handle isn't working for my colleague", variant: plain}
+  - {text: "uncle ji is trapped in the back seat", variant: plain}
+  - {text: "my sister is saying her back door just won't open", variant: plain}
+  - {text: "the old man in the back is fumbling with the door and it's stuck", variant: plain}
+  - {text: "my son is big enough now but he still can't open his door from inside", variant: plain}
+  - {text: "the guest at the back can't step out his door won't open", variant: plain}
+  - {text: "thatha keeps tugging the back handle but the door stays shut", variant: plain}
+  - {text: "someone's stuck in the rear seat the door isn't opening", variant: plain}
+  - {text: "my brother in law says his door at the back is jammed shut", variant: plain}
+  - {text: "the handle on uncle's side at the back is useless", variant: plain}
+  - {text: "aunty behind me has been trying to get out for a minute", variant: plain}
+  - {text: "chachu peeche se door nahi khol pa rahe", variant: hinglish}
+  - {text: "peeche mere uncle ka darwaza khul hi nahi raha", variant: hinglish}
+  - {text: "dadi ji peeche baithi hain unka door nahi khul raha", variant: hinglish}
+  - {text: "mama ji bahar nahi nikal pa rahe peeche se", variant: hinglish}
+  - {text: "yaar peeche wala door andar se khul nahi raha", variant: hinglish}
+  - {text: "papa peeche phase hue hain door nahi khulta", variant: hinglish}
+  - {text: "hindhe maava door open maadokke aagtilla", variant: kannada_english}
+  - {text: "ajji hindhe kootidaare avara baagilu tegiyoke aagtilla", variant: kannada_english}
+  - {text: "chikkappa hindhe ilidakke aagtilla guru", variant: kannada_english}
+  - {text: "hindhe door olaginda open aagtilla saar", variant: kannada_english}
+  - {text: "uh my uncle he's um he's stuck at the back the door won't open", variant: disfluent}
+  - {text: "my aunt no my uncle back there can't open his door", variant: disfluent}
+  - {text: "so like grandpa's stuck he can't uh open the rear door", variant: disfluent}
+  - {text: "the back door um it won't open for my for my dad", variant: disfluent}
+  - {text: "er my uncle's trying to get out but the door you know it's not opening", variant: disfluent}
+  - {text: "wait my uncle in the back his door is uh not opening", variant: disfluent}
+
+# seed 3 (fragment): child lock off
+"3":
+  - {text: "child locks off", variant: plain}
+  - {text: "no child lock", variant: plain}
+  - {text: "kill the child lock", variant: plain}
+  - {text: "disable child lock", variant: plain}
+  - {text: "child safety off", variant: plain}
+  - {text: "remove the child lock", variant: plain}
+  - {text: "switch the kid lock off", variant: plain}
+  - {text: "kiddie lock off", variant: plain}
+  - {text: "rear child lock release", variant: plain}
+  - {text: "child lock off both sides", variant: plain}
+  - {text: "back seat child lock off", variant: plain}
+  - {text: "no more child locks", variant: plain}
+  - {text: "lose the child lock", variant: plain}
+  - {text: "drop the child lock", variant: plain}
+  - {text: "rear safety lock off", variant: plain}
+  - {text: "child lock not needed today", variant: plain}
+  - {text: "without the child lock", variant: plain}
+  - {text: "child lock off for now", variant: plain}
+  - {text: "rear doors no child lock", variant: plain}
+  - {text: "cancel child lock", variant: plain}
+  - {text: "rear kid locks off", variant: plain}
+  - {text: "child locks disabled", variant: plain}
+  - {text: "take off that child lock", variant: plain}
+  - {text: "no child locks back there", variant: plain}
+  - {text: "child lock band karo", variant: hinglish}
+  - {text: "child lock hatao", variant: hinglish}
+  - {text: "peeche wala child lock hatao", variant: hinglish}
+  - {text: "child lock nahi chahiye", variant: hinglish}
+  - {text: "bachchon wala lock hatao", variant: hinglish}
+  - {text: "child lock off kar do", variant: hinglish}
+  - {text: "child lock tegi", variant: kannada_english}
+  - {text: "child lock aarisu", variant: kannada_english}
+  - {text: "child lock beda", variant: kannada_english}
+  - {text: "hindhe child lock off maadi", variant: kannada_english}
+  - {text: "uh child lock um off", variant: disfluent}
+  - {text: "child uh the kiddie lock just take it off", variant: disfluent}
+  - {text: "um child lock on no off", variant: disfluent}
+  - {text: "er the child locks um off", variant: disfluent}
+  - {text: "child uh child safety off you know", variant: disfluent}
+  - {text: "so like no child lock", variant: disfluent}

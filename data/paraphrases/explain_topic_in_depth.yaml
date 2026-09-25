@@ -1,0 +1,219 @@
+# Paraphrases of the explain_topic_in_depth seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): explain {topic} to me in detail
+"0":
+  - {text: "break down {topic} for me properly start to finish", variant: plain}
+  - {text: "give me the full picture on {topic}", variant: plain}
+  - {text: "teach me {topic} from the basics up", variant: plain}
+  - {text: "go deep into {topic} for me", variant: plain}
+  - {text: "take me through {topic} step by step with all the details", variant: plain}
+  - {text: "give me the long version of {topic} not the short one", variant: plain}
+  - {text: "talk me through {topic} in depth", variant: plain}
+  - {text: "do a detailed explanation of {topic}", variant: plain}
+  - {text: "{topic} explain it to me thoroughly", variant: plain}
+  - {text: "start from zero and explain {topic} fully", variant: plain}
+  - {text: "lay out everything about {topic} for me", variant: plain}
+  - {text: "describe {topic} in depth and don't skip anything", variant: plain}
+  - {text: "unpack {topic} for me in proper detail", variant: plain}
+  - {text: "give me a proper lecture on {topic}", variant: plain}
+  - {text: "tell me all about {topic} in detail", variant: plain}
+  - {text: "run me through {topic} thoroughly", variant: plain}
+  - {text: "elaborate on {topic} for me and take your time", variant: plain}
+  - {text: "go over {topic} in full detail with examples", variant: plain}
+  - {text: "cover {topic} end to end for me", variant: plain}
+  - {text: "make me understand {topic} inside out", variant: plain}
+  - {text: "do one thing explain {topic} slowly and fully", variant: plain}
+  - {text: "spend some time on {topic} and explain every part", variant: plain}
+  - {text: "properly explain {topic} with the background and all", variant: plain}
+  - {text: "just give me a detailed rundown of {topic}", variant: plain}
+  - {text: "{topic} ko detail mein samjhao", variant: hinglish}
+  - {text: "mujhe {topic} achhe se explain karo poora", variant: hinglish}
+  - {text: "{topic} ke baare mein vistaar se batao", variant: hinglish}
+  - {text: "thoda time lekar {topic} poora samjha do", variant: hinglish}
+  - {text: "{topic} ka full explanation do yaar", variant: hinglish}
+  - {text: "{topic} shuru se end tak detail mein batao", variant: hinglish}
+  - {text: "{topic} bagge detail aagi explain maadi", variant: kannada_english}
+  - {text: "{topic} na poorthi vivaravaagi heli", variant: kannada_english}
+  - {text: "nange {topic} full detail alli arthaa maadsi", variant: kannada_english}
+  - {text: "{topic} bagge ella heli guru detail aagi", variant: kannada_english}
+  - {text: "uh {topic} go through it um like in full detail no shortcuts", variant: disfluent}
+  - {text: "um go through {topic} for me i mean properly the whole thing", variant: disfluent}
+  - {text: "so er {topic} yeah break it down for me in detail", variant: disfluent}
+  - {text: "do the quick no scratch that the detailed explanation of {topic}", variant: disfluent}
+  - {text: "like tell me everything about uh about {topic} you know in depth", variant: disfluent}
+  - {text: "uh start from the very basics of {topic} and um build it all up for me", variant: disfluent}
+
+# seed 1 (question): can you walk me through how {topic} works
+"1":
+  - {text: "could you take me through how {topic} actually works?", variant: plain}
+  - {text: "how exactly does {topic} work", variant: plain}
+  - {text: "would you explain the whole working of {topic}?", variant: plain}
+  - {text: "can you break down how {topic} functions step by step", variant: plain}
+  - {text: "what's the mechanism behind {topic}?", variant: plain}
+  - {text: "how does {topic} really work under the hood", variant: plain}
+  - {text: "could you go step by step through how {topic} runs?", variant: plain}
+  - {text: "will you explain what goes on inside {topic}", variant: plain}
+  - {text: "what actually happens in {topic} from start to end?", variant: plain}
+  - {text: "can you lay out how {topic} works piece by piece", variant: plain}
+  - {text: "how does {topic} work can you go through it slowly?", variant: plain}
+  - {text: "would you mind explaining the inner workings of {topic}", variant: plain}
+  - {text: "any chance you can talk me through {topic} and how it works?", variant: plain}
+  - {text: "do you know how {topic} works in detail", variant: plain}
+  - {text: "how is {topic} supposed to work from the inside", variant: plain}
+  - {text: "what makes {topic} tick?", variant: plain}
+  - {text: "could you tell me how {topic} works bit by bit", variant: plain}
+  - {text: "mind explaining how {topic} works from the ground up?", variant: plain}
+  - {text: "how does {topic} actually function in practice", variant: plain}
+  - {text: "can you go through the working of {topic} for me", variant: plain}
+  - {text: "what's going on behind the scenes with {topic}?", variant: plain}
+  - {text: "would you run through how {topic} operates", variant: plain}
+  - {text: "how do all the pieces of {topic} fit together?", variant: plain}
+  - {text: "can we go through how {topic} works in some depth", variant: plain}
+  - {text: "{topic} kaise kaam karta hai samjha sakte ho?", variant: hinglish}
+  - {text: "kya tum mujhe {topic} ka working step by step bata sakte ho", variant: hinglish}
+  - {text: "{topic} actually kaam kaise karta hai batao na?", variant: hinglish}
+  - {text: "ek ek step mein {topic} kaise chalta hai samjhaoge?", variant: hinglish}
+  - {text: "{topic} ke andar kya hota hai detail mein bataoge", variant: hinglish}
+  - {text: "yaar {topic} ka poora process kaise hota hai?", variant: hinglish}
+  - {text: "{topic} hege work aagutte heltira?", variant: kannada_english}
+  - {text: "{topic} hege kelsa maadutte antha step by step helthira", variant: kannada_english}
+  - {text: "{topic} olage enu nadiyutte antha vivarisi heltira?", variant: kannada_english}
+  - {text: "guru {topic} hege function aagutte heli kodtira?", variant: kannada_english}
+  - {text: "um how does uh how does {topic} actually work", variant: disfluent}
+  - {text: "could you like take me through the uh the working of {topic}", variant: disfluent}
+  - {text: "so er what's the deal with {topic} like how does it run?", variant: disfluent}
+  - {text: "would you explain how {topic} no wait how the whole of {topic} works", variant: disfluent}
+  - {text: "uh how does {topic} work you know step by step?", variant: disfluent}
+  - {text: "can you um break down how {topic} works i mean in detail", variant: disfluent}
+
+# seed 2 (outcome): i want to properly understand {topic}
+"2":
+  - {text: "i really need to get my head around {topic}", variant: plain}
+  - {text: "i've never fully understood {topic} and i want to", variant: plain}
+  - {text: "i'd like to finally make sense of {topic}", variant: plain}
+  - {text: "i need to learn {topic} properly not just the surface", variant: plain}
+  - {text: "{topic} is something i want to understand inside out", variant: plain}
+  - {text: "i want to know {topic} thoroughly", variant: plain}
+  - {text: "my understanding of {topic} is shaky and i want it solid", variant: plain}
+  - {text: "i want a real grasp of {topic}", variant: plain}
+  - {text: "i'm keen to understand {topic} in depth", variant: plain}
+  - {text: "i want to be able to explain {topic} to others myself", variant: plain}
+  - {text: "i need to get {topic} clear in my mind once and for all", variant: plain}
+  - {text: "half knowledge of {topic} isn't enough for me i want the full thing", variant: plain}
+  - {text: "i'm trying to really learn {topic} this time", variant: plain}
+  - {text: "i want to go beyond the basics of {topic}", variant: plain}
+  - {text: "there's an interview coming and i need to understand {topic} deeply", variant: plain}
+  - {text: "i'd love to understand {topic} from the ground up", variant: plain}
+  - {text: "{topic} needs to make proper sense to me", variant: plain}
+  - {text: "i want the full understanding of {topic} not a summary", variant: plain}
+  - {text: "understanding {topic} properly is my goal for this drive", variant: plain}
+  - {text: "i've read bits about {topic} but i want to truly get it", variant: plain}
+  - {text: "i need a deep understanding of {topic}", variant: plain}
+  - {text: "i wish i understood {topic} properly", variant: plain}
+  - {text: "i want to master {topic}", variant: plain}
+  - {text: "my goal today is to get {topic} completely", variant: plain}
+  - {text: "mujhe {topic} achhe se samajhna hai", variant: hinglish}
+  - {text: "{topic} poora samajh mein aana chahiye mujhe", variant: hinglish}
+  - {text: "{topic} ka concept clear karna hai is baar", variant: hinglish}
+  - {text: "main {topic} ko properly samajhna chahta hoon", variant: hinglish}
+  - {text: "{topic} ke baare mein gehrai se jaanna hai", variant: hinglish}
+  - {text: "yaar {topic} abhi tak samajh nahi aaya poora samajhna hai", variant: hinglish}
+  - {text: "nange {topic} sariyaagi arthaa aagbeku", variant: kannada_english}
+  - {text: "{topic} poorthi thiliyabeku nange", variant: kannada_english}
+  - {text: "{topic} bagge ella gottagbeku", variant: kannada_english}
+  - {text: "ee sala {topic} chennagi understand maadbeku", variant: kannada_english}
+  - {text: "i uh i really want to get {topic} you know properly", variant: disfluent}
+  - {text: "um {topic} i need to like actually understand it this time", variant: disfluent}
+  - {text: "i want to know the basics no the whole of {topic} in depth", variant: disfluent}
+  - {text: "so er my understanding of {topic} is um not great and i want it better", variant: disfluent}
+  - {text: "like i've never uh never really got {topic} and i want to", variant: disfluent}
+  - {text: "er i need to learn {topic} i mean properly learn it", variant: disfluent}
+
+# seed 3 (indirect): i've got an hour to kill and {topic} has always confused me
+"3":
+  - {text: "long drive ahead and i've never really got {topic}", variant: plain}
+  - {text: "we're stuck here for a while and {topic} has always bugged me", variant: plain}
+  - {text: "plenty of time on this highway and {topic} still makes no sense to me", variant: plain}
+  - {text: "nothing to do for the next hour and i never understood {topic}", variant: plain}
+  - {text: "this drive is going to take forever and {topic} always goes over my head", variant: plain}
+  - {text: "{topic} has puzzled me for years and we've got time today", variant: plain}
+  - {text: "i'm free for a good while and {topic} is one of those things i never got", variant: plain}
+  - {text: "still a couple of hours to go and {topic} always confuses me", variant: plain}
+  - {text: "the kids are asleep it's a long way home and i've always wondered about {topic}", variant: plain}
+  - {text: "{topic} never made sense to me and this ride is long", variant: plain}
+  - {text: "i've got loads of time right now and {topic} is a mystery to me", variant: plain}
+  - {text: "{topic} has always been a blur to me and there's nothing else to do", variant: plain}
+  - {text: "might as well use this drive since i never figured out {topic}", variant: plain}
+  - {text: "i'm just sitting in the car waiting and {topic} keeps confusing me", variant: plain}
+  - {text: "nobody's ever managed to make {topic} clear to me and we have time", variant: plain}
+  - {text: "every time someone mentions {topic} i get lost and we've got an hour", variant: plain}
+  - {text: "an hour of highway left and i still don't get {topic}", variant: plain}
+  - {text: "i keep hearing about {topic} but honestly i don't get it and we've got time", variant: plain}
+  - {text: "we won't reach for ages and {topic} has always baffled me", variant: plain}
+  - {text: "waiting for my wife outside the mall and {topic} has always been confusing", variant: plain}
+  - {text: "i've been meaning to understand {topic} for ages and today i've got the time", variant: plain}
+  - {text: "{topic} is one thing i've never cracked and this is a long trip", variant: plain}
+  - {text: "this ride's going to be long and {topic} always trips me up", variant: plain}
+  - {text: "got some spare time now and i could never wrap my head around {topic}", variant: plain}
+  - {text: "abhi ek ghanta free hai aur {topic} kabhi samajh nahi aaya", variant: hinglish}
+  - {text: "lamba drive hai aur {topic} mujhe hamesha confuse karta hai", variant: hinglish}
+  - {text: "time hi time hai yaar aur {topic} aaj tak clear nahi hua", variant: hinglish}
+  - {text: "{topic} hamesha sar ke upar se jaata hai aur abhi kuch kaam bhi nahi hai", variant: hinglish}
+  - {text: "raasta lamba hai aur {topic} mera hamesha ka confusion hai", variant: hinglish}
+  - {text: "khaali baithe hain aur {topic} kabhi samjha hi nahi", variant: hinglish}
+  - {text: "ondu ghante free ide {topic} yaavaglu confuse aagutte", variant: kannada_english}
+  - {text: "tumba doorada drive ide {topic} nange artha aagilla", variant: kannada_english}
+  - {text: "summane kootidini {topic} yaavaglu thale ge hogalla", variant: kannada_english}
+  - {text: "time ide guru {topic} nange yaavattu clear aagilla", variant: kannada_english}
+  - {text: "so uh i've got like an hour free and um {topic} always confuses me", variant: disfluent}
+  - {text: "we've got er we've got loads of time and {topic} never made sense to me", variant: disfluent}
+  - {text: "um long drive ahead and you know {topic} has always kind of lost me", variant: disfluent}
+  - {text: "i've got half an hour no a full hour and {topic} still baffles me", variant: disfluent}
+  - {text: "uh {topic} like i never got it and there's time to kill now", variant: disfluent}
+  - {text: "nothing to do for a while and er {topic} yeah {topic} always confused me", variant: disfluent}
+
+# seed 4 (fragment): deep dive on {topic}
+"4":
+  - {text: "{topic} in detail", variant: plain}
+  - {text: "full explanation of {topic}", variant: plain}
+  - {text: "{topic} explained properly", variant: plain}
+  - {text: "long explainer on {topic}", variant: plain}
+  - {text: "{topic} start to finish", variant: plain}
+  - {text: "{topic} the whole story", variant: plain}
+  - {text: "everything about {topic}", variant: plain}
+  - {text: "{topic} in depth please", variant: plain}
+  - {text: "detailed rundown {topic}", variant: plain}
+  - {text: "{topic} from scratch", variant: plain}
+  - {text: "complete lowdown on {topic}", variant: plain}
+  - {text: "{topic} proper breakdown", variant: plain}
+  - {text: "deep explanation {topic}", variant: plain}
+  - {text: "{topic} full lecture", variant: plain}
+  - {text: "{topic} all the details", variant: plain}
+  - {text: "thorough take on {topic}", variant: plain}
+  - {text: "{topic} beginning to end explanation", variant: plain}
+  - {text: "{topic} long answer please", variant: plain}
+  - {text: "{topic} inside out", variant: plain}
+  - {text: "the full {topic} breakdown", variant: plain}
+  - {text: "{topic} step by step in detail", variant: plain}
+  - {text: "detailed lesson on {topic}", variant: plain}
+  - {text: "{topic} long version", variant: plain}
+  - {text: "explainer {topic} detailed", variant: plain}
+  - {text: "{topic} poora vistaar se", variant: hinglish}
+  - {text: "{topic} ki poori kahani", variant: hinglish}
+  - {text: "{topic} gehrai mein batao", variant: hinglish}
+  - {text: "{topic} shuru se aakhir tak", variant: hinglish}
+  - {text: "{topic} ka full gyaan chahiye", variant: hinglish}
+  - {text: "{topic} achhe se detail mein", variant: hinglish}
+  - {text: "{topic} poorthi vivara", variant: kannada_english}
+  - {text: "{topic} bagge full detail beku", variant: kannada_english}
+  - {text: "{topic} ella vivaravaagi", variant: kannada_english}
+  - {text: "{topic} deep aagi heli", variant: kannada_english}
+  - {text: "um {topic} like the full uh breakdown", variant: disfluent}
+  - {text: "deep dive no a proper deep dive on {topic}", variant: disfluent}
+  - {text: "er {topic} in detail you know everything", variant: disfluent}
+  - {text: "so uh {topic} the long version", variant: disfluent}
+  - {text: "{topic} uh explained like from the very beginning", variant: disfluent}
+  - {text: "like um everything on {topic} in depth", variant: disfluent}

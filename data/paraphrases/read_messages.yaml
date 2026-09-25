@@ -1,0 +1,219 @@
+# Paraphrases of the read_messages seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): read my new messages
+"0":
+  - {text: "read out my unread texts", variant: plain}
+  - {text: "go through my latest messages", variant: plain}
+  - {text: "play my new messages", variant: plain}
+  - {text: "read me whatever came in", variant: plain}
+  - {text: "check my messages and read them out", variant: plain}
+  - {text: "tell me my new messages", variant: plain}
+  - {text: "read out everything unread", variant: plain}
+  - {text: "catch me up on my messages", variant: plain}
+  - {text: "read the messages i got just now", variant: plain}
+  - {text: "go over my new whatsapps", variant: plain}
+  - {text: "read the latest texts aloud", variant: plain}
+  - {text: "let me hear my new messages", variant: plain}
+  - {text: "start reading my unread messages", variant: plain}
+  - {text: "give me my messages", variant: plain}
+  - {text: "read the recent texts out loud", variant: plain}
+  - {text: "run through my new texts", variant: plain}
+  - {text: "read any new sms", variant: plain}
+  - {text: "read out today's messages", variant: plain}
+  - {text: "read what people have sent me", variant: plain}
+  - {text: "read all the pending messages", variant: plain}
+  - {text: "pull up my chats and read them to me", variant: plain}
+  - {text: "read the unread whatsapps", variant: plain}
+  - {text: "play back my texts", variant: plain}
+  - {text: "read the new ones on my phone", variant: plain}
+  - {text: "mere naye messages padh ke sunao", variant: hinglish}
+  - {text: "naye messages padho", variant: hinglish}
+  - {text: "jo messages aaye hain woh sunao", variant: hinglish}
+  - {text: "mere unread messages suna do", variant: hinglish}
+  - {text: "messages padh do zara", variant: hinglish}
+  - {text: "whatsapp pe kya aaya padh ke batao", variant: hinglish}
+  - {text: "nanna hosa messages odi", variant: kannada_english}
+  - {text: "messages odhu", variant: kannada_english}
+  - {text: "banda messages odi heli", variant: kannada_english}
+  - {text: "unread messages ella odi", variant: kannada_english}
+  - {text: "uh whatever came in um read that out for me", variant: disfluent}
+  - {text: "read uh read me the the new ones", variant: disfluent}
+  - {text: "um go through like whatever's uh new in my messages", variant: disfluent}
+  - {text: "so er read the new messages you know the unread ones", variant: disfluent}
+  - {text: "reply no wait just read out what's new", variant: disfluent}
+  - {text: "er just um read me my messages", variant: disfluent}
+
+# seed 1 (question): what did {contact} just send me
+"1":
+  - {text: "what's {contact}'s latest message?", variant: plain}
+  - {text: "what did {contact} text me", variant: plain}
+  - {text: "can you read me {contact}'s last message", variant: plain}
+  - {text: "what was that message from {contact}?", variant: plain}
+  - {text: "what has {contact} sent me just now", variant: plain}
+  - {text: "did {contact} send me something?", variant: plain}
+  - {text: "could you read out what {contact} sent", variant: plain}
+  - {text: "what's the new text from {contact}", variant: plain}
+  - {text: "what did i just get from {contact}?", variant: plain}
+  - {text: "what is {contact} saying in that message", variant: plain}
+  - {text: "can you tell me what {contact} messaged", variant: plain}
+  - {text: "what did {contact} write to me?", variant: plain}
+  - {text: "what's in {contact}'s message", variant: plain}
+  - {text: "would you read {contact}'s new message to me", variant: plain}
+  - {text: "any message from {contact}?", variant: plain}
+  - {text: "what came in from {contact}", variant: plain}
+  - {text: "what does {contact}'s message say", variant: plain}
+  - {text: "could you check what {contact} sent me", variant: plain}
+  - {text: "which message did {contact} just send", variant: plain}
+  - {text: "can i hear {contact}'s message", variant: plain}
+  - {text: "what's the latest from {contact}?", variant: plain}
+  - {text: "would you read out {contact}'s text", variant: plain}
+  - {text: "what's {contact} saying?", variant: plain}
+  - {text: "can you check {contact}'s last text?", variant: plain}
+  - {text: "{contact} ne abhi kya bheja?", variant: hinglish}
+  - {text: "{contact} ka message kya aaya hai", variant: hinglish}
+  - {text: "{contact} ne kya likha hai padh ke sunaoge?", variant: hinglish}
+  - {text: "{contact} ne mujhe kya message kiya", variant: hinglish}
+  - {text: "{contact} ka latest text padh doge?", variant: hinglish}
+  - {text: "abhi {contact} se kya aaya?", variant: hinglish}
+  - {text: "{contact} enu kalsidru?", variant: kannada_english}
+  - {text: "{contact} message enu banthu", variant: kannada_english}
+  - {text: "{contact} eega enu kalsidaare", variant: kannada_english}
+  - {text: "{contact} message odhtira?", variant: kannada_english}
+  - {text: "um {contact} sent me something just now what was it", variant: disfluent}
+  - {text: "can you uh read me what {contact} um sent", variant: disfluent}
+  - {text: "er is that um a new one from {contact} what's it say", variant: disfluent}
+  - {text: "so like what did {contact} text no message me", variant: disfluent}
+  - {text: "er {contact} just sent something can you read it", variant: disfluent}
+  - {text: "uh what has {contact} you know sent me", variant: disfluent}
+
+# seed 2 (outcome): i've missed a bunch of messages while driving
+"2":
+  - {text: "my texts have been piling up since i started driving", variant: plain}
+  - {text: "there's a whole pile of unread messages on my phone", variant: plain}
+  - {text: "i haven't checked my phone the whole drive and messages are stacking up", variant: plain}
+  - {text: "loads of messages came in while i was behind the wheel", variant: plain}
+  - {text: "i couldn't look at any of my texts on the highway", variant: plain}
+  - {text: "so many unread chats since i left home", variant: plain}
+  - {text: "i'm way behind on my messages after this long drive", variant: plain}
+  - {text: "my phone's full of unread texts from the ride", variant: plain}
+  - {text: "i've got no idea what people sent me during the drive", variant: plain}
+  - {text: "a ton of whatsapps came in while i was on the road", variant: plain}
+  - {text: "i've been ignoring my messages all through the trip", variant: plain}
+  - {text: "i haven't seen a single text since i got in the car", variant: plain}
+  - {text: "the notifications have been piling up the whole way", variant: plain}
+  - {text: "i'm behind on everything people texted me today", variant: plain}
+  - {text: "i have no clue who messaged me on the way", variant: plain}
+  - {text: "my chats blew up while i was at the wheel", variant: plain}
+  - {text: "there must be a dozen texts i haven't seen", variant: plain}
+  - {text: "i've been out of touch with my messages the whole drive", variant: plain}
+  - {text: "i couldn't keep up with texts on the road", variant: plain}
+  - {text: "lots of unread stuff on the phone since the toll", variant: plain}
+  - {text: "i missed all the texts that came during the traffic jam", variant: plain}
+  - {text: "everyone's been messaging me and i haven't seen any of it", variant: plain}
+  - {text: "i'm totally out of the loop on my chats after driving", variant: plain}
+  - {text: "i've got unread messages from the whole commute", variant: plain}
+  - {text: "driving mein bahut saare messages miss ho gaye", variant: hinglish}
+  - {text: "gaadi chalate hue kitne messages aa gaye pata nahi", variant: hinglish}
+  - {text: "raste mein saare messages miss kar diye yaar", variant: hinglish}
+  - {text: "phone pe bahut unread messages pade hain", variant: hinglish}
+  - {text: "drive ke time koi message dekha hi nahi", variant: hinglish}
+  - {text: "itne messages aaye aur maine ek bhi nahi dekha", variant: hinglish}
+  - {text: "drive maadbekadre thumba messages miss aaytu", variant: kannada_english}
+  - {text: "tumba unread messages ide guru", variant: kannada_english}
+  - {text: "gaadi odisthaaga messages nodokke aagilla", variant: kannada_english}
+  - {text: "daari alli banda messages ella miss aaytu", variant: kannada_english}
+  - {text: "i've uh i've missed like so many messages on the drive", variant: disfluent}
+  - {text: "so um there's a pile of like unread texts", variant: disfluent}
+  - {text: "i haven't uh checked my phone the the whole drive", variant: disfluent}
+  - {text: "er loads of messages came in while i was you know driving", variant: disfluent}
+  - {text: "um my texts have been uh piling up all the way", variant: disfluent}
+  - {text: "i couldn't i couldn't look at any messages on the road", variant: disfluent}
+
+# seed 3 (indirect): my phone kept buzzing all through the meeting
+"3":
+  - {text: "my phone wouldn't stop vibrating during the meeting", variant: plain}
+  - {text: "the whole meeting my mobile was going off", variant: plain}
+  - {text: "i felt my phone buzz like crazy in that meeting", variant: plain}
+  - {text: "my pocket was buzzing nonstop in the conference room", variant: plain}
+  - {text: "my phone was blowing up the entire meeting", variant: plain}
+  - {text: "people kept pinging me the whole time i was in the meeting", variant: plain}
+  - {text: "the phone vibrated constantly while i was in the review", variant: plain}
+  - {text: "i could feel notifications coming in all through the discussion", variant: plain}
+  - {text: "my mobile was on silent but it kept vibrating in the meeting", variant: plain}
+  - {text: "so many pings came in while i was stuck in that meeting", variant: plain}
+  - {text: "my phone was going crazy through the whole presentation", variant: plain}
+  - {text: "that meeting was one long buzz from my phone", variant: plain}
+  - {text: "i kept hearing my phone buzz the entire meeting", variant: plain}
+  - {text: "the phone didn't stop buzzing throughout the meeting", variant: plain}
+  - {text: "it was ping after ping on my phone in the meeting", variant: plain}
+  - {text: "my phone was vibrating on the table all meeting long", variant: plain}
+  - {text: "the entire standup my phone kept going off", variant: plain}
+  - {text: "my phone was buzzing away in my bag the whole meeting", variant: plain}
+  - {text: "notifications were flooding in all through the client meeting", variant: plain}
+  - {text: "i had to ignore my phone buzzing in the board meeting", variant: plain}
+  - {text: "during the meeting the phone buzzed nonstop", variant: plain}
+  - {text: "my mobile lit up again and again while the meeting was on", variant: plain}
+  - {text: "there were buzzes the whole time i sat in the meeting", variant: plain}
+  - {text: "my phone has been going off since the meeting started", variant: plain}
+  - {text: "meeting mein phone baar baar baj raha tha", variant: hinglish}
+  - {text: "poori meeting phone vibrate karta raha", variant: hinglish}
+  - {text: "meeting ke time phone bajta hi raha yaar", variant: hinglish}
+  - {text: "meeting mein itne notifications aaye", variant: hinglish}
+  - {text: "phone meeting bhar buzz kar raha tha", variant: hinglish}
+  - {text: "meeting chal rahi thi aur phone band hi nahi hua", variant: hinglish}
+  - {text: "meeting alli phone vibrate aagtaane ittu", variant: kannada_english}
+  - {text: "meeting pooraa phone buzz aaythu", variant: kannada_english}
+  - {text: "meeting time alli thumba notifications banthu", variant: kannada_english}
+  - {text: "meeting nadeetha iddaaga phone nillade vibrate aagtittu", variant: kannada_english}
+  - {text: "my phone was uh it was buzzing like the whole meeting", variant: disfluent}
+  - {text: "um the phone the phone kept going off in the meeting", variant: disfluent}
+  - {text: "so during the meeting my uh my mobile wouldn't stop", variant: disfluent}
+  - {text: "er i could feel it buzzing you know the whole meeting", variant: disfluent}
+  - {text: "my phone was like vibrating um nonstop in that meeting", variant: disfluent}
+  - {text: "uh the phone was like buzz buzz buzz the entire meeting", variant: disfluent}
+
+# seed 4 (fragment): unread messages
+"4":
+  - {text: "new messages", variant: plain}
+  - {text: "unread texts", variant: plain}
+  - {text: "my unread ones", variant: plain}
+  - {text: "latest messages", variant: plain}
+  - {text: "pending messages", variant: plain}
+  - {text: "messages please", variant: plain}
+  - {text: "any new texts", variant: plain}
+  - {text: "new texts aloud", variant: plain}
+  - {text: "read out unread", variant: plain}
+  - {text: "my messages", variant: plain}
+  - {text: "unseen messages", variant: plain}
+  - {text: "recent texts", variant: plain}
+  - {text: "unread whatsapps", variant: plain}
+  - {text: "all unread", variant: plain}
+  - {text: "new sms", variant: plain}
+  - {text: "unread stuff", variant: plain}
+  - {text: "messages from today", variant: plain}
+  - {text: "latest chats", variant: plain}
+  - {text: "unopened messages", variant: plain}
+  - {text: "the unread ones", variant: plain}
+  - {text: "unread sms please", variant: plain}
+  - {text: "whatever texts are new", variant: plain}
+  - {text: "fresh messages", variant: plain}
+  - {text: "my new texts", variant: plain}
+  - {text: "naye messages", variant: hinglish}
+  - {text: "unread wale sunao", variant: hinglish}
+  - {text: "mere messages padho", variant: hinglish}
+  - {text: "naye texts batao", variant: hinglish}
+  - {text: "jo padhe nahi woh messages", variant: hinglish}
+  - {text: "aaj ke messages", variant: hinglish}
+  - {text: "hosa messages", variant: kannada_english}
+  - {text: "unread ella odi", variant: kannada_english}
+  - {text: "nanna messages", variant: kannada_english}
+  - {text: "banda texts odi", variant: kannada_english}
+  - {text: "um the uh unread ones", variant: disfluent}
+  - {text: "new no unread messages", variant: disfluent}
+  - {text: "er my like new texts", variant: disfluent}
+  - {text: "so um the unread uh messages", variant: disfluent}
+  - {text: "uh the new the new messages", variant: disfluent}
+  - {text: "um any you know unread texts", variant: disfluent}

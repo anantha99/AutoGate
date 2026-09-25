@@ -1,0 +1,176 @@
+# Paraphrases of the play_voicemail seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): play my voicemail
+"0":
+  - {text: "put my voicemail on", variant: plain}
+  - {text: "let me hear my voicemails", variant: plain}
+  - {text: "check my voicemail", variant: plain}
+  - {text: "go through my voicemail messages one by one", variant: plain}
+  - {text: "start playing the voicemails", variant: plain}
+  - {text: "play back the latest voicemail", variant: plain}
+  - {text: "dial into my voicemail", variant: plain}
+  - {text: "get my voicemail playing", variant: plain}
+  - {text: "play the new voicemails for me", variant: plain}
+  - {text: "run my voicemails on the speaker", variant: plain}
+  - {text: "give me my voicemail", variant: plain}
+  - {text: "put on the voice mail from my phone", variant: plain}
+  - {text: "just play whatever voicemail i have", variant: plain}
+  - {text: "pull up my voicemail and play it", variant: plain}
+  - {text: "hit play on my voicemails", variant: plain}
+  - {text: "let's hear the voicemail", variant: plain}
+  - {text: "start my voicemail", variant: plain}
+  - {text: "queue up my voicemails", variant: plain}
+  - {text: "do one thing play all the voicemails", variant: plain}
+  - {text: "bring up my voice mailbox", variant: plain}
+  - {text: "play whatever's in my voice mailbox", variant: plain}
+  - {text: "let me listen to my voicemail now", variant: plain}
+  - {text: "open voicemail and start from the first one", variant: plain}
+  - {text: "voicemails please play them out loud", variant: plain}
+  - {text: "mera voicemail chalao", variant: hinglish}
+  - {text: "voicemail play karo", variant: hinglish}
+  - {text: "voicemail suna do", variant: hinglish}
+  - {text: "mere voicemails sunao abhi", variant: hinglish}
+  - {text: "jo bhi voicemail aaya hai woh chala do", variant: hinglish}
+  - {text: "voicemail laga do zara", variant: hinglish}
+  - {text: "nanna voicemail haaku", variant: kannada_english}
+  - {text: "voicemail play maadu", variant: kannada_english}
+  - {text: "voicemail kelsu", variant: kannada_english}
+  - {text: "nanna voicemails ella play maadi", variant: kannada_english}
+  - {text: "play my messages no wait my voicemail", variant: disfluent}
+  - {text: "er the voicemail uh put it on", variant: disfluent}
+  - {text: "so like let me hear the um voicemails", variant: disfluent}
+  - {text: "go to my uh voicemail and you know play it", variant: disfluent}
+  - {text: "play the uh the voice mails the new ones", variant: disfluent}
+  - {text: "um just uh start the voicemail thing", variant: disfluent}
+
+# seed 1 (question): do i have any voice messages
+"1":
+  - {text: "any voicemails for me?", variant: plain}
+  - {text: "did anyone leave me a voicemail", variant: plain}
+  - {text: "is there a voicemail waiting?", variant: plain}
+  - {text: "have i got any new voicemail", variant: plain}
+  - {text: "did i get any voice messages today?", variant: plain}
+  - {text: "has somebody left a message on my voicemail", variant: plain}
+  - {text: "are there any voicemails i haven't heard", variant: plain}
+  - {text: "anything in my voicemail", variant: plain}
+  - {text: "do i have voicemail?", variant: plain}
+  - {text: "can you check if there's a voicemail", variant: plain}
+  - {text: "any new voice mail?", variant: plain}
+  - {text: "is my voicemail box empty or what", variant: plain}
+  - {text: "were any voicemails left while i was on the road", variant: plain}
+  - {text: "did someone drop a voicemail for me?", variant: plain}
+  - {text: "got any voice messages for me", variant: plain}
+  - {text: "how many voicemails do i have?", variant: plain}
+  - {text: "has a voicemail come in", variant: plain}
+  - {text: "could you see if i've got voicemails", variant: plain}
+  - {text: "any missed voicemails?", variant: plain}
+  - {text: "is there anything new on voicemail", variant: plain}
+  - {text: "have people been leaving me voicemails", variant: plain}
+  - {text: "did anybody leave a voice message while i was out?", variant: plain}
+  - {text: "are my voicemails piling up", variant: plain}
+  - {text: "any unheard voice messages", variant: plain}
+  - {text: "koi voicemail aaya hai kya?", variant: hinglish}
+  - {text: "mere liye koi voice message hai?", variant: hinglish}
+  - {text: "kisi ne voicemail chhoda kya", variant: hinglish}
+  - {text: "kya mere phone pe naye voice messages hain", variant: hinglish}
+  - {text: "voicemail mein kuch hai kya", variant: hinglish}
+  - {text: "aaj koi voice message aaya?", variant: hinglish}
+  - {text: "enadru voicemail bandideya?", variant: kannada_english}
+  - {text: "nanage yaaradru voice message kalsidara", variant: kannada_english}
+  - {text: "voicemail alli enadru ideya?", variant: kannada_english}
+  - {text: "hosa voicemail ideya", variant: kannada_english}
+  - {text: "um do i uh do i have any voicemails", variant: disfluent}
+  - {text: "is there like any voice uh voice messages for me", variant: disfluent}
+  - {text: "has uh has somebody like dropped a voicemail", variant: disfluent}
+  - {text: "any texts no sorry any voicemails for me?", variant: disfluent}
+  - {text: "so uh have i got you know voicemail", variant: disfluent}
+  - {text: "are there um any new ones on voicemail", variant: disfluent}
+
+# seed 2 (indirect): i missed a call from the school and they left a message
+"2":
+  - {text: "the school called while i was driving and left a voicemail", variant: plain}
+  - {text: "looks like the school tried calling and left something on voicemail", variant: plain}
+  - {text: "i've got a missed call from the school with a message", variant: plain}
+  - {text: "school rang me and i couldn't pick up so they left a voicemail", variant: plain}
+  - {text: "there's a voicemail from the school i haven't heard", variant: plain}
+  - {text: "the school left me a voice message when i missed their call", variant: plain}
+  - {text: "i couldn't answer when the school rang and there's a message waiting", variant: plain}
+  - {text: "my phone shows a missed call from the kids' school and a voicemail", variant: plain}
+  - {text: "someone from the school phoned and left a message", variant: plain}
+  - {text: "the school office called and i missed it they've left a voicemail", variant: plain}
+  - {text: "i didn't answer the school's call and they recorded something", variant: plain}
+  - {text: "the principal's office rang and left a message", variant: plain}
+  - {text: "just saw a missed call from the school plus a voicemail", variant: plain}
+  - {text: "the school must have left a message when they called", variant: plain}
+  - {text: "i missed the school's call earlier there's a voicemail waiting", variant: plain}
+  - {text: "the class teacher called and left a voice message", variant: plain}
+  - {text: "school called twice and left a voicemail both times", variant: plain}
+  - {text: "i was on the highway when the school called now there's a message", variant: plain}
+  - {text: "the school tried reaching me and left a recording", variant: plain}
+  - {text: "i see a voicemail from the school after a missed call", variant: plain}
+  - {text: "the school's voicemail came in after their call went unanswered", variant: plain}
+  - {text: "i was busy when the school rang and they left a voicemail", variant: plain}
+  - {text: "the school's number called me and left a message", variant: plain}
+  - {text: "the school has left a voicemail and i have no idea what it says", variant: plain}
+  - {text: "school se call aaya tha miss ho gaya aur unhone message chhoda hai", variant: hinglish}
+  - {text: "school walon ka call miss ho gaya voicemail chhoda hai", variant: hinglish}
+  - {text: "school ka phone aaya tha utha nahi paaya ab voicemail pada hai", variant: hinglish}
+  - {text: "school se voicemail aaya hai missed call ke baad", variant: hinglish}
+  - {text: "mera school wala call miss hua aur unhone kuch record kiya hai", variant: hinglish}
+  - {text: "school ne call kiya tha aur ek message chhod diya", variant: hinglish}
+  - {text: "school inda call bandittu miss aaytu voicemail bittidaare", variant: kannada_english}
+  - {text: "school avaru call maadidru naanu ettilla message ide", variant: kannada_english}
+  - {text: "school inda missed call ide jothege voicemail", variant: kannada_english}
+  - {text: "school call miss aaytu avaru message bittidaare", variant: kannada_english}
+  - {text: "the school um they called and i missed it and uh they left a message", variant: disfluent}
+  - {text: "so i missed a uh a call from the school they left a voicemail i think", variant: disfluent}
+  - {text: "the bank no the school called and left a um voicemail", variant: disfluent}
+  - {text: "er the kids' school rang and um there's a message now", variant: disfluent}
+  - {text: "i uh couldn't pick up the school and they you know left something", variant: disfluent}
+  - {text: "missed a call from the like the school and uh there's a voicemail", variant: disfluent}
+
+# seed 3 (fragment): voicemail
+"3":
+  - {text: "voicemails", variant: plain}
+  - {text: "my voicemail", variant: plain}
+  - {text: "voicemail please", variant: plain}
+  - {text: "new voicemails", variant: plain}
+  - {text: "latest voicemail", variant: plain}
+  - {text: "voice mail", variant: plain}
+  - {text: "voicemail inbox", variant: plain}
+  - {text: "the voicemail", variant: plain}
+  - {text: "voicemail now", variant: plain}
+  - {text: "last voicemail", variant: plain}
+  - {text: "unheard voicemails", variant: plain}
+  - {text: "my voicemails please", variant: plain}
+  - {text: "voicemail box", variant: plain}
+  - {text: "voice messages", variant: plain}
+  - {text: "phone voicemail", variant: plain}
+  - {text: "today's voicemails", variant: plain}
+  - {text: "voicemail quickly", variant: plain}
+  - {text: "my voice mailbox", variant: plain}
+  - {text: "recent voicemails", variant: plain}
+  - {text: "pending voicemail", variant: plain}
+  - {text: "the latest voice mail", variant: plain}
+  - {text: "voicemail from today", variant: plain}
+  - {text: "missed call voicemail", variant: plain}
+  - {text: "voicemails on speaker", variant: plain}
+  - {text: "voicemail sunao", variant: hinglish}
+  - {text: "mera voicemail", variant: hinglish}
+  - {text: "voicemail zara", variant: hinglish}
+  - {text: "naye voicemail", variant: hinglish}
+  - {text: "voicemail abhi", variant: hinglish}
+  - {text: "voicemail yaar", variant: hinglish}
+  - {text: "voicemail beku", variant: kannada_english}
+  - {text: "nanna voicemail", variant: kannada_english}
+  - {text: "voicemail swalpa", variant: kannada_english}
+  - {text: "hosa voicemail", variant: kannada_english}
+  - {text: "uh voicemail", variant: disfluent}
+  - {text: "um my uh voicemail", variant: disfluent}
+  - {text: "voicemail uh the the new one", variant: disfluent}
+  - {text: "er messages no voicemail", variant: disfluent}
+  - {text: "voicemail you know please", variant: disfluent}
+  - {text: "so um like the voicemails", variant: disfluent}

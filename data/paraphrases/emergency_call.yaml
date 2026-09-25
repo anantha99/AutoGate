@@ -1,0 +1,219 @@
+# Paraphrases of the emergency_call seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): call an ambulance now
+"0":
+  - {text: "get an ambulance here right now", variant: plain}
+  - {text: "dial for an ambulance immediately", variant: plain}
+  - {text: "ring the ambulance service", variant: plain}
+  - {text: "phone for an ambulance quickly", variant: plain}
+  - {text: "send for an ambulance", variant: plain}
+  - {text: "get me an ambulance fast", variant: plain}
+  - {text: "get an ambulance over here", variant: plain}
+  - {text: "call emergency medical help now", variant: plain}
+  - {text: "get the ambulance rushing to us", variant: plain}
+  - {text: "put me through to the ambulance", variant: plain}
+  - {text: "ambulance call it right away", variant: plain}
+  - {text: "dial the ambulance number", variant: plain}
+  - {text: "connect me to an ambulance this second", variant: plain}
+  - {text: "get medical help here call the ambulance", variant: plain}
+  - {text: "phone the ambulance people", variant: plain}
+  - {text: "hurry up and call the ambulance", variant: plain}
+  - {text: "do one thing call an ambulance fast", variant: plain}
+  - {text: "put a call through for an ambulance", variant: plain}
+  - {text: "get an ambulance on the way", variant: plain}
+  - {text: "call the ambulance immediately", variant: plain}
+  - {text: "arrange an ambulance right this minute", variant: plain}
+  - {text: "get paramedics here right now", variant: plain}
+  - {text: "send an ambulance to where we are", variant: plain}
+  - {text: "quick call for an ambulance", variant: plain}
+  - {text: "ambulance bulao jaldi", variant: hinglish}
+  - {text: "abhi ambulance ko call karo", variant: hinglish}
+  - {text: "jaldi se ambulance mangao", variant: hinglish}
+  - {text: "ambulance ko phone lagao turant", variant: hinglish}
+  - {text: "ek ambulance bhejo abhi", variant: hinglish}
+  - {text: "ambulance bula do yaar jaldi", variant: hinglish}
+  - {text: "ambulance ge call maadi", variant: kannada_english}
+  - {text: "bega ambulance karesi", variant: kannada_english}
+  - {text: "ambulance ge phone maadu bega", variant: kannada_english}
+  - {text: "ivaaga ambulance karsi", variant: kannada_english}
+  - {text: "um get an er an ambulance down here now", variant: disfluent}
+  - {text: "call the police no an ambulance now", variant: disfluent}
+  - {text: "uh get get an ambulance quick", variant: disfluent}
+  - {text: "er ring like an ambulance right now", variant: disfluent}
+  - {text: "so um phone the uh ambulance please", variant: disfluent}
+  - {text: "the ambulance uh ring the ambulance people quick", variant: disfluent}
+
+# seed 1 (outcome): there's been an accident and someone is badly hurt
+"1":
+  - {text: "we just had a crash and a guy is bleeding a lot", variant: plain}
+  - {text: "someone's seriously injured after a collision here", variant: plain}
+  - {text: "there's a bad accident and a person isn't moving", variant: plain}
+  - {text: "a biker got hit and he's in really bad shape", variant: plain}
+  - {text: "major collision right here people are injured", variant: plain}
+  - {text: "a pedestrian's been knocked down and is unconscious", variant: plain}
+  - {text: "there's blood everywhere after this crash", variant: plain}
+  - {text: "we've had a smash and my passenger is hurt badly", variant: plain}
+  - {text: "a car hit someone and they're lying on the road", variant: plain}
+  - {text: "accident just happened someone needs urgent medical help", variant: plain}
+  - {text: "there's been a pile up and people are hurt", variant: plain}
+  - {text: "the driver in the other car is trapped and injured", variant: plain}
+  - {text: "someone got run over and it looks really serious", variant: plain}
+  - {text: "a truck rammed into a scooter and the rider's badly injured", variant: plain}
+  - {text: "i've just seen a terrible accident with injuries", variant: plain}
+  - {text: "there's a person lying unconscious after the crash", variant: plain}
+  - {text: "we collided with a bike and the rider's bleeding", variant: plain}
+  - {text: "serious road accident and somebody's in critical condition", variant: plain}
+  - {text: "a guy's badly cut up after the car flipped", variant: plain}
+  - {text: "the auto overturned and the passengers are hurt", variant: plain}
+  - {text: "someone's head is bleeding after the collision", variant: plain}
+  - {text: "there's been a crash and a woman is not responding", variant: plain}
+  - {text: "horrible accident here and a kid is injured", variant: plain}
+  - {text: "we hit something and the person is really hurt", variant: plain}
+  - {text: "accident ho gaya hai koi bahut zakhmi hai", variant: hinglish}
+  - {text: "yahan ek aadmi ko bahut chot lagi hai accident mein", variant: hinglish}
+  - {text: "takkar ho gayi aur ek banda behosh hai", variant: hinglish}
+  - {text: "bada accident hua hai khoon beh raha hai", variant: hinglish}
+  - {text: "accident mein kisi ko bahut lagi hai yaar", variant: hinglish}
+  - {text: "ek bike wale ko gaadi ne maar diya woh hil nahi raha", variant: hinglish}
+  - {text: "accident aagide yaarige tumba gaaya aagide", variant: kannada_english}
+  - {text: "illi accident aaytu obbaru tumba hurt aagidaare", variant: kannada_english}
+  - {text: "dodda accident guru raktha barta ide", variant: kannada_english}
+  - {text: "bike accident aagide avanu yeltha illa", variant: kannada_english}
+  - {text: "um we've we've had an accident and er somebody's hurt bad", variant: disfluent}
+  - {text: "oh god there's a crash and and someone's hurt", variant: disfluent}
+  - {text: "a small no a big accident and someone's really injured", variant: disfluent}
+  - {text: "uh someone's hurt there's been like a crash", variant: disfluent}
+  - {text: "er accident here someone's um bleeding badly", variant: disfluent}
+  - {text: "so there's there's been a collision and a man is hurt", variant: disfluent}
+
+# seed 2 (question): can you get the police on the line
+"2":
+  - {text: "could you call the police?", variant: plain}
+  - {text: "can you dial the cops for me", variant: plain}
+  - {text: "would you ring the police now", variant: plain}
+  - {text: "can i get through to the police?", variant: plain}
+  - {text: "will you connect me to the police", variant: plain}
+  - {text: "could you phone the police please", variant: plain}
+  - {text: "can you put me through to the cops?", variant: plain}
+  - {text: "is there any way to reach the police right now", variant: plain}
+  - {text: "can we call the police helpline?", variant: plain}
+  - {text: "would you get the cops on the phone", variant: plain}
+  - {text: "how about calling the police control room", variant: plain}
+  - {text: "can you raise the police for me", variant: plain}
+  - {text: "will you dial the police immediately?", variant: plain}
+  - {text: "can you get me the police quickly", variant: plain}
+  - {text: "would you mind calling the cops?", variant: plain}
+  - {text: "could you alert the police for me", variant: plain}
+  - {text: "can the police be called right now", variant: plain}
+  - {text: "could i speak to the police", variant: plain}
+  - {text: "can you get a police officer on the phone?", variant: plain}
+  - {text: "would you patch me through to the cops", variant: plain}
+  - {text: "do you think you can call the police", variant: plain}
+  - {text: "mind ringing the police for me?", variant: plain}
+  - {text: "can you connect to the police emergency line", variant: plain}
+  - {text: "could you get me through to the cops quickly?", variant: plain}
+  - {text: "police ko call kar sakte ho?", variant: hinglish}
+  - {text: "kya police ko phone laga doge", variant: hinglish}
+  - {text: "police se baat karwa sakte ho", variant: hinglish}
+  - {text: "police ko abhi call karoge kya", variant: hinglish}
+  - {text: "kya tum police bula sakte ho", variant: hinglish}
+  - {text: "police helpline laga sakte ho?", variant: hinglish}
+  - {text: "police ge call maadtira?", variant: kannada_english}
+  - {text: "police ge phone maadbahuda", variant: kannada_english}
+  - {text: "police jothe maatadisteera", variant: kannada_english}
+  - {text: "police ge call maadoke aagutta?", variant: kannada_english}
+  - {text: "can you uh like get me um the cops on the line", variant: disfluent}
+  - {text: "could you could you um ring the cops for me", variant: disfluent}
+  - {text: "can you call the ambulance no the police?", variant: disfluent}
+  - {text: "um would you ring the uh cops", variant: disfluent}
+  - {text: "so like can you get the police er on the phone", variant: disfluent}
+  - {text: "can we can we er reach the police quickly", variant: disfluent}
+
+# seed 3 (indirect): my father is having chest pains in the back seat
+"3":
+  - {text: "dad's clutching his chest back there", variant: plain}
+  - {text: "appa says his chest is hurting really bad", variant: plain}
+  - {text: "my dad in the rear can't breathe properly and his chest hurts", variant: plain}
+  - {text: "papa's complaining of pain in his chest", variant: plain}
+  - {text: "my old man just grabbed his chest and slumped over", variant: plain}
+  - {text: "my father's sweating and says his chest feels tight", variant: plain}
+  - {text: "dad's got a crushing pain in his chest behind me", variant: plain}
+  - {text: "my father looks like he's having a heart attack in the back", variant: plain}
+  - {text: "papa's gone pale and is holding his chest", variant: plain}
+  - {text: "my dad just collapsed in the back complaining of chest pain", variant: plain}
+  - {text: "the pain in dad's chest is getting worse", variant: plain}
+  - {text: "my father can't talk properly and his chest is paining", variant: plain}
+  - {text: "dad keeps saying there's pressure on his chest", variant: plain}
+  - {text: "my father's left arm is numb and his chest hurts", variant: plain}
+  - {text: "appa is breathing heavily and holding his heart", variant: plain}
+  - {text: "my dad suddenly has sharp pain in his chest", variant: plain}
+  - {text: "dad back there says his heart is hurting", variant: plain}
+  - {text: "my father just fainted after complaining about his chest", variant: plain}
+  - {text: "papa is in agony in the back clutching his chest", variant: plain}
+  - {text: "something's wrong with dad's heart he's in pain", variant: plain}
+  - {text: "my father is gasping and pressing his chest", variant: plain}
+  - {text: "dad in the back seat is having a really bad chest pain", variant: plain}
+  - {text: "my father's chest pain started suddenly and he's sweating", variant: plain}
+  - {text: "i think my dad's heart is acting up he's in agony", variant: plain}
+  - {text: "papa ke seene mein bahut dard ho raha hai", variant: hinglish}
+  - {text: "peeche papa ko chest pain ho raha hai", variant: hinglish}
+  - {text: "mere father ki chhati mein dard hai peeche", variant: hinglish}
+  - {text: "papa seena pakad ke baithe hain", variant: hinglish}
+  - {text: "papa ko saans nahi aa rahi aur chest mein dard hai", variant: hinglish}
+  - {text: "pitaji peeche chest pakad rahe hain bahut dard hai", variant: hinglish}
+  - {text: "appa ge chest pain aagta ide hinde", variant: kannada_english}
+  - {text: "appa ge ede novu tumba ide", variant: kannada_english}
+  - {text: "hinde seat alli appa ge ede novu", variant: kannada_english}
+  - {text: "appa ede hidkondu kootidaare", variant: kannada_english}
+  - {text: "my father um he's got uh pains in his chest in the back", variant: disfluent}
+  - {text: "dad's uh dad is like pressing on his chest and groaning", variant: disfluent}
+  - {text: "my dad no my father is having like chest pain", variant: disfluent}
+  - {text: "er papa's got um pain in his chest", variant: disfluent}
+  - {text: "so my father he's uh having chest pains", variant: disfluent}
+  - {text: "my dad back there his chest is um hurting a lot", variant: disfluent}
+
+# seed 4 (fragment): sos
+"4":
+  - {text: "emergency", variant: plain}
+  - {text: "emergency call", variant: plain}
+  - {text: "mayday", variant: plain}
+  - {text: "help urgently", variant: plain}
+  - {text: "sos call", variant: plain}
+  - {text: "emergency services", variant: plain}
+  - {text: "call for help", variant: plain}
+  - {text: "emergency please", variant: plain}
+  - {text: "need help now", variant: plain}
+  - {text: "urgent help", variant: plain}
+  - {text: "dial emergency", variant: plain}
+  - {text: "emergency line", variant: plain}
+  - {text: "send sos", variant: plain}
+  - {text: "sos now", variant: plain}
+  - {text: "emergency help now", variant: plain}
+  - {text: "panic button", variant: plain}
+  - {text: "medical emergency", variant: plain}
+  - {text: "sos please", variant: plain}
+  - {text: "help help", variant: plain}
+  - {text: "emergency assist", variant: plain}
+  - {text: "distress call", variant: plain}
+  - {text: "rescue", variant: plain}
+  - {text: "get help fast", variant: plain}
+  - {text: "sos alert", variant: plain}
+  - {text: "bachao", variant: hinglish}
+  - {text: "madad chahiye jaldi", variant: hinglish}
+  - {text: "emergency hai", variant: hinglish}
+  - {text: "sos bhejo", variant: hinglish}
+  - {text: "turant emergency lagao", variant: hinglish}
+  - {text: "jaldi madad bulao", variant: hinglish}
+  - {text: "sahaaya beku", variant: kannada_english}
+  - {text: "emergency guru", variant: kannada_english}
+  - {text: "sos kalsu", variant: kannada_english}
+  - {text: "bega help maadi", variant: kannada_english}
+  - {text: "uh sos", variant: disfluent}
+  - {text: "sos um sos", variant: disfluent}
+  - {text: "help no emergency sos", variant: disfluent}
+  - {text: "er emergency uh call", variant: disfluent}
+  - {text: "um er send an sos", variant: disfluent}
+  - {text: "the the emergency button", variant: disfluent}

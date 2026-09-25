@@ -1,0 +1,219 @@
+# Paraphrases of the climate_on_off seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): turn on the ac
+"0":
+  - {text: "switch the ac on", variant: plain}
+  - {text: "get the air con going", variant: plain}
+  - {text: "put the ac", variant: plain}
+  - {text: "start the ac", variant: plain}
+  - {text: "start the air conditioning", variant: plain}
+  - {text: "fire up the ac", variant: plain}
+  - {text: "put on the aircon", variant: plain}
+  - {text: "switch on the climate control", variant: plain}
+  - {text: "get the ac running", variant: plain}
+  - {text: "power up the ac please", variant: plain}
+  - {text: "do one thing put the ac on", variant: plain}
+  - {text: "start the cooling", variant: plain}
+  - {text: "open the ac", variant: plain}
+  - {text: "just on the ac", variant: plain}
+  - {text: "put the ac on for the kids", variant: plain}
+  - {text: "give me some ac", variant: plain}
+  - {text: "turn the whole climate system on", variant: plain}
+  - {text: "let's get some ac going", variant: plain}
+  - {text: "start up the air con before we move", variant: plain}
+  - {text: "just start the ac we're leaving", variant: plain}
+  - {text: "bring the ac on", variant: plain}
+  - {text: "put the air conditioner on", variant: plain}
+  - {text: "get the cooling started", variant: plain}
+  - {text: "run the ac", variant: plain}
+  - {text: "ac chalu karo", variant: hinglish}
+  - {text: "ac on kar do yaar", variant: hinglish}
+  - {text: "ac chala do", variant: hinglish}
+  - {text: "thoda ac laga do", variant: hinglish}
+  - {text: "ac start karo abhi", variant: hinglish}
+  - {text: "gaadi ka ac chalu kar do", variant: hinglish}
+  - {text: "ac haaku", variant: kannada_english}
+  - {text: "ac on maadi", variant: kannada_english}
+  - {text: "ac start maadu guru", variant: kannada_english}
+  - {text: "swalpa ac haaki saar", variant: kannada_english}
+  - {text: "um the ac uh get it going", variant: disfluent}
+  - {text: "turn on the fan no wait the ac", variant: disfluent}
+  - {text: "so like start the er the air con", variant: disfluent}
+  - {text: "er the the ac put it on", variant: disfluent}
+  - {text: "you know what um switch on the aircon", variant: disfluent}
+  - {text: "okay um let's get the uh cooling going", variant: disfluent}
+
+# seed 1 (outcome): the car is like an oven after standing in the sun
+"1":
+  - {text: "it's baking in here after being parked outside", variant: plain}
+  - {text: "the car's been sitting in the sun and it's boiling inside", variant: plain}
+  - {text: "this thing is a furnace after the parking lot", variant: plain}
+  - {text: "we just got in and it's like a sauna", variant: plain}
+  - {text: "the sun has turned the cabin into an oven", variant: plain}
+  - {text: "it's scorching inside after standing in the open", variant: plain}
+  - {text: "the whole car heated up while we were in the mall", variant: plain}
+  - {text: "opened the door and it was like a blast furnace", variant: plain}
+  - {text: "the car's been cooking in the sun for hours", variant: plain}
+  - {text: "it's unbearable in here after the parking", variant: plain}
+  - {text: "stepping into this car is like walking into a tandoor", variant: plain}
+  - {text: "the inside is roasting after that long halt in the sun", variant: plain}
+  - {text: "the car is super hot from being parked in the open", variant: plain}
+  - {text: "it's like a microwave in here after the sun", variant: plain}
+  - {text: "we left it in the sun and now it's boiling", variant: plain}
+  - {text: "the cabin is steaming after sitting out all afternoon", variant: plain}
+  - {text: "it's a pressure cooker in here after sitting in the sun", variant: plain}
+  - {text: "i can't breathe in here it's so hot after parking", variant: plain}
+  - {text: "the car got really hot standing near the temple", variant: plain}
+  - {text: "the heat inside after parking in the sun is terrible", variant: plain}
+  - {text: "it's like an oven in here since it was in direct sunlight", variant: plain}
+  - {text: "the car's been standing in the sun and it's roasting", variant: plain}
+  - {text: "getting in after lunch and it's scorching hot inside", variant: plain}
+  - {text: "sitting in the sun all day has made the car blazing hot", variant: plain}
+  - {text: "gaadi dhoop mein khadi thi ab bhatti ban gayi hai", variant: hinglish}
+  - {text: "andar toh oven jaisa ho gaya hai dhoop se", variant: hinglish}
+  - {text: "dhoop mein park thi ab andar bahut garam hai yaar", variant: hinglish}
+  - {text: "car toh tandoor ban gayi hai", variant: hinglish}
+  - {text: "itni dhoop mein khadi thi andar jal raha hai sab", variant: hinglish}
+  - {text: "baithne layak nahi hai gaadi dhoop ke baad", variant: hinglish}
+  - {text: "bisilalli nintu car olage oven thara aagide", variant: kannada_english}
+  - {text: "car full bisi aagide bisilu inda", variant: kannada_english}
+  - {text: "olage tumba seke guru bisilalli ittidvi", variant: kannada_english}
+  - {text: "car oven aagogide saar", variant: kannada_english}
+  - {text: "the car is uh it's like an oven in here", variant: disfluent}
+  - {text: "um it's been in the sun and it's like you know boiling", variant: disfluent}
+  - {text: "after parking it's like er it's a furnace in here", variant: disfluent}
+  - {text: "so the the car was standing out and now it's baking", variant: disfluent}
+  - {text: "it's warm no it's way worse it's like an oven after the sun", variant: disfluent}
+  - {text: "uh we left it out in the um the sun and it's roasting", variant: disfluent}
+
+# seed 2 (question): can you switch the climate off
+"2":
+  - {text: "could you turn off the ac?", variant: plain}
+  - {text: "can we shut the ac", variant: plain}
+  - {text: "would you switch off the air con", variant: plain}
+  - {text: "can you kill the climate control", variant: plain}
+  - {text: "mind turning the ac off?", variant: plain}
+  - {text: "could the ac go off now", variant: plain}
+  - {text: "will you stop the air conditioning?", variant: plain}
+  - {text: "can we have the ac off please", variant: plain}
+  - {text: "is it possible to shut the climate", variant: plain}
+  - {text: "could you power down the ac", variant: plain}
+  - {text: "would you mind switching the climate system off", variant: plain}
+  - {text: "can i get the ac turned off?", variant: plain}
+  - {text: "can you put off the ac", variant: plain}
+  - {text: "do you mind stopping the cooling", variant: plain}
+  - {text: "how about we turn the ac off?", variant: plain}
+  - {text: "could you close the ac", variant: plain}
+  - {text: "shall we switch off the aircon", variant: plain}
+  - {text: "will you shut the climate off for a while", variant: plain}
+  - {text: "can we not have the ac on anymore", variant: plain}
+  - {text: "could you shut down the climate control?", variant: plain}
+  - {text: "would you cut the ac", variant: plain}
+  - {text: "can the aircon be switched off?", variant: plain}
+  - {text: "is there a way to stop the ac", variant: plain}
+  - {text: "could we do without the ac now?", variant: plain}
+  - {text: "ac band kar doge?", variant: hinglish}
+  - {text: "climate band kar sakte ho kya", variant: hinglish}
+  - {text: "ac off karoge kya", variant: hinglish}
+  - {text: "kya ac band ho sakta hai", variant: hinglish}
+  - {text: "thodi der ke liye ac band karoge?", variant: hinglish}
+  - {text: "aircon off kar sakte ho", variant: hinglish}
+  - {text: "ac off maadtira?", variant: kannada_english}
+  - {text: "ac aarisoke aagutta", variant: kannada_english}
+  - {text: "climate off maadbahuda saar", variant: kannada_english}
+  - {text: "ac band maadtiya guru", variant: kannada_english}
+  - {text: "can you uh switch off the um the ac", variant: disfluent}
+  - {text: "uh could you like the the climate turn it off?", variant: disfluent}
+  - {text: "can you turn on no off turn the ac off", variant: disfluent}
+  - {text: "is it um possible to like shut the aircon", variant: disfluent}
+  - {text: "so can we you know kill the ac", variant: disfluent}
+  - {text: "um would you mind if we like kill the climate", variant: disfluent}
+
+# seed 3 (indirect): my wife says the ac is giving her a cold
+"3":
+  - {text: "my wife keeps sneezing because of the ac", variant: plain}
+  - {text: "my husband says the ac is making him sick", variant: plain}
+  - {text: "amma says the ac is giving her a sore throat", variant: plain}
+  - {text: "my wife is shivering and blaming the ac", variant: plain}
+  - {text: "the missus says this ac will give her fever", variant: plain}
+  - {text: "my wife complains her nose is blocked from the ac", variant: plain}
+  - {text: "my mother in law says she's catching a chill from the ac", variant: plain}
+  - {text: "my wife is complaining she's freezing under the ac", variant: plain}
+  - {text: "my son has a runny nose and says it's the ac", variant: plain}
+  - {text: "my wife thinks she's getting sick from the air conditioning", variant: plain}
+  - {text: "my wife says the ac is not good for her throat", variant: plain}
+  - {text: "the wife has started coughing and says it's the ac", variant: plain}
+  - {text: "my better half says the ac is giving her the sniffles", variant: plain}
+  - {text: "dad says the ac always gives him a headache", variant: plain}
+  - {text: "my wife is worried the ac will make her cold worse", variant: plain}
+  - {text: "my wife just told me the ac is too much for her health", variant: plain}
+  - {text: "grandma says the ac air is making her sneeze", variant: plain}
+  - {text: "my wife is wrapping her dupatta around her because of the ac", variant: plain}
+  - {text: "my wife says she's catching a cold with this ac on", variant: plain}
+  - {text: "my wife has a cold coming and says the ac isn't helping", variant: plain}
+  - {text: "my wife says her sinuses act up with the ac running", variant: plain}
+  - {text: "her chest gets tight with the ac my wife says", variant: plain}
+  - {text: "my wife feels feverish and says the ac did it", variant: plain}
+  - {text: "my wife says her throat is itchy from the air conditioning", variant: plain}
+  - {text: "biwi bol rahi hai ac se usko zukaam ho raha hai", variant: hinglish}
+  - {text: "wife keh rahi hai ac se sardi lag gayi", variant: hinglish}
+  - {text: "meri wife ko ac se cold ho raha hai", variant: hinglish}
+  - {text: "mummy bol rahi hai ac se gala kharab ho jayega", variant: hinglish}
+  - {text: "wife ko ac mein chheenk aa rahi hai", variant: hinglish}
+  - {text: "gharwali bol rahi hai ac se bimaar ho jaayegi", variant: hinglish}
+  - {text: "nanna hendthi ac inda sheetha aagtide antha heltidale", variant: kannada_english}
+  - {text: "wife ge ac inda cold aagtide antha", variant: kannada_english}
+  - {text: "hendthi ac beda antha heltidale", variant: kannada_english}
+  - {text: "amma ge ac inda gantalu novu antha", variant: kannada_english}
+  - {text: "my wife is um she's getting a cold from the the ac", variant: disfluent}
+  - {text: "uh my husband no sorry it's my wife she feels sick from the ac", variant: disfluent}
+  - {text: "my wife keeps uh sneezing she says it's the um ac", variant: disfluent}
+  - {text: "so the ac is er my wife thinks it's giving her a chill", variant: disfluent}
+  - {text: "um she's like my wife's getting a sore throat from the ac", variant: disfluent}
+  - {text: "my wife says uh you know this ac thing is making her ill", variant: disfluent}
+
+# seed 4 (fragment): ac off
+"4":
+  - {text: "kill the ac", variant: plain}
+  - {text: "switch off the ac", variant: plain}
+  - {text: "stop the ac", variant: plain}
+  - {text: "climate off", variant: plain}
+  - {text: "aircon off", variant: plain}
+  - {text: "no more ac", variant: plain}
+  - {text: "shut the ac", variant: plain}
+  - {text: "cut the ac", variant: plain}
+  - {text: "air con off", variant: plain}
+  - {text: "turn the ac off", variant: plain}
+  - {text: "stop the cooling", variant: plain}
+  - {text: "climate system off please", variant: plain}
+  - {text: "ac not needed", variant: plain}
+  - {text: "enough of the ac", variant: plain}
+  - {text: "ac off for now", variant: plain}
+  - {text: "ac off right away", variant: plain}
+  - {text: "no aircon", variant: plain}
+  - {text: "kill the cooling", variant: plain}
+  - {text: "ac off in the back", variant: plain}
+  - {text: "done with the ac", variant: plain}
+  - {text: "power off the ac", variant: plain}
+  - {text: "air conditioning off", variant: plain}
+  - {text: "enough cooling", variant: plain}
+  - {text: "ac off it's cold", variant: plain}
+  - {text: "ac band", variant: hinglish}
+  - {text: "ac hatao", variant: hinglish}
+  - {text: "ac off kar do", variant: hinglish}
+  - {text: "ac ki zarurat nahi", variant: hinglish}
+  - {text: "band karo ac yaar", variant: hinglish}
+  - {text: "ac ab nahi chahiye", variant: hinglish}
+  - {text: "ac aarisu", variant: kannada_english}
+  - {text: "ac beda", variant: kannada_english}
+  - {text: "ac off maadi saar", variant: kannada_english}
+  - {text: "ac nillisu guru", variant: kannada_english}
+  - {text: "uh ac um off", variant: disfluent}
+  - {text: "ac on no off ac off", variant: disfluent}
+  - {text: "the the ac off please", variant: disfluent}
+  - {text: "er kill the like the ac", variant: disfluent}
+  - {text: "so um no ac", variant: disfluent}
+  - {text: "ac uh you know off", variant: disfluent}

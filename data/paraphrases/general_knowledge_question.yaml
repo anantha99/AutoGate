@@ -1,0 +1,219 @@
+# Paraphrases of the general_knowledge_question seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): tell me who invented the telephone
+"0":
+  - {text: "give me the name of the telephone's inventor", variant: plain}
+  - {text: "find out who came up with the telephone", variant: plain}
+  - {text: "say who made the first telephone", variant: plain}
+  - {text: "let me know who invented the phone", variant: plain}
+  - {text: "remind me who gave the world the telephone", variant: plain}
+  - {text: "look up who created the telephone", variant: plain}
+  - {text: "settle this for us who invented the telephone", variant: plain}
+  - {text: "name the inventor of the telephone", variant: plain}
+  - {text: "tell the kids who invented the phone", variant: plain}
+  - {text: "check who the telephone was invented by", variant: plain}
+  - {text: "tell me who is credited with inventing the telephone", variant: plain}
+  - {text: "give me a quick answer on who invented the telephone", variant: plain}
+  - {text: "clear my doubt who first made a telephone", variant: plain}
+  - {text: "tell me whose invention the telephone was", variant: plain}
+  - {text: "quickly name whoever invented the telephone", variant: plain}
+  - {text: "find out for me the telephone inventor", variant: plain}
+  - {text: "do one thing tell me who built the first phone", variant: plain}
+  - {text: "answer this who invented the telephone", variant: plain}
+  - {text: "help me out with who invented the telephone", variant: plain}
+  - {text: "tell me who we have to thank for the telephone", variant: plain}
+  - {text: "remind me the telephone inventor's name", variant: plain}
+  - {text: "search who thought up the telephone first", variant: plain}
+  - {text: "just say the name of whoever made the telephone", variant: plain}
+  - {text: "tell us who invented the telephone for the quiz", variant: plain}
+  - {text: "telephone kisne banaya tha batao", variant: hinglish}
+  - {text: "batao na phone ka aavishkar kisne kiya", variant: hinglish}
+  - {text: "mujhe batao telephone kisne invent kiya", variant: hinglish}
+  - {text: "zara bata do telephone ki khoj kisne ki thi", variant: hinglish}
+  - {text: "telephone kiski invention hai bata do yaar", variant: hinglish}
+  - {text: "ye batao pehla phone kisne banaya", variant: hinglish}
+  - {text: "telephone yaaru kandu hidididdu heli", variant: kannada_english}
+  - {text: "telephone invent maadiddu yaaru antha heli", variant: kannada_english}
+  - {text: "phone na yaaru maadidru swalpa heli", variant: kannada_english}
+  - {text: "modalu telephone maadiddu yaaru heli guru", variant: kannada_english}
+  - {text: "who made the radio no the telephone tell me that", variant: disfluent}
+  - {text: "uh the telephone um whose idea was it just say", variant: disfluent}
+  - {text: "so like tell me the the guy who made the telephone", variant: disfluent}
+  - {text: "er give me the name of um the telephone inventor", variant: disfluent}
+  - {text: "um look up who you know first came up with the telephone", variant: disfluent}
+  - {text: "er the first telephone who uh who built it tell me", variant: disfluent}
+
+# seed 1 (question): how high is the tallest mountain in india
+"1":
+  - {text: "what's the height of india's tallest mountain", variant: plain}
+  - {text: "how tall is the highest peak in india?", variant: plain}
+  - {text: "do you know how high india's highest mountain goes", variant: plain}
+  - {text: "how many metres high is india's tallest peak?", variant: plain}
+  - {text: "what's the elevation of the highest mountain in india", variant: plain}
+  - {text: "how big is india's tallest mountain in feet", variant: plain}
+  - {text: "can you tell me the height of the highest peak in india", variant: plain}
+  - {text: "how high does india's number one peak rise?", variant: plain}
+  - {text: "what height does india's tallest mountain reach", variant: plain}
+  - {text: "any idea how high india's top peak is", variant: plain}
+  - {text: "how tall is the biggest mountain we have in india", variant: plain}
+  - {text: "in feet how high does india's highest mountain stand?", variant: plain}
+  - {text: "what's the altitude at the top of india's highest peak", variant: plain}
+  - {text: "would you know the height of the tallest peak in india", variant: plain}
+  - {text: "roughly how tall is india's highest summit", variant: plain}
+  - {text: "how many metres up is the top of india's tallest mountain", variant: plain}
+  - {text: "is india's tallest mountain higher than eight thousand metres?", variant: plain}
+  - {text: "could you check how tall india's highest mountain is", variant: plain}
+  - {text: "how high above sea level is india's tallest mountain", variant: plain}
+  - {text: "what's the height of the top mountain in india", variant: plain}
+  - {text: "how much height does india's highest peak have", variant: plain}
+  - {text: "for my quiz how tall is the highest mountain in india", variant: plain}
+  - {text: "what's the height in metres of the tallest peak in india", variant: plain}
+  - {text: "how high would you say india's tallest mountain is", variant: plain}
+  - {text: "india ka sabse uncha pahad kitna uncha hai?", variant: hinglish}
+  - {text: "india ki sabse oonchi choti kitni oonchi hai", variant: hinglish}
+  - {text: "india ke highest mountain ki height kya hai", variant: hinglish}
+  - {text: "sabse uncha mountain india mein kitne meter ka hai?", variant: hinglish}
+  - {text: "pata hai india ka tallest mountain kitna tall hai", variant: hinglish}
+  - {text: "india ki sabse badi mountain ki oonchai kitni hai", variant: hinglish}
+  - {text: "india alli athi yethara betta eshtu yethara?", variant: kannada_english}
+  - {text: "india da tallest mountain height eshtu", variant: kannada_english}
+  - {text: "nam deshada athi dodda betta eshtu yethara ide", variant: kannada_english}
+  - {text: "india highest peak eshtu meter ide", variant: kannada_english}
+  - {text: "how how tall is uh india's biggest mountain", variant: disfluent}
+  - {text: "the height um what's the height of that big mountain in india the tallest one?", variant: disfluent}
+  - {text: "how deep no how high is india's tallest mountain", variant: disfluent}
+  - {text: "uh india's tallest peak like how high does it go", variant: disfluent}
+  - {text: "er do you know um the height of india's highest mountain", variant: disfluent}
+  - {text: "so the tallest mountain in india um how many metres is it", variant: disfluent}
+
+# seed 2 (outcome): i can't remember when india got independence
+"2":
+  - {text: "i've forgotten the year india became independent", variant: plain}
+  - {text: "the date of india's independence has slipped my mind", variant: plain}
+  - {text: "i'm blanking on when india got freedom", variant: plain}
+  - {text: "my memory's failing me on the year of independence", variant: plain}
+  - {text: "i keep mixing up when the british left india", variant: plain}
+  - {text: "i should know when india became free but i don't", variant: plain}
+  - {text: "i'm not sure what year india got its freedom", variant: plain}
+  - {text: "the year of independence just isn't coming to me", variant: plain}
+  - {text: "i'm drawing a blank on india's independence year", variant: plain}
+  - {text: "i studied it in school but forgot when india became independent", variant: plain}
+  - {text: "independence year i just can't recall it", variant: plain}
+  - {text: "i'm unsure about the year india won freedom", variant: plain}
+  - {text: "can't recall the year we became free from british rule", variant: plain}
+  - {text: "i'm stuck trying to remember when india's independence happened", variant: plain}
+  - {text: "for the life of me the independence year won't come back", variant: plain}
+  - {text: "i've got a doubt about when india got independence", variant: plain}
+  - {text: "i'm confused about which year india became a free country", variant: plain}
+  - {text: "it's on the tip of my tongue when india got freedom", variant: plain}
+  - {text: "i don't remember the year the british left", variant: plain}
+  - {text: "history was never my thing and i forget when india became independent", variant: plain}
+  - {text: "i'm not getting the year of india's independence", variant: plain}
+  - {text: "the independence year keeps escaping me", variant: plain}
+  - {text: "i always forget when india was freed", variant: plain}
+  - {text: "my mind's gone blank on india's freedom year", variant: plain}
+  - {text: "mujhe yaad nahi aa raha india ko azaadi kab mili", variant: hinglish}
+  - {text: "india kab azaad hua bhool gaya yaar", variant: hinglish}
+  - {text: "azaadi wala saal dimaag se nikal gaya", variant: hinglish}
+  - {text: "yaad hi nahi aa raha independence kis saal hui", variant: hinglish}
+  - {text: "bharat ki azaadi ka saal bhool gaya main", variant: hinglish}
+  - {text: "pata nahi india ko freedom kab mili thi", variant: hinglish}
+  - {text: "india ge swatantra yaavaga sikkitu antha nenapilla", variant: kannada_english}
+  - {text: "independence year marethu hoytu", variant: kannada_english}
+  - {text: "nam deshakke freedom yaavaga bantu gottilla", variant: kannada_english}
+  - {text: "india independent aagiddu yaavaga antha nenapu barta illa", variant: kannada_english}
+  - {text: "uh india's independence the year i just can't um get it", variant: disfluent}
+  - {text: "i forgot when india became a republic no wait independent", variant: disfluent}
+  - {text: "so um india's freedom year i've like totally forgotten", variant: disfluent}
+  - {text: "er the year of uh the year of independence is gone from my head", variant: disfluent}
+  - {text: "i'm um drawing a blank on you know when we got freedom", variant: disfluent}
+  - {text: "uh history class was ages ago and i forget when india was freed", variant: disfluent}
+
+# seed 3 (indirect): my son is asking why the sky is blue
+"3":
+  - {text: "my boy wants to know what makes the sky blue", variant: plain}
+  - {text: "the little one keeps asking me why the sky looks blue", variant: plain}
+  - {text: "my kid just asked what gives the sky its blue colour", variant: plain}
+  - {text: "beta is curious why the sky's blue", variant: plain}
+  - {text: "junior's latest question is about the sky being blue", variant: plain}
+  - {text: "my son asked me why the sky is blue and i've got nothing", variant: plain}
+  - {text: "the kids are quizzing me on why the sky is blue", variant: plain}
+  - {text: "my son won't stop asking about the blue sky", variant: plain}
+  - {text: "my ten year old wants the reason the sky is blue", variant: plain}
+  - {text: "my boy's been going on about why the sky is blue", variant: plain}
+  - {text: "the kid asked why it's blue up there and i don't know", variant: plain}
+  - {text: "my son's got homework asking about the sky's colour", variant: plain}
+  - {text: "my son's wondering how come the sky looks blue", variant: plain}
+  - {text: "the children want to know why the sky has that blue colour", variant: plain}
+  - {text: "my son's asking me something i can't answer about the blue sky", variant: plain}
+  - {text: "my boy asked why the sky isn't green or red", variant: plain}
+  - {text: "the boy keeps saying papa what makes it blue up there", variant: plain}
+  - {text: "my son looked up and asked why the sky's blue", variant: plain}
+  - {text: "my son wants the science behind the blue sky", variant: plain}
+  - {text: "my child is curious about the sky's colour", variant: plain}
+  - {text: "the kid's been at me about why the sky is blue since we left home", variant: plain}
+  - {text: "my son stumped me with the blue sky question", variant: plain}
+  - {text: "my little fellow asked where the sky gets its blue from", variant: plain}
+  - {text: "the young one is asking me about why the sky looks the way it does", variant: plain}
+  - {text: "mera beta puch raha hai aasmaan neela kyun hai", variant: hinglish}
+  - {text: "beta jaanna chahta hai sky blue kyun hota hai", variant: hinglish}
+  - {text: "bachcha puch raha hai aasman ka rang neela kyun", variant: hinglish}
+  - {text: "mera ladka bol raha hai sky blue kyun hai papa batao", variant: hinglish}
+  - {text: "beta kab se puch raha hai aasmaan neela kyon dikhta hai", variant: hinglish}
+  - {text: "mere bete ko jaanna hai sky ka colour blue kyun hai", variant: hinglish}
+  - {text: "nan maga keltidaane aakasha yaake neeli", variant: kannada_english}
+  - {text: "maga sky yaake blue antha kelthaidaane", variant: kannada_english}
+  - {text: "nam huduga aakasha blue yaake antha kelthidaane", variant: kannada_english}
+  - {text: "maga ge aakasha yaake neeli antha doubt", variant: kannada_english}
+  - {text: "so my son um he wants to know why the uh sky is blue", variant: disfluent}
+  - {text: "my daughter no my son wants to know why the sky's blue", variant: disfluent}
+  - {text: "uh the kid my son keeps asking you know about the blue sky", variant: disfluent}
+  - {text: "my boy asked why the sea no the sky is blue", variant: disfluent}
+  - {text: "um my son's got this question about the the sky being blue", variant: disfluent}
+  - {text: "so like my son's asking me er why it's blue the sky and i don't know", variant: disfluent}
+
+# seed 4 (fragment): population of {city}
+"4":
+  - {text: "{city} population now", variant: plain}
+  - {text: "how many people in {city}", variant: plain}
+  - {text: "people living in {city}", variant: plain}
+  - {text: "{city} head count", variant: plain}
+  - {text: "{city} resident count", variant: plain}
+  - {text: "{city} total population please", variant: plain}
+  - {text: "{city} population size", variant: plain}
+  - {text: "{city} census figure", variant: plain}
+  - {text: "residents of {city}", variant: plain}
+  - {text: "{city} inhabitants", variant: plain}
+  - {text: "population figure for {city}", variant: plain}
+  - {text: "latest {city} population", variant: plain}
+  - {text: "population count {city}", variant: plain}
+  - {text: "{city} number of people", variant: plain}
+  - {text: "{city} total people", variant: plain}
+  - {text: "{city} population in crores", variant: plain}
+  - {text: "{city} current population", variant: plain}
+  - {text: "population stats {city}", variant: plain}
+  - {text: "{city} residents total", variant: plain}
+  - {text: "headcount of {city}", variant: plain}
+  - {text: "{city} population today", variant: plain}
+  - {text: "people count {city}", variant: plain}
+  - {text: "rough population {city}", variant: plain}
+  - {text: "{city} how many residents", variant: plain}
+  - {text: "{city} ki abaadi kitni hai", variant: hinglish}
+  - {text: "{city} mein kitne log rehte hain", variant: hinglish}
+  - {text: "{city} ki population batao", variant: hinglish}
+  - {text: "{city} ki janta kitni", variant: hinglish}
+  - {text: "{city} ki total population kitni", variant: hinglish}
+  - {text: "{city} wale kitne log hain", variant: hinglish}
+  - {text: "{city} population eshtu", variant: kannada_english}
+  - {text: "{city} alli eshtu jana idaare", variant: kannada_english}
+  - {text: "{city} janasankhye", variant: kannada_english}
+  - {text: "{city} alli janasankhye eshtu", variant: kannada_english}
+  - {text: "uh population of um {city}", variant: disfluent}
+  - {text: "{city} the the population", variant: disfluent}
+  - {text: "um {city} like how many uh people live there", variant: disfluent}
+  - {text: "people no population of {city}", variant: disfluent}
+  - {text: "er {city} you know the headcount", variant: disfluent}
+  - {text: "so uh {city} population please", variant: disfluent}

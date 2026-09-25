@@ -1,0 +1,219 @@
+# Paraphrases of the set_audio_volume seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): turn the volume up
+"0":
+  - {text: "make it louder", variant: plain}
+  - {text: "increase the volume", variant: plain}
+  - {text: "pump up the sound", variant: plain}
+  - {text: "volume up", variant: plain}
+  - {text: "crank it up", variant: plain}
+  - {text: "bump the volume a bit", variant: plain}
+  - {text: "raise the sound", variant: plain}
+  - {text: "put the volume higher", variant: plain}
+  - {text: "give me more volume", variant: plain}
+  - {text: "increase the sound a little", variant: plain}
+  - {text: "go louder on the music", variant: plain}
+  - {text: "turn it up a notch", variant: plain}
+  - {text: "more sound please", variant: plain}
+  - {text: "raise the volume two notches", variant: plain}
+  - {text: "louder na", variant: plain}
+  - {text: "make the music louder", variant: plain}
+  - {text: "turn up the sound a bit", variant: plain}
+  - {text: "raise it", variant: plain}
+  - {text: "push the volume up some more", variant: plain}
+  - {text: "louder than this please", variant: plain}
+  - {text: "get the sound up", variant: plain}
+  - {text: "do one thing increase volume", variant: plain}
+  - {text: "volume higher", variant: plain}
+  - {text: "speakers louder please", variant: plain}
+  - {text: "volume badhao", variant: hinglish}
+  - {text: "awaaz thodi tez karo", variant: hinglish}
+  - {text: "volume upar kar do yaar", variant: hinglish}
+  - {text: "gaane ki awaaz badha do", variant: hinglish}
+  - {text: "thoda aur loud karo", variant: hinglish}
+  - {text: "sound zyada karo", variant: hinglish}
+  - {text: "volume jaasti maadu", variant: kannada_english}
+  - {text: "swalpa sound jaasti maadi", variant: kannada_english}
+  - {text: "volume mele haaku", variant: kannada_english}
+  - {text: "sound jor maadu guru", variant: kannada_english}
+  - {text: "uh raise the um the volume", variant: disfluent}
+  - {text: "volume down no up turn it up", variant: disfluent}
+  - {text: "er just like louder you know a bit", variant: disfluent}
+  - {text: "um volume up up a bit", variant: disfluent}
+  - {text: "so uh crank the uh sound up a bit", variant: disfluent}
+  - {text: "the the music i mean the volume higher please", variant: disfluent}
+
+# seed 1 (outcome): i can hardly hear anything over the engine
+"1":
+  - {text: "the engine noise is drowning out the music", variant: plain}
+  - {text: "i can't hear a thing with this engine roaring", variant: plain}
+  - {text: "the song is barely audible", variant: plain}
+  - {text: "all i can hear is the engine", variant: plain}
+  - {text: "the music is too soft over this road noise", variant: plain}
+  - {text: "all this honking is drowning out the audio", variant: plain}
+  - {text: "the audio is lost in the engine sound", variant: plain}
+  - {text: "the podcast is way too faint", variant: plain}
+  - {text: "i'm straining to hear the radio", variant: plain}
+  - {text: "i can barely make out the words", variant: plain}
+  - {text: "it's too quiet with all this noise outside", variant: plain}
+  - {text: "the highway noise is covering the music", variant: plain}
+  - {text: "i keep missing what the singer is saying", variant: plain}
+  - {text: "the speakers are way too soft", variant: plain}
+  - {text: "i can't hear the news over this traffic", variant: plain}
+  - {text: "the sound is getting lost in the road noise", variant: plain}
+  - {text: "it's so faint i can't follow the song", variant: plain}
+  - {text: "i can hardly make out the radio at this speed", variant: plain}
+  - {text: "the engine is drowning the song", variant: plain}
+  - {text: "hard to hear anything in here", variant: plain}
+  - {text: "everything is muffled by the traffic", variant: plain}
+  - {text: "the music is barely there", variant: plain}
+  - {text: "i can't catch a word of this song", variant: plain}
+  - {text: "i have to strain my ears to hear the song", variant: plain}
+  - {text: "engine ki awaaz mein kuch sunai nahi de raha", variant: hinglish}
+  - {text: "gaana bilkul sunai nahi de raha yaar", variant: hinglish}
+  - {text: "itna shor hai kuch sun nahi pa raha", variant: hinglish}
+  - {text: "music bahut dheere hai sunai nahi deta", variant: hinglish}
+  - {text: "engine ke shor mein gaana dab gaya", variant: hinglish}
+  - {text: "awaaz bahut kam aa rahi hai", variant: hinglish}
+  - {text: "engine sound alli enu kelsta illa", variant: kannada_english}
+  - {text: "song swalpa nu kelstilla guru", variant: kannada_english}
+  - {text: "tumba noise ide enu kelstilla", variant: kannada_english}
+  - {text: "music kelisode illa", variant: kannada_english}
+  - {text: "um i can't like hear anything over the engine", variant: disfluent}
+  - {text: "uh the engine is so so loud i can't hear the song", variant: disfluent}
+  - {text: "the music it's uh you know it's too faint", variant: disfluent}
+  - {text: "i can hardly er i can hardly hear the radio", variant: disfluent}
+  - {text: "so uh all i hear is like the engine", variant: disfluent}
+  - {text: "er the song i can barely um barely catch it", variant: disfluent}
+
+# seed 2 (question): can you make it a bit quieter
+"2":
+  - {text: "could you turn the volume down a little?", variant: plain}
+  - {text: "will you lower the sound", variant: plain}
+  - {text: "can the music be softer?", variant: plain}
+  - {text: "would you bring the volume down a notch", variant: plain}
+  - {text: "mind lowering it a bit", variant: plain}
+  - {text: "can we have it softer?", variant: plain}
+  - {text: "could you reduce the volume slightly", variant: plain}
+  - {text: "is it possible to make the music less loud?", variant: plain}
+  - {text: "can you dial it down a touch", variant: plain}
+  - {text: "would you tone down the audio?", variant: plain}
+  - {text: "how about turning it down some", variant: plain}
+  - {text: "can we lower the volume a little", variant: plain}
+  - {text: "could the speakers go a bit softer?", variant: plain}
+  - {text: "would you mind dropping the volume", variant: plain}
+  - {text: "can you not play it so loud?", variant: plain}
+  - {text: "shall we bring the sound down some", variant: plain}
+  - {text: "is there a way to quiet it down?", variant: plain}
+  - {text: "can it be a little less noisy?", variant: plain}
+  - {text: "could you soften the sound?", variant: plain}
+  - {text: "any chance of a lower volume", variant: plain}
+  - {text: "can you cut the volume down a little bit", variant: plain}
+  - {text: "would you make the music quieter please?", variant: plain}
+  - {text: "will you lower it slightly", variant: plain}
+  - {text: "can the volume come down a bit?", variant: plain}
+  - {text: "thoda volume kam karoge?", variant: hinglish}
+  - {text: "awaaz thodi dheemi kar sakte ho kya", variant: hinglish}
+  - {text: "kya volume thoda kam ho sakta hai", variant: hinglish}
+  - {text: "gaana thoda dheere karoge kya", variant: hinglish}
+  - {text: "sound thoda halka kar doge?", variant: hinglish}
+  - {text: "kya thoda kam awaaz mein chala sakte ho", variant: hinglish}
+  - {text: "swalpa volume kammi maadtira?", variant: kannada_english}
+  - {text: "sound swalpa kammi maadbahuda", variant: kannada_english}
+  - {text: "volume kammi maadoke aagutta?", variant: kannada_english}
+  - {text: "music swalpa mellage maadtira", variant: kannada_english}
+  - {text: "can you um like make the music uh softer", variant: disfluent}
+  - {text: "could you er could you lower the volume", variant: disfluent}
+  - {text: "would you make it louder no quieter sorry", variant: disfluent}
+  - {text: "um is it possible to uh reduce the sound", variant: disfluent}
+  - {text: "can we like bring it down a little you know", variant: disfluent}
+  - {text: "so uh the volume can you drop it a bit", variant: disfluent}
+
+# seed 3 (indirect): the baby just fell asleep in the back
+"3":
+  - {text: "the little one has finally dozed off", variant: plain}
+  - {text: "shh the kid is sleeping behind", variant: plain}
+  - {text: "the baby's out cold in the car seat", variant: plain}
+  - {text: "my daughter just nodded off back there", variant: plain}
+  - {text: "our boy is sleeping at the back", variant: plain}
+  - {text: "finally got the baby to sleep", variant: plain}
+  - {text: "the toddler is taking a nap behind us", variant: plain}
+  - {text: "the kids have all gone to sleep", variant: plain}
+  - {text: "the baby dozed off just now", variant: plain}
+  - {text: "my son fell asleep behind me", variant: plain}
+  - {text: "the infant is sleeping i don't want to wake her", variant: plain}
+  - {text: "careful the baby is sleeping", variant: plain}
+  - {text: "the kid is fast asleep now", variant: plain}
+  - {text: "baby's gone to sleep in the back", variant: plain}
+  - {text: "the little one is sleeping peacefully", variant: plain}
+  - {text: "i just got the baby to nap", variant: plain}
+  - {text: "our baby's snoozing back there", variant: plain}
+  - {text: "she's finally sleeping in her car seat", variant: plain}
+  - {text: "the children just drifted off", variant: plain}
+  - {text: "the baby's eyes just closed", variant: plain}
+  - {text: "the young one has fallen asleep behind", variant: plain}
+  - {text: "the baby is asleep so let's keep it down", variant: plain}
+  - {text: "the baby just went off to sleep", variant: plain}
+  - {text: "my niece is sleeping on her mom's lap in the back", variant: plain}
+  - {text: "baby abhi abhi so gaya peeche", variant: hinglish}
+  - {text: "bachcha so raha hai yaar", variant: hinglish}
+  - {text: "munna so gaya hai", variant: hinglish}
+  - {text: "chhotu ko abhi neend aayi hai", variant: hinglish}
+  - {text: "baby ki neend lag gayi hai peeche", variant: hinglish}
+  - {text: "bachchi abhi soyi hai dhyan rakho", variant: hinglish}
+  - {text: "magu malagide", variant: kannada_english}
+  - {text: "magu hinde malgbittide", variant: kannada_english}
+  - {text: "baby ivaga thane nidde maadtide", variant: kannada_english}
+  - {text: "paapu malagide guru", variant: kannada_english}
+  - {text: "um the baby she uh just dozed off", variant: disfluent}
+  - {text: "so like the the kid is sleeping now", variant: disfluent}
+  - {text: "er the baby's asleep in the uh in the back", variant: disfluent}
+  - {text: "the little one is you know finally um sleeping", variant: disfluent}
+  - {text: "uh we just got her to sleep like just now", variant: disfluent}
+  - {text: "the baby um is out like out cold", variant: disfluent}
+
+# seed 4 (fragment): volume {number}
+"4":
+  - {text: "set the volume to {number}", variant: plain}
+  - {text: "sound level {number}", variant: plain}
+  - {text: "audio at {number}", variant: plain}
+  - {text: "make it {number}", variant: plain}
+  - {text: "volume down to {number}", variant: plain}
+  - {text: "louder till {number}", variant: plain}
+  - {text: "speakers on {number}", variant: plain}
+  - {text: "{number} on the volume please", variant: plain}
+  - {text: "music at {number}", variant: plain}
+  - {text: "volume level {number} please", variant: plain}
+  - {text: "keep it at {number}", variant: plain}
+  - {text: "turn it to {number}", variant: plain}
+  - {text: "audio level {number}", variant: plain}
+  - {text: "sound to {number}", variant: plain}
+  - {text: "{number} on sound", variant: plain}
+  - {text: "loudness {number}", variant: plain}
+  - {text: "volume at {number} only", variant: plain}
+  - {text: "leave volume at {number}", variant: plain}
+  - {text: "bring it down to {number}", variant: plain}
+  - {text: "{number} bars of volume", variant: plain}
+  - {text: "audio to {number}", variant: plain}
+  - {text: "switch volume over to {number}", variant: plain}
+  - {text: "volume {number} right now", variant: plain}
+  - {text: "set music to {number}", variant: plain}
+  - {text: "volume {number} pe karo", variant: hinglish}
+  - {text: "awaaz {number} pe rakho", variant: hinglish}
+  - {text: "volume {number} kar do", variant: hinglish}
+  - {text: "{number} pe rakh do volume", variant: hinglish}
+  - {text: "sound {number} pe laao", variant: hinglish}
+  - {text: "{number} tak volume rakho yaar", variant: hinglish}
+  - {text: "volume {number} ge maadu", variant: kannada_english}
+  - {text: "volume {number} alli idi", variant: kannada_english}
+  - {text: "sound {number} maadi", variant: kannada_english}
+  - {text: "{number} ge volume haaku", variant: kannada_english}
+  - {text: "uh the volume um {number}", variant: disfluent}
+  - {text: "um volume like {number}", variant: disfluent}
+  - {text: "volume the uh make it {number}", variant: disfluent}
+  - {text: "set it to um {number} you know", variant: disfluent}
+  - {text: "volume {number} no wait {number}", variant: disfluent}
+  - {text: "er sound to uh {number}", variant: disfluent}

@@ -1,0 +1,176 @@
+# Paraphrases of the sports_score seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): give me the latest cricket score
+"0":
+  - {text: "tell me the cricket score", variant: plain}
+  - {text: "check the cricket score right now", variant: plain}
+  - {text: "update me on the cricket match", variant: plain}
+  - {text: "read out where the cricket stands", variant: plain}
+  - {text: "get me the current score of the cricket match", variant: plain}
+  - {text: "let me know how the cricket is going", variant: plain}
+  - {text: "find the live cricket score", variant: plain}
+  - {text: "put the cricket score on the screen", variant: plain}
+  - {text: "fill me in on the cricket score", variant: plain}
+  - {text: "check how many runs the batting side has", variant: plain}
+  - {text: "do one thing check the cricket score", variant: plain}
+  - {text: "score update from the cricket please", variant: plain}
+  - {text: "tell me where the cricket match stands", variant: plain}
+  - {text: "show the latest cricket updates", variant: plain}
+  - {text: "get the scorecard for the cricket going on", variant: plain}
+  - {text: "quickly tell me the runs and wickets in the match", variant: plain}
+  - {text: "bring up the live cricket scorecard", variant: plain}
+  - {text: "look up the cricket score for me", variant: plain}
+  - {text: "give me a quick cricket update", variant: plain}
+  - {text: "let me hear the cricket score", variant: plain}
+  - {text: "tell me how the chase is going", variant: plain}
+  - {text: "just check the score of today's match na", variant: plain}
+  - {text: "give me the score from the ongoing cricket game", variant: plain}
+  - {text: "run me through the cricket score", variant: plain}
+  - {text: "cricket ka score batao", variant: hinglish}
+  - {text: "match ka latest score bata do", variant: hinglish}
+  - {text: "zara cricket score check karo", variant: hinglish}
+  - {text: "cricket mein kitna score hua batao", variant: hinglish}
+  - {text: "abhi ka cricket score sunao", variant: hinglish}
+  - {text: "kitne run bane batao yaar", variant: hinglish}
+  - {text: "cricket score heli", variant: kannada_english}
+  - {text: "match score enu aaytu heli", variant: kannada_english}
+  - {text: "latest cricket score swalpa heli guru", variant: kannada_english}
+  - {text: "eshtu run aaytu nodi heli", variant: kannada_english}
+  - {text: "uh the cricket um how's it going give me the score", variant: disfluent}
+  - {text: "give me the football no i mean the cricket um latest", variant: disfluent}
+  - {text: "uh check the the cricket score for me", variant: disfluent}
+  - {text: "so um the cricket give me the score like", variant: disfluent}
+  - {text: "er latest score you know of the cricket", variant: disfluent}
+  - {text: "the runs um the runs and wickets tell me that", variant: disfluent}
+
+# seed 1 (question): what's the score in the {team} match
+"1":
+  - {text: "how are {team} doing in the match?", variant: plain}
+  - {text: "what's {team}'s score right now", variant: plain}
+  - {text: "how many runs have {team} got", variant: plain}
+  - {text: "is {team} winning?", variant: plain}
+  - {text: "how's the {team} game going", variant: plain}
+  - {text: "what's the latest on the {team} match", variant: plain}
+  - {text: "can you tell me the {team} score?", variant: plain}
+  - {text: "what's the scoreline for {team}", variant: plain}
+  - {text: "how many wickets have {team} lost", variant: plain}
+  - {text: "who's ahead in the {team} match?", variant: plain}
+  - {text: "where do {team} stand in the match", variant: plain}
+  - {text: "do you know the score of the {team} game", variant: plain}
+  - {text: "what are {team} at right now?", variant: plain}
+  - {text: "any update on the {team} match", variant: plain}
+  - {text: "how much have {team} scored so far?", variant: plain}
+  - {text: "are {team} ahead or behind?", variant: plain}
+  - {text: "what's happening in the {team} game score wise", variant: plain}
+  - {text: "could you check the {team} match score", variant: plain}
+  - {text: "how is {team} placed in today's game?", variant: plain}
+  - {text: "what does the scoreboard say for {team}", variant: plain}
+  - {text: "is {team} leading or trailing", variant: plain}
+  - {text: "what's the {team} total looking like?", variant: plain}
+  - {text: "have {team} scored much yet", variant: plain}
+  - {text: "what's the result so far in the {team} match", variant: plain}
+  - {text: "{team} ka score kya hai?", variant: hinglish}
+  - {text: "{team} wale match mein kitna score hua", variant: hinglish}
+  - {text: "{team} jeet rahi hai kya", variant: hinglish}
+  - {text: "{team} ke kitne run hue abhi?", variant: hinglish}
+  - {text: "{team} ka match kaisa chal raha hai", variant: hinglish}
+  - {text: "{team} ka score bata sakte ho", variant: hinglish}
+  - {text: "{team} score eshtu?", variant: kannada_english}
+  - {text: "{team} match alli score enu", variant: kannada_english}
+  - {text: "{team} eshtu run maadide", variant: kannada_english}
+  - {text: "{team} geltha ideya?", variant: kannada_english}
+  - {text: "what's the um the {team} match what's it at", variant: disfluent}
+  - {text: "uh how are {team} how are {team} doing", variant: disfluent}
+  - {text: "the {team} game like um where's the score at you know", variant: disfluent}
+  - {text: "er what's {team}'s um {team}'s score?", variant: disfluent}
+  - {text: "how's the uh the {team} match going score wise", variant: disfluent}
+  - {text: "the weather no sorry the {team} match what's the score", variant: disfluent}
+
+# seed 2 (indirect): everyone at office is watching the match except me
+"2":
+  - {text: "the whole office is glued to the match and i'm stuck driving", variant: plain}
+  - {text: "my colleagues are all watching the game and i'm missing out", variant: plain}
+  - {text: "all my colleagues are following the game and here i am driving", variant: plain}
+  - {text: "my teammates are on the stream and i have no clue what's happening", variant: plain}
+  - {text: "my whole team is watching the cricket while i'm on the road", variant: plain}
+  - {text: "the office crowd is going crazy over the match and i can't see it", variant: plain}
+  - {text: "i'm the only one at work who doesn't know what's happening in the match", variant: plain}
+  - {text: "my boss and the team are all on the match and i'm stuck in traffic", variant: plain}
+  - {text: "everybody back at office knows the score except me", variant: plain}
+  - {text: "the office chat is full of match talk i can't follow", variant: plain}
+  - {text: "my colleagues keep cheering on the call and i have no idea why", variant: plain}
+  - {text: "whole office has the match on and i'm stuck in this car", variant: plain}
+  - {text: "everyone's watching the game on the projector at work and i'm out here", variant: plain}
+  - {text: "the guys at work are all tuned in to the match but not me", variant: plain}
+  - {text: "i'm missing the match that the entire office is watching", variant: plain}
+  - {text: "my team skipped work to watch the game and i'm driving", variant: plain}
+  - {text: "all my coworkers are hooked on the match and i'm left out", variant: plain}
+  - {text: "the office has stopped working for the match and i'm on the highway", variant: plain}
+  - {text: "i'm the only one in the team who isn't watching the game", variant: plain}
+  - {text: "everyone's following the live score at work and i'm stuck here", variant: plain}
+  - {text: "the whole floor is watching the match without me", variant: plain}
+  - {text: "the team at office is watching the final and i'm clueless", variant: plain}
+  - {text: "my colleagues know every ball of the match and i know nothing", variant: plain}
+  - {text: "everybody at work is shouting at the tv and i'm missing the action", variant: plain}
+  - {text: "poora office match dekh raha hai aur main gaadi chala raha hoon", variant: hinglish}
+  - {text: "sab log office mein match dekh rahe hain bas main nahi", variant: hinglish}
+  - {text: "office wale sab match mein lage hain mujhe kuch pata nahi", variant: hinglish}
+  - {text: "mere colleagues match enjoy kar rahe hain aur main traffic mein hoon", variant: hinglish}
+  - {text: "sabko score pata hai office mein mujhe chhodke", variant: hinglish}
+  - {text: "pure office mein match chal raha hai yaar main miss kar raha hoon", variant: hinglish}
+  - {text: "office alli ellaru match nodtidaare nanu maathra illa", variant: kannada_english}
+  - {text: "ellaru match nodtaidaare naanu drive maadtidini", variant: kannada_english}
+  - {text: "office alli ellarigu score gottu nange gottilla", variant: kannada_english}
+  - {text: "team ellaru match alli busy nanage enu gottilla", variant: kannada_english}
+  - {text: "everyone at the uh office is like glued to the um game but me", variant: disfluent}
+  - {text: "so the whole office um they're all watching the game and i'm not", variant: disfluent}
+  - {text: "my colleagues are uh are watching the the match and i'm stuck here", variant: disfluent}
+  - {text: "um everybody at work no the whole office is on the match but me", variant: disfluent}
+  - {text: "er the entire office you know they've all got the game on without me", variant: disfluent}
+  - {text: "uh i'm the only one not watching the uh match at office", variant: disfluent}
+
+# seed 3 (fragment): {team} score
+"3":
+  - {text: "{team} runs", variant: plain}
+  - {text: "{team} scorecard", variant: plain}
+  - {text: "score of {team} please", variant: plain}
+  - {text: "{team} match update", variant: plain}
+  - {text: "how {team} is doing", variant: plain}
+  - {text: "{team} live score now", variant: plain}
+  - {text: "{team} total", variant: plain}
+  - {text: "{team} wickets", variant: plain}
+  - {text: "{team} runs and wickets", variant: plain}
+  - {text: "latest on {team}", variant: plain}
+  - {text: "{team} game status", variant: plain}
+  - {text: "{team} winning or losing", variant: plain}
+  - {text: "{team} result so far", variant: plain}
+  - {text: "{team} score update please", variant: plain}
+  - {text: "{team} batting", variant: plain}
+  - {text: "{team} scoreline", variant: plain}
+  - {text: "{team} how many runs", variant: plain}
+  - {text: "{team} match status now", variant: plain}
+  - {text: "where are {team} at", variant: plain}
+  - {text: "{team} points", variant: plain}
+  - {text: "{team} ahead or behind", variant: plain}
+  - {text: "{team} chase", variant: plain}
+  - {text: "{team} innings", variant: plain}
+  - {text: "live {team} update", variant: plain}
+  - {text: "{team} kitne pe hai", variant: hinglish}
+  - {text: "{team} ke run kitne", variant: hinglish}
+  - {text: "{team} ka score kya hua", variant: hinglish}
+  - {text: "{team} jeet rahe kya", variant: hinglish}
+  - {text: "{team} match ka haal", variant: hinglish}
+  - {text: "{team} wala score batao", variant: hinglish}
+  - {text: "{team} eshtu run", variant: kannada_english}
+  - {text: "{team} match hegide", variant: kannada_english}
+  - {text: "{team} score heli guru", variant: kannada_english}
+  - {text: "{team} gelthidaara", variant: kannada_english}
+  - {text: "uh {team} um the score", variant: disfluent}
+  - {text: "{team} the {team} score please", variant: disfluent}
+  - {text: "score for um {team}", variant: disfluent}
+  - {text: "er {team} runs no score", variant: disfluent}
+  - {text: "um like {team} what's the score", variant: disfluent}
+  - {text: "so uh {team} you know score", variant: disfluent}

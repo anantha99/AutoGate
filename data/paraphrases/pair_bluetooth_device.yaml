@@ -1,0 +1,176 @@
+# Paraphrases of the pair_bluetooth_device seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): pair my new phone
+"0":
+  - {text: "connect my new mobile over bluetooth", variant: plain}
+  - {text: "add my new phone to the car", variant: plain}
+  - {text: "set up bluetooth with my new phone", variant: plain}
+  - {text: "link the new phone i just bought", variant: plain}
+  - {text: "get my new handset paired", variant: plain}
+  - {text: "hook my new handset up", variant: plain}
+  - {text: "register my new mobile with the car", variant: plain}
+  - {text: "pair the phone i just got", variant: plain}
+  - {text: "start pairing with my new mobile", variant: plain}
+  - {text: "new phone connect it to bluetooth", variant: plain}
+  - {text: "make the car recognise my new phone", variant: plain}
+  - {text: "sync my new phone with the car", variant: plain}
+  - {text: "add this new mobile as a bluetooth device", variant: plain}
+  - {text: "do the bluetooth setup for my new phone", variant: plain}
+  - {text: "pair up my brand new mobile", variant: plain}
+  - {text: "put my new phone on the car's bluetooth", variant: plain}
+  - {text: "link up this new handset", variant: plain}
+  - {text: "get this car talking to my new phone", variant: plain}
+  - {text: "go ahead and pair the new mobile", variant: plain}
+  - {text: "let my new phone talk to the stereo", variant: plain}
+  - {text: "pair this phone it's new", variant: plain}
+  - {text: "get the new phone on bluetooth", variant: plain}
+  - {text: "pair up the latest mobile i bought", variant: plain}
+  - {text: "do one thing pair my latest phone", variant: plain}
+  - {text: "mera naya phone pair karo", variant: hinglish}
+  - {text: "naya mobile bluetooth se connect karo", variant: hinglish}
+  - {text: "naye phone ko car se jod do", variant: hinglish}
+  - {text: "mera naya phone car mein add kar do", variant: hinglish}
+  - {text: "naye mobile ki pairing karo", variant: hinglish}
+  - {text: "abhi naya phone bluetooth pe laga do", variant: hinglish}
+  - {text: "nanna hosa phone pair maadu", variant: kannada_english}
+  - {text: "hosa mobile na connect maadi", variant: kannada_english}
+  - {text: "hosa phone bluetooth ge add maadu", variant: kannada_english}
+  - {text: "nanna hosa phone car ge connect maadu", variant: kannada_english}
+  - {text: "uh the new phone um pair it", variant: disfluent}
+  - {text: "um connect the new uh phone", variant: disfluent}
+  - {text: "pair the old no sorry the new mobile", variant: disfluent}
+  - {text: "so uh set up the er new phone on bluetooth", variant: disfluent}
+  - {text: "pair pair the new mobile please", variant: disfluent}
+  - {text: "call no i mean pair my new phone", variant: disfluent}
+
+# seed 1 (question): can you connect my wife's phone to the car
+"1":
+  - {text: "could you pair my wife's phone with the car?", variant: plain}
+  - {text: "will you add my wife's mobile to bluetooth", variant: plain}
+  - {text: "can my wife's mobile be linked to this car?", variant: plain}
+  - {text: "would you link my wife's phone as well", variant: plain}
+  - {text: "can we get my wife's phone paired", variant: plain}
+  - {text: "is it possible to connect my wife's mobile too?", variant: plain}
+  - {text: "can you set up bluetooth for my wife's phone", variant: plain}
+  - {text: "could you hook my wife's phone up to the system?", variant: plain}
+  - {text: "mind pairing my wife's phone also", variant: plain}
+  - {text: "would you add the wife's phone as a device?", variant: plain}
+  - {text: "can you let my wife's mobile join over bluetooth", variant: plain}
+  - {text: "will you register the wife's handset?", variant: plain}
+  - {text: "could my wife's phone also join the car's bluetooth", variant: plain}
+  - {text: "could you make this car recognise my wife's mobile?", variant: plain}
+  - {text: "would you do the pairing for my wife's mobile", variant: plain}
+  - {text: "can you connect my wife's handset too?", variant: plain}
+  - {text: "can the car sync with my wife's mobile?", variant: plain}
+  - {text: "could we pair my wife's mobile to this car", variant: plain}
+  - {text: "do you mind connecting my wife's phone as a second device?", variant: plain}
+  - {text: "can you get my wife's phone on the car's bluetooth", variant: plain}
+  - {text: "would you set my wife's phone up with the car?", variant: plain}
+  - {text: "can you pair another phone it's my wife's", variant: plain}
+  - {text: "any chance my wife's phone can be added here?", variant: plain}
+  - {text: "could the car take my wife's phone as well", variant: plain}
+  - {text: "wife ka phone car se connect kar doge?", variant: hinglish}
+  - {text: "meri wife ka mobile bhi pair kar sakte ho kya", variant: hinglish}
+  - {text: "biwi ka phone bluetooth pe jod doge?", variant: hinglish}
+  - {text: "kya meri wife ka phone car mein add ho sakta hai", variant: hinglish}
+  - {text: "wife wala phone bhi connect karoge kya", variant: hinglish}
+  - {text: "meri patni ka phone pair kar sakte ho?", variant: hinglish}
+  - {text: "nanna wife phone car ge connect maadtira?", variant: kannada_english}
+  - {text: "hendthi phone na pair maadoke aagutta?", variant: kannada_english}
+  - {text: "nanna hendathi mobile bluetooth ge add maadbahuda", variant: kannada_english}
+  - {text: "wife phone kooda connect maadtira?", variant: kannada_english}
+  - {text: "uh my wife's got a phone um can you hook it up", variant: disfluent}
+  - {text: "could you er pair the the wife's mobile?", variant: disfluent}
+  - {text: "connect my phone no wait my wife's phone can you do that", variant: disfluent}
+  - {text: "um would you like add my wife's mobile to the bluetooth", variant: disfluent}
+  - {text: "so er can you get my wife's phone on the car you know", variant: disfluent}
+  - {text: "can you can you link my wife's phone", variant: disfluent}
+
+# seed 2 (indirect): i just changed my phone and the car doesn't know it
+"2":
+  - {text: "got a new mobile today and the car still thinks it's the old one", variant: plain}
+  - {text: "the car keeps looking for my old phone", variant: plain}
+  - {text: "i switched phones recently and bluetooth isn't picking it up", variant: plain}
+  - {text: "my old handset is gone and the car hasn't met the new one", variant: plain}
+  - {text: "this is a new phone so the car won't recognise it", variant: plain}
+  - {text: "i upgraded my mobile and now nothing connects", variant: plain}
+  - {text: "the car only remembers my old phone", variant: plain}
+  - {text: "new phone and the car has no idea", variant: plain}
+  - {text: "i've swapped my phone and the car's clueless", variant: plain}
+  - {text: "since i got this new mobile the car won't talk to it", variant: plain}
+  - {text: "the car is still stuck on my previous phone", variant: plain}
+  - {text: "i replaced my phone and the system doesn't see it", variant: plain}
+  - {text: "my phone is brand new so the car hasn't seen it before", variant: plain}
+  - {text: "i bought another handset and it's a stranger to the car", variant: plain}
+  - {text: "the old phone died and this one isn't showing up in the car", variant: plain}
+  - {text: "the car's bluetooth only lists my old mobile", variant: plain}
+  - {text: "i moved to a new phone and the car is confused", variant: plain}
+  - {text: "just got a new phone and the car is not connecting", variant: plain}
+  - {text: "my previous phone was the one paired not this one", variant: plain}
+  - {text: "i changed handsets and there's no bluetooth now", variant: plain}
+  - {text: "the car doesn't recognise this new phone of mine", variant: plain}
+  - {text: "this phone is new and the car hasn't figured it out", variant: plain}
+  - {text: "my phone got replaced and the car still wants the old one", variant: plain}
+  - {text: "i gave my old phone to my son and the car can't find this one", variant: plain}
+  - {text: "maine phone badal liya hai aur car ko pata hi nahi", variant: hinglish}
+  - {text: "naya phone liya hai car pehchan nahi rahi", variant: hinglish}
+  - {text: "phone change kiya toh car connect nahi ho rahi", variant: hinglish}
+  - {text: "car abhi bhi purana phone dhoondh rahi hai", variant: hinglish}
+  - {text: "naya mobile hai car ko samajh nahi aa raha", variant: hinglish}
+  - {text: "phone naya hai yaar car mein nahi dikh raha", variant: hinglish}
+  - {text: "phone change maadidini car ge gothilla", variant: kannada_english}
+  - {text: "hosa phone thagondidini car gurthu hidithilla", variant: kannada_english}
+  - {text: "car innu hale phone na hudkthide", variant: kannada_english}
+  - {text: "hosa mobile car alli connect aagtilla guru", variant: kannada_english}
+  - {text: "so uh i changed phones um and the car hasn't a clue about it", variant: disfluent}
+  - {text: "so i got a new phone and the the car doesn't recognise it", variant: disfluent}
+  - {text: "i got a new car no a new phone i mean and the car can't place it", variant: disfluent}
+  - {text: "um my phone is new and like the car has no clue", variant: disfluent}
+  - {text: "i just er swapped phones and uh the car is lost", variant: disfluent}
+  - {text: "the car doesn't the car doesn't know my new phone you know", variant: disfluent}
+
+# seed 3 (fragment): bluetooth pairing
+"3":
+  - {text: "pair bluetooth", variant: plain}
+  - {text: "bluetooth setup", variant: plain}
+  - {text: "new device pairing", variant: plain}
+  - {text: "connect via bluetooth", variant: plain}
+  - {text: "pair a device", variant: plain}
+  - {text: "bluetooth pair new phone", variant: plain}
+  - {text: "add bluetooth device", variant: plain}
+  - {text: "pairing mode", variant: plain}
+  - {text: "phone pairing", variant: plain}
+  - {text: "pair phone to car", variant: plain}
+  - {text: "bluetooth add phone", variant: plain}
+  - {text: "link a phone", variant: plain}
+  - {text: "device pairing please", variant: plain}
+  - {text: "bluetooth connect phone", variant: plain}
+  - {text: "start pairing", variant: plain}
+  - {text: "pair my mobile", variant: plain}
+  - {text: "new bluetooth device", variant: plain}
+  - {text: "pairing new mobile", variant: plain}
+  - {text: "bluetooth link up", variant: plain}
+  - {text: "connect new device", variant: plain}
+  - {text: "pair now", variant: plain}
+  - {text: "phone to bluetooth", variant: plain}
+  - {text: "hook up phone", variant: plain}
+  - {text: "set up pairing", variant: plain}
+  - {text: "bluetooth se pairing karwa do", variant: hinglish}
+  - {text: "phone pair karo", variant: hinglish}
+  - {text: "bluetooth jodo", variant: hinglish}
+  - {text: "naya device pair karna", variant: hinglish}
+  - {text: "bluetooth connect kar do", variant: hinglish}
+  - {text: "pairing shuru karo", variant: hinglish}
+  - {text: "bluetooth jodisu", variant: kannada_english}
+  - {text: "mobile pairing maadi", variant: kannada_english}
+  - {text: "bluetooth connect maadu", variant: kannada_english}
+  - {text: "hosa device pair maadu", variant: kannada_english}
+  - {text: "uh bluetooth um pairing", variant: disfluent}
+  - {text: "blue uh bluetooth pair it", variant: disfluent}
+  - {text: "pairing uh for bluetooth", variant: disfluent}
+  - {text: "um wifi no bluetooth pairing", variant: disfluent}
+  - {text: "er pair the uh phone", variant: disfluent}
+  - {text: "bluetooth like pairing mode", variant: disfluent}

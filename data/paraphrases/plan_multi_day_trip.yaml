@@ -1,0 +1,176 @@
+# Paraphrases of the plan_multi_day_trip seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): plan a {duration} trip to {city}
+"0":
+  - {text: "make a {duration} itinerary for {city}", variant: plain}
+  - {text: "sort out a {duration} holiday in {city} for us", variant: plain}
+  - {text: "work out a {duration} plan for {city}", variant: plain}
+  - {text: "organise {duration} in {city} for the family", variant: plain}
+  - {text: "lay out each day of our {duration} in {city}", variant: plain}
+  - {text: "map out a {duration} trip to {city} with stays and sights", variant: plain}
+  - {text: "draw up a {duration} travel plan for {city}", variant: plain}
+  - {text: "set up a {duration} {city} trip for us", variant: plain}
+  - {text: "plan out {duration} of travel in {city}", variant: plain}
+  - {text: "figure out a {duration} getaway to {city}", variant: plain}
+  - {text: "build me an itinerary for {duration} in {city}", variant: plain}
+  - {text: "line up a {duration} vacation in {city} hotels and all", variant: plain}
+  - {text: "arrange a {duration} tour of {city}", variant: plain}
+  - {text: "create a day by day plan for {duration} in {city}", variant: plain}
+  - {text: "we're going to {city} for {duration} so plan it out", variant: plain}
+  - {text: "chalk out a {duration} {city} trip", variant: plain}
+  - {text: "prepare a {duration} schedule for our {city} holiday", variant: plain}
+  - {text: "do one thing plan {duration} in {city} for us", variant: plain}
+  - {text: "get me a {duration} trip sorted for {city}", variant: plain}
+  - {text: "plan our {duration} {city} vacation start to end", variant: plain}
+  - {text: "design a {duration} trip around {city}", variant: plain}
+  - {text: "give me a {duration} itinerary covering {city}", variant: plain}
+  - {text: "plan everything for {duration} in {city} stay food and sightseeing", variant: plain}
+  - {text: "set me up with {duration} of sightseeing in {city}", variant: plain}
+  - {text: "{city} ka {duration} ka trip plan karo", variant: hinglish}
+  - {text: "{duration} ke liye {city} ghoomne ka plan bana do", variant: hinglish}
+  - {text: "{city} jaana hai {duration} ke liye poora plan batao", variant: hinglish}
+  - {text: "humara {duration} ka {city} trip set kar do", variant: hinglish}
+  - {text: "{duration} {city} mein kaise bitaayein uska plan banao", variant: hinglish}
+  - {text: "yaar {city} ka {duration} wala tour plan kar do", variant: hinglish}
+  - {text: "{city} ge {duration} trip plan maadu", variant: kannada_english}
+  - {text: "{duration} {city} alli iroke plan maadi kodu", variant: kannada_english}
+  - {text: "{city} ge {duration} hogbeku ella arrange maadi", variant: kannada_english}
+  - {text: "{duration} ge {city} tour ready maadi", variant: kannada_english}
+  - {text: "uh make a plan for like {duration} in {city}", variant: disfluent}
+  - {text: "plan a trip to {city} for um three no {duration}", variant: disfluent}
+  - {text: "so er {city} {duration} yeah sort out the whole trip", variant: disfluent}
+  - {text: "we want a {duration} um a {duration} trip to {city} plan it", variant: disfluent}
+  - {text: "work out like a {city} trip uh {duration} long", variant: disfluent}
+  - {text: "um itinerary for {city} er for {duration} make one", variant: disfluent}
+
+# seed 1 (question): can you put together a weekend trip to the hills
+"1":
+  - {text: "could you plan a weekend getaway up in the hills?", variant: plain}
+  - {text: "would you sort out a hill station trip for this weekend", variant: plain}
+  - {text: "can you work out a weekend escape to some hill station", variant: plain}
+  - {text: "any chance you could plan us a hill trip over the weekend?", variant: plain}
+  - {text: "will you make a weekend plan for somewhere in the ghats", variant: plain}
+  - {text: "could you organise a weekend in the hills for us", variant: plain}
+  - {text: "how about planning a weekend hill trip for me?", variant: plain}
+  - {text: "can you set up a cool weekend break somewhere in the hills", variant: plain}
+  - {text: "would you plan a weekend drive up to a hill station?", variant: plain}
+  - {text: "can you figure out a hills getaway for the weekend", variant: plain}
+  - {text: "could you line up something in the hills for this weekend?", variant: plain}
+  - {text: "will you plan a weekend up in the mountains with stays", variant: plain}
+  - {text: "can you make us a hill station itinerary for the weekend", variant: plain}
+  - {text: "could we get a weekend mountain trip planned?", variant: plain}
+  - {text: "would you mind planning a hill trip for the weekend", variant: plain}
+  - {text: "can you work out where we could go in the hills this weekend?", variant: plain}
+  - {text: "is it possible to plan a weekend somewhere hilly?", variant: plain}
+  - {text: "can you come up with a weekend escape to the hills for the family", variant: plain}
+  - {text: "would you put a hills weekend plan together", variant: plain}
+  - {text: "what would a good weekend in the hills look like?", variant: plain}
+  - {text: "could you arrange a short hill station holiday this weekend", variant: plain}
+  - {text: "can you draw up a weekend plan for the hills?", variant: plain}
+  - {text: "mind planning a weekend in the cool hills for us?", variant: plain}
+  - {text: "do you think you could plan a weekend up the ghats", variant: plain}
+  - {text: "is weekend pahadon mein ghoomne ka plan bana doge?", variant: hinglish}
+  - {text: "weekend pe kisi hill station ka trip plan kar sakte ho", variant: hinglish}
+  - {text: "pahadi jagah pe weekend trip set kar doge kya?", variant: hinglish}
+  - {text: "kya weekend ke liye hills ka plan bana sakte ho", variant: hinglish}
+  - {text: "yaar is weekend hills chalein plan kar doge?", variant: hinglish}
+  - {text: "weekend mein pahad jaana hai plan bana ke doge kya", variant: hinglish}
+  - {text: "ee weekend hills ge trip plan maadtira?", variant: kannada_english}
+  - {text: "weekend ge yaavdaadru hill station plan maadi kodtira", variant: kannada_english}
+  - {text: "betta kade weekend trip arrange maadtira?", variant: kannada_english}
+  - {text: "weekend alli ghats ge hogona plan maadbahuda", variant: kannada_english}
+  - {text: "uh could you like get a hill station weekend sorted um for us?", variant: disfluent}
+  - {text: "can you sort out a weekend at the beach no the hills", variant: disfluent}
+  - {text: "uh would you make a hill station plan for er this weekend", variant: disfluent}
+  - {text: "so um any chance you could plan a weekend in the you know mountains?", variant: disfluent}
+  - {text: "can you can you do a weekend hills trip plan for us", variant: disfluent}
+  - {text: "er the hills this weekend how about it can you plan that", variant: disfluent}
+
+# seed 2 (outcome): we have a long weekend and want to go somewhere
+"2":
+  - {text: "there's a long break coming up and we're itching to get out of town", variant: plain}
+  - {text: "the office is shut for a few days and we want a break somewhere", variant: plain}
+  - {text: "we've got a long weekend free and nothing lined up", variant: plain}
+  - {text: "long weekend ahead and the family wants to travel", variant: plain}
+  - {text: "we're free for a few days and want to head out of the city", variant: plain}
+  - {text: "i've got a long weekend off and want to escape somewhere", variant: plain}
+  - {text: "the kids have a long holiday weekend and want an outing", variant: plain}
+  - {text: "we have some days off and are looking to travel somewhere", variant: plain}
+  - {text: "there's a long weekend and we're dying to go someplace new", variant: plain}
+  - {text: "a long weekend is coming and we have no idea where to go", variant: plain}
+  - {text: "we want to get out of town this long weekend", variant: plain}
+  - {text: "we've got an extended weekend and the itch to travel", variant: plain}
+  - {text: "with the long weekend we'd like a change of scene", variant: plain}
+  - {text: "the whole family is free this long weekend and wants a trip", variant: plain}
+  - {text: "long weekend and we're bored at home", variant: plain}
+  - {text: "we'd like to go somewhere over the long weekend", variant: plain}
+  - {text: "we've got a few days' break and want to go out of station", variant: plain}
+  - {text: "my wife wants a vacation this long weekend", variant: plain}
+  - {text: "we'd love a short holiday during the long weekend", variant: plain}
+  - {text: "there's a festival holiday stretch coming and we want a trip", variant: plain}
+  - {text: "we have a bunch of holidays together and want a trip out", variant: plain}
+  - {text: "a long weekend is here and we need a break from the city", variant: plain}
+  - {text: "the long weekend's coming up and we haven't figured out where to go", variant: plain}
+  - {text: "we want a change of air this long weekend", variant: plain}
+  - {text: "long weekend aa raha hai kahin ghoomne jaana hai", variant: hinglish}
+  - {text: "is lambe weekend pe kahin bahar jaana hai", variant: hinglish}
+  - {text: "chhutti ke teen din hain kahin chalna hai", variant: hinglish}
+  - {text: "long weekend mein ghar pe bore ho jayenge kahin nikalna hai", variant: hinglish}
+  - {text: "yaar is long weekend kahin door nikalne ka mann hai", variant: hinglish}
+  - {text: "family ko is long weekend kahin jaana hai", variant: hinglish}
+  - {text: "long weekend ide yellaadru hogbeku", variant: kannada_english}
+  - {text: "ee long weekend alli yellaadru trip hogona", variant: kannada_english}
+  - {text: "mooru dina raja ide yelligadru hogbeku", variant: kannada_english}
+  - {text: "long weekend manele boring yelladru hogona guru", variant: kannada_english}
+  - {text: "so uh long weekend's coming and we like want to go um somewhere", variant: disfluent}
+  - {text: "we've got a um a long weekend and nowhere to go yet", variant: disfluent}
+  - {text: "er a short no a long weekend and we want a trip out", variant: disfluent}
+  - {text: "the long weekend uh we're thinking we should head out somewhere you know", variant: disfluent}
+  - {text: "um we're free for the er the long weekend and want to get away", variant: disfluent}
+  - {text: "long weekend coming up uh and the family's like let's go somewhere", variant: disfluent}
+
+# seed 3 (fragment): road trip to {city} {duration}
+"3":
+  - {text: "{city} trip for {duration}", variant: plain}
+  - {text: "{duration} in {city} plan", variant: plain}
+  - {text: "{city} {duration} itinerary", variant: plain}
+  - {text: "{duration} {city} getaway", variant: plain}
+  - {text: "drive to {city} for {duration}", variant: plain}
+  - {text: "{city} by road {duration}", variant: plain}
+  - {text: "{duration} holiday in {city}", variant: plain}
+  - {text: "{city} for {duration} by car", variant: plain}
+  - {text: "{duration} out to {city}", variant: plain}
+  - {text: "{city} tour {duration}", variant: plain}
+  - {text: "self drive {city} {duration}", variant: plain}
+  - {text: "{duration} vacation {city}", variant: plain}
+  - {text: "car trip {city} {duration}", variant: plain}
+  - {text: "{city} {duration} travel plan", variant: plain}
+  - {text: "{city} outing {duration} long", variant: plain}
+  - {text: "{duration} on the road to {city}", variant: plain}
+  - {text: "{duration} escape to {city}", variant: plain}
+  - {text: "{city} {duration} with the family", variant: plain}
+  - {text: "driving holiday {city} {duration}", variant: plain}
+  - {text: "{city} for {duration} sightseeing", variant: plain}
+  - {text: "{city} and around {duration}", variant: plain}
+  - {text: "highway trip {city} {duration}", variant: plain}
+  - {text: "{city} drive of {duration}", variant: plain}
+  - {text: "{duration} family trip {city}", variant: plain}
+  - {text: "{city} ka {duration} trip", variant: hinglish}
+  - {text: "{duration} ke liye {city} road trip", variant: hinglish}
+  - {text: "gaadi se {city} {duration}", variant: hinglish}
+  - {text: "{city} {duration} ghoomna hai", variant: hinglish}
+  - {text: "{duration} ke liye {city} nikalna hai", variant: hinglish}
+  - {text: "{city} wala {duration} ka safar", variant: hinglish}
+  - {text: "{city} ge {duration} trip", variant: kannada_english}
+  - {text: "{duration} {city} drive hogona", variant: kannada_english}
+  - {text: "car alli {city} {duration}", variant: kannada_english}
+  - {text: "{city} kade {duration} road trip hogona", variant: kannada_english}
+  - {text: "um {city} trip like {duration} or so", variant: disfluent}
+  - {text: "{city} uh no {city} for {duration} of driving", variant: disfluent}
+  - {text: "er drive to {city} you know {duration}", variant: disfluent}
+  - {text: "so {duration} in uh {city} by car", variant: disfluent}
+  - {text: "like a {duration} uh {city} drive", variant: disfluent}
+  - {text: "uh {city} for {duration} er road trip", variant: disfluent}

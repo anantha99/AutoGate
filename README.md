@@ -111,6 +111,20 @@ uv sync --extra api
 uv run python -m autogate_bench.paraphrase_api --intents call_contact,wipers_on --out data/paraphrases --resume
 ```
 
+## The paraphrased dataset
+
+`data/paraphrases/` holds 40 hand-written paraphrases per seed (11,240 lines,
+all passing strict validation). Generate the full dataset and score the rules
+baseline with:
+
+```
+uv run python -m autogate_bench.generate --out data/generated/full --rng-seed 0 --paraphrases data/paraphrases
+uv run python -m autogate_eval.baselines.rules --rows data/generated/full/rows.jsonl
+```
+
+Numbers and what they mean: `docs/dataset-v0.md`. Lines flagged for human
+review: `docs/paraphrase-review-notes.md`.
+
 ## Development
 
 ```

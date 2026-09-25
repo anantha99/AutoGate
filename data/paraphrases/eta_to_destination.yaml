@@ -1,0 +1,219 @@
+# Paraphrases of the eta_to_destination seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): tell me the arrival time
+"0":
+  - {text: "give me the eta", variant: plain}
+  - {text: "read out when we'll get there", variant: plain}
+  - {text: "show the arrival time on the screen", variant: plain}
+  - {text: "announce our expected arrival", variant: plain}
+  - {text: "let me know when we'll pull up there", variant: plain}
+  - {text: "tell me when we get in", variant: plain}
+  - {text: "say what time we'll be there", variant: plain}
+  - {text: "check how soon we arrive", variant: plain}
+  - {text: "just tell me the eta", variant: plain}
+  - {text: "quickly tell me the reaching time", variant: plain}
+  - {text: "update me on the arrival time", variant: plain}
+  - {text: "find out when we'll land up there", variant: plain}
+  - {text: "put the eta up on the display", variant: plain}
+  - {text: "read me the estimated time of arrival", variant: plain}
+  - {text: "tell me what time we'll pull in", variant: plain}
+  - {text: "let me hear the eta once", variant: plain}
+  - {text: "show me when we're expected to reach", variant: plain}
+  - {text: "check the reaching time for this trip", variant: plain}
+  - {text: "give me an estimate of when we get there", variant: plain}
+  - {text: "do one thing tell me the eta", variant: plain}
+  - {text: "bring up the time we'll reach the destination", variant: plain}
+  - {text: "work out when we'll hit the destination", variant: plain}
+  - {text: "tell me how long till we get there", variant: plain}
+  - {text: "check how much time is left to reach", variant: plain}
+  - {text: "kitne baje pahunchenge bata do", variant: hinglish}
+  - {text: "arrival time batao", variant: hinglish}
+  - {text: "eta bata do yaar", variant: hinglish}
+  - {text: "pahunchne ka time batao zara", variant: hinglish}
+  - {text: "mujhe batao hum kab tak pahunchenge", variant: hinglish}
+  - {text: "screen pe eta dikhao", variant: hinglish}
+  - {text: "yaavaga reach aagtivi helu", variant: kannada_english}
+  - {text: "arrival time helu guru", variant: kannada_english}
+  - {text: "eshtu hottige talupthivi heli", variant: kannada_english}
+  - {text: "eta torsu swalpa", variant: kannada_english}
+  - {text: "uh just tell me when we um when we arrive", variant: disfluent}
+  - {text: "show the distance no wait the arrival time", variant: disfluent}
+  - {text: "so um just give me the uh eta", variant: disfluent}
+  - {text: "read out the the time we reach", variant: disfluent}
+  - {text: "er show me when we er when we get there", variant: disfluent}
+  - {text: "tell me how far no i mean what time we'll reach", variant: disfluent}
+
+# seed 1 (question): when will we reach
+"1":
+  - {text: "what time do we get there?", variant: plain}
+  - {text: "how long before we arrive", variant: plain}
+  - {text: "when do we reach the place?", variant: plain}
+  - {text: "what's our eta", variant: plain}
+  - {text: "how much longer till we're there?", variant: plain}
+  - {text: "are we reaching soon", variant: plain}
+  - {text: "by what time will we be there", variant: plain}
+  - {text: "when are we getting in?", variant: plain}
+  - {text: "how many more minutes to go", variant: plain}
+  - {text: "any idea when we'll arrive", variant: plain}
+  - {text: "roughly what time do we land up there?", variant: plain}
+  - {text: "what time will this drive end", variant: plain}
+  - {text: "are we almost there", variant: plain}
+  - {text: "when's the car going to get us there?", variant: plain}
+  - {text: "when do we finally pull in", variant: plain}
+  - {text: "what's the reaching time looking like?", variant: plain}
+  - {text: "how soon do we get to the destination", variant: plain}
+  - {text: "will we get there anytime soon?", variant: plain}
+  - {text: "is it much longer now", variant: plain}
+  - {text: "when exactly do we arrive?", variant: plain}
+  - {text: "how long is this still going to take", variant: plain}
+  - {text: "what time are we expected at the destination?", variant: plain}
+  - {text: "how much time is left for us to reach", variant: plain}
+  - {text: "how long to go?", variant: plain}
+  - {text: "kab tak pahunchenge?", variant: hinglish}
+  - {text: "hum kitne baje pahunchenge", variant: hinglish}
+  - {text: "aur kitna time lagega?", variant: hinglish}
+  - {text: "pahunchne mein kitni der hai", variant: hinglish}
+  - {text: "kab pahunchenge yaar", variant: hinglish}
+  - {text: "jaldi pahunch jayenge kya?", variant: hinglish}
+  - {text: "yaavaga reach aagtivi?", variant: kannada_english}
+  - {text: "innu eshtu hottu beku", variant: kannada_english}
+  - {text: "eshtu hottige talupthivi guru", variant: kannada_english}
+  - {text: "innu yeshtu time aagutte?", variant: kannada_english}
+  - {text: "um when will we uh when will we get there", variant: disfluent}
+  - {text: "so like how long till we um reach", variant: disfluent}
+  - {text: "what time do we er arrive you know", variant: disfluent}
+  - {text: "uh how far no how long till we reach", variant: disfluent}
+  - {text: "are we um nearly nearly there or what", variant: disfluent}
+  - {text: "when do we uh get to the the destination", variant: disfluent}
+
+# seed 2 (outcome): i need to know if i'll make it by {time}
+"2":
+  - {text: "i have to be there by {time}", variant: plain}
+  - {text: "i'm worried i won't reach before {time}", variant: plain}
+  - {text: "i'm not sure we'll get there by {time}", variant: plain}
+  - {text: "{time} is my deadline for getting there", variant: plain}
+  - {text: "the meeting starts at {time} and i'm cutting it close", variant: plain}
+  - {text: "wondering whether we'll be in by {time}", variant: plain}
+  - {text: "i've got to be at the destination by {time} latest", variant: plain}
+  - {text: "hoping we reach before {time}", variant: plain}
+  - {text: "reaching by {time} is a must for me", variant: plain}
+  - {text: "i need to be sure we arrive by {time}", variant: plain}
+  - {text: "it's important i get there no later than {time}", variant: plain}
+  - {text: "i'm cutting it fine for {time}", variant: plain}
+  - {text: "doubt we'll make {time} at this rate", variant: plain}
+  - {text: "i gave my word i'd reach by {time}", variant: plain}
+  - {text: "worried about being late for {time}", variant: plain}
+  - {text: "no idea if {time} is still realistic", variant: plain}
+  - {text: "{time} is tight and i hope we're on track", variant: plain}
+  - {text: "want to be sure we're in time for {time}", variant: plain}
+  - {text: "i can't miss {time} it's really important", variant: plain}
+  - {text: "i'd better not be late past {time}", variant: plain}
+  - {text: "everything depends on reaching by {time}", variant: plain}
+  - {text: "i'm stressed about getting there before {time}", variant: plain}
+  - {text: "have to check in by {time} and the clock is ticking", variant: plain}
+  - {text: "i'm unsure if {time} is going to happen for us", variant: plain}
+  - {text: "mujhe {time} tak pahunchna hai", variant: hinglish}
+  - {text: "{time} tak pahunch payenge ya nahi pata karna hai", variant: hinglish}
+  - {text: "{time} se pehle pahunchna zaroori hai yaar", variant: hinglish}
+  - {text: "tension hai {time} tak ho payega ki nahi", variant: hinglish}
+  - {text: "{time} tak reach karna must hai", variant: hinglish}
+  - {text: "lagta nahi {time} tak pahunch paunga", variant: hinglish}
+  - {text: "{time} olage reach aagbeku", variant: kannada_english}
+  - {text: "{time} ge talupbeku guru", variant: kannada_english}
+  - {text: "{time} olage hogtivaa gottilla", variant: kannada_english}
+  - {text: "nanage {time} ge alli irbeku", variant: kannada_english}
+  - {text: "i've got a uh a thing at {time} and i need to make it", variant: disfluent}
+  - {text: "so um i have to i have to make it by {time}", variant: disfluent}
+  - {text: "i'm not sure if uh we'll reach by {time} you know", variant: disfluent}
+  - {text: "reaching by like {time} no wait by {time} is a must", variant: disfluent}
+  - {text: "er the thing is i have to be in by um {time}", variant: disfluent}
+  - {text: "so like {time} is my uh deadline to get there", variant: disfluent}
+
+# seed 3 (indirect): the kids keep asking how much longer
+"3":
+  - {text: "the little ones won't stop saying are we there yet", variant: plain}
+  - {text: "my son keeps checking how far we are", variant: plain}
+  - {text: "the back seat wants to know when we'll get there", variant: plain}
+  - {text: "everyone in the back wants to know when we reach", variant: plain}
+  - {text: "my daughter's asked are we there yet five times", variant: plain}
+  - {text: "the children are asking when the drive ends", variant: plain}
+  - {text: "the kids have been nagging about how far is left", variant: plain}
+  - {text: "my wife wants to know what time we'll get in", variant: plain}
+  - {text: "grandpa keeps asking when we'll be there", variant: plain}
+  - {text: "the passengers are wondering how long this will take", variant: plain}
+  - {text: "the little one keeps saying are we nearly there", variant: plain}
+  - {text: "amma wants to know how much more time", variant: plain}
+  - {text: "the boys are fed up asking when we arrive", variant: plain}
+  - {text: "the kids are bored and asking when we'll get there", variant: plain}
+  - {text: "someone in the back is desperate to know how much further", variant: plain}
+  - {text: "they're all asking me when this trip ends", variant: plain}
+  - {text: "my nephew wants to know how many more minutes", variant: plain}
+  - {text: "the gang in the back keeps asking about reaching time", variant: plain}
+  - {text: "the twins keep counting the minutes till we get there", variant: plain}
+  - {text: "my kid just asked for the tenth time how long", variant: plain}
+  - {text: "the children want to know when we'll finally reach", variant: plain}
+  - {text: "everyone's asking if we're close yet", variant: plain}
+  - {text: "baby's cranky and my wife is asking how long more", variant: plain}
+  - {text: "the kids are driving me mad with are we there yet", variant: plain}
+  - {text: "bacche baar baar puch rahe hain kitna time aur", variant: hinglish}
+  - {text: "bacchon ko jaanna hai kab pahunchenge", variant: hinglish}
+  - {text: "peeche se sab puch rahe hain kab tak", variant: hinglish}
+  - {text: "bacche bol rahe hain aur kitni der", variant: hinglish}
+  - {text: "mummy puch rahi hai kab pahunchenge", variant: hinglish}
+  - {text: "chhota wala bol raha hai abhi tak nahi aaya", variant: hinglish}
+  - {text: "makkalu innu eshtu hottu antha kelthidaare", variant: kannada_english}
+  - {text: "hindgade makkalu yaavaga reach antha kelthaare", variant: kannada_english}
+  - {text: "makkalu bore aagi innu yeshtu doora antha kelthidaare", variant: kannada_english}
+  - {text: "amma kelthidaare yaavaga talupthivi antha", variant: kannada_english}
+  - {text: "the kids are um they won't stop asking uh how long now", variant: disfluent}
+  - {text: "so the little ones in the back are like are we there yet", variant: disfluent}
+  - {text: "my son keeps no both kids keep asking when we reach", variant: disfluent}
+  - {text: "uh the kids are asking you know how long it'll be", variant: disfluent}
+  - {text: "er everyone in the back is um asking when we get in", variant: disfluent}
+  - {text: "the the children won't stop asking how much further", variant: disfluent}
+
+# seed 4 (fragment): eta
+"4":
+  - {text: "arrival time", variant: plain}
+  - {text: "time to destination", variant: plain}
+  - {text: "eta please", variant: plain}
+  - {text: "reaching time", variant: plain}
+  - {text: "time left", variant: plain}
+  - {text: "expected arrival", variant: plain}
+  - {text: "arrival estimate", variant: plain}
+  - {text: "our eta", variant: plain}
+  - {text: "minutes to go", variant: plain}
+  - {text: "when we reach", variant: plain}
+  - {text: "remaining travel time", variant: plain}
+  - {text: "how long till there", variant: plain}
+  - {text: "eta for this trip", variant: plain}
+  - {text: "destination eta", variant: plain}
+  - {text: "arriving when", variant: plain}
+  - {text: "drive time remaining", variant: plain}
+  - {text: "estimated arrival", variant: plain}
+  - {text: "eta check", variant: plain}
+  - {text: "reach by when", variant: plain}
+  - {text: "total journey time left", variant: plain}
+  - {text: "eta on screen", variant: plain}
+  - {text: "eta boss", variant: plain}
+  - {text: "reaching when", variant: plain}
+  - {text: "how many minutes more", variant: plain}
+  - {text: "eta batao", variant: hinglish}
+  - {text: "kab pahunchenge", variant: hinglish}
+  - {text: "pahunchne ka time", variant: hinglish}
+  - {text: "kitna time bacha", variant: hinglish}
+  - {text: "eta kya hai", variant: hinglish}
+  - {text: "arrival kab", variant: hinglish}
+  - {text: "eta enu", variant: kannada_english}
+  - {text: "yaavaga reach", variant: kannada_english}
+  - {text: "innu eshtu hottu", variant: kannada_english}
+  - {text: "talupodu yaavaga", variant: kannada_english}
+  - {text: "uh what's the um eta", variant: disfluent}
+  - {text: "um arrival uh time", variant: disfluent}
+  - {text: "eta um please na", variant: disfluent}
+  - {text: "the uh the time till we reach", variant: disfluent}
+  - {text: "er distance no eta", variant: disfluent}
+  - {text: "so uh time left", variant: disfluent}

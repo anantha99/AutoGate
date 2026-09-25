@@ -1,0 +1,219 @@
+# Paraphrases of the reply_to_message seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): reply saying {message_text}
+"0":
+  - {text: "write back {message_text}", variant: plain}
+  - {text: "reply with {message_text}", variant: plain}
+  - {text: "send a reply {message_text}", variant: plain}
+  - {text: "answer that message with {message_text}", variant: plain}
+  - {text: "respond saying {message_text}", variant: plain}
+  - {text: "text back {message_text}", variant: plain}
+  - {text: "reply to that {message_text}", variant: plain}
+  - {text: "say {message_text} in reply", variant: plain}
+  - {text: "send back {message_text}", variant: plain}
+  - {text: "tell them {message_text} as a reply", variant: plain}
+  - {text: "answer back {message_text}", variant: plain}
+  - {text: "reply to this one {message_text}", variant: plain}
+  - {text: "respond to it with {message_text}", variant: plain}
+  - {text: "hit reply and say {message_text}", variant: plain}
+  - {text: "make the reply {message_text}", variant: plain}
+  - {text: "write a reply {message_text}", variant: plain}
+  - {text: "send this as my answer {message_text}", variant: plain}
+  - {text: "just reply {message_text}", variant: plain}
+  - {text: "answer with {message_text}", variant: plain}
+  - {text: "{message_text} send that as the reply", variant: plain}
+  - {text: "go ahead and reply {message_text}", variant: plain}
+  - {text: "reply to the last message {message_text}", variant: plain}
+  - {text: "shoot back a reply {message_text}", variant: plain}
+  - {text: "put a reply {message_text}", variant: plain}
+  - {text: "reply kar do {message_text}", variant: hinglish}
+  - {text: "jawab bhejo ki {message_text}", variant: hinglish}
+  - {text: "usko reply karo {message_text}", variant: hinglish}
+  - {text: "{message_text} yeh reply mein bhej do", variant: hinglish}
+  - {text: "wapas likh do {message_text}", variant: hinglish}
+  - {text: "jawab de do {message_text}", variant: hinglish}
+  - {text: "reply maadi {message_text}", variant: kannada_english}
+  - {text: "{message_text} antha reply kalsu", variant: kannada_english}
+  - {text: "uttara kodu {message_text}", variant: kannada_english}
+  - {text: "{message_text} antha uttara kalsi", variant: kannada_english}
+  - {text: "uh reply saying um {message_text}", variant: disfluent}
+  - {text: "reply uh reply to that um with {message_text}", variant: disfluent}
+  - {text: "so like write back uh {message_text}", variant: disfluent}
+  - {text: "forward no reply {message_text}", variant: disfluent}
+  - {text: "um answer that with er {message_text}", variant: disfluent}
+  - {text: "send a reply um you know {message_text}", variant: disfluent}
+
+# seed 1 (question): can you write back to {contact} that {message_text}
+"1":
+  - {text: "could you reply to {contact} saying {message_text}", variant: plain}
+  - {text: "will you answer {contact} with {message_text}?", variant: plain}
+  - {text: "can you text {contact} back {message_text}", variant: plain}
+  - {text: "would you respond to {contact} {message_text}", variant: plain}
+  - {text: "can we reply {contact} {message_text}?", variant: plain}
+  - {text: "mind replying to {contact} that {message_text}", variant: plain}
+  - {text: "could you send {contact} a reply {message_text}?", variant: plain}
+  - {text: "can you get back to {contact} with {message_text}", variant: plain}
+  - {text: "would you write {contact} back saying {message_text}?", variant: plain}
+  - {text: "is it possible to reply to {contact} {message_text}", variant: plain}
+  - {text: "can you answer {contact}'s message with {message_text}", variant: plain}
+  - {text: "could you let {contact} know in reply {message_text}", variant: plain}
+  - {text: "will you shoot a reply to {contact} {message_text}", variant: plain}
+  - {text: "how about replying to {contact} with {message_text}?", variant: plain}
+  - {text: "can you respond to {contact}'s text {message_text}?", variant: plain}
+  - {text: "would you mind answering {contact} {message_text}", variant: plain}
+  - {text: "any chance you could reply {contact} {message_text}", variant: plain}
+  - {text: "can the car reply to {contact} {message_text}", variant: plain}
+  - {text: "do you mind getting back to {contact} {message_text}", variant: plain}
+  - {text: "could you hit reply and tell {contact} {message_text}?", variant: plain}
+  - {text: "can you drop {contact} a reply {message_text}", variant: plain}
+  - {text: "could you answer back to {contact} {message_text}", variant: plain}
+  - {text: "shall we write back to {contact} {message_text}?", variant: plain}
+  - {text: "can you tell {contact} in reply that {message_text}", variant: plain}
+  - {text: "{contact} ko reply kar doge ki {message_text}?", variant: hinglish}
+  - {text: "kya tum {contact} ko jawab de sakte ho {message_text}", variant: hinglish}
+  - {text: "{contact} ko wapas likh doge {message_text}", variant: hinglish}
+  - {text: "{contact} ke message ka jawab doge {message_text}?", variant: hinglish}
+  - {text: "zara {contact} ko reply bhej sakte ho {message_text}", variant: hinglish}
+  - {text: "{contact} ko bata doge reply mein {message_text}", variant: hinglish}
+  - {text: "{contact} ge reply maadtira {message_text}?", variant: kannada_english}
+  - {text: "{contact} ge {message_text} antha uttara kodtira", variant: kannada_english}
+  - {text: "{contact} ge vaapas {message_text} antha kalsbahuda?", variant: kannada_english}
+  - {text: "swalpa {contact} ge reply kalsoke aagutta {message_text}", variant: kannada_english}
+  - {text: "uh can you like um answer {contact} back with {message_text}", variant: disfluent}
+  - {text: "could you er answer no reply to {contact} like {message_text}", variant: disfluent}
+  - {text: "can you um text no reply to {contact} saying {message_text}", variant: disfluent}
+  - {text: "so er would you answer {contact} like {message_text}?", variant: disfluent}
+  - {text: "uh so um {contact} wants an answer can you say {message_text}", variant: disfluent}
+  - {text: "would you uh reply um to {contact} i mean {contact}'s last one {message_text}", variant: disfluent}
+
+# seed 2 (outcome): {contact} needs an answer from me
+"2":
+  - {text: "{contact} is waiting for my reply", variant: plain}
+  - {text: "i owe {contact} a response", variant: plain}
+  - {text: "{contact} has been waiting on me to get back", variant: plain}
+  - {text: "i still haven't responded to {contact}", variant: plain}
+  - {text: "{contact} is expecting to hear back from me", variant: plain}
+  - {text: "i left {contact} hanging without an answer", variant: plain}
+  - {text: "{contact}'s message is still unanswered", variant: plain}
+  - {text: "{contact} is waiting on my answer", variant: plain}
+  - {text: "i haven't gotten back to {contact} yet", variant: plain}
+  - {text: "{contact} wants a response from me", variant: plain}
+  - {text: "{contact} asked me something and i haven't replied", variant: plain}
+  - {text: "{contact} can't move ahead until i answer", variant: plain}
+  - {text: "i've kept {contact} waiting for a reply", variant: plain}
+  - {text: "{contact}'s still waiting to hear back from me on that text", variant: plain}
+  - {text: "i need to get back to {contact} on that message", variant: plain}
+  - {text: "{contact} won't decide till i respond", variant: plain}
+  - {text: "{contact}'s question is sitting there unanswered", variant: plain}
+  - {text: "i should answer {contact} soon", variant: plain}
+  - {text: "{contact} must be wondering why i haven't replied", variant: plain}
+  - {text: "{contact} is waiting on a yes or no from me", variant: plain}
+  - {text: "the ball's in my court with {contact}", variant: plain}
+  - {text: "{contact} pinged me and is waiting for a response", variant: plain}
+  - {text: "i never got back to {contact}", variant: plain}
+  - {text: "i've left {contact} on read", variant: plain}
+  - {text: "{contact} ko mera jawab chahiye", variant: hinglish}
+  - {text: "{contact} mere reply ka wait kar raha hai", variant: hinglish}
+  - {text: "maine abhi tak {contact} ko jawab nahi diya", variant: hinglish}
+  - {text: "{contact} ko answer dena baaki hai", variant: hinglish}
+  - {text: "{contact} kab se mere jawab ka intezaar kar raha hai", variant: hinglish}
+  - {text: "{contact} ko reply karna reh gaya yaar", variant: hinglish}
+  - {text: "{contact} ge nanna uttara beku", variant: kannada_english}
+  - {text: "{contact} nanna reply ge kaaythidaare", variant: kannada_english}
+  - {text: "{contact} ge innu reply kottilla", variant: kannada_english}
+  - {text: "{contact} ge answer kodbeku guru", variant: kannada_english}
+  - {text: "{contact} uh is like um still without an answer from me", variant: disfluent}
+  - {text: "um i haven't like replied and {contact} is uh waiting", variant: disfluent}
+  - {text: "so {contact} {contact} is um sitting there waiting on me", variant: disfluent}
+  - {text: "i haven't uh i haven't answered {contact} yet", variant: disfluent}
+  - {text: "er {contact} wants an answer you know from me", variant: disfluent}
+  - {text: "{contact} needs a um a reply from me", variant: disfluent}
+
+# seed 3 (indirect): sure {time} works for me i'll be there
+"3":
+  - {text: "yeah {time} is fine i'll come", variant: plain}
+  - {text: "okay {time} suits me see you there", variant: plain}
+  - {text: "{time} works i'll make it", variant: plain}
+  - {text: "fine {time} it is count me in", variant: plain}
+  - {text: "{time} is good for me count on me", variant: plain}
+  - {text: "sounds good {time} i'll show up", variant: plain}
+  - {text: "no problem {time} is okay with me i'll reach", variant: plain}
+  - {text: "alright see you at {time} then", variant: plain}
+  - {text: "{time} is perfect i'll be there on time", variant: plain}
+  - {text: "done {time} i'm in", variant: plain}
+  - {text: "yes {time} is fine by me", variant: plain}
+  - {text: "{time} it is i'll join", variant: plain}
+  - {text: "{time} should be okay i'll come", variant: plain}
+  - {text: "cool {time} i'll be there", variant: plain}
+  - {text: "okay {time} then i'll join you", variant: plain}
+  - {text: "that works {time} i'll see you", variant: plain}
+  - {text: "{time} fits my schedule i'll be there", variant: plain}
+  - {text: "sure thing i can make it at {time}", variant: plain}
+  - {text: "ok fine i'll reach by {time}", variant: plain}
+  - {text: "great {time} works i'll come", variant: plain}
+  - {text: "{time} is no issue for me i'll be there", variant: plain}
+  - {text: "perfect see you {time}", variant: plain}
+  - {text: "yes yes {time} i'll come", variant: plain}
+  - {text: "no issues i'll be there at {time}", variant: plain}
+  - {text: "haan {time} theek hai main aa jaunga", variant: hinglish}
+  - {text: "{time} chalega main pahunch jaunga", variant: hinglish}
+  - {text: "thik hai {time} pe milte hain", variant: hinglish}
+  - {text: "{time} pe aa jaunga koi dikkat nahi", variant: hinglish}
+  - {text: "haan haan {time} done main wahan hounga", variant: hinglish}
+  - {text: "{time} mere liye sahi hai aa raha hoon", variant: hinglish}
+  - {text: "sari {time} ge bartini", variant: kannada_english}
+  - {text: "{time} okay naanu alli irtini", variant: kannada_english}
+  - {text: "aagli {time} ge sigona", variant: kannada_english}
+  - {text: "{time} ge aagutte naanu bartini", variant: kannada_english}
+  - {text: "uh yeah sure um {time} that works i'll uh be there", variant: disfluent}
+  - {text: "yeah {time} is um fine i'll i'll be there", variant: disfluent}
+  - {text: "okay so {time} no wait yeah {time} works i'll come", variant: disfluent}
+  - {text: "um sure like {time} is good i'll be there", variant: disfluent}
+  - {text: "er yes {time} suits me you know i'll come", variant: disfluent}
+  - {text: "sure sure {time} uh i'll make it", variant: disfluent}
+
+# seed 4 (fragment): reply {otp}
+"4":
+  - {text: "respond back with {otp}", variant: plain}
+  - {text: "just reply with {otp}", variant: plain}
+  - {text: "send back {otp}", variant: plain}
+  - {text: "respond {otp}", variant: plain}
+  - {text: "write back {otp}", variant: plain}
+  - {text: "reply with the code {otp}", variant: plain}
+  - {text: "text back {otp}", variant: plain}
+  - {text: "reply the otp {otp}", variant: plain}
+  - {text: "answer with {otp}", variant: plain}
+  - {text: "{otp} in the reply", variant: plain}
+  - {text: "respond with code {otp}", variant: plain}
+  - {text: "the code {otp} back", variant: plain}
+  - {text: "{otp} goes back as the answer", variant: plain}
+  - {text: "reply to it with {otp}", variant: plain}
+  - {text: "text {otp} as answer", variant: plain}
+  - {text: "code {otp} in response", variant: plain}
+  - {text: "{otp} that's the reply", variant: plain}
+  - {text: "{otp} as my reply", variant: plain}
+  - {text: "message back {otp}", variant: plain}
+  - {text: "reply to sender {otp}", variant: plain}
+  - {text: "ping back {otp}", variant: plain}
+  - {text: "{otp} to the sender", variant: plain}
+  - {text: "answer them {otp}", variant: plain}
+  - {text: "answer back with the otp {otp}", variant: plain}
+  - {text: "{otp} reply kar do", variant: hinglish}
+  - {text: "reply mein {otp} bhejo", variant: hinglish}
+  - {text: "{otp} bhej do wapas", variant: hinglish}
+  - {text: "jawab mein {otp} likho", variant: hinglish}
+  - {text: "otp {otp} reply karo", variant: hinglish}
+  - {text: "{otp} jawab do", variant: hinglish}
+  - {text: "{otp} antha reply maadi", variant: kannada_english}
+  - {text: "reply ge {otp} kalsu", variant: kannada_english}
+  - {text: "{otp} vaapas kalsi", variant: kannada_english}
+  - {text: "{otp} uttara kodu", variant: kannada_english}
+  - {text: "uh reply um {otp}", variant: disfluent}
+  - {text: "reply with uh with {otp}", variant: disfluent}
+  - {text: "um send back like {otp}", variant: disfluent}
+  - {text: "forward no reply {otp}", variant: disfluent}
+  - {text: "er send um the otp {otp} back to them", variant: disfluent}
+  - {text: "so um answer {otp}", variant: disfluent}

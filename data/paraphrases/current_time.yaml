@@ -1,0 +1,176 @@
+# Paraphrases of the current_time seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): tell me today's date
+"0":
+  - {text: "give me the date", variant: plain}
+  - {text: "say what the date is today", variant: plain}
+  - {text: "remind me what date it is", variant: plain}
+  - {text: "check today's date for me", variant: plain}
+  - {text: "let me know the date", variant: plain}
+  - {text: "show the date on the screen", variant: plain}
+  - {text: "read out today's date", variant: plain}
+  - {text: "tell me what day it is today", variant: plain}
+  - {text: "just the date na tell me", variant: plain}
+  - {text: "confirm the date for me", variant: plain}
+  - {text: "quickly say today's date", variant: plain}
+  - {text: "tell me the date i have to fill a form", variant: plain}
+  - {text: "give me the full date with the day", variant: plain}
+  - {text: "i need today's date say it out", variant: plain}
+  - {text: "do one thing tell me the date", variant: plain}
+  - {text: "say the date and the day", variant: plain}
+  - {text: "spell out today's date for me", variant: plain}
+  - {text: "read me the date please", variant: plain}
+  - {text: "tell me the date and month", variant: plain}
+  - {text: "give me today's day and date", variant: plain}
+  - {text: "put today's date up on the display", variant: plain}
+  - {text: "tell me which date it is today", variant: plain}
+  - {text: "remind me of today's date quickly", variant: plain}
+  - {text: "i forgot the date so tell me", variant: plain}
+  - {text: "aaj ki date batao", variant: hinglish}
+  - {text: "aaj kaunsi tareekh hai bata do", variant: hinglish}
+  - {text: "date batao na yaar", variant: hinglish}
+  - {text: "mujhe aaj ki tareekh bolo", variant: hinglish}
+  - {text: "aaj ka din aur date batao", variant: hinglish}
+  - {text: "zara date check karke batao", variant: hinglish}
+  - {text: "ivattu date enu heli", variant: kannada_english}
+  - {text: "ivattu yaava date helu", variant: kannada_english}
+  - {text: "date swalpa heli guru", variant: kannada_english}
+  - {text: "ivattina date heli saar", variant: kannada_english}
+  - {text: "um give me the uh the date for today", variant: disfluent}
+  - {text: "uh give me the time no the date", variant: disfluent}
+  - {text: "the date um the date today tell me you know", variant: disfluent}
+  - {text: "so um the date i need the date say it", variant: disfluent}
+  - {text: "er just say today's um date please", variant: disfluent}
+  - {text: "the day no wait the date today say it", variant: disfluent}
+
+# seed 1 (question): what time is it
+"1":
+  - {text: "what's the time now", variant: plain}
+  - {text: "do you know the time?", variant: plain}
+  - {text: "can you tell me the time", variant: plain}
+  - {text: "how late is it", variant: plain}
+  - {text: "may i know the time", variant: plain}
+  - {text: "got the time?", variant: plain}
+  - {text: "what time do we have now", variant: plain}
+  - {text: "roughly what time would it be now", variant: plain}
+  - {text: "could you check the time for me?", variant: plain}
+  - {text: "any idea about the time", variant: plain}
+  - {text: "how much is the time now", variant: plain}
+  - {text: "is it past noon already?", variant: plain}
+  - {text: "what time are we at", variant: plain}
+  - {text: "what does the clock say?", variant: plain}
+  - {text: "current time?", variant: plain}
+  - {text: "what's the exact time please", variant: plain}
+  - {text: "will you check what time it is?", variant: plain}
+  - {text: "what's the time looking like", variant: plain}
+  - {text: "any clue what the time is?", variant: plain}
+  - {text: "is it getting late already?", variant: plain}
+  - {text: "can i get the time", variant: plain}
+  - {text: "what's the time on the clock please", variant: plain}
+  - {text: "how many minutes past the hour is it", variant: plain}
+  - {text: "what time have we reached", variant: plain}
+  - {text: "time kya hua hai", variant: hinglish}
+  - {text: "kitne baje hain abhi?", variant: hinglish}
+  - {text: "abhi kya time ho raha hai", variant: hinglish}
+  - {text: "time kitna hua bata sakte ho?", variant: hinglish}
+  - {text: "kitna baj gaya yaar", variant: hinglish}
+  - {text: "ghadi mein kya time hai", variant: hinglish}
+  - {text: "time eshtu aaytu?", variant: kannada_english}
+  - {text: "eega time eshtu", variant: kannada_english}
+  - {text: "eshtu gante aagide", variant: kannada_english}
+  - {text: "time eshtu antha gottha?", variant: kannada_english}
+  - {text: "what um what's the time", variant: disfluent}
+  - {text: "uh what's the date no the time", variant: disfluent}
+  - {text: "so like how late is it now you know", variant: disfluent}
+  - {text: "er you got the uh the time on you", variant: disfluent}
+  - {text: "the clock um what's it what's it showing", variant: disfluent}
+  - {text: "um can you er check what the clock says?", variant: disfluent}
+
+# seed 2 (outcome): my phone died and i don't know the time
+"2":
+  - {text: "my mobile's battery is dead so i've lost track of time", variant: plain}
+  - {text: "no idea what time it is my phone's switched off", variant: plain}
+  - {text: "phone's dead and i can't check the clock", variant: plain}
+  - {text: "my watch is at home and the phone is out of charge", variant: plain}
+  - {text: "i've got no clue about the time with my phone dead", variant: plain}
+  - {text: "my phone just switched off and i can't see the time", variant: plain}
+  - {text: "battery drained on my phone and now i'm clueless about the time", variant: plain}
+  - {text: "i've lost all sense of time since my mobile died", variant: plain}
+  - {text: "without my phone i have no idea how late it is", variant: plain}
+  - {text: "my phone conked off so i can't tell the time", variant: plain}
+  - {text: "phone's gone dead and i'm not wearing a watch", variant: plain}
+  - {text: "i can't see the time anywhere my phone's out of battery", variant: plain}
+  - {text: "the mobile died on me and i'm not sure what time it is", variant: plain}
+  - {text: "i forgot my watch and my phone is dead too", variant: plain}
+  - {text: "i don't know what time it is and my phone won't turn on", variant: plain}
+  - {text: "no charge on my phone so i'm lost on the time", variant: plain}
+  - {text: "i usually check the time on my phone but it's dead", variant: plain}
+  - {text: "my phone's off and i have no clue how late we are", variant: plain}
+  - {text: "i need the time but my phone battery is gone", variant: plain}
+  - {text: "dead phone no watch no idea of the time", variant: plain}
+  - {text: "my phone gave up and i have no sense of the hour", variant: plain}
+  - {text: "i'm not sure of the time since my phone ran out of juice", variant: plain}
+  - {text: "my phone's flat and the time is a mystery now", variant: plain}
+  - {text: "the charger is at home and my phone's dead so the time's a guess", variant: plain}
+  - {text: "mera phone band ho gaya time ka pata nahi", variant: hinglish}
+  - {text: "phone ki battery khatam hai time nahi pata", variant: hinglish}
+  - {text: "mobile dead hai yaar time ka kuch idea nahi", variant: hinglish}
+  - {text: "ghadi bhi nahi hai aur phone bhi band hai", variant: hinglish}
+  - {text: "phone mar gaya ab time dekhne ka koi tareeka nahi", variant: hinglish}
+  - {text: "phone off hai toh samajh nahi aa raha kitne baje hain", variant: hinglish}
+  - {text: "nan phone off aaytu time gottilla", variant: kannada_english}
+  - {text: "phone charge illa time eshtu antha gottagtilla", variant: kannada_english}
+  - {text: "mobile dead aagide time gottilla guru", variant: kannada_english}
+  - {text: "watch illa phone kooda off aagide", variant: kannada_english}
+  - {text: "so uh the phone's dead and i've got like no idea about the time", variant: disfluent}
+  - {text: "um my watch no my phone died and i can't tell the time", variant: disfluent}
+  - {text: "er phone battery's gone you know and the time i have no clue", variant: disfluent}
+  - {text: "the the phone switched off so um i'm blank on the time", variant: disfluent}
+  - {text: "uh i don't know the um time cause my mobile died", variant: disfluent}
+  - {text: "um no phone no watch so yeah no clue what time it is", variant: disfluent}
+
+# seed 3 (fragment): time
+"3":
+  - {text: "the time", variant: plain}
+  - {text: "time now", variant: plain}
+  - {text: "time please", variant: plain}
+  - {text: "present time", variant: plain}
+  - {text: "clock", variant: plain}
+  - {text: "exact time", variant: plain}
+  - {text: "time check", variant: plain}
+  - {text: "what time", variant: plain}
+  - {text: "the hour", variant: plain}
+  - {text: "local time", variant: plain}
+  - {text: "clock please", variant: plain}
+  - {text: "hours and minutes", variant: plain}
+  - {text: "how late", variant: plain}
+  - {text: "time quickly", variant: plain}
+  - {text: "time on screen", variant: plain}
+  - {text: "time what is it", variant: plain}
+  - {text: "time sir", variant: plain}
+  - {text: "clock time", variant: plain}
+  - {text: "timing", variant: plain}
+  - {text: "the clock", variant: plain}
+  - {text: "time only", variant: plain}
+  - {text: "time at the moment", variant: plain}
+  - {text: "current hour", variant: plain}
+  - {text: "dash clock", variant: plain}
+  - {text: "time kya hai", variant: hinglish}
+  - {text: "kitne baje", variant: hinglish}
+  - {text: "time batao", variant: hinglish}
+  - {text: "abhi ka time", variant: hinglish}
+  - {text: "time bolo na", variant: hinglish}
+  - {text: "ghadi dekho", variant: hinglish}
+  - {text: "time eshtu", variant: kannada_english}
+  - {text: "eega time", variant: kannada_english}
+  - {text: "time heli", variant: kannada_english}
+  - {text: "eshtu gante", variant: kannada_english}
+  - {text: "uh time", variant: disfluent}
+  - {text: "time um right now", variant: disfluent}
+  - {text: "date no time", variant: disfluent}
+  - {text: "er time please um", variant: disfluent}
+  - {text: "time uh what's the time", variant: disfluent}
+  - {text: "so um time you know", variant: disfluent}

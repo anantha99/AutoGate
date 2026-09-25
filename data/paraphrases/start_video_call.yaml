@@ -1,0 +1,176 @@
+# Paraphrases of the start_video_call seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): video call {contact}
+"0":
+  - {text: "start a video call with {contact}", variant: plain}
+  - {text: "get {contact} on video", variant: plain}
+  - {text: "video chat {contact} right away", variant: plain}
+  - {text: "ring {contact} on video", variant: plain}
+  - {text: "connect me to {contact} on camera", variant: plain}
+  - {text: "dial {contact} with the camera on", variant: plain}
+  - {text: "video {contact} from the car", variant: plain}
+  - {text: "place a whatsapp video call to {contact}", variant: plain}
+  - {text: "do a quick face to face with {contact} on the phone", variant: plain}
+  - {text: "begin a video chat with {contact}", variant: plain}
+  - {text: "patch me through to {contact} on video", variant: plain}
+  - {text: "launch whatsapp and video {contact}", variant: plain}
+  - {text: "get me {contact} face to face", variant: plain}
+  - {text: "try {contact} on a video call", variant: plain}
+  - {text: "hook me up with {contact} over video", variant: plain}
+  - {text: "switch the camera on and call {contact}", variant: plain}
+  - {text: "do one thing video call {contact} on whatsapp", variant: plain}
+  - {text: "go ahead and video call {contact}", variant: plain}
+  - {text: "face call {contact}", variant: plain}
+  - {text: "bring up {contact} on a video chat", variant: plain}
+  - {text: "set up a video link with {contact}", variant: plain}
+  - {text: "get the camera going and dial {contact}", variant: plain}
+  - {text: "fire up a video call to {contact}", variant: plain}
+  - {text: "show me {contact} on video", variant: plain}
+  - {text: "{contact} ko video call karo", variant: hinglish}
+  - {text: "{contact} ke saath video call lagao", variant: hinglish}
+  - {text: "abhi {contact} ko video pe le lo", variant: hinglish}
+  - {text: "{contact} se video pe face to face baat karao", variant: hinglish}
+  - {text: "camera on karke {contact} ko call lagao", variant: hinglish}
+  - {text: "{contact} ko whatsapp video karo jaldi", variant: hinglish}
+  - {text: "{contact} ge video call maadu", variant: kannada_english}
+  - {text: "camera on maadi {contact} ge call haaku", variant: kannada_english}
+  - {text: "{contact} jothe video alli maathadona", variant: kannada_english}
+  - {text: "swalpa {contact} ge whatsapp video maadi", variant: kannada_english}
+  - {text: "um video call uh {contact} please", variant: disfluent}
+  - {text: "call {contact} no wait video call {contact}", variant: disfluent}
+  - {text: "uh a voice no a video one with {contact} start it", variant: disfluent}
+  - {text: "er get {contact} on um on the camera thing", variant: disfluent}
+  - {text: "so um like {contact} on video you know", variant: disfluent}
+  - {text: "just uh open up a um video line to {contact}", variant: disfluent}
+
+# seed 1 (question): can you start a video chat with {contact}
+"1":
+  - {text: "could you get {contact} on a video call", variant: plain}
+  - {text: "can we do a video call with {contact}?", variant: plain}
+  - {text: "will you video call {contact} for me", variant: plain}
+  - {text: "is it possible to video chat with {contact} now", variant: plain}
+  - {text: "can i see {contact} on a video call", variant: plain}
+  - {text: "would you set up a video call with {contact}?", variant: plain}
+  - {text: "mind starting a video call to {contact}", variant: plain}
+  - {text: "can you ring {contact} on video", variant: plain}
+  - {text: "could you connect me to {contact} over video?", variant: plain}
+  - {text: "how about a video call with {contact}", variant: plain}
+  - {text: "can you put {contact} up on camera for me", variant: plain}
+  - {text: "any chance you can video call {contact}", variant: plain}
+  - {text: "would you mind calling {contact} on video", variant: plain}
+  - {text: "could you dial {contact} with the camera on", variant: plain}
+  - {text: "could we get {contact} on a video chat", variant: plain}
+  - {text: "can you place a video call to {contact}", variant: plain}
+  - {text: "is video calling {contact} doable right now", variant: plain}
+  - {text: "can you open a video chat to {contact}?", variant: plain}
+  - {text: "could you make a video call to {contact} please", variant: plain}
+  - {text: "will you connect a video call with {contact}", variant: plain}
+  - {text: "do you think you can get {contact} on video", variant: plain}
+  - {text: "why don't you start a video call with {contact}", variant: plain}
+  - {text: "shall we video chat with {contact}", variant: plain}
+  - {text: "will you pull up {contact} on a face call?", variant: plain}
+  - {text: "kya tum {contact} ko video call kar sakte ho", variant: hinglish}
+  - {text: "{contact} ko video call kar doge?", variant: hinglish}
+  - {text: "{contact} ke saath video call laga sakte ho kya", variant: hinglish}
+  - {text: "video call pe {contact} ko le sakte ho?", variant: hinglish}
+  - {text: "kya {contact} se video pe baat ho sakti hai", variant: hinglish}
+  - {text: "{contact} ko video call lagaoge kya", variant: hinglish}
+  - {text: "{contact} ge video call maadtiya?", variant: kannada_english}
+  - {text: "{contact} jothe video call maadoke aagutha", variant: kannada_english}
+  - {text: "{contact} jothe video alli maathadbahuda", variant: kannada_english}
+  - {text: "{contact} ge video haakbahuda?", variant: kannada_english}
+  - {text: "um could you like get {contact} on video", variant: disfluent}
+  - {text: "can you uh video call {contact} i mean can you", variant: disfluent}
+  - {text: "could you call {contact} no sorry video call {contact}?", variant: disfluent}
+  - {text: "uh would it be um possible to like see {contact} on a call", variant: disfluent}
+  - {text: "er {contact} could you um get them on video for me", variant: disfluent}
+  - {text: "hey so um any chance of a video call to uh {contact}", variant: disfluent}
+
+# seed 2 (outcome): i want {contact} to see the new house
+"2":
+  - {text: "i'd love for {contact} to see our new place", variant: plain}
+  - {text: "{contact} deserves a proper tour of the new place", variant: plain}
+  - {text: "i need to show {contact} the new house", variant: plain}
+  - {text: "{contact} should get a look at the new flat", variant: plain}
+  - {text: "i really want to show {contact} our new home", variant: plain}
+  - {text: "{contact} hasn't seen the new house yet", variant: plain}
+  - {text: "i'm dying to show {contact} the house we just moved into", variant: plain}
+  - {text: "it would be nice if {contact} could see the new place", variant: plain}
+  - {text: "{contact} keeps asking what the new house looks like", variant: plain}
+  - {text: "i promised {contact} a look at the new house", variant: plain}
+  - {text: "i wish {contact} could see this house right now", variant: plain}
+  - {text: "{contact} needs to see where we moved", variant: plain}
+  - {text: "i'd like {contact} to take a look around our new flat", variant: plain}
+  - {text: "i want to give {contact} a peek at the new flat", variant: plain}
+  - {text: "{contact} would be thrilled to see where we live now", variant: plain}
+  - {text: "i'm keen to walk {contact} through the new house", variant: plain}
+  - {text: "showing {contact} the new house would make my day", variant: plain}
+  - {text: "{contact} still hasn't had a look at our new home", variant: plain}
+  - {text: "{contact} ought to see the flat we've shifted to", variant: plain}
+  - {text: "my plan is for {contact} to see the house we bought", variant: plain}
+  - {text: "{contact} must see how the new house turned out", variant: plain}
+  - {text: "i can't wait for {contact} to see our new place", variant: plain}
+  - {text: "it's time {contact} saw how big the new house is", variant: plain}
+  - {text: "the new house is ready and {contact} still hasn't seen it", variant: plain}
+  - {text: "mujhe {contact} ko naya ghar dikhana hai", variant: hinglish}
+  - {text: "{contact} ne abhi tak naya ghar nahi dekha", variant: hinglish}
+  - {text: "main chahta hoon {contact} naya ghar dekhe", variant: hinglish}
+  - {text: "{contact} ko hamara naya flat dikhana hai yaar", variant: hinglish}
+  - {text: "{contact} bhi toh dekhe hamara naya ghar kaisa hai", variant: hinglish}
+  - {text: "{contact} ko naye ghar ki jhalak dikhani hai", variant: hinglish}
+  - {text: "{contact} ge hosa mane thorisbeku", variant: kannada_english}
+  - {text: "{contact} innu hosa mane nodilla", variant: kannada_english}
+  - {text: "nanage {contact} ge hosa mane thorsbeku", variant: kannada_english}
+  - {text: "{contact} hosa mane nodbeku antha aase", variant: kannada_english}
+  - {text: "i um really want uh {contact} to like see the new place", variant: disfluent}
+  - {text: "so {contact} uh hasn't even like seen the house we moved into", variant: disfluent}
+  - {text: "um {contact} should see the office no i mean the new house", variant: disfluent}
+  - {text: "the new house uh {contact} still hasn't um you know been shown it", variant: disfluent}
+  - {text: "er it'd be nice for like {contact} to see where we uh live now", variant: disfluent}
+  - {text: "er i promised {contact} i'd show them the new house", variant: disfluent}
+
+# seed 3 (indirect): mom wants to see the grandkids
+"3":
+  - {text: "granny wonders when she'll get to see the kids", variant: plain}
+  - {text: "amma misses the grandchildren so much", variant: plain}
+  - {text: "my mother hasn't seen the little ones in weeks", variant: plain}
+  - {text: "the kids are itching to say hi to grandma", variant: plain}
+  - {text: "nani wants to see how much the kids have grown", variant: plain}
+  - {text: "mom has been asking about the grandkids all week", variant: plain}
+  - {text: "my mom wants to wave at the kids", variant: plain}
+  - {text: "the children haven't seen their grandmother in ages", variant: plain}
+  - {text: "mother wants a look at the grandchildren", variant: plain}
+  - {text: "grandpa and grandma are missing the kids tonight", variant: plain}
+  - {text: "amma says she hasn't seen the babies properly", variant: plain}
+  - {text: "my mom is missing the kids badly", variant: plain}
+  - {text: "the children keep calling out for their granny", variant: plain}
+  - {text: "mom would love to see the grandkids' faces", variant: plain}
+  - {text: "it's been ages since my mother saw the grandchildren", variant: plain}
+  - {text: "amma wants to see the baby's new teeth", variant: plain}
+  - {text: "my wife's mom wants to see the kids", variant: plain}
+  - {text: "the kids are dying to show grandma their drawings", variant: plain}
+  - {text: "mom asked if she could see the little ones today", variant: plain}
+  - {text: "my mother keeps saying she misses the grandkids", variant: plain}
+  - {text: "granny wants to see the children before bedtime", variant: plain}
+  - {text: "the little ones want to talk to grandma", variant: plain}
+  - {text: "mom hasn't seen the grandkids since diwali", variant: plain}
+  - {text: "my mother wants to check on the grandchildren", variant: plain}
+  - {text: "mummy ko bachche dekhne hain", variant: hinglish}
+  - {text: "nani ko bachchon ki yaad aa rahi hai", variant: hinglish}
+  - {text: "mummy pooch rahi hai bachche ab kaise dikhte hain", variant: hinglish}
+  - {text: "bachche dadi ko dekhna chahte hain", variant: hinglish}
+  - {text: "maa ko pote poti ko dekhna hai", variant: hinglish}
+  - {text: "mummy keh rahi thi bachchon ko dekhe bahut din ho gaye", variant: hinglish}
+  - {text: "amma ge mommakkalanna nodbeku antha", variant: kannada_english}
+  - {text: "ajji makkalanna nodbeku antha kelthidaare", variant: kannada_english}
+  - {text: "makkalu ajji na nodbeku antha hatha maadthidaare", variant: kannada_english}
+  - {text: "amma mommakkalanna nodi thumba dina aaytu", variant: kannada_english}
+  - {text: "so um my mother she wants to like see the grandkids", variant: disfluent}
+  - {text: "amma uh amma's been missing the um the babies", variant: disfluent}
+  - {text: "the kids want uh no amma wants to see the kids", variant: disfluent}
+  - {text: "er the little ones haven't seen um their granny in weeks you know", variant: disfluent}
+  - {text: "uh my mom is like really missing the grandchildren", variant: disfluent}
+  - {text: "grandpa no nani wants a look at the uh kids", variant: disfluent}

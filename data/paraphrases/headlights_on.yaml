@@ -1,0 +1,176 @@
+# Paraphrases of the headlights_on seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): switch on the headlights
+"0":
+  - {text: "turn the headlights on", variant: plain}
+  - {text: "put the headlamps on", variant: plain}
+  - {text: "lights on please", variant: plain}
+  - {text: "get the front lights on", variant: plain}
+  - {text: "switch the lamps on at the front", variant: plain}
+  - {text: "put on the lights", variant: plain}
+  - {text: "put the low beam on", variant: plain}
+  - {text: "give me some headlights", variant: plain}
+  - {text: "flip the headlights on", variant: plain}
+  - {text: "start the headlamps", variant: plain}
+  - {text: "light up the road ahead", variant: plain}
+  - {text: "switch the headlamp on na", variant: plain}
+  - {text: "on the headlamps quickly", variant: plain}
+  - {text: "do one thing put the lights on", variant: plain}
+  - {text: "turn the car lights on", variant: plain}
+  - {text: "headlights on now", variant: plain}
+  - {text: "throw some light on the road with the headlamps", variant: plain}
+  - {text: "get the headlamps going", variant: plain}
+  - {text: "flick on the front lamps", variant: plain}
+  - {text: "turn on the low beams", variant: plain}
+  - {text: "just put the headlights", variant: plain}
+  - {text: "switch on the lights in front", variant: plain}
+  - {text: "make the headlights come on", variant: plain}
+  - {text: "bring the headlights up", variant: plain}
+  - {text: "headlight on karo na", variant: hinglish}
+  - {text: "light jala do", variant: hinglish}
+  - {text: "headlight chalu kar do jaldi", variant: hinglish}
+  - {text: "aage ki light on karo", variant: hinglish}
+  - {text: "gaadi ki headlight jalao", variant: hinglish}
+  - {text: "lights on kar do yaar", variant: hinglish}
+  - {text: "headlight haaku", variant: kannada_english}
+  - {text: "light on maadi", variant: kannada_english}
+  - {text: "headlight on maadu guru", variant: kannada_english}
+  - {text: "munde light haaku", variant: kannada_english}
+  - {text: "uh the headlamps um get them on", variant: disfluent}
+  - {text: "fog lamps no wait the main headlights put those on", variant: disfluent}
+  - {text: "um headlights er switch em on please", variant: disfluent}
+  - {text: "the lights the uh big lights in front turn them on", variant: disfluent}
+  - {text: "er get the um you know the front lamps going", variant: disfluent}
+  - {text: "so like turn on the uh headlights you know", variant: disfluent}
+
+# seed 1 (outcome): it's getting really dark out here
+"1":
+  - {text: "i can hardly see the road it's so dark", variant: plain}
+  - {text: "the sun's gone down completely", variant: plain}
+  - {text: "it's pitch black on this stretch", variant: plain}
+  - {text: "night's falling fast", variant: plain}
+  - {text: "visibility is dropping it's dusk", variant: plain}
+  - {text: "there are no streetlights here and it's dark", variant: plain}
+  - {text: "i can't make out the road in this darkness", variant: plain}
+  - {text: "it's gloomy out and getting worse", variant: plain}
+  - {text: "the light is fading really quickly", variant: plain}
+  - {text: "it's so dim i can barely see the lane markings", variant: plain}
+  - {text: "we're driving into the night now", variant: plain}
+  - {text: "it's already dark and i can't see much", variant: plain}
+  - {text: "evening's come and it's hard to see", variant: plain}
+  - {text: "too dark to see the potholes", variant: plain}
+  - {text: "there's no light at all on this highway", variant: plain}
+  - {text: "it's getting murky outside", variant: plain}
+  - {text: "sunset's done and the road's gone black", variant: plain}
+  - {text: "this ghat road is completely unlit", variant: plain}
+  - {text: "i can't see anything ahead it's that dark", variant: plain}
+  - {text: "the sky has gone dark suddenly", variant: plain}
+  - {text: "twilight's making it hard to see", variant: plain}
+  - {text: "we've entered a dark tunnel", variant: plain}
+  - {text: "everything outside has gone black", variant: plain}
+  - {text: "there's barely any daylight left", variant: plain}
+  - {text: "bahut andhera ho gaya hai", variant: hinglish}
+  - {text: "bahar kuch dikh nahi raha andhera hai", variant: hinglish}
+  - {text: "andhera ho raha hai yaar", variant: hinglish}
+  - {text: "sadak pe bilkul roshni nahi hai", variant: hinglish}
+  - {text: "raat ho gayi kuch nahi dikhta", variant: hinglish}
+  - {text: "itna andhera hai road nahi dikh raha", variant: hinglish}
+  - {text: "tumba kattalu aagide", variant: kannada_english}
+  - {text: "hora kattalu guru enu kaanalla", variant: kannada_english}
+  - {text: "kattalu aagtide saar", variant: kannada_english}
+  - {text: "road kaanista illa kattalu ide", variant: kannada_english}
+  - {text: "um it's like really getting er dark now", variant: disfluent}
+  - {text: "it's uh it's so dark now", variant: disfluent}
+  - {text: "wow it's like it's pitch dark", variant: disfluent}
+  - {text: "er i can't see it's getting dark", variant: disfluent}
+  - {text: "so the um the sun's gone and it's dark", variant: disfluent}
+  - {text: "it's getting foggy no just dark out here", variant: disfluent}
+
+# seed 2 (indirect): that oncoming car keeps flashing at me
+"2":
+  - {text: "the truck coming the other way just blinked its lights at me", variant: plain}
+  - {text: "why is everyone coming towards me flashing their beams", variant: plain}
+  - {text: "that bus from the front flashed me twice", variant: plain}
+  - {text: "cars from the opposite side keep blinking at me", variant: plain}
+  - {text: "every vehicle coming at us is flicking their high beam", variant: plain}
+  - {text: "the guy in the other lane keeps dipping his lights at me", variant: plain}
+  - {text: "that approaching lorry just gave me a flash", variant: plain}
+  - {text: "someone coming the other way is blinking their headlights at us", variant: plain}
+  - {text: "this oncoming bike keeps flicking its light at me", variant: plain}
+  - {text: "why does the car coming at me keep flashing", variant: plain}
+  - {text: "drivers from the other side are flashing me again and again", variant: plain}
+  - {text: "that auto facing us just flashed its lamp", variant: plain}
+  - {text: "the cab heading towards us keeps blinking", variant: plain}
+  - {text: "another car coming at me just flashed its beam", variant: plain}
+  - {text: "people on the opposite lane keep flashing like something's wrong", variant: plain}
+  - {text: "that suv approaching us is flashing nonstop", variant: plain}
+  - {text: "i keep getting flashed by oncoming cars", variant: plain}
+  - {text: "the car approaching from ahead just blinked at us three times", variant: plain}
+  - {text: "vehicles coming the other way keep giving me the flash", variant: plain}
+  - {text: "that jeep in the opposite lane just flashed us", variant: plain}
+  - {text: "everyone driving towards me is blinking their lights", variant: plain}
+  - {text: "these oncoming guys keep flashing me for some reason", variant: plain}
+  - {text: "the van coming from the front won't stop flashing at us", variant: plain}
+  - {text: "oncoming traffic keeps signalling at me with their lights", variant: plain}
+  - {text: "saamne wali gaadi baar baar light maar rahi hai", variant: hinglish}
+  - {text: "saamne se aane wala truck dipper de raha hai", variant: hinglish}
+  - {text: "yaar saamne wale sab light flash kar rahe hain", variant: hinglish}
+  - {text: "opposite wali car baar baar dipper maar rahi hai", variant: hinglish}
+  - {text: "saamne se bus light de rahi hai mujhe", variant: hinglish}
+  - {text: "har saamne wali gaadi flash kar rahi hai", variant: hinglish}
+  - {text: "yeduru gaadi light flash maadtide", variant: kannada_english}
+  - {text: "yeduru bartiro car dipper hodita ide", variant: kannada_english}
+  - {text: "yeduru lorry light hodita ide guru", variant: kannada_english}
+  - {text: "opposite gaadi yella flash maadtave", variant: kannada_english}
+  - {text: "that um car coming towards me it keeps uh flashing", variant: disfluent}
+  - {text: "the car the car coming at me keeps flashing", variant: disfluent}
+  - {text: "uh the truck behind no the one coming at us is flashing", variant: disfluent}
+  - {text: "er why is that like oncoming bus flashing us", variant: disfluent}
+  - {text: "so um every car coming the other way is flashing me", variant: disfluent}
+  - {text: "that oncoming uh that oncoming car flashed again", variant: disfluent}
+
+# seed 3 (fragment): headlights
+"3":
+  - {text: "headlights on", variant: plain}
+  - {text: "lights", variant: plain}
+  - {text: "headlamps", variant: plain}
+  - {text: "front lights", variant: plain}
+  - {text: "lights on", variant: plain}
+  - {text: "headlamp please", variant: plain}
+  - {text: "low beam", variant: plain}
+  - {text: "headlights now", variant: plain}
+  - {text: "main lights", variant: plain}
+  - {text: "car lights", variant: plain}
+  - {text: "headlights please", variant: plain}
+  - {text: "dipped beam on", variant: plain}
+  - {text: "the headlamps", variant: plain}
+  - {text: "lamps on", variant: plain}
+  - {text: "driving lights", variant: plain}
+  - {text: "headlights quick", variant: plain}
+  - {text: "lights please", variant: plain}
+  - {text: "low beams please", variant: plain}
+  - {text: "headlamps on now", variant: plain}
+  - {text: "lights at the front", variant: plain}
+  - {text: "the headlights", variant: plain}
+  - {text: "beams on", variant: plain}
+  - {text: "headlight", variant: plain}
+  - {text: "headlamps quickly", variant: plain}
+  - {text: "headlight jalao", variant: hinglish}
+  - {text: "light chalu", variant: hinglish}
+  - {text: "batti jalao", variant: hinglish}
+  - {text: "headlight de do", variant: hinglish}
+  - {text: "aage ki batti", variant: hinglish}
+  - {text: "lights on karo zara", variant: hinglish}
+  - {text: "headlight haaku guru", variant: kannada_english}
+  - {text: "light haaku", variant: kannada_english}
+  - {text: "batti haaku", variant: kannada_english}
+  - {text: "headlight beku", variant: kannada_english}
+  - {text: "uh headlights", variant: disfluent}
+  - {text: "head um headlights", variant: disfluent}
+  - {text: "lights no headlights", variant: disfluent}
+  - {text: "the uh the headlamps please", variant: disfluent}
+  - {text: "er front lights uh on", variant: disfluent}
+  - {text: "um headlamps", variant: disfluent}

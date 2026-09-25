@@ -1,0 +1,219 @@
+# Paraphrases of the adjust_window seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): open the {window} window halfway
+"0":
+  - {text: "roll the {window} window down halfway", variant: plain}
+  - {text: "put the {window} window half down", variant: plain}
+  - {text: "lower the {window} window to half", variant: plain}
+  - {text: "bring the {window} glass down about half", variant: plain}
+  - {text: "{window} window half open please", variant: plain}
+  - {text: "take the {window} window down to the middle", variant: plain}
+  - {text: "{window} side window half open now", variant: plain}
+  - {text: "drop {window} glass to the halfway mark", variant: plain}
+  - {text: "get the {window} window at the half mark", variant: plain}
+  - {text: "let the {window} window down till the middle", variant: plain}
+  - {text: "open up the {window} glass halfway", variant: plain}
+  - {text: "do one thing lower the {window} window half way", variant: plain}
+  - {text: "{window} window down to half", variant: plain}
+  - {text: "just halfway on the {window} window", variant: plain}
+  - {text: "slide the {window} window half open", variant: plain}
+  - {text: "open the {window} one half", variant: plain}
+  - {text: "take the {window} glass down halfway", variant: plain}
+  - {text: "wind the {window} one down midway", variant: plain}
+  - {text: "{window} glass halfway please", variant: plain}
+  - {text: "lower the {window} side glass partway to the middle", variant: plain}
+  - {text: "leave the {window} glass half open", variant: plain}
+  - {text: "stop the {window} window midway when you open it", variant: plain}
+  - {text: "{window} window only half open not full", variant: plain}
+  - {text: "roll down the {window} glass half way na", variant: plain}
+  - {text: "{window} window aadha khol do", variant: hinglish}
+  - {text: "{window} wala sheesha aadha neeche karo", variant: hinglish}
+  - {text: "{window} ki window half tak khol do", variant: hinglish}
+  - {text: "thoda aadha {window} window neeche kar do yaar", variant: hinglish}
+  - {text: "{window} window ko half open karo", variant: hinglish}
+  - {text: "{window} ka glass beech tak utaaro", variant: hinglish}
+  - {text: "{window} window ardha open maadu", variant: kannada_english}
+  - {text: "{window} glass ardha kelage maadi", variant: kannada_english}
+  - {text: "{window} window half open maadi guru", variant: kannada_english}
+  - {text: "{window} window swalpa ardha tegi", variant: kannada_english}
+  - {text: "um open it the {window} one like halfway", variant: disfluent}
+  - {text: "the {window} no wait the {window} glass uh halfway down", variant: disfluent}
+  - {text: "lower the er {window} window all the no just halfway", variant: disfluent}
+  - {text: "um so {window} window open it uh half", variant: disfluent}
+  - {text: "put the {window} window down um just halfway you know", variant: disfluent}
+  - {text: "uh the {window} one lower it er to about half", variant: disfluent}
+
+# seed 1 (outcome): dust is blowing in on my side
+"1":
+  - {text: "so much dust is coming into my face", variant: plain}
+  - {text: "there's dirt flying in next to me", variant: plain}
+  - {text: "my side is getting full of dust", variant: plain}
+  - {text: "all this road dust is hitting me", variant: plain}
+  - {text: "i'm eating dust over here", variant: plain}
+  - {text: "dust keeps coming in from my window", variant: plain}
+  - {text: "my eyes are full of dust on this side", variant: plain}
+  - {text: "i'm getting covered in dirt from outside", variant: plain}
+  - {text: "this construction dust is coming straight in at me", variant: plain}
+  - {text: "lots of mud and dust blowing onto my lap", variant: plain}
+  - {text: "dust everywhere on my side", variant: plain}
+  - {text: "it's so dusty over here i'm choking", variant: plain}
+  - {text: "my eyes are burning from all the dust", variant: plain}
+  - {text: "there's sand blowing in on me", variant: plain}
+  - {text: "i'm coughing from the dust coming in", variant: plain}
+  - {text: "the wind is throwing dust all over me", variant: plain}
+  - {text: "grit keeps flying in at me", variant: plain}
+  - {text: "my clothes are getting dusty from the breeze", variant: plain}
+  - {text: "this dirt road is sending dust all over me", variant: plain}
+  - {text: "my hair is a mess with all this dust", variant: plain}
+  - {text: "i can taste the dust over here", variant: plain}
+  - {text: "whole lot of dust entering from my side", variant: plain}
+  - {text: "all the dust from the road is landing on me", variant: plain}
+  - {text: "my specs are getting dusty", variant: plain}
+  - {text: "meri side se bahut dhool aa rahi hai", variant: hinglish}
+  - {text: "yaar dhool andar aa rahi hai mere taraf", variant: hinglish}
+  - {text: "itni dhool mere muh pe aa rahi hai", variant: hinglish}
+  - {text: "meri taraf se mitti ud ke aa rahi hai", variant: hinglish}
+  - {text: "dust bahut aa raha hai idhar", variant: hinglish}
+  - {text: "aankh mein dhool ja rahi hai yaar", variant: hinglish}
+  - {text: "nanna side inda tumba dust barta ide", variant: kannada_english}
+  - {text: "illi tumba dhoolu barta ide", variant: kannada_english}
+  - {text: "kannige dust hogta ide guru", variant: kannada_english}
+  - {text: "nanna kade dhoolu bartide", variant: kannada_english}
+  - {text: "uh there's like dust coming in on on my side", variant: disfluent}
+  - {text: "um so much dust is uh getting in here", variant: disfluent}
+  - {text: "my side is er you know full of dirt", variant: disfluent}
+  - {text: "the dust it's uh it's all coming at me", variant: disfluent}
+  - {text: "i'm getting like so much um dust over here", variant: disfluent}
+  - {text: "er the wind no the dust is coming in at me", variant: disfluent}
+
+# seed 2 (question): can you roll up the back windows
+"2":
+  - {text: "could you close the rear windows?", variant: plain}
+  - {text: "will you shut the back windows", variant: plain}
+  - {text: "can the windows at the back go up?", variant: plain}
+  - {text: "would you put up the rear glass", variant: plain}
+  - {text: "mind closing the windows in the back", variant: plain}
+  - {text: "can we get the back windows up?", variant: plain}
+  - {text: "could you raise both rear windows", variant: plain}
+  - {text: "is it possible to shut the back glass?", variant: plain}
+  - {text: "can you close up the windows behind me", variant: plain}
+  - {text: "would you wind up the back windows?", variant: plain}
+  - {text: "any chance of closing the back windows", variant: plain}
+  - {text: "can the rear windows be closed?", variant: plain}
+  - {text: "how about shutting the windows for the kids at the back", variant: plain}
+  - {text: "could you seal up the back seat windows", variant: plain}
+  - {text: "will you bring the rear windows all the way up?", variant: plain}
+  - {text: "please could the rear ones go up", variant: plain}
+  - {text: "would you close up the rear ones?", variant: plain}
+  - {text: "is there a way to shut the windows in the back?", variant: plain}
+  - {text: "could you get the windows at the rear closed", variant: plain}
+  - {text: "can you put the back glass up?", variant: plain}
+  - {text: "would you mind raising the back windows", variant: plain}
+  - {text: "can both back windows be rolled up", variant: plain}
+  - {text: "shall we close the rear windows now?", variant: plain}
+  - {text: "could you close the windows for the people in the back", variant: plain}
+  - {text: "peeche ki windows band kar doge?", variant: hinglish}
+  - {text: "kya back wale sheeshe upar kar sakte ho", variant: hinglish}
+  - {text: "peeche ki khidki upar karoge kya", variant: hinglish}
+  - {text: "rear windows band karoge kya", variant: hinglish}
+  - {text: "back windows chadha doge kya", variant: hinglish}
+  - {text: "peeche wale glass band ho sakte hain?", variant: hinglish}
+  - {text: "hinde windows mele maadtira", variant: kannada_english}
+  - {text: "back windows close maadbahuda?", variant: kannada_english}
+  - {text: "hinde glass mele haaktira", variant: kannada_english}
+  - {text: "back windows muchchi bidtira?", variant: kannada_english}
+  - {text: "can you uh the back ones um roll them up", variant: disfluent}
+  - {text: "could you um shut the er the windows at the back", variant: disfluent}
+  - {text: "can you open no close the back windows sorry", variant: disfluent}
+  - {text: "um would you like put the back windows up", variant: disfluent}
+  - {text: "er the back windows could you shut them uh please", variant: disfluent}
+  - {text: "so can you like get the windows in the back uh up", variant: disfluent}
+
+# seed 3 (indirect): we're at the toll booth now
+"3":
+  - {text: "toll plaza coming up", variant: plain}
+  - {text: "here's the toll gate", variant: plain}
+  - {text: "we've reached the toll", variant: plain}
+  - {text: "i need to pay at this booth", variant: plain}
+  - {text: "the toll guy is right next to me", variant: plain}
+  - {text: "the toll man is asking for the fastag receipt", variant: plain}
+  - {text: "okay we're at the toll counter", variant: plain}
+  - {text: "i have to hand over the toll money now", variant: plain}
+  - {text: "this is the plaza they need the ticket", variant: plain}
+  - {text: "there's the toll attendant on my side", variant: plain}
+  - {text: "time to pay the toll", variant: plain}
+  - {text: "almost at the toll window now", variant: plain}
+  - {text: "fastag isn't working i need to pay cash here", variant: plain}
+  - {text: "we just pulled up to the booth", variant: plain}
+  - {text: "the guy at the barrier is asking for money", variant: plain}
+  - {text: "the booth is right here on my right", variant: plain}
+  - {text: "got to give the toll receipt to this guy", variant: plain}
+  - {text: "the attendant is knocking on my glass", variant: plain}
+  - {text: "the barrier's not lifting he needs to see the pass", variant: plain}
+  - {text: "stopped at the toll gate", variant: plain}
+  - {text: "ok this is the toll barrier", variant: plain}
+  - {text: "toll collector is right here", variant: plain}
+  - {text: "i've got the change ready for the toll", variant: plain}
+  - {text: "the toll booth guy is waving at me", variant: plain}
+  - {text: "toll aa gaya hai", variant: hinglish}
+  - {text: "toll booth pe aa gaye hain ab", variant: hinglish}
+  - {text: "toll wale bhaiya paise maang rahe hain", variant: hinglish}
+  - {text: "yahan toll dena padega", variant: hinglish}
+  - {text: "toll plaza pe ruk gaye yaar", variant: hinglish}
+  - {text: "fastag nahi chal raha cash dena hai", variant: hinglish}
+  - {text: "toll bantu", variant: kannada_english}
+  - {text: "toll booth alli iddivi", variant: kannada_english}
+  - {text: "illi toll kodbeku", variant: kannada_english}
+  - {text: "toll guru hana kelta idare", variant: kannada_english}
+  - {text: "um so we're uh at the toll now", variant: disfluent}
+  - {text: "the the toll booth is uh right here", variant: disfluent}
+  - {text: "er toll plaza no the booth is here now", variant: disfluent}
+  - {text: "okay like we've reached the um the toll", variant: disfluent}
+  - {text: "uh the toll guy is you know waiting", variant: disfluent}
+  - {text: "so um i have to pay the uh toll here", variant: disfluent}
+
+# seed 4 (fragment): window down
+"4":
+  - {text: "lower the window", variant: plain}
+  - {text: "glass down", variant: plain}
+  - {text: "window open", variant: plain}
+  - {text: "drop my window", variant: plain}
+  - {text: "roll it down", variant: plain}
+  - {text: "down with the window", variant: plain}
+  - {text: "open my side", variant: plain}
+  - {text: "windows down please", variant: plain}
+  - {text: "crack the window", variant: plain}
+  - {text: "lower my glass", variant: plain}
+  - {text: "roll down please", variant: plain}
+  - {text: "open the glass", variant: plain}
+  - {text: "bring it down", variant: plain}
+  - {text: "window all the way down", variant: plain}
+  - {text: "my side glass down", variant: plain}
+  - {text: "open up a bit", variant: plain}
+  - {text: "lower it", variant: plain}
+  - {text: "drop the glass", variant: plain}
+  - {text: "window down a bit", variant: plain}
+  - {text: "open the window now", variant: plain}
+  - {text: "open it up", variant: plain}
+  - {text: "roll my window down", variant: plain}
+  - {text: "open up my window", variant: plain}
+  - {text: "wind it down", variant: plain}
+  - {text: "sheesha neeche karo", variant: hinglish}
+  - {text: "window kholo", variant: hinglish}
+  - {text: "khidki neeche", variant: hinglish}
+  - {text: "glass neeche kar do yaar", variant: hinglish}
+  - {text: "window thoda kholo na", variant: hinglish}
+  - {text: "meri window down karo", variant: hinglish}
+  - {text: "window kelage maadu", variant: kannada_english}
+  - {text: "glass kelage haaku", variant: kannada_english}
+  - {text: "window tegi", variant: kannada_english}
+  - {text: "swalpa window open maadi", variant: kannada_english}
+  - {text: "uh window um down", variant: disfluent}
+  - {text: "the window like the uh the window down", variant: disfluent}
+  - {text: "um glass no the window down", variant: disfluent}
+  - {text: "er roll it you know down", variant: disfluent}
+  - {text: "window up no no down", variant: disfluent}
+  - {text: "so uh open the um window", variant: disfluent}

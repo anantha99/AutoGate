@@ -1,0 +1,176 @@
+# Paraphrases of the plan_day_itinerary seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): plan my stops for today
+"0":
+  - {text: "work out my stops for the day", variant: plain}
+  - {text: "sort out today's route through all my errands", variant: plain}
+  - {text: "make me a plan for today's stops", variant: plain}
+  - {text: "put together an itinerary for today", variant: plain}
+  - {text: "figure out where i should go today and in what order", variant: plain}
+  - {text: "line up my errands for today", variant: plain}
+  - {text: "organise my stops for the rest of the day", variant: plain}
+  - {text: "plan out today's errands for me", variant: plain}
+  - {text: "sequence today's stops for me", variant: plain}
+  - {text: "map out my day", variant: plain}
+  - {text: "arrange today's stops in a sensible order", variant: plain}
+  - {text: "schedule all my stops today", variant: plain}
+  - {text: "give me a plan for the stops i have today", variant: plain}
+  - {text: "set up my route for today's errands", variant: plain}
+  - {text: "chart out the day's stops", variant: plain}
+  - {text: "create a plan covering all my stops today", variant: plain}
+  - {text: "help me plan the day's errands", variant: plain}
+  - {text: "order my errands for today", variant: plain}
+  - {text: "draw up a plan for today", variant: plain}
+  - {text: "work out the order of my stops today", variant: plain}
+  - {text: "prepare a day plan with all my stops", variant: plain}
+  - {text: "lay out a route covering today's errands", variant: plain}
+  - {text: "plan the whole day's running around", variant: plain}
+  - {text: "come up with today's plan for my stops", variant: plain}
+  - {text: "aaj ke saare stops plan kar do", variant: hinglish}
+  - {text: "aaj ka plan bana do kahan kahan jaana hai", variant: hinglish}
+  - {text: "mere aaj ke errands ka order set karo", variant: hinglish}
+  - {text: "aaj ke kaam ka route plan karo", variant: hinglish}
+  - {text: "aaj ke stops ek ek karke plan karo", variant: hinglish}
+  - {text: "aaj ka poora din plan kar do", variant: hinglish}
+  - {text: "ivattina stops plan maadu", variant: kannada_english}
+  - {text: "ivattu yelli yelli hogbeku antha plan maadu", variant: kannada_english}
+  - {text: "ivattina errands order alli set maadu", variant: kannada_english}
+  - {text: "ivattina route plan maadi kodu", variant: kannada_english}
+  - {text: "uh plan out um all the stops i've got today", variant: disfluent}
+  - {text: "so like figure out the uh the running around i have today", variant: disfluent}
+  - {text: "plan tomorrow's no wait today's stops", variant: disfluent}
+  - {text: "er make a plan for um for today's errands", variant: disfluent}
+  - {text: "um put my stops for today in some kind of uh order", variant: disfluent}
+  - {text: "map out my day like uh all the errands", variant: disfluent}
+
+# seed 1 (question): what's the best order to do my errands today
+"1":
+  - {text: "which order should i do my errands in today?", variant: plain}
+  - {text: "how should i sequence today's errands", variant: plain}
+  - {text: "what's the smartest way to fit in all my errands today", variant: plain}
+  - {text: "how do i get through today's errands with the least driving?", variant: plain}
+  - {text: "where should i go first with all these errands today", variant: plain}
+  - {text: "can you find the quickest order for today's errands", variant: plain}
+  - {text: "which errand should i do first today", variant: plain}
+  - {text: "how do i cover all my errands today without going back and forth", variant: plain}
+  - {text: "what route makes sense for my errands today?", variant: plain}
+  - {text: "could you work out the best sequence for today's errands", variant: plain}
+  - {text: "is there a better order for my errands today", variant: plain}
+  - {text: "what order saves the most time for today's errands", variant: plain}
+  - {text: "what should i knock off first today and what later?", variant: plain}
+  - {text: "which stop comes first today", variant: plain}
+  - {text: "can you figure out the order of my errands for today", variant: plain}
+  - {text: "what's the most efficient way to do my errands today", variant: plain}
+  - {text: "would you sort my errands for today into a sensible order", variant: plain}
+  - {text: "how can i get all my errands done today quickly?", variant: plain}
+  - {text: "where do i start with today's errands", variant: plain}
+  - {text: "which sequence works best for today's jobs", variant: plain}
+  - {text: "any idea what order to do today's errands in", variant: plain}
+  - {text: "should i start with the nearest errand today or the farthest", variant: plain}
+  - {text: "what's a good order for running my errands today?", variant: plain}
+  - {text: "how would you order my errands for today", variant: plain}
+  - {text: "aaj ke errands kis order mein karoon?", variant: hinglish}
+  - {text: "pehle kahan jaaun aaj ke kaam ke liye", variant: hinglish}
+  - {text: "aaj ke kaam ka best order kya hai", variant: hinglish}
+  - {text: "kaunsa kaam pehle karoon aaj?", variant: hinglish}
+  - {text: "aaj ke saare errands ka sahi order kya hoga", variant: hinglish}
+  - {text: "aaj kaunse stop se shuru karoon", variant: hinglish}
+  - {text: "ivattina kelsa yav order alli maadli?", variant: kannada_english}
+  - {text: "modlu yelli hogli ivattu", variant: kannada_english}
+  - {text: "ivattina errands ge best order yaavdu", variant: kannada_english}
+  - {text: "yaava kelsa modlu maadbeku ivattu?", variant: kannada_english}
+  - {text: "uh so today's errands um what's the like best way to line them up", variant: disfluent}
+  - {text: "what's the best order for the uh no which errand comes first today", variant: disfluent}
+  - {text: "er i've got errands today how do i um arrange them?", variant: disfluent}
+  - {text: "where do i uh go first no wait what's the whole order for today", variant: disfluent}
+  - {text: "um which errand first which one uh last today?", variant: disfluent}
+  - {text: "like is there a smarter uh order for all my running around today", variant: disfluent}
+
+# seed 2 (outcome): i've got the bank tailor and pharmacy to cover today
+"2":
+  - {text: "i have to hit the bank the tailor and the pharmacy today", variant: plain}
+  - {text: "today it's the bank then the tailor and the chemist", variant: plain}
+  - {text: "bank tailor and medical shop all need doing today", variant: plain}
+  - {text: "i need to get to the bank the tailor and a pharmacy before evening", variant: plain}
+  - {text: "there's the bank the tailor and the pharmacy on my list", variant: plain}
+  - {text: "my list today is bank tailor and pharmacy", variant: plain}
+  - {text: "i've got three stops today bank tailor and chemist", variant: plain}
+  - {text: "it's a bank tailor pharmacy kind of day for me", variant: plain}
+  - {text: "i must visit the bank the tailor and the pharmacy before they close", variant: plain}
+  - {text: "today's errands are the bank the tailor and some medicines", variant: plain}
+  - {text: "i still need to do the bank the tailor and the chemist", variant: plain}
+  - {text: "somehow the bank tailor and chemist must all fit into today", variant: plain}
+  - {text: "bank work tailor pickup and medicines are all pending today", variant: plain}
+  - {text: "i've got a bunch of stops today the bank the tailor and the pharmacy", variant: plain}
+  - {text: "i need to squeeze in the bank the tailor and the pharmacy this afternoon", variant: plain}
+  - {text: "the tailor the bank and the pharmacy are all on today's list", variant: plain}
+  - {text: "i've got errands at the bank the tailor's and the pharmacy today", variant: plain}
+  - {text: "today i'm stuck with the bank the tailor and the chemist", variant: plain}
+  - {text: "there are three things to cover today bank tailor pharmacy", variant: plain}
+  - {text: "i have bank tailor and chemist runs to finish today", variant: plain}
+  - {text: "today means the bank the tailor and picking up medicines", variant: plain}
+  - {text: "i promised i'd finish bank tailor and chemist work before tonight", variant: plain}
+  - {text: "i can't skip the bank the tailor or the pharmacy today", variant: plain}
+  - {text: "bank tailor and pharmacy have to be done by tonight", variant: plain}
+  - {text: "aaj bank tailor aur pharmacy jaana hai", variant: hinglish}
+  - {text: "aaj ke list mein bank tailor aur chemist hai", variant: hinglish}
+  - {text: "bank tailor aur medical store sab aaj hi karna hai", variant: hinglish}
+  - {text: "mujhe aaj bank bhi jaana hai tailor bhi aur dawai bhi leni hai", variant: hinglish}
+  - {text: "aaj teen kaam hain bank tailor aur pharmacy", variant: hinglish}
+  - {text: "tailor se kapde lene hain bank ka kaam hai aur dawai bhi aaj", variant: hinglish}
+  - {text: "ivattu bank tailor mattu pharmacy ge hogbeku", variant: kannada_english}
+  - {text: "ivattu bank tailor medical shop ella cover maadbeku", variant: kannada_english}
+  - {text: "nanage ivattu bank tailor pharmacy kelsa ide", variant: kannada_english}
+  - {text: "bank tailor mattu chemist ella ivatte mugibeku", variant: kannada_english}
+  - {text: "um so first there's the bank then uh the tailor oh and medicines today", variant: disfluent}
+  - {text: "so there's the bank the uh tailor and um what else the pharmacy", variant: disfluent}
+  - {text: "i need to do the bank no wait the tailor first and the pharmacy today", variant: disfluent}
+  - {text: "i've got like three things the uh bank tailor and er medical shop today", variant: disfluent}
+  - {text: "the pharmacy er the bank and uh what was it the tailor all today", variant: disfluent}
+  - {text: "bank tailor pharmacy uh all of that today you know", variant: disfluent}
+
+# seed 3 (indirect): we only have today in {city} and want to see everything
+"3":
+  - {text: "it's our one day in {city} and we want to cover all the sights", variant: plain}
+  - {text: "we're in {city} just for today and don't want to miss anything", variant: plain}
+  - {text: "we've got a single day in {city} and a long list of places", variant: plain}
+  - {text: "this is our only day in {city} so we want to see it all", variant: plain}
+  - {text: "today's all we get in {city} and everyone wants to go everywhere", variant: plain}
+  - {text: "we leave {city} tomorrow morning and haven't seen a thing yet", variant: plain}
+  - {text: "just one day in {city} and so much to see", variant: plain}
+  - {text: "the family wants to see all of {city} before we leave tonight", variant: plain}
+  - {text: "we fly out of {city} tonight and want to squeeze in every sight", variant: plain}
+  - {text: "only today in {city} and the kids want to visit every famous spot", variant: plain}
+  - {text: "we're passing through {city} today and want to see the main places", variant: plain}
+  - {text: "{city} for one day and we want the full experience", variant: plain}
+  - {text: "our {city} trip is just today and we want to do all of it", variant: plain}
+  - {text: "we have a few hours in {city} and want to see as much as we can", variant: plain}
+  - {text: "it's our last day in {city} and we've barely seen anything", variant: plain}
+  - {text: "we came to {city} for the day and want to catch all the highlights", variant: plain}
+  - {text: "everyone's keen to see the whole of {city} today", variant: plain}
+  - {text: "today is the only chance we get to explore {city}", variant: plain}
+  - {text: "we're in {city} till tonight and want to see every landmark", variant: plain}
+  - {text: "my parents want to see all of {city} in one day", variant: plain}
+  - {text: "we've got one day to see {city} properly", variant: plain}
+  - {text: "we can't leave {city} without seeing the big sights and today's it", variant: plain}
+  - {text: "{city} today only and we want to tick off every must see place", variant: plain}
+  - {text: "we're only here in {city} today and want to make the most of it", variant: plain}
+  - {text: "aaj hi {city} mein hain aur sab kuch dekhna hai", variant: hinglish}
+  - {text: "{city} mein sirf ek din hai sab ghoomna hai", variant: hinglish}
+  - {text: "kal {city} se nikal rahe hain aaj sab dekhna hai", variant: hinglish}
+  - {text: "{city} ka ek hi din hai aur bahut kuch dekhna hai", variant: hinglish}
+  - {text: "aaj ka din hi hai {city} mein poora ghoomna hai", variant: hinglish}
+  - {text: "bachche {city} ki saari famous jagah aaj hi dekhna chahte hain", variant: hinglish}
+  - {text: "ivattu maatra {city} alli idivi ella nodbeku", variant: kannada_english}
+  - {text: "{city} alli ondu dina ide ella jaaga nodbeku", variant: kannada_english}
+  - {text: "naale {city} bidthivi ivattu ella nodbeku", variant: kannada_english}
+  - {text: "{city} alli ivatte kone dina ella nodbeku", variant: kannada_english}
+  - {text: "so um it's our one day in {city} and we want to like see it all", variant: disfluent}
+  - {text: "um so {city} is like a one day thing for us and we want uh all of it", variant: disfluent}
+  - {text: "we leave {city} tomorrow no tonight and haven't seen anything", variant: disfluent}
+  - {text: "uh only today in {city} and the kids want er everything", variant: disfluent}
+  - {text: "we've got like one day in um {city} and so much to see you know", variant: disfluent}
+  - {text: "we fly out no we drive out of {city} tonight and uh want to see the sights", variant: disfluent}

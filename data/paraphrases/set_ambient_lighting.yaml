@@ -1,0 +1,176 @@
+# Paraphrases of the set_ambient_lighting seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): change the mood lighting to {color}
+"0":
+  - {text: "make the ambient lights {color}", variant: plain}
+  - {text: "set the cabin lighting to {color}", variant: plain}
+  - {text: "switch the mood lights over to {color}", variant: plain}
+  - {text: "go {color} on the interior lights", variant: plain}
+  - {text: "turn the ambient light {color}", variant: plain}
+  - {text: "{color} mood lighting please", variant: plain}
+  - {text: "put the inside lights on {color}", variant: plain}
+  - {text: "give me {color} ambient lighting", variant: plain}
+  - {text: "change the interior glow to {color}", variant: plain}
+  - {text: "{color} for the cabin lights", variant: plain}
+  - {text: "make the mood light {color}", variant: plain}
+  - {text: "set the light strip to {color}", variant: plain}
+  - {text: "do the ambient in {color}", variant: plain}
+  - {text: "turn the door strip lights {color}", variant: plain}
+  - {text: "switch ambient to {color}", variant: plain}
+  - {text: "let's have {color} mood lights", variant: plain}
+  - {text: "light up the cabin in {color}", variant: plain}
+  - {text: "change the ambience to {color}", variant: plain}
+  - {text: "ambient lighting in {color} now", variant: plain}
+  - {text: "{color} colour for the ambient lights", variant: plain}
+  - {text: "cabin glow {color} please", variant: plain}
+  - {text: "make the interior {color}", variant: plain}
+  - {text: "switch the lighting colour to {color}", variant: plain}
+  - {text: "use {color} for mood lighting", variant: plain}
+  - {text: "ambient light {color} kar do", variant: hinglish}
+  - {text: "mood lighting {color} karo", variant: hinglish}
+  - {text: "andar ki lights {color} kar do yaar", variant: hinglish}
+  - {text: "{color} wali ambient light lagao", variant: hinglish}
+  - {text: "cabin ki light {color} mein badlo", variant: hinglish}
+  - {text: "{color} colour ki mood light chalu karo", variant: hinglish}
+  - {text: "ambient light {color} maadu", variant: kannada_english}
+  - {text: "mood light {color} ge change maadi", variant: kannada_english}
+  - {text: "{color} light haaku", variant: kannada_english}
+  - {text: "cabin light {color} maadi guru", variant: kannada_english}
+  - {text: "um make the mood lights like {color}", variant: disfluent}
+  - {text: "set the ambient to uh {color} no {color}", variant: disfluent}
+  - {text: "the lights er the door lights {color}", variant: disfluent}
+  - {text: "er the lighting um change it to {color}", variant: disfluent}
+  - {text: "uh {color} for the uh ambient you know", variant: disfluent}
+  - {text: "so turn the um the inside lights {color}", variant: disfluent}
+
+# seed 1 (outcome): the cabin lights are too bright at night
+"1":
+  - {text: "the interior glow is hurting my eyes", variant: plain}
+  - {text: "these inside lights are way too strong for night driving", variant: plain}
+  - {text: "there's too much light in the car", variant: plain}
+  - {text: "the ambient light is glaring at me", variant: plain}
+  - {text: "i'm getting dazzled by the lights inside", variant: plain}
+  - {text: "it's too bright in here for this hour", variant: plain}
+  - {text: "the glow from the door strips is distracting", variant: plain}
+  - {text: "it feels like a disco inside the cabin", variant: plain}
+  - {text: "these lights are so harsh at this time of night", variant: plain}
+  - {text: "the road outside is hard to make out with the interior lit up like this", variant: plain}
+  - {text: "the mood lights are blinding me", variant: plain}
+  - {text: "all this light inside is reflecting on the glass", variant: plain}
+  - {text: "my eyes hurt from the cabin glow", variant: plain}
+  - {text: "it's too lit up inside for night time", variant: plain}
+  - {text: "the lighting in here is too much at night", variant: plain}
+  - {text: "the kids can't sleep with the lights this bright", variant: plain}
+  - {text: "the ambient strip is way too intense", variant: plain}
+  - {text: "it looks like a showroom in here with all this glow", variant: plain}
+  - {text: "the glare inside is way too much", variant: plain}
+  - {text: "i'm squinting because of the interior lights", variant: plain}
+  - {text: "too much brightness inside this late", variant: plain}
+  - {text: "the lights inside are making it hard to see out", variant: plain}
+  - {text: "this interior lighting is bothering me at night", variant: plain}
+  - {text: "the cabin is lit up like a mall", variant: plain}
+  - {text: "andar ki lights bahut tez hai raat ko", variant: hinglish}
+  - {text: "cabin mein itni roshni hai aankh chubh rahi hai", variant: hinglish}
+  - {text: "raat ko ye ambient light bahut bright hai yaar", variant: hinglish}
+  - {text: "lights ki chamak se road nahi dikh raha", variant: hinglish}
+  - {text: "andar bahut ujala hai abhi", variant: hinglish}
+  - {text: "ye mood light aankhon mein lag rahi hai", variant: hinglish}
+  - {text: "cabin light tumba bright ide", variant: kannada_english}
+  - {text: "raatri light jaasti aagide guru", variant: kannada_english}
+  - {text: "olage tumba belaku ide", variant: kannada_english}
+  - {text: "kannige light tumba chuchta ide", variant: kannada_english}
+  - {text: "um the the lights inside are like really bright", variant: disfluent}
+  - {text: "uh it's so bright in here at night you know", variant: disfluent}
+  - {text: "the uh cabin it's um way too bright", variant: disfluent}
+  - {text: "er the ambient no the whole cabin is too glary", variant: disfluent}
+  - {text: "so like my eyes the lights are um too much", variant: disfluent}
+  - {text: "you know it's uh too lit up in here", variant: disfluent}
+
+# seed 2 (question): can you dim the ambient lights
+"2":
+  - {text: "could you lower the mood lighting?", variant: plain}
+  - {text: "will you tone down the cabin lights", variant: plain}
+  - {text: "can the interior lights be softer?", variant: plain}
+  - {text: "would you reduce the ambient brightness", variant: plain}
+  - {text: "mind dimming the mood lights", variant: plain}
+  - {text: "can we tone the ambient glow down?", variant: plain}
+  - {text: "is it possible to make the cabin lighting dimmer?", variant: plain}
+  - {text: "could you bring the interior glow down slightly", variant: plain}
+  - {text: "can you make the ambient lights less bright", variant: plain}
+  - {text: "how about lowering the lights inside?", variant: plain}
+  - {text: "will you soften the ambient lighting", variant: plain}
+  - {text: "would you mind turning down the mood lights?", variant: plain}
+  - {text: "can we have the lights inside a bit lower", variant: plain}
+  - {text: "could the mood light be less intense?", variant: plain}
+  - {text: "is there a way to dim the cabin glow", variant: plain}
+  - {text: "can you reduce the interior lighting a bit", variant: plain}
+  - {text: "would you drop the brightness of the ambient lights?", variant: plain}
+  - {text: "shall we dim the lights in the cabin", variant: plain}
+  - {text: "can the ambient go down a notch?", variant: plain}
+  - {text: "could you ease off the glow inside", variant: plain}
+  - {text: "any chance of softer mood lights", variant: plain}
+  - {text: "will you lower the brightness inside?", variant: plain}
+  - {text: "can you take the ambient light level down", variant: plain}
+  - {text: "would you make the interior lights less harsh?", variant: plain}
+  - {text: "ambient light thodi dim karoge?", variant: hinglish}
+  - {text: "cabin ki lights kam kar sakte ho kya", variant: hinglish}
+  - {text: "mood light thodi halki karoge yaar", variant: hinglish}
+  - {text: "kya andar ki roshni kam ho sakti hai", variant: hinglish}
+  - {text: "lights dheemi kar doge?", variant: hinglish}
+  - {text: "ambient ki brightness kam karoge kya", variant: hinglish}
+  - {text: "ambient light swalpa dim maadtira?", variant: kannada_english}
+  - {text: "cabin light kammi maadbahuda", variant: kannada_english}
+  - {text: "mood light swalpa kammi maadoke aagutta?", variant: kannada_english}
+  - {text: "olage belaku kammi maadtira guru", variant: kannada_english}
+  - {text: "could you um make the uh ambient like dimmer", variant: disfluent}
+  - {text: "can you can you lower the mood lights", variant: disfluent}
+  - {text: "would you brighten no dim the cabin lights sorry", variant: disfluent}
+  - {text: "um is it possible to uh dim the lights", variant: disfluent}
+  - {text: "so could we like turn the ambient glow down", variant: disfluent}
+  - {text: "er will you soften the um the interior lights", variant: disfluent}
+
+# seed 3 (fragment): ambient light {color}
+"3":
+  - {text: "{color} ambient please", variant: plain}
+  - {text: "mood light {color}", variant: plain}
+  - {text: "{color} cabin lights", variant: plain}
+  - {text: "interior lighting {color}", variant: plain}
+  - {text: "{color} glow", variant: plain}
+  - {text: "{color} mood lighting", variant: plain}
+  - {text: "lights {color} please", variant: plain}
+  - {text: "{color} inside", variant: plain}
+  - {text: "cabin in {color}", variant: plain}
+  - {text: "{color} strip lights", variant: plain}
+  - {text: "ambient lighting to {color} now", variant: plain}
+  - {text: "{color} colour lights", variant: plain}
+  - {text: "mood lights in {color}", variant: plain}
+  - {text: "{color} for the cabin", variant: plain}
+  - {text: "the ambient in {color}", variant: plain}
+  - {text: "interior {color} please", variant: plain}
+  - {text: "{color} lighting in the car", variant: plain}
+  - {text: "{color} ambience", variant: plain}
+  - {text: "door lights {color}", variant: plain}
+  - {text: "{color} on the ambient strip", variant: plain}
+  - {text: "{color} tone for ambient lights", variant: plain}
+  - {text: "{color} only", variant: plain}
+  - {text: "ambient shade {color}", variant: plain}
+  - {text: "{color} lights on", variant: plain}
+  - {text: "ambient {color} karo", variant: hinglish}
+  - {text: "{color} light lagao", variant: hinglish}
+  - {text: "{color} rang ki mood lighting", variant: hinglish}
+  - {text: "andar {color} roshni", variant: hinglish}
+  - {text: "{color} ambient chalu", variant: hinglish}
+  - {text: "cabin light {color} kar do", variant: hinglish}
+  - {text: "ambient {color} maadu", variant: kannada_english}
+  - {text: "{color} belaku haaku", variant: kannada_english}
+  - {text: "mood lighting {color} ge maadi", variant: kannada_english}
+  - {text: "cabin olage {color} belaku", variant: kannada_english}
+  - {text: "the ambient um {color} please", variant: disfluent}
+  - {text: "um mood light like {color}", variant: disfluent}
+  - {text: "{color} no sorry {color} lights", variant: disfluent}
+  - {text: "er ambient uh lighting {color}", variant: disfluent}
+  - {text: "so the uh the {color} glow", variant: disfluent}
+  - {text: "like {color} you know for the lights", variant: disfluent}

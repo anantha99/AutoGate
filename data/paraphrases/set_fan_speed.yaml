@@ -1,0 +1,219 @@
+# Paraphrases of the set_fan_speed seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): set the fan to {fan_level}
+"0":
+  - {text: "put the fan on {fan_level}", variant: plain}
+  - {text: "change the fan speed to {fan_level}", variant: plain}
+  - {text: "make the blower {fan_level}", variant: plain}
+  - {text: "switch the blower to {fan_level}", variant: plain}
+  - {text: "keep the fan at {fan_level}", variant: plain}
+  - {text: "run the blower at {fan_level}", variant: plain}
+  - {text: "adjust the airflow to {fan_level}", variant: plain}
+  - {text: "go to {fan_level} on the fan", variant: plain}
+  - {text: "blower {fan_level} please", variant: plain}
+  - {text: "shift the fan setting over to {fan_level}", variant: plain}
+  - {text: "put the air on {fan_level} for the rear passengers", variant: plain}
+  - {text: "fan on {fan_level} for now", variant: plain}
+  - {text: "set the blower speed at {fan_level}", variant: plain}
+  - {text: "make the fan run {fan_level}", variant: plain}
+  - {text: "keep the air flow on {fan_level} till we reach", variant: plain}
+  - {text: "change blower to {fan_level}", variant: plain}
+  - {text: "do one thing put the fan speed on {fan_level}", variant: plain}
+  - {text: "select {fan_level} for the fan speed", variant: plain}
+  - {text: "{fan_level} fan speed please", variant: plain}
+  - {text: "run the vents on {fan_level}", variant: plain}
+  - {text: "give me {fan_level} on the fan", variant: plain}
+  - {text: "give the blower {fan_level}", variant: plain}
+  - {text: "run the fan on {fan_level} for a while", variant: plain}
+  - {text: "set airflow to {fan_level} on the front vents", variant: plain}
+  - {text: "fan {fan_level} pe kar do", variant: hinglish}
+  - {text: "blower ko {fan_level} pe rakho", variant: hinglish}
+  - {text: "pankha {fan_level} karo", variant: hinglish}
+  - {text: "hawa {fan_level} pe set karo", variant: hinglish}
+  - {text: "{fan_level} pe chala do fan ko", variant: hinglish}
+  - {text: "blower ki speed {fan_level} rakhna", variant: hinglish}
+  - {text: "fan {fan_level} ge haaku", variant: kannada_english}
+  - {text: "blower {fan_level} ge maadi", variant: kannada_english}
+  - {text: "fan speed {fan_level} maadu guru", variant: kannada_english}
+  - {text: "gaali {fan_level} ge idu", variant: kannada_english}
+  - {text: "uh the the blower um run it on {fan_level}", variant: disfluent}
+  - {text: "fan to um like {fan_level} please", variant: disfluent}
+  - {text: "make the temperature no sorry the fan {fan_level}", variant: disfluent}
+  - {text: "um blower er {fan_level}", variant: disfluent}
+  - {text: "so uh you know change the fan speed to {fan_level}", variant: disfluent}
+  - {text: "uh {fan_level} no wait {fan_level} on the fan yeah", variant: disfluent}
+
+# seed 1 (outcome): i can barely feel any air from the vents
+"1":
+  - {text: "hardly any air is coming out of the vents", variant: plain}
+  - {text: "the airflow is really weak", variant: plain}
+  - {text: "i'm not getting any breeze on my side", variant: plain}
+  - {text: "the vents are barely blowing", variant: plain}
+  - {text: "there's almost no air reaching the back row", variant: plain}
+  - {text: "the air is just trickling out", variant: plain}
+  - {text: "i can't feel the air at all from here", variant: plain}
+  - {text: "the blower seems too soft", variant: plain}
+  - {text: "nothing much is coming from these vents", variant: plain}
+  - {text: "air flow is very low at the moment", variant: plain}
+  - {text: "the cool air isn't reaching me back here", variant: plain}
+  - {text: "my face vent is almost dead", variant: plain}
+  - {text: "there's barely a whisper of air from the dash", variant: plain}
+  - {text: "i have to put my hand right on the vent to feel anything", variant: plain}
+  - {text: "the air coming out is so weak", variant: plain}
+  - {text: "so little air on the driver side", variant: plain}
+  - {text: "no breeze reaching the rear at all", variant: plain}
+  - {text: "the fan is hardly doing anything", variant: plain}
+  - {text: "it feels like the air isn't moving in here", variant: plain}
+  - {text: "the vents are just breathing not blowing", variant: plain}
+  - {text: "barely any draft from the front vents", variant: plain}
+  - {text: "i'm getting very weak air from the dashboard", variant: plain}
+  - {text: "the back vents are giving almost nothing", variant: plain}
+  - {text: "there's not enough air flow for four people", variant: plain}
+  - {text: "vent se hawa hi nahi aa rahi", variant: hinglish}
+  - {text: "hawa bahut kam aa rahi hai yaar", variant: hinglish}
+  - {text: "mujhe bilkul hawa nahi lag rahi", variant: hinglish}
+  - {text: "peeche tak hawa nahi pahunch rahi", variant: hinglish}
+  - {text: "ac ki hawa bahut dheemi hai", variant: hinglish}
+  - {text: "vents se thodi si bhi air feel nahi ho rahi", variant: hinglish}
+  - {text: "vent inda gaali barta illa", variant: kannada_english}
+  - {text: "swalpa kooda gaali gottagtilla", variant: kannada_english}
+  - {text: "hinde gaali baruthane illa guru", variant: kannada_english}
+  - {text: "air tumba kammi barta ide", variant: kannada_english}
+  - {text: "i can uh i can hardly feel the air", variant: disfluent}
+  - {text: "um there's like no air coming out of the the vents", variant: disfluent}
+  - {text: "the vents are uh you know barely blowing anything", variant: disfluent}
+  - {text: "there's too much no sorry too little air coming out", variant: disfluent}
+  - {text: "er the air flow is um really weak", variant: disfluent}
+  - {text: "so i'm not feeling like any air from the er dashboard", variant: disfluent}
+
+# seed 2 (question): can you turn the blower down a bit
+"2":
+  - {text: "could you lower the fan speed a little", variant: plain}
+  - {text: "can we reduce the blower?", variant: plain}
+  - {text: "would you bring the fan down a notch", variant: plain}
+  - {text: "can the fan go a bit slower?", variant: plain}
+  - {text: "mind easing off the blower a little", variant: plain}
+  - {text: "could you slow the fan down slightly?", variant: plain}
+  - {text: "will you lower the air flow a touch", variant: plain}
+  - {text: "can i get the fan a bit lower", variant: plain}
+  - {text: "is it possible to make the blower softer", variant: plain}
+  - {text: "could we drop the fan by one level?", variant: plain}
+  - {text: "can you dial the blower back a little", variant: plain}
+  - {text: "would it be ok to reduce the fan a bit", variant: plain}
+  - {text: "how about taking the fan speed down one step?", variant: plain}
+  - {text: "can you make the air blow less hard", variant: plain}
+  - {text: "could the blower be a little gentler?", variant: plain}
+  - {text: "can you tone the fan down slightly", variant: plain}
+  - {text: "would you reduce the blower speed please", variant: plain}
+  - {text: "do you mind lowering the fan", variant: plain}
+  - {text: "can you soften the airflow a bit", variant: plain}
+  - {text: "could you knock the blower down one notch?", variant: plain}
+  - {text: "shall we take the fan down a little", variant: plain}
+  - {text: "can the vents blow a bit less", variant: plain}
+  - {text: "could you put the fan on a lower setting?", variant: plain}
+  - {text: "will you cut the fan speed a little", variant: plain}
+  - {text: "blower thoda kam karoge?", variant: hinglish}
+  - {text: "fan ki speed thodi kam kar sakte ho", variant: hinglish}
+  - {text: "hawa thodi dheere kar doge kya", variant: hinglish}
+  - {text: "kya fan thoda slow ho sakta hai?", variant: hinglish}
+  - {text: "blower thoda neeche kar sakte ho kya", variant: hinglish}
+  - {text: "fan thoda halka kar doge?", variant: hinglish}
+  - {text: "blower swalpa kammi maadtira?", variant: kannada_english}
+  - {text: "fan swalpa slow maadbahuda", variant: kannada_english}
+  - {text: "gaali swalpa kammi maadoke aagutta", variant: kannada_english}
+  - {text: "fan speed swalpa kelage maadtiya?", variant: kannada_english}
+  - {text: "can you um the blower can you bring it down", variant: disfluent}
+  - {text: "er could you um bring down the like fan a little", variant: disfluent}
+  - {text: "would you make the fan um faster no slower a bit slower", variant: disfluent}
+  - {text: "uh could we you know reduce the blower speed", variant: disfluent}
+  - {text: "is it um possible to slow the the fan down", variant: disfluent}
+  - {text: "so can you like ease off the blower a little?", variant: disfluent}
+
+# seed 3 (indirect): my mother says the air is hitting her face too hard
+"3":
+  - {text: "amma is saying the air is blasting right in her face", variant: plain}
+  - {text: "my mom keeps complaining the draft is too strong on her", variant: plain}
+  - {text: "mummy says the blower is too harsh on her eyes", variant: plain}
+  - {text: "my mother in law says the wind from the vent is too much", variant: plain}
+  - {text: "my aunt says her eyes are drying out from all the air", variant: plain}
+  - {text: "grandma is covering her face because the air is too strong", variant: plain}
+  - {text: "my mom says the vents are blowing way too hard at her", variant: plain}
+  - {text: "amma just told me the air is too forceful for her", variant: plain}
+  - {text: "my mother is getting a headache from the air on her face", variant: plain}
+  - {text: "mom says she feels like she's sitting in a storm", variant: plain}
+  - {text: "my mother keeps pushing the vent away from her face", variant: plain}
+  - {text: "my grandmother says the breeze is hitting her too much", variant: plain}
+  - {text: "my mother says her hair is flying everywhere from the air", variant: plain}
+  - {text: "mom is saying it's too windy on her side", variant: plain}
+  - {text: "my mother finds the air too strong on her face", variant: plain}
+  - {text: "my mom says the air is too much and it's bothering her", variant: plain}
+  - {text: "my old mother says the blast of air is hurting her eyes", variant: plain}
+  - {text: "amma says she can't take the air hitting her so hard", variant: plain}
+  - {text: "my mom complains the ac air is too fierce", variant: plain}
+  - {text: "mom says the airflow is making her eyes water", variant: plain}
+  - {text: "my mother is shielding her face from the vent", variant: plain}
+  - {text: "mother says the fan is too strong for her", variant: plain}
+  - {text: "my mom says she's getting blown away by the vents", variant: plain}
+  - {text: "my mother in the front says the wind from the dash is too rough", variant: plain}
+  - {text: "mummy bol rahi hai hawa bahut tez lag rahi hai", variant: hinglish}
+  - {text: "amma keh rahi hai hawa seedha mooh pe aa rahi hai", variant: hinglish}
+  - {text: "mummy ko hawa bahut zor se lag rahi hai", variant: hinglish}
+  - {text: "mom bol rahi hai fan bahut tez hai unke liye", variant: hinglish}
+  - {text: "maa ki aankhon mein hawa lag rahi hai bahut", variant: hinglish}
+  - {text: "mummy ko chehre pe itni hawa pasand nahi", variant: hinglish}
+  - {text: "amma heltidare gaali mukhakke jaasti hodiyuttide", variant: kannada_english}
+  - {text: "amma ge gaali tumba jaasti aagtide", variant: kannada_english}
+  - {text: "amma face ge air tumba jor aagi baratte antha heltidare", variant: kannada_english}
+  - {text: "amma ge fan tumba strong antha", variant: kannada_english}
+  - {text: "my mom um says the vents are blowing like right at her face too strongly", variant: disfluent}
+  - {text: "um amma is saying the the air is too strong on her", variant: disfluent}
+  - {text: "my mom says it's too hot no sorry the air's too hard on her face", variant: disfluent}
+  - {text: "er my mother keeps saying you know the blower is too much", variant: disfluent}
+  - {text: "so mom is uh she's complaining the draft is really strong", variant: disfluent}
+  - {text: "my mother my mother says the air is uh blasting her eyes", variant: disfluent}
+
+# seed 4 (fragment): fan max
+"4":
+  - {text: "blower full power", variant: plain}
+  - {text: "blower on full", variant: plain}
+  - {text: "fan at maximum", variant: plain}
+  - {text: "highest fan speed", variant: plain}
+  - {text: "fan all the way up", variant: plain}
+  - {text: "full blast on the fan", variant: plain}
+  - {text: "maximum air", variant: plain}
+  - {text: "top speed fan please", variant: plain}
+  - {text: "blower max", variant: plain}
+  - {text: "strongest airflow", variant: plain}
+  - {text: "fan to the top", variant: plain}
+  - {text: "crank the fan", variant: plain}
+  - {text: "max air please", variant: plain}
+  - {text: "most air possible", variant: plain}
+  - {text: "fan level highest", variant: plain}
+  - {text: "all the air", variant: plain}
+  - {text: "blower flat out", variant: plain}
+  - {text: "full fan now", variant: plain}
+  - {text: "vents full on", variant: plain}
+  - {text: "fan speed maximum", variant: plain}
+  - {text: "airflow all the way", variant: plain}
+  - {text: "hardest fan setting", variant: plain}
+  - {text: "blast the fan", variant: plain}
+  - {text: "fan right up", variant: plain}
+  - {text: "fan full karo", variant: hinglish}
+  - {text: "blower poora tez", variant: hinglish}
+  - {text: "pankha full speed pe", variant: hinglish}
+  - {text: "hawa full kar do", variant: hinglish}
+  - {text: "ekdum full fan chalao", variant: hinglish}
+  - {text: "sabse tez fan", variant: hinglish}
+  - {text: "fan full maadi", variant: kannada_english}
+  - {text: "blower jaasti maadu", variant: kannada_english}
+  - {text: "fan maximum haaku", variant: kannada_english}
+  - {text: "gaali full kodu", variant: kannada_english}
+  - {text: "uh fan um max", variant: disfluent}
+  - {text: "fan low no wait max", variant: disfluent}
+  - {text: "the the blower full", variant: disfluent}
+  - {text: "um max on the er fan", variant: disfluent}
+  - {text: "blower like all the way up", variant: disfluent}
+  - {text: "so uh fan full blast", variant: disfluent}

@@ -1,0 +1,219 @@
+# Paraphrases of the navigate_home seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): take me home
+"0":
+  - {text: "head home", variant: plain}
+  - {text: "navigate home", variant: plain}
+  - {text: "get me back home", variant: plain}
+  - {text: "directions home", variant: plain}
+  - {text: "route me home", variant: plain}
+  - {text: "set home as the destination", variant: plain}
+  - {text: "start navigation to my house", variant: plain}
+  - {text: "guide me back to the house", variant: plain}
+  - {text: "let's go home", variant: plain}
+  - {text: "show me the way home", variant: plain}
+  - {text: "take me back to my place", variant: plain}
+  - {text: "plot a route to home", variant: plain}
+  - {text: "do one thing navigate to home", variant: plain}
+  - {text: "set the navigation for home", variant: plain}
+  - {text: "get directions to our house", variant: plain}
+  - {text: "take us back to the house", variant: plain}
+  - {text: "done for the day get me home", variant: plain}
+  - {text: "go to home", variant: plain}
+  - {text: "start the route home", variant: plain}
+  - {text: "put home on the map", variant: plain}
+  - {text: "lead the way to my house", variant: plain}
+  - {text: "pick home from saved places and go", variant: plain}
+  - {text: "just get me home", variant: plain}
+  - {text: "fire up the navigation for home", variant: plain}
+  - {text: "ghar le chalo", variant: hinglish}
+  - {text: "ghar ka rasta dikhao", variant: hinglish}
+  - {text: "ghar chalo yaar", variant: hinglish}
+  - {text: "ghar ke liye navigation lagao", variant: hinglish}
+  - {text: "mujhe ghar jaana hai rasta dikhao", variant: hinglish}
+  - {text: "seedha ghar chalo", variant: hinglish}
+  - {text: "mane ge hogona", variant: kannada_english}
+  - {text: "mane ge daari torisu", variant: kannada_english}
+  - {text: "mane ge navigation haaku", variant: kannada_english}
+  - {text: "mane ge kardkondu hogu", variant: kannada_english}
+  - {text: "home uh take me there um", variant: disfluent}
+  - {text: "take me to the office no home", variant: disfluent}
+  - {text: "so like just navigate home you know", variant: disfluent}
+  - {text: "um just get me uh back to my place", variant: disfluent}
+  - {text: "er get me back to the uh house", variant: disfluent}
+  - {text: "please just take me er the house i mean home", variant: disfluent}
+
+# seed 1 (outcome): i need to get home fast
+"1":
+  - {text: "i have to reach home quickly", variant: plain}
+  - {text: "i've got to be home asap", variant: plain}
+  - {text: "i'm in a hurry to get back home", variant: plain}
+  - {text: "i must get to my house right away", variant: plain}
+  - {text: "gotta rush home", variant: plain}
+  - {text: "i left the stove on at home and need to be there now", variant: plain}
+  - {text: "the kids are alone at home i need to be back soon", variant: plain}
+  - {text: "i'm really late getting home", variant: plain}
+  - {text: "i want to be home as soon as possible", variant: plain}
+  - {text: "something urgent came up at home", variant: plain}
+  - {text: "i need the quickest way to my house", variant: plain}
+  - {text: "i'm desperate to get back to the house", variant: plain}
+  - {text: "no time to waste i have to be home", variant: plain}
+  - {text: "my family's waiting at home and i'm running late", variant: plain}
+  - {text: "urgent i have to go home right now", variant: plain}
+  - {text: "i need to reach my place quick", variant: plain}
+  - {text: "the delivery guy is at my house and i'm not there", variant: plain}
+  - {text: "it's getting late and i must be home soon", variant: plain}
+  - {text: "i should've been home already", variant: plain}
+  - {text: "home is where i need to be and fast", variant: plain}
+  - {text: "i'm rushing back home", variant: plain}
+  - {text: "need to be at home in no time", variant: plain}
+  - {text: "i have to hurry back to my place", variant: plain}
+  - {text: "the fastest way home is what i need", variant: plain}
+  - {text: "mujhe jaldi ghar pahunchna hai", variant: hinglish}
+  - {text: "ghar jaldi jaana hai yaar", variant: hinglish}
+  - {text: "bahut late ho gaya ghar jaldi pahunchna hai", variant: hinglish}
+  - {text: "ghar pe emergency hai jaldi jaana hai", variant: hinglish}
+  - {text: "abhi ke abhi ghar jaana hai", variant: hinglish}
+  - {text: "ghar ekdum fast pahunchna padega", variant: hinglish}
+  - {text: "bega mane ge hogbeku", variant: kannada_english}
+  - {text: "mane ge jaldi talupbeku guru", variant: kannada_english}
+  - {text: "nange bega mane talupbeku", variant: kannada_english}
+  - {text: "mane ge fast hogbeku saar", variant: kannada_english}
+  - {text: "i really uh gotta be home like fast", variant: disfluent}
+  - {text: "i have to get uh get back to the house quick", variant: disfluent}
+  - {text: "um i gotta get to the office no sorry home and fast", variant: disfluent}
+  - {text: "so i uh need to be home you know quick", variant: disfluent}
+  - {text: "er it's urgent i uh need home asap", variant: disfluent}
+  - {text: "i gotta um rush back to the house", variant: disfluent}
+
+# seed 2 (question): can you start directions to work
+"2":
+  - {text: "could you navigate to the office?", variant: plain}
+  - {text: "can we head to work", variant: plain}
+  - {text: "would you route me to my office", variant: plain}
+  - {text: "can you take me to work?", variant: plain}
+  - {text: "will you set work as the destination", variant: plain}
+  - {text: "mind getting directions to the office", variant: plain}
+  - {text: "can you guide me to the workplace?", variant: plain}
+  - {text: "is it possible to start navigation to office", variant: plain}
+  - {text: "can i get the route to work?", variant: plain}
+  - {text: "how about directions to my office", variant: plain}
+  - {text: "can you put the office on the navigation", variant: plain}
+  - {text: "could you show me the way to work", variant: plain}
+  - {text: "can you plot a route to the office?", variant: plain}
+  - {text: "would you get me to work", variant: plain}
+  - {text: "can the navigation take me to my office", variant: plain}
+  - {text: "shall we start the route to work?", variant: plain}
+  - {text: "can you begin guidance to the office", variant: plain}
+  - {text: "any chance you can navigate me to work", variant: plain}
+  - {text: "could we go to the office now?", variant: plain}
+  - {text: "can you load up the way to work", variant: plain}
+  - {text: "would you bring up the office route?", variant: plain}
+  - {text: "can you find me the way to my workplace", variant: plain}
+  - {text: "can you direct me over to my office", variant: plain}
+  - {text: "could you pull up directions for the office?", variant: plain}
+  - {text: "office ka rasta dikha doge?", variant: hinglish}
+  - {text: "office ke liye navigation laga sakte ho", variant: hinglish}
+  - {text: "kaam pe le chaloge kya", variant: hinglish}
+  - {text: "office ka route laga doge kya", variant: hinglish}
+  - {text: "kya office ki directions de sakte ho?", variant: hinglish}
+  - {text: "office tak le chaloge", variant: hinglish}
+  - {text: "office ge daari torisbahuda?", variant: kannada_english}
+  - {text: "office ge navigation haaktiya", variant: kannada_english}
+  - {text: "kelsa ge route haakbahuda guru", variant: kannada_english}
+  - {text: "office ge kardkondu hogtiya?", variant: kannada_english}
+  - {text: "um can you get uh the directions going for work", variant: disfluent}
+  - {text: "can you take me home no to the office", variant: disfluent}
+  - {text: "could you could you navigate to work?", variant: disfluent}
+  - {text: "er can we like get the route to the office", variant: disfluent}
+  - {text: "so can you uh you know set up the route to work", variant: disfluent}
+  - {text: "can you start the start directions to um my office", variant: disfluent}
+
+# seed 3 (indirect): the meeting got cancelled so back to the office
+"3":
+  - {text: "no meeting after all so we're heading back to office", variant: plain}
+  - {text: "client called it off looks like it's office again", variant: plain}
+  - {text: "well that got scrapped guess we return to work", variant: plain}
+  - {text: "they postponed the meeting so i'm going back to the office", variant: plain}
+  - {text: "the call with the client is off we'll head to office", variant: plain}
+  - {text: "meeting's off back to the desk then", variant: plain}
+  - {text: "nothing happening here so office it is", variant: plain}
+  - {text: "they cancelled on me so it's back to work", variant: plain}
+  - {text: "the discussion got pushed so let's return to the office", variant: plain}
+  - {text: "wasted trip the meeting is off time to go back to work", variant: plain}
+  - {text: "since nobody showed up it's back to office", variant: plain}
+  - {text: "the vendor meeting fell through so office now", variant: plain}
+  - {text: "our meeting got called off so work it is", variant: plain}
+  - {text: "the boss cancelled the review so i'll head back to work", variant: plain}
+  - {text: "no point staying here the meeting's cancelled office again", variant: plain}
+  - {text: "they rescheduled so i might as well be at my desk", variant: plain}
+  - {text: "scrap that meeting office is where we're headed", variant: plain}
+  - {text: "meeting's been dropped guess i'll go back in to work", variant: plain}
+  - {text: "turns out the client isn't coming so back to office", variant: plain}
+  - {text: "they said no meeting today so i'm heading to work", variant: plain}
+  - {text: "the site visit got cancelled back to the office we go", variant: plain}
+  - {text: "everyone bailed on the meeting so work again", variant: plain}
+  - {text: "the presentation got postponed so the office it is", variant: plain}
+  - {text: "looks like the review is off so we head to the office", variant: plain}
+  - {text: "meeting cancel ho gayi office wapas chalte hain", variant: hinglish}
+  - {text: "meeting nahi hai ab office chalo", variant: hinglish}
+  - {text: "client ne mana kar diya ab office hi jaana hai", variant: hinglish}
+  - {text: "meeting postpone ho gayi wapas office", variant: hinglish}
+  - {text: "yaar meeting khatam ab kaam pe chalte hain", variant: hinglish}
+  - {text: "aaj meeting nahi hogi office ki taraf chalo", variant: hinglish}
+  - {text: "meeting cancel aaytu office ge hogona", variant: kannada_english}
+  - {text: "meeting illa vaapas office ge", variant: kannada_english}
+  - {text: "client banalla guru office ge hogona", variant: kannada_english}
+  - {text: "meeting mundhe hoytu kelsa ge vaapas", variant: kannada_english}
+  - {text: "uh so no meeting after all um the office then", variant: disfluent}
+  - {text: "the meeting is on no wait it's cancelled so back to the office", variant: disfluent}
+  - {text: "so like the meeting's off we go uh back to work", variant: disfluent}
+  - {text: "um they they cancelled the meeting so office", variant: disfluent}
+  - {text: "er meeting's cancelled you know back to the um office", variant: disfluent}
+  - {text: "the the client cancelled so uh back to work i guess", variant: disfluent}
+
+# seed 4 (fragment): home
+"4":
+  - {text: "home please", variant: plain}
+  - {text: "going home", variant: plain}
+  - {text: "home now", variant: plain}
+  - {text: "back home", variant: plain}
+  - {text: "home sweet home", variant: plain}
+  - {text: "to home", variant: plain}
+  - {text: "homeward", variant: plain}
+  - {text: "my house", variant: plain}
+  - {text: "house please", variant: plain}
+  - {text: "home quickly", variant: plain}
+  - {text: "straight home", variant: plain}
+  - {text: "home route", variant: plain}
+  - {text: "nav home", variant: plain}
+  - {text: "home destination", variant: plain}
+  - {text: "home directions", variant: plain}
+  - {text: "back to my house", variant: plain}
+  - {text: "home base", variant: plain}
+  - {text: "our place", variant: plain}
+  - {text: "home fastest way", variant: plain}
+  - {text: "home time", variant: plain}
+  - {text: "just home", variant: plain}
+  - {text: "saved home", variant: plain}
+  - {text: "home again", variant: plain}
+  - {text: "the house", variant: plain}
+  - {text: "ghar", variant: hinglish}
+  - {text: "ghar please", variant: hinglish}
+  - {text: "ghar wapas", variant: hinglish}
+  - {text: "apne ghar", variant: hinglish}
+  - {text: "bas ghar", variant: hinglish}
+  - {text: "ghar jaldi", variant: hinglish}
+  - {text: "mane", variant: kannada_english}
+  - {text: "mane ge", variant: kannada_english}
+  - {text: "namma mane", variant: kannada_english}
+  - {text: "mane kade", variant: kannada_english}
+  - {text: "uh home", variant: disfluent}
+  - {text: "home um i mean my place please", variant: disfluent}
+  - {text: "office no home", variant: disfluent}
+  - {text: "er just like home", variant: disfluent}
+  - {text: "um back to the uh house", variant: disfluent}
+  - {text: "home you know home", variant: disfluent}

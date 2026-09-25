@@ -1,0 +1,176 @@
+# Paraphrases of the book_restaurant seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): book a table for {number} at {place} at {time}
+"0":
+  - {text: "block {place} at {time} with room for {number}", variant: plain}
+  - {text: "{number} people {place} around {time} get it booked", variant: plain}
+  - {text: "{place} at {time} for {number} people go ahead and reserve it", variant: plain}
+  - {text: "make a reservation at {place} for {number} at {time}", variant: plain}
+  - {text: "grab {place} for {time} there'll be {number} of us eating", variant: plain}
+  - {text: "do one thing book {place} for {number} of us at {time}", variant: plain}
+  - {text: "reserve {number} seats at {place} for {time}", variant: plain}
+  - {text: "lock in {place} at {time} with space for {number}", variant: plain}
+  - {text: "put in a booking at {place} for {time} party of {number}", variant: plain}
+  - {text: "keep a spot for {number} at {place} from {time} onwards", variant: plain}
+  - {text: "{number} of us are coming to {place} at {time} sort out the table", variant: plain}
+  - {text: "set up a {time} booking at {place} for {number}", variant: plain}
+  - {text: "try and get {number} seats at {place} at {time}", variant: plain}
+  - {text: "confirm {number} covers at {place} for {time}", variant: plain}
+  - {text: "we're {number} people so book us in at {place} for {time}", variant: plain}
+  - {text: "get {place} to keep {number} seats ready by {time}", variant: plain}
+  - {text: "get me a {time} slot at {place} for {number} guests", variant: plain}
+  - {text: "arrange something at {place} say {time} for {number} people", variant: plain}
+  - {text: "just reserve {place} for {time} we'll be {number}", variant: plain}
+  - {text: "have {place} keep {number} places ready at {time}", variant: plain}
+  - {text: "fix {place} for {time} sharp {number} of us", variant: plain}
+  - {text: "table booking at {place} {time} for {number} pax do it", variant: plain}
+  - {text: "please book {number} places at {place} for {time}", variant: plain}
+  - {text: "sort out seating for {number} at {place} at {time}", variant: plain}
+  - {text: "{place} mein {number} logon ke liye {time} ka table book karo", variant: hinglish}
+  - {text: "{number} log hain {place} pe table reserve kar do {time} ke liye", variant: hinglish}
+  - {text: "{time} ko {place} mein {number} seats book kar do yaar", variant: hinglish}
+  - {text: "jaldi se {place} pe {number} ka table laga do {time} ka", variant: hinglish}
+  - {text: "{number} logon ki booking karo {place} mein {time} pe", variant: hinglish}
+  - {text: "{place} wala table chahiye {number} ke liye {time} ko book kar", variant: hinglish}
+  - {text: "{place} alli {number} jana ge {time} ge table book maadi", variant: kannada_english}
+  - {text: "{time} ge {place} nalli ondu table reserve maadu {number} jana", variant: kannada_english}
+  - {text: "{number} jana idivi guru {place} alli {time} ge seats haaku", variant: kannada_english}
+  - {text: "{place} booking maadi saar {number} people {time} ge", variant: kannada_english}
+  - {text: "uh book um {place} i mean a table there for {number} at like {time}", variant: disfluent}
+  - {text: "reserve {place} for er {number} no wait {number} people {time}", variant: disfluent}
+  - {text: "so um {place} yeah at {time} er {number} people reserve it", variant: disfluent}
+  - {text: "get us uh in somewhere no at {place} for {number} um by {time}", variant: disfluent}
+  - {text: "book {place} for {time} no sorry make it {time} for {number} of us", variant: disfluent}
+  - {text: "er {time} at {place} you know for {number} people book that", variant: disfluent}
+
+# seed 1 (question): can you get us a dinner reservation somewhere nice
+"1":
+  - {text: "could you book us a table somewhere good for dinner?", variant: plain}
+  - {text: "can we get a dinner booking at a nice place", variant: plain}
+  - {text: "would you reserve dinner for us at a decent restaurant", variant: plain}
+  - {text: "any chance you can book us a nice dinner spot?", variant: plain}
+  - {text: "can you find and book a good restaurant for tonight's dinner", variant: plain}
+  - {text: "mind getting us a dinner table at some fancy restaurant", variant: plain}
+  - {text: "will you sort out a nice dinner booking for us?", variant: plain}
+  - {text: "is it possible to reserve somewhere classy for dinner", variant: plain}
+  - {text: "can you book dinner at a place with good ambience?", variant: plain}
+  - {text: "how about booking us into a lovely restaurant for dinner", variant: plain}
+  - {text: "do you think you could get us seated somewhere nice tonight", variant: plain}
+  - {text: "could we have a proper dinner reservation made somewhere good", variant: plain}
+  - {text: "would you mind reserving a nice restaurant for our dinner?", variant: plain}
+  - {text: "any way you can lock in a good dinner place for us", variant: plain}
+  - {text: "can i get a dinner table booked somewhere decent", variant: plain}
+  - {text: "could you set up a reservation for dinner at a good restaurant?", variant: plain}
+  - {text: "will you book us a fine dining place for dinner", variant: plain}
+  - {text: "can you reserve us a table for dinner somewhere upscale", variant: plain}
+  - {text: "what about getting a table booked at a nice dinner place?", variant: plain}
+  - {text: "could you grab us a dinner reservation at a good spot", variant: plain}
+  - {text: "is there any way to get a reservation at a nice restaurant", variant: plain}
+  - {text: "you think you could book somewhere special for dinner?", variant: plain}
+  - {text: "would it be possible to get a good restaurant booked for dinner", variant: plain}
+  - {text: "can you manage a reservation at a nice place for us to eat", variant: plain}
+  - {text: "kisi acche restaurant mein dinner ke liye table book kar sakte ho?", variant: hinglish}
+  - {text: "dinner ke liye koi achhi jagah reserve kar doge", variant: hinglish}
+  - {text: "kya tum kahin badhiya sa dinner book kar sakte ho", variant: hinglish}
+  - {text: "koi mast restaurant mein dinner ki booking karoge?", variant: hinglish}
+  - {text: "ek acchi jagah pe dinner reservation mil sakta hai kya", variant: hinglish}
+  - {text: "hamare liye dinner ka table kahin nice jagah pe laga doge yaar", variant: hinglish}
+  - {text: "yaavdaadru olle restaurant alli dinner ge table book maadtira?", variant: kannada_english}
+  - {text: "dinner ge ondu olle jaaga reserve maadoke aagutta", variant: kannada_english}
+  - {text: "olle kade dinner reservation maadi kodtira saar", variant: kannada_english}
+  - {text: "guru nice dinner place book maadi kodoke aagutta?", variant: kannada_english}
+  - {text: "um could you uh get us a dinner booking somewhere nice", variant: disfluent}
+  - {text: "can you can you like reserve something nice for dinner", variant: disfluent}
+  - {text: "so er would you reserve lunch no dinner somewhere nice for us", variant: disfluent}
+  - {text: "uh any chance you could um you know book a nice restaurant for dinner", variant: disfluent}
+  - {text: "could we like get a table somewhere good for um dinner?", variant: disfluent}
+  - {text: "er can you find us wait book us a dinner table somewhere fancy", variant: disfluent}
+
+# seed 2 (indirect): it's our anniversary and i haven't booked dinner
+"2":
+  - {text: "today is our anniversary and i totally forgot to reserve a table", variant: plain}
+  - {text: "my wife will kill me we have no dinner booking for our anniversary", variant: plain}
+  - {text: "anniversary dinner tonight and nothing is booked yet", variant: plain}
+  - {text: "completely slipped my mind to get a table for our anniversary", variant: plain}
+  - {text: "we're celebrating our wedding anniversary and i never made a reservation", variant: plain}
+  - {text: "oh no our anniversary is today and dinner isn't sorted", variant: plain}
+  - {text: "i was supposed to arrange a nice anniversary dinner and i forgot", variant: plain}
+  - {text: "it's the big day for us and there's no restaurant lined up", variant: plain}
+  - {text: "she thinks i've planned a romantic evening out but nothing is reserved", variant: plain}
+  - {text: "ten years married today and still no table for tonight", variant: plain}
+  - {text: "our anniversary is tonight and i don't have a reservation anywhere", variant: plain}
+  - {text: "the wife is expecting a special dinner tonight and i've done nothing about it", variant: plain}
+  - {text: "anniversary today and i still haven't figured out where we're eating", variant: plain}
+  - {text: "wedding anniversary and not a single restaurant reserved", variant: plain}
+  - {text: "i promised a candlelight dinner for our anniversary but never booked it", variant: plain}
+  - {text: "we got married on this day and there's no dinner plan in place", variant: plain}
+  - {text: "man it's our anniversary and every good place is probably full already", variant: plain}
+  - {text: "so it's our anniversary today and the dinner is still not arranged", variant: plain}
+  - {text: "i messed up our anniversary night no restaurant booking at all", variant: plain}
+  - {text: "my husband just mentioned our anniversary and we have nowhere to eat tonight", variant: plain}
+  - {text: "tonight is our anniversary and i left the dinner booking too late", variant: plain}
+  - {text: "our anniversary snuck up on me and there's no table for us", variant: plain}
+  - {text: "we're supposed to go out for our anniversary but nothing's reserved", variant: plain}
+  - {text: "just realised it's our anniversary and no dinner has been planned", variant: plain}
+  - {text: "aaj hamari anniversary hai aur dinner book hi nahi kiya", variant: hinglish}
+  - {text: "yaar anniversary hai aaj aur koi table reserve nahi hai", variant: hinglish}
+  - {text: "anniversary dinner ka kuch plan nahi kiya maine abhi tak", variant: hinglish}
+  - {text: "biwi ke saath anniversary hai aur restaurant abhi tak book nahi hua", variant: hinglish}
+  - {text: "aaj shaadi ki saalgirah hai aur dinner ka intezaam nahi hua", variant: hinglish}
+  - {text: "bhool gaya anniversary ke liye jagah book karna", variant: hinglish}
+  - {text: "ivattu namma anniversary guru dinner book maadilla", variant: kannada_english}
+  - {text: "anniversary ivattu restaurant enu reserve aagilla", variant: kannada_english}
+  - {text: "namma anniversary dinner ge table reserve maadoke marethe", variant: kannada_english}
+  - {text: "ivattu anniversary aadre oota ge jaaga innu sikkilla", variant: kannada_english}
+  - {text: "so uh it's our anniversary and um i didn't book dinner", variant: disfluent}
+  - {text: "it's our it's our anniversary today and there's no table booked", variant: disfluent}
+  - {text: "it's her birthday no wait our anniversary and dinner isn't reserved", variant: disfluent}
+  - {text: "um i totally like forgot to sort dinner for our anniversary", variant: disfluent}
+  - {text: "er our anniversary is today and you know no reservation anywhere", variant: disfluent}
+  - {text: "uh the anniversary dinner i was supposed to um book it and i didn't", variant: disfluent}
+
+# seed 3 (fragment): table for {number} tonight
+"3":
+  - {text: "{number} people dinner tonight", variant: plain}
+  - {text: "tonight's booking for {number}", variant: plain}
+  - {text: "reservation for {number} this evening", variant: plain}
+  - {text: "a table tonight {number} people", variant: plain}
+  - {text: "dinner booking {number} tonight please", variant: plain}
+  - {text: "{number} seats tonight", variant: plain}
+  - {text: "tonight {number} of us eating out", variant: plain}
+  - {text: "table tonight party of {number}", variant: plain}
+  - {text: "{number} covers this evening", variant: plain}
+  - {text: "need somewhere for {number} tonight", variant: plain}
+  - {text: "reserve {number} for tonight", variant: plain}
+  - {text: "{number} pax tonight", variant: plain}
+  - {text: "evening table for {number}", variant: plain}
+  - {text: "tonight's dinner {number} people", variant: plain}
+  - {text: "seating for {number} tonight", variant: plain}
+  - {text: "{number} people one table", variant: plain}
+  - {text: "{number} heads for dinner", variant: plain}
+  - {text: "dinner reservation {number} people", variant: plain}
+  - {text: "tonight {number} persons restaurant", variant: plain}
+  - {text: "booking tonight {number} guests", variant: plain}
+  - {text: "{number} of us dinner reservation", variant: plain}
+  - {text: "restaurant tonight for {number}", variant: plain}
+  - {text: "tonight dinner table {number} pax", variant: plain}
+  - {text: "{number} diners this evening", variant: plain}
+  - {text: "aaj raat {number} logon ka table", variant: hinglish}
+  - {text: "{number} log aaj dinner", variant: hinglish}
+  - {text: "aaj ke liye {number} ka table", variant: hinglish}
+  - {text: "{number} logon ki booking aaj", variant: hinglish}
+  - {text: "raat ko table {number} log", variant: hinglish}
+  - {text: "aaj shaam {number} seats", variant: hinglish}
+  - {text: "ivattu raatri {number} jana ge table", variant: kannada_english}
+  - {text: "{number} jana ivattu dinner", variant: kannada_english}
+  - {text: "ivattu {number} seat beku", variant: kannada_english}
+  - {text: "table beku {number} jana", variant: kannada_english}
+  - {text: "um tonight a table for er {number}", variant: disfluent}
+  - {text: "uh dinner tonight for like {number} people", variant: disfluent}
+  - {text: "er reservation reservation um {number} tonight", variant: disfluent}
+  - {text: "tonight um {number} no wait {number} people dinner", variant: disfluent}
+  - {text: "so like a booking for {number} er tonight", variant: disfluent}
+  - {text: "um {number} seats uh this evening", variant: disfluent}

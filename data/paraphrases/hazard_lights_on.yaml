@@ -1,0 +1,176 @@
+# Paraphrases of the hazard_lights_on seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): put the hazards on
+"0":
+  - {text: "switch on the hazard lights", variant: plain}
+  - {text: "turn the hazards on", variant: plain}
+  - {text: "flash the hazards", variant: plain}
+  - {text: "hit the hazard button", variant: plain}
+  - {text: "get the hazard lights blinking", variant: plain}
+  - {text: "start the emergency flashers", variant: plain}
+  - {text: "put both indicators on", variant: plain}
+  - {text: "turn on the warning blinkers", variant: plain}
+  - {text: "give the hazard lights", variant: plain}
+  - {text: "set the hazards flashing", variant: plain}
+  - {text: "put on the blinkers on both sides", variant: plain}
+  - {text: "start the hazard blinkers", variant: plain}
+  - {text: "put the four way flashers on", variant: plain}
+  - {text: "turn on the emergency lights", variant: plain}
+  - {text: "get the hazards going", variant: plain}
+  - {text: "switch on the flashers for the cars behind", variant: plain}
+  - {text: "blink all four indicators", variant: plain}
+  - {text: "do one thing put the hazards", variant: plain}
+  - {text: "hazard lights on quickly", variant: plain}
+  - {text: "flick the hazards on", variant: plain}
+  - {text: "warn the traffic behind with the hazards", variant: plain}
+  - {text: "press the triangle button", variant: plain}
+  - {text: "on the hazards right now", variant: plain}
+  - {text: "make all the indicators blink together", variant: plain}
+  - {text: "hazard light on karo", variant: hinglish}
+  - {text: "parking light chalu karo", variant: hinglish}
+  - {text: "dono indicator on kar do", variant: hinglish}
+  - {text: "hazard chalu kar do jaldi", variant: hinglish}
+  - {text: "blinker dono taraf chalao", variant: hinglish}
+  - {text: "hazards laga do", variant: hinglish}
+  - {text: "hazard haaku", variant: kannada_english}
+  - {text: "hazard light on maadi", variant: kannada_english}
+  - {text: "parking light haaku guru", variant: kannada_english}
+  - {text: "eradu indicator on maadu", variant: kannada_english}
+  - {text: "um press the uh the triangle thing for hazards", variant: disfluent}
+  - {text: "wipers no no i mean hazards turn them on", variant: disfluent}
+  - {text: "uh the hazard the hazard lights get them going", variant: disfluent}
+  - {text: "er flash the uh hazards", variant: disfluent}
+  - {text: "turn on the left indicator no wait the hazards", variant: disfluent}
+  - {text: "so like get the um hazards blinking", variant: disfluent}
+
+# seed 1 (outcome): i've got a flat and need to pull over
+"1":
+  - {text: "tyre's gone flat i have to stop on the side", variant: plain}
+  - {text: "i think we've got a puncture i'm pulling onto the shoulder", variant: plain}
+  - {text: "puncture i need to stop here itself", variant: plain}
+  - {text: "the rear tyre just burst i'm stopping", variant: plain}
+  - {text: "something's wrong with the tyre i have to get off the road", variant: plain}
+  - {text: "we have a flat i'm moving to the left edge", variant: plain}
+  - {text: "front left tyre is flat need to halt", variant: plain}
+  - {text: "the car's pulling to one side must be a puncture i have to stop", variant: plain}
+  - {text: "i just had a blowout i need to stop", variant: plain}
+  - {text: "i've picked up a nail and the tyre's deflating", variant: plain}
+  - {text: "tyre's losing air fast have to stop", variant: plain}
+  - {text: "i need to stop by the kerb my wheel's punctured", variant: plain}
+  - {text: "the car's making a thumping sound i think the tyre's gone", variant: plain}
+  - {text: "flat tyre stopping by the roadside", variant: plain}
+  - {text: "we'll have to halt the tyre's completely flat", variant: plain}
+  - {text: "i'm pulling in to the left there's a puncture", variant: plain}
+  - {text: "got a puncture on the highway need to stop", variant: plain}
+  - {text: "tyre's totally deflated have to stop on the service lane", variant: plain}
+  - {text: "i'm going to stop the car the wheel is flat", variant: plain}
+  - {text: "puncture in the back i'm getting off the road", variant: plain}
+  - {text: "i need to park on the shoulder we've got a flat", variant: plain}
+  - {text: "breaking down here with a flat tyre", variant: plain}
+  - {text: "my tyre gave way i'm stopping on the side of the highway", variant: plain}
+  - {text: "i have to stop immediately the tyre is gone", variant: plain}
+  - {text: "tyre puncture ho gaya side mein rokna padega", variant: hinglish}
+  - {text: "gaadi puncture hai mujhe rukna hai", variant: hinglish}
+  - {text: "tyre flat ho gaya abhi side lagani hai", variant: hinglish}
+  - {text: "yaar puncture ho gaya gaadi rok raha hoon", variant: hinglish}
+  - {text: "pichla tyre burst ho gaya side mein rukna hai", variant: hinglish}
+  - {text: "tyre mein hawa nahi hai rokna padega", variant: hinglish}
+  - {text: "tyre puncture aagide side ge nillisbeku", variant: kannada_english}
+  - {text: "puncture aaytu guru gaadi nillisteeni", variant: kannada_english}
+  - {text: "tyre flat aagide illi nillisbeku", variant: kannada_english}
+  - {text: "tyre burst aaytu saar side ge hogbeku", variant: kannada_english}
+  - {text: "i've got a um i think a puncture i should uh pull over", variant: disfluent}
+  - {text: "the tyre is uh i think it's flat need to stop", variant: disfluent}
+  - {text: "we've got a puncture uh i'm pulling over", variant: disfluent}
+  - {text: "i need to pull pull over the tyre's gone", variant: disfluent}
+  - {text: "er flat tyre i gotta um stop on the side", variant: disfluent}
+  - {text: "so the front no the rear tyre's flat i need to stop", variant: disfluent}
+
+# seed 2 (indirect): sudden jam ahead and the car behind is too close
+"2":
+  - {text: "everyone just slammed their brakes in front and this guy is right on my bumper", variant: plain}
+  - {text: "traffic's stopped dead up ahead and the truck behind isn't slowing", variant: plain}
+  - {text: "whoa cars stopping suddenly and someone's tailgating me", variant: plain}
+  - {text: "there's a pile up in front and the bus behind is inches away", variant: plain}
+  - {text: "the queue just stopped and the fellow at the back is riding my tail", variant: plain}
+  - {text: "brake lights everywhere ahead and this suv is glued to my back", variant: plain}
+  - {text: "we're about to stop hard and the guy behind hasn't noticed", variant: plain}
+  - {text: "the highway's come to a halt and the lorry behind is way too close", variant: plain}
+  - {text: "everything's standing still ahead and there's a car right up my rear", variant: plain}
+  - {text: "hard braking up front and the one behind is not keeping distance", variant: plain}
+  - {text: "traffic just froze and this vehicle behind is almost touching us", variant: plain}
+  - {text: "sudden standstill on the expressway and a cab is tailgating", variant: plain}
+  - {text: "cars bunching up ahead and the van behind is coming too fast", variant: plain}
+  - {text: "we've hit a wall of stopped cars and someone's right on my back", variant: plain}
+  - {text: "the vehicles ahead have stopped and the bike behind is too near", variant: plain}
+  - {text: "big jam out of nowhere and the tempo behind is too close for comfort", variant: plain}
+  - {text: "the lane in front has frozen and this bus behind won't back off", variant: plain}
+  - {text: "everything ahead just stopped and the guy behind doesn't seem to see it", variant: plain}
+  - {text: "unexpected jam and the truck at the back is right up close", variant: plain}
+  - {text: "i'm braking hard and the car behind is way too near", variant: plain}
+  - {text: "the road just stopped moving and nobody behind is slowing down", variant: plain}
+  - {text: "there's a sudden block ahead and the car following me is too close", variant: plain}
+  - {text: "we're stopping abruptly and that jeep is tailing us closely", variant: plain}
+  - {text: "the road ahead just jammed up and the vehicle behind is on my bumper", variant: plain}
+  - {text: "aage achanak jam hai aur peeche wali gaadi bilkul chipki hai", variant: hinglish}
+  - {text: "aage sab ruk gaye aur peeche wala bahut paas hai", variant: hinglish}
+  - {text: "achanak sab ruk gaya peeche truck chadh raha hai", variant: hinglish}
+  - {text: "yaar aage jam aur peeche wala bumper se chipak raha", variant: hinglish}
+  - {text: "peeche wali car bahut close hai aur aage sab brake maar rahe", variant: hinglish}
+  - {text: "aage gaadi ruk gayi peeche wala dhyan nahi de raha", variant: hinglish}
+  - {text: "munde jam aagide hinde gaadi tumba hattira ide", variant: kannada_english}
+  - {text: "hinde car jaasti close ide munde ella nintide", variant: kannada_english}
+  - {text: "munde ella ninthu guru hinde lorry tumba hattira", variant: kannada_english}
+  - {text: "suddenly jam aaytu hinde bus tumba close ide", variant: kannada_english}
+  - {text: "uh sudden jam up there and um someone's too close behind", variant: disfluent}
+  - {text: "whoa whoa everyone's stopping and the guy behind is right on us", variant: disfluent}
+  - {text: "uh everything stopped and the the truck behind is too close", variant: disfluent}
+  - {text: "the car in front no the car behind is way too close and we're stopping", variant: disfluent}
+  - {text: "er sudden jam and like the bus behind is so close", variant: disfluent}
+  - {text: "so um it's jammed ahead and someone's tailgating me", variant: disfluent}
+
+# seed 3 (fragment): hazard lights
+"3":
+  - {text: "hazards", variant: plain}
+  - {text: "hazards on", variant: plain}
+  - {text: "emergency flashers", variant: plain}
+  - {text: "hazard lamps", variant: plain}
+  - {text: "warning lights on", variant: plain}
+  - {text: "flashers please", variant: plain}
+  - {text: "both indicators", variant: plain}
+  - {text: "hazard blinkers", variant: plain}
+  - {text: "four way flashers", variant: plain}
+  - {text: "double indicator now", variant: plain}
+  - {text: "hazards quickly", variant: plain}
+  - {text: "hazard switch", variant: plain}
+  - {text: "blinkers on both sides", variant: plain}
+  - {text: "the hazard lights please", variant: plain}
+  - {text: "flashing hazards", variant: plain}
+  - {text: "emergency blinkers on", variant: plain}
+  - {text: "hazard light now", variant: plain}
+  - {text: "all four indicators", variant: plain}
+  - {text: "hazards right away", variant: plain}
+  - {text: "warning flashers", variant: plain}
+  - {text: "the triangle button", variant: plain}
+  - {text: "hazard indicators", variant: plain}
+  - {text: "flashers on", variant: plain}
+  - {text: "parking lights", variant: plain}
+  - {text: "hazard jalao", variant: hinglish}
+  - {text: "parking light do", variant: hinglish}
+  - {text: "dono indicator jalao", variant: hinglish}
+  - {text: "hazard chalu", variant: hinglish}
+  - {text: "hazard on karo abhi", variant: hinglish}
+  - {text: "blinker dono taraf", variant: hinglish}
+  - {text: "hazard haaku guru", variant: kannada_english}
+  - {text: "hazard on maadi", variant: kannada_english}
+  - {text: "parking light beku", variant: kannada_english}
+  - {text: "eradu indicator haaku", variant: kannada_english}
+  - {text: "uh hazards", variant: disfluent}
+  - {text: "um hazard uh blinkers", variant: disfluent}
+  - {text: "the the hazards", variant: disfluent}
+  - {text: "indicator no hazards hazard lights", variant: disfluent}
+  - {text: "um flashers uh the hazards", variant: disfluent}
+  - {text: "hazards hazards now", variant: disfluent}

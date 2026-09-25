@@ -1,0 +1,176 @@
+# Paraphrases of the set_parking_brake seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): put the handbrake on
+"0":
+  - {text: "apply the handbrake", variant: plain}
+  - {text: "pull the handbrake up", variant: plain}
+  - {text: "engage the parking brake", variant: plain}
+  - {text: "set the handbrake", variant: plain}
+  - {text: "lock the parking brake", variant: plain}
+  - {text: "put on the park brake", variant: plain}
+  - {text: "pull up the parking brake", variant: plain}
+  - {text: "hold the car with the handbrake", variant: plain}
+  - {text: "switch on the electronic handbrake", variant: plain}
+  - {text: "yank the handbrake", variant: plain}
+  - {text: "keep the handbrake on while we wait", variant: plain}
+  - {text: "secure the car with the parking brake", variant: plain}
+  - {text: "put the epb on", variant: plain}
+  - {text: "apply park brake before i get out", variant: plain}
+  - {text: "get the handbrake on", variant: plain}
+  - {text: "set the parking brake for me", variant: plain}
+  - {text: "make sure the handbrake is on", variant: plain}
+  - {text: "lock the wheels with the handbrake", variant: plain}
+  - {text: "engage the handbrake we're stopping here", variant: plain}
+  - {text: "leave the car on handbrake", variant: plain}
+  - {text: "do the handbrake", variant: plain}
+  - {text: "throw the handbrake on", variant: plain}
+  - {text: "engage park brake now", variant: plain}
+  - {text: "put the hand brake on for the signal", variant: plain}
+  - {text: "handbrake laga do", variant: hinglish}
+  - {text: "handbrake lagao jaldi", variant: hinglish}
+  - {text: "parking brake on kar do", variant: hinglish}
+  - {text: "handbrake kheench do", variant: hinglish}
+  - {text: "gaadi ko handbrake pe daal do", variant: hinglish}
+  - {text: "handbrake chadha do yaar", variant: hinglish}
+  - {text: "handbrake haaku", variant: kannada_english}
+  - {text: "parking brake haaki", variant: kannada_english}
+  - {text: "handbrake eledu", variant: kannada_english}
+  - {text: "swalpa handbrake haaki saar", variant: kannada_english}
+  - {text: "uh handbrake um put it on na", variant: disfluent}
+  - {text: "the the handbrake er just pull it up", variant: disfluent}
+  - {text: "parking brake um engage it like now", variant: disfluent}
+  - {text: "hazards on no sorry i meant handbrake on", variant: disfluent}
+  - {text: "er handbrake handbrake on", variant: disfluent}
+  - {text: "so um like engage the parking brake", variant: disfluent}
+
+# seed 1 (question): can you release the parking brake
+"1":
+  - {text: "could you let off the handbrake?", variant: plain}
+  - {text: "would you take the handbrake off", variant: plain}
+  - {text: "can the parking brake come off now", variant: plain}
+  - {text: "mind dropping the handbrake?", variant: plain}
+  - {text: "can you put the handbrake down", variant: plain}
+  - {text: "will you free the parking brake", variant: plain}
+  - {text: "could the handbrake go off now?", variant: plain}
+  - {text: "can we get the handbrake off", variant: plain}
+  - {text: "would you mind releasing the park brake", variant: plain}
+  - {text: "any chance you can let go of the handbrake?", variant: plain}
+  - {text: "can you take off the epb?", variant: plain}
+  - {text: "could you release the handbrake for me", variant: plain}
+  - {text: "mind letting go of the parking brake", variant: plain}
+  - {text: "can you turn the park brake off?", variant: plain}
+  - {text: "would you pull the handbrake down", variant: plain}
+  - {text: "could the handbrake be released?", variant: plain}
+  - {text: "can i get the parking brake off", variant: plain}
+  - {text: "do you mind releasing the handbrake?", variant: plain}
+  - {text: "can you get rid of the handbrake", variant: plain}
+  - {text: "shall we take the park brake off", variant: plain}
+  - {text: "could you free up the handbrake we're moving?", variant: plain}
+  - {text: "ease the parking brake off would you", variant: plain}
+  - {text: "would you release the hand brake so we can go", variant: plain}
+  - {text: "can you disengage the handbrake?", variant: plain}
+  - {text: "handbrake hata doge?", variant: hinglish}
+  - {text: "parking brake utaar sakte ho kya", variant: hinglish}
+  - {text: "kya handbrake neeche kar doge", variant: hinglish}
+  - {text: "handbrake chhod doge yaar?", variant: hinglish}
+  - {text: "parking brake off kar sakte ho?", variant: hinglish}
+  - {text: "handbrake release karoge kya", variant: hinglish}
+  - {text: "handbrake release maadtira?", variant: kannada_english}
+  - {text: "parking brake tegiyoke aagutta?", variant: kannada_english}
+  - {text: "handbrake kelage ilisbahuda", variant: kannada_english}
+  - {text: "handbrake off maadtiya guru", variant: kannada_english}
+  - {text: "um the parking brake can you like let it off", variant: disfluent}
+  - {text: "could you er the handbrake i mean take it off now?", variant: disfluent}
+  - {text: "can you release the er is it on yeah release the parking brake", variant: disfluent}
+  - {text: "um would you like drop the handbrake?", variant: disfluent}
+  - {text: "so can you er let off the the park brake", variant: disfluent}
+  - {text: "can you release the you know the handbrake", variant: disfluent}
+
+# seed 2 (outcome): the car keeps rolling back on this slope
+"2":
+  - {text: "we're sliding backwards on this incline", variant: plain}
+  - {text: "the car won't stay put on this ramp", variant: plain}
+  - {text: "i keep drifting back on this hill", variant: plain}
+  - {text: "this gradient is making the car creep backwards", variant: plain}
+  - {text: "every time i stop here the car rolls back", variant: plain}
+  - {text: "we're inching back toward the car behind on this slope", variant: plain}
+  - {text: "the car is slipping back down the ramp", variant: plain}
+  - {text: "this parking ramp is steep and we keep moving backwards", variant: plain}
+  - {text: "i'm rolling back into the scooter behind me", variant: plain}
+  - {text: "on this flyover slope the car won't hold still", variant: plain}
+  - {text: "the car creeps back the moment i lift my foot", variant: plain}
+  - {text: "this hill is pulling us backwards", variant: plain}
+  - {text: "we're going backwards on the incline", variant: plain}
+  - {text: "the car keeps slipping back on this uphill", variant: plain}
+  - {text: "at this signal on the slope we keep rolling back", variant: plain}
+  - {text: "i can't keep the car still on this steep road", variant: plain}
+  - {text: "the car won't hold on this hill start", variant: plain}
+  - {text: "we're sliding back down this basement ramp", variant: plain}
+  - {text: "the car is drifting back toward the gate", variant: plain}
+  - {text: "this uphill stretch has the car moving back", variant: plain}
+  - {text: "i'm going to hit the car behind if we keep rolling", variant: plain}
+  - {text: "the car moves backwards on its own here", variant: plain}
+  - {text: "this steep ghat road has us sliding back", variant: plain}
+  - {text: "we keep rolling downhill whenever i stop", variant: plain}
+  - {text: "gaadi peeche ja rahi hai is slope pe", variant: hinglish}
+  - {text: "yaar car ruk hi nahi rahi chadhai pe", variant: hinglish}
+  - {text: "is ramp pe gaadi peeche ludhak rahi hai", variant: hinglish}
+  - {text: "chadhai pe car khisak rahi hai", variant: hinglish}
+  - {text: "gaadi apne aap peeche aa rahi hai", variant: hinglish}
+  - {text: "slope pe car rukti hi nahi", variant: hinglish}
+  - {text: "car hinde hogtide ee slope alli", variant: kannada_english}
+  - {text: "ee ghat alli gaadi hinde jaaruttide", variant: kannada_english}
+  - {text: "car nillolla ee ramp alli", variant: kannada_english}
+  - {text: "gaadi hinde barta ide guru", variant: kannada_english}
+  - {text: "uh we're we're rolling back the car won't hold on this slope", variant: disfluent}
+  - {text: "we're like sliding back here on the the hill", variant: disfluent}
+  - {text: "um it's like the car is slipping on this er ramp thing", variant: disfluent}
+  - {text: "the car's going forward no backwards on this incline", variant: disfluent}
+  - {text: "er we keep you know drifting back", variant: disfluent}
+  - {text: "so every time i stop the car it just creeps back", variant: disfluent}
+
+# seed 3 (fragment): park brake
+"3":
+  - {text: "handbrake", variant: plain}
+  - {text: "the handbrake", variant: plain}
+  - {text: "handbrake please", variant: plain}
+  - {text: "handbrake quickly", variant: plain}
+  - {text: "handbrake up", variant: plain}
+  - {text: "handbrake time", variant: plain}
+  - {text: "handbrake button", variant: plain}
+  - {text: "handbrake lever", variant: plain}
+  - {text: "hand brake now", variant: plain}
+  - {text: "electronic handbrake", variant: plain}
+  - {text: "epb", variant: plain}
+  - {text: "epb on", variant: plain}
+  - {text: "epb please", variant: plain}
+  - {text: "epb switch", variant: plain}
+  - {text: "parking brake on", variant: plain}
+  - {text: "parking brake now", variant: plain}
+  - {text: "parking brake button", variant: plain}
+  - {text: "the parking brake", variant: plain}
+  - {text: "brake for parking", variant: plain}
+  - {text: "put handbrake", variant: plain}
+  - {text: "handbrake check", variant: plain}
+  - {text: "brake lever", variant: plain}
+  - {text: "hand brake engaged", variant: plain}
+  - {text: "parking brake set", variant: plain}
+  - {text: "handbrake lagao", variant: hinglish}
+  - {text: "handbrake zara", variant: hinglish}
+  - {text: "parking brake daalo", variant: hinglish}
+  - {text: "handbrake kheecho", variant: hinglish}
+  - {text: "handbrake jaldi", variant: hinglish}
+  - {text: "parking brake lagana", variant: hinglish}
+  - {text: "handbrake haaki", variant: kannada_english}
+  - {text: "parking brake beku", variant: kannada_english}
+  - {text: "handbrake eledu guru", variant: kannada_english}
+  - {text: "handbrake swalpa", variant: kannada_english}
+  - {text: "uh the park brake thing", variant: disfluent}
+  - {text: "um handbrake i mean parking brake", variant: disfluent}
+  - {text: "park no parking brake", variant: disfluent}
+  - {text: "er epb i mean handbrake", variant: disfluent}
+  - {text: "handbrake like now", variant: disfluent}
+  - {text: "um the the park brake", variant: disfluent}
