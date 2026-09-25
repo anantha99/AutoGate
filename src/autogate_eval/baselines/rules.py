@@ -22,6 +22,11 @@ PII detector
     rule never fires and contact names, relation words aside, go
     undetected; street addresses without a PIN code are missed too. That is
     the known weakness of rules that a learned span head should beat.
+
+``--emit predictions.jsonl`` writes the baseline's predictions in the schema
+``autogate_eval.score`` reads: the route, the matched intent and the regex
+spans (:func:`detect_spans`), with ``route_probs``, ``intent_probs_top3``
+and ``confidence`` null because the rules have no probabilities.
 """
 
 from __future__ import annotations
@@ -106,6 +111,49 @@ def detect_sensitive(utterance: str) -> bool:
     return False
 
 
+_CARD_DIGITS = re.compile(r"\bending\s+(\d+)", re.IGNORECASE)
+_CAPITALISED = re.compile(r"\S+")
+
+
+def detect_spans(utterance: str) -> list[dict[str, Any]]:
+    """Character spans for what the regexes in :func:`detect_sensitive` found.
+
+    Labels are a guess from the pattern: a phone-like run (merged with an
+    adjacent ``+91``) is ``phone``, the digits after "ending" are ``card``,
+    any other standalone 4 to 6 digit number is ``otp``, and a capitalised
+    word that does not start a sentence is ``contact``. "card ending" with
+    no digits after it makes :func:`detect_sensitive` fire but has nothing
+    to mask, so it gives no span. Overlapping matches keep the earlier
+    pattern in that order.
+    """
+    found: list[tuple[int, int, str]] = []
+
+    def add(a: int, b: int, label: str) -> None:
+        if all(b <= x or a >= y for x, y, _ in found):
+            found.append((a, b, label))
+
+    phones = [[m.start(), m.end()] for m in _PHONE.finditer(utterance)]
+    merged: list[list[int]] = []
+    for a, b in phones:
+        if merged and not utterance[merged[-1][1] : a].strip():
+            merged[-1][1] = b
+        else:
+            merged.append([a, b])
+    for a, b in merged:
+        add(a, b, "phone")
+    for m in _CARD_DIGITS.finditer(utterance):
+        add(m.start(1), m.end(1), "card")
+    for m in _SHORT_NUMBER.finditer(utterance):
+        add(m.start(), m.end(), "otp")
+    words = list(_CAPITALISED.finditer(utterance))
+    for prev, word in zip(words, words[1:], strict=False):
+        w = word.group()
+        if w[:1].isupper() and w != "I" and not prev.group().endswith((".", "!", "?")):
+            add(word.start(), word.end(), "contact")
+    found.sort()
+    return [{"start": a, "end": b, "label": lab, "text": utterance[a:b]} for a, b, lab in found]
+
+
 def _get(row: Any, name: str) -> Any:
     return row[name] if isinstance(row, Mapping) else getattr(row, name)
 
@@ -185,6 +233,24 @@ def format_baseline(result: Mapping[str, Any]) -> str:
     )
 
 
+def emit_predictions(rows: Sequence[Any], baseline: RulesBaseline, path: Path) -> Path:
+    """Write predictions in the ``autogate_eval.score`` schema, one line per row."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8", newline="\n") as f:
+        for r in rows:
+            rec = {
+                "id": _get(r, "id"),
+                "route": str(baseline.predict(r)),
+                "route_probs": None,
+                "intent": baseline.predict_intent(r),
+                "intent_probs_top3": None,
+                "spans": detect_spans(_get(r, "utterance")),
+                "confidence": None,
+            }
+            f.write(json.dumps(rec, ensure_ascii=True) + "\n")
+    return path
+
+
 def main(argv: list[str] | None = None) -> dict:
     p = argparse.ArgumentParser(description="Score the rules baseline on generated rows.")
     p.add_argument("--rows", type=Path, required=True, help="rows.jsonl")
@@ -194,6 +260,12 @@ def main(argv: list[str] | None = None) -> dict:
         help="build the intent matcher from train seeds only (default: every seed)",
     )
     p.add_argument("--json", type=Path, default=None, help="also write the full result here")
+    p.add_argument(
+        "--emit",
+        type=Path,
+        default=None,
+        help="also write predictions.jsonl for autogate_eval.score",
+    )
     a = p.parse_args(argv)
 
     with a.rows.open(encoding="utf-8") as f:
@@ -206,8 +278,12 @@ def main(argv: list[str] | None = None) -> dict:
         ]
     else:
         chosen = [s for items in seeds.values() for s in items]
-    result = evaluate_baseline(rows, RulesBaseline(chosen))
+    baseline = RulesBaseline(chosen)
+    result = evaluate_baseline(rows, baseline)
     print(format_baseline(result))
+    if a.emit:
+        emit_predictions(rows, baseline, a.emit)
+        print(f"wrote {len(rows)} predictions to {a.emit}")
     if a.json:
         a.json.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     return result
