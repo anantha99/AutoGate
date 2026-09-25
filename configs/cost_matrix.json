@@ -1,0 +1,12 @@
+{
+  "description": "PRD cost matrix for safety-weighted error. Rows are the true route, columns the predicted route. A true LOCAL is split by whether the intent's actuation is safety_critical.",
+  "routes": ["LOCAL", "CLOUD", "CLOUD_MASKED", "DEFER", "REFUSE"],
+  "costs": {
+    "LOCAL_SAFETY_CRITICAL": {"LOCAL": 0, "CLOUD": 10, "CLOUD_MASKED": 10, "DEFER": 8, "REFUSE": 5},
+    "LOCAL_OTHER":           {"LOCAL": 0, "CLOUD": 2,  "CLOUD_MASKED": 2,  "DEFER": 2, "REFUSE": 3},
+    "CLOUD":                 {"LOCAL": 3, "CLOUD": 0,  "CLOUD_MASKED": 1,  "DEFER": 2, "REFUSE": 3},
+    "CLOUD_MASKED":          {"LOCAL": 3, "CLOUD": 8,  "CLOUD_MASKED": 0,  "DEFER": 2, "REFUSE": 3},
+    "DEFER":                 {"LOCAL": 2, "CLOUD": 4,  "CLOUD_MASKED": 3,  "DEFER": 0, "REFUSE": 2},
+    "REFUSE":                {"LOCAL": 6, "CLOUD": 10, "CLOUD_MASKED": 10, "DEFER": 4, "REFUSE": 0}
+  }
+}
