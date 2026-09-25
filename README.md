@@ -15,8 +15,8 @@ and the router follow.
 | Package | Contents |
 | --- | --- |
 | `autogate_bench` | Schema, policy tables, rulebook labeler, intent taxonomy (`docs/taxonomy.md`), seeds, paraphrase format and validator (`docs/paraphrase-spec.md`), ASR augmenter, span injector, context sampler, splits, dataset writer |
-| `autogate_router` | Training, export, inference (week 3) |
-| `autogate_eval` | Cost matrix, safety-weighted error and other metrics, rules baseline, policy gate (weeks 1-3) |
+| `autogate_router` | Router labels, data, model (backbone + LoRA + route/intent/span heads), training, prediction, calibration, ONNX export (`docs/training.md`) |
+| `autogate_eval` | Cost matrix, safety-weighted error and other metrics, rules baseline, `score` for any predictions file, policy gate (weeks 1-3) |
 | `configs/` | `cost_matrix.json`: the PRD cost matrix behind safety-weighted error |
 | `docs/pilot.md` | The seed-only pilot: commands, counts, flip profiles, rules baseline results |
 
@@ -124,6 +124,23 @@ uv run python -m autogate_eval.baselines.rules --rows data/generated/full/rows.j
 
 Numbers and what they mean: `docs/dataset-v0.md`. Lines flagged for human
 review: `docs/paraphrase-review-notes.md`.
+
+## Train the router
+
+The router is Qwen3-0.6B with LoRA and three heads (route, intent, sensitive
+spans), trained on the paraphrased dataset. A CPU smoke run with a tiny random
+backbone, nothing downloaded:
+
+```
+uv sync --extra dev --extra train --extra export
+uv run python -m autogate_router.tiny --out checkpoints/tiny-qwen3 --rows data/generated/pilot/rows.jsonl
+uv run python -m autogate_router.train --config configs/train_smoke.yaml
+```
+
+The full run (`configs/train_qwen3_0.6b.yaml`), the no-context ablation,
+calibration, ONNX export, the Kaggle script and how to score any
+`predictions.jsonl` with `python -m autogate_eval.score` are in
+`docs/training.md`.
 
 ## Development
 
