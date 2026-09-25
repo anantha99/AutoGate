@@ -231,7 +231,7 @@ POOLS: dict[str, tuple[str, ...]] = {
         "the 14th",
         "the 21st",
         "march 3rd",
-        "next tuesday",
+        "thursday",
         "diwali",
     ),
     "duration": (
