@@ -1,9 +1,12 @@
-"""Generate the seed-only dataset.
+"""Generate the dataset.
 
     python -m autogate_bench.generate --out data/generated/pilot --rng-seed 0
+    python -m autogate_bench.generate --out data/generated/full --paraphrases data/paraphrases
 
 writes ``rows.jsonl``, ``rows.parquet`` and ``manifest.json`` to ``--out``.
-The same arguments always give a byte-identical ``rows.jsonl``.
+Without ``--paraphrases`` the dataset is seed-only (the pilot). With it, every
+paraphrase and ``--asr-per-seed`` ASR copies per seed are added. The same
+arguments always give a byte-identical ``rows.jsonl``.
 """
 
 from __future__ import annotations
@@ -13,8 +16,14 @@ import json
 from pathlib import Path
 
 from autogate_bench.dataset import build_rows, write_jsonl, write_manifest, write_parquet
+from autogate_bench.paraphrases import load_paraphrases
 from autogate_bench.policy import DEFAULT_POLICY, Policy
 from autogate_bench.seeds import DEFAULT_SEEDS_PATH, load_seeds
+
+
+def _rel(path: Path) -> str:
+    cwd = Path.cwd().resolve()
+    return str(path.resolve().relative_to(cwd)) if path.resolve().is_relative_to(cwd) else str(path)
 
 
 def main(argv: list[str] | None = None) -> dict:
@@ -26,7 +35,21 @@ def main(argv: list[str] | None = None) -> dict:
     p.add_argument("--n-generic", type=int, default=1, help="relation-word fills per contact seed")
     p.add_argument("--seeds", type=Path, default=DEFAULT_SEEDS_PATH)
     p.add_argument("--policy", type=Path, default=None, help="policy JSON (default: built-in)")
+    p.add_argument(
+        "--paraphrases",
+        type=Path,
+        default=None,
+        help="paraphrase directory, e.g. data/paraphrases (default: none, seed-only)",
+    )
+    p.add_argument(
+        "--asr-per-seed",
+        type=int,
+        default=4,
+        help="ASR copies per seed, made from its plain paraphrases (needs --paraphrases)",
+    )
     a = p.parse_args(argv)
+    if a.paraphrases is not None and not a.paraphrases.is_dir():
+        p.error(f"--paraphrases: no such directory {a.paraphrases}")
 
     policy = Policy.load(a.policy) if a.policy else DEFAULT_POLICY
     rows = build_rows(
@@ -36,6 +59,8 @@ def main(argv: list[str] | None = None) -> dict:
         n_sensitive=a.n_sensitive,
         n_generic=a.n_generic,
         policy=policy,
+        paraphrases=load_paraphrases(a.paraphrases) if a.paraphrases else None,
+        asr_per_seed=a.asr_per_seed,
     )
     a.out.mkdir(parents=True, exist_ok=True)
     jsonl = a.out / "rows.jsonl"
@@ -46,15 +71,18 @@ def main(argv: list[str] | None = None) -> dict:
         "contexts_per_utterance": a.contexts_per_utterance,
         "n_sensitive": a.n_sensitive,
         "n_generic": a.n_generic,
-        "seeds": str(a.seeds.resolve().relative_to(Path.cwd().resolve()))
-        if a.seeds.resolve().is_relative_to(Path.cwd().resolve())
-        else str(a.seeds),
+        "seeds": _rel(a.seeds),
         "policy": str(a.policy) if a.policy else "default",
+        "paraphrases": _rel(a.paraphrases) if a.paraphrases else None,
+        "asr_per_seed": a.asr_per_seed if a.paraphrases else 0,
     }
     manifest = write_manifest(rows, a.out / "manifest.json", args, jsonl)
     print(
         json.dumps(
-            {k: manifest[k] for k in ("n_rows", "n_utterances", "split", "route", "slice")},
+            {
+                k: manifest[k]
+                for k in ("n_rows", "n_utterances", "split", "route", "slice", "source", "variant")
+            },
             indent=2,
         )
     )
