@@ -375,6 +375,11 @@ def train(cfg: TrainConfig) -> dict[str, Any]:
 
     def run_eval(epoch: int) -> None:
         nonlocal best_key
+        if not val_rows:  # nothing to select on: keep the latest weights
+            model.save_pretrained(out_dir / BEST_DIR, tokenizer)
+            history["best"] = {"epoch": epoch, "step": step, "note": "no val rows"}
+            print(f"[eval] no rows in split {cfg.val_split!r}; saved epoch {epoch} as best")
+            return
         model.eval()
         m = evaluate_split(
             model, val_rows, val_ds.examples, cfg.eval_batch_size, device, cfg.eval_n_boot
