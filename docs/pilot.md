@@ -19,7 +19,7 @@ uv run python -m autogate_eval.baselines.rules --rows data/generated/pilot/rows.
 `generate` defaults to `--contexts-per-utterance 3 --n-sensitive 2 --n-generic 1`
 and writes `rows.jsonl`, `rows.parquet` and `manifest.json`. Running it twice
 with the same arguments gives a byte-identical `rows.jsonl` (sha256
-`d055b4c97072ac0f62415544d72cf2282f2b2d890510c885420862799e8b14a9` for this
+`93162f2755a621fa5d7411f3c973d95a13fc69f178d42886c41160a841973519` for this
 run). `data/generated/` is gitignored; regenerate rather than download.
 
 ## How rows are made

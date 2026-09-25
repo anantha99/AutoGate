@@ -31,6 +31,7 @@ from autogate_bench.schema import (
     DrivingDemand,
     Intent,
     LocalModelTier,
+    PrivacyMode,
     Route,
 )
 
@@ -54,7 +55,7 @@ class Decision:
     route: Route
     reason: Reason
     demand: DrivingDemand
-    """Demand actually used by the distraction gate (after passenger relaxation)."""
+    """Demand the deciding gate saw: raw for restricted actuation, else passenger-relaxed."""
 
 
 def driving_demand(context: Context, policy: Policy = DEFAULT_POLICY) -> DrivingDemand:
@@ -97,7 +98,7 @@ def route(
     if intent.actuation is not ActuationClass.NONE and not policy.actuation_allowed(
         intent.actuation, raw_demand
     ):
-        return Decision(Route.REFUSE, Reason.RESTRICTED_ACTUATION, demand)
+        return Decision(Route.REFUSE, Reason.RESTRICTED_ACTUATION, raw_demand)
 
     # 2b. Distraction gate uses the passenger-relaxed demand.
     if not policy.distraction_allowed(intent.distraction, demand):
@@ -116,7 +117,7 @@ def route(
 
     # 5. Sensitive spans.
     if has_sensitive_spans:
-        if context.privacy_mode.value == "strict":
+        if context.privacy_mode is PrivacyMode.STRICT:
             return Decision(policy.strict_privacy_route, Reason.STRICT_PRIVACY, demand)
         return Decision(Route.CLOUD_MASKED, Reason.SENSITIVE_SPANS, demand)
 
