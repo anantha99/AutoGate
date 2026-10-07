@@ -14,6 +14,12 @@ marked *[to be shown]* do not exist yet.
   cloud model. Speech goes through the OEM's ASR, AutoGate reads the text and
   the vehicle context, and decides which endpoint, if any, gets the request.
   AutoGate is model-agnostic: `LOCAL` and `CLOUD` name endpoints, not models.
+- **Hardware:** measure on a phone first, then on an automotive chip once
+  the model is final. A flagship phone SoC is a reasonable stand-in, since
+  automotive cockpit platforms (e.g. Snapdragon Cockpit) are built from the
+  same SoC families. The router does one forward pass over at most 96
+  tokens and decodes nothing, so its latency is a single prefill, not
+  generation.
 - **Scope:** text only, sitting after ASR. ASR errors are simulated
   (`autogate_bench.asr_noise`), not modelled end to end.
 - **Standards:** we claim *alignment* with automotive safety, distraction and
@@ -32,6 +38,13 @@ marked *[to be shown]* do not exist yet.
   front, not tucked into an appendix.
 
 ## Thesis
+
+Headline claim, decided: **as good as a frontier cloud model, at a fraction
+of the cost or none.** "As good as" means non-inferior: the upper bound of
+the bootstrap 95% CI on the router-minus-frontier difference in SWE and in
+critical-miss rate stays below a margin δ fixed before the runs (see Open
+decisions). "Cost" means the frontier model's API price per 1,000 requests
+at experiment time, against zero marginal cost on the car.
 
 > In-car LLM assistants need a gate that decides, per request and per driving
 > context, whether to answer on the head unit, in the cloud, in the cloud
@@ -119,7 +132,9 @@ Two things are measured, and the paper names them:
   Report the default as the headline and the variants as transfer.
 - RQ5: Robustness by slice and variant: Hinglish, Kannada-English,
   disfluent, ASR, adversarial, OOD intents.
-- RQ6: Deployment: parameters, ONNX latency on the target hardware, calibration (ECE).
+- RQ6: Deployment: parameters; int8 ONNX latency (p50/p95) and memory on
+  a phone, then an automotive chip; cost per 1,000 requests against the
+  frontier APIs; calibration (ECE).
 - Cost-matrix sensitivity: perturb the weights and report how stable the ranking is.
 
 ## Section outline
@@ -189,10 +204,14 @@ zero-shot baselines, per-slice and per-variant tables, paraphrase spec.
    add a small set (e.g. KVRET utterances labelled under the default policy)
    if the two designs are within confidence intervals on the default
    policy, or if reviewers ask.
-3. **Latency target:** which SoC or CPU, and what budget?
+3. ~~**Latency target.**~~ **Resolved:** phone first, automotive chip after.
+   Still open: which phone, which runtime (ONNX Runtime Mobile CPU, or
+   NNAPI/QNN for the NPU), and the p95 budget.
 4. **Which frontier models** in tier 4, and which ~3–4B model in tier 3.
 5. **KVRET real utterances:** in v1 or listed as future work?
 6. **Sensitive rate:** add slot-bearing seeds, or raise `--n-sensitive`?
-7. **If the router does not beat tier 4:** the paper still stands on
-   privacy, latency and policy transfer, but the abstract changes. Decide
-   on the fallback wording now.
+7. ~~**Fallback wording.**~~ **Resolved:** the claim is non-inferiority at
+   a fraction of the cost, not "beats", so it holds either way. Still
+   open: the margin δ for SWE and critical-miss rate, fixed before the
+   tier-4 runs. If the router misses δ, report it honestly and lead with
+   cost, latency and privacy.
