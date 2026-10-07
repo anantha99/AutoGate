@@ -57,6 +57,7 @@ git log --oneline -1
 
 log "installing (keeps Kaggle's CUDA torch)"
 pip install -q -e ".[train,export]"
+pip uninstall -y -q torchao 2>/dev/null || true  # Colab preinstalls an old torchao that makes peft refuse to build LoRA layers
 python - <<'PY'
 import torch, transformers, peft
 print("torch", torch.__version__, "cuda", torch.cuda.is_available(),
