@@ -80,7 +80,7 @@ class Row:
     passenger_present: bool
     local_model_tier: str
     context_prefix: str
-    # intent tags
+    # intent tags (capability is the labeling policy's, Table 4)
     capability: str
     distraction: str
     actuation: str
@@ -187,7 +187,7 @@ def _utterance_rows(
                     passenger_present=ctx.passenger_present,
                     local_model_tier=str(ctx.local_model_tier),
                     context_prefix=ctx.to_prefix(),
-                    capability=str(intent.capability),
+                    capability=str(policy.capability_of(intent)),
                     distraction=str(intent.distraction),
                     actuation=str(intent.actuation),
                     consequence=str(intent.consequence),

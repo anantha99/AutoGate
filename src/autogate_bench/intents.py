@@ -1,9 +1,13 @@
 """The AutoGate intent taxonomy: 65 intents in seven groups.
 
-Every benchmark utterance maps to exactly one intent. The intent's three routing tags
-(capability, distraction, actuation) plus the vehicle context fully determine
-the route label via ``rulebook.route``, so these tags determine every label
-in the dataset.
+Every benchmark utterance maps to exactly one intent. The intent's two routing tags
+(distraction, actuation), its capability in the labeling policy
+(``Policy.capability``, Table 4) and the vehicle context fully determine the
+route label via ``rulebook.route``.
+
+Distraction and actuation describe the request and the car, so they live
+here. Capability describes what the OEM's onboard model can do, so it lives
+in the policy, where an OEM can widen it.
 
 Sources: public Android Automotive OS documentation only (VehiclePropertyIds,
 CarUxRestrictions, CarAudioManager, the AAOS voice interaction docs) and
@@ -11,10 +15,9 @@ common sense. No proprietary supplier or OEM intent list was used.
 
 Invariants (checked in ``tests/test_intents.py``):
 
-* ``needs_cloud`` is DEFER offline; ``cloud_preferred`` falls back to LOCAL
-  offline because onboard data can answer, less well.
-* Vehicle-control intents are LOCAL_OK and LOW distraction: the command
-  itself is short. They are refused, if at all, by their actuation class.
+* Vehicle-control intents are LOW distraction: the command itself is
+  short. They are refused, if at all, by their actuation class. (Every
+  policy must also keep them local_ok; ``Policy.validate`` enforces it.)
 * Everything else is refused, if at all, by its distraction level. No intent
   is both RESTRICTED and above LOW distraction, so the two REFUSE mechanisms
   never overlap.
@@ -34,7 +37,6 @@ rationale, with the AAOS property or UX restriction each maps to, is in
 from __future__ import annotations
 
 from autogate_bench.schema import ActuationClass as A
-from autogate_bench.schema import Capability as C
 from autogate_bench.schema import Consequence as Q
 from autogate_bench.schema import DistractionLevel as L
 from autogate_bench.schema import Intent
@@ -42,13 +44,12 @@ from autogate_bench.schema import IntentGroup as G
 
 INTENTS: tuple[Intent, ...] = (
     # ======================================================================= #
-    # vehicle_control (22): all LOCAL_OK, all LOW distraction
+    # vehicle_control (22): all LOW distraction
     # ======================================================================= #
     # ---- safety_critical (5): a delay could itself be dangerous ------------ #
     Intent(
         "defrost_windshield",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.SAFETY_CRITICAL,
         "Turn on windshield defrost or demist",
@@ -57,7 +58,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "wipers_on",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.SAFETY_CRITICAL,
         "Turn on or speed up the windshield wipers",
@@ -66,7 +66,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "hazard_lights_on",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.SAFETY_CRITICAL,
         "Turn on the hazard warning lights",
@@ -75,7 +74,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "headlights_on",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.SAFETY_CRITICAL,
         "Turn on the headlights",
@@ -84,7 +82,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "emergency_call",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.SAFETY_CRITICAL,
         "Call emergency services from the car",
@@ -94,7 +91,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "set_cabin_temperature",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.COMFORT,
         "Set the HVAC temperature",
@@ -103,7 +99,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "set_fan_speed",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.COMFORT,
         "Change the HVAC fan speed",
@@ -112,7 +107,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "climate_on_off",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.COMFORT,
         "Turn the air conditioning or climate system on or off",
@@ -121,7 +115,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "set_recirculation",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.COMFORT,
         "Switch between recirculated and fresh cabin air",
@@ -130,7 +123,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "seat_ventilation_on",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.COMFORT,
         "Turn on or adjust a ventilated (cooled) seat",
@@ -139,7 +131,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "seat_heater_on",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.COMFORT,
         "Turn on or adjust a seat heater",
@@ -148,7 +139,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "adjust_window",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.COMFORT,
         "Open or close a window, fully or partly",
@@ -157,7 +147,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "set_audio_volume",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.COMFORT,
         "Turn the audio volume up or down",
@@ -166,7 +155,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "set_drive_mode",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.COMFORT,
         "Switch drive mode, such as eco, normal, or sport",
@@ -175,7 +163,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "set_ambient_lighting",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.COMFORT,
         "Change the interior ambient lighting",
@@ -184,7 +171,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "set_cruise_speed",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.COMFORT,
         "Raise or lower the cruise control set speed",
@@ -194,7 +180,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "disable_lane_assist",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.RESTRICTED,
         "Turn off lane keeping assist",
@@ -203,7 +188,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "unlock_doors",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.RESTRICTED,
         "Unlock the doors",
@@ -212,7 +196,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "open_trunk",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.RESTRICTED,
         "Open the trunk or tailgate",
@@ -221,7 +204,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "set_parking_brake",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.RESTRICTED,
         "Apply or release the parking brake",
@@ -230,7 +212,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "disable_child_locks",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.RESTRICTED,
         "Turn off the rear-door child locks",
@@ -239,7 +220,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "fold_mirrors",
         G.VEHICLE_CONTROL,
-        C.LOCAL_OK,
         L.LOW,
         A.RESTRICTED,
         "Fold or unfold the side mirrors",
@@ -251,7 +231,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "next_turn",
         G.NAVIGATION,
-        C.LOCAL_OK,
         L.LOW,
         description="Ask what the next manoeuvre on the active route is",
         consequence=Q.NONE,
@@ -259,7 +238,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "cancel_route",
         G.NAVIGATION,
-        C.LOCAL_OK,
         L.LOW,
         description="Stop the active navigation",
         consequence=Q.REVERSIBLE,  # reversible: the route can be restarted
@@ -267,31 +245,27 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "navigate_home",
         G.NAVIGATION,
-        C.LOCAL_OK,
         L.LOW,
         description="Start navigation to a saved place such as home or work",
         consequence=Q.REVERSIBLE,
-    ),  # judgment: saved destination plus onboard maps; no search or live data needed
+    ),
     Intent(
         "eta_to_destination",
         G.NAVIGATION,
-        C.LOCAL_OK,
         L.LOW,
         description="Ask when the car will arrive at the current destination",
         consequence=Q.NONE,
-    ),  # judgment: the active nav engine already holds the ETA; the assistant only reads it
+    ),
     Intent(
         "navigate_to_contact_address",
         G.NAVIGATION,
-        C.CLOUD_PREFERRED,
         L.LOW,
         description="Start navigation to a contact's address",
         consequence=Q.REVERSIBLE,
-    ),  # judgment: geocoding a free-text address uses online maps; the address is a sensitive span
+    ),
     Intent(
         "find_nearby_place",
         G.NAVIGATION,
-        C.CLOUD_PREFERRED,
         L.MEDIUM,
         description="Find and compare nearby places such as restaurants or fuel stations",
         consequence=Q.NONE,
@@ -299,7 +273,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "traffic_on_route",
         G.NAVIGATION,
-        C.NEEDS_CLOUD,
         L.LOW,
         description="Ask about traffic or delays on the current route",
         consequence=Q.NONE,
@@ -307,7 +280,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "add_stop_along_route",
         G.NAVIGATION,
-        C.CLOUD_PREFERRED,
         L.MEDIUM,
         description="Add a stop, such as coffee or a charger, along the current route",
         consequence=Q.REVERSIBLE,
@@ -318,7 +290,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "call_contact",
         G.COMMUNICATION,
-        C.LOCAL_OK,
         L.LOW,
         description="Place a phone call to a contact",
         consequence=Q.IRREVERSIBLE,
@@ -326,7 +297,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "lookup_contact_info",
         G.COMMUNICATION,
-        C.LOCAL_OK,
         L.LOW,
         description="Ask for a contact's phone number or address",
         consequence=Q.NONE,
@@ -334,7 +304,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "send_text_message",
         G.COMMUNICATION,
-        C.NEEDS_SMALL_LOCAL,
         L.LOW,
         description="Dictate and send a short text message",
         consequence=Q.IRREVERSIBLE,
@@ -342,7 +311,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "reply_to_message",
         G.COMMUNICATION,
-        C.NEEDS_SMALL_LOCAL,
         L.LOW,
         description="Dictate a short reply to a message just read out",
         consequence=Q.IRREVERSIBLE,
@@ -350,7 +318,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "read_messages",
         G.COMMUNICATION,
-        C.NEEDS_SMALL_LOCAL,
         L.MEDIUM,
         description="Read recent unread messages aloud",
         consequence=Q.NONE,
@@ -358,7 +325,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "summarize_group_chat",
         G.COMMUNICATION,
-        C.NEEDS_SMALL_LOCAL,
         L.MEDIUM,
         description="Summarise what was said in a group conversation",
         consequence=Q.NONE,
@@ -366,15 +332,13 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "play_voicemail",
         G.COMMUNICATION,
-        C.LOCAL_OK,
         L.MEDIUM,
         description="Play new voicemail messages",
         consequence=Q.NONE,
-    ),  # judgment: playback is trivial (LOCAL_OK) but the listening is long output (MEDIUM)
+    ),  # judgment: MEDIUM because listening to voicemail is long output
     Intent(
         "start_video_call",
         G.COMMUNICATION,
-        C.LOCAL_OK,
         L.HIGH,
         description="Start a video call with a contact",
         consequence=Q.IRREVERSIBLE,
@@ -382,7 +346,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "compose_long_email",
         G.COMMUNICATION,
-        C.NEEDS_CLOUD,
         L.HIGH,
         description="Dictate and edit a long email",
         consequence=Q.IRREVERSIBLE,  # irreversible once sent
@@ -393,7 +356,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "play_music",
         G.MEDIA,
-        C.LOCAL_OK,
         L.LOW,
         description="Play a song, artist, album, or playlist",
         consequence=Q.REVERSIBLE,
@@ -401,7 +363,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "pause_playback",
         G.MEDIA,
-        C.LOCAL_OK,
         L.LOW,
         description="Pause or resume the current media",
         consequence=Q.REVERSIBLE,
@@ -409,7 +370,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "skip_track",
         G.MEDIA,
-        C.LOCAL_OK,
         L.LOW,
         description="Skip to the next or previous track",
         consequence=Q.REVERSIBLE,
@@ -417,7 +377,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "tune_radio_station",
         G.MEDIA,
-        C.LOCAL_OK,
         L.LOW,
         description="Tune the radio to a station or frequency",
         consequence=Q.REVERSIBLE,
@@ -425,15 +384,13 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "play_podcast",
         G.MEDIA,
-        C.LOCAL_OK,
         L.LOW,
         description="Play a podcast or a specific episode",
         consequence=Q.REVERSIBLE,
-    ),  # judgment: the media app resolves the catalog search; the assistant only hands it off
+    ),
     Intent(
         "play_video",
         G.MEDIA,
-        C.LOCAL_OK,
         L.HIGH,
         description="Play a video on the screen",
         consequence=Q.REVERSIBLE,
@@ -441,7 +398,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "show_photos",
         G.MEDIA,
-        C.LOCAL_OK,
         L.HIGH,
         description="Browse photos on the screen",
         consequence=Q.NONE,
@@ -452,7 +408,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "weather_now",
         G.INFORMATION,
-        C.NEEDS_CLOUD,
         L.LOW,
         description="Ask about the current or upcoming weather",
         consequence=Q.NONE,
@@ -460,7 +415,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "current_time",
         G.INFORMATION,
-        C.LOCAL_OK,
         L.LOW,
         description="Ask the time or date",
         consequence=Q.NONE,
@@ -468,7 +422,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "sports_score",
         G.INFORMATION,
-        C.NEEDS_CLOUD,
         L.LOW,
         description="Ask for a live or recent sports score",
         consequence=Q.NONE,
@@ -476,7 +429,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "general_knowledge_question",
         G.INFORMATION,
-        C.NEEDS_SMALL_LOCAL,
         L.LOW,
         description="Ask a short factual question",
         consequence=Q.NONE,
@@ -484,7 +436,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "explain_topic_in_depth",
         G.INFORMATION,
-        C.NEEDS_CLOUD,
         L.MEDIUM,
         description="Ask for a long explanation of a topic",
         consequence=Q.NONE,
@@ -492,26 +443,23 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "vehicle_manual_question",
         G.INFORMATION,
-        C.NEEDS_SMALL_LOCAL,
         L.LOW,
         description="Ask how a car feature works or what a warning light means",
         consequence=Q.NONE,
-    ),  # judgment: retrieval over an onboard owner's manual fits an 8B model, not a 2B one
+    ),
     Intent(
         "fuel_range",
         G.INFORMATION,
-        C.LOCAL_OK,
         L.LOW,
         description="Ask how far the car can go on the remaining fuel or charge",
         consequence=Q.NONE,
     ),
     # ======================================================================= #
-    # planning (4): all NEEDS_CLOUD, all MEDIUM
+    # planning (4): all MEDIUM
     # ======================================================================= #
     Intent(
         "plan_multi_day_trip",
         G.PLANNING,
-        C.NEEDS_CLOUD,
         L.MEDIUM,
         description="Plan a trip spanning several days",
         consequence=Q.NONE,
@@ -519,7 +467,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "plan_day_itinerary",
         G.PLANNING,
-        C.NEEDS_CLOUD,
         L.MEDIUM,
         description="Plan a sequence of stops for today",
         consequence=Q.NONE,
@@ -527,7 +474,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "book_restaurant",
         G.PLANNING,
-        C.NEEDS_CLOUD,
         L.MEDIUM,
         description="Find and reserve a table at a restaurant",
         consequence=Q.IRREVERSIBLE,
@@ -535,7 +481,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "plan_charging_stops",
         G.PLANNING,
-        C.CLOUD_PREFERRED,
         L.MEDIUM,
         description="Plan charging stops for an electric-vehicle journey",
         consequence=Q.NONE,
@@ -546,39 +491,34 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "calendar_today",
         G.PRODUCTIVITY,
-        C.LOCAL_OK,
         L.MEDIUM,
         description="Hear today's calendar",
         consequence=Q.NONE,
-    ),  # judgment: LOCAL_OK because it is a templated read-out of the synced calendar
+    ),
     Intent(
         "add_reminder",
         G.PRODUCTIVITY,
-        C.LOCAL_OK,
         L.LOW,
         description="Set a reminder for a time or place",
         consequence=Q.REVERSIBLE,
-    ),  # judgment: time plus free-text slot filling, which a tiny model handles
+    ),
     Intent(
         "add_calendar_event",
         G.PRODUCTIVITY,
-        C.NEEDS_SMALL_LOCAL,
         L.LOW,
         description="Add an event to the calendar",
         consequence=Q.IRREVERSIBLE,  # irreversible: attendees receive invites
-    ),  # judgment: dates, durations, and attendees together exceed a tiny model
+    ),
     Intent(
         "take_note",
         G.PRODUCTIVITY,
-        C.LOCAL_OK,
         L.LOW,
         description="Dictate a short note to save",
         consequence=Q.REVERSIBLE,
-    ),  # judgment: LOCAL_OK because the note is saved verbatim, unlike a message that is rephrased
+    ),
     Intent(
         "edit_note",
         G.PRODUCTIVITY,
-        C.NEEDS_SMALL_LOCAL,
         L.HIGH,
         description="Make several spoken edits to an existing note",
         consequence=Q.REVERSIBLE,  # reversible: notes keep history
@@ -586,15 +526,13 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "read_document",
         G.PRODUCTIVITY,
-        C.NEEDS_CLOUD,
         L.HIGH,
         description="Open and read a document on the screen",
         consequence=Q.NONE,
-    ),  # judgment: NEEDS_CLOUD because documents live in cloud storage and exceed local context
+    ),
     Intent(
         "pair_bluetooth_device",
         G.PRODUCTIVITY,
-        C.LOCAL_OK,
         L.HIGH,
         description="Pair a new phone or device over Bluetooth",
         consequence=Q.REVERSIBLE,
@@ -602,7 +540,6 @@ INTENTS: tuple[Intent, ...] = (
     Intent(
         "browse_web",
         G.PRODUCTIVITY,
-        C.NEEDS_CLOUD,
         L.HIGH,
         description="Open and browse a web page",
         consequence=Q.NONE,

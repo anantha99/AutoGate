@@ -38,7 +38,7 @@ otherwise                     -> CLOUD
 ```
 
 The tree contains no policy of its own. Everything that could be argued about
-is data in `autogate_bench.policy.Policy`, which round-trips through JSON so
+is data in `autogate_bench.policy.Policy` (four tables and a few switches), which round-trips through JSON so
 an OEM can substitute its own policy and re-label the benchmark.
 
 **Table 1: driving demand** from speed and workload. A passenger relaxes the
@@ -70,6 +70,25 @@ same set Android Automotive's UX restrictions block while moving.
 | safety_critical (defrost, wipers, hazards) | LOCAL, bypasses everything | LOCAL, bypasses everything |
 | comfort (HVAC, seats, volume, drive mode) | allow | allow |
 | restricted (ADAS off, door unlock, trunk, park brake) | allow | refuse |
+
+**Table 4: capability.** What it takes to answer each intent with the
+car's own model: `local_ok` (any head-unit model), `needs_small_local`
+(LOCAL on a small, <= 8B model; cloud on a tiny one), `needs_cloud` (DEFER
+offline) or `cloud_preferred` (LOCAL offline). The context's
+`local_model_tier` says which model the car has; this table says what each
+tier is trusted with. The default is conservative: with a tiny (<= 2B) model
+only vehicle commands, short answers, media control and templated read-outs
+stay on the car. An OEM with a stronger model widens it, and its policy file
+lists only the intents it changes. Per-intent values are in
+`autogate_bench.policy.DEFAULT_CAPABILITY`.
+
+**Locked rules.** `Policy.validate` rejects any policy that would break
+these, so an OEM can tune what is convenient but cannot configure away what
+is safe: safety-critical actuation is never blocked and always runs on the
+car; every vehicle command is `local_ok`, so the capability list can never
+send a command to the cloud or change when a restricted one is refused (only
+Table 3 does that); strict privacy never sends sensitive spans to the cloud;
+a parked car has `parked` demand and Tables 2 and 3 are monotone.
 
 Distraction blocks are `REFUSE`, not `DEFER`: deferring means the car acts
 later without being asked again, which is right for a dropped signal and

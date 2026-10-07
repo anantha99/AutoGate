@@ -6,7 +6,9 @@ import pytest
 
 from autogate_bench import (
     ActuationClass,
+    Capability,
     Connectivity,
+    Context,
     DistractionLevel,
     DrivingDemand,
     Policy,
@@ -14,12 +16,18 @@ from autogate_bench import (
     SpeedBucket,
     Workload,
 )
+from autogate_bench.contexts import ALL_CONTEXTS
+from autogate_bench.intents import INTENTS
+from autogate_bench.intents import INTENTS_BY_NAME as I
 from autogate_bench.policy import (
     DEFAULT_ACTUATION_GATE,
+    DEFAULT_CAPABILITY,
     DEFAULT_DEMAND_TABLE,
     DEFAULT_DISTRACTION_GATE,
 )
+from autogate_bench.rulebook import route
 
+C = Capability
 D = DrivingDemand
 S = SpeedBucket
 W = Workload
@@ -109,6 +117,81 @@ def test_actuation_gate_is_complete():
     assert set(DEFAULT_ACTUATION_GATE) == {(c, d) for c in gated for d in D}
 
 
+# ---- Table 4: capability -------------------------------------------------- #
+
+
+def test_capability_table_covers_the_taxonomy():
+    assert set(DEFAULT_CAPABILITY) == {i.name for i in INTENTS}
+
+
+def test_default_capability_counts():
+    """Conservative default: only what a tiny head-unit model handles is local_ok."""
+    counts = {c: list(DEFAULT_CAPABILITY.values()).count(c) for c in C}
+    assert counts == {
+        C.LOCAL_OK: 43,
+        C.NEEDS_SMALL_LOCAL: 8,
+        C.NEEDS_CLOUD: 10,
+        C.CLOUD_PREFERRED: 4,
+    }
+
+
+def test_every_vehicle_command_is_local_ok_by_default():
+    commands = [i for i in INTENTS if i.actuation is not A.NONE]
+    assert {Policy().capability_of(i) for i in commands} == {C.LOCAL_OK}
+
+
+def test_capability_override_changes_routes():
+    """A stronger onboard model: messages are read locally even on the tiny tier."""
+    ctx = Context(S.PARKED, Connectivity.GOOD, W.LOW)  # local_model_tier defaults to tiny
+    strong = Policy(capability={**DEFAULT_CAPABILITY, "read_messages": C.LOCAL_OK})
+    assert route(I["read_messages"], ctx).route is Route.CLOUD
+    assert route(I["read_messages"], ctx, policy=strong).route is Route.LOCAL
+
+
+# ---- Locked rules ----------------------------------------------------------- #
+
+
+@pytest.mark.parametrize("name", ["wipers_on", "unlock_doors", "set_cabin_temperature"])
+@pytest.mark.parametrize("capability", [C.NEEDS_CLOUD, C.NEEDS_SMALL_LOCAL, C.CLOUD_PREFERRED])
+def test_validator_rejects_vehicle_command_off_the_car(name, capability):
+    with pytest.raises(ValueError, match="vehicle commands must be local_ok"):
+        Policy(capability={**DEFAULT_CAPABILITY, name: capability})
+
+
+def test_validator_rejects_missing_capability():
+    table = dict(DEFAULT_CAPABILITY)
+    del table["weather_now"]
+    with pytest.raises(ValueError, match="capability missing"):
+        Policy(capability=table)
+
+
+def test_validator_rejects_unknown_capability_intent():
+    with pytest.raises(ValueError, match="unknown intents"):
+        Policy(capability={**DEFAULT_CAPABILITY, "launch_rocket": C.LOCAL_OK})
+
+
+@pytest.mark.parametrize("extreme", [C.LOCAL_OK, C.NEEDS_CLOUD])
+def test_no_capability_list_moves_safety_or_restricted_routes(extreme):
+    """Widen or narrow every non-command intent: safety-critical stays LOCAL and
+    restricted commands stay refused while moving, in every context."""
+    table = {
+        name: (cap if I[name].actuation is not A.NONE else extreme)
+        for name, cap in DEFAULT_CAPABILITY.items()
+    }
+    policy = Policy(capability=table)
+    for intent in INTENTS:
+        if intent.actuation is A.NONE:
+            continue
+        for ctx in ALL_CONTEXTS:
+            for sensitive in (False, True):
+                assert route(intent, ctx, sensitive, policy) == route(intent, ctx, sensitive)
+        if intent.actuation is A.SAFETY_CRITICAL:
+            assert {route(intent, c, policy=policy).route for c in ALL_CONTEXTS} == {Route.LOCAL}
+        if intent.actuation is A.RESTRICTED:
+            moving = [c for c in ALL_CONTEXTS if c.speed_bucket is not S.PARKED]
+            assert {route(intent, c, policy=policy).route for c in moving} == {Route.REFUSE}
+
+
 # ---- Validator ----------------------------------------------------------- #
 
 
@@ -171,3 +254,25 @@ def test_policy_round_trips_through_json(tmp_path):
     data = json.loads(path.read_text())
     assert data["demand_table"]["high|low"] == "medium"
     assert data["distraction_gate"]["high|parked"] is True
+
+
+def test_policy_file_may_list_only_widened_capabilities():
+    data = Policy().to_dict()
+    data["capability"] = {"read_messages": "local_ok"}
+    policy = Policy.from_dict(data)
+    assert policy.capability_of("read_messages") is C.LOCAL_OK
+    assert policy.capability_of("weather_now") is C.NEEDS_CLOUD
+
+
+def test_policy_file_without_capability_uses_the_default():
+    data = Policy().to_dict()
+    del data["capability"]
+    assert Policy.from_dict(data) == Policy()
+
+
+def test_capability_round_trips_through_json(tmp_path):
+    policy = Policy(capability={**DEFAULT_CAPABILITY, "general_knowledge_question": C.LOCAL_OK})
+    path = tmp_path / "policy.json"
+    policy.save(path)
+    assert Policy.load(path) == policy
+    assert json.loads(path.read_text())["capability"]["general_knowledge_question"] == "local_ok"

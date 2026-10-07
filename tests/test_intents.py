@@ -22,6 +22,7 @@ from autogate_bench import (
     route,
 )
 from autogate_bench.intents import INTENTS, INTENTS_BY_NAME
+from autogate_bench.policy import DEFAULT_POLICY
 from autogate_bench.schema import Intent
 
 SNAKE_CASE = re.compile(r"^[a-z][a-z0-9]*(_[a-z0-9]+)*$")
@@ -50,7 +51,7 @@ def test_description_is_one_plain_line(intent):
 
 def test_every_enum_value_is_covered():
     assert {i.group for i in INTENTS} == set(IntentGroup)
-    assert {i.capability for i in INTENTS} == set(Capability)
+    assert set(DEFAULT_POLICY.capability.values()) == set(Capability)
     assert {i.distraction for i in INTENTS} == set(DistractionLevel)
     assert {i.actuation for i in INTENTS} == set(ActuationClass)
     assert {i.consequence for i in INTENTS} == set(Consequence)
@@ -84,8 +85,9 @@ def test_context_flipping_cells_are_populated():
     assert sum(i.distraction is DistractionLevel.MEDIUM for i in INTENTS) >= 5
     assert sum(i.distraction is DistractionLevel.HIGH for i in INTENTS) >= 5
     assert sum(i.actuation is ActuationClass.RESTRICTED for i in INTENTS) >= 4
-    assert sum(i.capability is Capability.NEEDS_CLOUD for i in INTENTS) >= 5
-    assert sum(i.capability is Capability.NEEDS_SMALL_LOCAL for i in INTENTS) >= 5
+    capabilities = [DEFAULT_POLICY.capability_of(i) for i in INTENTS]
+    assert capabilities.count(Capability.NEEDS_CLOUD) >= 5
+    assert capabilities.count(Capability.NEEDS_SMALL_LOCAL) >= 5
 
 
 PARKED_GOOD = Context(SpeedBucket.PARKED, Connectivity.GOOD, Workload.LOW)
@@ -134,9 +136,8 @@ def test_consequence_never_changes_the_route():
     """Two intents identical except for consequence route identically everywhere."""
     base = INTENTS_BY_NAME["send_text_message"]
     twin = Intent(
-        base.name + "_twin",
+        base.name,
         base.group,
-        base.capability,
         base.distraction,
         base.actuation,
         base.description,
@@ -154,7 +155,6 @@ def test_schema_rejects_vehicle_command_without_side_effect():
         Intent(
             "x",
             IntentGroup.VEHICLE_CONTROL,
-            Capability.LOCAL_OK,
             DistractionLevel.LOW,
             ActuationClass.COMFORT,
             consequence=Consequence.NONE,

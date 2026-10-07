@@ -4,7 +4,7 @@ Plain-text order, from the PRD:
 
     safety-critical command        -> LOCAL
     unsafe for driving state       -> REFUSE   (restricted actuation, then distraction)
-    no cloud capability needed     -> LOCAL
+    no cloud capability needed     -> LOCAL    (policy Table 4 and the local model tier)
     no connectivity, cloud-preferred -> LOCAL (degraded, onboard fallback)
     no connectivity                -> DEFER
     sensitive spans, strict mode   -> policy.strict_privacy_route (LOCAL by default)
@@ -71,11 +71,12 @@ def distraction_demand(context: Context, policy: Policy = DEFAULT_POLICY) -> Dri
     return demand
 
 
-def locally_capable(intent: Intent, context: Context) -> bool:
+def locally_capable(intent: Intent, context: Context, policy: Policy = DEFAULT_POLICY) -> bool:
     """Can the head unit answer this intent well enough on its own?"""
-    if intent.capability is Capability.LOCAL_OK:
+    capability = policy.capability_of(intent)
+    if capability is Capability.LOCAL_OK:
         return True
-    if intent.capability is Capability.NEEDS_SMALL_LOCAL:
+    if capability is Capability.NEEDS_SMALL_LOCAL:
         return context.local_model_tier is LocalModelTier.SMALL
     return False
 
@@ -105,13 +106,13 @@ def route(
         return Decision(Route.REFUSE, Reason.DISTRACTION, demand)
 
     # 3. No cloud capability needed.
-    if locally_capable(intent, context):
+    if locally_capable(intent, context, policy):
         return Decision(Route.LOCAL, Reason.LOCAL_CAPABLE, demand)
 
     # 4. Cloud unreachable: fall back to the head unit if the intent allows it,
     #    otherwise queue until the signal returns.
     if context.connectivity not in policy.cloud_connectivity:
-        if intent.capability is Capability.CLOUD_PREFERRED:
+        if policy.capability_of(intent) is Capability.CLOUD_PREFERRED:
             return Decision(Route.LOCAL, Reason.LOCAL_FALLBACK, demand)
         return Decision(Route.DEFER, Reason.NO_CONNECTIVITY, demand)
 

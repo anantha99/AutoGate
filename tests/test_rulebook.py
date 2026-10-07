@@ -26,6 +26,7 @@ from autogate_bench import (
 )
 from autogate_bench.intents import INTENTS
 from autogate_bench.intents import INTENTS_BY_NAME as I
+from autogate_bench.policy import DEFAULT_POLICY
 from autogate_bench.rulebook import distraction_demand, driving_demand
 
 D = DrivingDemand
@@ -177,10 +178,10 @@ def test_degradation_split_between_defer_and_local_fallback():
     connected = Context(SpeedBucket.LOW, Connectivity.GOOD, Workload.LOW)
     offline = Context(SpeedBucket.LOW, Connectivity.NONE, Workload.LOW)
     for intent in INTENTS:
-        if intent.capability is Capability.NEEDS_CLOUD:
+        if DEFAULT_POLICY.capability_of(intent) is Capability.NEEDS_CLOUD:
             assert route(intent, connected).route in (Route.CLOUD, Route.REFUSE)
             assert route(intent, offline).route in (Route.DEFER, Route.REFUSE)
-        if intent.capability is Capability.CLOUD_PREFERRED:
+        if DEFAULT_POLICY.capability_of(intent) is Capability.CLOUD_PREFERRED:
             assert route(intent, connected).route in (Route.CLOUD, Route.REFUSE)
             assert route(intent, offline).route in (Route.LOCAL, Route.REFUSE)
 
@@ -258,7 +259,6 @@ def test_restricted_actuation_beats_distraction():
     both = Intent(
         "synthetic_restricted_and_distracting",
         IntentGroup.VEHICLE_CONTROL,
-        Capability.LOCAL_OK,
         DistractionLevel.HIGH,
         ActuationClass.RESTRICTED,
         consequence=Consequence.REVERSIBLE,
@@ -308,13 +308,14 @@ def test_invariants_hold_for_every_context(intent):
             if sensitive and ctx.privacy_mode is PrivacyMode.STRICT:
                 assert d.route not in (Route.CLOUD, Route.CLOUD_MASKED)
             # cloud_preferred never waits: offline it runs on the head unit.
-            if intent.capability is Capability.CLOUD_PREFERRED:
+            if DEFAULT_POLICY.capability_of(intent) is Capability.CLOUD_PREFERRED:
                 assert d.route is not Route.DEFER
             # Nothing cloud-bound without connectivity.
             if ctx.connectivity is Connectivity.NONE:
                 assert d.route not in (Route.CLOUD, Route.CLOUD_MASKED)
             # Parked with a local-ok, non-safety intent is always LOCAL.
-            if ctx.speed_bucket is SpeedBucket.PARKED and intent.capability is Capability.LOCAL_OK:
+            local_ok = DEFAULT_POLICY.capability_of(intent) is Capability.LOCAL_OK
+            if ctx.speed_bucket is SpeedBucket.PARKED and local_ok:
                 assert d.route is Route.LOCAL
 
 
@@ -332,7 +333,6 @@ def test_intent_rejects_actuation_outside_vehicle_control():
         Intent(
             "x",
             IntentGroup.MEDIA,
-            Capability.LOCAL_OK,
             DistractionLevel.LOW,
             ActuationClass.COMFORT,
             consequence=Consequence.REVERSIBLE,
@@ -344,20 +344,7 @@ def test_intent_requires_actuation_for_vehicle_control():
         Intent(
             "x",
             IntentGroup.VEHICLE_CONTROL,
-            Capability.LOCAL_OK,
             DistractionLevel.LOW,
-            consequence=Consequence.REVERSIBLE,
-        )
-
-
-def test_intent_rejects_cloud_vehicle_command():
-    with pytest.raises(ValueError, match="local_ok"):
-        Intent(
-            "x",
-            IntentGroup.VEHICLE_CONTROL,
-            Capability.NEEDS_CLOUD,
-            DistractionLevel.LOW,
-            ActuationClass.COMFORT,
             consequence=Consequence.REVERSIBLE,
         )
 

@@ -19,6 +19,14 @@ marked *[to be shown]* do not exist yet.
 - **Standards:** we claim *alignment* with automotive safety, distraction and
   privacy standards, not compliance. Everything is open source so anyone can
   audit the alignment.
+- **Default policy, adopt or override:** AutoGate ships a default policy
+  an OEM can adopt as is or override. Tables 1–3 (driving demand,
+  distraction, actuation) and the privacy switch carry the standards
+  alignment. Table 4 (capability) is about the car's own model, and its
+  default is conservative: with a tiny (≤2B) model, only vehicle commands,
+  short answers, media control and templated read-outs stay local. Some
+  rules are locked and no policy file can override them. *Companies can tune
+  what is convenient, but they cannot configure away what is safe.*
 - **Tone:** an honest first attempt at a component the next generation of
   assistants will need. Negative results and limitations are reported up
   front, not tucked into an appendix.
@@ -40,7 +48,7 @@ marked *[to be shown]* do not exist yet.
 | # | Claim | Evidence | Status |
 | --- | --- | --- | --- |
 | C1 | **The problem.** In-car routing is a five-way, context-dependent, safety-critical decision. A router that sees only the text cannot solve it. | 9,673 of 17,728 utterances (55%) change route with vehicle state; no-context ablation | dataset done; ablation *[to be shown]* |
-| C2 | **The architecture.** Splitting the router into learned perception (intent, sensitive spans) and declarative policy keeps safety-critical behaviour deterministic and lets an OEM swap policy without retraining, at little cost in accuracy compared with an end-to-end route head. | E2E vs. decomposed comparison; held-out policy experiment | *[to be shown]* |
+| C2 | **The architecture.** Splitting the router into learned perception (intent, sensitive spans) and declarative policy keeps safety-critical behaviour deterministic and lets an OEM swap policy, including its capability list, without retraining, at little cost in accuracy compared with an end-to-end route head. Locked rules mean no policy file can configure away safety-critical or restricted-actuation behaviour. | E2E vs. decomposed comparison; policy-variant experiment (RQ4); locked rules enforced by `Policy.validate` and tested | locks done; comparison *[to be shown]* |
 | C3 | **The results.** A 0.6B router matches or beats frontier zero-shot LLMs (Claude and non-Claude) on safety-weighted error and critical misses, at a fraction of the size, on-device, and is the only option in the comparison that can gate privacy before data leaves the car. | baseline tiers 1–5; latency on target hardware | *[to be shown]* |
 | C4 | **The benchmark.** AutoGateBench and its cost matrix expose failures that accuracy hides: rules reach 0.77 test accuracy yet miss 22% of critical cases, and fall to 0.08 recall on CLOUD_MASKED. | `docs/dataset-v0.md` | done (rules); router *[to be shown]* |
 
@@ -80,9 +88,19 @@ hand-set weights.
 - RQ1: Does the router beat the zero-shot tiers on critical misses, leak rate and SWE?
 - RQ2: End-to-end vs. perception + rulebook: which is safer, and which is more accurate?
 - RQ3: How much does context buy? (no-context ablation, per slice)
-- RQ4: Policy transfer. Train on the default policy, evaluate on an OEM
-  variant. Compare the decomposed router with swapped tables against the
-  E2E router retrained on relabelled data.
+- RQ4: Policy transfer. Train on the default policy and relabel the test
+  and OOD splits under each variant (`generate --policy`):
+  - **default**: the headline numbers;
+  - **tiny local model**: Table 4 narrowed, e.g. `needs_small_local` to
+    cloud and templated read-outs to `needs_small_local`;
+  - **strong local model**: Table 4 widened, e.g. `needs_small_local` and
+    `general_knowledge_question` to `local_ok`;
+  - **safety-table change**: e.g. a stricter distraction gate (Table 2)
+    or restricted actuation allowed at low demand (Table 3).
+
+  Compare the decomposed router with the swapped policy (no retraining)
+  against the E2E router as trained and retrained on relabelled data.
+  Report the default as the headline and the variants as transfer.
 - RQ5: Robustness by slice and variant: Hinglish, Kannada-English,
   disfluent, ASR, adversarial, OOD intents.
 - RQ6: Deployment: parameters, ONNX latency on the target hardware, calibration (ECE).
@@ -113,7 +131,8 @@ hand-set weights.
    export.
 6. **Experiments.** Setup, baselines, metrics, then RQ1–RQ6 and sensitivity.
 7. **Discussion.** What an OEM plugs in (endpoints, policy, capability
-   table); when to prefer each decision mode; failure analysis.
+   table) and what it cannot change (locked rules); when to prefer each
+   decision mode; failure analysis.
 8. **Limitations and ethics.** See below. Written plainly.
 9. **Conclusion.**
 
@@ -135,10 +154,14 @@ zero-shot baselines, per-slice and per-variant tables, paraphrase spec.
 
 ## Open decisions
 
-1. **Capability table.** Whether "the local model can handle it" is a
-   per-intent attribute in `autogate_bench/intents.py`, not part of
-   `Policy`. If OEMs bring their own on-device model, this probably needs to
-   become OEM-swappable policy data, and RQ4 should vary it.
+1. ~~**Capability table.**~~ **Resolved.** Capability is Table 4 of
+   `Policy` (`DEFAULT_CAPABILITY`), its default is conservative, and an OEM
+   file lists only the intents it widens. Locked in `Policy.validate`:
+   vehicle commands are always `local_ok` and safety-critical actuation is
+   never blocked, so the capability list cannot move safety-critical or
+   restricted behaviour. The default reproduces the earlier labels
+   exactly; `rows.jsonl` sha256 is unchanged.
+   Still to do: ship the RQ4 variant policies as JSON files under `configs/`.
 2. **Circularity.** The labels come from the rulebook, so perception +
    rulebook reproduces them exactly when perception is perfect. How does the
    paper keep this from reading as a benchmark rigged for the decomposed

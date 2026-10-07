@@ -1,13 +1,16 @@
 # AutoGate intent taxonomy
 
 Every utterance in the AutoGate benchmark maps to exactly one intent. Each
-intent carries three routing tags: **capability** (what it takes to answer), **distraction**
-(how much of the driver's attention the response demands), and **actuation**
-(what the car may do on request). Those three tags plus the vehicle context
-fully determine the route label through the rulebook
-(`autogate_bench.rulebook.route`), so this taxonomy determines every label in
-the dataset. The code lives in `src/autogate_bench/intents.py`; this page gives
-the reason behind each tag so it can be checked by hand.
+intent carries two routing tags: **distraction** (how much of the driver's
+attention the response demands) and **actuation** (what the car may do on
+request). Its third input to the route, **capability** (what it takes to
+answer), depends on the OEM's onboard model, so it lives in the labeling
+policy as Table 4 (`autogate_bench.policy.DEFAULT_CAPABILITY`) where an OEM
+can widen it. The capability column on this page is the default policy's.
+Tags, capability and the vehicle context fully determine the route label
+through the rulebook (`autogate_bench.rulebook.route`). The tags live in
+`src/autogate_bench/intents.py`; this page gives the reason behind each tag
+and default capability so it can be checked by hand.
 
 **Sources.** Public Android Automotive OS documentation only:
 [`VehiclePropertyIds`](https://developer.android.com/reference/android/car/VehiclePropertyIds)
@@ -34,9 +37,10 @@ proprietary supplier or OEM intent list was used or reconstructed.
   restricted, and safety-critical commands are never held for confirmation.
   Confirmation never relaxes a REFUSE.
 
-- Vehicle-control intents are always `local_ok` and `low` distraction: the
-  command itself is short. They are refused, if at all, by their actuation
-  class.
+- Vehicle-control intents are always `low` distraction: the command itself
+  is short. They are refused, if at all, by their actuation class. Every
+  policy must keep them `local_ok`; `Policy.validate` rejects one that
+  does not.
 - Every other intent has actuation `none` and is refused, if at all, by its
   distraction level. No intent is both `restricted` and above `low`
   distraction, so the two REFUSE mechanisms never overlap.

@@ -129,7 +129,11 @@ class IntentGroup(StrEnum):
 
 
 class Capability(StrEnum):
-    """What it takes to answer the intent well."""
+    """What it takes to answer the intent well.
+
+    Not an intent tag: the per-intent assignment is policy data
+    (``Policy.capability``), because it depends on the OEM's onboard model.
+    """
 
     LOCAL_OK = "local_ok"  # any head-unit model can do it
     NEEDS_SMALL_LOCAL = "needs_small_local"  # ok on a <= 8B local model, else cloud
@@ -184,7 +188,6 @@ class Intent:
 
     name: str
     group: IntentGroup
-    capability: Capability
     distraction: DistractionLevel
     actuation: ActuationClass = ActuationClass.NONE
     description: str = ""
@@ -202,5 +205,3 @@ class Intent:
             )
         if self.group is IntentGroup.VEHICLE_CONTROL and self.actuation is ActuationClass.NONE:
             raise ValueError(f"{self.name}: vehicle_control intents need an actuation class")
-        if self.actuation is not ActuationClass.NONE and self.capability is not Capability.LOCAL_OK:
-            raise ValueError(f"{self.name}: vehicle commands must be local_ok")
