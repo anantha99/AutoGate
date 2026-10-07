@@ -11,6 +11,7 @@
 #   REPO_URL      default https://github.com/anantha99/AutoGate.git
 #   BRANCH        default claude/peaceful-pasteur-nessbd
 #   WORK          default /kaggle/working on Kaggle, /content on Colab, else ~/autogate_work
+#   RUNS          where artifacts go, default $WORK/runs (point it at Google Drive on Colab)
 #   EPOCHS        default 3
 #   RUN_ABLATION  default 1 (also train the --no-context ablation)
 #   RUN_EXPORT    default 1 (ONNX fp32 + int8 for each run)
@@ -33,7 +34,7 @@ RUN_ABLATION=${RUN_ABLATION:-1}
 RUN_EXPORT=${RUN_EXPORT:-1}
 CONFIG=${CONFIG:-configs/train_qwen3_0.6b.yaml}
 TRAIN_ARGS=${TRAIN_ARGS:-}
-RUNS="$WORK/runs"
+RUNS=${RUNS:-$WORK/runs}
 mkdir -p "$RUNS"
 
 log() { printf '\n=== %s | %s\n' "$(date -u +%H:%M:%S)" "$*"; }
