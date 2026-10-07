@@ -86,7 +86,8 @@ hand-set weights.
 
 ## Experiments
 
-**Baseline tiers**
+**Baseline tiers** (tiers 2–4 and the oracle row: `autogate_eval.baselines.llm`,
+commands in `docs/baselines.md`; each run reports both decision modes)
 
 1. Rules: keyword intent, regex PII, rulebook (exists)
 2. Same-size on-device LLM zero-shot: Qwen3-0.6B prompted with the policy tables

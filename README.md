@@ -16,7 +16,7 @@ and the router follow.
 | --- | --- |
 | `autogate_bench` | Schema, policy tables, rulebook labeler, intent taxonomy (`docs/taxonomy.md`), seeds, paraphrase format and validator (`docs/paraphrase-spec.md`), ASR augmenter, span injector, context sampler, splits, dataset writer |
 | `autogate_router` | Router labels, data, model (backbone + LoRA + route/intent/span heads), training, prediction, calibration, ONNX export (`docs/training.md`) |
-| `autogate_eval` | Cost matrix, safety-weighted error and other metrics, rules baseline, `score` for any predictions file, policy gate (weeks 1-3) |
+| `autogate_eval` | Cost matrix, safety-weighted error and other metrics, rules baseline, zero-shot LLM baselines (`docs/baselines.md`), `score` for any predictions file, policy gate (weeks 1-3) |
 | `configs/` | `cost_matrix.json`: the PRD cost matrix behind safety-weighted error |
 | `docs/pilot.md` | The seed-only pilot: commands, counts, flip profiles, rules baseline results |
 
@@ -160,6 +160,22 @@ The full run (`configs/train_qwen3_0.6b.yaml`), the no-context ablation,
 calibration, ONNX export, the Kaggle script and how to score any
 `predictions.jsonl` with `python -m autogate_eval.score` are in
 `docs/training.md`.
+
+## Zero-shot LLM baselines
+
+An LLM prompted with the policy routes each row; one run scores it both end
+to end and as perception for the rulebook. Claude, any OpenAI-compatible
+endpoint (OpenAI, Gemini, a local vLLM server) and an oracle-perception
+ceiling are supported:
+
+```
+uv sync --extra baselines
+uv run python -m autogate_eval.baselines.llm --rows data/generated/full/rows.jsonl \
+    --provider anthropic --model claude-opus-5-5 --out-dir runs/claude-opus-5-5 --sample 200
+```
+
+Every tier's command, costs and how invalid answers are counted:
+`docs/baselines.md`.
 
 ## Development
 

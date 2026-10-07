@@ -20,6 +20,12 @@ dev = [
 api = [
     "anthropic>=1.8",
 ]
+# Zero-shot LLM baselines (autogate_eval.baselines.llm): Claude, and any OpenAI-compatible
+# endpoint (OpenAI, Gemini's OpenAI-compatible API, a local vLLM server).
+baselines = [
+    "anthropic>=1.8",
+    "openai>=1.40",
+]
 # Router training (autogate_router). torch resolves to CPU wheels via the index below;
 # on a GPU machine install torch from your CUDA index first, then `pip install -e ".[train]"`.
 train = [
