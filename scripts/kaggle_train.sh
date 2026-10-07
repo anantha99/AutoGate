@@ -3,14 +3,14 @@
 #
 #   bash scripts/kaggle_train.sh            # or: curl/clone the repo first, see below
 #
-# Needs: a GPU accelerator (T4 or better) and Internet enabled (pip, GitHub, Hugging Face).
+# Needs: a GPU (T4 or better) and internet (pip, GitHub, Hugging Face). Works on Kaggle and Colab.
 # For a private repo, add a Kaggle secret GITHUB_TOKEN and export it before running
 # (the notebook version does this for you).
 #
 # Environment knobs (all optional):
 #   REPO_URL      default https://github.com/anantha99/AutoGate.git
 #   BRANCH        default claude/peaceful-pasteur-nessbd
-#   WORK          default /kaggle/working (artifacts land in $WORK/runs)
+#   WORK          default /kaggle/working on Kaggle, /content on Colab, else ~/autogate_work
 #   EPOCHS        default 3
 #   RUN_ABLATION  default 1 (also train the --no-context ablation)
 #   RUN_EXPORT    default 1 (ONNX fp32 + int8 for each run)
@@ -22,7 +22,12 @@ set -euo pipefail
 
 REPO_URL=${REPO_URL:-https://github.com/anantha99/AutoGate.git}
 BRANCH=${BRANCH:-claude/peaceful-pasteur-nessbd}
-WORK=${WORK:-/kaggle/working}
+if [ -z "${WORK:-}" ]; then
+    if [ -d /kaggle/working ]; then WORK=/kaggle/working
+    elif [ -d /content ]; then WORK=/content
+    else WORK="$HOME/autogate_work"; fi
+fi
+mkdir -p "$WORK"
 EPOCHS=${EPOCHS:-3}
 RUN_ABLATION=${RUN_ABLATION:-1}
 RUN_EXPORT=${RUN_EXPORT:-1}
