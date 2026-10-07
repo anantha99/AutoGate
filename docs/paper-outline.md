@@ -41,9 +41,10 @@ marked *[to be shown]* do not exist yet.
 
 Headline claim, decided: **as good as a frontier cloud model, at a fraction
 of the cost or none.** "As good as" means non-inferior: the upper bound of
-the bootstrap 95% CI on the router-minus-frontier difference in SWE and in
-critical-miss rate stays below a margin δ fixed before the runs (see Open
-decisions). "Cost" means the frontier model's API price per 1,000 requests
+the bootstrap 95% CI on the router-minus-frontier difference stays below
+a tight margin fixed before the runs: **δ = 0.5 percentage points on
+critical-miss rate** and **δ = 0.025 on SWE** (about 3% of the rules
+baseline's 0.92 on test). Compare against the best tier-4 model. "Cost" means the frontier model's API price per 1,000 requests
 at experiment time, against zero marginal cost on the car.
 
 > In-car LLM assistants need a gate that decides, per request and per driving
@@ -89,10 +90,22 @@ hand-set weights.
 
 1. Rules: keyword intent, regex PII, rulebook (exists)
 2. Same-size on-device LLM zero-shot: Qwen3-0.6B prompted with the policy tables
-3. Larger on-device LLM zero-shot (~3–4B)
-4. Frontier cloud LLMs zero-shot, one Claude and at least one non-Claude.
-   This is an upper bound that could not be deployed as the gate, because
-   asking it already sends the data off the car.
+3. Larger on-device LLM zero-shot: **Qwen3-4B-Instruct-2507**. It is the
+   same family as the router's backbone, so the gap from tier 2 to tier 3
+   isolates scale, and the gap to the router isolates fine-tuning.
+4. Frontier cloud LLMs zero-shot, all given the same prompt (policy tables,
+   intent list, context prefix; one-label structured output):
+   - **Claude Opus 5.5** (`claude-opus-5-5`, $4 / $20 per M input/output
+     tokens; low effort, since thinking cannot be turned off);
+   - **GPT-6 Astra** (OpenAI flagship, listed at $10 / $50);
+   - **Gemini 3.1 Pro** (listed at $2 / $12);
+   - optional ceiling check on a subset: **Claude Fable 5.1**
+     (`claude-fable-5-1`, $10 / $50).
+
+   Non-Claude prices come from third-party roundups; re-check them on the
+   providers' pricing pages on the day of the runs and record that date in
+   the paper. Tier 4 is an upper bound that could not be deployed as the
+   gate, because asking it already sends the data off the car.
 5. AutoGate: end-to-end route head and perception + rulebook, each with and
    without context
 6. Oracle-perception ceiling: the rulebook fed the gold intent and gold
@@ -133,7 +146,12 @@ Two things are measured, and the paper names them:
 - RQ5: Robustness by slice and variant: Hinglish, Kannada-English,
   disfluent, ASR, adversarial, OOD intents.
 - RQ6: Deployment: parameters; int8 ONNX latency (p50/p95) and memory on
-  a phone, then an automotive chip; cost per 1,000 requests against the
+  a current flagship phone, then an automotive chip. Budget: the router is
+  one stage of a pipeline (ASR, router, assistant model, TTS) and must be
+  imperceptible within it, so **p95 ≤ 20 ms on the automotive chip**
+  (about a tenth of a typical gap between conversational turns, ~200 ms;
+  verify the citation) and **p95 ≤ 50 ms on the phone** as the interim
+  check; cost per 1,000 requests against the
   frontier APIs; calibration (ECE).
 - Cost-matrix sensitivity: perturb the weights and report how stable the ranking is.
 
@@ -205,13 +223,13 @@ zero-shot baselines, per-slice and per-variant tables, paraphrase spec.
    if the two designs are within confidence intervals on the default
    policy, or if reviewers ask.
 3. ~~**Latency target.**~~ **Resolved:** phone first, automotive chip after.
-   Still open: which phone, which runtime (ONNX Runtime Mobile CPU, or
-   NNAPI/QNN for the NPU), and the p95 budget.
-4. **Which frontier models** in tier 4, and which ~3–4B model in tier 3.
+   Any current flagship phone; budgets set in RQ6 (p95 ≤ 50 ms phone,
+   ≤ 20 ms automotive). Still open: CPU or NPU runtime on the phone.
+4. ~~**Baseline models.**~~ **Resolved:** see Baseline tiers 3 and 4.
 5. **KVRET real utterances:** in v1 or listed as future work?
 6. **Sensitive rate:** add slot-bearing seeds, or raise `--n-sensitive`?
 7. ~~**Fallback wording.**~~ **Resolved:** the claim is non-inferiority at
-   a fraction of the cost, not "beats", so it holds either way. Still
-   open: the margin δ for SWE and critical-miss rate, fixed before the
-   tier-4 runs. If the router misses δ, report it honestly and lead with
-   cost, latency and privacy.
+   a fraction of the cost, not "beats", so it holds either way. Margins
+   are tight (0.5 pp critical miss, 0.025 SWE; see Positioning). If the
+   router misses them, report it honestly and lead with cost, latency
+   and privacy.
