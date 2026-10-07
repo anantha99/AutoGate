@@ -82,8 +82,24 @@ hand-set weights.
    asking it already sends the data off the car.
 5. AutoGate: end-to-end route head and perception + rulebook, each with and
    without context
+6. Oracle-perception ceiling: the rulebook fed the gold intent and gold
+   spans. It scores perfectly by construction. Reporting it openly shows
+   the circularity and makes plain that every remaining error in the
+   decomposed router is a perception error.
 
 **Research questions**
+
+Two things are measured, and the paper names them:
+
+- **Policy fidelity** (default policy): does the router route as the
+  specification says? The labels come from the rulebook by design, so this
+  is a test of following a written spec. The hard part is perception
+  (paraphrase, code-mixing, ASR noise, lowercase names); rules fall to 0.52
+  intent accuracy on it.
+- **Policy generalization** (RQ4): when the policy changes without
+  retraining, does the router still follow it? Here the end-to-end route
+  head has no built-in advantage or disadvantage, so the two designs
+  compete fairly.
 
 - RQ1: Does the router beat the zero-shot tiers on critical misses, leak rate and SWE?
 - RQ2: End-to-end vs. perception + rulebook: which is safer, and which is more accurate?
@@ -119,9 +135,11 @@ hand-set weights.
    driver-distraction research and guidelines; PII detection and masking.
    *(Verify every citation before submission.)*
 3. **Problem formulation.** Routes; context (speed, workload, passenger,
-   connectivity, privacy mode); the three policy tables; the precedence
-   tree; the cost matrix; definitions of critical miss and leak rate; the
-   standards-alignment table.
+   connectivity, privacy mode, local model tier); the four policy tables and
+   the locked rules; the precedence tree; the cost matrix; definitions of
+   critical miss and leak rate; the standards-alignment table. State the
+   framing here: the policy is the specification, so the benchmark measures
+   policy fidelity and policy generalization, not open-ended judgement.
 4. **AutoGateBench.** Taxonomy and seeds; paraphrases (plain, Hinglish,
    Kannada-English, disfluent) and ASR noise; span injection; context
    sampling; rulebook labelling; seed-level and OOD splits; slices; counts;
@@ -142,7 +160,10 @@ zero-shot baselines, per-slice and per-variant tables, paraphrase spec.
 ## Limitations to state plainly
 
 - **Labels encode one policy.** The benchmark measures how faithfully a
-  router follows a policy, not real-world safety. There is no user study.
+  router follows a policy and how well it generalizes to a changed one,
+  not real-world safety. The decomposed router matches the labels exactly
+  when perception is perfect (the oracle row), and we say so. There are no
+  labels written by people and no user study.
 - **Single-family synthetic paraphrases.** Claude agents wrote them all, so
   train and test share a style. Mitigations: a non-Claude frontier baseline
   and KVRET real utterances.
@@ -162,10 +183,12 @@ zero-shot baselines, per-slice and per-variant tables, paraphrase spec.
    restricted behaviour. The default reproduces the earlier labels
    exactly; `rows.jsonl` sha256 is unchanged.
    Still to do: ship the RQ4 variant policies as JSON files under `configs/`.
-2. **Circularity.** The labels come from the rulebook, so perception +
-   rulebook reproduces them exactly when perception is perfect. How does the
-   paper keep this from reading as a benchmark rigged for the decomposed
-   design?
+2. ~~**Circularity.**~~ **Resolved.** Frame the benchmark as policy
+   fidelity plus policy generalization (RQ4), and report the
+   oracle-perception ceiling openly. Labels written by people are deferred:
+   add a small set (e.g. KVRET utterances labelled under the default policy)
+   if the two designs are within confidence intervals on the default
+   policy, or if reviewers ask.
 3. **Latency target:** which SoC or CPU, and what budget?
 4. **Which frontier models** in tier 4, and which ~3–4B model in tier 3.
 5. **KVRET real utterances:** in v1 or listed as future work?
