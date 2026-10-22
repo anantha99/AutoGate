@@ -125,6 +125,19 @@ def test_export_onnx_matches_torch(smoke_run, tmp_path, pilot_jsonl):
     )
     fp32, int8 = report["models"]["fp32"], report["models"]["int8"]
     assert fp32["max_abs_diff"] <= 1e-3
+    tag_outputs = [
+        "capability_logits",
+        "distraction_logits",
+        "actuation_logits",
+        "consequence_logits",
+    ]
+    assert report["outputs"] == ["route_logits", "intent_logits", "span_logits", *tag_outputs]
+    assert set(fp32["outputs"]) == set(report["outputs"])
+    import onnxruntime as ort
+
+    sess = ort.InferenceSession(fp32["path"], providers=["CPUExecutionProvider"])
+    assert [o.name for o in sess.get_outputs()] == report["outputs"]
+    assert sess.get_outputs()[6].shape[1] == 3  # consequence: none, reversible, irreversible
     assert int8["bytes"] < fp32["bytes"]
     assert (tmp_path / "onnx" / "labels.json").is_file()
     assert (tmp_path / "onnx" / "tokenizer").is_dir()

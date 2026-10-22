@@ -7,8 +7,11 @@ Steps: load the checkpoint with eager attention, merge the LoRA adapter into
 the backbone, trace the three-head model with the TorchScript exporter
 (opset 17; inputs ``input_ids``, ``attention_mask``, ``utterance_mask``, all
 int64 [batch, sequence]; outputs ``route_logits`` [batch, 5],
-``intent_logits`` [batch, 65], ``span_logits`` [batch, sequence, 11]; batch
-and sequence axes dynamic), then ``onnxruntime.quantization.quantize_dynamic``
+``intent_logits`` [batch, 65], ``span_logits`` [batch, sequence, 11], and,
+when the checkpoint has tag heads, ``capability_logits`` [batch, 4],
+``distraction_logits`` [batch, 3], ``actuation_logits`` [batch, 4],
+``consequence_logits`` [batch, 3]; batch and sequence axes dynamic), then
+``onnxruntime.quantization.quantize_dynamic``
 to int8 weights (``--per-channel`` for per-channel scales). Both files are
 checked against the torch logits on ``--n-examples`` rows from ``--rows``
 (or four built-in examples) in two different padded shapes: fp32 must agree
@@ -34,7 +37,13 @@ FP32_FILE = "router.onnx"
 INT8_FILE = "router.int8.onnx"
 REPORT_FILE = "export_report.json"
 INPUT_NAMES = ("input_ids", "attention_mask", "utterance_mask")
-OUTPUT_NAMES = ("route_logits", "intent_logits", "span_logits")
+OUTPUT_NAMES = ("route_logits", "intent_logits", "span_logits")  # without tag heads
+TAG_OUTPUT_NAMES = (
+    "capability_logits",
+    "distraction_logits",
+    "actuation_logits",
+    "consequence_logits",
+)
 
 SAMPLE_ROWS = (
     {"utterance": "turn on the front defrost", "spans": []},
@@ -65,15 +74,20 @@ def _mb(n: int) -> str:
 
 
 class ExportWrapper(torch.nn.Module):
-    """The router with positional inputs and a tuple of the three logits, for tracing."""
+    """The router with positional inputs and a tuple of its logits, for tracing.
+
+    The outputs are ``model.output_names``: route, intent and span logits,
+    then the four tag logits when the model has tag heads.
+    """
 
     def __init__(self, model: torch.nn.Module):
         super().__init__()
         self.m = model
+        self.output_names: tuple[str, ...] = tuple(model.output_names)
 
     def forward(self, input_ids, attention_mask, utterance_mask):
         out = self.m(input_ids, attention_mask, utterance_mask)
-        return out["route_logits"], out["intent_logits"], out["span_logits"]
+        return tuple(out[name] for name in self.output_names)
 
 
 def sample_batches(
@@ -102,14 +116,15 @@ def compare(
     session: Any, wrapper: torch.nn.Module, batches: list[dict[str, Any]]
 ) -> dict[str, dict[str, float]]:
     """Per output: max |onnx - torch| and argmax agreement (span logits on real tokens only)."""
-    stats = {name: {"max_abs_diff": 0.0, "agree": 0, "n": 0} for name in OUTPUT_NAMES}
+    names = tuple(getattr(wrapper, "output_names", OUTPUT_NAMES))
+    stats = {name: {"max_abs_diff": 0.0, "agree": 0, "n": 0} for name in names}
     for b in batches:
         feeds = {k: b[k].numpy().astype(np.int64) for k in INPUT_NAMES}
         with torch.no_grad():
             refs = [t.numpy() for t in wrapper(*(b[k] for k in INPUT_NAMES))]
-        outs = session.run(list(OUTPUT_NAMES), feeds)
+        outs = session.run(list(names), feeds)
         mask = feeds["attention_mask"].astype(bool)
-        for name, o, r in zip(OUTPUT_NAMES, outs, refs, strict=True):
+        for name, o, r in zip(names, outs, refs, strict=True):
             if name == "span_logits":
                 o, r = o[mask], r[mask]
             st = stats[name]
@@ -155,11 +170,8 @@ def export(
     large = n_params * 4 > 1.8 * 2**30  # protobuf's 2 GB limit: use external data
     fp32 = out_dir / FP32_FILE
     dyn = {name: {0: "batch", 1: "sequence"} for name in INPUT_NAMES}
-    dyn.update(
-        route_logits={0: "batch"},
-        intent_logits={0: "batch"},
-        span_logits={0: "batch", 1: "sequence"},
-    )
+    dyn.update({name: {0: "batch"} for name in wrapper.output_names})
+    dyn["span_logits"] = {0: "batch", 1: "sequence"}
     tmp = out_dir / "_trace"
     shutil.rmtree(tmp, ignore_errors=True)
     tmp.mkdir()
@@ -169,7 +181,7 @@ def export(
             args,
             str(tmp / FP32_FILE),
             input_names=list(INPUT_NAMES),
-            output_names=list(OUTPUT_NAMES),
+            output_names=list(wrapper.output_names),
             dynamic_axes=dyn,
             opset_version=opset,
             dynamo=False,
@@ -210,6 +222,7 @@ def export(
     result: dict[str, Any] = {
         "checkpoint": str(checkpoint),
         "opset": opset,
+        "outputs": list(wrapper.output_names),
         "n_verify_examples": sum(len(b["input_ids"]) for b in batches[:-1] or batches),
         "models": {},
     }

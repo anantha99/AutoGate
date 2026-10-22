@@ -47,6 +47,7 @@ Class weights
 from __future__ import annotations
 
 import json
+import math
 import random
 import re
 from collections.abc import Iterable, Mapping, Sequence
@@ -487,3 +488,44 @@ def class_weights_from_cost_matrix(
             raw.append(row_mean(r, r))
     mean = sum(raw) / len(raw)
     return [w / mean for w in raw]
+
+
+# Danger multipliers for the tag loss weights: the classes whose miss is the
+# most expensive for the rulebook (a safety-critical or restricted command
+# routed as an ordinary one, a high-distraction task let through while
+# moving, an irreversible action executed without confirmation).
+TAG_DANGER: dict[str, dict[str, float]] = {
+    "actuation": {"safety_critical": 2.0, "restricted": 2.0},
+    "distraction": {"high": 1.5},
+    "consequence": {"irreversible": 1.5},
+    "capability": {},
+}
+
+
+def tag_class_weights(
+    rows: Iterable[Row], labels: Labels = DEFAULT_LABELS
+) -> dict[str, list[float]]:
+    """Per tag, loss weights in ``labels.tags[tag]`` order, from the train rows.
+
+    ``w_c = danger_c / sqrt(freq_c)``, where ``freq_c`` is the fraction of
+    rows whose tag is ``c`` and ``danger_c`` is 2.0 for actuation
+    safety_critical and restricted, 1.5 for distraction high and for
+    consequence irreversible, and 1.0 otherwise (:data:`TAG_DANGER`). The
+    weights are then divided by their mean so they average 1. A class that
+    never occurs in ``rows`` is counted once, so its weight stays finite
+    (it never appears as a target, so its weight only affects the mean).
+    """
+    rows = list(rows)
+    n = max(len(rows), 1)
+    out: dict[str, list[float]] = {}
+    for name, vocab in labels.tags.items():
+        counts = {v: 0 for v in vocab}
+        for r in rows:
+            v = r.get(name)
+            if v is not None and str(v) in counts:
+                counts[str(v)] += 1
+        danger = TAG_DANGER.get(name, {})
+        raw = [danger.get(v, 1.0) / math.sqrt(max(counts[v], 1) / n) for v in vocab]
+        mean = sum(raw) / len(raw)
+        out[name] = [w / mean for w in raw]
+    return out

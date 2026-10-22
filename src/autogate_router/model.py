@@ -1,14 +1,22 @@
-"""The AutoGate router: one backbone forward pass, three heads.
+"""The AutoGate router: one backbone forward pass, a route head and its helpers.
 
 * ``route``: 5-way over the pooled utterance representation, cross-entropy
   with per-class weights from the cost matrix
   (:func:`autogate_router.data.class_weights_from_cost_matrix`).
 * ``intent``: 65-way over the same pooled representation, plain
-  cross-entropy (auxiliary; the policy gate needs the intent's tags).
+  cross-entropy (auxiliary).
 * ``span``: per-token BIO over the 11 sensitive-span tags, cross-entropy
   ignoring ``-100`` (prefix, special and padding tokens).
+* tag heads (``tag_heads=True``): ``capability`` (4), ``distraction`` (3),
+  ``actuation`` (4) and ``consequence`` (3), each a linear layer over the
+  pooled vector (after the head dropout), cross-entropy with per-class
+  weights from :func:`autogate_router.data.tag_class_weights` stored in the
+  config. These are the intent tags the rulebook reads, so a route can also
+  be computed from them (``autogate_router.tag_routing``).
 
-``loss = route + lambda_intent * intent + lambda_span * span``.
+``loss = route + lambda_intent * intent + lambda_span * span
++ sum_k lambda_tags[k] * tag_k``. ``label_smoothing`` applies to the route,
+intent and tag cross-entropies, not to the span loss.
 
 Pooling is ``mean`` over utterance tokens (``utterance_mask``; the context
 prefix and padding are masked out) or ``last``, the hidden state of the last
@@ -19,7 +27,9 @@ right-padded).
 A checkpoint directory holds ``router_config.json``, ``labels.json``,
 ``heads.safetensors``, the tokenizer in ``tokenizer/``, and either the LoRA
 adapter in ``adapter/`` (the base backbone is loaded by name) or the full
-backbone in ``backbone/`` when trained with ``--no-lora``.
+backbone in ``backbone/`` when trained with ``--no-lora``. A checkpoint
+saved before the tag heads existed (no ``tag_heads`` key in its config, or a
+``labels.json`` without tag vocabularies) loads without them.
 """
 
 from __future__ import annotations
@@ -33,7 +43,14 @@ import torch
 from torch import nn
 from torch.nn import functional as F
 
-from autogate_router.labels import DEFAULT_LABELS, IGNORE_INDEX, Labels, load_labels, save_labels
+from autogate_router.labels import (
+    DEFAULT_LABELS,
+    IGNORE_INDEX,
+    TAG_NAMES,
+    Labels,
+    load_labels,
+    save_labels,
+)
 
 CONFIG_FILE = "router_config.json"
 HEADS_FILE = "heads.safetensors"
@@ -53,6 +70,12 @@ DEFAULT_LORA_TARGETS: tuple[str, ...] = (
     "down_proj",
 )
 POOLINGS = ("mean", "last")
+DEFAULT_LAMBDA_TAGS: dict[str, float] = {
+    "actuation": 1.0,
+    "distraction": 1.0,
+    "capability": 0.5,
+    "consequence": 0.3,
+}
 
 
 @dataclass
@@ -75,18 +98,32 @@ class RouterConfig:
     n_routes: int = len(DEFAULT_LABELS.routes)
     n_intents: int = len(DEFAULT_LABELS.intents)
     n_bio: int = len(DEFAULT_LABELS.bio_tags)
+    tag_heads: bool = True
+    lambda_tags: dict[str, float] = field(default_factory=lambda: dict(DEFAULT_LAMBDA_TAGS))
+    label_smoothing: float = 0.0
+    tag_class_weights: dict[str, list[float]] | None = None
+    """Per tag, loss weights in ``labels.json`` order (from the train rows)."""
 
     def __post_init__(self) -> None:
         if self.pooling not in POOLINGS:
             raise ValueError(f"pooling must be one of {POOLINGS}, got {self.pooling!r}")
+        unknown = set(self.lambda_tags) - set(TAG_NAMES)
+        if unknown:
+            raise ValueError(f"lambda_tags has unknown tags {sorted(unknown)}")
+        self.lambda_tags = {k: float(self.lambda_tags.get(k, 0.0)) for k in TAG_NAMES}
+        if not 0.0 <= self.label_smoothing < 1.0:
+            raise ValueError(f"label_smoothing must be in [0, 1), got {self.label_smoothing}")
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
     @classmethod
     def from_dict(cls, d: dict[str, Any]) -> RouterConfig:
+        """Rebuild from ``router_config.json``; a config without ``tag_heads`` predates them."""
         known = {f.name for f in fields(cls)}
-        return cls(**{k: v for k, v in d.items() if k in known})
+        kw = {k: v for k, v in d.items() if k in known}
+        kw.setdefault("tag_heads", False)
+        return cls(**kw)
 
 
 def pool(hidden: torch.Tensor, mask: torch.Tensor, how: str = "mean") -> torch.Tensor:
@@ -141,6 +178,9 @@ class AutoGateRouter(nn.Module):
             len(labels.bio_tags),
         ):
             raise ValueError("config head sizes do not match the labels")
+        if config.tag_heads and not labels.has_tags:
+            raise ValueError("tag_heads=True needs labels with tag vocabularies")
+        self.tag_names: tuple[str, ...] = tuple(labels.tags) if config.tag_heads else ()
         if backbone is None:
             backbone = _load_backbone(config.backbone, attn_implementation)
             if config.use_lora:
@@ -157,6 +197,18 @@ class AutoGateRouter(nn.Module):
             torch.tensor(weights, dtype=torch.float32) if weights else torch.ones(config.n_routes),
             persistent=False,
         )
+        tag_weights = config.tag_class_weights or {}
+        for name in self.tag_names:
+            n = len(labels.tags[name])
+            setattr(self, f"{name}_head", nn.Linear(hidden, n))
+            w = tag_weights.get(name)
+            if w is not None and len(w) != n:
+                raise ValueError(f"{name}: {len(w)} class weights for {n} classes")
+            self.register_buffer(
+                f"{name}_weights",
+                torch.tensor(w, dtype=torch.float32) if w else torch.ones(n),
+                persistent=False,
+            )
 
     # ------------------------------------------------------------------ #
 
@@ -180,7 +232,23 @@ class AutoGateRouter(nn.Module):
         return get_peft_model(backbone, lora)
 
     def head_modules(self) -> dict[str, nn.Module]:
-        return {"route": self.route_head, "intent": self.intent_head, "span": self.span_head}
+        heads = {"route": self.route_head, "intent": self.intent_head, "span": self.span_head}
+        heads.update({name: getattr(self, f"{name}_head") for name in self.tag_names})
+        return heads
+
+    @property
+    def has_tag_heads(self) -> bool:
+        return bool(self.tag_names)
+
+    @property
+    def output_names(self) -> tuple[str, ...]:
+        """Logit outputs in a fixed order: route, intent, span, then the tags."""
+        return (
+            "route_logits",
+            "intent_logits",
+            "span_logits",
+            *(f"{n}_logits" for n in self.tag_names),
+        )
 
     def head_parameters(self) -> list[nn.Parameter]:
         return [p for m in self.head_modules().values() for p in m.parameters()]
@@ -195,7 +263,10 @@ class AutoGateRouter(nn.Module):
         route_labels: torch.Tensor | None = None,
         intent_labels: torch.Tensor | None = None,
         span_labels: torch.Tensor | None = None,
-        **tag_labels: torch.Tensor | None,  # <tag>_labels; no tag heads yet
+        capability_labels: torch.Tensor | None = None,
+        distraction_labels: torch.Tensor | None = None,
+        actuation_labels: torch.Tensor | None = None,
+        consequence_labels: torch.Tensor | None = None,
     ) -> dict[str, torch.Tensor]:
         out = self.backbone(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)
         hidden = out.last_hidden_state.float()
@@ -205,18 +276,52 @@ class AutoGateRouter(nn.Module):
             "intent_logits": self.intent_head(pooled),
             "span_logits": self.span_head(self.dropout(hidden)),
         }
-        if route_labels is None and intent_labels is None and span_labels is None:
+        for name in self.tag_names:
+            result[f"{name}_logits"] = getattr(self, f"{name}_head")(pooled)
+        given_tags = {
+            "capability": capability_labels,
+            "distraction": distraction_labels,
+            "actuation": actuation_labels,
+            "consequence": consequence_labels,
+        }
+        if (
+            route_labels is None
+            and intent_labels is None
+            and span_labels is None
+            and all(v is None for v in given_tags.values())
+        ):
             return result
+        smooth = self.config.label_smoothing
         zero = result["route_logits"].new_zeros(())
         route_loss = intent_loss = span_loss = zero
         if route_labels is not None:
             route_loss = F.cross_entropy(
-                result["route_logits"], route_labels, weight=self.route_weights
+                result["route_logits"],
+                route_labels,
+                weight=self.route_weights,
+                label_smoothing=smooth,
             )
         if intent_labels is not None and (intent_labels != IGNORE_INDEX).any():
             intent_loss = F.cross_entropy(
-                result["intent_logits"], intent_labels, ignore_index=IGNORE_INDEX
+                result["intent_logits"],
+                intent_labels,
+                ignore_index=IGNORE_INDEX,
+                label_smoothing=smooth,
             )
+        tags_loss = zero
+        for name in self.tag_names:
+            y = given_tags[name]
+            loss_k = zero
+            if y is not None and (y != IGNORE_INDEX).any():
+                loss_k = F.cross_entropy(
+                    result[f"{name}_logits"],
+                    y,
+                    weight=getattr(self, f"{name}_weights"),
+                    ignore_index=IGNORE_INDEX,
+                    label_smoothing=smooth,
+                )
+            result[f"{name}_loss"] = loss_k
+            tags_loss = tags_loss + self.config.lambda_tags[name] * loss_k
         if span_labels is not None and (span_labels != IGNORE_INDEX).any():
             span_loss = F.cross_entropy(
                 result["span_logits"].reshape(-1, self.config.n_bio),
@@ -226,10 +331,12 @@ class AutoGateRouter(nn.Module):
         result["route_loss"] = route_loss
         result["intent_loss"] = intent_loss
         result["span_loss"] = span_loss
+        result["tags_loss"] = tags_loss
         result["loss"] = (
             route_loss
             + self.config.lambda_intent * intent_loss
             + self.config.lambda_span * span_loss
+            + tags_loss
         )
         return result
 
@@ -276,6 +383,8 @@ class AutoGateRouter(nn.Module):
         d = Path(directory)
         config = RouterConfig.from_dict(json.loads((d / CONFIG_FILE).read_text(encoding="utf-8")))
         labels = load_labels(d)
+        if not labels.has_tags:
+            config.tag_heads = False
         if config.use_lora:
             from peft import PeftModel
 

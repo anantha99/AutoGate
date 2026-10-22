@@ -41,13 +41,16 @@ PREDICTION_FIELDS = (
 
 
 def infer(model: Any, examples: Sequence[dict], batch_size: int, device: Any) -> dict[str, Any]:
-    """Logits for every example: route [N, 5], intent [N, 65], per-example span tag ids."""
+    """Logits for every example: route [N, 5], intent [N, 65], per-example span tag ids,
+    and ``tag_logits`` {tag: [N, n_classes]} when the model has tag heads."""
     import torch
 
     from autogate_router.data import collate
 
     pad_id = getattr(getattr(model.backbone, "config", None), "pad_token_id", None) or 0
     route, intent, span_tags = [], [], []
+    tag_names = tuple(getattr(model, "tag_names", ()))
+    tag_out: dict[str, list[np.ndarray]] = {name: [] for name in tag_names}
     was_training = model.training
     model.eval()
     with torch.inference_mode():
@@ -61,15 +64,25 @@ def infer(model: Any, examples: Sequence[dict], batch_size: int, device: Any) ->
             )
             route.append(out["route_logits"].float().cpu().numpy())
             intent.append(out["intent_logits"].float().cpu().numpy())
+            for name in tag_names:
+                tag_out[name].append(out[f"{name}_logits"].float().cpu().numpy())
             tags = out["span_logits"].argmax(-1).cpu().numpy()
             span_tags += [tags[j, : len(ex["input_ids"])].tolist() for j, ex in enumerate(chunk)]
     model.train(was_training)
     n_r, n_i = model.config.n_routes, model.config.n_intents
-    return {
+    result: dict[str, Any] = {
         "route_logits": np.concatenate(route) if route else np.zeros((0, n_r), np.float32),
         "intent_logits": np.concatenate(intent) if intent else np.zeros((0, n_i), np.float32),
         "span_tags": span_tags,
     }
+    if tag_names:
+        result["tag_logits"] = {
+            name: np.concatenate(v)
+            if v
+            else np.zeros((0, len(model.labels.tags[name])), np.float32)
+            for name, v in tag_out.items()
+        }
+    return result
 
 
 def softmax(x: np.ndarray, temperature: float = 1.0) -> np.ndarray:

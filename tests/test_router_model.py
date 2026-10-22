@@ -21,6 +21,7 @@ SMALL_LORA = dict(lora_r=4, lora_alpha=8, lora_dropout=0.0, head_dropout=0.0)
 
 
 def _model(backbone, **kw):
+    kw.setdefault("tag_class_weights", {"actuation": [0.5, 2.0, 0.5, 1.0]})
     cfg = RouterConfig(
         backbone=str(backbone), route_class_weights=class_weights_from_cost_matrix(), **kw
     )
@@ -53,11 +54,72 @@ def test_forward_shapes_and_loss(tiny_backbone, tiny_tokenizer, pilot_rows, kw):
     assert out["route_logits"].shape == (b, 5)
     assert out["intent_logits"].shape == (b, 65)
     assert out["span_logits"].shape == (b, t, 11)
+    for name, n in (("capability", 4), ("distraction", 3), ("actuation", 4), ("consequence", 3)):
+        assert out[f"{name}_logits"].shape == (b, n)
+        assert torch.isfinite(out[f"{name}_loss"]) and out[f"{name}_loss"] > 0
     assert torch.isfinite(out["loss"])
-    expected = out["route_loss"] + 0.5 * out["intent_loss"] + 1.0 * out["span_loss"]
+    tags = (
+        1.0 * out["actuation_loss"]
+        + 1.0 * out["distraction_loss"]
+        + 0.5 * out["capability_loss"]
+        + 0.3 * out["consequence_loss"]
+    )
+    assert torch.allclose(out["tags_loss"], tags)
+    expected = out["route_loss"] + 0.5 * out["intent_loss"] + 1.0 * out["span_loss"] + tags
     assert torch.allclose(out["loss"], expected)
     logits_only = model.eval()(batch["input_ids"], batch["attention_mask"], batch["utterance_mask"])
     assert "loss" not in logits_only
+
+
+def test_no_tag_heads_is_the_v0_model(tiny_backbone, tiny_tokenizer, pilot_rows):
+    model = _model(tiny_backbone, tag_heads=False, **SMALL_LORA)
+    assert not model.has_tag_heads and set(model.head_modules()) == {"route", "intent", "span"}
+    out = model(**_batch(tiny_tokenizer, pilot_rows[:4]))  # tag labels in the batch are ignored
+    assert not any(k.startswith(("capability", "actuation")) for k in out)
+    expected = out["route_loss"] + 0.5 * out["intent_loss"] + out["span_loss"]
+    assert torch.allclose(out["loss"], expected)
+
+
+def test_label_smoothing_and_tag_weights(tiny_backbone, tiny_tokenizer, pilot_rows):
+    from autogate_router.data import tag_class_weights
+
+    batch = _batch(tiny_tokenizer, pilot_rows[:8])
+    weights = tag_class_weights(pilot_rows)
+    plain = _model(tiny_backbone, **SMALL_LORA).eval()
+    smooth = _model(tiny_backbone, label_smoothing=0.1, tag_class_weights=weights, **SMALL_LORA)
+    smooth.eval()
+    assert torch.equal(smooth.actuation_weights, torch.tensor(weights["actuation"]))
+    with torch.no_grad():
+        a, b = plain(**batch), smooth(**batch)
+    assert torch.equal(a["route_logits"], b["route_logits"])
+    assert not torch.isclose(a["route_loss"], b["route_loss"])
+    assert not torch.isclose(a["intent_loss"], b["intent_loss"])
+    assert not torch.isclose(a["actuation_loss"], b["actuation_loss"])
+    assert torch.equal(a["span_loss"], b["span_loss"])  # no smoothing on spans
+    with pytest.raises(ValueError, match="lambda_tags"):
+        RouterConfig(lambda_tags={"colour": 1.0})
+
+
+def test_tag_class_weights_formula():
+    from autogate_router.data import tag_class_weights
+
+    rows = (
+        [{"actuation": "none", "distraction": "low"}] * 6
+        + [{"actuation": "comfort", "distraction": "medium"}] * 2
+        + [{"actuation": "safety_critical", "distraction": "high"}]
+        + [{"actuation": "restricted", "distraction": "high"}]
+    )
+    for r in rows:
+        r.update(capability="local_ok", consequence="none")
+    w = tag_class_weights(rows)
+    raw = [1 / math.sqrt(0.6), 2.0 / math.sqrt(0.1), 1 / math.sqrt(0.2), 2.0 / math.sqrt(0.1)]
+    assert w["actuation"] == pytest.approx([x / (sum(raw) / 4) for x in raw])
+    raw = [1 / math.sqrt(0.6), 1 / math.sqrt(0.2), 1.5 / math.sqrt(0.2)]
+    assert w["distraction"] == pytest.approx([x / (sum(raw) / 3) for x in raw])
+    # absent classes are counted once; all weights finite and averaging 1
+    for name in ("capability", "consequence"):
+        assert sum(w[name]) / len(w[name]) == pytest.approx(1.0)
+        assert all(math.isfinite(x) for x in w[name])
 
 
 def test_lora_freezes_backbone(tiny_backbone):
@@ -103,8 +165,12 @@ def test_save_load_round_trip(tmp_path, tiny_backbone, tiny_tokenizer, pilot_row
     loaded = AutoGateRouter.from_pretrained(tmp_path / "ckpt")
     with torch.no_grad():
         after = loaded(**inputs)
-    for k in ("route_logits", "intent_logits", "span_logits"):
+    assert loaded.has_tag_heads and loaded.config.tag_heads
+    assert loaded.config.tag_class_weights == model.config.tag_class_weights
+    assert torch.equal(loaded.actuation_weights, model.actuation_weights)
+    for k in model.output_names:
         assert torch.equal(before[k], after[k]), k
+    assert "actuation_logits" in model.output_names
     if use_lora:
         merged = AutoGateRouter.from_pretrained(tmp_path / "ckpt", merge_lora=True)
         with torch.no_grad():
@@ -147,3 +213,30 @@ def test_shipped_configs_parse():
     assert full.backbone == "Qwen/Qwen3-0.6B" and full.lora and full.context
     smoke = parse_config(["--config", "configs/train_smoke.yaml"])
     assert smoke.device == "cpu" and math.isfinite(smoke.lr)
+
+
+def test_old_checkpoint_without_tag_heads_loads(
+    tmp_path, tiny_backbone, tiny_tokenizer, pilot_rows
+):
+    """A checkpoint written before the tag heads: no tag keys in its config or labels."""
+    model = _model(tiny_backbone, tag_heads=False, use_lora=False, tag_class_weights=None).eval()
+    ckpt = model.save_pretrained(tmp_path / "old", tiny_tokenizer)
+    cfg = json.loads((ckpt / "router_config.json").read_text())
+    for key in ("tag_heads", "lambda_tags", "label_smoothing", "tag_class_weights"):
+        cfg.pop(key)
+    (ckpt / "router_config.json").write_text(json.dumps(cfg))
+    labels = json.loads((ckpt / "labels.json").read_text())
+    for key in ("capabilities", "distractions", "actuations", "consequences"):
+        labels.pop(key)
+    (ckpt / "labels.json").write_text(json.dumps(labels))
+
+    loaded = AutoGateRouter.from_pretrained(ckpt)
+    assert not loaded.has_tag_heads and not loaded.labels.has_tags
+    assert loaded.output_names == ("route_logits", "intent_logits", "span_logits")
+    batch = _batch(tiny_tokenizer, pilot_rows[:5])
+    inputs = {k: batch[k] for k in ("input_ids", "attention_mask", "utterance_mask")}
+    with torch.no_grad():
+        before, after = model(**inputs), loaded(**inputs)
+    assert torch.equal(before["route_logits"], after["route_logits"])
+    # training-style batches (with tag labels) still run through it
+    assert torch.isfinite(loaded(**batch)["loss"])

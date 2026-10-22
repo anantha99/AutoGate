@@ -1,4 +1,4 @@
-r"""Train the AutoGate router (LoRA + three heads) with a plain PyTorch loop.
+r"""Train the AutoGate router (LoRA + route/intent/span/tag heads) with a plain PyTorch loop.
 
     python -m autogate_router.train --config configs/train_qwen3_0.6b.yaml \
         --rows data/generated/full/rows.jsonl --out-dir checkpoints/qwen3-0.6b
@@ -63,12 +63,19 @@ class TrainConfig:
     lora_target_modules: list[str] = field(default_factory=lambda: list(DEFAULT_LORA_TARGETS))
     head_dropout: float = 0.1
     class_weights: bool = True  # --no-class-weights: unweighted route loss
+    tag_heads: bool = True  # --no-tag-heads: route/intent/span heads only (v0)
+    tag_class_weights: bool = True  # --no-tag-class-weights: unweighted tag losses
     # augmentation (train split only, re-drawn every epoch)
     context_dropout: float = 0.0  # P(drop the whole context prefix of an example)
     word_dropout: float = 0.0  # P(delete an utterance word), never inside a sensitive span
     # loss
     lambda_intent: float = 0.5
     lambda_span: float = 1.0
+    lambda_actuation: float = 1.0
+    lambda_distraction: float = 1.0
+    lambda_capability: float = 0.5
+    lambda_consequence: float = 0.3
+    label_smoothing: float = 0.0  # route, intent and tag cross-entropy (not span)
     # optimisation
     epochs: int = 3
     batch_size: int = 32
@@ -247,6 +254,17 @@ def evaluate_split(
     m = evaluate(rows, routes, n_boot=n_boot)
     intent_acc = float(np.mean([p == r["intent"] for p, r in zip(intents, rows, strict=True)]))
     span = span_token_f1(out["span_tags"], [ex["span_labels"] for ex in examples])
+    tag_acc = {
+        f"{name}_accuracy": float(
+            np.mean(
+                [
+                    labels.tags[name][int(i)] == r[name]
+                    for i, r in zip(logits.argmax(-1), rows, strict=True)
+                ]
+            )
+        )
+        for name, logits in out.get("tag_logits", {}).items()
+    }
     return {
         "n": m["n"],
         "swe": m["swe"],
@@ -259,6 +277,7 @@ def evaluate_split(
         "span_token_f1": span["f1"],
         "span_token_precision": span["precision"],
         "span_token_recall": span["recall"],
+        **tag_acc,
     }
 
 
@@ -288,6 +307,7 @@ def train(cfg: TrainConfig) -> dict[str, Any]:
         class_weights_from_cost_matrix,
         collate,
         load_rows,
+        tag_class_weights,
     )
     from autogate_router.model import AutoGateRouter, RouterConfig, load_tokenizer
 
@@ -308,6 +328,7 @@ def train(cfg: TrainConfig) -> dict[str, Any]:
     train_ds, val_ds = build_datasets(cfg, tokenizer, train_rows, val_rows)
 
     weights = class_weights_from_cost_matrix(cfg.cost_matrix) if cfg.class_weights else None
+    tag_weights = tag_class_weights(train_rows) if cfg.tag_heads and cfg.tag_class_weights else None
     rcfg = RouterConfig(
         backbone=cfg.backbone,
         pooling=cfg.pooling,
@@ -322,6 +343,15 @@ def train(cfg: TrainConfig) -> dict[str, Any]:
         lambda_intent=cfg.lambda_intent,
         lambda_span=cfg.lambda_span,
         route_class_weights=weights,
+        tag_heads=cfg.tag_heads,
+        lambda_tags={
+            "actuation": cfg.lambda_actuation,
+            "distraction": cfg.lambda_distraction,
+            "capability": cfg.lambda_capability,
+            "consequence": cfg.lambda_consequence,
+        },
+        label_smoothing=cfg.label_smoothing,
+        tag_class_weights=tag_weights,
     )
     model = AutoGateRouter(rcfg).to(device)
     print(f"device {device}, autocast {amp_dtype}, {model.trainable_summary()}", flush=True)
@@ -334,6 +364,11 @@ def train(cfg: TrainConfig) -> dict[str, Any]:
         ),
         flush=True,
     )
+    if tag_weights:
+        for name, w in tag_weights.items():
+            vocab = model.labels.tags[name]
+            shown = ", ".join(f"{v}={x:.3f}" for v, x in zip(vocab, w, strict=True))
+            print(f"{name} class weights {shown}", flush=True)
 
     gen = torch.Generator()
     gen.manual_seed(cfg.seed)
@@ -375,6 +410,7 @@ def train(cfg: TrainConfig) -> dict[str, Any]:
     history: dict[str, Any] = {
         "config": dataclasses.asdict(cfg),
         "route_class_weights": weights,
+        "tag_class_weights": tag_weights,
         "total_steps": total_steps,
         "steps": [],
         "epochs": [],
@@ -382,7 +418,13 @@ def train(cfg: TrainConfig) -> dict[str, Any]:
     }
     best_key: tuple[float, float] | None = None
     step = 0
-    window: dict[str, list[float]] = {"loss": [], "route": [], "intent": [], "span": []}
+    window: dict[str, list[float]] = {
+        "loss": [],
+        "route": [],
+        "intent": [],
+        "span": [],
+        "tags": [],
+    }
     t0 = time.time()
     done = False
 
@@ -405,7 +447,12 @@ def train(cfg: TrainConfig) -> dict[str, Any]:
             f"[eval] epoch {epoch} step {step}: val SWE {m['swe']:.4f} macro-F1 "
             f"{m['macro_f1']:.4f} acc {m['accuracy']:.4f} critical miss "
             f"{'-' if crit is None else f'{crit:.4f}'} intent acc {m['intent_accuracy']:.4f} "
-            f"span token-F1 {m['span_token_f1']:.4f}",
+            f"span token-F1 {m['span_token_f1']:.4f}"
+            + "".join(
+                f" {k.removesuffix('_accuracy')} acc {v:.4f}"
+                for k, v in m.items()
+                if k.endswith("_accuracy") and k != "intent_accuracy"
+            ),
             flush=True,
         )
         key = (m["swe"], -m["macro_f1"])
@@ -434,6 +481,7 @@ def train(cfg: TrainConfig) -> dict[str, Any]:
             window["route"].append(out["route_loss"].item())
             window["intent"].append(out["intent_loss"].item())
             window["span"].append(out["span_loss"].item())
+            window["tags"].append(out["tags_loss"].item())
             last_in_epoch = i + 1 == len(loader)
             if (i + 1) % cfg.grad_accum and not last_in_epoch:
                 continue
@@ -459,7 +507,8 @@ def train(cfg: TrainConfig) -> dict[str, Any]:
                 print(
                     f"step {step}/{total_steps} epoch {epoch} loss {means['loss']:.4f} "
                     f"(route {means['route']:.4f} intent {means['intent']:.4f} "
-                    f"span {means['span']:.4f}) lr {rec['lr']:.2e} {rec['elapsed_s']}s",
+                    f"span {means['span']:.4f} tags {means['tags']:.4f}) "
+                    f"lr {rec['lr']:.2e} {rec['elapsed_s']}s",
                     flush=True,
                 )
                 window = {k: [] for k in window}
