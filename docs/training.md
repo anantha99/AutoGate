@@ -2,7 +2,8 @@
 
 The router is a small decoder backbone (default `Qwen/Qwen3-0.6B`, any
 `transformers.AutoModel` works via `--backbone`) fine-tuned with LoRA, with
-three heads on one forward pass. Code: `src/autogate_router/`. The numbers
+route, intent and span heads and (since the tags run) four policy-tag heads
+on one forward pass. Code: `src/autogate_router/`. The numbers
 it has to beat are the rules baseline's in `docs/dataset-v0.md`.
 
 ## Install
@@ -39,11 +40,17 @@ value of the context.
 | route | pooled utterance representation | 5 logits, `Route` order | cross-entropy, class-weighted (below) |
 | intent | the same pooled vector | 65 logits, `INTENTS` order | cross-entropy, auxiliary |
 | span | every token's hidden state | 11 BIO logits | token cross-entropy, prefix/special/padding ignored |
+| capability, distraction, actuation, consequence | the same pooled vector | 4, 3, 4, 3 logits, schema enum order | cross-entropy, class-weighted (see [Tag heads](#tag-heads)) |
 
-`loss = route + λ_intent · intent + λ_span · span`, with `--lambda-intent
-0.5` and `--lambda-span 1.0` by default. The intent head is there because
-the policy gate needs the intent's tags (actuation class, consequence); the
-span head finds what CLOUD_MASKED has to mask.
+`loss = route + λ_intent · intent + λ_span · span + Σ_k λ_k · tag_k`, with
+`--lambda-intent 0.5` and `--lambda-span 1.0` by default; the tag terms are
+in [Tag heads](#tag-heads). `--label-smoothing` (default 0) applies to the
+route, intent and tag cross-entropies, not to the span loss. `--no-tag-heads`
+builds the v0 model (route, intent, span only); `configs/train_qwen3_0.6b.yaml`
+sets it so that config still reproduces v0. The intent head was there
+because the policy gate needs the intent's tags (actuation class,
+consequence); the tag heads now predict those directly and the intent head
+stays as an auxiliary. The span head finds what CLOUD_MASKED has to mask.
 
 **Pooling** (`--pooling`). `mean` (default) averages the hidden states of
 the utterance tokens only; the context prefix and padding are masked out.
@@ -54,9 +61,12 @@ right-padded, so the last utterance token is well defined.
 
 **Labels** are fixed in `autogate_router.labels` and written to
 `labels.json` in every checkpoint, so a checkpoint never depends on the
-import order of `Route` or `INTENTS`:
+import order of `Route` or `INTENTS`. The BIO tags are
 `O, B-contact, I-contact, B-phone, I-phone, B-address, I-address, B-otp,
-I-otp, B-card, I-card`.
+I-otp, B-card, I-card`; the tag vocabularies (`capabilities`,
+`distractions`, `actuations`, `consequences`) follow the enum order in
+`autogate_bench.schema`. A `labels.json` written before the tag heads has
+no tag keys and still loads; the model is then built without tag heads.
 
 ### Span labels at the subword level
 
@@ -100,6 +110,123 @@ mean of its two rows. With the shipped matrix:
 `--no-class-weights` trains with a plain cross-entropy instead;
 `--cost-matrix` points at another matrix.
 
+## Tag heads
+
+**What.** Four linear heads over the pooled vector (after the head dropout,
+like the route and intent heads) predict the intent tags the rulebook
+reads: `capability` (local_ok, needs_small_local, needs_cloud,
+cloud_preferred), `distraction` (low, medium, high), `actuation` (none,
+safety_critical, comfort, restricted) and `consequence` (none, reversible,
+irreversible). Targets are the row's own tag strings.
+
+**Why.** The v0 router learned intent identity: it beat the rules baseline
+in distribution and failed on the six held-out OOD intents
+(`docs/results-v0.md`). The tags are what transfers. An unseen intent still
+has a capability, a distraction level and an actuation class, and once
+those are right the rulebook is exact, so a route computed from predicted
+tags can generalise where the route head does not.
+
+**Loss weights.** `Σ_k λ_k · tag_k` with `--lambda-actuation 1.0`,
+`--lambda-distraction 1.0`, `--lambda-capability 0.5`,
+`--lambda-consequence 0.3` (stored as `lambda_tags` in
+`router_config.json`). Actuation and distraction decide REFUSE and
+safety-critical LOCAL, the expensive cells of the cost matrix; capability
+only moves between LOCAL, CLOUD and DEFER; the rulebook never reads
+consequence (it is for the confirmation gate), so it gets the least.
+
+**Class weights** (`autogate_router.data.tag_class_weights`, computed from
+the train rows in `train.py` and stored in `router_config.json` as
+`tag_class_weights`, so predict and eval never need the train set):
+
+```
+w_c = danger_c / sqrt(freq_c)        freq_c: fraction of train rows whose tag is c
+danger_c = 2.0  actuation safety_critical, actuation restricted
+           1.5  distraction high, consequence irreversible
+           1.0  otherwise
+w <- w / mean(w)                     (per tag, so the weights average 1)
+```
+
+A class missing from the train rows is counted once so its weight stays
+finite. `--no-tag-class-weights` trains the tag heads unweighted. On the
+full dataset's train split (38,469 rows; the pilot has the same
+proportions):
+
+| tag | class: train share -> weight |
+| --- | --- |
+| capability | local_ok 0.677 -> 0.410, needs_small_local 0.095 -> 1.097, needs_cloud 0.190 -> 0.775, cloud_preferred 0.039 -> 1.718 |
+| distraction | low 0.712 -> 0.459, medium 0.133 -> 1.061, high 0.154 -> 1.479 |
+| actuation | none 0.719 -> 0.233, safety_critical 0.056 -> 1.666, comfort 0.165 -> 0.486, restricted 0.060 -> 1.616 |
+| consequence | none 0.333 -> 0.781, reversible 0.481 -> 0.650, irreversible 0.186 -> 1.568 |
+
+**Augmentation** (train split only, both off by default; the tags config
+turns them on). `--context-dropout p` drops an example's whole context
+prefix with probability p: the prefix tokens are removed, not masked, so
+the tag heads learn to read the tags from the utterance alone (the tags do
+not depend on the context; the route does). `--word-dropout p` deletes each
+utterance word with probability p, never a word inside a sensitive span,
+and shifts the span offsets so the span labels stay exact. Both are
+re-drawn every epoch from `(seed, epoch, row index)`; val and test are
+never augmented.
+
+**Conservative decoding** (`autogate_router.tag_routing.decode_tags`). A
+tag miss is not symmetric, so the dangerous classes win below 0.5:
+
+- actuation: `safety_critical` if p >= τ_sc (0.3), else `restricted` if
+  p >= τ_restricted (0.3), else argmax;
+- distraction: `high` if p >= τ_high (0.3), else `medium` if
+  p(medium) + p(high) >= 0.5, else argmax;
+- capability and consequence: argmax.
+
+The thresholds are `predict` flags (`--tau-safety-critical`,
+`--tau-restricted`, `--tau-high`, `--tau-medium-high`);
+`--no-conservative-tags` decodes every tag by argmax.
+
+**Three route sources** from one forward pass, all on every predictions
+line:
+
+| source | field | what |
+| --- | --- | --- |
+| e2e | `route_e2e` | the route head's argmax (what v0 reported) |
+| tags | `route_tags` | `rulebook.route_tags` on the decoded capability, distraction and actuation, the row's context, and sensitivity = any predicted span |
+| combined | `route_combined` | `combine(e2e, tags, tag actuation)`, below |
+
+`combine`: if the tag actuation is safety_critical, the tag route (LOCAL);
+else if either route is REFUSE, REFUSE; else if either is DEFER, DEFER;
+else if one is CLOUD_MASKED and the other CLOUD, CLOUD_MASKED; else the tag
+route. It keeps safety commands on the head unit and otherwise takes the
+more cautious of the two, trusting the rulebook where caution does not
+decide.
+
+`rulebook.route(intent, ...)` is now `route_tags(intent.capability,
+intent.distraction, intent.actuation, ...)`; `route_tags` takes bare tags,
+so a predicted combination that no `Intent` allows (an actuation class on a
+cloud-capability request, say) still gets a route. A test checks
+`route_tags == route` over every intent x all 288 contexts x sensitivity,
+and that the regenerated pilot keeps the sha256 in `docs/pilot.md`.
+
+**Reading the tag report.** When predictions carry `tags`,
+`autogate_eval.score` adds, per tag, overall and per split (so OOD is on
+its own):
+
+- **accuracy** and **macro-F1** (over the classes present in labels or
+  predictions);
+- **dangerous miss**: of the rows whose true class is dangerous (actuation
+  safety_critical or restricted, distraction high, consequence
+  irreversible; capability has none), the share predicted as a
+  non-dangerous class. safety_critical read as restricted is not a
+  dangerous miss (it is still treated as dangerous), restricted read as
+  comfort is;
+- **route-changing errors**: rows where the tag is wrong and correcting
+  only that tag (the other tags as predicted, the same context and
+  predicted span presence) changes the rulebook's route, with the summed
+  cost-matrix cost of the tag route on those rows and what it would be
+  after the correction. This is the number that matters: a tag error the
+  rulebook does not care about (comfort vs none on a command that is LOCAL
+  either way, any consequence error) costs nothing.
+
+The tag report is the same in the e2e, tags and combined files of one run;
+only the route sections differ.
+
 ## Run it
 
 Every field of `TrainConfig` (`src/autogate_router/train.py`) is a flag
@@ -119,8 +246,9 @@ uv run python -m autogate_router.train --config configs/train_smoke.yaml
 The smoke config fine-tunes the whole tiny model (`lora: false`) because
 LoRA keeps the embeddings frozen and a frozen random embedding leaves the
 adapters little to learn; `--lora` runs the LoRA path anyway. Its numbers
-only show that the loop works (loss 6.27 to 1.53 over 216 steps; val
-macro-F1 around 0.2).
+only show that the loop works (with the tag heads, which are on by
+default: loss 9.82 to 1.56 over 216 steps; val macro-F1 around 0.2 to 0.27,
+val actuation accuracy around 0.77).
 
 **Full (one GPU).** Qwen3-0.6B, LoRA r=16, alpha=32 on the attention and MLP
 projections, 3 epochs, batch 32, lr 2e-4:
@@ -131,6 +259,18 @@ python -m autogate_router.train --config configs/train_qwen3_0.6b.yaml \
     --rows data/generated/full/rows.jsonl --out-dir checkpoints/qwen3-0.6b
 ```
 
+**Tags run.** `configs/train_qwen3_0.6b_tags.yaml`: tag heads, 2 epochs,
+lr 1e-4, LoRA r=8, alpha=16, dropout 0.1 on the attention projections only,
+head dropout 0.3, weight decay 0.05, λ_intent 0.2, label smoothing 0.1,
+context dropout 0.2, word dropout 0.1:
+
+```
+python -m autogate_router.train --config configs/train_qwen3_0.6b_tags.yaml \
+    --rows data/generated/full/rows.jsonl --out-dir checkpoints/qwen3-0.6b-tags
+```
+
+`configs/train_smoke_tags.yaml` is the same on the tiny CPU backbone.
+
 **No-context ablation.** The same with the prefix dropped:
 
 ```
@@ -140,8 +280,13 @@ python -m autogate_router.train --config configs/train_qwen3_0.6b.yaml \
 
 **Kaggle.** `scripts/kaggle_train.sh` (or `notebooks/kaggle_train.ipynb`,
 the same steps as cells) runs everything unattended on a GPU notebook with
-Internet on: clone, install, generate, rules baseline, then for the main run
-and the ablation train, calibrate, predict and score test + ood, and export.
+Internet on: clone, install, generate, rules baseline, then for the tags run
+(`qwen3-0.6b-tags`) and its `--no-context` ablation
+(`qwen3-0.6b-tags-no-context`) train, calibrate, predict test + ood with
+`--write-all`, score the e2e, tags and combined files, and export; a final
+comparison prints one markdown table per split (macro-F1, SWE, critical
+miss, span leak for rules, v0 if `runs/qwen3-0.6b` exists, and each run's
+three route sources) and a per-tag table per run.
 Everything lands in `/kaggle/working/runs/<run>/`. Knobs are environment
 variables (`EPOCHS`, `RUN_ABLATION`, `RUN_EXPORT`, `TRAIN_ARGS`, ...; see the
 script header); for a private repo set a `GITHUB_TOKEN` secret.
@@ -171,9 +316,9 @@ lowest val SWE (ties: higher macro-F1) is saved.
 | --- | --- |
 | `<out>/train_config.json` | the resolved config |
 | `<out>/history.json` | the step log (loss curve), per-epoch val metrics, the best epoch |
-| `<out>/best/router_config.json` | backbone name, pooling, use_context, max_length, LoRA settings, class weights |
-| `<out>/best/labels.json` | the three label vocabularies, in logit order |
-| `<out>/best/heads.safetensors` | the three heads |
+| `<out>/best/router_config.json` | backbone name, pooling, use_context, max_length, LoRA settings, class weights, `tag_heads`, `lambda_tags`, `label_smoothing`, `tag_class_weights` |
+| `<out>/best/labels.json` | the label vocabularies (routes, intents, BIO tags, the four tags), in logit order |
+| `<out>/best/heads.safetensors` | the heads (route, intent, span, and the tag heads) |
 | `<out>/best/adapter/` | the LoRA adapter (the base backbone is loaded by name) |
 | `<out>/best/backbone/` | the full backbone instead, with `--no-lora` |
 | `<out>/best/tokenizer/` | the tokenizer |
@@ -204,6 +349,13 @@ python -m autogate_eval.score --rows data/generated/full/rows.jsonl --preds pred
 the max route probability after the temperature in `calibration.json` when
 that file sits beside the checkpoint, the plain max otherwise.
 
+A checkpoint with tag heads adds `tags` (decoded values), `tag_probs`
+(`{tag: {value: p}}`), `route_e2e`, `route_tags` and `route_combined` (see
+[Tag heads](#tag-heads)). `--route-source {e2e,tags,combined}` (default e2e)
+picks which one goes into `route`, so the scorer needs no change, and
+`--write-all PREFIX` writes `PREFIX_e2e.jsonl`, `PREFIX_tags.jsonl` and
+`PREFIX_combined.jsonl` from one pass.
+
 `autogate_eval.score` scores **any** file with this schema; only `id` and
 `route` are required. It joins on `id` (rows without a prediction are left
 out, so a test + ood file can be scored against the full rows file; `--split`
@@ -213,7 +365,9 @@ they carry `spans`, exact-match span precision/recall/F1 and the **leak
 rate**: over rows whose predicted route is CLOUD or CLOUD_MASKED, the
 fraction of true sensitive spans not covered by any predicted span (a span
 is covered when each of its non-space characters lies inside a predicted
-span). `--json` writes everything.
+span), and, when they carry `tags`, the per-tag report described in
+[Tag heads](#tag-heads). `--json` writes everything (span scores also per
+split there).
 
 The rules baseline writes the same schema:
 
@@ -251,10 +405,12 @@ python -m autogate_router.export --checkpoint checkpoints/qwen3-0.6b/best \
     --out-dir checkpoints/qwen3-0.6b/onnx --rows data/generated/full/rows.jsonl
 ```
 
-Merges the LoRA adapter into the backbone, traces the three-head model with
+Merges the LoRA adapter into the backbone, traces the model with
 eager attention (TorchScript exporter, opset 17; inputs `input_ids`,
 `attention_mask`, `utterance_mask`, int64, dynamic batch and sequence;
-outputs `route_logits`, `intent_logits`, `span_logits`), and quantises it
+outputs `route_logits`, `intent_logits`, `span_logits`, plus
+`capability_logits`, `distraction_logits`, `actuation_logits`,
+`consequence_logits` when the checkpoint has tag heads), and quantises it
 with `onnxruntime.quantization.quantize_dynamic` to int8 (`--per-channel`
 for per-channel scales). fp32 must match torch within `--atol` (1e-3) on
 `--n-examples` val rows in two padded shapes; for int8 the per-head argmax

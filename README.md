@@ -15,7 +15,7 @@ and the router follow.
 | Package | Contents |
 | --- | --- |
 | `autogate_bench` | Schema, policy tables, rulebook labeler, intent taxonomy (`docs/taxonomy.md`), seeds, paraphrase format and validator (`docs/paraphrase-spec.md`), ASR augmenter, span injector, context sampler, splits, dataset writer |
-| `autogate_router` | Router labels, data, model (backbone + LoRA + route/intent/span heads), training, prediction, calibration, ONNX export (`docs/training.md`) |
+| `autogate_router` | Router labels, data, model (backbone + LoRA + route/intent/span heads, plus capability/distraction/actuation/consequence tag heads whose predictions are routed through the rulebook as a second, combinable route), training, prediction, calibration, ONNX export (`docs/training.md`) |
 | `autogate_eval` | Cost matrix, safety-weighted error and other metrics, rules baseline, `score` for any predictions file, policy gate (weeks 1-3) |
 | `configs/` | `cost_matrix.json`: the PRD cost matrix behind safety-weighted error |
 | `docs/pilot.md` | The seed-only pilot: commands, counts, flip profiles, rules baseline results |

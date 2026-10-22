@@ -134,14 +134,18 @@ def test_training_steps_reduce_loss(tiny_backbone, tiny_tokenizer, pilot_rows):
     batch = _batch(tiny_tokenizer, pilot_rows[::18][:64])
     assert batch["input_ids"].shape[0] == 64
     opt = torch.optim.AdamW([p for p in model.parameters() if p.requires_grad], lr=1e-2)
-    losses = []
+    assert model.has_tag_heads and "actuation_labels" in batch
+    losses, tag_losses = [], []
     for _ in range(5):
         out = model(**batch)
         opt.zero_grad()
         out["loss"].backward()
         opt.step()
         losses.append(out["loss"].item())
+        tag_losses.append(out["tags_loss"].item())
+    assert all(math.isfinite(x) for x in losses)
     assert losses[-1] < losses[0]
+    assert tag_losses[-1] < tag_losses[0]
 
 
 @pytest.mark.parametrize("use_lora", [True, False])
