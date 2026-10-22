@@ -23,7 +23,8 @@ Reported:
   *predicted* route is CLOUD or CLOUD_MASKED (the ones whose text leaves
   the car), the fraction of true sensitive spans not covered by a predicted
   span. A true span is covered when every non-space character in it lies
-  inside some predicted span, whatever its label.
+  inside some predicted span, whatever its label. The JSON also has these
+  per split (``spans.by_split``).
 * when predictions carry ``tags`` (a router with tag heads), per tag
   (capability, distraction, actuation, consequence), overall and per split
   (so OOD is reported on its own):
@@ -279,6 +280,13 @@ def score(
         out["intent"] = intent_scores(rows, preds)
     if all(p.get("spans") is not None for p in preds):
         out["spans"] = span_scores(rows, preds)
+        present = {r["split"] for r in rows}
+        splits = [s for s in SPLIT_ORDER if s in present] + sorted(present - set(SPLIT_ORDER))
+        by_split = {}
+        for split in splits:
+            idx = [i for i, r in enumerate(rows) if r["split"] == split]
+            by_split[split] = span_scores([rows[i] for i in idx], [preds[i] for i in idx])
+        out["spans"]["by_split"] = by_split
     if all(p.get("tags") for p in preds):
         out["tags"] = tag_scores(rows, preds, cost_matrix)
     return out

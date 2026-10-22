@@ -66,6 +66,7 @@ def test_score_reports_route_intent_and_spans():
     assert result["intent"]["accuracy"] == 0.5
     assert result["intent"]["by_split"] == {"val": 0.0, "test": 1.0}
     assert "leak rate" in format_score(result)
+    assert set(result["spans"]["by_split"]) == {"val", "test"}
     # route-only predictions skip the intent and span sections
     bare = score(rows, [{"id": "a", "route": "LOCAL"}], n_boot=10)
     assert bare["n_scored"] == 1 and "intent" not in bare and "spans" not in bare

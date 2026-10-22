@@ -264,7 +264,7 @@ def test_old_checkpoint_predicts_without_tags(tmp_path, pilot_jsonl, tiny_backbo
         predict_main([*args, "--route-source", "tags", "--out", str(tmp_path / "t.jsonl")])
 
 
-def test_tags_smoke_end_to_end(tmp_path, pilot_jsonl, tiny_backbone):
+def test_tags_smoke_end_to_end(tmp_path, pilot_jsonl, tiny_backbone, capsys):
     """train_smoke_tags.yaml: train, calibrate, predict --write-all, score x3, export."""
     pytest.importorskip("onnxruntime")
     from autogate_router.export import main as export_main
@@ -295,8 +295,10 @@ def test_tags_smoke_end_to_end(tmp_path, pilot_jsonl, tiny_backbone):
         + ["--write-all", str(tmp_path / "preds")]
     )
     scores = {}
+    runs = tmp_path / "runs"
+    (runs / "qwen3-0.6b-tags").mkdir(parents=True)
     for src in ("e2e", "tags", "combined"):
-        js = tmp_path / f"score_{src}.json"
+        js = runs / "qwen3-0.6b-tags" / f"score_test_ood_{src}.json"
         score_main(
             [*rows, "--preds", str(tmp_path / f"preds_{src}.jsonl"), "--split", "test,ood"]
             + ["--n-boot", "10", "--json", str(js)]
@@ -306,6 +308,13 @@ def test_tags_smoke_end_to_end(tmp_path, pilot_jsonl, tiny_backbone):
         assert set(scores[src]["route"]["by_split"]) == {"test", "ood"}
     # the tag report depends on the tags, not on the route source
     assert scores["e2e"]["tags"] == scores["tags"]["tags"] == scores["combined"]["tags"]
+    # the notebook's comparison cell reads these files
+    from test_kaggle_notebook import run_comparison
+
+    table = run_comparison(runs, capsys)
+    for src in ("e2e", "tags", "combined"):
+        assert f"| qwen3-0.6b-tags [{src}] | 108 |" in table
+    assert "### Tags: qwen3-0.6b-tags" in table and "| ood | actuation |" in table
 
     report = export_main(
         ["--checkpoint", str(ckpt), "--out-dir", str(tmp_path / "onnx"), *rows]
