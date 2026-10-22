@@ -106,6 +106,13 @@ def test_predict_score_calibrate(smoke_run, pilot_jsonl, tmp_path, capsys):
     assert result["n_scored"] == 213
     assert set(result["route"]["by_split"]) == {"test", "ood"}
     assert "intent" in result and "spans" in result
+    assert set(result["tags"]["by_split"]) == {"test", "ood"}
+    assert set(result["tags"]["overall"]) == {
+        "capability",
+        "distraction",
+        "actuation",
+        "consequence",
+    }
 
 
 def test_export_onnx_matches_torch(smoke_run, tmp_path, pilot_jsonl):

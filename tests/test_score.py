@@ -103,3 +103,119 @@ def test_rules_emit_is_scored(tmp_path, pilot_jsonl, capsys):
     assert result["route"]["overall"]["accuracy"] == pytest.approx(0.958, abs=1e-3)
     assert result["intent"]["accuracy"] == pytest.approx(0.992, abs=1e-3)
     assert "scored 1182 of 1182 rows" in capsys.readouterr().out
+
+
+# --------------------------------------------------------------------------- #
+# Tag report
+# --------------------------------------------------------------------------- #
+
+# speed high + workload low = MEDIUM demand: restricted actuation and high
+# distraction are refused, medium distraction is allowed.
+HIGHWAY = dict(
+    speed_bucket="high",
+    connectivity="good",
+    driver_workload="low",
+    privacy_mode="standard",
+    passenger_present=False,
+    local_model_tier="tiny",
+)
+
+
+def _tag_row(id_, route, split, tier="tiny", **tags):
+    return {
+        **_row(id_, route, split=split),
+        **HIGHWAY,
+        "local_model_tier": tier,
+        "actuation": tags["act"],
+        "capability": tags["cap"],
+        "distraction": tags["dis"],
+        "consequence": tags["cons"],
+    }
+
+
+def _tags(cap, dis, act, cons):
+    return {"capability": cap, "distraction": dis, "actuation": act, "consequence": cons}
+
+
+def _tag_case():
+    rows = [
+        _tag_row(
+            "1", "REFUSE", "test", cap="local_ok", dis="low", act="restricted", cons="reversible"
+        ),
+        _tag_row("2", "REFUSE", "test", cap="needs_cloud", dis="high", act="none", cons="none"),
+        _tag_row("3", "LOCAL", "test", "small", cap="local_ok", dis="low", act="none", cons="none"),
+        _tag_row(
+            "4", "CLOUD", "ood", cap="needs_cloud", dis="low", act="none", cons="irreversible"
+        ),
+        _tag_row(
+            "5", "LOCAL", "ood", cap="local_ok", dis="low", act="safety_critical", cons="reversible"
+        ),
+    ]
+    preds = [
+        # restricted read as comfort: dangerous miss; tag route LOCAL, corrected REFUSE
+        _tags("local_ok", "low", "comfort", "reversible"),
+        # high read as medium: dangerous miss; tag route CLOUD, corrected REFUSE
+        _tags("needs_cloud", "medium", "none", "irreversible"),
+        # capability wrong, but needs_small_local on a small tier is still LOCAL
+        _tags("needs_small_local", "low", "none", "none"),
+        # irreversible read as reversible: dangerous miss, never route-changing
+        _tags("needs_cloud", "low", "none", "reversible"),
+        # safety_critical read as restricted: not a dangerous miss, but REFUSE instead of LOCAL
+        _tags("local_ok", "low", "restricted", "reversible"),
+    ]
+    return rows, [
+        {"id": r["id"], "route": r["route"], "spans": [], "tags": t}
+        for r, t in zip(rows, preds, strict=True)
+    ]
+
+
+def test_tag_report_known_numbers():
+    rows, preds = _tag_case()
+    result = score(rows, preds, n_boot=10)
+    tags = result["tags"]["overall"]
+    act = tags["actuation"]
+    assert act["n"] == 5 and act["accuracy"] == pytest.approx(0.6)
+    assert act["macro_f1"] == pytest.approx(0.25)  # none 1.0; comfort, restricted, sc 0.0
+    assert (act["dangerous_misses"], act["n_dangerous"], act["dangerous_miss_rate"]) == (1, 2, 0.5)
+    assert act["route_changing_errors"] == 2
+    assert act["route_changing_cost"] == 6 + 5  # REFUSE->LOCAL, safety-critical LOCAL->REFUSE
+    assert act["route_changing_cost_if_corrected"] == 0
+    dis = tags["distraction"]
+    assert dis["accuracy"] == pytest.approx(0.8) and dis["macro_f1"] == pytest.approx(1 / 3)
+    assert dis["dangerous_miss_rate"] == 1.0
+    assert (dis["route_changing_errors"], dis["route_changing_cost"]) == (1, 10)  # REFUSE->CLOUD
+    cap = tags["capability"]
+    assert cap["accuracy"] == pytest.approx(0.8) and cap["dangerous_miss_rate"] is None
+    assert cap["route_changing_errors"] == 0
+    cons = tags["consequence"]
+    assert cons["accuracy"] == pytest.approx(0.6) and cons["dangerous_miss_rate"] == 1.0
+    assert cons["route_changing_errors"] == 0
+
+    test, ood = result["tags"]["by_split"]["test"], result["tags"]["by_split"]["ood"]
+    assert test["actuation"]["accuracy"] == pytest.approx(2 / 3)
+    assert test["actuation"]["route_changing_cost"] == 6
+    assert ood["actuation"]["dangerous_miss_rate"] == 0.0  # restricted is still dangerous
+    assert (ood["actuation"]["route_changing_errors"], ood["actuation"]["route_changing_cost"]) == (
+        1,
+        5,
+    )
+    assert ood["consequence"]["dangerous_misses"] == 1
+    text = format_score(result)
+    assert "| split: ood | actuation | 2 | 0.500 |" in text
+    assert "route-changing errors" in text
+
+
+def test_tag_report_absent_without_tags_and_in_json(tmp_path):
+    rows, preds = _tag_case()
+    plain = score(rows, [{k: v for k, v in p.items() if k != "tags"} for p in preds], n_boot=10)
+    assert "tags" not in plain and "route-changing" not in format_score(plain)
+    rows_path, preds_path = tmp_path / "rows.jsonl", tmp_path / "preds.jsonl"
+    rows_path.write_text("".join(json.dumps(r) + "\n" for r in rows))
+    preds_path.write_text("".join(json.dumps(p) + "\n" for p in preds))
+    out = tmp_path / "score.json"
+    score_main(
+        ["--rows", str(rows_path), "--preds", str(preds_path), "--n-boot", "10", "--json", str(out)]
+    )
+    saved = json.loads(out.read_text())
+    assert saved["tags"]["overall"]["actuation"]["route_changing_errors"] == 2
+    assert set(saved["tags"]["by_split"]) == {"test", "ood"}
