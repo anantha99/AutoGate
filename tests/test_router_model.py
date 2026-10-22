@@ -211,8 +211,25 @@ def test_shipped_configs_parse():
         32,
     )
     assert full.backbone == "Qwen/Qwen3-0.6B" and full.lora and full.context
+    assert not full.tag_heads  # v0 reproduces v0
+    assert (full.context_dropout, full.word_dropout, full.label_smoothing) == (0.0, 0.0, 0.0)
     smoke = parse_config(["--config", "configs/train_smoke.yaml"])
     assert smoke.device == "cpu" and math.isfinite(smoke.lr)
+    tags = parse_config(["--config", "configs/train_qwen3_0.6b_tags.yaml"])
+    assert tags.tag_heads and tags.out_dir == "checkpoints/qwen3-0.6b-tags"
+    assert (tags.epochs, tags.lr, tags.lora_r, tags.lora_alpha, tags.lora_dropout) == (
+        2,
+        1e-4,
+        8,
+        16,
+        0.1,
+    )
+    assert tags.lora_target_modules == ["q_proj", "k_proj", "v_proj", "o_proj"]
+    assert (tags.head_dropout, tags.weight_decay, tags.lambda_intent) == (0.3, 0.05, 0.2)
+    assert (tags.label_smoothing, tags.context_dropout, tags.word_dropout) == (0.1, 0.2, 0.1)
+    smoke_tags = parse_config(["--config", "configs/train_smoke_tags.yaml"])
+    assert smoke_tags.tag_heads and smoke_tags.device == "cpu"
+    assert (smoke_tags.label_smoothing, smoke_tags.context_dropout) == (0.1, 0.2)
 
 
 def test_old_checkpoint_without_tag_heads_loads(

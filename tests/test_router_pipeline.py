@@ -262,3 +262,54 @@ def test_old_checkpoint_predicts_without_tags(tmp_path, pilot_jsonl, tiny_backbo
     assert len(preds) == 108 and all(tuple(p) == PREDICTION_FIELDS for p in preds)
     with pytest.raises(ValueError, match="tag heads"):
         predict_main([*args, "--route-source", "tags", "--out", str(tmp_path / "t.jsonl")])
+
+
+def test_tags_smoke_end_to_end(tmp_path, pilot_jsonl, tiny_backbone):
+    """train_smoke_tags.yaml: train, calibrate, predict --write-all, score x3, export."""
+    pytest.importorskip("onnxruntime")
+    from autogate_router.export import main as export_main
+
+    out = tmp_path / "tags"
+    rows = ["--rows", str(pilot_jsonl)]
+    history = train_main(
+        ["--config", "configs/train_smoke_tags.yaml", *rows]
+        + ["--backbone", str(tiny_backbone), "--out-dir", str(out)]
+    )
+    ckpt = out / "best"
+    cfg = json.loads((ckpt / "router_config.json").read_text())
+    assert cfg["tag_heads"] and cfg["label_smoothing"] == 0.1
+    assert set(cfg["tag_class_weights"]) == {
+        "capability",
+        "distraction",
+        "actuation",
+        "consequence",
+    }
+    last = history["epochs"][-1]
+    for name in ("capability", "distraction", "actuation", "consequence"):
+        assert 0 <= last[f"{name}_accuracy"] <= 1
+    assert history["steps"][-1]["tags"] < history["steps"][0]["tags"]
+
+    calibrate_main(["--checkpoint", str(ckpt), *rows, "--n-boot", "10"])
+    predict_main(
+        ["--checkpoint", str(ckpt), *rows, "--split", "test,ood"]
+        + ["--write-all", str(tmp_path / "preds")]
+    )
+    scores = {}
+    for src in ("e2e", "tags", "combined"):
+        js = tmp_path / f"score_{src}.json"
+        score_main(
+            [*rows, "--preds", str(tmp_path / f"preds_{src}.jsonl"), "--split", "test,ood"]
+            + ["--n-boot", "10", "--json", str(js)]
+        )
+        scores[src] = json.loads(js.read_text())
+        assert scores[src]["n_scored"] == 213
+        assert set(scores[src]["route"]["by_split"]) == {"test", "ood"}
+    # the tag report depends on the tags, not on the route source
+    assert scores["e2e"]["tags"] == scores["tags"]["tags"] == scores["combined"]["tags"]
+
+    report = export_main(
+        ["--checkpoint", str(ckpt), "--out-dir", str(tmp_path / "onnx"), *rows]
+        + ["--n-examples", "16"]
+    )
+    assert "actuation_logits" in report["outputs"]
+    assert report["models"]["fp32"]["max_abs_diff"] <= 1e-3

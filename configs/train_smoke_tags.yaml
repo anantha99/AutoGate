@@ -1,0 +1,47 @@
+# CPU smoke run of the tag-heads config (configs/train_qwen3_0.6b_tags.yaml) on the tiny
+# random backbone and the seed-only pilot. Build the backbone first (no download):
+#   python -m autogate_router.tiny --out checkpoints/tiny-qwen3 --rows data/generated/pilot/rows.jsonl
+# then
+#   python -m autogate_router.train --config configs/train_smoke_tags.yaml
+# Same tag heads, loss weights, label smoothing and augmentation as the full tags config; the
+# whole tiny model is fine-tuned (lora: false) for the reason given in train_smoke.yaml.
+# Its numbers only show that the pipeline runs.
+rows: data/generated/pilot/rows.jsonl
+train_split: train
+val_split: val
+out_dir: checkpoints/smoke-tags
+backbone: checkpoints/tiny-qwen3
+pooling: mean
+context: true
+max_length: 96
+lora: false
+lora_r: 4
+lora_alpha: 8
+lora_dropout: 0.0
+lora_target_modules: [q_proj, k_proj, v_proj, o_proj]
+head_dropout: 0.1
+class_weights: true
+tag_heads: true
+tag_class_weights: true
+context_dropout: 0.2
+word_dropout: 0.1
+lambda_intent: 0.2
+lambda_span: 1.0
+lambda_actuation: 1.0
+lambda_distraction: 1.0
+lambda_capability: 0.5
+lambda_consequence: 0.3
+label_smoothing: 0.1
+epochs: 4
+batch_size: 16
+eval_batch_size: 64
+lr: 3.0e-3
+head_lr: 3.0e-3
+weight_decay: 0.05
+warmup_ratio: 0.1
+grad_accum: 1
+precision: fp32
+device: cpu
+seed: 0
+log_every: 10
+eval_n_boot: 50

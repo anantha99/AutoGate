@@ -1,0 +1,46 @@
+# Router with tag heads: Qwen3-0.6B + LoRA + route/intent/span heads + the four policy-tag
+# heads (capability, distraction, actuation, consequence), regularised against the v0
+# run's memorisation (docs/results-v0.md): 2 epochs, smaller attention-only LoRA with
+# dropout, heavier head dropout and weight decay, label smoothing, a lighter intent head,
+# and train-only context/word dropout.
+# python -m autogate_router.train --config configs/train_qwen3_0.6b_tags.yaml
+# Any key can be overridden on the command line (--lr 2e-4, --no-context, ...).
+rows: data/generated/full/rows.jsonl
+train_split: train
+val_split: val
+out_dir: checkpoints/qwen3-0.6b-tags
+backbone: Qwen/Qwen3-0.6B
+pooling: mean
+context: true
+max_length: 96
+lora: true
+lora_r: 8
+lora_alpha: 16
+lora_dropout: 0.1
+lora_target_modules: [q_proj, k_proj, v_proj, o_proj]
+head_dropout: 0.3
+class_weights: true
+tag_heads: true
+tag_class_weights: true
+context_dropout: 0.2
+word_dropout: 0.1
+lambda_intent: 0.2
+lambda_span: 1.0
+lambda_actuation: 1.0
+lambda_distraction: 1.0
+lambda_capability: 0.5
+lambda_consequence: 0.3
+label_smoothing: 0.1
+epochs: 2
+batch_size: 32
+eval_batch_size: 128
+lr: 1.0e-4
+head_lr: null
+weight_decay: 0.05
+warmup_ratio: 0.06
+grad_accum: 1
+max_grad_norm: 1.0
+precision: auto
+seed: 0
+log_every: 50
+eval_n_boot: 200
