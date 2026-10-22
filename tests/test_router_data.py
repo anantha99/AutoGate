@@ -15,8 +15,12 @@ from autogate_router.data import (
     subword_bio,
 )
 from autogate_router.labels import (
+    ACTUATIONS,
     BIO_TAGS,
+    CAPABILITIES,
+    CONSEQUENCES,
     DEFAULT_LABELS,
+    DISTRACTIONS,
     IGNORE_INDEX,
     INTENTS,
     ROUTES,
@@ -47,6 +51,40 @@ def test_labels_round_trip(tmp_path):
     loaded = load_labels(tmp_path / "labels.json")
     assert loaded.routes == tuple(reversed(ROUTES))
     assert loaded.route_index["REFUSE"] == 0
+
+
+def test_tag_vocabularies_follow_enum_order():
+    from autogate_bench.schema import ActuationClass, Capability, Consequence
+
+    assert CAPABILITIES == tuple(str(c) for c in Capability)
+    assert DISTRACTIONS == ("low", "medium", "high")
+    assert ACTUATIONS == ("none", "safety_critical", "comfort", "restricted")
+    assert ACTUATIONS == tuple(str(a) for a in ActuationClass)
+    assert CONSEQUENCES == tuple(str(c) for c in Consequence)
+    assert list(DEFAULT_LABELS.tags) == ["capability", "distraction", "actuation", "consequence"]
+    assert DEFAULT_LABELS.tag_index["actuation"]["restricted"] == 3
+
+
+def test_labels_json_has_tags_and_round_trips(tmp_path):
+    save_labels(tmp_path)
+    d = json.loads((tmp_path / "labels.json").read_text())
+    assert d["capabilities"] == list(CAPABILITIES)
+    assert d["distractions"] == list(DISTRACTIONS)
+    assert d["actuations"] == list(ACTUATIONS)
+    assert d["consequences"] == list(CONSEQUENCES)
+    loaded = load_labels(tmp_path)
+    assert loaded == DEFAULT_LABELS and loaded.has_tags
+
+
+def test_old_labels_json_without_tags_loads(tmp_path):
+    old = {"routes": list(ROUTES), "intents": list(INTENTS), "bio_tags": list(BIO_TAGS)}
+    (tmp_path / "labels.json").write_text(json.dumps(old))
+    loaded = load_labels(tmp_path)
+    assert not loaded.has_tags and loaded.tags == {} and loaded.tag_index == {}
+    assert loaded.routes == ROUTES and loaded.to_dict() == old
+    assert loaded == DEFAULT_LABELS.without_tags()
+    with pytest.raises(ValueError, match="all of"):
+        Labels(tags={"actuation": ACTUATIONS})
 
 
 def test_class_weights():
