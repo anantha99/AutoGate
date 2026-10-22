@@ -171,6 +171,9 @@ All numbers on held-out splits. SWE = safety-weighted error, lower is better.
 ### R0: rules baselines (2026-09-25, 10-07)
 
 - Keyword intent matcher from seeds + regex PII detector + the rulebook.
+- 2026-10-22: the v1 notebook's rules cell on Colab reproduced R0b exactly
+  (test macro-F1 0.627, critical miss 197/876; OOD 0.583). The dataset
+  regenerates identically there, so R2 is directly comparable to R1.
 - Seed-only data: intent accuracy 0.99. Paraphrased data: 0.52. Confirms the
   benchmark is not too easy (PRD threshold: rebalance if rules > 0.9 F1).
 - Regex finds 19% of sensitive spans; misses lowercase names.
