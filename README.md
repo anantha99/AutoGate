@@ -142,6 +142,10 @@ calibration, ONNX export, the Kaggle script and how to score any
 `predictions.jsonl` with `python -m autogate_eval.score` are in
 `docs/training.md`.
 
+## Experiment log
+
+`docs/experiment-log.md` tracks every approach, run and result.
+
 ## Development
 
 ```
