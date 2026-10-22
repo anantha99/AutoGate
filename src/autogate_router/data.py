@@ -21,16 +21,36 @@ Span labels (subword BIO)
     get ``-100`` and are ignored by the loss. :func:`spans_from_tags` inverts
     this through the same offsets.
 
+Tag labels
+    Each row's ``capability``, ``distraction``, ``actuation`` and
+    ``consequence`` strings become indices into the tag vocabularies of
+    ``labels.json`` (``tag_labels``), collated as ``capability_labels`` etc.
+
+Augmentation (training only)
+    :class:`Augment` holds two probabilities, both 0 by default:
+    ``context_dropout`` drops an example's whole context prefix (the prefix
+    tokens are removed, not masked: the example is encoded as with
+    ``use_context=False``), and ``word_dropout`` deletes each utterance
+    word independently, never a word that overlaps a sensitive span, with
+    the span offsets recomputed so the span labels stay exact. A
+    :class:`RouterDataset` built with an ``Augment`` re-draws them on every
+    access from ``(seed, epoch, index)``; :meth:`RouterDataset.set_epoch`
+    moves to the next epoch's draw. Val and test datasets are built without
+    one, so they are never augmented.
+
 Class weights
     :func:`class_weights_from_cost_matrix` turns the cost matrix into route
-    loss weights; the formula is in its docstring and ``docs/training.md``.
+    loss weights and :func:`tag_class_weights` gives the tag loss weights;
+    the formulas are in their docstrings and ``docs/training.md``.
 """
 
 from __future__ import annotations
 
 import json
 import random
+import re
 from collections.abc import Iterable, Mapping, Sequence
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
@@ -40,7 +60,7 @@ from autogate_eval.cost_matrix import (
     LOCAL_SAFETY_CRITICAL,
     CostMatrix,
 )
-from autogate_router.labels import DEFAULT_LABELS, IGNORE_INDEX, Labels
+from autogate_router.labels import DEFAULT_LABELS, IGNORE_INDEX, TAG_NAMES, Labels
 
 Row = Mapping[str, Any]
 NO_OFFSET = (-1, -1)
@@ -237,6 +257,13 @@ def encode_row(
         ex["route_label"] = labels.route_index[row["route"]]
     if row.get("intent") is not None:
         ex["intent_label"] = labels.intent_index.get(row["intent"], IGNORE_INDEX)
+    tag_labels = {
+        name: labels.tag_index[name].get(str(row[name]), IGNORE_INDEX)
+        for name in labels.tags
+        if row.get(name) is not None
+    }
+    if tag_labels:
+        ex["tag_labels"] = tag_labels
     return ex
 
 
@@ -253,8 +280,101 @@ def build_examples(
     return [encode_row(r, tokenizer, max_length, use_context, labels) for r in rows]
 
 
+# --------------------------------------------------------------------------- #
+# Training-time augmentation
+# --------------------------------------------------------------------------- #
+
+_WORD = re.compile(r"\S+")
+
+
+def drop_words(row: Row, p: float, rng: random.Random) -> dict[str, Any]:
+    """A copy of ``row`` with each utterance word deleted with probability ``p``.
+
+    A word is a maximal run of non-space characters. Words that overlap a
+    sensitive span are never deleted. A deleted word takes the whitespace
+    after it with it (the whitespace before it when no kept word follows), so
+    the rest of the text, the inside of every span included, is unchanged;
+    span ``start``/``end`` are shifted by the characters removed before them.
+    If every word would go, the row is returned unchanged.
+    """
+    utt: str = row["utterance"]
+    spans = list(row.get("spans") or ())
+    words = [(m.start(), m.end()) for m in _WORD.finditer(utt)]
+    drop = [
+        not any(a < s["end"] and b > s["start"] for s in spans) and rng.random() < p
+        for a, b in words
+    ]
+    if not any(drop) or all(drop):
+        return dict(row)
+    last_kept = max(k for k, d in enumerate(drop) if not d)
+    cut: list[tuple[int, int]] = []
+    for k, ((a, b), d) in enumerate(zip(words, drop, strict=True)):
+        if not d:
+            continue
+        if k < last_kept:  # the word and the whitespace after it
+            cut.append((a, words[k + 1][0]))
+        else:  # after the last kept word: the whitespace before it too
+            cut.append((words[last_kept][1], b))
+    merged: list[list[int]] = []
+    for a, b in sorted(cut):
+        if merged and a <= merged[-1][1]:
+            merged[-1][1] = max(merged[-1][1], b)
+        else:
+            merged.append([a, b])
+
+    def shift(i: int) -> int:
+        return i - sum(min(b, i) - a for a, b in merged if a < i)
+
+    pieces, pos = [], 0
+    for a, b in merged:
+        pieces.append(utt[pos:a])
+        pos = b
+    pieces.append(utt[pos:])
+    new_utt = "".join(pieces)
+    new_spans = []
+    for s in spans:
+        a, b = shift(s["start"]), shift(s["end"])
+        new_spans.append({**s, "start": a, "end": b, "text": new_utt[a:b]})
+    return {**row, "utterance": new_utt, "spans": new_spans}
+
+
+@dataclass(frozen=True)
+class Augment:
+    """Training-time augmentation probabilities (both off by default)."""
+
+    context_dropout: float = 0.0
+    word_dropout: float = 0.0
+    seed: int = 0
+
+    def __post_init__(self) -> None:
+        for name in ("context_dropout", "word_dropout"):
+            v = getattr(self, name)
+            if not 0.0 <= v <= 1.0:
+                raise ValueError(f"{name} must be in [0, 1], got {v}")
+
+    @property
+    def active(self) -> bool:
+        return self.context_dropout > 0 or self.word_dropout > 0
+
+    def rng(self, epoch: int, index: int) -> random.Random:
+        return random.Random(f"augment-{self.seed}-{epoch}-{index}")
+
+    def apply(self, row: Row, epoch: int, index: int) -> tuple[dict[str, Any], bool]:
+        """(augmented row, keep the context prefix?) for one example in one epoch."""
+        rng = self.rng(epoch, index)
+        keep_context = not (self.context_dropout > 0 and rng.random() < self.context_dropout)
+        out = drop_words(row, self.word_dropout, rng) if self.word_dropout > 0 else dict(row)
+        return out, keep_context
+
+
 class RouterDataset:
-    """A map-style dataset over encoded rows (usable with ``torch.utils.data.DataLoader``)."""
+    """A map-style dataset over encoded rows (usable with ``torch.utils.data.DataLoader``).
+
+    With an active ``augment`` each access re-encodes the row with that
+    epoch's augmentation (see :class:`Augment`); call :meth:`set_epoch` at
+    the start of every epoch. ``examples`` always holds the un-augmented
+    encodings.
+    """
 
     def __init__(
         self,
@@ -263,9 +383,27 @@ class RouterDataset:
         max_length: int = 96,
         use_context: bool = True,
         labels: Labels = DEFAULT_LABELS,
+        augment: Augment | None = None,
     ):
         self.rows = list(rows)
+        self.tokenizer = tokenizer
+        self.max_length = max_length
+        self.use_context = use_context
+        self.labels = labels
+        self.augment = augment if augment is not None and augment.active else None
+        self.epoch = 0
         self.examples = build_examples(self.rows, tokenizer, max_length, use_context, labels)
+
+    def set_epoch(self, epoch: int) -> None:
+        self.epoch = epoch
+
+    def augmented(self, i: int) -> dict[str, Any]:
+        """Example ``i`` under the current epoch's augmentation."""
+        assert self.augment is not None
+        row, keep_context = self.augment.apply(self.rows[i], self.epoch, i)
+        return encode_row(
+            row, self.tokenizer, self.max_length, self.use_context and keep_context, self.labels
+        )
 
     @classmethod
     def from_file(
@@ -283,6 +421,8 @@ class RouterDataset:
         return len(self.examples)
 
     def __getitem__(self, i: int) -> dict[str, Any]:
+        if self.augment is not None:
+            return self.augmented(i)
         return self.examples[i]
 
 
@@ -307,6 +447,11 @@ def collate(batch: Sequence[Mapping[str, Any]], pad_token_id: int = 0) -> dict[s
         out["route_labels"] = torch.tensor([ex["route_label"] for ex in batch], dtype=torch.long)
     if all("intent_label" in ex for ex in batch):
         out["intent_labels"] = torch.tensor([ex["intent_label"] for ex in batch], dtype=torch.long)
+    for name in TAG_NAMES:
+        if all(name in ex.get("tag_labels", {}) for ex in batch):
+            out[f"{name}_labels"] = torch.tensor(
+                [ex["tag_labels"][name] for ex in batch], dtype=torch.long
+            )
     return out
 
 

@@ -63,6 +63,9 @@ class TrainConfig:
     lora_target_modules: list[str] = field(default_factory=lambda: list(DEFAULT_LORA_TARGETS))
     head_dropout: float = 0.1
     class_weights: bool = True  # --no-class-weights: unweighted route loss
+    # augmentation (train split only, re-drawn every epoch)
+    context_dropout: float = 0.0  # P(drop the whole context prefix of an example)
+    word_dropout: float = 0.0  # P(delete an utterance word), never inside a sensitive span
     # loss
     lambda_intent: float = 0.5
     lambda_span: float = 1.0
@@ -264,12 +267,24 @@ def evaluate_split(
 # --------------------------------------------------------------------------- #
 
 
+def build_datasets(
+    cfg: TrainConfig, tokenizer: Any, train_rows: list[dict], val_rows: list[dict]
+) -> tuple[Any, Any]:
+    """(train, val) datasets; only train gets the augmentation from ``cfg``."""
+    from autogate_router.data import Augment, RouterDataset
+
+    ds_kw = dict(max_length=cfg.max_length, use_context=cfg.context)
+    augment = Augment(cfg.context_dropout, cfg.word_dropout, cfg.seed)
+    train_ds = RouterDataset(train_rows, tokenizer, augment=augment, **ds_kw)
+    val_ds = RouterDataset(val_rows, tokenizer, **ds_kw)
+    return train_ds, val_ds
+
+
 def train(cfg: TrainConfig) -> dict[str, Any]:
     import torch
     from torch.utils.data import DataLoader
 
     from autogate_router.data import (
-        RouterDataset,
         class_weights_from_cost_matrix,
         collate,
         load_rows,
@@ -290,9 +305,7 @@ def train(cfg: TrainConfig) -> dict[str, Any]:
     val_rows = load_rows(cfg.rows, cfg.val_split, cfg.limit_rows, cfg.seed)
     if not train_rows:
         raise SystemExit(f"no rows in split {cfg.train_split!r} of {cfg.rows}")
-    ds_kw = dict(max_length=cfg.max_length, use_context=cfg.context)
-    train_ds = RouterDataset(train_rows, tokenizer, **ds_kw)
-    val_ds = RouterDataset(val_rows, tokenizer, **ds_kw)
+    train_ds, val_ds = build_datasets(cfg, tokenizer, train_rows, val_rows)
 
     weights = class_weights_from_cost_matrix(cfg.cost_matrix) if cfg.class_weights else None
     rcfg = RouterConfig(
@@ -405,6 +418,7 @@ def train(cfg: TrainConfig) -> dict[str, Any]:
 
     model.train()
     for epoch in range(1, cfg.epochs + 1):
+        train_ds.set_epoch(epoch)
         optimizer.zero_grad(set_to_none=True)
         for i, batch in enumerate(loader):
             batch = {k: v.to(device) for k, v in batch.items()}

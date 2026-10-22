@@ -228,3 +228,121 @@ def test_collate_pads(tiny_tokenizer, pilot_rows):
     if k < n:
         assert batch["attention_mask"][short, k:].sum() == 0
         assert (batch["span_labels"][short, k:] == IGNORE_INDEX).all()
+
+
+# --------------------------------------------------------------------------- #
+# Tag labels and training-time augmentation
+# --------------------------------------------------------------------------- #
+
+
+def test_tag_labels_encoded_and_collated(tiny_tokenizer, pilot_rows):
+    pytest.importorskip("torch")
+    from autogate_router.data import RouterDataset, build_examples, collate
+
+    rows = pilot_rows[:8]
+    exs = build_examples(rows, tiny_tokenizer)
+    for row, ex in zip(rows, exs, strict=True):
+        for name in ("capability", "distraction", "actuation", "consequence"):
+            assert DEFAULT_LABELS.tags[name][ex["tag_labels"][name]] == row[name]
+    batch = collate(RouterDataset(rows, tiny_tokenizer).examples, tiny_tokenizer.pad_token_id)
+    for name in ("capability", "distraction", "actuation", "consequence"):
+        assert batch[f"{name}_labels"].shape == (8,)
+    # labels without tags (an old checkpoint) encode no tag labels
+    old = build_examples(rows[:2], tiny_tokenizer, labels=DEFAULT_LABELS.without_tags())
+    assert all("tag_labels" not in ex for ex in old)
+
+
+def test_word_dropout_keeps_span_offsets_exact(pilot_rows):
+    import random
+
+    from autogate_router.data import drop_words
+
+    changed = 0
+    for i, row in enumerate(r for r in pilot_rows if r["spans"]):
+        out = drop_words(row, 0.5, random.Random(i))
+        assert len(out["spans"]) == len(row["spans"])
+        for old, new in zip(row["spans"], out["spans"], strict=True):
+            assert out["utterance"][new["start"] : new["end"]] == old["text"] == new["text"]
+            assert new["label"] == old["label"]
+        assert (
+            out["utterance"] == out["utterance"].strip()
+            or row["utterance"] != row["utterance"].strip()
+        )
+        assert "  " not in out["utterance"] or "  " in row["utterance"]
+        changed += out["utterance"] != row["utterance"]
+    assert changed > 50
+    every = drop_words({"utterance": "a b c", "spans": []}, 1.0, random.Random(0))
+    assert every["utterance"] == "a b c"  # never drops every word
+
+
+@pytest.mark.parametrize("use_context", [True, False])
+def test_word_dropout_subword_spans_round_trip(tiny_tokenizer, pilot_rows, use_context):
+    from autogate_router.data import Augment, RouterDataset
+
+    rows = _sensitive(pilot_rows)
+    ds = RouterDataset(
+        rows, tiny_tokenizer, use_context=use_context, augment=Augment(word_dropout=0.4, seed=3)
+    )
+    for epoch in (1, 2):
+        ds.set_epoch(epoch)
+        for i, row in enumerate(rows):
+            aug_row, _ = ds.augment.apply(row, epoch, i)
+            ex = ds[i]
+            tags = ["O" if t == IGNORE_INDEX else BIO_TAGS[t] for t in ex["span_labels"]]
+            got = spans_from_tags(aug_row["utterance"], ex["offsets"], tags)
+            assert got == aug_row["spans"], row["id"]
+            assert [s["text"] for s in got] == [s["text"] for s in row["spans"]]
+
+
+def test_context_dropout_removes_prefix_tokens(tiny_tokenizer, pilot_rows):
+    from autogate_router.data import Augment, RouterDataset
+
+    rows = pilot_rows[:20]
+    ds = RouterDataset(rows, tiny_tokenizer, augment=Augment(context_dropout=1.0))
+    ds.set_epoch(1)
+    for i in range(len(rows)):
+        ex = ds[i]
+        assert "[speed" not in tiny_tokenizer.decode(ex["input_ids"])
+        assert all(ex["utterance_mask"])
+        assert len(ex["input_ids"]) < len(ds.examples[i]["input_ids"])
+    half = RouterDataset(rows * 5, tiny_tokenizer, augment=Augment(context_dropout=0.5))
+    half.set_epoch(1)
+    dropped = sum(all(half[i]["utterance_mask"]) for i in range(len(half)))
+    assert 20 < dropped < 80
+
+
+def test_augmentation_is_seeded_per_epoch(tiny_tokenizer, pilot_rows):
+    from autogate_router.data import Augment, RouterDataset
+
+    rows = pilot_rows[:40]
+    aug = Augment(context_dropout=0.3, word_dropout=0.3, seed=7)
+
+    def draw(epoch):
+        ds = RouterDataset(rows, tiny_tokenizer, augment=aug)
+        ds.set_epoch(epoch)
+        return [ds[i]["input_ids"] for i in range(len(ds))]
+
+    assert draw(1) == draw(1)
+    assert draw(1) != draw(2)
+    # off by default: the dataset serves the plain encodings
+    plain = RouterDataset(rows, tiny_tokenizer, augment=Augment())
+    assert plain.augment is None and plain[0] is plain.examples[0]
+    with pytest.raises(ValueError):
+        Augment(word_dropout=1.5)
+
+
+def test_val_is_never_augmented(tiny_tokenizer, pilot_rows):
+    from autogate_router.data import build_examples
+    from autogate_router.train import TrainConfig, build_datasets
+
+    cfg = TrainConfig(context_dropout=1.0, word_dropout=0.9)
+    train_rows = [r for r in pilot_rows if r["split"] == "train"][:30]
+    val_rows = [r for r in pilot_rows if r["split"] == "val"][:30]
+    train_ds, val_ds = build_datasets(cfg, tiny_tokenizer, train_rows, val_rows)
+    assert train_ds.augment is not None and val_ds.augment is None
+    plain = build_examples(val_rows, tiny_tokenizer)
+    for epoch in (1, 2, 3):
+        val_ds.set_epoch(epoch)
+        train_ds.set_epoch(epoch)
+        assert [val_ds[i] for i in range(len(val_ds))] == plain
+    assert train_ds[0]["input_ids"] != train_ds.examples[0]["input_ids"]

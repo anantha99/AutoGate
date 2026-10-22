@@ -195,6 +195,7 @@ class AutoGateRouter(nn.Module):
         route_labels: torch.Tensor | None = None,
         intent_labels: torch.Tensor | None = None,
         span_labels: torch.Tensor | None = None,
+        **tag_labels: torch.Tensor | None,  # <tag>_labels; no tag heads yet
     ) -> dict[str, torch.Tensor]:
         out = self.backbone(input_ids=input_ids, attention_mask=attention_mask, use_cache=False)
         hidden = out.last_hidden_state.float()
