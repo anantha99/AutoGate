@@ -11,7 +11,7 @@ pytest.importorskip("peft")
 from autogate_eval.score import main as score_main  # noqa: E402
 from autogate_router.calibrate import THRESHOLDS  # noqa: E402
 from autogate_router.calibrate import main as calibrate_main  # noqa: E402
-from autogate_router.predict import PREDICTION_FIELDS  # noqa: E402
+from autogate_router.predict import PREDICTION_FIELDS, TAG_PREDICTION_FIELDS  # noqa: E402
 from autogate_router.predict import main as predict_main  # noqa: E402
 from autogate_router.train import main as train_main  # noqa: E402
 
@@ -82,7 +82,8 @@ def test_predict_score_calibrate(smoke_run, pilot_jsonl, tmp_path, capsys):
     preds = [json.loads(line) for line in preds_path.read_text().splitlines()]
     assert len(preds) == 213  # pilot test + ood
     for p in preds:
-        assert tuple(p) == PREDICTION_FIELDS
+        assert tuple(p) == PREDICTION_FIELDS + TAG_PREDICTION_FIELDS
+        assert p["route"] == p["route_e2e"]  # the default route source
         assert len(p["route_probs"]) == 5 and abs(sum(p["route_probs"]) - 1) < 1e-4
         assert (
             p["route"]
@@ -171,3 +172,86 @@ def test_lora_checkpoint_trains_and_exports(tmp_path, pilot_jsonl, tiny_backbone
     assert cfg["use_lora"] and not cfg["use_context"] and cfg["pooling"] == "last"
     report = export(out / "best", tmp_path / "onnx")
     assert report["models"]["fp32"]["max_abs_diff"] <= 1e-3
+
+
+TAGS = {
+    "capability": {"local_ok", "needs_small_local", "needs_cloud", "cloud_preferred"},
+    "distraction": {"low", "medium", "high"},
+    "actuation": {"none", "safety_critical", "comfort", "restricted"},
+    "consequence": {"none", "reversible", "irreversible"},
+}
+
+
+def test_predict_write_all_schema(smoke_run, pilot_jsonl, pilot_rows, tmp_path):
+    from autogate_router.tag_routing import combine, route_from_tags, row_context
+
+    out, _ = smoke_run
+    prefix = tmp_path / "preds"
+    written = predict_main(
+        [
+            "--checkpoint",
+            str(out / "best"),
+            "--rows",
+            str(pilot_jsonl),
+            "--split",
+            "test,ood",
+            "--write-all",
+            str(prefix),
+            "--route-source",
+            "tags",
+        ]
+    )
+    names = ["preds_e2e.jsonl", "preds_tags.jsonl", "preds_combined.jsonl"]
+    assert [p.name for p in written] == names
+    files = {
+        n.removeprefix("preds_").removesuffix(".jsonl"): [
+            json.loads(line) for line in (tmp_path / n).read_text().splitlines()
+        ]
+        for n in names
+    }
+    rows = {r["id"]: r for r in pilot_rows}
+    assert {len(v) for v in files.values()} == {213}
+    for e2e, tag, comb in zip(files["e2e"], files["tags"], files["combined"], strict=True):
+        assert e2e["id"] == tag["id"] == comb["id"]
+        assert tuple(e2e) == PREDICTION_FIELDS + TAG_PREDICTION_FIELDS
+        # identical apart from the top-level route
+        assert {**e2e, "route": None} == {**tag, "route": None} == {**comb, "route": None}
+        assert e2e["route"] == e2e["route_e2e"]
+        assert tag["route"] == tag["route_tags"]
+        assert comb["route"] == comb["route_combined"]
+        assert set(e2e["tags"]) == set(TAGS) == set(e2e["tag_probs"])
+        for name, value in e2e["tags"].items():
+            assert value in TAGS[name] and set(e2e["tag_probs"][name]) == TAGS[name]
+            assert abs(sum(e2e["tag_probs"][name].values()) - 1) < 1e-4
+        t = e2e["tags"]
+        row = rows[e2e["id"]]
+        want = route_from_tags(
+            t["capability"], t["distraction"], t["actuation"], row_context(row), bool(e2e["spans"])
+        ).route
+        assert e2e["route_tags"] == want
+        assert e2e["route_combined"] == combine(e2e["route_e2e"], want, t["actuation"])
+
+
+def test_old_checkpoint_predicts_without_tags(tmp_path, pilot_jsonl, tiny_backbone, tiny_tokenizer):
+    """A pre-tag-head checkpoint still predicts the v0 schema; tag route sources are refused."""
+    from autogate_router.model import AutoGateRouter, RouterConfig
+
+    model = AutoGateRouter(
+        RouterConfig(backbone=str(tiny_backbone), use_lora=False, tag_heads=False)
+    )
+    ckpt = model.save_pretrained(tmp_path / "old", tiny_tokenizer)
+    cfg = json.loads((ckpt / "router_config.json").read_text())
+    for key in ("tag_heads", "lambda_tags", "label_smoothing", "tag_class_weights"):
+        cfg.pop(key)
+    (ckpt / "router_config.json").write_text(json.dumps(cfg))
+    labels = json.loads((ckpt / "labels.json").read_text())
+    for key in ("capabilities", "distractions", "actuations", "consequences"):
+        labels.pop(key)
+    (ckpt / "labels.json").write_text(json.dumps(labels))
+
+    args = ["--checkpoint", str(ckpt), "--rows", str(pilot_jsonl), "--split", "test"]
+    path = predict_main([*args, "--out", str(tmp_path / "p.jsonl")])
+    preds = [json.loads(line) for line in path.read_text().splitlines()]
+    assert len(preds) == 108 and all(tuple(p) == PREDICTION_FIELDS for p in preds)
+    with pytest.raises(ValueError, match="tag heads"):
+        predict_main([*args, "--route-source", "tags", "--out", str(tmp_path / "t.jsonl")])
