@@ -16,6 +16,11 @@ command never waits on a cloud round-trip and a distracting task never runs
 just because the network is good. The function returns the route and the
 branch that fired, so the labeler can record why and the degradation study
 can check that routes shift for the right reason.
+
+The tree reads only three of the intent's tags (actuation, distraction,
+capability). :func:`route_tags` takes them directly, so a router that
+predicts tags can apply the same tree without building an ``Intent``;
+:func:`route` is ``route_tags`` on the intent's own tags.
 """
 
 from __future__ import annotations
@@ -28,6 +33,7 @@ from autogate_bench.schema import (
     ActuationClass,
     Capability,
     Context,
+    DistractionLevel,
     DrivingDemand,
     Intent,
     LocalModelTier,
@@ -71,13 +77,18 @@ def distraction_demand(context: Context, policy: Policy = DEFAULT_POLICY) -> Dri
     return demand
 
 
-def locally_capable(intent: Intent, context: Context) -> bool:
-    """Can the head unit answer this intent well enough on its own?"""
-    if intent.capability is Capability.LOCAL_OK:
+def capability_is_local(capability: Capability, context: Context) -> bool:
+    """Can the head unit answer an intent with this capability tag on its own?"""
+    if capability is Capability.LOCAL_OK:
         return True
-    if intent.capability is Capability.NEEDS_SMALL_LOCAL:
+    if capability is Capability.NEEDS_SMALL_LOCAL:
         return context.local_model_tier is LocalModelTier.SMALL
     return False
+
+
+def locally_capable(intent: Intent, context: Context) -> bool:
+    """Can the head unit answer this intent well enough on its own?"""
+    return capability_is_local(intent.capability, context)
 
 
 def route(
@@ -87,31 +98,51 @@ def route(
     policy: Policy = DEFAULT_POLICY,
 ) -> Decision:
     """Apply the precedence tree and return the route with its reason."""
+    return route_tags(
+        intent.capability,
+        intent.distraction,
+        intent.actuation,
+        context,
+        has_sensitive_spans,
+        policy,
+    )
+
+
+def route_tags(
+    capability: Capability | str,
+    distraction: DistractionLevel | str,
+    actuation: ActuationClass | str,
+    context: Context,
+    has_sensitive_spans: bool = False,
+    policy: Policy = DEFAULT_POLICY,
+) -> Decision:
+    """The precedence tree on bare tags (any combination, valid as an ``Intent`` or not)."""
+    capability = Capability(capability)
+    distraction = DistractionLevel(distraction)
+    actuation = ActuationClass(actuation)
     raw_demand = driving_demand(context, policy)
     demand = distraction_demand(context, policy)
 
     # 1. Safety-critical vehicle command: local, immediately, no matter what.
-    if intent.actuation is ActuationClass.SAFETY_CRITICAL:
+    if actuation is ActuationClass.SAFETY_CRITICAL:
         return Decision(Route.LOCAL, Reason.SAFETY_CRITICAL, demand)
 
     # 2a. Restricted actuation uses the raw demand: a passenger never unlocks doors.
-    if intent.actuation is not ActuationClass.NONE and not policy.actuation_allowed(
-        intent.actuation, raw_demand
-    ):
+    if actuation is not ActuationClass.NONE and not policy.actuation_allowed(actuation, raw_demand):
         return Decision(Route.REFUSE, Reason.RESTRICTED_ACTUATION, raw_demand)
 
     # 2b. Distraction gate uses the passenger-relaxed demand.
-    if not policy.distraction_allowed(intent.distraction, demand):
+    if not policy.distraction_allowed(distraction, demand):
         return Decision(Route.REFUSE, Reason.DISTRACTION, demand)
 
     # 3. No cloud capability needed.
-    if locally_capable(intent, context):
+    if capability_is_local(capability, context):
         return Decision(Route.LOCAL, Reason.LOCAL_CAPABLE, demand)
 
     # 4. Cloud unreachable: fall back to the head unit if the intent allows it,
     #    otherwise queue until the signal returns.
     if context.connectivity not in policy.cloud_connectivity:
-        if intent.capability is Capability.CLOUD_PREFERRED:
+        if capability is Capability.CLOUD_PREFERRED:
             return Decision(Route.LOCAL, Reason.LOCAL_FALLBACK, demand)
         return Decision(Route.DEFER, Reason.NO_CONNECTIVITY, demand)
 
