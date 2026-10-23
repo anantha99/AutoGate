@@ -14,6 +14,7 @@ from autogate_bench.paraphrases import (
     load_paraphrase_file,
     load_paraphrases,
     main,
+    missing_files,
     normalize,
     status_lines,
     validate,
@@ -265,6 +266,17 @@ def test_cli_validate_fixture(capsys):
     out = capsys.readouterr().out
     assert "start_video_call" in out and "0 errors" in out
     assert "start_video_call.yaml:" in out  # warnings are located file:seed:line
+
+
+def test_cli_validate_names_intents_without_a_file(capsys):
+    """Intents with no file (seed-only rows) are listed, not an error or a crash."""
+    have = load_paraphrases(FIXTURE)
+    no_file = missing_files(have, SEEDS)
+    assert no_file == [i.name for i in INTENTS if i.name not in have]
+    assert main(["validate", "--dir", str(FIXTURE), "--strict"]) == 0
+    out = capsys.readouterr().out
+    assert f"{len(no_file)} intents have no file" in out
+    assert "pay_bill" in out.splitlines()[-1]
 
 
 def test_cli_validate_fails_on_errors(tmp_path, capsys):

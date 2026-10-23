@@ -26,8 +26,10 @@ CLI::
     python -m autogate_bench.paraphrases status [--dir data/paraphrases]
 
 ``validate`` prints counts per intent and variant and every error and warning
-as ``file:seed:line``; it exits non-zero on any error. ``status`` shows which
-intents have files and how far each is from its quota.
+as ``file:seed:line``; it exits non-zero on any error. It also lists the
+intents that have no file: they are not an error, and ``generate`` gives
+them seed-only rows. ``status`` shows which intents have files and how far
+each is from its quota.
 """
 
 from __future__ import annotations
@@ -580,7 +582,22 @@ def _cmd_validate(a: argparse.Namespace) -> int:
     print(
         f"\n{len(rep.errors)} errors, {len(rep.warnings)} warnings{' (strict)' if a.strict else ''}"
     )
+    if not a.intents:
+        no_file = missing_files(paraphrases, seeds)
+        if no_file:
+            print(
+                f"{len(no_file)} intents have no file in {a.dir} "
+                f"(their rows are seed-only): {', '.join(no_file)}"
+            )
     return 1 if rep.errors else 0
+
+
+def missing_files(
+    paraphrases: Mapping[str, Mapping[int, Sequence[Paraphrase]]],
+    seeds: Mapping[str, Sequence[Seed]],
+) -> list[str]:
+    """Intents with seeds but no paraphrase file, in taxonomy order."""
+    return [i.name for i in INTENTS if i.name in seeds and i.name not in paraphrases]
 
 
 def status_lines(
