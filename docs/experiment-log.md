@@ -4,7 +4,7 @@ The running memory of the project: what we are trying, why, what each run
 produced, and what is still open. Newest results go at the top of each
 section. Every run gets an entry in "Runs", even a failed one.
 
-Last updated: 2026-10-22. Linked from `CLAUDE.md` so every session reads it.
+Last updated: 2026-10-23. Linked from `CLAUDE.md` so every session reads it.
 
 ## How to use this file
 
@@ -22,9 +22,9 @@ Last updated: 2026-10-22. Linked from `CLAUDE.md` so every session reads it.
 | Benchmark v0 | done: 65 intents, 281 seeds, 11,240 paraphrases, 53,184 rows (`docs/dataset-v0.md`) |
 | Rules baseline | done, both all-seeds and fair train-only versions |
 | Router v0 (route + intent + span heads) | trained once on Colab T4; beats rules in distribution, fails on unseen intents (`docs/results-v0.md`) |
-| Router v1 (tag heads + regularisation) | code done and pushed (commit `723573c`); **waiting for the Colab run** |
+| Router v1 (tag heads + regularisation) | run R2 done 10-23: tags route cuts test critical misses to 3.1% but over-regularised (underfit); OOD still poor because capability does not transfer |
 | No-context ablation | not run yet; included in the v1 notebook |
-| int8 export | broken by dynamic quantization (route agreement 0.915); recipe fix not started |
+| int8 export | broken by dynamic quantization (route agreement 0.915 in R1, 0.730 in R2); recipe fix not started |
 | LLM zero-shot baselines, paper outline, Table 4 | built in another session on branch `claude/vibrant-hamilton-1psf5i`; **not merged**; labels verified identical |
 
 ## Goal and success criteria
@@ -78,7 +78,7 @@ Qwen3-0.6B + LoRA r=16 on all projections; heads for route (5-way, cost
 weighted), intent (65-way), span (BIO). Route comes straight from the route
 head.
 
-### A4. Router v1: tag heads + regularisation (built, run 2 pending)
+### A4. Router v1: tag heads + regularisation (run R2 done)
 
 **Why:** run 1 learned intent identity, so unseen intents defaulted to LOCAL.
 Tags are what the rulebook uses and every intent has them, so predicting tags
@@ -100,6 +100,24 @@ should transfer to unseen intents.
   "Tag heads".
 
 ### Ideas not yet tried
+
+Highest priority after R2:
+
+- **R4: tags with R1's capacity.** Keep tag heads; go back to r=16 on all
+  projections, lr 2e-4, 3 epochs, head dropout 0.1, intent weight 0.5; drop
+  label smoothing; keep context dropout 0.2; word dropout 0.05. Expect the
+  route head to recover R1 numbers and the tag heads to sharpen.
+- **Rebalance the OOD holdout by tag.** Choose OOD intents so every tag value
+  keeps at least 3 training intents (no more holding out half of
+  `cloud_preferred`). Changes splits, so all runs must be redone; decide
+  before the paper's final numbers.
+- **More intents in rare tag values** (cloud_preferred, needs_small_local,
+  high distraction, restricted), so tags have more examples to generalise
+  from.
+- **Treat capability as policy, not perception** (as on the other branch):
+  predict only distraction, actuation, consequence from text; take
+  capability from the policy table when the intent is known and default to
+  the cautious value (cloud_preferred) when it is not.
 
 - More seeds per intent (6 to 8). Most likely fix for the val-to-test gap.
 - On-the-fly slot refill and ASR noise each epoch (currently fixed at
@@ -124,9 +142,9 @@ All numbers on held-out splits. SWE = safety-weighted error, lower is better.
 | R0b rules, all seeds | 09-25 | 0.627 | 0.919 | 22.5% | 85.7% | matcher saw test seeds; optimistic |
 | R0c rules, train seeds only | 10-07 | 0.430 | 1.256 | 37.1% | - | the fair baseline |
 | R1 router v0, e2e | 10-07 | **0.780** | **0.426** | **7.1%** | 33.4%* | Colab T4, 1h43m |
-| R2 router v1 tags, e2e | pending | | | | | |
-| R2 router v1 tags, tags | pending | | | | | |
-| R2 router v1 tags, combined | pending | | | | | |
+| R2 router v1, e2e | 10-23 | 0.477 | 0.809 | 10.5% | 32.7%* | route head underfit (val F1 0.58) |
+| R2 router v1, tags | 10-23 | 0.728 | 0.504 | **3.1%** | 49.8%* | best critical miss so far |
+| R2 router v1, combined | 10-23 | 0.656 | 0.637 | **2.9%** | 50.0%* | most cautious; over-refuses |
 | R3 router v1 tags, no context | pending | | | | | ablation |
 
 ### OOD split (6 intents never seen in training)
@@ -136,19 +154,58 @@ All numbers on held-out splits. SWE = safety-weighted error, lower is better.
 | R0b rules, all seeds | 0.583 | 1.044 | 34.1% | not fair: saw OOD seeds |
 | R0c rules, train seeds only | 0.231 | 2.231 | 78.6% | |
 | R1 router v0, e2e | 0.442 | 1.312 | 25.7% | defaults to LOCAL on unseen intents |
-| R2 router v1, tags | pending | | | the key number for A4 |
+| R2 router v1, e2e | 0.298 | 1.694 | 30.7% | underfit route head |
+| R2 router v1, tags | **0.477** | 1.307 | 22.0% | small gain over R1; capability tag fails OOD |
+| R2 router v1, combined | 0.396 | 1.526 | **19.8%** | |
 
-\* Span leak for R1 is measured on test + OOD combined.
+\* Span leak is measured on test + OOD combined, on rows the run routed to the cloud, so it is not comparable across rows with different routing.
 
 ## Run details
 
-### R2 / R3: router v1 with tags (pending)
+### R3: no-context ablation (pending)
 
-- Commit `723573c`, notebook `notebooks/kaggle_train.ipynb` (12 cells).
-- Smoke test on a tiny random model only (not meaningful): OOD critical
-  misses 22/22 for e2e vs 4/22 for tags. Direction is encouraging.
-- Look at: OOD table for `tags` vs `e2e`; the per-tag "route-changing errors"
-  column to see which tag hurts most.
+- Same notebook, cell 9. Not run yet.
+
+### R2: router v1 with tags (2026-10-23)
+
+- Commit `723573c`, `configs/train_qwen3_0.6b_tags.yaml`, Colab T4, 57 min
+  training. 2.4M of 598M params trained (LoRA r=8, attention only).
+- **Over-regularised: the model underfit.** Train loss stayed at 2.6 (route
+  0.56) versus 0.002 in R1. Val route-head macro-F1 0.58 versus 0.86 in R1.
+  Calibration temperature came out 0.88 (below 1 means underconfident) and
+  ECE got worse after calibration (0.018 -> 0.034), so label smoothing had
+  already flattened the probabilities.
+- **Tags route is the best route source.** Test critical misses 3.1% versus
+  7.1% for R1, with macro-F1 0.728 versus 0.780. It refuses more: REFUSE
+  recall 0.83, precision 0.61.
+- **Combined** gets the lowest critical misses (2.9% test, 19.8% OOD) but
+  over-refuses (REFUSE predicted 2,968 times for 1,615 true).
+- **OOD improved only slightly:** macro-F1 0.477 vs 0.442, critical miss
+  22.0% vs 25.7%, SWE unchanged (1.307 vs 1.312).
+- Tag accuracy, test / OOD:
+
+  | tag | test | OOD | route-changing errors (OOD) | dangerous miss |
+  | --- | --- | --- | --- | --- |
+  | capability | 0.80 | **0.33** | 1,112 | - |
+  | distraction | 0.86 | 0.58 | 592 | 0% of high |
+  | actuation | 0.88 | 0.84 | 184 | 14.3% test, 2.4% OOD |
+  | consequence | 0.85 | 0.58 | 0 (not a routing tag) | 34.5% of irreversible |
+
+- **Why capability fails OOD: the split, mostly.** Five of the six OOD intents
+  have rare capability values. `cloud_preferred` has only 4 intents in the
+  whole taxonomy and 2 of them are OOD, so training saw 2. `needs_small_local`
+  has 8 and 3 are OOD. The model cannot learn a class from 2 examples.
+  Capability is also partly not in the wording: whether onboard data can
+  answer depends on the car, which is why the other branch made it a policy
+  table.
+- Consequence dangerous misses (34.5% of irreversible called reversible or
+  none) do not change routes but would skip the "are you sure?" step.
+- Span exact-match F1 fell to 0.39 (R1 0.63), likely from underfitting and
+  word dropout.
+- int8 got worse: route agreement 0.730.
+- Conclusion: the tags idea helps safety; the regularisation went too far;
+  OOD is limited by how the OOD intents were chosen and by capability being
+  partly a deployment fact. See next steps under "Ideas not yet tried".
 
 ### R1: router v0 (2026-10-07)
 
@@ -183,6 +240,7 @@ All numbers on held-out splits. SWE = safety-weighted error, lower is better.
 
 | date | decision | why |
 | --- | --- | --- |
+| 10-23 | Next run backs off regularisation (R4 above) | R2 underfit: train loss 2.6, val route F1 0.58 |
 | 10-22 | Add tag heads; score three route sources | R1 failed on unseen intents; tags transfer |
 | 10-22 | Regularise run 2 (see A4) | R1 train loss 0.002, val-test gap |
 | 10-07 | Fair rules baseline uses train seeds only | all-seeds matcher saw test and OOD seeds |
