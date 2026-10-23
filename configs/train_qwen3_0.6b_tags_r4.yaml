@@ -1,0 +1,46 @@
+# Run R4: tag heads with R1's capacity. R2 (train_qwen3_0.6b_tags.yaml) underfit:
+# train loss stayed at 2.6 and the val route head reached macro-F1 0.58. This config keeps
+# the tag heads and the two cheap augmentations (context dropout, lighter word dropout) and
+# restores R1's capacity and schedule: LoRA r=16 on all seven projections, lr 2e-4,
+# 3 epochs, light dropout, intent weight 0.5, no label smoothing.
+# Trained on the 81-intent dataset (docs/experiment-log.md, A5).
+# python -m autogate_router.train --config configs/train_qwen3_0.6b_tags_r4.yaml
+rows: data/generated/full/rows.jsonl
+train_split: train
+val_split: val
+out_dir: checkpoints/qwen3-0.6b-tags-r4
+backbone: Qwen/Qwen3-0.6B
+pooling: mean
+context: true
+max_length: 96
+lora: true
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+head_dropout: 0.1
+class_weights: true
+tag_heads: true
+tag_class_weights: true
+context_dropout: 0.2
+word_dropout: 0.05
+lambda_intent: 0.5
+lambda_span: 1.0
+lambda_actuation: 1.0
+lambda_distraction: 1.0
+lambda_capability: 0.5
+lambda_consequence: 0.3
+label_smoothing: 0.0
+epochs: 3
+batch_size: 32
+eval_batch_size: 128
+lr: 2.0e-4
+head_lr: null
+weight_decay: 0.01
+warmup_ratio: 0.06
+grad_accum: 1
+max_grad_norm: 1.0
+precision: auto
+seed: 0
+log_every: 50
+eval_n_boot: 200

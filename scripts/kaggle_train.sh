@@ -13,12 +13,13 @@
 #   REPO_URL      default https://github.com/anantha99/AutoGate.git
 #   BRANCH        default claude/peaceful-pasteur-nessbd
 #   WORK          default /kaggle/working on Kaggle, /content on Colab, else ~/autogate_work
-#   RUNS          where artifacts go, default $WORK/runs (point it at Google Drive on Colab)
-#   EPOCHS        default 2
+#   RUNS          where artifacts go, default $WORK/runs-v1 (point it at Google Drive on Colab)
+#   EPOCHS        default 3
 #   RUN_ABLATION  default 1 (also train the --no-context ablation)
 #   RUN_EXPORT    default 1 (ONNX fp32 + int8 for each run)
 #   GITHUB_TOKEN  token for a private clone
-#   CONFIG        default configs/train_qwen3_0.6b_tags.yaml
+#   CONFIG        default configs/train_qwen3_0.6b_tags_r4.yaml
+#   RUN_NAME      default qwen3-0.6b-tags-r4
 #   ROWS          default data/generated/full/rows.jsonl (generated if missing)
 #   TRAIN_ARGS    extra flags for every training run (e.g. "--batch-size 16 --grad-accum 2")
 set -euo pipefail
@@ -31,12 +32,13 @@ if [ -z "${WORK:-}" ]; then
     else WORK="$HOME/autogate_work"; fi
 fi
 mkdir -p "$WORK"
-EPOCHS=${EPOCHS:-2}
+EPOCHS=${EPOCHS:-3}
 RUN_ABLATION=${RUN_ABLATION:-1}
 RUN_EXPORT=${RUN_EXPORT:-1}
-CONFIG=${CONFIG:-configs/train_qwen3_0.6b_tags.yaml}
+CONFIG=${CONFIG:-configs/train_qwen3_0.6b_tags_r4.yaml}
+RUN_NAME=${RUN_NAME:-qwen3-0.6b-tags-r4}
 TRAIN_ARGS=${TRAIN_ARGS:-}
-RUNS=${RUNS:-$WORK/runs}
+RUNS=${RUNS:-$WORK/runs-v1}
 mkdir -p "$RUNS"
 
 log() { printf '\n=== %s | %s\n' "$(date -u +%H:%M:%S)" "$*"; }
@@ -118,9 +120,9 @@ run() {
     fi
 }
 
-run qwen3-0.6b-tags
+run "$RUN_NAME"
 if [ "$RUN_ABLATION" = 1 ]; then
-    run qwen3-0.6b-tags-no-context --no-context
+    run "$RUN_NAME-no-context" --no-context
 fi
 
 # ---------------------------------------------------------------- comparison

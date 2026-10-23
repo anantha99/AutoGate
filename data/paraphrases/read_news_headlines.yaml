@@ -1,0 +1,219 @@
+# Paraphrases of the read_news_headlines seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): read me today's headlines
+"0":
+  - {text: "give me the news headlines for today", variant: plain}
+  - {text: "run through today's top stories", variant: plain}
+  - {text: "tell me what's in the news today", variant: plain}
+  - {text: "play the latest headlines", variant: plain}
+  - {text: "go through the morning news headlines for me", variant: plain}
+  - {text: "read out the main news", variant: plain}
+  - {text: "catch me up on today's news", variant: plain}
+  - {text: "start the headlines", variant: plain}
+  - {text: "let me hear the top stories of the day", variant: plain}
+  - {text: "do one thing read the news headlines", variant: plain}
+  - {text: "brief me on the news today", variant: plain}
+  - {text: "just read the big stories from today", variant: plain}
+  - {text: "put on the news headlines", variant: plain}
+  - {text: "say the latest headlines out loud", variant: plain}
+  - {text: "update me with today's top news", variant: plain}
+  - {text: "fill me in on the headlines", variant: plain}
+  - {text: "read the important news of the day", variant: plain}
+  - {text: "rattle off today's news headlines", variant: plain}
+  - {text: "quickly tell me the main headlines", variant: plain}
+  - {text: "bring up the day's headlines and read them", variant: plain}
+  - {text: "list the top stories in today's news", variant: plain}
+  - {text: "news headlines please read them out", variant: plain}
+  - {text: "headlines of the day go ahead and read them", variant: plain}
+  - {text: "give me a quick news roundup for today", variant: plain}
+  - {text: "aaj ki headlines padh ke sunao", variant: hinglish}
+  - {text: "aaj ki taaza khabar batao", variant: hinglish}
+  - {text: "news headlines suna do yaar", variant: hinglish}
+  - {text: "aaj ke main news bata do", variant: hinglish}
+  - {text: "jaldi se aaj ki khabrein padho", variant: hinglish}
+  - {text: "top headlines sunao abhi", variant: hinglish}
+  - {text: "ivattina headlines odi", variant: kannada_english}
+  - {text: "ivattu news enu ide heli", variant: kannada_english}
+  - {text: "swalpa ivattina news headlines kelisi", variant: kannada_english}
+  - {text: "top news odu guru", variant: kannada_english}
+  - {text: "uh read out read out what's um in today's paper", variant: disfluent}
+  - {text: "read me today's weather no sorry today's headlines", variant: disfluent}
+  - {text: "um just read the uh the headlines for today", variant: disfluent}
+  - {text: "so like give me today's er news headlines", variant: disfluent}
+  - {text: "read me the the top stories uh from today", variant: disfluent}
+  - {text: "play some news no i mean read me today's headlines", variant: disfluent}
+
+# seed 1 (question): what's happening in the news this morning
+"1":
+  - {text: "anything big in the news today morning?", variant: plain}
+  - {text: "any major stories since i woke up", variant: plain}
+  - {text: "what are the morning headlines?", variant: plain}
+  - {text: "what's going on in the world so far today", variant: plain}
+  - {text: "what have i missed in the papers since last night?", variant: plain}
+  - {text: "what's the latest from the morning bulletin", variant: plain}
+  - {text: "is there anything important making headlines right now?", variant: plain}
+  - {text: "what are the top stories at the moment", variant: plain}
+  - {text: "anything i should know from today's morning news?", variant: plain}
+  - {text: "what's making headlines since sunrise", variant: plain}
+  - {text: "has anything major happened overnight?", variant: plain}
+  - {text: "what are people talking about in today's news", variant: plain}
+  - {text: "what's the morning paper saying?", variant: plain}
+  - {text: "what's the big story of the morning", variant: plain}
+  - {text: "which stories are leading the news right now", variant: plain}
+  - {text: "anything new on the news channels today?", variant: plain}
+  - {text: "any breaking stories early today", variant: plain}
+  - {text: "can you tell me what's in the morning news", variant: plain}
+  - {text: "what all happened while i was sleeping?", variant: plain}
+  - {text: "what's the headline news at this hour", variant: plain}
+  - {text: "what's trending in current affairs today morning?", variant: plain}
+  - {text: "could you tell me the main stories from this morning", variant: plain}
+  - {text: "is something big going on in the country today", variant: plain}
+  - {text: "what are the news updates from early today?", variant: plain}
+  - {text: "aaj subah news mein kya chal raha hai?", variant: hinglish}
+  - {text: "subah ki khabar kya hai", variant: hinglish}
+  - {text: "aaj subah ki headlines kya hain?", variant: hinglish}
+  - {text: "abhi duniya mein kya ho raha hai yaar", variant: hinglish}
+  - {text: "aaj morning mein kuch bada hua kya?", variant: hinglish}
+  - {text: "abhi tak ki taaza khabrein kya hain", variant: hinglish}
+  - {text: "ivattu belagge news alli enu nadeetide?", variant: kannada_english}
+  - {text: "belagina news enu", variant: kannada_english}
+  - {text: "ivattu morning headlines enu guru?", variant: kannada_english}
+  - {text: "ivattu yenu vishya ide paper alli", variant: kannada_english}
+  - {text: "uh what's what's going on in the um morning news", variant: disfluent}
+  - {text: "what's happening with traffic no sorry with the news today morning", variant: disfluent}
+  - {text: "so um what's the uh latest headlines this morning?", variant: disfluent}
+  - {text: "what's the er the big story you know since morning", variant: disfluent}
+  - {text: "um anything like major in the papers uh today", variant: disfluent}
+  - {text: "what's what's new uh out there in the news today", variant: disfluent}
+
+# seed 2 (outcome): i haven't seen any news since yesterday
+"2":
+  - {text: "i've been out of touch with the news since yesterday", variant: plain}
+  - {text: "i have no idea what's going on in the world since last night", variant: plain}
+  - {text: "haven't caught a single bulletin since yesterday", variant: plain}
+  - {text: "i've completely missed the news since yesterday", variant: plain}
+  - {text: "i'm totally behind on the news", variant: plain}
+  - {text: "no news for me since yesterday morning", variant: plain}
+  - {text: "i've been offline and missed all the news", variant: plain}
+  - {text: "i haven't read the paper or anything since yesterday", variant: plain}
+  - {text: "i'm clueless about what happened in the world today", variant: plain}
+  - {text: "the last news i saw was yesterday", variant: plain}
+  - {text: "i didn't get a chance to check the news since yesterday", variant: plain}
+  - {text: "i've been too busy to follow the news", variant: plain}
+  - {text: "since yesterday i've heard zero news", variant: plain}
+  - {text: "i'm a full day behind on the news", variant: plain}
+  - {text: "my phone was off so i've missed the news since yesterday", variant: plain}
+  - {text: "i didn't see the paper today", variant: plain}
+  - {text: "not one headline has reached me since yesterday", variant: plain}
+  - {text: "i'm out of the loop on current affairs", variant: plain}
+  - {text: "it's been a whole day since i followed the news", variant: plain}
+  - {text: "i've got no clue about today's news", variant: plain}
+  - {text: "i skipped the morning paper and the tv news", variant: plain}
+  - {text: "i'm completely unaware of what happened since yesterday", variant: plain}
+  - {text: "last evening was the last time i checked anything", variant: plain}
+  - {text: "i've missed every bulletin since yesterday", variant: plain}
+  - {text: "kal se maine koi news nahi dekhi", variant: hinglish}
+  - {text: "kal se khabar ka kuch pata nahi hai", variant: hinglish}
+  - {text: "mujhe kal se duniya ka kuch pata nahi", variant: hinglish}
+  - {text: "aaj ka paper bhi nahi padha yaar", variant: hinglish}
+  - {text: "kal se news se bilkul bahar hoon", variant: hinglish}
+  - {text: "mujhe pata hi nahi aaj kya hua news mein", variant: hinglish}
+  - {text: "ninne inda yaava news nodilla", variant: kannada_english}
+  - {text: "nange ivattu news enu gottilla", variant: kannada_english}
+  - {text: "ninne inda paper kooda odilla guru", variant: kannada_english}
+  - {text: "ninne inda news gothe illa", variant: kannada_english}
+  - {text: "uh i haven't i haven't like caught up on news since um yesterday", variant: disfluent}
+  - {text: "i've had no headlines since last week no wait since yesterday", variant: disfluent}
+  - {text: "so um i've not like caught any news since uh yesterday", variant: disfluent}
+  - {text: "i haven't er checked the news since you know yesterday", variant: disfluent}
+  - {text: "um it's been you know a whole day without uh any news", variant: disfluent}
+  - {text: "i've missed the news since last night no since yesterday morning", variant: disfluent}
+
+# seed 3 (indirect): my father will want to discuss the election at dinner
+"3":
+  - {text: "dad's going to bring up the election over dinner tonight", variant: plain}
+  - {text: "papa will definitely start talking about the election at dinner", variant: plain}
+  - {text: "my father always wants to debate the elections at the dinner table", variant: plain}
+  - {text: "dinner with dad means election talk for sure", variant: plain}
+  - {text: "my old man will grill me about the election results at dinner", variant: plain}
+  - {text: "appa is going to ask what i think about the election tonight", variant: plain}
+  - {text: "father's sure to discuss the polls when we eat tonight", variant: plain}
+  - {text: "at dinner dad will want my take on the election", variant: plain}
+  - {text: "my dad will be all about the election at the table tonight", variant: plain}
+  - {text: "dinner conversation with my father is going to be the election", variant: plain}
+  - {text: "papa won't stop talking election at dinner", variant: plain}
+  - {text: "my father will expect me to know the election news by dinner", variant: plain}
+  - {text: "dad's going to quiz me on the election over dinner", variant: plain}
+  - {text: "the election will be the only topic with my father at dinner", variant: plain}
+  - {text: "i know my father will raise the election at dinner", variant: plain}
+  - {text: "my dad's been following the election and will want to talk tonight", variant: plain}
+  - {text: "tonight's dinner will be dad going on about the election", variant: plain}
+  - {text: "my father loves discussing the voting results at dinner", variant: plain}
+  - {text: "dad will want to chat about who's winning the election at dinner", variant: plain}
+  - {text: "my father will ask about the election the minute we sit down to eat", variant: plain}
+  - {text: "pitaji will be discussing the election over dinner", variant: plain}
+  - {text: "the moment we sit for dinner dad will start on the election", variant: plain}
+  - {text: "my father is going to want an election discussion tonight", variant: plain}
+  - {text: "dinner with papa is always election analysis these days", variant: plain}
+  - {text: "papa dinner pe election ki baat zaroor karenge", variant: hinglish}
+  - {text: "aaj dinner mein papa election discuss karenge", variant: hinglish}
+  - {text: "papa ko khaane pe election pe baat karni hogi", variant: hinglish}
+  - {text: "dinner pe papa election ke baare mein poochenge yaar", variant: hinglish}
+  - {text: "papa ka dinner pe election topic pakka hai", variant: hinglish}
+  - {text: "aaj raat papa election pe charcha karenge", variant: hinglish}
+  - {text: "appa dinner alli election bagge maathaadthare", variant: kannada_english}
+  - {text: "ivattu oota maadovaga appa election vishya ethtaare", variant: kannada_english}
+  - {text: "appa ge dinner alli election discuss maadbeku guru", variant: kannada_english}
+  - {text: "raatri oota alli appa election bagge kelthare", variant: kannada_english}
+  - {text: "uh my dad my dad's going to bring up the um election tonight at dinner", variant: disfluent}
+  - {text: "papa will want to talk cricket no sorry the polls over dinner", variant: disfluent}
+  - {text: "so um you know how papa gets about uh voting results over food", variant: disfluent}
+  - {text: "my dad will er you know want to talk election at dinner", variant: disfluent}
+  - {text: "um at the dinner table my father will like start on uh the elections", variant: disfluent}
+  - {text: "papa will want to talk about uh the the election over dinner", variant: disfluent}
+
+# seed 4 (fragment): top news
+"4":
+  - {text: "headlines", variant: plain}
+  - {text: "latest headlines", variant: plain}
+  - {text: "news update", variant: plain}
+  - {text: "today's news", variant: plain}
+  - {text: "main stories", variant: plain}
+  - {text: "big headlines today", variant: plain}
+  - {text: "news now", variant: plain}
+  - {text: "top stories", variant: plain}
+  - {text: "the headlines please", variant: plain}
+  - {text: "news roundup", variant: plain}
+  - {text: "latest news", variant: plain}
+  - {text: "morning headlines", variant: plain}
+  - {text: "breaking news", variant: plain}
+  - {text: "current headlines", variant: plain}
+  - {text: "today's lead stories", variant: plain}
+  - {text: "news headlines quickly", variant: plain}
+  - {text: "major stories today", variant: plain}
+  - {text: "the day's headlines", variant: plain}
+  - {text: "quick news", variant: plain}
+  - {text: "headlines now", variant: plain}
+  - {text: "key news", variant: plain}
+  - {text: "major headlines", variant: plain}
+  - {text: "news briefing", variant: plain}
+  - {text: "the big stories", variant: plain}
+  - {text: "aaj ki khabar", variant: hinglish}
+  - {text: "taaza khabar", variant: hinglish}
+  - {text: "headlines batao", variant: hinglish}
+  - {text: "news sunao", variant: hinglish}
+  - {text: "aaj ki headlines", variant: hinglish}
+  - {text: "main khabrein", variant: hinglish}
+  - {text: "ivattina news", variant: kannada_english}
+  - {text: "headlines heli", variant: kannada_english}
+  - {text: "news kelisi", variant: kannada_english}
+  - {text: "ivattina headlines", variant: kannada_english}
+  - {text: "uh top news um please", variant: disfluent}
+  - {text: "top um top uh headlines", variant: disfluent}
+  - {text: "top sports no sorry top news", variant: disfluent}
+  - {text: "er the the main news", variant: disfluent}
+  - {text: "um like the top stories uh", variant: disfluent}
+  - {text: "so uh the latest um headlines", variant: disfluent}

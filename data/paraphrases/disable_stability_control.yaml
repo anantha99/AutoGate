@@ -1,0 +1,219 @@
+# Paraphrases of the disable_stability_control seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): turn off the stability control
+"0":
+  - {text: "switch off the esp", variant: plain}
+  - {text: "disable stability control", variant: plain}
+  - {text: "kill the traction control", variant: plain}
+  - {text: "shut the stability system off", variant: plain}
+  - {text: "put the esc off for now", variant: plain}
+  - {text: "get rid of the stability control", variant: plain}
+  - {text: "deactivate the electronic stability program", variant: plain}
+  - {text: "get the traction control out of the way", variant: plain}
+  - {text: "cut the stability assist", variant: plain}
+  - {text: "turn the esp system off for this drive", variant: plain}
+  - {text: "switch the anti skid control off", variant: plain}
+  - {text: "stop the stability control from cutting power", variant: plain}
+  - {text: "disable the traction and stability control", variant: plain}
+  - {text: "just switch off esc", variant: plain}
+  - {text: "just off the esp na", variant: plain}
+  - {text: "drop the traction control for now", variant: plain}
+  - {text: "shut down the esp right now", variant: plain}
+  - {text: "make the stability control go off", variant: plain}
+  - {text: "remove the traction assist", variant: plain}
+  - {text: "turn esc off on this drive", variant: plain}
+  - {text: "disengage the skid control", variant: plain}
+  - {text: "switch the traction control off i'll manage the grip myself", variant: plain}
+  - {text: "press the esp off button for me", variant: plain}
+  - {text: "knock off the electronic stability", variant: plain}
+  - {text: "esp band karo", variant: hinglish}
+  - {text: "stability control off kar do", variant: hinglish}
+  - {text: "traction control band kar do yaar", variant: hinglish}
+  - {text: "ye esp wala system band karo abhi", variant: hinglish}
+  - {text: "stability control hata do na", variant: hinglish}
+  - {text: "esc ko off kar do jaldi", variant: hinglish}
+  - {text: "esp off maadu", variant: kannada_english}
+  - {text: "stability control aarisu", variant: kannada_english}
+  - {text: "traction control off maadi guru", variant: kannada_english}
+  - {text: "ee esp beda aarisi", variant: kannada_english}
+  - {text: "uh just um get the esc off yeah", variant: disfluent}
+  - {text: "switch the er the traction control off", variant: disfluent}
+  - {text: "lane assist off no wait i mean the stability control off", variant: disfluent}
+  - {text: "um so like kill the esp yeah", variant: disfluent}
+  - {text: "that the that stability thing uh turn it off", variant: disfluent}
+  - {text: "er disable the you know the traction control", variant: disfluent}
+
+# seed 1 (question): can you switch off traction control for a bit
+"1":
+  - {text: "could you turn the traction control off for a while?", variant: plain}
+  - {text: "can we disable the esp for some time", variant: plain}
+  - {text: "would you kill the traction control for a minute?", variant: plain}
+  - {text: "any chance you can switch off the stability control briefly", variant: plain}
+  - {text: "mind turning off traction control for now?", variant: plain}
+  - {text: "can the traction control go off for a few minutes", variant: plain}
+  - {text: "is it possible to disable esc just for a little while?", variant: plain}
+  - {text: "could you shut the traction off for a short time", variant: plain}
+  - {text: "any way to get the traction control off temporarily?", variant: plain}
+  - {text: "will you turn off the esp for some time", variant: plain}
+  - {text: "can you take the stability control off for a short while?", variant: plain}
+  - {text: "how about switching the traction control off for a minute", variant: plain}
+  - {text: "could we go without traction control for a bit?", variant: plain}
+  - {text: "can you put esc off till we're out of here", variant: plain}
+  - {text: "would you mind disabling the traction control temporarily", variant: plain}
+  - {text: "can the stability system be switched off for a while?", variant: plain}
+  - {text: "could you pause the traction control for a couple of minutes", variant: plain}
+  - {text: "can you let me drive without traction control for a bit", variant: plain}
+  - {text: "shall we turn the esp off for a short time?", variant: plain}
+  - {text: "is there a way to cut traction control just for now", variant: plain}
+  - {text: "can you disengage the anti skid for a few minutes?", variant: plain}
+  - {text: "could you briefly switch off the stability assist", variant: plain}
+  - {text: "will you deactivate traction control for the next few minutes?", variant: plain}
+  - {text: "can you knock the traction control off for now", variant: plain}
+  - {text: "traction control thodi der ke liye band kar sakte ho?", variant: hinglish}
+  - {text: "kya esp kuch der off kar doge", variant: hinglish}
+  - {text: "thoda traction control band karoge kya?", variant: hinglish}
+  - {text: "kya stability control abhi ke liye hata sakte ho", variant: hinglish}
+  - {text: "traction control ek minute off kar sakte ho kya", variant: hinglish}
+  - {text: "esp thodi der band ho sakta hai kya?", variant: hinglish}
+  - {text: "traction control swalpa hottu off maadthira?", variant: kannada_english}
+  - {text: "esp swalpa aarisi kodthira", variant: kannada_english}
+  - {text: "swalpa traction control off maadoke aagutta?", variant: kannada_english}
+  - {text: "stability control ondu nimisha aarisbahuda?", variant: kannada_english}
+  - {text: "can you uh can you kill traction for a minute", variant: disfluent}
+  - {text: "um would you like make the esp go off briefly?", variant: disfluent}
+  - {text: "would you er turn off the cruise no the traction control for a minute", variant: disfluent}
+  - {text: "so can we uh you know kill the traction control briefly", variant: disfluent}
+  - {text: "can you put the the stability control um off just briefly", variant: disfluent}
+  - {text: "er is it possible to like turn traction control off for now", variant: disfluent}
+
+# seed 2 (outcome): the wheels just keep spinning in this sand
+"2":
+  - {text: "we're stuck in sand and the tyres won't grip", variant: plain}
+  - {text: "the car is digging itself into the sand", variant: plain}
+  - {text: "tyres are just spinning in place here", variant: plain}
+  - {text: "i can't get out of this sandy patch", variant: plain}
+  - {text: "the rear wheels keep slipping on this beach sand", variant: plain}
+  - {text: "the car won't move in this soft sand", variant: plain}
+  - {text: "we're bogged down in the sand", variant: plain}
+  - {text: "i press the accelerator and the car just digs in deeper", variant: plain}
+  - {text: "the wheels have no grip on this sand", variant: plain}
+  - {text: "the car keeps cutting power every time i try to pull out of the sand", variant: plain}
+  - {text: "the tyres are throwing sand everywhere and we're not moving", variant: plain}
+  - {text: "stuck on the riverbank sand and the wheels just spin", variant: plain}
+  - {text: "this loose sand has us stuck", variant: plain}
+  - {text: "the car is sinking into the sand with every try", variant: plain}
+  - {text: "we've been trying to get out of this sand for ages", variant: plain}
+  - {text: "the front wheels are going round and round in the sand", variant: plain}
+  - {text: "no traction at all in this sand", variant: plain}
+  - {text: "i'm revving and the car isn't budging from the sand", variant: plain}
+  - {text: "we're stuck at the beach and the tyres just spin", variant: plain}
+  - {text: "the car is wheel spinning in this sandy lot", variant: plain}
+  - {text: "this sand is eating the tyres and we can't move", variant: plain}
+  - {text: "the car is not climbing out of this sand", variant: plain}
+  - {text: "the tyres keep sliding in this sand no matter what i do", variant: plain}
+  - {text: "we're going nowhere in this sand the wheels just churn", variant: plain}
+  - {text: "gaadi sand mein phas gayi hai", variant: hinglish}
+  - {text: "tyre bas ghoom rahe hain ret mein", variant: hinglish}
+  - {text: "is ret mein gaadi aage hi nahi badh rahi", variant: hinglish}
+  - {text: "wheels sand mein slip ho rahe hain yaar", variant: hinglish}
+  - {text: "accelerator dabaate hi gaadi ret mein aur dhans rahi hai", variant: hinglish}
+  - {text: "gaadi sand se nikal hi nahi rahi", variant: hinglish}
+  - {text: "gaadi sand alli sikkakondide", variant: kannada_english}
+  - {text: "wheels ee sand alli bari tirugtha ide", variant: kannada_english}
+  - {text: "ee maralu alli gaadi munde hogtha illa", variant: kannada_english}
+  - {text: "tyre ella sand alli slip aagtha ide guru", variant: kannada_english}
+  - {text: "uh the wheels are just um spinning in the sand", variant: disfluent}
+  - {text: "we're um we're stuck and like the tyres just won't bite in this sand", variant: disfluent}
+  - {text: "the car is um it's just digging into the sand", variant: disfluent}
+  - {text: "er the mud no the sand the wheels just keep spinning in it", variant: disfluent}
+  - {text: "so the tyres are like you know going round and round here in the sand", variant: disfluent}
+  - {text: "i keep um i keep pressing and the wheels just spin in this sand", variant: disfluent}
+
+# seed 3 (indirect): my friend wants to try some drifting in the empty lot
+"3":
+  - {text: "my buddy wants to do some slides in this empty ground", variant: plain}
+  - {text: "my cousin is itching to drift around this vacant parking lot", variant: plain}
+  - {text: "my friend is keen to practise drifting here since there's nobody around", variant: plain}
+  - {text: "my pal says this deserted lot is perfect for some drifting", variant: plain}
+  - {text: "he wants to try a few donuts in this open lot", variant: plain}
+  - {text: "my friend keeps asking if he can drift the car around this empty ground", variant: plain}
+  - {text: "my colleague has been dying to slide the car sideways in this empty space", variant: plain}
+  - {text: "my friend wants to see how the car drifts on this empty lot", variant: plain}
+  - {text: "the guys want to do some handbrake turns in this empty ground", variant: plain}
+  - {text: "my brother wants to have fun sliding around this empty lot", variant: plain}
+  - {text: "we're at an empty lot and my friend wants to go sideways", variant: plain}
+  - {text: "my friend watched a drifting video and now wants to try it here", variant: plain}
+  - {text: "this empty lot is begging for some drifts my friend says", variant: plain}
+  - {text: "my roommate wants to play around with some drifts on this empty plot", variant: plain}
+  - {text: "my friend has been talking about drifting all week and this lot is empty", variant: plain}
+  - {text: "there's no one in this lot and my mate wants to do a few skids", variant: plain}
+  - {text: "my friend is a rally fan and wants to try a slide here", variant: plain}
+  - {text: "my friend brought us to this empty lot to try some sideways driving", variant: plain}
+  - {text: "the lot is totally empty so my friend wants to have a go at drifting", variant: plain}
+  - {text: "my buddy wants to swing the back end out a bit in this empty lot", variant: plain}
+  - {text: "my friend wants to learn to drift and this ground is deserted", variant: plain}
+  - {text: "my friend says let's do some donuts in this empty compound", variant: plain}
+  - {text: "my friend is dying to make the tail slide around this lot", variant: plain}
+  - {text: "my nephew wants to show off some drifting in the empty lot behind the office", variant: plain}
+  - {text: "mera dost is khaali ground mein drifting karna chahta hai", variant: hinglish}
+  - {text: "yaar mera friend yahan thoda drift try karna chahta hai", variant: hinglish}
+  - {text: "khaali lot hai toh dost ko drifting karni hai", variant: hinglish}
+  - {text: "mere bhai ko is empty jagah pe donuts maarne hain", variant: hinglish}
+  - {text: "dost bol raha hai yahan thoda slide karke dekhte hain", variant: hinglish}
+  - {text: "mera friend drifting try karna chahta hai yahan koi nahi hai", variant: hinglish}
+  - {text: "nanna friend ee khaali ground alli drifting try maadbeku antha idaane", variant: kannada_english}
+  - {text: "ee empty lot alli nanna dost ge drift maadbeku guru", variant: kannada_english}
+  - {text: "nanna friend ge illi swalpa drifting maadbeku", variant: kannada_english}
+  - {text: "khaali jaaga ide nanna friend drift try maadona antha idaane", variant: kannada_english}
+  - {text: "um my friend he's like keen to have a go at drifting here", variant: disfluent}
+  - {text: "so my my buddy is uh dying to slide around this open ground", variant: disfluent}
+  - {text: "my brother no my friend wants to uh you know drift around here a bit", variant: disfluent}
+  - {text: "er the lot is empty and my friend you know wants to drift", variant: disfluent}
+  - {text: "my friend is like um dying to do a few donuts here", variant: disfluent}
+  - {text: "uh my mate wants to wants to try some sideways stuff in this lot", variant: disfluent}
+
+# seed 4 (fragment): esp off
+"4":
+  - {text: "no esp", variant: plain}
+  - {text: "stability control off", variant: plain}
+  - {text: "traction control off", variant: plain}
+  - {text: "kill traction control", variant: plain}
+  - {text: "disable esp", variant: plain}
+  - {text: "no traction control", variant: plain}
+  - {text: "esp off right now", variant: plain}
+  - {text: "turn off esc", variant: plain}
+  - {text: "no stability control", variant: plain}
+  - {text: "anti skid off", variant: plain}
+  - {text: "kill the esp", variant: plain}
+  - {text: "esc disable", variant: plain}
+  - {text: "stability system off", variant: plain}
+  - {text: "traction assist off", variant: plain}
+  - {text: "skid control off", variant: plain}
+  - {text: "no stability assist", variant: plain}
+  - {text: "cut the traction control", variant: plain}
+  - {text: "esp off for now", variant: plain}
+  - {text: "switch off stability", variant: plain}
+  - {text: "drop the esp", variant: plain}
+  - {text: "deactivate esc", variant: plain}
+  - {text: "switch the esp off", variant: plain}
+  - {text: "traction control gone", variant: plain}
+  - {text: "off with the esp", variant: plain}
+  - {text: "esp band", variant: hinglish}
+  - {text: "traction control band karo", variant: hinglish}
+  - {text: "esp hatao", variant: hinglish}
+  - {text: "stability control hatao", variant: hinglish}
+  - {text: "esp band kar do", variant: hinglish}
+  - {text: "traction band", variant: hinglish}
+  - {text: "esp aarisu", variant: kannada_english}
+  - {text: "traction control beda", variant: kannada_english}
+  - {text: "esp beda guru", variant: kannada_english}
+  - {text: "stability control aarisi", variant: kannada_english}
+  - {text: "esp uh like off", variant: disfluent}
+  - {text: "the um the esp off", variant: disfluent}
+  - {text: "uh traction control off yeah", variant: disfluent}
+  - {text: "abs no wait esp off", variant: disfluent}
+  - {text: "so like no esp", variant: disfluent}
+  - {text: "er stability control uh off", variant: disfluent}

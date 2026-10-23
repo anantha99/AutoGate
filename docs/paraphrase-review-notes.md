@@ -92,3 +92,30 @@ play_music).
   slope" (near explain_topic_in_depth).
 - disable_child_locks seed 2 lines about a rear passenger who cannot open the
   door (near unlock_doors; the seed itself has this overlap).
+
+## Added with the 16 A5 intents (2026-10-23)
+
+All four files per batch pass strict validation; these are judgment calls.
+
+- **Kannada words to check:** manju, moda, muchchala, kaaytaidaane, kiructa
+  idaane, haakbahuda, tegeyabahuda, aaristira (fog, fuel door, high beams);
+  kaanisthailla, mucchi hogide, tagobahuda, aarisbahuda, maralu (stability
+  control, steering, parking, tolls); neeru duddu, hanchkobeku, baadige,
+  thirugi (translate, news, trip cost, bill).
+- **Self-corrections naming a sibling intent first:** "lane assist off no
+  wait i mean the stability control off", "would you er turn off the cruise
+  no the traction control for a minute", "show me a petrol bunk sorry i mean
+  parking near the {place}", "high beam no wait fog lights on please",
+  "could you set no cancel the cruise right away", "uh any text no any mail
+  regarding the review from my manager".
+- **Near-naming the action in outcome lines:** "i'd like to get there
+  without paying any tolls"; pay_bill lines with "unless the bill is
+  cleared"; "i'd like to compare petrol here with the next town".
+- **Possibly odd:** "it's like driving through cotton wool", "this pea
+  soup", "hit the anchors" (fog, cruise); "set navigation to skip toll roads";
+  "auto driver turn left kannada"; "rupees needed for {city}" (could read as
+  a fare); "so um you know how papa gets about uh voting results over food".
+- **Brand or scope:** "drop my live location in {contact}'s whatsapp" names
+  an app; "summarise my unread emails for me" condenses rather than reads.
+- **cancel_cruise_control** lines all say "cruise control", so 22 drift
+  warnings point at set_cruise_speed; the lines are about cancelling.

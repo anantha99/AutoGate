@@ -1,0 +1,219 @@
+# Paraphrases of the dip_high_beams seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): switch off the high beam
+"0":
+  - {text: "put it on low beam", variant: plain}
+  - {text: "dip the headlights", variant: plain}
+  - {text: "kill the brights", variant: plain}
+  - {text: "go back to dipped beam", variant: plain}
+  - {text: "come off the brights", variant: plain}
+  - {text: "drop the lights to dipper", variant: plain}
+  - {text: "turn the brights off", variant: plain}
+  - {text: "dip the lamps for the oncoming traffic", variant: plain}
+  - {text: "switch to dipper", variant: plain}
+  - {text: "no more full beam", variant: plain}
+  - {text: "lower the beams", variant: plain}
+  - {text: "take us off full beam", variant: plain}
+  - {text: "come down to low beam", variant: plain}
+  - {text: "cut the full beam", variant: plain}
+  - {text: "put the dipper on", variant: plain}
+  - {text: "stop the high beam", variant: plain}
+  - {text: "switch the brights down to low", variant: plain}
+  - {text: "flick back to dipped headlights", variant: plain}
+  - {text: "bring the lights down to low beam", variant: plain}
+  - {text: "do one thing put it on dipper", variant: plain}
+  - {text: "turn off full beam na", variant: plain}
+  - {text: "just dip them", variant: plain}
+  - {text: "drop the high beams", variant: plain}
+  - {text: "give the oncoming guys low beam", variant: plain}
+  - {text: "high beam band karo", variant: hinglish}
+  - {text: "dipper pe daal do", variant: hinglish}
+  - {text: "upar wali light band kar do", variant: hinglish}
+  - {text: "high beam hatao yaar", variant: hinglish}
+  - {text: "headlight neeche karo dipper pe", variant: hinglish}
+  - {text: "full beam band kar do jaldi", variant: hinglish}
+  - {text: "high beam aarisu", variant: kannada_english}
+  - {text: "dipper haaku", variant: kannada_english}
+  - {text: "high beam off maadi guru", variant: kannada_english}
+  - {text: "light dip maadu", variant: kannada_english}
+  - {text: "uh the high beam um just take it off", variant: disfluent}
+  - {text: "turn off the high the brights i mean", variant: disfluent}
+  - {text: "um put it on the uh dipper", variant: disfluent}
+  - {text: "high beam er take it off yeah", variant: disfluent}
+  - {text: "turn on no turn off the high beam", variant: disfluent}
+  - {text: "so like drop the you know the full beam", variant: disfluent}
+
+# seed 1 (outcome): i'm blinding the cars coming the other way
+"1":
+  - {text: "the oncoming drivers can't see because of my lights", variant: plain}
+  - {text: "my beams are dazzling the traffic coming at us", variant: plain}
+  - {text: "i'm glaring into everyone's eyes on the other side", variant: plain}
+  - {text: "the bikers coming towards me are squinting", variant: plain}
+  - {text: "my headlights are right in the eyes of the oncoming cars", variant: plain}
+  - {text: "i'm dazzling people in the opposite lane", variant: plain}
+  - {text: "the cars facing us are getting blinded", variant: plain}
+  - {text: "my lamps are way too strong for the other side", variant: plain}
+  - {text: "i'm lighting up the other drivers' faces", variant: plain}
+  - {text: "the traffic from the front is getting all my glare", variant: plain}
+  - {text: "everyone coming the opposite direction is blinded by me", variant: plain}
+  - {text: "my lamps are shining straight into the other lane", variant: plain}
+  - {text: "the oncoming bus driver is completely dazzled by me", variant: plain}
+  - {text: "i'm throwing full glare at the opposite traffic", variant: plain}
+  - {text: "the drivers on the other side must be seeing spots", variant: plain}
+  - {text: "i'm way too bright for the people heading towards us", variant: plain}
+  - {text: "my lights are hitting the oncoming windscreens", variant: plain}
+  - {text: "on this undivided road i'm blinding everyone", variant: plain}
+  - {text: "the opposing traffic is getting dazzled by my beam", variant: plain}
+  - {text: "i'm glaring the autos coming at me", variant: plain}
+  - {text: "the scooters coming the other way can't see past my lights", variant: plain}
+  - {text: "people coming towards us are shielding their eyes", variant: plain}
+  - {text: "my high beam is in everyone's face", variant: plain}
+  - {text: "i'm making it hard for the other drivers to see", variant: plain}
+  - {text: "saamne wale ki aankh mein meri light lag rahi hai", variant: hinglish}
+  - {text: "meri light se saamne wale andhe ho rahe hain", variant: hinglish}
+  - {text: "saamne se aane wali gaadiyon ko kuch nahi dikh raha", variant: hinglish}
+  - {text: "mera beam saamne walon ko chubh raha hai", variant: hinglish}
+  - {text: "dusri taraf wale ko meri light se dikkat ho rahi hai", variant: hinglish}
+  - {text: "opposite wale sab blind ho rahe hain yaar", variant: hinglish}
+  - {text: "edurige baro gaadige nan light hodita ide", variant: kannada_english}
+  - {text: "edurina driver ge kaanista illa nan light inda", variant: kannada_english}
+  - {text: "nan light edurinavara kannige hodita ide", variant: kannada_english}
+  - {text: "opposite gaadi avrige full glare guru", variant: kannada_english}
+  - {text: "i'm uh i think i'm dazzling the guys heading at us", variant: disfluent}
+  - {text: "um the cars on the other side can't like see", variant: disfluent}
+  - {text: "my lamps are er like glaring at the uh oncoming traffic", variant: disfluent}
+  - {text: "i'm dazzling the bus no the truck coming at me", variant: disfluent}
+  - {text: "so the oncoming people are you know getting blinded", variant: disfluent}
+  - {text: "er everyone facing us is um squinting at my lights", variant: disfluent}
+
+# seed 2 (question): can you put the lights on dipper
+"2":
+  - {text: "could you switch to low beam?", variant: plain}
+  - {text: "would you dip the headlights", variant: plain}
+  - {text: "can we go to dipper", variant: plain}
+  - {text: "mind dropping to low beam?", variant: plain}
+  - {text: "could you turn off the high beam", variant: plain}
+  - {text: "will you dip the lights for me", variant: plain}
+  - {text: "can the beams go down to low?", variant: plain}
+  - {text: "would you put it on dipper", variant: plain}
+  - {text: "can you knock the brights off", variant: plain}
+  - {text: "could the headlamps go on dipper", variant: plain}
+  - {text: "would you mind dipping the lights", variant: plain}
+  - {text: "any chance you could kill the full beam?", variant: plain}
+  - {text: "can you lower the headlights", variant: plain}
+  - {text: "could we have low beam please", variant: plain}
+  - {text: "why don't you dip the beam?", variant: plain}
+  - {text: "can the brights be switched off", variant: plain}
+  - {text: "will you bring the lights down to dipper", variant: plain}
+  - {text: "can i get the dipped beam", variant: plain}
+  - {text: "could you take it off high beam?", variant: plain}
+  - {text: "you can dip the lamps na?", variant: plain}
+  - {text: "would you cut the high beams", variant: plain}
+  - {text: "can you flick to low beam?", variant: plain}
+  - {text: "may i have the lights dipped", variant: plain}
+  - {text: "can it drop to dipper now", variant: plain}
+  - {text: "dipper pe kar doge?", variant: hinglish}
+  - {text: "high beam band kar sakte ho kya", variant: hinglish}
+  - {text: "light dipper pe daal doge na", variant: hinglish}
+  - {text: "kya headlight neeche kar sakte ho", variant: hinglish}
+  - {text: "high beam hata doge yaar", variant: hinglish}
+  - {text: "dipper laga doge?", variant: hinglish}
+  - {text: "dipper haaktira?", variant: kannada_english}
+  - {text: "high beam aarisbahuda", variant: kannada_english}
+  - {text: "light dipper ge haakthiya guru", variant: kannada_english}
+  - {text: "high beam off maadtira", variant: kannada_english}
+  - {text: "uh can you um make it dipper for me", variant: disfluent}
+  - {text: "could you the the high beam could you like kill it", variant: disfluent}
+  - {text: "can you put it on high no on dipper", variant: disfluent}
+  - {text: "er would you like get it on dipper?", variant: disfluent}
+  - {text: "um can we go to low beam you know", variant: disfluent}
+  - {text: "so can you uh drop the brights maybe", variant: disfluent}
+
+# seed 3 (indirect): the lorry ahead is waving at me about my lights
+"3":
+  - {text: "that truck driver keeps waving his arm at me", variant: plain}
+  - {text: "the guy in front is signalling about my headlamps", variant: plain}
+  - {text: "the bus coming at us just put his hand up at my lights", variant: plain}
+  - {text: "that lorry driver is gesturing at my beam", variant: plain}
+  - {text: "the trucker ahead keeps sticking his hand out at me", variant: plain}
+  - {text: "someone in the other lane is shouting about my lights", variant: plain}
+  - {text: "the tanker in front is making signs at me about the glare", variant: plain}
+  - {text: "the driver of that truck is yelling something about my lamps", variant: plain}
+  - {text: "the auto guy just waved his hand at my lamps", variant: plain}
+  - {text: "that bus driver keeps pointing at our front", variant: plain}
+  - {text: "the van coming at us is waving like crazy", variant: plain}
+  - {text: "look that lorry guy is pointing at our headlights", variant: plain}
+  - {text: "the cars in the other lane keep grumbling about my glare", variant: plain}
+  - {text: "the truck in front is honking and waving at my beam", variant: plain}
+  - {text: "the oncoming lorry driver is covering his eyes and waving", variant: plain}
+  - {text: "that biker just gave me a dirty look over my lights", variant: plain}
+  - {text: "everyone coming the other way is gesturing at me", variant: plain}
+  - {text: "the lorry wala ahead seems angry about my lights", variant: plain}
+  - {text: "the driver of that tempo is waving at me", variant: plain}
+  - {text: "the trucks keep signalling at me about the brightness", variant: plain}
+  - {text: "that cab driver motioned at my headlamps", variant: plain}
+  - {text: "some guy in front is waving his hand at our lights", variant: plain}
+  - {text: "the bus driver just put his hand up against the glare", variant: plain}
+  - {text: "there's a lorry up ahead making a fuss about my lamps", variant: plain}
+  - {text: "aage wala truck meri light ke liye haath hila raha hai", variant: hinglish}
+  - {text: "saamne wala lorry wala baar baar haath dikha raha hai", variant: hinglish}
+  - {text: "woh truck driver meri headlight pe chilla raha hai", variant: hinglish}
+  - {text: "saamne se bus wala meri light pe ishaara kar raha hai", variant: hinglish}
+  - {text: "yeh lorry wala ishaara kar raha hai light ka", variant: hinglish}
+  - {text: "dekho truck wala meri light dekh ke gussa hai", variant: hinglish}
+  - {text: "munde lorry avnu nan light ge kai torista idaane", variant: kannada_english}
+  - {text: "edurige bus avnu nan light nodi kai aadista idaane guru", variant: kannada_english}
+  - {text: "aa truck driver nan light bagge kiructa idaane", variant: kannada_english}
+  - {text: "munde lorry avnu yaake kai torista idaane", variant: kannada_english}
+  - {text: "the lorry the lorry ahead keeps waving at me", variant: disfluent}
+  - {text: "um that truck guy is like signalling about my lights", variant: disfluent}
+  - {text: "the bus no the lorry is waving his hand at me", variant: disfluent}
+  - {text: "er that driver is uh waving about my headlamps", variant: disfluent}
+  - {text: "so the trucker you know keeps gesturing at us", variant: disfluent}
+  - {text: "uh look the tempo driver is waving at my beam", variant: disfluent}
+
+# seed 4 (fragment): high beam off
+"4":
+  - {text: "low beam only", variant: plain}
+  - {text: "dipper", variant: plain}
+  - {text: "dipper please", variant: plain}
+  - {text: "brights off", variant: plain}
+  - {text: "no brights", variant: plain}
+  - {text: "no high beam", variant: plain}
+  - {text: "high beams down", variant: plain}
+  - {text: "full beam off", variant: plain}
+  - {text: "dip the lights", variant: plain}
+  - {text: "low beams now", variant: plain}
+  - {text: "brights out", variant: plain}
+  - {text: "dipped beam", variant: plain}
+  - {text: "back to low", variant: plain}
+  - {text: "dipper lights", variant: plain}
+  - {text: "enough brights", variant: plain}
+  - {text: "dip it", variant: plain}
+  - {text: "high beam away", variant: plain}
+  - {text: "dip now", variant: plain}
+  - {text: "beam down", variant: plain}
+  - {text: "lower beams", variant: plain}
+  - {text: "brights down please", variant: plain}
+  - {text: "to dipper", variant: plain}
+  - {text: "dipper quick", variant: plain}
+  - {text: "no full beam", variant: plain}
+  - {text: "high beam band", variant: hinglish}
+  - {text: "dipper karo", variant: hinglish}
+  - {text: "upar wali light band", variant: hinglish}
+  - {text: "dipper pe daalo", variant: hinglish}
+  - {text: "full beam hatao", variant: hinglish}
+  - {text: "high beam nahi", variant: hinglish}
+  - {text: "high beam beda", variant: kannada_english}
+  - {text: "dipper maadi", variant: kannada_english}
+  - {text: "high beam aarisi", variant: kannada_english}
+  - {text: "dipper ge haaku", variant: kannada_english}
+  - {text: "high beam uh off please", variant: disfluent}
+  - {text: "high the uh high beams off now", variant: disfluent}
+  - {text: "um dipper dipper yeah", variant: disfluent}
+  - {text: "fog no high beam off", variant: disfluent}
+  - {text: "er brights uh off", variant: disfluent}
+  - {text: "so like low beam yeah", variant: disfluent}

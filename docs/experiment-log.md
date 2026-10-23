@@ -4,7 +4,7 @@ The running memory of the project: what we are trying, why, what each run
 produced, and what is still open. Newest results go at the top of each
 section. Every run gets an entry in "Runs", even a failed one.
 
-Last updated: 2026-10-23 (A5). Linked from `CLAUDE.md` so every session reads it.
+Last updated: 2026-10-23 (A5 paraphrases, R0f, R4 config). Linked from `CLAUDE.md` so every session reads it.
 
 ## How to use this file
 
@@ -19,7 +19,8 @@ Last updated: 2026-10-23 (A5). Linked from `CLAUDE.md` so every session reads it
 
 | item | status |
 | --- | --- |
-| Taxonomy expansion (A5) | done 10-23: 81 intents, 361 seeds, new 8-intent OOD holdout balanced by tag; seed-only pilot regenerated (`docs/pilot.md`). Paraphrases for the 16 new intents **not written yet**, so the full dataset has seed-only rows for them; R1/R2 are not directly comparable with any run on the new splits |
+| Taxonomy expansion (A5) | done 10-23: 81 intents, 361 seeds, 14,440 paraphrases, 66,414 rows (sha256 `8cc12a4b...`); 8-intent OOD holdout balanced by tag. R1/R2 are not directly comparable with runs on this data |
+| Router R4 (tags, R1 capacity, 81 intents) | config `configs/train_qwen3_0.6b_tags_r4.yaml` and notebook ready; **waiting for the Colab run**; outputs go to `runs-v1/` |
 | Benchmark v0 | done: 65 intents, 281 seeds, 11,240 paraphrases, 53,184 rows (`docs/dataset-v0.md`); superseded for intents and splits by A5 |
 | Rules baseline | done, both all-seeds and fair train-only versions |
 | Router v0 (route + intent + span heads) | trained once on Colab T4; beats rules in distribution, fails on unseen intents (`docs/results-v0.md`) |
@@ -130,10 +131,15 @@ safety-critical intent.
 - **Labels changed:** pilot sha256 moved to `0c7139ac...`; splits differ for
   every intent, so **R0-R2 numbers are not directly comparable** with runs
   on the new data. Old checkpoints also have a 65-way intent head.
-- **Not done:** paraphrases for the 16 new intents (16 x 5 x 40 = 3,200
-  lines). Until they exist, `generate --paraphrases` gives those intents
-  seed-only rows and the full OOD split is lopsided (6 of 8 OOD intents
-  seed-only); `paraphrases validate` lists them.
+- **Paraphrases for the 16 new intents: done** (3,200 lines by four Claude
+  agents against the spec). Whole directory: 81 files, 14,440 lines, 0
+  errors under strict validation. Flagged lines are added to
+  `docs/paraphrase-review-notes.md`.
+- **Full dataset v1:** 66,414 rows, 22,138 utterances; train 48,054, val
+  6,210, test 5,805, OOD 6,345. Routes: LOCAL 40,513, REFUSE 8,468, CLOUD
+  8,249, DEFER 7,280, CLOUD_MASKED 1,904. Sensitive rate 15.4%. Every row
+  re-checked: labels recompute from the rulebook, spans slice back, no split
+  leaks, OOD intents only in OOD.
 
 ### Ideas not yet tried
 
@@ -143,9 +149,8 @@ Highest priority after R2:
   projections, lr 2e-4, 3 epochs, head dropout 0.1, intent weight 0.5; drop
   label smoothing; keep context dropout 0.2; word dropout 0.05. Expect the
   route head to recover R1 numbers and the tag heads to sharpen.
-- **Paraphrases for the 16 A5 intents**, then regenerate the full dataset
-  and rerun R0c (fair rules) and R4 on the new splits. Needed before any
-  new run is comparable to anything.
+- ~~Paraphrases for the 16 A5 intents~~: done; R0f is the new fair rules
+  baseline. R4 config and notebook are ready.
 - ~~Rebalance the OOD holdout by tag~~ and ~~more intents in rare tag
   values~~: done in A5.
 - **Treat capability as policy, not perception** (as on the other branch):
@@ -177,6 +182,8 @@ the new splits (seed-only pilot).
 
 | run | date | macro-F1 | SWE | critical miss | span leak | notes |
 | --- | --- | --- | --- | --- | --- | --- |
+| R4 router, tags + R1 capacity (81 intents) | pending | | | | | e2e / tags / combined |
+| R0f rules, train seeds only (**81-intent full**) | 10-23 | 0.458 | 1.224 | 30.3% | - | **the fair baseline from now on** |
 | R0d rules, seeds only (81-intent pilot) | 10-23 | 0.778 | 0.248 | 0% | - | A5 sanity check, all-seeds matcher |
 | R0e rules, train seeds only (81-intent pilot) | 10-23 | 0.437 | 1.419 | 37.9% | - | A5 fair baseline, pilot only |
 | R0a rules, seeds only (pilot) | 09-25 | 0.875 | 0.315 | 0% | - | sanity check; too easy by design |
@@ -194,6 +201,8 @@ the new splits (seed-only pilot).
 
 | run | macro-F1 | SWE | critical miss | notes |
 | --- | --- | --- | --- | --- |
+| R4 router (81 intents) | pending | | | |
+| R0f rules, train seeds only (**81-intent full**) | 0.324 | 1.771 | 44.3% | the fair baseline from now on |
 | R0d rules, seeds only (81-intent pilot) | 0.766 | 0.284 | 0% | matcher saw OOD seeds |
 | R0e rules, train seeds only (81-intent pilot) | 0.321 | 1.766 | 36.1% | old pilot OOD: 2.21 SWE, 72.7% |
 | R0b rules, all seeds | 0.583 | 1.044 | 34.1% | not fair: saw OOD seeds |
@@ -206,6 +215,27 @@ the new splits (seed-only pilot).
 \* Span leak is measured on test + OOD combined, on rows the run routed to the cloud, so it is not comparable across rows with different routing.
 
 ## Run details
+
+### R4: tags with R1 capacity, 81 intents (pending)
+
+- Config `configs/train_qwen3_0.6b_tags_r4.yaml`: tag heads, LoRA r=16 on
+  all seven projections, lr 2e-4, 3 epochs, LoRA dropout 0.05, head dropout
+  0.1, intent weight 0.5, no label smoothing, context dropout 0.2, word
+  dropout 0.05. Smoke-checked on the tiny model.
+- Notebook: `$CONFIG` and `$RUN_NAME` set in the setup cell; outputs in
+  `runs-v1/` (Drive: `MyDrive/autogate/runs-v1`) so the comparison table
+  never mixes 65-intent and 81-intent runs.
+- Questions it answers: does the route head recover R1-level accuracy with
+  tag heads attached; does the tags route keep R2's low critical misses;
+  does capability now transfer to OOD (R2: 0.33 accuracy).
+
+### R0f: fair rules on the full 81-intent dataset (2026-10-23)
+
+- Train-seed matcher, 66,414 rows. Intent accuracy: train 0.505, val
+  0.243, test 0.254, OOD 0.
+- Test: macro-F1 0.458, SWE 1.224, critical miss 403/1,331 (30.3%).
+- OOD: macro-F1 0.324, SWE 1.771, critical miss 715/1,615 (44.3%).
+- Comparable only with runs on dataset sha256 `8cc12a4b...`.
 
 ### R0d/R0e: rules on the 81-intent pilot (2026-10-23)
 
@@ -298,6 +328,7 @@ the new splits (seed-only pilot).
 
 | date | decision | why |
 | --- | --- | --- |
+| 10-23 | Runs on the 81-intent data write to `runs-v1/`; R4 is the next training run | keep incomparable runs out of one comparison table |
 | 10-23 | Expand the taxonomy to 81 intents and re-pick an 8-intent OOD holdout balanced by tag (A5) | R2: capability could not transfer with 2 training `cloud_preferred` intents; the old holdout tested no needs_cloud, high, comfort or safety-critical intent |
 | 10-23 | Next run backs off regularisation (R4 above) | R2 underfit: train loss 2.6, val route F1 0.58 |
 | 10-22 | Add tag heads; score three route sources | R1 failed on unseen intents; tags transfer |

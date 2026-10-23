@@ -1,0 +1,219 @@
+# Paraphrases of the read_email_aloud seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): read my latest emails
+"0":
+  - {text: "read out my new mails", variant: plain}
+  - {text: "go through my inbox for me", variant: plain}
+  - {text: "read me whatever emails came in", variant: plain}
+  - {text: "check my email and read out the recent ones", variant: plain}
+  - {text: "play my recent emails aloud", variant: plain}
+  - {text: "run through the mails in my inbox", variant: plain}
+  - {text: "give me a quick rundown of my new emails", variant: plain}
+  - {text: "open my inbox and read the top few", variant: plain}
+  - {text: "read the last few mails out loud", variant: plain}
+  - {text: "tell me what's in my email", variant: plain}
+  - {text: "summarise my unread emails for me", variant: plain}
+  - {text: "do one thing read out my office mails", variant: plain}
+  - {text: "start reading with the newest mail first", variant: plain}
+  - {text: "just read the recent emails to me", variant: plain}
+  - {text: "catch me up on my inbox", variant: plain}
+  - {text: "go over today's emails", variant: plain}
+  - {text: "read out the unread gmail", variant: plain}
+  - {text: "read the most recent mail in my inbox", variant: plain}
+  - {text: "pull up my emails and read them", variant: plain}
+  - {text: "let me hear my latest mails", variant: plain}
+  - {text: "skim through my new emails and tell me", variant: plain}
+  - {text: "read whatever's new in my email", variant: plain}
+  - {text: "check for new mails and read them", variant: plain}
+  - {text: "brief me on my latest emails", variant: plain}
+  - {text: "mere latest emails padh ke sunao", variant: hinglish}
+  - {text: "inbox mein jo naye mail aaye hain woh padho", variant: hinglish}
+  - {text: "emails padh do zara", variant: hinglish}
+  - {text: "office ke mails suna do", variant: hinglish}
+  - {text: "naye emails padh ke batao", variant: hinglish}
+  - {text: "mera email check karo aur padh ke sunao", variant: hinglish}
+  - {text: "nanna hosa emails odi", variant: kannada_english}
+  - {text: "inbox alli iro mails odi heli", variant: kannada_english}
+  - {text: "latest mails swalpa odu", variant: kannada_english}
+  - {text: "email check maadi odi", variant: kannada_english}
+  - {text: "uh read um read my new emails", variant: disfluent}
+  - {text: "so um the latest mails read them out", variant: disfluent}
+  - {text: "read my messages no wait my emails the latest ones", variant: disfluent}
+  - {text: "um just uh go through my inbox you know the new ones", variant: disfluent}
+  - {text: "er read out the the recent mails", variant: disfluent}
+  - {text: "like read me um whatever emails just came", variant: disfluent}
+
+# seed 1 (question): did my manager send me any email about the review
+"1":
+  - {text: "has my manager mailed me about the review?", variant: plain}
+  - {text: "any email from my boss regarding the review", variant: plain}
+  - {text: "is there a mail from my manager on the review?", variant: plain}
+  - {text: "did i get anything from my manager about the review", variant: plain}
+  - {text: "has my boss sent a mail about the appraisal review?", variant: plain}
+  - {text: "any mail in my inbox from my manager about the review?", variant: plain}
+  - {text: "did the manager write to me about the review", variant: plain}
+  - {text: "can you check if my manager emailed about the review", variant: plain}
+  - {text: "was there an email from my boss about the review today", variant: plain}
+  - {text: "has my reporting manager sent anything on the review?", variant: plain}
+  - {text: "could you see whether my manager mailed me regarding the review", variant: plain}
+  - {text: "did any review mail come from my manager", variant: plain}
+  - {text: "has the review email from my manager come in?", variant: plain}
+  - {text: "has the review mail from my boss landed yet", variant: plain}
+  - {text: "did my boss drop me a mail about the review?", variant: plain}
+  - {text: "is the manager's email about the review there", variant: plain}
+  - {text: "have i got the review mail from my manager yet", variant: plain}
+  - {text: "would you check my inbox for a review mail from my manager", variant: plain}
+  - {text: "any word from my manager over email about the review?", variant: plain}
+  - {text: "my manager sent the review email or not", variant: plain}
+  - {text: "do you see an email about the review from my boss", variant: plain}
+  - {text: "has my manager got back to me by email about the review", variant: plain}
+  - {text: "did an email about my review come from the manager?", variant: plain}
+  - {text: "is there anything from my boss about the review in my mail", variant: plain}
+  - {text: "manager ne review ke baare mein koi mail bheja kya?", variant: hinglish}
+  - {text: "boss ka review wala email aaya kya", variant: hinglish}
+  - {text: "kya mere manager ka review pe mail aaya hai?", variant: hinglish}
+  - {text: "review ke liye manager ne email kiya hai kya", variant: hinglish}
+  - {text: "dekho na manager ka koi mail aaya review ke baare mein?", variant: hinglish}
+  - {text: "mere boss ne review ka mail bheja ya nahi", variant: hinglish}
+  - {text: "manager review bagge email kalsidra?", variant: kannada_english}
+  - {text: "boss inda review mail bandidya?", variant: kannada_english}
+  - {text: "nanna manager review bagge enadru mail haakidara", variant: kannada_english}
+  - {text: "review mail manager kadeyinda bandideya?", variant: kannada_english}
+  - {text: "did my uh did my manager mail me about the review", variant: disfluent}
+  - {text: "um has the boss sent er any email on the review thing?", variant: disfluent}
+  - {text: "uh any text no any mail regarding the review from my manager", variant: disfluent}
+  - {text: "so like um has the boss uh mailed anything about the review", variant: disfluent}
+  - {text: "er any email you know from my manager regarding uh the review?", variant: disfluent}
+  - {text: "er the the review email has my manager sent it", variant: disfluent}
+
+# seed 2 (outcome): i need to catch up on my inbox before the meeting
+"2":
+  - {text: "i'm way behind on my emails and the meeting is coming up", variant: plain}
+  - {text: "i have to get through my mail before the meeting", variant: plain}
+  - {text: "i haven't checked my inbox and the meeting starts soon", variant: plain}
+  - {text: "before the meeting i want to be on top of my emails", variant: plain}
+  - {text: "my inbox is piling up and i've got a meeting shortly", variant: plain}
+  - {text: "i should know what's in my mail before i walk into the meeting", variant: plain}
+  - {text: "i don't want to walk into the meeting without seeing my emails", variant: plain}
+  - {text: "there's a meeting soon and i'm clueless about my inbox", variant: plain}
+  - {text: "i need to be across my emails before this meeting", variant: plain}
+  - {text: "i haven't opened my mail all day and the meeting is next", variant: plain}
+  - {text: "i'd like to go into the meeting knowing what's in my inbox", variant: plain}
+  - {text: "i'm going straight into a meeting and haven't seen any mails", variant: plain}
+  - {text: "my emails need my attention before the meeting begins", variant: plain}
+  - {text: "i'm behind on emails and the meeting is in twenty minutes", variant: plain}
+  - {text: "i must get through the inbox before i reach office for the meeting", variant: plain}
+  - {text: "i want to be up to date on my email before the meeting", variant: plain}
+  - {text: "so many unread mails and the meeting is about to start", variant: plain}
+  - {text: "i haven't touched my inbox since morning and there's a meeting soon", variant: plain}
+  - {text: "i'd better be updated on my mails before this meeting", variant: plain}
+  - {text: "before i step into the meeting i need to know what came by email", variant: plain}
+  - {text: "i'm not prepared for the meeting until i've seen my emails", variant: plain}
+  - {text: "the meeting is close and my inbox is still untouched", variant: plain}
+  - {text: "i've got a meeting and a full inbox i haven't seen", variant: plain}
+  - {text: "i need to know what's waiting in my email before the meeting", variant: plain}
+  - {text: "meeting se pehle mujhe apne emails dekhne hain", variant: hinglish}
+  - {text: "meeting shuru hone wali hai aur maine inbox dekha hi nahi", variant: hinglish}
+  - {text: "yaar meeting se pehle saare mails ka pata hona chahiye", variant: hinglish}
+  - {text: "inbox mein bahut mails pending hain aur meeting aa gayi", variant: hinglish}
+  - {text: "mujhe meeting se pehle email pe update hona hai", variant: hinglish}
+  - {text: "abhi meeting hai aur mail check nahi kiya", variant: hinglish}
+  - {text: "meeting ge munche emails nodbeku", variant: kannada_english}
+  - {text: "meeting shuru aagtide inbox innu nodilla", variant: kannada_english}
+  - {text: "meeting munche nanna mails ella gottagbeku", variant: kannada_english}
+  - {text: "inbox full aagide meeting ge time aaytu", variant: kannada_english}
+  - {text: "i uh i really need to get through my inbox before the um meeting", variant: disfluent}
+  - {text: "so the meeting's soon and er my emails i haven't seen them", variant: disfluent}
+  - {text: "um the meeting's uh nearly here and i'm like behind on mail", variant: disfluent}
+  - {text: "before the uh meeting i have to you know clear my emails", variant: disfluent}
+  - {text: "er my inbox no wait my emails i haven't checked any and the meeting is close", variant: disfluent}
+  - {text: "the meeting the meeting is soon and um i've not seen my mails", variant: disfluent}
+
+# seed 3 (indirect): the office has been mailing me nonstop since morning
+"3":
+  - {text: "work keeps sending me emails all day", variant: plain}
+  - {text: "my inbox has been blowing up since i left home", variant: plain}
+  - {text: "the office won't stop emailing me today", variant: plain}
+  - {text: "there must be fifty mails from work by now", variant: plain}
+  - {text: "the team has been flooding my email since the morning", variant: plain}
+  - {text: "office mails have been landing one after the other", variant: plain}
+  - {text: "i've been getting work emails every few minutes", variant: plain}
+  - {text: "office people have sent me mail after mail today", variant: plain}
+  - {text: "the emails from work just haven't stopped today", variant: plain}
+  - {text: "since breakfast it's been one office mail after another", variant: plain}
+  - {text: "the office is bombarding my inbox", variant: plain}
+  - {text: "everyone at work seems to be emailing me today", variant: plain}
+  - {text: "my work mail has been going crazy since morning", variant: plain}
+  - {text: "there's a pile of office emails waiting since dawn", variant: plain}
+  - {text: "hr and my team have been mailing me all morning", variant: plain}
+  - {text: "the mail notifications from office haven't stopped", variant: plain}
+  - {text: "the whole office is in my inbox today", variant: plain}
+  - {text: "work has sent me a hundred emails since i woke up", variant: plain}
+  - {text: "my inbox has been pinging nonstop with office stuff", variant: plain}
+  - {text: "there's been a steady stream of emails from work all day", variant: plain}
+  - {text: "the office clearly needs something from me with so many mails", variant: plain}
+  - {text: "i keep getting mails from the office one after another", variant: plain}
+  - {text: "looks like the whole team decided to email me today", variant: plain}
+  - {text: "office email hasn't let up since breakfast", variant: plain}
+  - {text: "office wale subah se mail pe mail bhej rahe hain", variant: hinglish}
+  - {text: "aaj office se itne saare emails aa rahe hain yaar", variant: hinglish}
+  - {text: "subah se inbox mein office ke mails ruk hi nahi rahe", variant: hinglish}
+  - {text: "kaam ke emails ka toh aaj tufaan aaya hua hai", variant: hinglish}
+  - {text: "office walon ne aaj inbox bhar diya hai", variant: hinglish}
+  - {text: "subah se lagatar office ka mail aa raha hai", variant: hinglish}
+  - {text: "office inda beligge inda mails bartane ide", variant: kannada_english}
+  - {text: "ivattu office avru tumba emails kalsiddare", variant: kannada_english}
+  - {text: "inbox alli office mails jaasti aagide guru", variant: kannada_english}
+  - {text: "beligge inda office mails nilsilla", variant: kannada_english}
+  - {text: "the uh the office people keep um emailing me since morning", variant: disfluent}
+  - {text: "so um work has been sending mails all day you know", variant: disfluent}
+  - {text: "my inbox er my work inbox has been going nonstop", variant: disfluent}
+  - {text: "er since morning the office has been um emailing and emailing", variant: disfluent}
+  - {text: "um the office keeps uh keeps mailing me today", variant: disfluent}
+  - {text: "like work has been flooding my um my email since i woke up", variant: disfluent}
+
+# seed 4 (fragment): new emails
+"4":
+  - {text: "latest emails", variant: plain}
+  - {text: "any new mail", variant: plain}
+  - {text: "unread emails", variant: plain}
+  - {text: "my inbox", variant: plain}
+  - {text: "today's emails", variant: plain}
+  - {text: "recent mails", variant: plain}
+  - {text: "new mail please", variant: plain}
+  - {text: "emails since morning", variant: plain}
+  - {text: "inbox updates", variant: plain}
+  - {text: "fresh emails", variant: plain}
+  - {text: "unread mail in my inbox", variant: plain}
+  - {text: "my latest mails", variant: plain}
+  - {text: "office emails", variant: plain}
+  - {text: "email check", variant: plain}
+  - {text: "new stuff in my inbox", variant: plain}
+  - {text: "mail updates", variant: plain}
+  - {text: "anything new in email", variant: plain}
+  - {text: "the newest emails", variant: plain}
+  - {text: "emails from today", variant: plain}
+  - {text: "latest inbox", variant: plain}
+  - {text: "recent emails please", variant: plain}
+  - {text: "pending emails", variant: plain}
+  - {text: "unopened emails", variant: plain}
+  - {text: "just the new mails", variant: plain}
+  - {text: "naye emails", variant: hinglish}
+  - {text: "naye mail sunao", variant: hinglish}
+  - {text: "inbox mein kya aaya", variant: hinglish}
+  - {text: "aaj ke emails", variant: hinglish}
+  - {text: "koi naya mail hai kya", variant: hinglish}
+  - {text: "unread mails batao", variant: hinglish}
+  - {text: "hosa emails", variant: kannada_english}
+  - {text: "hosa mail enu", variant: kannada_english}
+  - {text: "ivattina emails", variant: kannada_english}
+  - {text: "inbox alli enu banditu", variant: kannada_english}
+  - {text: "uh new um emails", variant: disfluent}
+  - {text: "the the latest mails", variant: disfluent}
+  - {text: "new messages no new emails", variant: disfluent}
+  - {text: "um any uh new mail", variant: disfluent}
+  - {text: "er emails like the new ones", variant: disfluent}
+  - {text: "inbox uh my unread emails", variant: disfluent}

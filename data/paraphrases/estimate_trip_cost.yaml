@@ -1,0 +1,219 @@
+# Paraphrases of the estimate_trip_cost seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): work out the fuel cost for the drive to {city}
+"0":
+  - {text: "calculate how much petrol will cost for the {city} drive", variant: plain}
+  - {text: "figure out what i'll spend on fuel going to {city}", variant: plain}
+  - {text: "estimate the petrol expense for driving to {city}", variant: plain}
+  - {text: "tell me the fuel bill for driving out to {city}", variant: plain}
+  - {text: "check how much money goes on diesel to reach {city}", variant: plain}
+  - {text: "give me a rough petrol cost for the run to {city}", variant: plain}
+  - {text: "do one thing work out the fuel spend up to {city}", variant: plain}
+  - {text: "find out what the fuel will set me back driving to {city}", variant: plain}
+  - {text: "compute the petrol cost of getting to {city}", variant: plain}
+  - {text: "before we leave for {city} total up our petrol spend", variant: plain}
+  - {text: "tell me roughly how much i'll pay for petrol getting to {city}", variant: plain}
+  - {text: "add up the fuel cost for this {city} trip", variant: plain}
+  - {text: "estimate how many rupees of petrol the {city} drive needs", variant: plain}
+  - {text: "work out the diesel cost from here to {city}", variant: plain}
+  - {text: "give me the fuel expense for going to {city} by car", variant: plain}
+  - {text: "check what petrol money i need for the drive to {city}", variant: plain}
+  - {text: "calculate fuel charges for reaching {city}", variant: plain}
+  - {text: "find the cost of fuel to drive down to {city}", variant: plain}
+  - {text: "{city} drive work out the petrol cost", variant: plain}
+  - {text: "let me know what the fuel will come to for {city}", variant: plain}
+  - {text: "tally up the petrol cost for the {city} journey", variant: plain}
+  - {text: "get me an estimate of fuel spending to {city}", variant: plain}
+  - {text: "work out what i'll burn in fuel money getting to {city}", variant: plain}
+  - {text: "quickly calculate the fuel budget for driving to {city}", variant: plain}
+  - {text: "{city} tak petrol ka kharcha nikalo", variant: hinglish}
+  - {text: "{city} jaane mein kitna petrol kharcha hoga calculate karo", variant: hinglish}
+  - {text: "{city} ki drive ka fuel cost bata do", variant: hinglish}
+  - {text: "zara {city} tak ka diesel kharcha hisaab karo", variant: hinglish}
+  - {text: "{city} tak gaadi le jaane ka petrol kharcha batao", variant: hinglish}
+  - {text: "{city} trip ka fuel ka paisa calculate kar do", variant: hinglish}
+  - {text: "{city} ge hogoke petrol kharchu calculate maadi", variant: kannada_english}
+  - {text: "{city} drive ge fuel cost eshtu agutte nodi", variant: kannada_english}
+  - {text: "{city} varegu petrol kharchu lekka haaku", variant: kannada_english}
+  - {text: "swalpa {city} ge fuel kharchu heli", variant: kannada_english}
+  - {text: "uh calculate the um petrol money we'll need till {city}", variant: disfluent}
+  - {text: "check the range no wait i mean the fuel expense for {city}", variant: disfluent}
+  - {text: "so um calculate the petrol the petrol cost to {city}", variant: disfluent}
+  - {text: "figure out the er you know fuel money for driving to {city}", variant: disfluent}
+  - {text: "estimate the er the diesel no petrol spend up to {city}", variant: disfluent}
+  - {text: "um just tell me like the petrol cost for the {city} drive", variant: disfluent}
+
+# seed 1 (question): how much will petrol cost to {city} and back
+"1":
+  - {text: "what's the petrol bill for a round trip to {city}?", variant: plain}
+  - {text: "how much fuel money do i need to go to {city} and come back", variant: plain}
+  - {text: "what will i spend on petrol going to {city} and returning?", variant: plain}
+  - {text: "roughly how much petrol cost for {city} up and down", variant: plain}
+  - {text: "what's the fuel cost for {city} both ways?", variant: plain}
+  - {text: "how much will the return trip to {city} cost in petrol", variant: plain}
+  - {text: "can you tell me the petrol expense for {city} and back", variant: plain}
+  - {text: "what would fuel come to for a {city} round trip?", variant: plain}
+  - {text: "how much do i budget for petrol to {city} and home again", variant: plain}
+  - {text: "what's petrol going to cost me for {city} return?", variant: plain}
+  - {text: "how many rupees of petrol for going to {city} and coming back", variant: plain}
+  - {text: "could you work out the petrol cost to {city} and back?", variant: plain}
+  - {text: "what's the total fuel spend to {city} and return", variant: plain}
+  - {text: "how much is petrol going to be for the to and fro to {city}?", variant: plain}
+  - {text: "what will the fuel set me back for {city} and back", variant: plain}
+  - {text: "how much money goes on petrol for an up down trip to {city}?", variant: plain}
+  - {text: "if we go to {city} and return what's the petrol going to cost", variant: plain}
+  - {text: "what's the round trip fuel cost to {city}?", variant: plain}
+  - {text: "how expensive will petrol be for {city} and back", variant: plain}
+  - {text: "do you know the petrol cost to {city} both sides?", variant: plain}
+  - {text: "what does petrol add up to for {city} there and back", variant: plain}
+  - {text: "how much for fuel if i drive to {city} and back?", variant: plain}
+  - {text: "what's my petrol spend going to be for {city} return trip", variant: plain}
+  - {text: "would you tell me the fuel expense of a {city} return journey", variant: plain}
+  - {text: "{city} jaane aane mein kitna petrol kharcha hoga?", variant: hinglish}
+  - {text: "{city} up down ka petrol kitne ka padega", variant: hinglish}
+  - {text: "{city} aur wapas ka fuel kharcha kya hoga?", variant: hinglish}
+  - {text: "{city} tak jaake wapas aane mein petrol kitna lagega paise mein", variant: hinglish}
+  - {text: "yaar {city} round trip ka petrol kitne ka hai?", variant: hinglish}
+  - {text: "{city} jaana aana petrol mein kitna jayega", variant: hinglish}
+  - {text: "{city} ge hogi baroke petrol eshtu kharchu agutte?", variant: kannada_english}
+  - {text: "{city} up down ge petrol eshtu aagutte", variant: kannada_english}
+  - {text: "{city} round trip ge fuel kharchu eshtu guru?", variant: kannada_english}
+  - {text: "{city} ge hogi vaapas baroke petrol ge eshtu beku", variant: kannada_english}
+  - {text: "uh what's the what's the petrol bill um for {city} return", variant: disfluent}
+  - {text: "fuel for {city} one way no sorry both ways how much", variant: disfluent}
+  - {text: "so um what's the petrol cost for uh {city} and back?", variant: disfluent}
+  - {text: "er roughly what will like fuel come to for {city} up and down", variant: disfluent}
+  - {text: "um how much petrol money you know for {city} round trip", variant: disfluent}
+  - {text: "diesel no petrol i mean what's that cost for a {city} round trip?", variant: disfluent}
+
+# seed 2 (outcome): i need to split the fuel money with my friends
+"2":
+  - {text: "my friends and i are dividing the petrol cost", variant: plain}
+  - {text: "i have to share the fuel expenses with the gang", variant: plain}
+  - {text: "we're dividing the petrol among us and i need everyone's share", variant: plain}
+  - {text: "the boys and i have to settle the fuel money", variant: plain}
+  - {text: "i've got to divide the petrol bill among my friends", variant: plain}
+  - {text: "we're splitting what we spent on fuel", variant: plain}
+  - {text: "my friends owe me their share of the petrol", variant: plain}
+  - {text: "i need to know each person's share of the fuel cost", variant: plain}
+  - {text: "the fuel cost has to be shared between all of us", variant: plain}
+  - {text: "i'm supposed to split the petrol charges with my buddies", variant: plain}
+  - {text: "everyone's chipping in for fuel and i have to work out shares", variant: plain}
+  - {text: "petrol money needs to be divided among the friends in the car", variant: plain}
+  - {text: "i need to figure out who pays what for the diesel", variant: plain}
+  - {text: "we agreed to share the fuel cost of this trip", variant: plain}
+  - {text: "i'm collecting fuel money from my friends after this drive", variant: plain}
+  - {text: "the petrol expense is being split with my mates", variant: plain}
+  - {text: "i have to tell my friends their part of the fuel cost", variant: plain}
+  - {text: "each of us is paying an equal part of the petrol", variant: plain}
+  - {text: "i need to settle up the fuel with the others", variant: plain}
+  - {text: "my friends want to share the fuel bill fairly", variant: plain}
+  - {text: "fuel money has to be split evenly with my friends", variant: plain}
+  - {text: "i'm sharing the petrol cost with my college friends", variant: plain}
+  - {text: "i need my friends' share of what the fuel cost", variant: plain}
+  - {text: "the fuel for this trip is on all of us equally", variant: plain}
+  - {text: "doston ke saath petrol ka paisa baantna hai", variant: hinglish}
+  - {text: "mujhe friends ke saath fuel ka kharcha split karna hai", variant: hinglish}
+  - {text: "petrol ka paisa sab mein divide karna hai yaar", variant: hinglish}
+  - {text: "doston se petrol ka hissa lena hai", variant: hinglish}
+  - {text: "sab dost milke petrol ka kharcha share kar rahe hain", variant: hinglish}
+  - {text: "fuel ka paisa doston mein barabar baantna hai", variant: hinglish}
+  - {text: "friends jothe petrol duddu share maadbeku", variant: kannada_english}
+  - {text: "fuel kharchu friends madhye split maadbeku guru", variant: kannada_english}
+  - {text: "petrol duddu ellaru hanchkobeku", variant: kannada_english}
+  - {text: "nanna friends ge fuel kharchu bhaaga maadbeku", variant: kannada_english}
+  - {text: "uh i have to divide the um divide the petrol money among my mates", variant: disfluent}
+  - {text: "the toll no sorry the fuel charges have to be shared with the gang", variant: disfluent}
+  - {text: "so um me and my friends are like splitting the petrol money", variant: disfluent}
+  - {text: "i have to er divide the uh fuel cost with my friends", variant: disfluent}
+  - {text: "um the petrol money i need to you know split it with my friends", variant: disfluent}
+  - {text: "er the food bill no wait the petrol expense i'm sharing with friends", variant: disfluent}
+
+# seed 3 (indirect): we're sharing the drive to {city} three ways
+"3":
+  - {text: "the three of us are going to {city} and splitting the car costs", variant: plain}
+  - {text: "it's me and two friends chipping in for the {city} drive", variant: plain}
+  - {text: "three of us are pooling cash for this {city} outing", variant: plain}
+  - {text: "we're dividing the {city} trip expenses between three people", variant: plain}
+  - {text: "my two friends and i are each taking a third of the {city} drive costs", variant: plain}
+  - {text: "we've agreed to split the {city} drive equally among three", variant: plain}
+  - {text: "three friends one car to {city} and we're sharing everything", variant: plain}
+  - {text: "the {city} trip is a three way split between us", variant: plain}
+  - {text: "all three of us are paying for the drive to {city}", variant: plain}
+  - {text: "we're three people sharing costs for going to {city}", variant: plain}
+  - {text: "we decided to split the {city} drive by three", variant: plain}
+  - {text: "three of us are contributing equally for the car to {city}", variant: plain}
+  - {text: "for the {city} trip we're dividing costs three ways", variant: plain}
+  - {text: "each of us three pays a share for the {city} drive", variant: plain}
+  - {text: "we're splitting this {city} journey three ways", variant: plain}
+  - {text: "the costs for driving to {city} are shared by three of us", variant: plain}
+  - {text: "me and two colleagues are sharing the car to {city}", variant: plain}
+  - {text: "there are three of us chipping in for this {city} drive", variant: plain}
+  - {text: "it's a three person split on the drive up to {city}", variant: plain}
+  - {text: "the drive to {city} is being shared by three friends", variant: plain}
+  - {text: "three of us are pitching in for the {city} trip", variant: plain}
+  - {text: "we're each paying a third for the drive to {city}", variant: plain}
+  - {text: "this {city} drive is split three ways between my cousins and me", variant: plain}
+  - {text: "we three are sharing the car expenses to {city}", variant: plain}
+  - {text: "hum teen log {city} ki drive ka kharcha baant rahe hain", variant: hinglish}
+  - {text: "{city} ka trip teen logon mein split hai", variant: hinglish}
+  - {text: "{city} tak ki drive teen dost share kar rahe hain", variant: hinglish}
+  - {text: "hum teeno {city} jaane ka paisa baant lenge", variant: hinglish}
+  - {text: "{city} drive ka kharcha teen hisson mein hai yaar", variant: hinglish}
+  - {text: "teen log milke {city} ja rahe hain aur kharcha share karenge", variant: hinglish}
+  - {text: "naavu mooru jana {city} drive share maadtideevi", variant: kannada_english}
+  - {text: "{city} trip kharchu mooru jana hanchkoltivi", variant: kannada_english}
+  - {text: "{city} ge naavu mooru jana hogtideevi kharchu share", variant: kannada_english}
+  - {text: "{city} drive mooru bhaaga guru", variant: kannada_english}
+  - {text: "uh the three of us the three of us are going to um {city} on shared costs", variant: disfluent}
+  - {text: "the {city} drive costs are split two no three ways", variant: disfluent}
+  - {text: "so um the three of us are like splitting the {city} drive", variant: disfluent}
+  - {text: "we're er sharing the uh {city} drive between three of us", variant: disfluent}
+  - {text: "um you know the drive to {city} we're splitting it three ways", variant: disfluent}
+  - {text: "the drive to {city} no wait the drive to {city} is a three way share", variant: disfluent}
+
+# seed 4 (fragment): trip cost to {city}
+"4":
+  - {text: "{city} drive cost", variant: plain}
+  - {text: "fuel cost to {city}", variant: plain}
+  - {text: "petrol for {city}", variant: plain}
+  - {text: "{city} drive expense", variant: plain}
+  - {text: "cost of driving to {city}", variant: plain}
+  - {text: "{city} fuel estimate", variant: plain}
+  - {text: "petrol cost {city}", variant: plain}
+  - {text: "drive to {city} how much", variant: plain}
+  - {text: "{city} run fuel budget", variant: plain}
+  - {text: "travel cost {city}", variant: plain}
+  - {text: "fuel money for {city}", variant: plain}
+  - {text: "{city} petrol estimate", variant: plain}
+  - {text: "rupees needed for {city}", variant: plain}
+  - {text: "expense to {city} by car", variant: plain}
+  - {text: "{city} drive petrol money", variant: plain}
+  - {text: "{city} fuel spend roughly", variant: plain}
+  - {text: "{city} return cost", variant: plain}
+  - {text: "car cost to {city}", variant: plain}
+  - {text: "fuel spend up to {city}", variant: plain}
+  - {text: "{city} journey cost", variant: plain}
+  - {text: "petrol bill {city}", variant: plain}
+  - {text: "{city} trip expense estimate", variant: plain}
+  - {text: "diesel cost {city}", variant: plain}
+  - {text: "fuel charges to {city}", variant: plain}
+  - {text: "{city} ka kharcha", variant: hinglish}
+  - {text: "{city} tak kitna kharcha", variant: hinglish}
+  - {text: "{city} petrol kharcha", variant: hinglish}
+  - {text: "{city} trip kitne ka", variant: hinglish}
+  - {text: "{city} tak ka fuel kharcha", variant: hinglish}
+  - {text: "{city} jaane mein kitne paise", variant: hinglish}
+  - {text: "{city} ge kharchu eshtu", variant: kannada_english}
+  - {text: "{city} trip kharchu", variant: kannada_english}
+  - {text: "{city} ge petrol eshtu", variant: kannada_english}
+  - {text: "{city} varegu kharchu", variant: kannada_english}
+  - {text: "uh trip um cost till {city}", variant: disfluent}
+  - {text: "um the petrol cost uh {city}", variant: disfluent}
+  - {text: "trip time no sorry trip cost {city}", variant: disfluent}
+  - {text: "er what's the like fuel spend to {city}", variant: disfluent}
+  - {text: "{city} uh {city} um expense estimate", variant: disfluent}
+  - {text: "so like how much money uh for {city}", variant: disfluent}

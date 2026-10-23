@@ -1,0 +1,219 @@
+# Paraphrases of the fuel_prices_nearby seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): tell me today's petrol price around here
+"0":
+  - {text: "give me the petrol rate in this area today", variant: plain}
+  - {text: "check what petrol costs near here today", variant: plain}
+  - {text: "find out the local price of petrol for today", variant: plain}
+  - {text: "show me today's petrol rates at nearby bunks", variant: plain}
+  - {text: "let me know how much petrol is per litre here today", variant: plain}
+  - {text: "read out the current petrol price in this locality", variant: plain}
+  - {text: "get me today's rate for petrol around this area", variant: plain}
+  - {text: "check petrol prices at the pumps around us", variant: plain}
+  - {text: "look up what a litre of petrol costs here today", variant: plain}
+  - {text: "tell me the going rate for petrol nearby", variant: plain}
+  - {text: "pull up the latest petrol prices for this area", variant: plain}
+  - {text: "compare petrol rates at the bunks close by", variant: plain}
+  - {text: "do one thing check the petrol price here", variant: plain}
+  - {text: "say what petrol is selling for around here", variant: plain}
+  - {text: "quote me today's petrol rate in this town", variant: plain}
+  - {text: "fetch the petrol price for this locality today", variant: plain}
+  - {text: "update me on petrol prices in the area", variant: plain}
+  - {text: "let me hear the petrol price per litre around here", variant: plain}
+  - {text: "find today's petrol price at the nearest bunks", variant: plain}
+  - {text: "give me the local petrol price", variant: plain}
+  - {text: "check how much petrol is going for nearby today", variant: plain}
+  - {text: "just tell me the petrol rate here", variant: plain}
+  - {text: "show the petrol price list for nearby pumps", variant: plain}
+  - {text: "look up petrol rates in this city today", variant: plain}
+  - {text: "aaj yahan petrol ka rate kya hai batao", variant: hinglish}
+  - {text: "aas paas petrol ka daam batao", variant: hinglish}
+  - {text: "aaj ka petrol rate bata do", variant: hinglish}
+  - {text: "yahan petrol kitne ka mil raha hai aaj check karo", variant: hinglish}
+  - {text: "is area mein petrol ka price batao zara", variant: hinglish}
+  - {text: "aaj ke petrol rates dikhao yahan ke", variant: hinglish}
+  - {text: "ivattu illi petrol rate eshtu heli", variant: kannada_english}
+  - {text: "illi petrol bele eshtu antha heli", variant: kannada_english}
+  - {text: "ivattina petrol price check maadi", variant: kannada_english}
+  - {text: "ee area alli petrol rate swalpa heli", variant: kannada_english}
+  - {text: "uh just um give me the petrol rate here today", variant: disfluent}
+  - {text: "check the diesel no the petrol price around here", variant: disfluent}
+  - {text: "um find out like how much petrol costs um nearby", variant: disfluent}
+  - {text: "so er give me today's uh petrol rates around here", variant: disfluent}
+  - {text: "petrol price the the petrol price here today tell me", variant: disfluent}
+  - {text: "er look up you know the local petrol rate", variant: disfluent}
+
+# seed 1 (question): how much is diesel per litre nearby
+"1":
+  - {text: "what's the diesel rate around here?", variant: plain}
+  - {text: "how much does a litre of diesel cost near us", variant: plain}
+  - {text: "what are bunks nearby charging for diesel?", variant: plain}
+  - {text: "what's diesel going for in this area", variant: plain}
+  - {text: "how much for diesel at the pumps close by?", variant: plain}
+  - {text: "what does diesel cost per litre here today", variant: plain}
+  - {text: "any idea what diesel is selling at nearby?", variant: plain}
+  - {text: "what's the current diesel price in this locality", variant: plain}
+  - {text: "how expensive is diesel around here?", variant: plain}
+  - {text: "can you tell me the diesel price per litre in this area", variant: plain}
+  - {text: "do you know the diesel rate at the nearby pumps?", variant: plain}
+  - {text: "what will a litre of diesel set me back here", variant: plain}
+  - {text: "how much are they charging for diesel close by", variant: plain}
+  - {text: "what's the price of diesel at the bunk ahead?", variant: plain}
+  - {text: "is diesel cheap around here?", variant: plain}
+  - {text: "what's one litre of diesel costing in this town", variant: plain}
+  - {text: "could you check the diesel price near me?", variant: plain}
+  - {text: "how much is a litre of diesel at stations nearby", variant: plain}
+  - {text: "what's the per litre diesel price around this place", variant: plain}
+  - {text: "what's diesel at today near here?", variant: plain}
+  - {text: "what are the next few pumps charging per litre of diesel", variant: plain}
+  - {text: "what are diesel prices like close to us", variant: plain}
+  - {text: "diesel rate around here how much is it?", variant: plain}
+  - {text: "would you know the going rate for diesel nearby", variant: plain}
+  - {text: "yahan diesel kitne rupaye litre hai?", variant: hinglish}
+  - {text: "aas paas diesel ka rate kya chal raha hai", variant: hinglish}
+  - {text: "ek litre diesel ka rate kya hai idhar?", variant: hinglish}
+  - {text: "paas wale pump pe diesel kitne ka hai", variant: hinglish}
+  - {text: "is area mein diesel kya bhaav hai?", variant: hinglish}
+  - {text: "diesel ka price kya hai idhar", variant: hinglish}
+  - {text: "illi diesel litre ge eshtu?", variant: kannada_english}
+  - {text: "hattira diesel rate eshtu ide", variant: kannada_english}
+  - {text: "ee kade diesel bele eshtu?", variant: kannada_english}
+  - {text: "pump alli diesel ondu litre ge eshtu", variant: kannada_english}
+  - {text: "how much um how much does diesel cost per litre here", variant: disfluent}
+  - {text: "what's the um petrol no diesel price per litre nearby", variant: disfluent}
+  - {text: "er what does like a litre of diesel cost here?", variant: disfluent}
+  - {text: "so how much are um the pumps nearby charging for diesel", variant: disfluent}
+  - {text: "um diesel what's it uh going for around here", variant: disfluent}
+  - {text: "what's what's the diesel rate um close by?", variant: disfluent}
+
+# seed 2 (outcome): i want to know if petrol is cheaper in the next town
+"2":
+  - {text: "i'd like to find out whether petrol costs less in the next town", variant: plain}
+  - {text: "i'm wondering if fuel is cheaper a bit further on", variant: plain}
+  - {text: "i'd rather fill up in the next town if petrol's cheaper there", variant: plain}
+  - {text: "i need to know if the next town has lower petrol rates", variant: plain}
+  - {text: "i'm curious whether petrol is priced lower up ahead", variant: plain}
+  - {text: "i don't want to fill here if the next town is cheaper", variant: plain}
+  - {text: "i'd like to compare petrol here with the next town", variant: plain}
+  - {text: "i want to see if waiting till the next town saves on petrol", variant: plain}
+  - {text: "i'm hoping petrol is cheaper in the next town", variant: plain}
+  - {text: "it'd help to know the petrol price difference with the next town", variant: plain}
+  - {text: "i'd like to save on petrol if the next town has a better rate", variant: plain}
+  - {text: "if petrol is cheaper down the road i'd rather wait", variant: plain}
+  - {text: "i want to check whether the next town's petrol is less expensive", variant: plain}
+  - {text: "i'm not sure if the next town has better petrol prices", variant: plain}
+  - {text: "i need to figure out where petrol is cheaper here or the next town", variant: plain}
+  - {text: "i'd prefer to fill up where petrol is cheaper", variant: plain}
+  - {text: "i'm thinking the next town might have cheaper petrol", variant: plain}
+  - {text: "i want to know the petrol rate in the next town versus here", variant: plain}
+  - {text: "i want the cheaper petrol whether it's here or the next town", variant: plain}
+  - {text: "i'd like to know if it's worth waiting for the next town to fill petrol", variant: plain}
+  - {text: "i want to be sure i'm not overpaying for petrol here compared to the next town", variant: plain}
+  - {text: "i'd like to know which is cheaper for petrol this town or the next", variant: plain}
+  - {text: "i need to know if the next town sells petrol for less", variant: plain}
+  - {text: "i want the petrol price in the next town before i fill up here", variant: plain}
+  - {text: "mujhe jaanna hai agle town mein petrol sasta hai kya", variant: hinglish}
+  - {text: "agar agle shahar mein petrol sasta hai toh wahin bharwaunga", variant: hinglish}
+  - {text: "agle town mein petrol ka rate kam hai ya nahi yeh pata karna hai", variant: hinglish}
+  - {text: "mujhe dekhna hai ki aage petrol sasta milega kya", variant: hinglish}
+  - {text: "yaar agle town mein petrol sasta ho toh wahan bharenge", variant: hinglish}
+  - {text: "mujhe pata hona chahiye agle town ka petrol rate yahan se kam hai kya", variant: hinglish}
+  - {text: "mundina town alli petrol cheap aa antha gottagbeku", variant: kannada_english}
+  - {text: "mundina ooralli petrol kammi bele idre alli haakisona", variant: kannada_english}
+  - {text: "next town alli petrol rate kammi ideya nodbeku", variant: kannada_english}
+  - {text: "mundina ooru alli petrol swalpa cheap idre olledu", variant: kannada_english}
+  - {text: "i'd like to um find out if the next town has uh cheaper petrol", variant: disfluent}
+  - {text: "so er petrol in the next town might be cheaper i want to be sure", variant: disfluent}
+  - {text: "i need to know if diesel no petrol is cheaper up ahead", variant: disfluent}
+  - {text: "um if the next town has like lower petrol rates i'd wait", variant: disfluent}
+  - {text: "i'm i'm wondering if the uh next town sells petrol cheaper", variant: disfluent}
+  - {text: "er the next town's petrol you know might cost less i want to check", variant: disfluent}
+
+# seed 3 (indirect): my colleague said petrol crossed a hundred again
+"3":
+  - {text: "someone at work told me petrol is over a hundred again", variant: plain}
+  - {text: "my friend was saying petrol went past a hundred once more", variant: plain}
+  - {text: "i heard petrol is back above a hundred", variant: plain}
+  - {text: "the news said petrol rates went up again", variant: plain}
+  - {text: "apparently petrol has shot past a hundred rupees again", variant: plain}
+  - {text: "my neighbour was complaining that petrol is above a hundred now", variant: plain}
+  - {text: "everyone at office is talking about petrol crossing a hundred", variant: plain}
+  - {text: "my driver said petrol prices have jumped again", variant: plain}
+  - {text: "looks like petrol went up again from what my brother said", variant: plain}
+  - {text: "the cab guy told me petrol touched a hundred again", variant: plain}
+  - {text: "petrol's apparently gone beyond a hundred once again", variant: plain}
+  - {text: "there's talk that petrol is costlier than ever now", variant: plain}
+  - {text: "i read somewhere petrol is above a hundred again", variant: plain}
+  - {text: "my cousin mentioned petrol rates are through the roof", variant: plain}
+  - {text: "my boss was grumbling about petrol being a hundred plus", variant: plain}
+  - {text: "the radio said petrol prices went up yesterday", variant: plain}
+  - {text: "the guy at the toll said petrol is over a hundred", variant: plain}
+  - {text: "people are saying petrol is crossing a hundred again", variant: plain}
+  - {text: "my wife said fuel has gone above a hundred again", variant: plain}
+  - {text: "i keep hearing petrol prices are climbing again", variant: plain}
+  - {text: "my colleague reckons we're paying over a hundred for petrol now", variant: plain}
+  - {text: "at lunch they were saying petrol hit a hundred again", variant: plain}
+  - {text: "heard from a friend that petrol rates have crossed the hundred mark", variant: plain}
+  - {text: "apparently a litre of petrol is more than a hundred again", variant: plain}
+  - {text: "office mein bol rahe the petrol phir se sau ke paar ho gaya", variant: hinglish}
+  - {text: "mere dost ne bola petrol fir se sau cross kar gaya", variant: hinglish}
+  - {text: "suna hai petrol phir se mehenga ho gaya", variant: hinglish}
+  - {text: "sab keh rahe hain petrol sau rupaye se upar chala gaya", variant: hinglish}
+  - {text: "colleague bata raha tha petrol fir se sau ke upar hai", variant: hinglish}
+  - {text: "news mein aaya ki petrol phir mehenga hua", variant: hinglish}
+  - {text: "office alli petrol matte nooru daatide antha helidru", variant: kannada_english}
+  - {text: "nanna friend petrol bele matte jaasti aagide antha helda", variant: kannada_english}
+  - {text: "petrol matte nooru rupees mele hogide antha kelide", variant: kannada_english}
+  - {text: "yellaru petrol rate jaasti aaytu antha heltidaare", variant: kannada_english}
+  - {text: "um someone at work said petrol's uh above a hundred again", variant: disfluent}
+  - {text: "so my friend told me um petrol went past a hundred", variant: disfluent}
+  - {text: "i heard er i heard petrol is over a hundred again", variant: disfluent}
+  - {text: "the the radio um was saying petrol's gone up you know", variant: disfluent}
+  - {text: "my brother no my colleague said petrol's gone up again", variant: disfluent}
+  - {text: "er apparently petrol is like a hundred plus now", variant: disfluent}
+
+# seed 4 (fragment): petrol rate today
+"4":
+  - {text: "today's petrol price", variant: plain}
+  - {text: "petrol price nearby", variant: plain}
+  - {text: "current petrol rates", variant: plain}
+  - {text: "fuel prices around here", variant: plain}
+  - {text: "petrol cost per litre", variant: plain}
+  - {text: "local petrol rate", variant: plain}
+  - {text: "petrol rates in this area", variant: plain}
+  - {text: "price of petrol today", variant: plain}
+  - {text: "today's fuel rate", variant: plain}
+  - {text: "petrol per litre here", variant: plain}
+  - {text: "latest petrol price", variant: plain}
+  - {text: "petrol bunk prices", variant: plain}
+  - {text: "rate of petrol now", variant: plain}
+  - {text: "how much petrol today", variant: plain}
+  - {text: "petrol price check", variant: plain}
+  - {text: "petrol price in town", variant: plain}
+  - {text: "petrol rates please", variant: plain}
+  - {text: "cost of petrol here", variant: plain}
+  - {text: "fuel rate today", variant: plain}
+  - {text: "petrol prices this morning", variant: plain}
+  - {text: "nearby pump petrol prices", variant: plain}
+  - {text: "petrol going rate", variant: plain}
+  - {text: "petrol price update", variant: plain}
+  - {text: "current fuel price", variant: plain}
+  - {text: "aaj ka petrol rate", variant: hinglish}
+  - {text: "petrol ka bhaav aaj", variant: hinglish}
+  - {text: "aaj petrol kitne ka", variant: hinglish}
+  - {text: "petrol ka daam batao", variant: hinglish}
+  - {text: "yahan petrol rate kya", variant: hinglish}
+  - {text: "kitne ka chal raha petrol", variant: hinglish}
+  - {text: "ivattu petrol rate", variant: kannada_english}
+  - {text: "petrol bele eshtu", variant: kannada_english}
+  - {text: "ivattina petrol bele", variant: kannada_english}
+  - {text: "illi petrol rate enu", variant: kannada_english}
+  - {text: "uh petrol rate um today", variant: disfluent}
+  - {text: "petrol no diesel no petrol rate", variant: disfluent}
+  - {text: "the the petrol price today", variant: disfluent}
+  - {text: "um today's like petrol rate", variant: disfluent}
+  - {text: "er petrol uh rate here", variant: disfluent}
+  - {text: "petrol rates um for today", variant: disfluent}

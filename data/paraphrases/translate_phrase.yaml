@@ -1,0 +1,219 @@
+# Paraphrases of the translate_phrase seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): translate where is the hospital into kannada
+"0":
+  - {text: "give me the kannada for where is the hospital", variant: plain}
+  - {text: "say where's the hospital in kannada", variant: plain}
+  - {text: "put that question about the hospital into kannada for me", variant: plain}
+  - {text: "convert where is the hospital to kannada", variant: plain}
+  - {text: "help me ask the way to a hospital in kannada", variant: plain}
+  - {text: "do one thing translate where's the hospital to kannada", variant: plain}
+  - {text: "teach me the kannada line asking for the hospital", variant: plain}
+  - {text: "work out kannada words so i can ask people where the hospital is", variant: plain}
+  - {text: "speak out the kannada version of where is the hospital", variant: plain}
+  - {text: "find me a kannada sentence asking which way the hospital is", variant: plain}
+  - {text: "turn where's the hospital into kannada so i can ask around", variant: plain}
+  - {text: "let me hear where is the hospital in kannada", variant: plain}
+  - {text: "quickly translate this into kannada where's the nearest hospital", variant: plain}
+  - {text: "change where is the hospital into the local language kannada", variant: plain}
+  - {text: "kannada translation of where is the hospital please", variant: plain}
+  - {text: "tell me the kannada to ask someone the way to the hospital", variant: plain}
+  - {text: "teach me in kannada so i can learn it where's the hospital", variant: plain}
+  - {text: "render where is the hospital in kannada slowly", variant: plain}
+  - {text: "just give the kannada for which way is the hospital", variant: plain}
+  - {text: "get me the words in kannada for where is a hospital around here", variant: plain}
+  - {text: "translate for the shopkeeper where's the hospital in kannada", variant: plain}
+  - {text: "help me out by saying where is the hospital in kannada", variant: plain}
+  - {text: "put it in kannada for the auto driver where's the hospital", variant: plain}
+  - {text: "say it slowly in kannada so i can repeat where's the hospital", variant: plain}
+  - {text: "where is the hospital ko kannada mein translate karo", variant: hinglish}
+  - {text: "kannada mein bolo where's the hospital", variant: hinglish}
+  - {text: "hospital kahan hai yeh kannada mein bata do", variant: hinglish}
+  - {text: "zara yeh line kannada mein kar do where is the hospital", variant: hinglish}
+  - {text: "hospital kidhar hai kannada mein bolke sunao", variant: hinglish}
+  - {text: "jaldi se kannada mein hospital ka rasta poochna sikha do", variant: hinglish}
+  - {text: "where is the hospital na kannada ge translate maadi", variant: kannada_english}
+  - {text: "hospital yelli ide antha kannada alli helkodi", variant: kannada_english}
+  - {text: "where's the hospital kannada alli heli guru", variant: kannada_english}
+  - {text: "swalpa aa hospital question na kannada ge maadu", variant: kannada_english}
+  - {text: "uh translate um where's the where's the hospital bit into kannada for me", variant: disfluent}
+  - {text: "put where's the hospital in tamil no wait i mean kannada", variant: disfluent}
+  - {text: "so like put where's the hospital into er kannada for me", variant: disfluent}
+  - {text: "um just just translate the hospital line into kannada please", variant: disfluent}
+  - {text: "translate uh the the hospital question you know into kannada", variant: disfluent}
+  - {text: "er kannada for um where's the hospital translate it quickly", variant: disfluent}
+
+# seed 1 (question): how do you say thank you in tamil
+"1":
+  - {text: "what's thank you in tamil?", variant: plain}
+  - {text: "how would i thank someone in tamil", variant: plain}
+  - {text: "what's the tamil word for thanks?", variant: plain}
+  - {text: "in tamil how do i say thanks", variant: plain}
+  - {text: "what do tamil people say for thank you", variant: plain}
+  - {text: "how should i say thanks to someone in tamil?", variant: plain}
+  - {text: "do you know the tamil for thank you", variant: plain}
+  - {text: "what's the right way to say thank you in tamil", variant: plain}
+  - {text: "when someone helps me what do i reply in tamil?", variant: plain}
+  - {text: "what do you call thank you in tamil", variant: plain}
+  - {text: "what word do i use for thank you in tamil", variant: plain}
+  - {text: "could you tell me thank you in tamil?", variant: plain}
+  - {text: "how is thank you said in tamil", variant: plain}
+  - {text: "what would thank you be in tamil?", variant: plain}
+  - {text: "is there a tamil word for thank you", variant: plain}
+  - {text: "how do tamilians express thanks", variant: plain}
+  - {text: "how to thank the hotel staff in tamil?", variant: plain}
+  - {text: "what's tamil for thanks a lot", variant: plain}
+  - {text: "can you tell me how to thank someone in tamil", variant: plain}
+  - {text: "what do i say in tamil to thank the lady at the counter?", variant: plain}
+  - {text: "thanks in tamil is what", variant: plain}
+  - {text: "which tamil word works for thanking a person?", variant: plain}
+  - {text: "what's the respectful way to thank an elder in tamil", variant: plain}
+  - {text: "how does one say thank you in the tamil language", variant: plain}
+  - {text: "tamil mein thank you kaise bolte hain?", variant: hinglish}
+  - {text: "thank you ko tamil mein kya kehte hain", variant: hinglish}
+  - {text: "tamil mein shukriya kaise bolun?", variant: hinglish}
+  - {text: "yaar tamil mein thanks kya bolte hain", variant: hinglish}
+  - {text: "tamil wale thank you kaise bolte hai?", variant: hinglish}
+  - {text: "thanks bolna hai tamil mein kya bolu", variant: hinglish}
+  - {text: "tamil alli thank you hege helodu?", variant: kannada_english}
+  - {text: "thank you ge tamil alli enu helthare", variant: kannada_english}
+  - {text: "tamil alli thanks antha hege heltare guru?", variant: kannada_english}
+  - {text: "tamil alli dhanyavaada ge enu padha", variant: kannada_english}
+  - {text: "uh how do you how do you thank somebody in um tamil", variant: disfluent}
+  - {text: "what's thanks in telugu no sorry i meant tamil", variant: disfluent}
+  - {text: "um what's the uh the proper word they use for thanks in tamil?", variant: disfluent}
+  - {text: "so like if i want to thank someone uh what's that in tamil", variant: disfluent}
+  - {text: "er how would you say um thank you in tamil", variant: disfluent}
+  - {text: "er what do they you know say for thank you over in tamil", variant: disfluent}
+
+# seed 2 (outcome): i need to tell the watchman something in marathi
+"2":
+  - {text: "i have to explain a few things to our watchman and he only follows marathi", variant: plain}
+  - {text: "the watchman needs to hear this from me in marathi", variant: plain}
+  - {text: "i've got a message for the gate guard but it has to be marathi", variant: plain}
+  - {text: "i want to talk to the security uncle in his own marathi", variant: plain}
+  - {text: "i must say something to the society guard in marathi", variant: plain}
+  - {text: "there's a point i need to get across to the chowkidar in marathi", variant: plain}
+  - {text: "i need to speak marathi to the building watchman", variant: plain}
+  - {text: "got to pass on instructions to the watchman and he understands marathi best", variant: plain}
+  - {text: "i'm supposed to give the watchman some directions in marathi", variant: plain}
+  - {text: "the watchman has to understand me so it needs to be marathi", variant: plain}
+  - {text: "i need my words in marathi for the night guard", variant: plain}
+  - {text: "my point should reach the watchman in marathi", variant: plain}
+  - {text: "i want the old watchman to get this properly so marathi it is", variant: plain}
+  - {text: "i'd rather instruct the watchman in marathi", variant: plain}
+  - {text: "i need marathi to talk to the guard at the gate", variant: plain}
+  - {text: "there's an important thing the society watchman must hear in marathi", variant: plain}
+  - {text: "i need to get a message to the watchman and i don't know marathi", variant: plain}
+  - {text: "i've something for the watchman bhau but only in marathi will he get it", variant: plain}
+  - {text: "communicating with our watchman needs marathi", variant: plain}
+  - {text: "the watchman won't follow unless i say it in marathi", variant: plain}
+  - {text: "i'm about to speak to the watchman and need it in marathi", variant: plain}
+  - {text: "i've got to brief the gatekeeper in marathi", variant: plain}
+  - {text: "the security guy downstairs should be told this in marathi", variant: plain}
+  - {text: "i'm stuck needing marathi to speak with the watchman", variant: plain}
+  - {text: "watchman ko kuch marathi mein bolna hai", variant: hinglish}
+  - {text: "mujhe watchman se marathi mein baat karni hai", variant: hinglish}
+  - {text: "watchman ko marathi mein samjhana padega", variant: hinglish}
+  - {text: "watchman sirf marathi samajhta hai aur mujhe kuch bolna hai", variant: hinglish}
+  - {text: "yaar chowkidar ko ek baat marathi mein batani hai", variant: hinglish}
+  - {text: "gate wale bhaiya se marathi mein kuch kehna hai", variant: hinglish}
+  - {text: "watchman ge marathi alli ondu vishya helbeku", variant: kannada_english}
+  - {text: "naanu watchman jothe marathi alli maathaadbeku", variant: kannada_english}
+  - {text: "gate guard ge marathi alli enu helbeku guru", variant: kannada_english}
+  - {text: "watchman ge marathi alli swalpa explain maadbeku", variant: kannada_english}
+  - {text: "uh i need to um tell our watchman uh a thing in marathi", variant: disfluent}
+  - {text: "i have to say something to the watchman in hindi no wait marathi", variant: disfluent}
+  - {text: "so i've i've got a message for the watchman in uh marathi", variant: disfluent}
+  - {text: "um the watchman you know he needs to hear something from me in marathi", variant: disfluent}
+  - {text: "i have to er explain stuff to the gate guy like in marathi", variant: disfluent}
+  - {text: "i've got to tell the driver no sorry i mean our watchman uh in marathi", variant: disfluent}
+
+# seed 3 (indirect): the parking attendant here only speaks telugu
+"3":
+  - {text: "this parking guy speaks nothing but telugu", variant: plain}
+  - {text: "the attendant at this parking only knows telugu", variant: plain}
+  - {text: "the man at the parking lot doesn't understand anything except telugu", variant: plain}
+  - {text: "parking attendant here is telugu only yaar", variant: plain}
+  - {text: "this fellow managing the parking only talks in telugu", variant: plain}
+  - {text: "nobody at this parking speaks english just telugu", variant: plain}
+  - {text: "the parking chap here only gets telugu", variant: plain}
+  - {text: "looks like the parking attendant only understands telugu", variant: plain}
+  - {text: "the guy collecting parking here doesn't speak hindi or english only telugu", variant: plain}
+  - {text: "here the parking man only follows telugu", variant: plain}
+  - {text: "this attendant won't understand me unless it's telugu", variant: plain}
+  - {text: "this uncle collecting the parking fee knows only telugu", variant: plain}
+  - {text: "seems the parking person here knows just telugu", variant: plain}
+  - {text: "the attendant at this lot only speaks telugu and i don't", variant: plain}
+  - {text: "my english isn't working with the parking guy he only knows telugu", variant: plain}
+  - {text: "the parking staff here only talk telugu", variant: plain}
+  - {text: "telugu is all the parking attendant here understands", variant: plain}
+  - {text: "the parking attendant is shaking his head he only knows telugu", variant: plain}
+  - {text: "with this attendant it's telugu or nothing", variant: plain}
+  - {text: "this parking attendant doesn't speak a word apart from telugu", variant: plain}
+  - {text: "the man waving us into parking only speaks telugu", variant: plain}
+  - {text: "the valet here only manages telugu", variant: plain}
+  - {text: "i can't explain to the parking fellow he only speaks telugu", variant: plain}
+  - {text: "the basement parking guy only knows telugu", variant: plain}
+  - {text: "yeh parking wala sirf telugu bolta hai", variant: hinglish}
+  - {text: "parking attendant ko sirf telugu aati hai yaar", variant: hinglish}
+  - {text: "yahan parking wale bhaiya ko telugu ke alawa kuch nahi aata", variant: hinglish}
+  - {text: "parking wala hindi nahi samajhta sirf telugu", variant: hinglish}
+  - {text: "is parking mein attendant bas telugu mein baat karta hai", variant: hinglish}
+  - {text: "parking wale ko english nahi aati sirf telugu", variant: hinglish}
+  - {text: "illi parking attendant ge telugu matra barutte", variant: kannada_english}
+  - {text: "ee parking avanige telugu bitre enu baralla", variant: kannada_english}
+  - {text: "parking huduga telugu matra maathaadtaane guru", variant: kannada_english}
+  - {text: "illi parking alli telugu matra artha aagutte avanige", variant: kannada_english}
+  - {text: "uh the guy the parking guy over here only speaks um telugu", variant: disfluent}
+  - {text: "the parking guy here speaks only tamil no telugu only telugu", variant: disfluent}
+  - {text: "so um this fellow at the lot he like only knows telugu", variant: disfluent}
+  - {text: "the attendant here er he only speaks like telugu", variant: disfluent}
+  - {text: "um you know the man taking the parking fee uh he knows just telugu", variant: disfluent}
+  - {text: "the parking attendant only speaks kannada no sorry only telugu", variant: disfluent}
+
+# seed 4 (fragment): kannada for turn left
+"4":
+  - {text: "turn left in kannada", variant: plain}
+  - {text: "kannada word left turn", variant: plain}
+  - {text: "kannada translation turn left", variant: plain}
+  - {text: "turning left in kannada", variant: plain}
+  - {text: "go left in kannada", variant: plain}
+  - {text: "take a left kannada", variant: plain}
+  - {text: "kannada please turn left", variant: plain}
+  - {text: "turn left translated to kannada", variant: plain}
+  - {text: "kannada version of turn left", variant: plain}
+  - {text: "kannada for going left", variant: plain}
+  - {text: "kannada left turn quickly", variant: plain}
+  - {text: "translate turn left kannada", variant: plain}
+  - {text: "kannada phrase turn left", variant: plain}
+  - {text: "turn left into kannada", variant: plain}
+  - {text: "auto driver turn left kannada", variant: plain}
+  - {text: "left side turn kannada", variant: plain}
+  - {text: "take left in kannada", variant: plain}
+  - {text: "kannada again turn left", variant: plain}
+  - {text: "kannada equivalent turn left", variant: plain}
+  - {text: "kannada for taking a left", variant: plain}
+  - {text: "how to say turn left kannada", variant: plain}
+  - {text: "kannada words go left", variant: plain}
+  - {text: "kannada directions turn left", variant: plain}
+  - {text: "kannada instruction turn left", variant: plain}
+  - {text: "turn left kannada mein", variant: hinglish}
+  - {text: "kannada mein left mudo", variant: hinglish}
+  - {text: "left ka kannada kya hai", variant: hinglish}
+  - {text: "baayein mudo kannada mein", variant: hinglish}
+  - {text: "kannada mein left kaise bolein", variant: hinglish}
+  - {text: "turn left ka kannada", variant: hinglish}
+  - {text: "turn left kannada alli", variant: kannada_english}
+  - {text: "kannada alli left thirugi", variant: kannada_english}
+  - {text: "left turn ge kannada enu", variant: kannada_english}
+  - {text: "left hogi ge kannada padha", variant: kannada_english}
+  - {text: "uh the kannada um for turn left", variant: disfluent}
+  - {text: "kannada for turn right no sorry i mean left", variant: disfluent}
+  - {text: "er how do you uh say turn left kannada", variant: disfluent}
+  - {text: "kannada for for um turning left", variant: disfluent}
+  - {text: "um tamil no kannada for like turn left", variant: disfluent}
+  - {text: "so like the left turn uh in kannada", variant: disfluent}

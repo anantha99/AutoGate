@@ -1,0 +1,219 @@
+# Paraphrases of the route_avoiding_tolls seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): avoid toll roads on this route
+"0":
+  - {text: "skip the tolls on this trip", variant: plain}
+  - {text: "take me a way with no tolls", variant: plain}
+  - {text: "reroute without toll plazas", variant: plain}
+  - {text: "keep us off the toll roads", variant: plain}
+  - {text: "go via the toll free road", variant: plain}
+  - {text: "change the route to dodge the tolls", variant: plain}
+  - {text: "find a toll free path for this drive", variant: plain}
+  - {text: "steer clear of toll booths on the way", variant: plain}
+  - {text: "route us around the toll gates", variant: plain}
+  - {text: "set navigation to skip toll roads", variant: plain}
+  - {text: "switch to a route without any tolls", variant: plain}
+  - {text: "bypass all the tolls on the way", variant: plain}
+  - {text: "don't send me through toll plazas", variant: plain}
+  - {text: "use the non toll roads to get there", variant: plain}
+  - {text: "avoid the tolled highway this time", variant: plain}
+  - {text: "take the route that doesn't cost toll", variant: plain}
+  - {text: "turn on avoid tolls for this trip", variant: plain}
+  - {text: "keep away from toll booths on this drive", variant: plain}
+  - {text: "drop the toll roads from the route", variant: plain}
+  - {text: "recalculate avoiding the tolls", variant: plain}
+  - {text: "reroute so we don't hit any tolls", variant: plain}
+  - {text: "give me a no toll route", variant: plain}
+  - {text: "navigate without toll roads", variant: plain}
+  - {text: "cut the toll stretches out of this route", variant: plain}
+  - {text: "toll wale road avoid karo", variant: hinglish}
+  - {text: "bina toll wala rasta dikhao", variant: hinglish}
+  - {text: "toll plaza se bachake le chalo", variant: hinglish}
+  - {text: "toll road chhod ke route set karo", variant: hinglish}
+  - {text: "toll waale raste se mat le jao", variant: hinglish}
+  - {text: "koi toll na aaye aisa rasta lo", variant: hinglish}
+  - {text: "toll road beda bere route haaku", variant: kannada_english}
+  - {text: "toll illade iro daari torisi", variant: kannada_english}
+  - {text: "toll plaza avoid maadi", variant: kannada_english}
+  - {text: "toll illada route haaku guru", variant: kannada_english}
+  - {text: "uh the toll roads um keep them out of this route", variant: disfluent}
+  - {text: "um take a way that like skips the tolls", variant: disfluent}
+  - {text: "avoid traffic no wait avoid tolls on this route", variant: disfluent}
+  - {text: "so er keep us off the toll roads you know", variant: disfluent}
+  - {text: "reroute um without the without the tolls", variant: disfluent}
+  - {text: "uh skip the um toll plazas on the way", variant: disfluent}
+
+# seed 1 (outcome): i don't want to pay any toll today
+"1":
+  - {text: "i'm not paying tolls today", variant: plain}
+  - {text: "no toll money from me today", variant: plain}
+  - {text: "i'd rather not spend on tolls this trip", variant: plain}
+  - {text: "i'm done paying toll for today", variant: plain}
+  - {text: "toll charges are not in my budget today", variant: plain}
+  - {text: "i want to save on tolls today", variant: plain}
+  - {text: "i'm in no mood to pay tolls on this drive", variant: plain}
+  - {text: "paying toll today is out of the question", variant: plain}
+  - {text: "i want a trip with zero toll charges", variant: plain}
+  - {text: "i'd prefer to keep the toll costs at nothing today", variant: plain}
+  - {text: "i'm skipping all toll payments today", variant: plain}
+  - {text: "no toll fees for me this time", variant: plain}
+  - {text: "i don't feel like shelling out for tolls", variant: plain}
+  - {text: "i'm trying to keep today's trip toll free", variant: plain}
+  - {text: "i've paid enough tolls this week", variant: plain}
+  - {text: "those tolls are too costly for me today", variant: plain}
+  - {text: "i'm not spending a rupee on toll today", variant: plain}
+  - {text: "tolls are a waste of money today", variant: plain}
+  - {text: "i'd like to get there without paying any tolls", variant: plain}
+  - {text: "i really don't want any toll deductions today", variant: plain}
+  - {text: "not a single toll today i've decided", variant: plain}
+  - {text: "i'm keeping my wallet shut at toll plazas today", variant: plain}
+  - {text: "toll is not something i want to pay today", variant: plain}
+  - {text: "today i'd rather not hand over anything at tolls", variant: plain}
+  - {text: "aaj mujhe koi toll nahi dena", variant: hinglish}
+  - {text: "aaj toll ke paise nahi bharne yaar", variant: hinglish}
+  - {text: "mujhe aaj toll pe paisa kharch nahi karna", variant: hinglish}
+  - {text: "toll dene ka mann nahi hai aaj", variant: hinglish}
+  - {text: "aaj ek bhi toll nahi bharna hai", variant: hinglish}
+  - {text: "aaj toll ka kharcha nahi chahiye", variant: hinglish}
+  - {text: "ivattu toll kodoke ishta illa", variant: kannada_english}
+  - {text: "ivattu yaavde toll kodalla guru", variant: kannada_english}
+  - {text: "nange ivattu toll beda", variant: kannada_english}
+  - {text: "toll ge ivattu duddu kodalla", variant: kannada_english}
+  - {text: "i'm um not in the mood for like any toll today", variant: disfluent}
+  - {text: "uh no tolls for me like today", variant: disfluent}
+  - {text: "i'm not paying the the toll today you know", variant: disfluent}
+  - {text: "er no parking fees no i mean no toll payments today", variant: disfluent}
+  - {text: "so um i'd rather not pay any tolls today", variant: disfluent}
+  - {text: "i really uh don't feel like paying tolls today", variant: disfluent}
+
+# seed 2 (question): can you find a way without the expressway tolls
+"2":
+  - {text: "could you get me a route that skips the expressway toll?", variant: plain}
+  - {text: "is there a road that avoids the expressway tolls", variant: plain}
+  - {text: "can we go some other way to dodge the expressway toll?", variant: plain}
+  - {text: "would you route us off the tolled expressway", variant: plain}
+  - {text: "any route that doesn't hit the expressway toll plazas?", variant: plain}
+  - {text: "can you take me around the expressway tolls", variant: plain}
+  - {text: "is it possible to skip the expressway and its tolls?", variant: plain}
+  - {text: "could we avoid paying the expressway toll somehow", variant: plain}
+  - {text: "can you check for a toll free alternative to the expressway?", variant: plain}
+  - {text: "is there another way so we don't pay the expressway toll", variant: plain}
+  - {text: "would you find a path that bypasses the expressway toll booths?", variant: plain}
+  - {text: "can i get directions that stay off the toll expressway", variant: plain}
+  - {text: "any other road besides the expressway with the tolls?", variant: plain}
+  - {text: "could you reroute so we miss the expressway tolls", variant: plain}
+  - {text: "can you show me a route that avoids the expressway charges?", variant: plain}
+  - {text: "is there a toll free option instead of the expressway", variant: plain}
+  - {text: "will you get us there without the expressway toll?", variant: plain}
+  - {text: "can we skip the expressway tolls and take the old road?", variant: plain}
+  - {text: "how about a way that avoids the expressway toll gates", variant: plain}
+  - {text: "can you plan it without the expressway toll stretch", variant: plain}
+  - {text: "could i avoid the expressway tolls on this trip?", variant: plain}
+  - {text: "is there any route that dodges the expressway fee", variant: plain}
+  - {text: "can you go around the expressway toll plaza", variant: plain}
+  - {text: "would you look for a non toll road instead of the expressway?", variant: plain}
+  - {text: "expressway ka toll avoid karke koi rasta milega kya?", variant: hinglish}
+  - {text: "kya bina expressway toll wala route dhoondh sakte ho", variant: hinglish}
+  - {text: "expressway toll se bachke koi aur raasta hai kya", variant: hinglish}
+  - {text: "expressway ke toll ke bina le ja sakte ho?", variant: hinglish}
+  - {text: "koi aisa rasta hai kya jisme expressway toll na pade", variant: hinglish}
+  - {text: "expressway ka toll nahi dena kya dusra route mil sakta hai", variant: hinglish}
+  - {text: "expressway toll illade bere daari ideya?", variant: kannada_english}
+  - {text: "expressway toll avoid maadi route sigutta?", variant: kannada_english}
+  - {text: "expressway toll beda bere route hudukthira?", variant: kannada_english}
+  - {text: "expressway toll illada daari toristhira", variant: kannada_english}
+  - {text: "can you um get us there like without the expressway tolls", variant: disfluent}
+  - {text: "um is there a route that you know dodges the expressway tolls?", variant: disfluent}
+  - {text: "can you avoid the highway no the expressway tolls", variant: disfluent}
+  - {text: "is there er is there a road around the expressway toll", variant: disfluent}
+  - {text: "so um can we skip the expressway tolls you know", variant: disfluent}
+  - {text: "can you find uh find a way that misses the expressway toll plaza", variant: disfluent}
+
+# seed 3 (indirect): my fastag balance is almost zero
+"3":
+  - {text: "my fastag is nearly empty", variant: plain}
+  - {text: "the fastag wallet is running dry", variant: plain}
+  - {text: "i forgot to recharge my fastag", variant: plain}
+  - {text: "there's hardly any money left on the fastag", variant: plain}
+  - {text: "my fastag account has like no balance", variant: plain}
+  - {text: "the bank says my fastag is running low", variant: plain}
+  - {text: "i didn't top up the fastag this month", variant: plain}
+  - {text: "my toll tag is almost out of money", variant: plain}
+  - {text: "fastag recharge is due and i haven't done it", variant: plain}
+  - {text: "the tag on the windshield has barely any credit left", variant: plain}
+  - {text: "i'm pretty sure the fastag will bounce at the next booth", variant: plain}
+  - {text: "the fastag is down to its last few rupees", variant: plain}
+  - {text: "my fastag might not have enough for the toll", variant: plain}
+  - {text: "got a low balance alert on my fastag", variant: plain}
+  - {text: "the fastag ran low and i haven't topped it up", variant: plain}
+  - {text: "the fastag's practically out of cash", variant: plain}
+  - {text: "no money in the fastag right now", variant: plain}
+  - {text: "the fastag balance is in single digits", variant: plain}
+  - {text: "i keep forgetting to load money onto the fastag", variant: plain}
+  - {text: "fastag is almost drained", variant: plain}
+  - {text: "the toll sticker account is nearly empty", variant: plain}
+  - {text: "there won't be enough in the fastag for tolls today", variant: plain}
+  - {text: "my fastag needs a recharge and i can't do it now", variant: plain}
+  - {text: "the fastag account is close to nothing", variant: plain}
+  - {text: "fastag mein balance khatam hone wala hai", variant: hinglish}
+  - {text: "mera fastag lagbhag khaali hai yaar", variant: hinglish}
+  - {text: "fastag recharge karna bhool gaya", variant: hinglish}
+  - {text: "fastag mein paise hi nahi bache", variant: hinglish}
+  - {text: "fastag ka balance zero ke paas hai", variant: hinglish}
+  - {text: "fastag mein bilkul thoda sa balance hai abhi", variant: hinglish}
+  - {text: "nanna fastag balance khaali aagtha ide", variant: kannada_english}
+  - {text: "fastag alli duddu illa guru", variant: kannada_english}
+  - {text: "fastag recharge maadoke marethe", variant: kannada_english}
+  - {text: "fastag balance swalpa ne ide", variant: kannada_english}
+  - {text: "the fastag is um like running on empty", variant: disfluent}
+  - {text: "uh the fastag balance is like nearly empty", variant: disfluent}
+  - {text: "the paytm wallet no sorry the fastag is nearly out", variant: disfluent}
+  - {text: "i think the the fastag is uh out of money", variant: disfluent}
+  - {text: "so um i forgot to recharge the fastag you know", variant: disfluent}
+  - {text: "er there's barely anything on the like fastag", variant: disfluent}
+
+# seed 4 (fragment): no tolls
+"4":
+  - {text: "toll free route", variant: plain}
+  - {text: "avoid tolls", variant: plain}
+  - {text: "skip the tolls", variant: plain}
+  - {text: "tolls off", variant: plain}
+  - {text: "without tolls", variant: plain}
+  - {text: "zero tolls please", variant: plain}
+  - {text: "no toll roads", variant: plain}
+  - {text: "dodge the tolls", variant: plain}
+  - {text: "avoid toll plazas", variant: plain}
+  - {text: "no toll booths", variant: plain}
+  - {text: "non toll route", variant: plain}
+  - {text: "skip toll roads", variant: plain}
+  - {text: "stay off the toll road", variant: plain}
+  - {text: "no toll highway", variant: plain}
+  - {text: "bypass tolls", variant: plain}
+  - {text: "free roads only", variant: plain}
+  - {text: "avoid toll gates", variant: plain}
+  - {text: "not the toll road", variant: plain}
+  - {text: "none of the tolls", variant: plain}
+  - {text: "keep it toll free", variant: plain}
+  - {text: "dodge toll booths", variant: plain}
+  - {text: "avoid paid roads", variant: plain}
+  - {text: "toll roads off", variant: plain}
+  - {text: "just free roads", variant: plain}
+  - {text: "toll nahi", variant: hinglish}
+  - {text: "toll wala rasta nahi", variant: hinglish}
+  - {text: "bina toll", variant: hinglish}
+  - {text: "toll mat lo", variant: hinglish}
+  - {text: "toll avoid karo", variant: hinglish}
+  - {text: "toll road nahi chahiye", variant: hinglish}
+  - {text: "toll beda", variant: kannada_english}
+  - {text: "toll illada daari", variant: kannada_english}
+  - {text: "toll road beda guru", variant: kannada_english}
+  - {text: "toll avoid maadi", variant: kannada_english}
+  - {text: "uh tolls um none", variant: disfluent}
+  - {text: "um no toll uh stretches", variant: disfluent}
+  - {text: "highway no i mean no tolls", variant: disfluent}
+  - {text: "er avoid the tolls", variant: disfluent}
+  - {text: "like zero tolls yeah", variant: disfluent}
+  - {text: "um toll free route please", variant: disfluent}

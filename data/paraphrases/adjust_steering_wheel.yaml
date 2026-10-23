@@ -1,0 +1,219 @@
+# Paraphrases of the adjust_steering_wheel seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): move the steering wheel up a little
+"0":
+  - {text: "raise the steering a bit", variant: plain}
+  - {text: "push the steering wheel higher", variant: plain}
+  - {text: "lift the steering column slightly", variant: plain}
+  - {text: "bring the steering up a notch", variant: plain}
+  - {text: "tilt the wheel up a touch", variant: plain}
+  - {text: "put the steering a little higher", variant: plain}
+  - {text: "adjust the steering wheel upwards slightly", variant: plain}
+  - {text: "take the steering up by a small amount", variant: plain}
+  - {text: "shift the wheel up just a bit", variant: plain}
+  - {text: "nudge the steering column up", variant: plain}
+  - {text: "make the steering wheel sit a little higher", variant: plain}
+  - {text: "go up with the steering a couple of notches", variant: plain}
+  - {text: "set the steering a bit higher", variant: plain}
+  - {text: "raise the wheel a tiny bit", variant: plain}
+  - {text: "lift the wheel up some", variant: plain}
+  - {text: "move the column up slightly", variant: plain}
+  - {text: "give the steering a bit more height", variant: plain}
+  - {text: "tilt the steering column upward a little", variant: plain}
+  - {text: "bump the steering a notch higher", variant: plain}
+  - {text: "raise the steering wheel just slightly for me", variant: plain}
+  - {text: "move the wheel upward slightly so my knees fit", variant: plain}
+  - {text: "lift the steering a bit it's touching my thighs", variant: plain}
+  - {text: "get the wheel up a little higher", variant: plain}
+  - {text: "put the steering column one step up", variant: plain}
+  - {text: "steering thoda upar karo", variant: hinglish}
+  - {text: "steering wheel thoda sa upar kar do", variant: hinglish}
+  - {text: "steering ko ek notch upar karo", variant: hinglish}
+  - {text: "wheel thoda upar uthao yaar", variant: hinglish}
+  - {text: "steering thoda high kar do na", variant: hinglish}
+  - {text: "steering column zara upar karo", variant: hinglish}
+  - {text: "steering swalpa mele maadi", variant: kannada_english}
+  - {text: "steering wheel swalpa mele haaku", variant: kannada_english}
+  - {text: "steering ondu notch mele maadu", variant: kannada_english}
+  - {text: "wheel swalpa mele ettu guru", variant: kannada_english}
+  - {text: "uh the wheel the steering wheel bring it up a little", variant: disfluent}
+  - {text: "um raise the steering like just a little", variant: disfluent}
+  - {text: "lower the no wait push the steering up a touch", variant: disfluent}
+  - {text: "the steering um just shift it up a touch", variant: disfluent}
+  - {text: "so like lift the wheel up uh a little bit", variant: disfluent}
+  - {text: "er the steering just um one notch up yeah", variant: disfluent}
+
+# seed 1 (question): can you pull the steering column closer to me
+"1":
+  - {text: "could you bring the steering wheel nearer to me?", variant: plain}
+  - {text: "can the wheel come a bit closer", variant: plain}
+  - {text: "would you move the steering towards me?", variant: plain}
+  - {text: "can you extend the steering out a bit for me", variant: plain}
+  - {text: "is it possible to get the steering closer?", variant: plain}
+  - {text: "could the steering come towards my chest a little", variant: plain}
+  - {text: "can you slide the wheel in my direction", variant: plain}
+  - {text: "mind pulling the steering wheel nearer?", variant: plain}
+  - {text: "can i have the steering a bit closer to me", variant: plain}
+  - {text: "would you bring the column out towards me", variant: plain}
+  - {text: "can you make the steering reach me a little more?", variant: plain}
+  - {text: "could you draw the steering in towards me", variant: plain}
+  - {text: "any chance the steering can come nearer?", variant: plain}
+  - {text: "can you move the wheel closer i'm stretching too much", variant: plain}
+  - {text: "would you pull the wheel out a bit towards me?", variant: plain}
+  - {text: "can we get the steering wheel a little nearer", variant: plain}
+  - {text: "could you bring the wheel in closer my arms are too straight", variant: plain}
+  - {text: "can the column be pulled out towards me?", variant: plain}
+  - {text: "will you move the steering wheel closer?", variant: plain}
+  - {text: "can you adjust the steering so it's nearer to me", variant: plain}
+  - {text: "how about bringing the wheel closer to me", variant: plain}
+  - {text: "is there a way to pull the wheel towards me", variant: plain}
+  - {text: "could you get the steering column a little closer?", variant: plain}
+  - {text: "can you shift the wheel out to me a bit?", variant: plain}
+  - {text: "steering thoda paas la sakte ho?", variant: hinglish}
+  - {text: "steering wheel mere paas kar doge kya", variant: hinglish}
+  - {text: "kya steering column thoda aage kheench sakte ho", variant: hinglish}
+  - {text: "steering thoda meri taraf kar sakte ho?", variant: hinglish}
+  - {text: "wheel thoda paas aa sakta hai kya", variant: hinglish}
+  - {text: "kya steering ko thoda nazdeek kar doge?", variant: hinglish}
+  - {text: "steering swalpa hattira maadthira?", variant: kannada_english}
+  - {text: "steering wheel nanna kade swalpa tharthira", variant: kannada_english}
+  - {text: "swalpa steering hattira tagobahuda?", variant: kannada_english}
+  - {text: "steering column nanna kade maadoke aagutta?", variant: kannada_english}
+  - {text: "can you um like get the wheel closer to me i mean the steering", variant: disfluent}
+  - {text: "could you could you bring the wheel uh nearer?", variant: disfluent}
+  - {text: "can you push no pull the steering column towards me", variant: disfluent}
+  - {text: "er would you like move the steering closer to me", variant: disfluent}
+  - {text: "so um is the wheel able to like come nearer?", variant: disfluent}
+  - {text: "can you get the uh the steering column nearer to me", variant: disfluent}
+
+# seed 2 (outcome): the steering wheel is blocking my view of the speedometer
+"2":
+  - {text: "i can't see the speedo past the steering", variant: plain}
+  - {text: "the wheel is covering the speed reading", variant: plain}
+  - {text: "the steering rim hides half the dial", variant: plain}
+  - {text: "i can't read my speed because the wheel is in the way", variant: plain}
+  - {text: "the top of the wheel cuts right across the speedometer", variant: plain}
+  - {text: "the instrument cluster is hidden behind the steering", variant: plain}
+  - {text: "the speedometer is out of sight behind the wheel", variant: plain}
+  - {text: "i have to duck to see the speedo past the wheel", variant: plain}
+  - {text: "my view of the dials is blocked by the steering", variant: plain}
+  - {text: "the steering is sitting right in front of the speed display", variant: plain}
+  - {text: "half the cluster is hidden by the wheel", variant: plain}
+  - {text: "i keep losing sight of the speedometer behind the steering", variant: plain}
+  - {text: "the wheel blocks the digital speed readout", variant: plain}
+  - {text: "can't see how fast i'm going with the wheel there", variant: plain}
+  - {text: "the steering spokes are in front of the speedo", variant: plain}
+  - {text: "i'm craning my neck to see the speed past the wheel", variant: plain}
+  - {text: "the wheel is right in my line of sight to the gauges", variant: plain}
+  - {text: "the speed numbers are hidden behind the steering rim", variant: plain}
+  - {text: "the wheel lets me see only the bottom half of the speedometer", variant: plain}
+  - {text: "the steering wheel hides the warning lights and speed", variant: plain}
+  - {text: "the meter console is blocked by the wheel", variant: plain}
+  - {text: "every time i look down the wheel is in the way of the speedo", variant: plain}
+  - {text: "the speedo is completely hidden by the steering", variant: plain}
+  - {text: "i can't check my speed the steering is covering it", variant: plain}
+  - {text: "steering ki wajah se speedometer dikh nahi raha", variant: hinglish}
+  - {text: "speedo steering ke peeche chhup gaya hai", variant: hinglish}
+  - {text: "wheel ke karan speed nahi dikh rahi yaar", variant: hinglish}
+  - {text: "mujhe speedometer dikhta hi nahi steering beech mein hai", variant: hinglish}
+  - {text: "steering speed wala meter dhak raha hai", variant: hinglish}
+  - {text: "dials steering ke peeche chhup rahe hain", variant: hinglish}
+  - {text: "steering inda speedometer kaanisthailla", variant: kannada_english}
+  - {text: "speedo steering hinde mucchi hogide", variant: kannada_english}
+  - {text: "wheel adda ide speed kaanisthailla guru", variant: kannada_english}
+  - {text: "nange speedometer kaanisthilla steering adda ide", variant: kannada_english}
+  - {text: "the steering is um it's blocking the speedo", variant: disfluent}
+  - {text: "i can't see the uh the speedometer past the wheel", variant: disfluent}
+  - {text: "uh like the wheel's right over the speed numbers", variant: disfluent}
+  - {text: "er the fuel gauge no the speedometer is hidden by the steering", variant: disfluent}
+  - {text: "so um half the dial is behind the steering", variant: disfluent}
+  - {text: "i can't i can't make out the speedo with this wheel", variant: disfluent}
+
+# seed 3 (indirect): my husband drove last and left the steering set for him
+"3":
+  - {text: "my husband had the car yesterday and the steering is still where he likes it", variant: plain}
+  - {text: "hubby was driving before me and the wheel is all set to his height", variant: plain}
+  - {text: "my wife took the car last and the steering is in her position", variant: plain}
+  - {text: "my brother drove this morning and left the wheel way too high", variant: plain}
+  - {text: "the steering is still adjusted for my husband", variant: plain}
+  - {text: "my father in law used the car last and the wheel is set for him", variant: plain}
+  - {text: "the wheel is still in my husband's setting from his drive", variant: plain}
+  - {text: "someone tall drove before me and the steering is all wrong", variant: plain}
+  - {text: "my husband is much taller than me and he left the wheel up high", variant: plain}
+  - {text: "the driver dropped the car off and the steering is set his way", variant: plain}
+  - {text: "my son drove to college today and left the wheel in his spot", variant: plain}
+  - {text: "my husband's settings are still on the steering", variant: plain}
+  - {text: "after my husband's drive the wheel is nowhere near where i want it", variant: plain}
+  - {text: "my husband had it last and now i can barely reach the wheel", variant: plain}
+  - {text: "my husband never puts the steering back after driving", variant: plain}
+  - {text: "the wheel is set for someone a foot taller than me", variant: plain}
+  - {text: "my husband used the car last night and the steering is too far", variant: plain}
+  - {text: "i got in after my husband and the wheel is in a weird spot", variant: plain}
+  - {text: "hubby forgot to reset the steering after his trip", variant: plain}
+  - {text: "my husband was at the wheel before me and it's still at his setting", variant: plain}
+  - {text: "the steering is the way my husband likes it not me", variant: plain}
+  - {text: "my husband drove us here and the wheel is still set for his long arms", variant: plain}
+  - {text: "we just swapped and the steering is still where my husband had it", variant: plain}
+  - {text: "my husband took the car to office and left the wheel adjusted for himself", variant: plain}
+  - {text: "mere husband ne last chalayi thi aur steering unke hisaab se set hai", variant: hinglish}
+  - {text: "pati ji ne gaadi chalayi aur steering unke liye set chhod diya", variant: hinglish}
+  - {text: "steering abhi bhi mere husband ki setting pe hai", variant: hinglish}
+  - {text: "husband ne chalaya tha ab wheel bahut upar hai yaar", variant: hinglish}
+  - {text: "mere husband steering wapas theek nahi karte", variant: hinglish}
+  - {text: "steering unki height ke hisaab se hai mere husband ki", variant: hinglish}
+  - {text: "nanna husband kade drive maadiddu steering avra thara set aagide", variant: kannada_english}
+  - {text: "steering innu nanna husband setting alli ide", variant: kannada_english}
+  - {text: "yajamaru last drive maadidru steering avrige set aagide", variant: kannada_english}
+  - {text: "husband drive maadidmele wheel tumba mele ide guru", variant: kannada_english}
+  - {text: "um so hubby was the last one driving and uh the steering's at his height", variant: disfluent}
+  - {text: "so the the steering is like where my husband left it", variant: disfluent}
+  - {text: "my son no my husband drove last and the wheel is set his way", variant: disfluent}
+  - {text: "uh hubby had the car and er left the steering all set for him", variant: disfluent}
+  - {text: "my husband you know drove before me and the wheel is um at his height", variant: disfluent}
+  - {text: "er the wheel is still um adjusted for my husband from his drive", variant: disfluent}
+
+# seed 4 (fragment): steering lower
+"4":
+  - {text: "wheel down", variant: plain}
+  - {text: "lower the wheel", variant: plain}
+  - {text: "steering down a bit", variant: plain}
+  - {text: "drop the steering", variant: plain}
+  - {text: "steering a notch down", variant: plain}
+  - {text: "wheel lower please", variant: plain}
+  - {text: "steering column down", variant: plain}
+  - {text: "bring the wheel down", variant: plain}
+  - {text: "column lower", variant: plain}
+  - {text: "tilt the steering down", variant: plain}
+  - {text: "slightly lower wheel", variant: plain}
+  - {text: "drop the column a bit", variant: plain}
+  - {text: "steering too high", variant: plain}
+  - {text: "lower wheel position", variant: plain}
+  - {text: "wheel downwards", variant: plain}
+  - {text: "wheel a little lower", variant: plain}
+  - {text: "take the steering down", variant: plain}
+  - {text: "steering one step down", variant: plain}
+  - {text: "steering lower down please", variant: plain}
+  - {text: "down with the wheel", variant: plain}
+  - {text: "push the column down", variant: plain}
+  - {text: "wheel needs to go lower", variant: plain}
+  - {text: "lower tilt on the wheel", variant: plain}
+  - {text: "dip the steering a bit", variant: plain}
+  - {text: "steering neeche karo", variant: hinglish}
+  - {text: "steering thoda neeche", variant: hinglish}
+  - {text: "wheel neeche kar do", variant: hinglish}
+  - {text: "steering zara neecha", variant: hinglish}
+  - {text: "column neeche karo yaar", variant: hinglish}
+  - {text: "steering aur neeche", variant: hinglish}
+  - {text: "steering kelage maadi", variant: kannada_english}
+  - {text: "wheel swalpa kelage", variant: kannada_english}
+  - {text: "column kelage haaku", variant: kannada_english}
+  - {text: "steering innu swalpa kelage guru", variant: kannada_english}
+  - {text: "uh the um wheel lower", variant: disfluent}
+  - {text: "steering um lower please", variant: disfluent}
+  - {text: "up no down steering down", variant: disfluent}
+  - {text: "er the wheel like lower", variant: disfluent}
+  - {text: "the the column um a bit lower", variant: disfluent}
+  - {text: "so um wheel down yeah", variant: disfluent}

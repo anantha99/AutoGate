@@ -53,17 +53,17 @@ def test_notebook_steps():
     assert 'os.environ["BRANCH"] = "claude/peaceful-pasteur-nessbd"' in text
     assert "/kaggle/working" in text and "/content" in text  # platform detection
     assert "drive.mount" in text and "pip uninstall -y -q torchao" in text
-    assert "configs/train_qwen3_0.6b_tags.yaml" in text
-    assert '"$RUNS/qwen3-0.6b-tags"' in text and '"$RUNS/qwen3-0.6b-tags-no-context"' in text
+    assert "configs/train_qwen3_0.6b_tags_r4.yaml" in text
+    assert '"$RUNS/$RUN_NAME"' in text and '"$RUNS/$RUN_NAME-no-context"' in text
     assert text.count("--write-all") == 2 and text.count("autogate_router.export") == 2
     assert "--split test,ood --json" in text
     kinds = [k for k, _ in _cells()]
-    i_main = next(i for i, (_, s) in enumerate(_cells()) if '"$RUNS/qwen3-0.6b-tags";' in s)
+    i_main = next(i for i, (_, s) in enumerate(_cells()) if '"$RUNS/$RUN_NAME";' in s)
     assert kinds[i_main - 1] == "markdown"  # what the tags run tests
     assert _cells()[-1][1] == comparison_source()  # the comparison is the last cell
     script = SCRIPT.read_text(encoding="utf-8")
     assert comparison_source() in script
-    assert "run qwen3-0.6b-tags-no-context --no-context" in script
+    assert 'run "$RUN_NAME-no-context" --no-context' in script
     assert "--write-all" in script and "for src in e2e tags combined" in script
 
 

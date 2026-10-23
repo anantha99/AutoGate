@@ -1,0 +1,219 @@
+# Paraphrases of the open_fuel_door seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): open the fuel lid
+"0":
+  - {text: "pop the petrol flap", variant: plain}
+  - {text: "release the fuel cap cover", variant: plain}
+  - {text: "open up the petrol lid", variant: plain}
+  - {text: "unlatch the tank flap", variant: plain}
+  - {text: "get the fuel door open", variant: plain}
+  - {text: "flip open the filler cap", variant: plain}
+  - {text: "open the tank lid for me", variant: plain}
+  - {text: "pop the fuel door", variant: plain}
+  - {text: "unlatch the fuel filler door", variant: plain}
+  - {text: "open the diesel flap", variant: plain}
+  - {text: "release the tank cover", variant: plain}
+  - {text: "do one thing open the petrol cap cover", variant: plain}
+  - {text: "let the tank lid pop up", variant: plain}
+  - {text: "open the flap for the petrol", variant: plain}
+  - {text: "unclip the filler door", variant: plain}
+  - {text: "crack open the fuel cover", variant: plain}
+  - {text: "get the tank flap up", variant: plain}
+  - {text: "open the fuel tank door na", variant: plain}
+  - {text: "just release the petrol lid", variant: plain}
+  - {text: "free the fuel cap latch", variant: plain}
+  - {text: "swing out the fuel door", variant: plain}
+  - {text: "get the petrol flap to spring up", variant: plain}
+  - {text: "open the cover over the fuel cap", variant: plain}
+  - {text: "pop the tank cover so we can fill up", variant: plain}
+  - {text: "petrol ka dhakkan khol do", variant: hinglish}
+  - {text: "fuel lid kholo", variant: hinglish}
+  - {text: "tank ka flap open kar do", variant: hinglish}
+  - {text: "petrol wala dhakkan kholo jaldi", variant: hinglish}
+  - {text: "fuel door khol do yaar", variant: hinglish}
+  - {text: "tanki ka lid open karo", variant: hinglish}
+  - {text: "petrol lid tegi", variant: kannada_english}
+  - {text: "fuel flap open maadi", variant: kannada_english}
+  - {text: "tank lid tegi guru", variant: kannada_english}
+  - {text: "petrol muchchala tegi", variant: kannada_english}
+  - {text: "uh the um fuel lid open it", variant: disfluent}
+  - {text: "the boot no the fuel lid open it", variant: disfluent}
+  - {text: "er the petrol flap like pop it", variant: disfluent}
+  - {text: "open the uh the cover for the tank yeah", variant: disfluent}
+  - {text: "um the fuel door you know open that", variant: disfluent}
+  - {text: "so uh release the filler cap thing", variant: disfluent}
+
+# seed 1 (question): can you pop open the charging port cover
+"1":
+  - {text: "could you open the charge port?", variant: plain}
+  - {text: "would you flip up the charging flap", variant: plain}
+  - {text: "can the charging cover be opened", variant: plain}
+  - {text: "mind opening the charger door?", variant: plain}
+  - {text: "will you release the charge port lid", variant: plain}
+  - {text: "could you get the plug flap open?", variant: plain}
+  - {text: "can we open the charging socket cover", variant: plain}
+  - {text: "any chance you could pop the charge door", variant: plain}
+  - {text: "would you unlatch the charging port?", variant: plain}
+  - {text: "can you open the flap where the charger goes", variant: plain}
+  - {text: "could you swing open the charger door", variant: plain}
+  - {text: "can i get the charging lid up?", variant: plain}
+  - {text: "would you mind popping the port cover for the charger", variant: plain}
+  - {text: "can you open the ev port", variant: plain}
+  - {text: "could you release the charging flap?", variant: plain}
+  - {text: "will you open the socket for charging", variant: plain}
+  - {text: "can you lift the charger flap for me", variant: plain}
+  - {text: "you'll open the charging socket na?", variant: plain}
+  - {text: "would you open up the charge socket lid", variant: plain}
+  - {text: "can the charge flap be popped?", variant: plain}
+  - {text: "could you get the charging port uncovered", variant: plain}
+  - {text: "why don't you open the charge port door?", variant: plain}
+  - {text: "can we have the charging cover open so i can plug in", variant: plain}
+  - {text: "would you mind getting the charge lid up", variant: plain}
+  - {text: "charging port khol doge?", variant: hinglish}
+  - {text: "charger ka flap open kar sakte ho kya", variant: hinglish}
+  - {text: "kya charging lid khol sakte ho", variant: hinglish}
+  - {text: "charging point ka dhakkan khol doge na", variant: hinglish}
+  - {text: "port cover open karoge yaar", variant: hinglish}
+  - {text: "charger wala flap khol doge?", variant: hinglish}
+  - {text: "charging port open maadtira?", variant: kannada_english}
+  - {text: "charger flap tegithira guru", variant: kannada_english}
+  - {text: "charging lid tegeyabahuda", variant: kannada_english}
+  - {text: "port cover open maadtiya", variant: kannada_english}
+  - {text: "uh that cover um for the charger can you open it", variant: disfluent}
+  - {text: "could you the the charging flap er unlatch it", variant: disfluent}
+  - {text: "can you open the fuel no the charging port", variant: disfluent}
+  - {text: "er would you like pop the charge lid?", variant: disfluent}
+  - {text: "um can we you know get the charger port open", variant: disfluent}
+  - {text: "so uh would you flip the charger cover up", variant: disfluent}
+
+# seed 2 (outcome): the attendant says the fuel cap won't open from outside
+"2":
+  - {text: "the pump guy can't get the fuel flap open from his side", variant: plain}
+  - {text: "the bunk boy says the lid is stuck shut", variant: plain}
+  - {text: "the attendant is struggling with the petrol cap cover", variant: plain}
+  - {text: "apparently the flap is locked from the outside", variant: plain}
+  - {text: "he says the tank cover won't budge", variant: plain}
+  - {text: "the petrol pump fellow can't pry the lid open", variant: plain}
+  - {text: "according to the attendant the filler door is jammed", variant: plain}
+  - {text: "the attendant keeps pushing the flap and nothing happens", variant: plain}
+  - {text: "seems the cap cover is locked for the guy at the pump", variant: plain}
+  - {text: "fuel lid isn't opening for the attendant", variant: plain}
+  - {text: "pump boy says he can't get at the cap", variant: plain}
+  - {text: "the attendant says it has to be released from inside", variant: plain}
+  - {text: "outside the flap is stuck and the attendant can't do a thing", variant: plain}
+  - {text: "nobody at the pump can get to the tank", variant: plain}
+  - {text: "the filling guy says the cover is shut tight", variant: plain}
+  - {text: "he says the flap won't pop from out there", variant: plain}
+  - {text: "the man at the pump is tugging at the fuel door", variant: plain}
+  - {text: "our tank lid is stuck the attendant says", variant: plain}
+  - {text: "the cap cover is locked and the pump guy is helpless", variant: plain}
+  - {text: "the station attendant says there's no way in from his side", variant: plain}
+  - {text: "he tried the fuel flap and it's not giving", variant: plain}
+  - {text: "the pump guy says the latch is still on", variant: plain}
+  - {text: "the attendant is knocking on the window about the stuck lid", variant: plain}
+  - {text: "looks like the fuel door is jammed shut for the pump attendant", variant: plain}
+  - {text: "petrol wala bol raha hai dhakkan bahar se nahi khul raha", variant: hinglish}
+  - {text: "pump wale bhaiya se fuel lid nahi khul raha", variant: hinglish}
+  - {text: "attendant keh raha hai flap lock hai", variant: hinglish}
+  - {text: "bahar se tank ka dhakkan khul hi nahi raha", variant: hinglish}
+  - {text: "woh bol raha hai fuel cap atak gaya hai", variant: hinglish}
+  - {text: "pump wala ladka flap khol nahi paa raha", variant: hinglish}
+  - {text: "pump avnu fuel lid horagininda tegiyakke aagalla antha idaane", variant: kannada_english}
+  - {text: "petrol bunk huduga lid open aagta illa antha", variant: kannada_english}
+  - {text: "fuel flap horagade open aagta illa", variant: kannada_english}
+  - {text: "avnige tank lid tegiyakke aagta illa guru", variant: kannada_english}
+  - {text: "the attendant um says the cap won't uh open", variant: disfluent}
+  - {text: "uh the pump guy the guy says the lid is stuck", variant: disfluent}
+  - {text: "the boot no the fuel flap won't open he says", variant: disfluent}
+  - {text: "er the fuel cap is like locked from outside apparently", variant: disfluent}
+  - {text: "um he's saying you know the tank lid won't come open", variant: disfluent}
+  - {text: "so the uh attendant can't get the flap open", variant: disfluent}
+
+# seed 3 (indirect): we're at the petrol bunk and the boy is waiting
+"3":
+  - {text: "we've pulled into the pump and the attendant is standing by", variant: plain}
+  - {text: "the fuel guy is ready with the nozzle", variant: plain}
+  - {text: "we're at the filling station and he's waiting for us", variant: plain}
+  - {text: "the petrol pump boy is waiting next to the car", variant: plain}
+  - {text: "we've stopped at the bunk and the attendant's ready", variant: plain}
+  - {text: "nozzle in hand he's just standing there", variant: plain}
+  - {text: "here we are at the pump and the guy is at my window", variant: plain}
+  - {text: "we're parked at the fuel station and the attendant wants to fill", variant: plain}
+  - {text: "the bunk fellow is standing at the tank side", variant: plain}
+  - {text: "we're next to the diesel pump and the attendant is waiting", variant: plain}
+  - {text: "the pump guy is holding the nozzle and asking how much to put", variant: plain}
+  - {text: "reached the petrol station and the boy is ready", variant: plain}
+  - {text: "the attendant has been waiting with the pipe for a while", variant: plain}
+  - {text: "we're in the queue at the pump and it's our turn now", variant: plain}
+  - {text: "it's our turn at the petrol bunk", variant: plain}
+  - {text: "the filling guy is waiting by the car", variant: plain}
+  - {text: "the guy at the bunk wants to start filling", variant: plain}
+  - {text: "we're at the cng station and the attendant is here", variant: plain}
+  - {text: "the attendant's standing by the fuel side waiting", variant: plain}
+  - {text: "we've pulled up to the pump and he's waiting on us", variant: plain}
+  - {text: "the pump boy is all set to fill her up", variant: plain}
+  - {text: "at the bunk now and the attendant is ready to go", variant: plain}
+  - {text: "okay we're at the station and the fuel boy is right there", variant: plain}
+  - {text: "we're at the ev charger and the guy is waiting with the cable", variant: plain}
+  - {text: "petrol pump pe aa gaye hain ladka wait kar raha hai", variant: hinglish}
+  - {text: "pump wala bhaiya khada hai intezaar mein", variant: hinglish}
+  - {text: "hum bunk pe hain aur attendant ready hai", variant: hinglish}
+  - {text: "petrol daalne wala wait kar raha hai yaar", variant: hinglish}
+  - {text: "pump pe pahunch gaye woh nozzle leke khada hai", variant: hinglish}
+  - {text: "bunk wala ladka kab se khada hai", variant: hinglish}
+  - {text: "petrol bunk alli iddivi huduga kaaytaidaane", variant: kannada_english}
+  - {text: "bunk huduga ready aagi nintidaane", variant: kannada_english}
+  - {text: "pump alli avnu wait maadta idaane guru", variant: kannada_english}
+  - {text: "petrol haakoru kaaytaidaare saar", variant: kannada_english}
+  - {text: "uh so we're at the bunk and um the boy he's waiting", variant: disfluent}
+  - {text: "the pump the guy at the pump is waiting", variant: disfluent}
+  - {text: "we're at the bank no the bunk and he's waiting", variant: disfluent}
+  - {text: "er the attendant is like ready with the nozzle", variant: disfluent}
+  - {text: "um we've stopped at the you know the pump and he's standing there", variant: disfluent}
+  - {text: "so uh the fuel guy is waiting for us", variant: disfluent}
+
+# seed 4 (fragment): fuel flap
+"4":
+  - {text: "fuel lid", variant: plain}
+  - {text: "petrol flap", variant: plain}
+  - {text: "tank lid", variant: plain}
+  - {text: "fuel door", variant: plain}
+  - {text: "petrol cap cover", variant: plain}
+  - {text: "filler flap", variant: plain}
+  - {text: "charge port", variant: plain}
+  - {text: "fuel cap", variant: plain}
+  - {text: "the tank flap", variant: plain}
+  - {text: "fuel flap open please", variant: plain}
+  - {text: "diesel lid", variant: plain}
+  - {text: "tank door", variant: plain}
+  - {text: "charging flap", variant: plain}
+  - {text: "petrol lid open", variant: plain}
+  - {text: "filler cap", variant: plain}
+  - {text: "the fuel cover", variant: plain}
+  - {text: "tank cover", variant: plain}
+  - {text: "charger lid", variant: plain}
+  - {text: "fuel filler", variant: plain}
+  - {text: "lid for the tank", variant: plain}
+  - {text: "cng lid", variant: plain}
+  - {text: "charging port lid", variant: plain}
+  - {text: "filler door", variant: plain}
+  - {text: "port cover", variant: plain}
+  - {text: "petrol ka dhakkan", variant: hinglish}
+  - {text: "fuel ka dhakkan", variant: hinglish}
+  - {text: "tanki ka dhakkan", variant: hinglish}
+  - {text: "flap khol do", variant: hinglish}
+  - {text: "tank ka flap", variant: hinglish}
+  - {text: "dhakkan kholo", variant: hinglish}
+  - {text: "lid tegi beega", variant: kannada_english}
+  - {text: "tank muchchala", variant: kannada_english}
+  - {text: "petrol muchchala beku", variant: kannada_english}
+  - {text: "flap tegi saar", variant: kannada_english}
+  - {text: "uh the um fuel door", variant: disfluent}
+  - {text: "the fuel er the flap thing", variant: disfluent}
+  - {text: "um petrol flap yeah", variant: disfluent}
+  - {text: "boot no fuel flap", variant: disfluent}
+  - {text: "er the tank lid", variant: disfluent}
+  - {text: "fuel cap uh the flap", variant: disfluent}

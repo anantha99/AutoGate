@@ -1,0 +1,219 @@
+# Paraphrases of the share_live_location seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): share my live location with {contact}
+"0":
+  - {text: "send {contact} my live location", variant: plain}
+  - {text: "let {contact} see where i am live", variant: plain}
+  - {text: "start sharing my location with {contact}", variant: plain}
+  - {text: "put my live location on for {contact}", variant: plain}
+  - {text: "give {contact} my real time location", variant: plain}
+  - {text: "turn on location sharing for {contact}", variant: plain}
+  - {text: "share the car's live location to {contact}", variant: plain}
+  - {text: "do one thing share my location with {contact}", variant: plain}
+  - {text: "drop {contact} a live location pin", variant: plain}
+  - {text: "send {contact} a live pin of where i am", variant: plain}
+  - {text: "drop my live location in {contact}'s whatsapp", variant: plain}
+  - {text: "make my location visible to {contact}", variant: plain}
+  - {text: "ping {contact} so they can follow me live", variant: plain}
+  - {text: "let {contact} follow my location live", variant: plain}
+  - {text: "enable live location for {contact}", variant: plain}
+  - {text: "share our live position with {contact}", variant: plain}
+  - {text: "forward my live location to {contact}", variant: plain}
+  - {text: "send a live location link to {contact}", variant: plain}
+  - {text: "start live tracking for {contact}", variant: plain}
+  - {text: "push the live tracking across to {contact}", variant: plain}
+  - {text: "give {contact} access to track the car live", variant: plain}
+  - {text: "add {contact} to the people tracking me live", variant: plain}
+  - {text: "pass on my live whereabouts to {contact}", variant: plain}
+  - {text: "keep {contact} updated on my live location", variant: plain}
+  - {text: "{contact} ko meri live location bhejo", variant: hinglish}
+  - {text: "{contact} ke saath live location share karo", variant: hinglish}
+  - {text: "{contact} ke phone pe meri live location daal do", variant: hinglish}
+  - {text: "{contact} ko live location daal do whatsapp pe", variant: hinglish}
+  - {text: "live location chalu karo {contact} ke liye", variant: hinglish}
+  - {text: "abhi {contact} ko apni live location share kar do", variant: hinglish}
+  - {text: "{contact} ge nanna live location kalsu", variant: kannada_english}
+  - {text: "{contact} jothe live location share maadi", variant: kannada_english}
+  - {text: "live location {contact} ge haaku", variant: kannada_english}
+  - {text: "{contact} ge naanu yelli iddini antha live aagi thorisu", variant: kannada_english}
+  - {text: "um share like where i am live with uh {contact}", variant: disfluent}
+  - {text: "call {contact} no wait just share the live location with them", variant: disfluent}
+  - {text: "um let {contact} like see my location live", variant: disfluent}
+  - {text: "er turn on live location for uh for {contact}", variant: disfluent}
+  - {text: "so share the the live location with {contact} you know", variant: disfluent}
+  - {text: "live location to {contact} uh share it now", variant: disfluent}
+
+# seed 1 (question): can you send {contact} where i am right now
+"1":
+  - {text: "could you send {contact} my current location?", variant: plain}
+  - {text: "can you tell {contact} where i am at the moment", variant: plain}
+  - {text: "would you share my present location with {contact}?", variant: plain}
+  - {text: "will you let {contact} know where we are now", variant: plain}
+  - {text: "can {contact} get my location right now?", variant: plain}
+  - {text: "could you drop {contact} a pin of where i am", variant: plain}
+  - {text: "can you ping {contact} my location this minute?", variant: plain}
+  - {text: "would you mind sending my current spot to {contact}", variant: plain}
+  - {text: "is it possible to send {contact} where we are?", variant: plain}
+  - {text: "can you share where i am with {contact} right away", variant: plain}
+  - {text: "could you let {contact} see my location now?", variant: plain}
+  - {text: "mind sending {contact} my location right now", variant: plain}
+  - {text: "can you pass {contact} my current whereabouts?", variant: plain}
+  - {text: "would you send my position to {contact} now", variant: plain}
+  - {text: "could my location go to {contact} right now?", variant: plain}
+  - {text: "how about sending {contact} where i am at the moment", variant: plain}
+  - {text: "can you put {contact} in the loop about my location?", variant: plain}
+  - {text: "will you send across my location to {contact} this instant", variant: plain}
+  - {text: "could you shoot my current location over to {contact}", variant: plain}
+  - {text: "would you be able to send {contact} my location", variant: plain}
+  - {text: "any chance you can share my location with {contact} now?", variant: plain}
+  - {text: "would you make sure {contact} gets my location immediately", variant: plain}
+  - {text: "can you let {contact} in on where i am at present", variant: plain}
+  - {text: "would you send {contact} a pin of my current spot?", variant: plain}
+  - {text: "kya tum {contact} ko meri abhi ki location bhej sakte ho?", variant: hinglish}
+  - {text: "{contact} ko bata sakte ho main abhi kahan hoon", variant: hinglish}
+  - {text: "meri current location {contact} ko bhej doge?", variant: hinglish}
+  - {text: "{contact} tak meri location pahuncha doge abhi?", variant: hinglish}
+  - {text: "{contact} ko location share kar doge na?", variant: hinglish}
+  - {text: "abhi main kahan hoon yeh {contact} ko bhej paoge?", variant: hinglish}
+  - {text: "{contact} ge nanna location kalsthiya?", variant: kannada_english}
+  - {text: "naanu yelli iddini antha {contact} ge kalsoke aagutha?", variant: kannada_english}
+  - {text: "{contact} ge eega nanna location kodthiya", variant: kannada_english}
+  - {text: "eega naanu ellidini antha {contact} ge heltiya?", variant: kannada_english}
+  - {text: "can you uh can you send {contact} my location now", variant: disfluent}
+  - {text: "could you um let {contact} have like my location?", variant: disfluent}
+  - {text: "can you call no send {contact} where we are now", variant: disfluent}
+  - {text: "er would you um pass my location on to uh {contact}", variant: disfluent}
+  - {text: "so can you you know send my location to {contact} at the moment", variant: disfluent}
+  - {text: "um {contact} needs to know uh can you send where i am", variant: disfluent}
+
+# seed 2 (outcome): i want {contact} to track me till i reach
+"2":
+  - {text: "i'd like {contact} to follow my car until i get there", variant: plain}
+  - {text: "{contact} should be able to see me on the map the whole way", variant: plain}
+  - {text: "i want {contact} watching my progress till i arrive", variant: plain}
+  - {text: "{contact} needs to keep an eye on where i am until i reach", variant: plain}
+  - {text: "i'd feel better if {contact} could follow me all the way", variant: plain}
+  - {text: "i want {contact} to know where i am the entire trip", variant: plain}
+  - {text: "{contact} has to be able to see my location until i'm there", variant: plain}
+  - {text: "i need {contact} following me on the map till i get in", variant: plain}
+  - {text: "i want {contact} to see me moving the whole drive", variant: plain}
+  - {text: "it'd be good if {contact} can watch me till i reach safely", variant: plain}
+  - {text: "i want {contact} to be able to check where i am all the way", variant: plain}
+  - {text: "{contact} must be able to keep tabs on me until i arrive", variant: plain}
+  - {text: "i'd like {contact} to see my position till the end of the trip", variant: plain}
+  - {text: "for safety i want {contact} tracking me till i'm there", variant: plain}
+  - {text: "i'd prefer that {contact} follows my location to the end", variant: plain}
+  - {text: "i'm driving alone tonight and want {contact} to see where i am throughout", variant: plain}
+  - {text: "{contact} should know my whereabouts till i've reached", variant: plain}
+  - {text: "i need {contact} to have my live position until i'm done driving", variant: plain}
+  - {text: "i want {contact} able to watch the car's route as i go", variant: plain}
+  - {text: "i'd be more comfortable with {contact} following me on the map", variant: plain}
+  - {text: "i want {contact} in the know about my location till i'm there", variant: plain}
+  - {text: "{contact} ought to be tracking me through the drive", variant: plain}
+  - {text: "i want {contact} to be able to watch me drive in", variant: plain}
+  - {text: "it would help if {contact} could see my location for the rest of the trip", variant: plain}
+  - {text: "main chahta hoon {contact} mujhe pahunchne tak track kare", variant: hinglish}
+  - {text: "{contact} ko pata rehna chahiye main kahan hoon jab tak pahunch nahi jaata", variant: hinglish}
+  - {text: "pahunchne tak {contact} meri location dekhta rahe", variant: hinglish}
+  - {text: "{contact} ko poore raaste meri location dikhni chahiye", variant: hinglish}
+  - {text: "mujhe chahiye ki {contact} mujhe follow kare jab tak main pahunchu", variant: hinglish}
+  - {text: "jab tak main pahunchta hoon {contact} ko meri khabar rahe", variant: hinglish}
+  - {text: "naanu reach aago thanka {contact} nanna track maadbeku", variant: kannada_english}
+  - {text: "{contact} ge nanna location reach aagovaregu kaanbeku", variant: kannada_english}
+  - {text: "{contact} nanna follow maadli naanu thalupovaregu", variant: kannada_english}
+  - {text: "poora daari {contact} ge naanu yelli iddini antha gottirbeku", variant: kannada_english}
+  - {text: "i want uh {contact} to like track me until um i get there", variant: disfluent}
+  - {text: "so {contact} should um follow me no track me till i reach", variant: disfluent}
+  - {text: "i'd like er {contact} to see where i am the the whole way", variant: disfluent}
+  - {text: "um i need {contact} watching my location you know till i arrive", variant: disfluent}
+  - {text: "{contact} uh {contact} should be able to see me until i reach", variant: disfluent}
+  - {text: "er i want {contact} to keep tabs on me um all the way", variant: disfluent}
+
+# seed 3 (indirect): {contact} keeps asking where i've reached
+"3":
+  - {text: "{contact} has asked me three times where i am", variant: plain}
+  - {text: "{contact} won't stop asking how far i've got", variant: plain}
+  - {text: "{contact} is worried and wants to know where i am", variant: plain}
+  - {text: "{contact} has been checking on my location all evening", variant: plain}
+  - {text: "{contact} keeps wanting to know how close i am", variant: plain}
+  - {text: "{contact} is getting anxious about where i am on the road", variant: plain}
+  - {text: "every ten minutes {contact} asks where we are", variant: plain}
+  - {text: "{contact} is after me to say where i've got to", variant: plain}
+  - {text: "{contact} keeps calling to find out how far along i am", variant: plain}
+  - {text: "{contact} is waiting up and wondering where i am", variant: plain}
+  - {text: "{contact} has no idea where i am and keeps asking", variant: plain}
+  - {text: "i keep getting asked by {contact} how far i've reached", variant: plain}
+  - {text: "{contact} wants updates on my whereabouts again and again", variant: plain}
+  - {text: "{contact} has been pestering me about my location", variant: plain}
+  - {text: "{contact} keeps checking which area i'm in", variant: plain}
+  - {text: "again {contact} wants to know where exactly i am", variant: plain}
+  - {text: "{contact} is tense and asking for my location again", variant: plain}
+  - {text: "{contact} has been on my case about where i've reached", variant: plain}
+  - {text: "{contact} keeps ringing to ask which road i'm on", variant: plain}
+  - {text: "{contact} keeps bugging me about how far i am", variant: plain}
+  - {text: "{contact}'s asked twice already which part of town i'm in", variant: plain}
+  - {text: "{contact} wants to know my position every few minutes", variant: plain}
+  - {text: "the whole time {contact} has been asking where we've reached", variant: plain}
+  - {text: "{contact} isn't going to relax until they know where i am", variant: plain}
+  - {text: "{contact} baar baar pooch raha hai main kahan pahuncha", variant: hinglish}
+  - {text: "{contact} pooch rahi hai ki main kahan tak pahunchi", variant: hinglish}
+  - {text: "{contact} ko bas yahi jaanna hai main kahan hoon", variant: hinglish}
+  - {text: "{contact} kab se pooch raha hai main kidhar hoon", variant: hinglish}
+  - {text: "{contact} pareshaan hai ki main abhi tak kahan hoon", variant: hinglish}
+  - {text: "yaar {contact} har paanch minute mein location pooch raha hai", variant: hinglish}
+  - {text: "{contact} naanu yelli iddini antha kelthane iddare", variant: kannada_english}
+  - {text: "{contact} matte matte naanu yelli bandidini antha kelthidaare", variant: kannada_english}
+  - {text: "{contact} ge naanu yelli iddini antha tension aagide", variant: kannada_english}
+  - {text: "{contact} kshana kshana location kelthidaare", variant: kannada_english}
+  - {text: "{contact} keeps uh keeps asking where i am", variant: disfluent}
+  - {text: "um {contact} has been like asking where i've got to", variant: disfluent}
+  - {text: "so {contact} is er worried about where i am you know", variant: disfluent}
+  - {text: "{contact} called and um asked again where we are", variant: disfluent}
+  - {text: "er {contact} wants to know uh how far i've come", variant: disfluent}
+  - {text: "like every few minutes um {contact} asks where i've reached", variant: disfluent}
+
+# seed 4 (fragment): location to {contact}
+"4":
+  - {text: "live location for {contact}", variant: plain}
+  - {text: "send location {contact}", variant: plain}
+  - {text: "share location {contact}", variant: plain}
+  - {text: "{contact} live share", variant: plain}
+  - {text: "my location for {contact}", variant: plain}
+  - {text: "pin to {contact}", variant: plain}
+  - {text: "{contact} my whereabouts", variant: plain}
+  - {text: "current spot to {contact}", variant: plain}
+  - {text: "live tracking for {contact}", variant: plain}
+  - {text: "realtime location {contact}", variant: plain}
+  - {text: "my live pin to {contact}", variant: plain}
+  - {text: "{contact} needs my location", variant: plain}
+  - {text: "whereabouts to {contact}", variant: plain}
+  - {text: "{contact} location sharing", variant: plain}
+  - {text: "quick live share for {contact}", variant: plain}
+  - {text: "{contact} gets my live spot", variant: plain}
+  - {text: "send {contact} my pin", variant: plain}
+  - {text: "location on for {contact}", variant: plain}
+  - {text: "gps to {contact}", variant: plain}
+  - {text: "{contact} track me", variant: plain}
+  - {text: "tracking link for {contact}", variant: plain}
+  - {text: "{contact} where i am", variant: plain}
+  - {text: "position to {contact}", variant: plain}
+  - {text: "location {contact} now", variant: plain}
+  - {text: "{contact} ko location", variant: hinglish}
+  - {text: "{contact} ko pin bhejo", variant: hinglish}
+  - {text: "live location chahiye {contact} ko", variant: hinglish}
+  - {text: "meri location {contact} ke paas", variant: hinglish}
+  - {text: "{contact} ke liye live tracking", variant: hinglish}
+  - {text: "location share {contact} ke saath", variant: hinglish}
+  - {text: "{contact} ge location", variant: kannada_english}
+  - {text: "{contact} ge pin kalsu", variant: kannada_english}
+  - {text: "live location haaku {contact} ge", variant: kannada_english}
+  - {text: "naanu yelli antha {contact} ge", variant: kannada_english}
+  - {text: "uh location to um {contact}", variant: disfluent}
+  - {text: "uh live um pin for {contact}", variant: disfluent}
+  - {text: "send to um {contact} the location", variant: disfluent}
+  - {text: "er {contact} um my whereabouts", variant: disfluent}
+  - {text: "the the location uh {contact}", variant: disfluent}
+  - {text: "um {contact} needs uh my spot", variant: disfluent}

@@ -1,0 +1,219 @@
+# Paraphrases of the fog_lights_on seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): turn on the fog lights
+"0":
+  - {text: "put the fog lamps on", variant: plain}
+  - {text: "switch on the foglights", variant: plain}
+  - {text: "fog lights on please", variant: plain}
+  - {text: "get the fog lamps going", variant: plain}
+  - {text: "flick the front fog lamps on", variant: plain}
+  - {text: "light up the fog lamps", variant: plain}
+  - {text: "give me the fog lights", variant: plain}
+  - {text: "yellow lamps on for the fog", variant: plain}
+  - {text: "do one thing fog lamps on", variant: plain}
+  - {text: "fog lamps on quickly", variant: plain}
+  - {text: "switch on those yellow foglamps", variant: plain}
+  - {text: "start the fog lamps", variant: plain}
+  - {text: "fire up the fog lights", variant: plain}
+  - {text: "turn the rear fog lamp on", variant: plain}
+  - {text: "get the foglamps on for this stretch", variant: plain}
+  - {text: "bring the foglights on", variant: plain}
+  - {text: "put the fog lamps for me", variant: plain}
+  - {text: "press the fog lamp button", variant: plain}
+  - {text: "just switch on the fog lights", variant: plain}
+  - {text: "turn the fog lamps on before it gets thicker", variant: plain}
+  - {text: "both fog lamps on please", variant: plain}
+  - {text: "make the fog lights come on", variant: plain}
+  - {text: "on the foglamps", variant: plain}
+  - {text: "fog lights on right away", variant: plain}
+  - {text: "fog light on karo", variant: hinglish}
+  - {text: "fog lamp jala do yaar", variant: hinglish}
+  - {text: "fog lights chalu kar do", variant: hinglish}
+  - {text: "dhund hai fog lamp on kar do", variant: hinglish}
+  - {text: "fog wali light jalao jaldi", variant: hinglish}
+  - {text: "peeche wali fog lamp on karo", variant: hinglish}
+  - {text: "fog light haaku", variant: kannada_english}
+  - {text: "fog lamp on maadu guru", variant: kannada_english}
+  - {text: "fog lights haaku saar", variant: kannada_english}
+  - {text: "beega fog lamp haaku", variant: kannada_english}
+  - {text: "uh turn on the um the fog lamps", variant: disfluent}
+  - {text: "the fog the fog lights put them on", variant: disfluent}
+  - {text: "headlights no the fog lamps switch those on", variant: disfluent}
+  - {text: "so like get the uh fog lamps going yeah", variant: disfluent}
+  - {text: "high beam no wait fog lights on please", variant: disfluent}
+  - {text: "um switch on the er you know the yellow fog lamps", variant: disfluent}
+
+# seed 1 (outcome): i can barely see ten metres in this fog
+"1":
+  - {text: "the fog is so thick i can't see the bonnet", variant: plain}
+  - {text: "visibility is next to nothing in this mist", variant: plain}
+  - {text: "it's a total whiteout out here", variant: plain}
+  - {text: "can't see the car in front through this fog", variant: plain}
+  - {text: "this mist is so dense i can hardly make out the road", variant: plain}
+  - {text: "everything's just white outside", variant: plain}
+  - {text: "thick fog everywhere and i can't see a thing", variant: plain}
+  - {text: "the road has vanished in the fog", variant: plain}
+  - {text: "i can only see a few feet ahead in this haze", variant: plain}
+  - {text: "fog has rolled in and the road is gone", variant: plain}
+  - {text: "the trucks in front have disappeared in the fog", variant: plain}
+  - {text: "zero visibility with all this fog", variant: plain}
+  - {text: "it's like driving through cotton wool", variant: plain}
+  - {text: "dense fog on the expressway and nothing ahead is visible", variant: plain}
+  - {text: "the winter fog is really bad this morning", variant: plain}
+  - {text: "i'm driving blind in this smog and mist", variant: plain}
+  - {text: "there's a wall of fog right in front of us", variant: plain}
+  - {text: "hardly any visibility through this pea soup", variant: plain}
+  - {text: "the lane markings have gone in the fog", variant: plain}
+  - {text: "so foggy i can't tell where the road bends", variant: plain}
+  - {text: "nobody will spot us in this fog", variant: plain}
+  - {text: "the mist is hanging right on the road", variant: plain}
+  - {text: "fog's so heavy i'm crawling along", variant: plain}
+  - {text: "i can barely make out the divider in this fog", variant: plain}
+  - {text: "bahut dhund hai kuch dikh nahi raha", variant: hinglish}
+  - {text: "itna kohra hai road nahi dikh rahi", variant: hinglish}
+  - {text: "dhund mein aage kuch nahi dikhta yaar", variant: hinglish}
+  - {text: "fog bahut zyada hai aage gaadi nahi dikh rahi", variant: hinglish}
+  - {text: "bahar sab safed ho gaya hai dhund se", variant: hinglish}
+  - {text: "kohre mein das meter bhi nahi dikh raha", variant: hinglish}
+  - {text: "tumba fog ide enu kaanalla", variant: kannada_english}
+  - {text: "manju jaasti ide road kaanista illa", variant: kannada_english}
+  - {text: "hora full manju guru", variant: kannada_english}
+  - {text: "ee fog alli munde gaadi kaanalla", variant: kannada_english}
+  - {text: "uh i can't i can't see anything in this fog", variant: disfluent}
+  - {text: "the fog is like um really thick i can barely see", variant: disfluent}
+  - {text: "it's so er so foggy out there you know", variant: disfluent}
+  - {text: "that's rain no wait it's fog and i can't see a thing", variant: disfluent}
+  - {text: "so like the uh the mist is just everywhere", variant: disfluent}
+  - {text: "i can see maybe five no hardly anything in this fog", variant: disfluent}
+
+# seed 2 (question): can you switch on the fog lamps
+"2":
+  - {text: "could you put the fog lights on?", variant: plain}
+  - {text: "would you turn the fog lamps on", variant: plain}
+  - {text: "can those fog lamps come on?", variant: plain}
+  - {text: "mind switching on the fog lights", variant: plain}
+  - {text: "could we have foglamps for this bit", variant: plain}
+  - {text: "will you get the fog lights going?", variant: plain}
+  - {text: "any chance you could flick on the fog lamps", variant: plain}
+  - {text: "could the fog lights be switched on", variant: plain}
+  - {text: "can i get some fog lights?", variant: plain}
+  - {text: "would you mind putting on the foglights", variant: plain}
+  - {text: "how about putting the fog lamps on", variant: plain}
+  - {text: "could we get the fog lights?", variant: plain}
+  - {text: "can you light up the fog lamps for me", variant: plain}
+  - {text: "you'll put the foglamps on na?", variant: plain}
+  - {text: "would it be possible to put the fog lamps on", variant: plain}
+  - {text: "could you please do the fog lamps", variant: plain}
+  - {text: "will you switch the foglamps on for this patch?", variant: plain}
+  - {text: "can you get those yellow fog lights on", variant: plain}
+  - {text: "could you on the fog lamps quickly", variant: plain}
+  - {text: "why don't you put the fog lamps on?", variant: plain}
+  - {text: "may i have the fog lights on", variant: plain}
+  - {text: "can the fog lights come on now", variant: plain}
+  - {text: "would you fire up the fog lamps?", variant: plain}
+  - {text: "can you bring up the foglamps", variant: plain}
+  - {text: "fog light on kar doge?", variant: hinglish}
+  - {text: "fog lamp jala sakte ho kya", variant: hinglish}
+  - {text: "kya fog lights chalu kar sakte ho", variant: hinglish}
+  - {text: "fog lamp on karoge na?", variant: hinglish}
+  - {text: "zara fog lamps jala doge", variant: hinglish}
+  - {text: "fog wali light jala doge kya", variant: hinglish}
+  - {text: "fog light haakthira?", variant: kannada_english}
+  - {text: "fog lamp on maadtiya", variant: kannada_english}
+  - {text: "fog lights haakbahuda?", variant: kannada_english}
+  - {text: "swalpa fog lamp on maadtira guru", variant: kannada_english}
+  - {text: "uh can you um the fog lamps can you get them going", variant: disfluent}
+  - {text: "could you the the fog lights um flick them on", variant: disfluent}
+  - {text: "can you turn on the high no the fog lamps", variant: disfluent}
+  - {text: "er would you like get the fog lights on?", variant: disfluent}
+  - {text: "um you know the fog lamps er can they go on", variant: disfluent}
+  - {text: "so uh will you switch the fog lights on maybe", variant: disfluent}
+
+# seed 3 (indirect): we're going down the ghat and the clouds are on the road
+"3":
+  - {text: "we're coming down the hills and the clouds have dropped onto the road", variant: plain}
+  - {text: "this ghat section is all clouds today", variant: plain}
+  - {text: "the clouds have come right down on these hairpin bends", variant: plain}
+  - {text: "coming down from the hill station and we're inside a cloud", variant: plain}
+  - {text: "look the clouds are sitting on the highway", variant: plain}
+  - {text: "we're descending the ghat and it's all misty around the bends", variant: plain}
+  - {text: "the clouds are rolling across the road near the viewpoint", variant: plain}
+  - {text: "this hill road is covered in low cloud", variant: plain}
+  - {text: "halfway down the ghat and the mist has come in", variant: plain}
+  - {text: "we're driving right through the clouds on this descent", variant: plain}
+  - {text: "the monsoon clouds are all over the ghat road", variant: plain}
+  - {text: "near the top of the pass the clouds are on the tarmac", variant: plain}
+  - {text: "we're up in the ghats and the clouds are touching the road", variant: plain}
+  - {text: "the whole descent is clouded in today", variant: plain}
+  - {text: "buses coming up the ghat are popping out of the clouds", variant: plain}
+  - {text: "these hairpins are lost in the clouds", variant: plain}
+  - {text: "the clouds have settled on the road going down the hill", variant: plain}
+  - {text: "it's cloudy right at road level on this ghat", variant: plain}
+  - {text: "we've dropped into the cloud layer on the way down", variant: plain}
+  - {text: "the road down the mountain is buried in cloud", variant: plain}
+  - {text: "there's cloud drifting across every bend down here", variant: plain}
+  - {text: "the ghat is socked in with clouds", variant: plain}
+  - {text: "on this hill descent the clouds keep crossing the road", variant: plain}
+  - {text: "wow the whole ghat section is under cloud", variant: plain}
+  - {text: "ghat se neeche aa rahe hain aur road pe badal hain", variant: hinglish}
+  - {text: "yahan ghat mein badal sadak pe aa gaye hain", variant: hinglish}
+  - {text: "pahadi raaste pe pura badal hai yaar", variant: hinglish}
+  - {text: "ghat utar rahe hain aur sab taraf baadal", variant: hinglish}
+  - {text: "dekho badal bilkul road pe baithe hain", variant: hinglish}
+  - {text: "har mod pe badal hi badal hai", variant: hinglish}
+  - {text: "ghat iliyutta iddivi road mele moda ide", variant: kannada_english}
+  - {text: "ghat alli full moda guru", variant: kannada_english}
+  - {text: "betta iliyovaga road mele moda bandide", variant: kannada_english}
+  - {text: "ee ghat road alli moda tumba ide saar", variant: kannada_english}
+  - {text: "we're uh going down the the ghat and it's all clouds", variant: disfluent}
+  - {text: "so um the clouds are like right on the road here", variant: disfluent}
+  - {text: "coming up no going down the ghat and there's cloud everywhere", variant: disfluent}
+  - {text: "er the hill road the clouds are um sitting on it", variant: disfluent}
+  - {text: "we're in the the clouds now on this ghat you know", variant: disfluent}
+  - {text: "uh look the ghat is like totally clouded over", variant: disfluent}
+
+# seed 4 (fragment): fog lamps
+"4":
+  - {text: "foglamp please", variant: plain}
+  - {text: "foglamps", variant: plain}
+  - {text: "foglights on", variant: plain}
+  - {text: "fog lights please", variant: plain}
+  - {text: "fog lights now", variant: plain}
+  - {text: "the fog lights quick", variant: plain}
+  - {text: "front fog lamps on", variant: plain}
+  - {text: "rear fog lamp", variant: plain}
+  - {text: "fog lamp on", variant: plain}
+  - {text: "both fog lamps please", variant: plain}
+  - {text: "yellow fog lights", variant: plain}
+  - {text: "fog light switch", variant: plain}
+  - {text: "the foglamps na", variant: plain}
+  - {text: "fog beams on", variant: plain}
+  - {text: "mist lamps", variant: plain}
+  - {text: "lights for the fog", variant: plain}
+  - {text: "fog lamps on right now", variant: plain}
+  - {text: "foglight", variant: plain}
+  - {text: "fog lights both sides", variant: plain}
+  - {text: "fog lamps for this mist", variant: plain}
+  - {text: "fog lighting on", variant: plain}
+  - {text: "foglamps quickly", variant: plain}
+  - {text: "need fog lights", variant: plain}
+  - {text: "fog lights immediately", variant: plain}
+  - {text: "fog light chalu", variant: hinglish}
+  - {text: "fog lamp jalao", variant: hinglish}
+  - {text: "fog wali batti", variant: hinglish}
+  - {text: "dhund wali light", variant: hinglish}
+  - {text: "fog ki lamp abhi", variant: hinglish}
+  - {text: "fog light jaldi", variant: hinglish}
+  - {text: "fog light beku", variant: kannada_english}
+  - {text: "fog lamp haaki", variant: kannada_english}
+  - {text: "fog lamp beega", variant: kannada_english}
+  - {text: "fog lights on saar", variant: kannada_english}
+  - {text: "uh fog um lights", variant: disfluent}
+  - {text: "fog um those yellow ones", variant: disfluent}
+  - {text: "um fog lights yeah", variant: disfluent}
+  - {text: "high beam no fog lamps", variant: disfluent}
+  - {text: "er the fog ones the lamps", variant: disfluent}
+  - {text: "fog lamps uh now", variant: disfluent}

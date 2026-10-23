@@ -1,0 +1,219 @@
+# Paraphrases of the place_opening_hours seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): check if the {place} is open now
+"0":
+  - {text: "find out whether the {place} is still open", variant: plain}
+  - {text: "see if the {place} is open at this hour", variant: plain}
+  - {text: "check the {place}'s hours for right now", variant: plain}
+  - {text: "tell me if the {place} is open right now", variant: plain}
+  - {text: "confirm the {place} hasn't closed yet", variant: plain}
+  - {text: "look up whether the {place} is currently open", variant: plain}
+  - {text: "make sure the {place} is open before we go", variant: plain}
+  - {text: "verify the {place} is open at the moment", variant: plain}
+  - {text: "let me know if the {place} is still open", variant: plain}
+  - {text: "check whether the {place} is taking customers now", variant: plain}
+  - {text: "find out if the {place} has shut for the day", variant: plain}
+  - {text: "see whether the {place}'s doors are open now", variant: plain}
+  - {text: "look up if the {place} is closed right now", variant: plain}
+  - {text: "do one thing check the {place} is open or not", variant: plain}
+  - {text: "just confirm the {place} is open", variant: plain}
+  - {text: "tell me whether the {place} is closed at this time", variant: plain}
+  - {text: "show me if the {place} is open currently", variant: plain}
+  - {text: "check the timings and tell me if the {place} is open", variant: plain}
+  - {text: "find out if the {place} is working now", variant: plain}
+  - {text: "make sure the {place} isn't shut", variant: plain}
+  - {text: "quickly see if the {place} is open", variant: plain}
+  - {text: "check the {place} open status", variant: plain}
+  - {text: "look at the {place}'s timings and see if it's open now", variant: plain}
+  - {text: "get me the {place}'s open or closed status", variant: plain}
+  - {text: "dekho {place} abhi khula hai kya", variant: hinglish}
+  - {text: "{place} abhi open hai ya band check karo", variant: hinglish}
+  - {text: "pata karo {place} khula hai ki nahi", variant: hinglish}
+  - {text: "{place} band toh nahi ho gaya check kar do", variant: hinglish}
+  - {text: "zara dekh lo {place} abhi chalu hai kya", variant: hinglish}
+  - {text: "{place} ki timing check karke batao khula hai ya nahi", variant: hinglish}
+  - {text: "{place} eega open ideya nodi", variant: kannada_english}
+  - {text: "{place} open idiya illva check maadi", variant: kannada_english}
+  - {text: "{place} mucchidara antha nodi heli", variant: kannada_english}
+  - {text: "eega {place} theredideya swalpa nodu", variant: kannada_english}
+  - {text: "check uh whether the {place} um hasn't closed yet", variant: disfluent}
+  - {text: "um see if like the {place} is still open", variant: disfluent}
+  - {text: "check if the {place} closed no wait if it's open now", variant: disfluent}
+  - {text: "er find out whether uh {place} is open right now", variant: disfluent}
+  - {text: "so the {place} um check it's open you know", variant: disfluent}
+  - {text: "look up the the {place} and um see if it's open", variant: disfluent}
+
+# seed 1 (question): what time does the pharmacy close tonight
+"1":
+  - {text: "when does the pharmacy shut tonight?", variant: plain}
+  - {text: "till what time is the chemist open tonight", variant: plain}
+  - {text: "how late is the pharmacy open this evening?", variant: plain}
+  - {text: "what's the closing time for the medical shop tonight", variant: plain}
+  - {text: "until when will the pharmacy be open today?", variant: plain}
+  - {text: "is the pharmacy open late tonight", variant: plain}
+  - {text: "when is the chemist closing this evening?", variant: plain}
+  - {text: "how long does the pharmacy stay open tonight", variant: plain}
+  - {text: "do you know when the medical store closes tonight?", variant: plain}
+  - {text: "what are the pharmacy's hours tonight", variant: plain}
+  - {text: "when do they close the pharmacy tonight", variant: plain}
+  - {text: "till how late can i get to the pharmacy tonight?", variant: plain}
+  - {text: "how much longer will the chemist be open", variant: plain}
+  - {text: "will the pharmacy still be open at ten tonight", variant: plain}
+  - {text: "what time will the medical shop pull down the shutter?", variant: plain}
+  - {text: "when does the chemist on our road close tonight", variant: plain}
+  - {text: "how late does the pharmacy run tonight?", variant: plain}
+  - {text: "can you tell me the pharmacy's closing time this evening", variant: plain}
+  - {text: "at what hour does the pharmacy close today?", variant: plain}
+  - {text: "is the medical shop open till late tonight?", variant: plain}
+  - {text: "what time's closing at the pharmacy tonight", variant: plain}
+  - {text: "when will the pharmacy be closing up tonight?", variant: plain}
+  - {text: "how late is the chemist open?", variant: plain}
+  - {text: "by what time do i need to reach the pharmacy tonight", variant: plain}
+  - {text: "pharmacy aaj raat kitne baje band hogi?", variant: hinglish}
+  - {text: "medical shop aaj kab tak khula hai", variant: hinglish}
+  - {text: "chemist raat ko kitne baje tak khula rehta hai?", variant: hinglish}
+  - {text: "aaj pharmacy kitne baje band hoti hai", variant: hinglish}
+  - {text: "medical store raat mein kab band hoga?", variant: hinglish}
+  - {text: "pharmacy aaj kab tak open hai yaar", variant: hinglish}
+  - {text: "pharmacy ivattu raatri eshtu hothige close aagutte?", variant: kannada_english}
+  - {text: "medical shop ivattu eshtu hothu thanka open?", variant: kannada_english}
+  - {text: "chemist raatri yaavaga mucchutte?", variant: kannada_english}
+  - {text: "pharmacy ivattu yaavaga close maadthare", variant: kannada_english}
+  - {text: "uh till um till what time is the medical shop open tonight", variant: disfluent}
+  - {text: "the bank sorry the pharmacy uh when does it close tonight", variant: disfluent}
+  - {text: "er how long is like the chemist open tonight", variant: disfluent}
+  - {text: "so um the pharmacy what's its closing time tonight", variant: disfluent}
+  - {text: "um is the uh medical shop going to be open late tonight", variant: disfluent}
+  - {text: "when when does the pharmacy um close this evening", variant: disfluent}
+
+# seed 2 (outcome): i don't want to drive there and find it shut
+"2":
+  - {text: "i'd hate to go all the way and see the shutter down", variant: plain}
+  - {text: "i don't want a wasted trip if they've closed", variant: plain}
+  - {text: "it'll be annoying if i get there and it's closed", variant: plain}
+  - {text: "i'm worried we'll reach and the place will be shut", variant: plain}
+  - {text: "i don't want to land up and see a locked shop", variant: plain}
+  - {text: "last time i went it was closed and i don't want that again", variant: plain}
+  - {text: "i'd rather not reach there only to see it locked", variant: plain}
+  - {text: "hope we don't get there and find them closed", variant: plain}
+  - {text: "i don't fancy driving over for nothing if it's closed", variant: plain}
+  - {text: "i can't afford a wasted drive to a closed shop", variant: plain}
+  - {text: "it would be a waste if they've already shut by the time we arrive", variant: plain}
+  - {text: "i want to be sure we won't reach a locked door", variant: plain}
+  - {text: "i don't want to turn up and see the shutters down", variant: plain}
+  - {text: "driving all that way to a closed place would be pointless", variant: plain}
+  - {text: "i'm not going to make the trip if they're closed", variant: plain}
+  - {text: "i'd be really irritated if it's shut when i get there", variant: plain}
+  - {text: "i don't want to waste petrol on a place that's closed", variant: plain}
+  - {text: "there's no point heading there if they've closed", variant: plain}
+  - {text: "i don't want us stuck outside a closed gate", variant: plain}
+  - {text: "i'm scared it'll be shut when i reach", variant: plain}
+  - {text: "a closed shop at the end of this drive is the last thing i need", variant: plain}
+  - {text: "i'd hate to waste the trip because it's shut", variant: plain}
+  - {text: "i'm not keen to go there and be turned away at the door", variant: plain}
+  - {text: "it'd ruin my evening to get there and find it locked", variant: plain}
+  - {text: "wahan jaake band mile toh bekaar ho jayega", variant: hinglish}
+  - {text: "main nahi chahta ki wahan pahunchu aur shutter down ho", variant: hinglish}
+  - {text: "itni door jaake band mila toh mood kharab ho jayega", variant: hinglish}
+  - {text: "bekaar ka chakkar nahi lagana agar band hai", variant: hinglish}
+  - {text: "wahan pahunch ke pata chale ki band hai yeh nahi chahiye", variant: hinglish}
+  - {text: "khaali haath lautna nahi hai yaar agar band ho", variant: hinglish}
+  - {text: "alli hogi close aagidre waste aagutte", variant: kannada_english}
+  - {text: "alli tanaka hogi mucchidre bejaaru aagutte", variant: kannada_english}
+  - {text: "summane hogi shutter down nodoke ishta illa", variant: kannada_english}
+  - {text: "alli reach aadmele close idre beda", variant: kannada_english}
+  - {text: "i don't want to uh drive all the way and um find it closed", variant: disfluent}
+  - {text: "um i'd hate to get there and like it's shut you know", variant: disfluent}
+  - {text: "so er we reach and it's closed i don't want that", variant: disfluent}
+  - {text: "it'd be um it'd be such a waste if uh they're shut", variant: disfluent}
+  - {text: "like what if we go there and uh the shutter's down", variant: disfluent}
+  - {text: "er going there and finding it closed no thanks", variant: disfluent}
+
+# seed 3 (indirect): the bank might have closed early for the holiday
+"3":
+  - {text: "it's a holiday today so the bank may have shut early", variant: plain}
+  - {text: "i think banks close early on festival days", variant: plain}
+  - {text: "the bank probably wound up early because of the long weekend", variant: plain}
+  - {text: "with the holiday the bank could be closed already", variant: plain}
+  - {text: "the branch might have downed shutters early today", variant: plain}
+  - {text: "banks usually close early before a holiday don't they", variant: plain}
+  - {text: "i'm not sure the bank is still open with the holiday", variant: plain}
+  - {text: "since it's a bank holiday tomorrow they might shut early today", variant: plain}
+  - {text: "the bank staff might have left early for the festival", variant: plain}
+  - {text: "holiday timings at the bank are probably shorter", variant: plain}
+  - {text: "chances are the bank pulled its shutters down early for the holiday", variant: plain}
+  - {text: "knowing the bank they've probably shut early for the festival", variant: plain}
+  - {text: "my brother said the bank was closing early for the holiday", variant: plain}
+  - {text: "i bet the bank closed half day for the festival", variant: plain}
+  - {text: "the bank's festival hours might mean it's shut now", variant: plain}
+  - {text: "the branch may not be open this late on a holiday", variant: plain}
+  - {text: "banks around here sometimes close early on holidays", variant: plain}
+  - {text: "it's diwali eve so the bank may have closed already", variant: plain}
+  - {text: "the bank was probably only open half day today", variant: plain}
+  - {text: "the bank might be shut by now because of the holiday", variant: plain}
+  - {text: "with the festival rush the bank may have wrapped up early", variant: plain}
+  - {text: "i doubt the bank stayed open full hours today with the holiday", variant: plain}
+  - {text: "the holiday probably cut the bank's hours short", variant: plain}
+  - {text: "the bank might not be working the usual hours today", variant: plain}
+  - {text: "chhutti ki wajah se bank jaldi band ho gaya hoga", variant: hinglish}
+  - {text: "aaj tyohaar hai toh bank shayad jaldi band ho gaya", variant: hinglish}
+  - {text: "bank aaj half day tha shayad holiday ke liye", variant: hinglish}
+  - {text: "holiday hai bank abhi tak khula hoga ki nahi pata nahi", variant: hinglish}
+  - {text: "lagta hai bank ne aaj jaldi shutter gira diya hoga", variant: hinglish}
+  - {text: "bank waale holiday ke chakkar mein jaldi chale gaye honge", variant: hinglish}
+  - {text: "holiday ge bank bega close aagirbahudu", variant: kannada_english}
+  - {text: "habba idde bank bega mucchirbahudu", variant: kannada_english}
+  - {text: "ivattu bank half day irbahudu holiday ge", variant: kannada_english}
+  - {text: "bank eega open idiyo illvo gottilla holiday alli", variant: kannada_english}
+  - {text: "um the bank uh probably shut early you know it's a holiday", variant: disfluent}
+  - {text: "so er it's a holiday and the bank may have closed already", variant: disfluent}
+  - {text: "the the bank could be closed you know with the festival", variant: disfluent}
+  - {text: "i think the bank no the branch might have uh closed early today", variant: disfluent}
+  - {text: "uh with the holiday the bank like probably shut early", variant: disfluent}
+  - {text: "um the bank's hours might be er shorter for the holiday", variant: disfluent}
+
+# seed 4 (fragment): {place} timings
+"4":
+  - {text: "{place} open at what time", variant: plain}
+  - {text: "{place} open now", variant: plain}
+  - {text: "{place} open or closed", variant: plain}
+  - {text: "{place} closing time", variant: plain}
+  - {text: "{place} opening hours today", variant: plain}
+  - {text: "when {place} closes", variant: plain}
+  - {text: "{place} timings for today", variant: plain}
+  - {text: "{place} still open", variant: plain}
+  - {text: "{place} business hours", variant: plain}
+  - {text: "{place} working hours", variant: plain}
+  - {text: "today's {place} hours", variant: plain}
+  - {text: "{place} schedule today", variant: plain}
+  - {text: "{place} open till when", variant: plain}
+  - {text: "{place} shut by when", variant: plain}
+  - {text: "{place} shut or not", variant: plain}
+  - {text: "{place} open hours", variant: plain}
+  - {text: "hours for the {place}", variant: plain}
+  - {text: "tonight's {place} timing", variant: plain}
+  - {text: "{place} opening time", variant: plain}
+  - {text: "{place} currently open", variant: plain}
+  - {text: "the {place}'s hours", variant: plain}
+  - {text: "{place} closed yet", variant: plain}
+  - {text: "{place} shutting time", variant: plain}
+  - {text: "the {place} hours please", variant: plain}
+  - {text: "{place} kitne baje khulta hai", variant: hinglish}
+  - {text: "{place} ki timing", variant: hinglish}
+  - {text: "{place} kab tak khula", variant: hinglish}
+  - {text: "{place} abhi khula hai", variant: hinglish}
+  - {text: "{place} band kab hota hai", variant: hinglish}
+  - {text: "{place} ka time kya hai", variant: hinglish}
+  - {text: "{place} timing enu", variant: kannada_english}
+  - {text: "{place} yaavaga open", variant: kannada_english}
+  - {text: "{place} eega open aa", variant: kannada_english}
+  - {text: "{place} yaavaga close", variant: kannada_english}
+  - {text: "uh {place} um timings", variant: disfluent}
+  - {text: "{place} what time it uh closes", variant: disfluent}
+  - {text: "{place} closing no opening time", variant: disfluent}
+  - {text: "um till when is uh {place} open", variant: disfluent}
+  - {text: "er timings for uh {place}", variant: disfluent}
+  - {text: "{place} uh still um open", variant: disfluent}

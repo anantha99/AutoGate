@@ -1,0 +1,219 @@
+# Paraphrases of the pay_bill seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): pay my mobile bill now
+"0":
+  - {text: "clear my phone bill right away", variant: plain}
+  - {text: "settle the mobile bill immediately", variant: plain}
+  - {text: "pay off my postpaid bill now", variant: plain}
+  - {text: "go ahead and pay the phone bill", variant: plain}
+  - {text: "do one thing pay my mobile bill", variant: plain}
+  - {text: "make the payment for my mobile bill right now", variant: plain}
+  - {text: "clear the dues on my phone connection", variant: plain}
+  - {text: "pay the cell phone bill this minute", variant: plain}
+  - {text: "put through the payment for my mobile bill", variant: plain}
+  - {text: "just pay my phone bill now", variant: plain}
+  - {text: "right now pay the mobile bill", variant: plain}
+  - {text: "settle my postpaid dues immediately", variant: plain}
+  - {text: "pay what i owe on my mobile connection", variant: plain}
+  - {text: "finish my phone bill payment now", variant: plain}
+  - {text: "get the mobile bill paid right away", variant: plain}
+  - {text: "that mobile bill of mine pay it off right now", variant: plain}
+  - {text: "pay the bill for my phone number now", variant: plain}
+  - {text: "quickly clear my mobile dues", variant: plain}
+  - {text: "clear the outstanding on my mobile now", variant: plain}
+  - {text: "pay the monthly phone bill immediately", variant: plain}
+  - {text: "send the phone company their payment now", variant: plain}
+  - {text: "pay up the mobile bill before i forget", variant: plain}
+  - {text: "take care of my phone bill payment now", variant: plain}
+  - {text: "pay this month's mobile bill straight away", variant: plain}
+  - {text: "mera mobile bill abhi bhar do", variant: hinglish}
+  - {text: "phone ka bill abhi pay karo", variant: hinglish}
+  - {text: "jaldi se mobile bill pay kar do", variant: hinglish}
+  - {text: "yaar postpaid ka paisa abhi bhej do", variant: hinglish}
+  - {text: "mobile ka bill turant pay karo", variant: hinglish}
+  - {text: "mera phone bill abhi clear kar do", variant: hinglish}
+  - {text: "nanna mobile bill eega pay maadi", variant: kannada_english}
+  - {text: "phone bill eegle kattu", variant: kannada_english}
+  - {text: "mobile bill bega pay maadu guru", variant: kannada_english}
+  - {text: "nanna postpaid bill eega kattbidi", variant: kannada_english}
+  - {text: "uh do the do the um postpaid payment straight away", variant: disfluent}
+  - {text: "pay the electricity no sorry i mean the phone bill now", variant: disfluent}
+  - {text: "so um just pay the uh phone bill right now", variant: disfluent}
+  - {text: "er just settle the like mobile dues now", variant: disfluent}
+  - {text: "um you know my mobile bill pay it uh now", variant: disfluent}
+  - {text: "my mobile um the mobile bill yeah get it paid now", variant: disfluent}
+
+# seed 1 (question): can you pay the water bill with the card ending {card}
+"1":
+  - {text: "could you clear the water bill using my card ending {card}?", variant: plain}
+  - {text: "can you settle the water charges on the card ending in {card}", variant: plain}
+  - {text: "will you pay the water bill from card {card}?", variant: plain}
+  - {text: "can the water dues go on the card that ends {card}", variant: plain}
+  - {text: "is the card ending {card} okay to use for the water connection?", variant: plain}
+  - {text: "would you take care of water charges through my {card} card", variant: plain}
+  - {text: "can you put the water bill on my {card} card?", variant: plain}
+  - {text: "is it possible to clear the water dues using card {card}", variant: plain}
+  - {text: "could the monthly water payment be charged to card {card}?", variant: plain}
+  - {text: "would you clear the water dues with the card ending {card}", variant: plain}
+  - {text: "can water be paid off with my card ending {card}?", variant: plain}
+  - {text: "does my {card} card work for paying the water bill", variant: plain}
+  - {text: "will you settle my water bill on card ending {card}?", variant: plain}
+  - {text: "can you use my {card} card to pay for water", variant: plain}
+  - {text: "could you send the water board payment from card {card}", variant: plain}
+  - {text: "can you get the water dues sorted using card {card}?", variant: plain}
+  - {text: "would you mind paying for water on card {card}", variant: plain}
+  - {text: "will the card ending {card} work for the water bill?", variant: plain}
+  - {text: "could we use the {card} card for this month's water bill", variant: plain}
+  - {text: "can you put through a water payment on card {card}", variant: plain}
+  - {text: "would you be able to pay water bill with the {card} card", variant: plain}
+  - {text: "can you knock off the water dues with card {card}?", variant: plain}
+  - {text: "will you charge this month's water bill to card {card}", variant: plain}
+  - {text: "any chance the water dues can go through on my {card} card", variant: plain}
+  - {text: "kya {card} wale card se water bill pay kar doge?", variant: hinglish}
+  - {text: "{card} card se paani ka bill bhar sakte ho", variant: hinglish}
+  - {text: "paani ka bill {card} ending card se pay karoge kya?", variant: hinglish}
+  - {text: "water bill {card} wale card se bharoge na", variant: hinglish}
+  - {text: "kya water bill card ending {card} se ho jayega", variant: hinglish}
+  - {text: "paani ke paise {card} card se de doge kya?", variant: hinglish}
+  - {text: "{card} card inda water bill pay maadtira?", variant: kannada_english}
+  - {text: "neeru bill na {card} card inda kattoke aagutta", variant: kannada_english}
+  - {text: "water bill {card} card alli pay maadbahuda?", variant: kannada_english}
+  - {text: "{card} ending card inda neeru duddu kattbidtira", variant: kannada_english}
+  - {text: "uh can you can you um sort out water using card {card}", variant: disfluent}
+  - {text: "could you pay the gas no sorry the water bill with my {card} card", variant: disfluent}
+  - {text: "so um could you pay the uh water charges using card {card}?", variant: disfluent}
+  - {text: "can you er use the card like the one ending {card} for water", variant: disfluent}
+  - {text: "can you put water on card {card} no wait i mean card {card}", variant: disfluent}
+  - {text: "um would you you know charge the water thing to {card} card", variant: disfluent}
+
+# seed 2 (outcome): the broadband gets cut off if i don't pay today
+"2":
+  - {text: "my internet will be disconnected unless the bill is cleared today", variant: plain}
+  - {text: "today's the last day before the wifi connection gets cut", variant: plain}
+  - {text: "the broadband bill is due today or they'll stop the service", variant: plain}
+  - {text: "if the internet bill isn't settled today i lose the connection", variant: plain}
+  - {text: "they're going to suspend my broadband by tonight if it's unpaid", variant: plain}
+  - {text: "the wifi will go off tomorrow if today's dues aren't cleared", variant: plain}
+  - {text: "my broadband connection ends today unless i settle up", variant: plain}
+  - {text: "the internet company will cut me off if today passes without payment", variant: plain}
+  - {text: "i'll have no internet from tomorrow unless the dues are cleared", variant: plain}
+  - {text: "the fibre connection gets disconnected if the bill stays unpaid today", variant: plain}
+  - {text: "the broadband due date is today and they will cut it", variant: plain}
+  - {text: "my home internet will be shut off if i miss today", variant: plain}
+  - {text: "i got a warning that the wifi gets cut today without payment", variant: plain}
+  - {text: "the internet bill has to be cleared today or no connection", variant: plain}
+  - {text: "unpaid broadband dues mean disconnection after today", variant: plain}
+  - {text: "the last date for the broadband bill is today", variant: plain}
+  - {text: "the kids' online classes stop if the internet bill isn't cleared today", variant: plain}
+  - {text: "the wifi provider will disconnect me tonight if i haven't settled", variant: plain}
+  - {text: "today's my final chance before the broadband gets stopped", variant: plain}
+  - {text: "the broadband guys said the line goes dead if it's not cleared today", variant: plain}
+  - {text: "work from home is done for if the internet bill lapses today", variant: plain}
+  - {text: "the broadband account gets suspended at midnight if unpaid", variant: plain}
+  - {text: "my internet goes off today unless the dues are settled", variant: plain}
+  - {text: "the net connection will be cut if today's payment is missed", variant: plain}
+  - {text: "aaj bill nahi bhara toh broadband kat jayega", variant: hinglish}
+  - {text: "aaj payment nahi hui toh wifi band ho jayega", variant: hinglish}
+  - {text: "broadband ka bill aaj last date hai warna connection cut", variant: hinglish}
+  - {text: "aaj internet bill nahi diya toh line kat jayegi yaar", variant: hinglish}
+  - {text: "aaj tak bill nahi bhara toh net band kar denge", variant: hinglish}
+  - {text: "broadband wale aaj connection kaat denge agar paisa nahi gaya", variant: hinglish}
+  - {text: "ivattu bill kattlilla andre broadband cut aagutte", variant: kannada_english}
+  - {text: "ivattu pay maadlilla andre wifi hogutte", variant: kannada_english}
+  - {text: "broadband bill ge ivattu last date guru illandre cut", variant: kannada_english}
+  - {text: "ivattu duddu kattlilla andre internet nilsbidthare", variant: kannada_english}
+  - {text: "uh the wifi the wifi will um get disconnected unless it's paid today", variant: disfluent}
+  - {text: "the electricity no sorry the internet line goes dead after today without payment", variant: disfluent}
+  - {text: "so um my internet will like get cut if i don't pay uh today", variant: disfluent}
+  - {text: "the broadband gets er disconnected you know if i don't pay today", variant: disfluent}
+  - {text: "um today's the like last day or they uh cut my net", variant: disfluent}
+  - {text: "they'll stop the broadband tomorrow no wait tonight if it's unpaid", variant: disfluent}
+
+# seed 3 (indirect): the landlord has been asking for the rent since monday
+"3":
+  - {text: "the house owner keeps calling about this month's rent", variant: plain}
+  - {text: "my landlord has been after me for the rent all week", variant: plain}
+  - {text: "the owner's been reminding me about rent for days now", variant: plain}
+  - {text: "landlord uncle has messaged about the rent again", variant: plain}
+  - {text: "i keep getting nudged by the landlord for the rent", variant: plain}
+  - {text: "the flat owner's been chasing me for rent since the start of the week", variant: plain}
+  - {text: "my house owner won't stop asking about the rent", variant: plain}
+  - {text: "the landlord's been on my case about rent for a few days", variant: plain}
+  - {text: "the owner has called thrice this week about the rent", variant: plain}
+  - {text: "i've been dodging the landlord's rent reminders all week", variant: plain}
+  - {text: "the rent is overdue and the owner keeps asking", variant: plain}
+  - {text: "my landlady's been asking for the rent for days", variant: plain}
+  - {text: "the owner asked about rent again this morning", variant: plain}
+  - {text: "the house owner's been following up on rent the whole week", variant: plain}
+  - {text: "rent reminders from the landlord every day this week", variant: plain}
+  - {text: "my landlord's patience on the rent is running out", variant: plain}
+  - {text: "the owner is getting annoyed that the rent hasn't come", variant: plain}
+  - {text: "the landlord has asked me about the rent several times since the weekend", variant: plain}
+  - {text: "the flat owner's been pinging me about the pending rent", variant: plain}
+  - {text: "my house owner asked twice already for this month's rent", variant: plain}
+  - {text: "landlord's been bugging me for rent for days", variant: plain}
+  - {text: "every day this week the owner has brought up the rent", variant: plain}
+  - {text: "the owner's waiting on the rent and has been asking since the week started", variant: plain}
+  - {text: "my landlord is still waiting for the rent and keeps reminding me", variant: plain}
+  - {text: "makaan malik kab se rent maang raha hai", variant: hinglish}
+  - {text: "landlord poore hafte se kiraya maang raha hai yaar", variant: hinglish}
+  - {text: "malik roz kiraye ke liye phone kar raha hai", variant: hinglish}
+  - {text: "landlord ka rent ke liye baar baar message aa raha hai", variant: hinglish}
+  - {text: "owner kehte hain kiraya abhi tak nahi aaya", variant: hinglish}
+  - {text: "makaan wale uncle hafte bhar se rent ke peeche pade hain", variant: hinglish}
+  - {text: "owner vaara inda rent kelthaane", variant: kannada_english}
+  - {text: "house owner rent ge dina dina call maadthare", variant: kannada_english}
+  - {text: "landlord rent kodi antha kelthaane guru", variant: kannada_english}
+  - {text: "owner ivattu kooda baadige kelidru", variant: kannada_english}
+  - {text: "uh the owner the house owner keeps um messaging about rent", variant: disfluent}
+  - {text: "the landlord has been asking for the deposit no the rent all week", variant: disfluent}
+  - {text: "so um the owner's been like asking for the rent uh all week", variant: disfluent}
+  - {text: "the landlord has er been after me you know for the rent", variant: disfluent}
+  - {text: "um my landlord keeps asking for the uh the rent", variant: disfluent}
+  - {text: "my landlord's been after me since um since the weekend for the rent", variant: disfluent}
+
+# seed 4 (fragment): pay gas bill
+"4":
+  - {text: "gas bill payment", variant: plain}
+  - {text: "clear the gas bill", variant: plain}
+  - {text: "gas bill due", variant: plain}
+  - {text: "settle gas dues", variant: plain}
+  - {text: "pay the cylinder bill", variant: plain}
+  - {text: "piped gas bill now", variant: plain}
+  - {text: "gas dues now", variant: plain}
+  - {text: "pay gas dues", variant: plain}
+  - {text: "gas bill please", variant: plain}
+  - {text: "clear gas dues", variant: plain}
+  - {text: "piped gas payment", variant: plain}
+  - {text: "gas connection bill", variant: plain}
+  - {text: "settle the gas account", variant: plain}
+  - {text: "pay off the gas bill now", variant: plain}
+  - {text: "lpg bill payment", variant: plain}
+  - {text: "pay my gas bill today", variant: plain}
+  - {text: "gas payment now", variant: plain}
+  - {text: "pay this month's gas", variant: plain}
+  - {text: "cooking gas bill", variant: plain}
+  - {text: "pay gas bill quickly please", variant: plain}
+  - {text: "gas bill settlement", variant: plain}
+  - {text: "pipeline gas dues", variant: plain}
+  - {text: "gas company payment", variant: plain}
+  - {text: "the gas bill quickly", variant: plain}
+  - {text: "gas bill bhar do", variant: hinglish}
+  - {text: "gas ka bill pay karo", variant: hinglish}
+  - {text: "gas bill bharo", variant: hinglish}
+  - {text: "gas ka paisa jama karo", variant: hinglish}
+  - {text: "gas wala bill abhi bharo", variant: hinglish}
+  - {text: "gas ka paisa bhejo", variant: hinglish}
+  - {text: "gas bill kattu", variant: kannada_english}
+  - {text: "gas bill eega pay maadi", variant: kannada_english}
+  - {text: "gas bill kattbidi", variant: kannada_english}
+  - {text: "gas duddu kattu swalpa", variant: kannada_english}
+  - {text: "uh pay the um gas bill", variant: disfluent}
+  - {text: "pay power no sorry the gas bill", variant: disfluent}
+  - {text: "er the gas the gas dues uh pay", variant: disfluent}
+  - {text: "so um the piped gas thing pay that", variant: disfluent}
+  - {text: "like pay off you know gas bill", variant: disfluent}
+  - {text: "gas bill uh clear it er now", variant: disfluent}

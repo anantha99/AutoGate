@@ -1,0 +1,219 @@
+# Paraphrases of the cancel_cruise_control seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): turn off cruise control
+"0":
+  - {text: "switch the cruise off", variant: plain}
+  - {text: "kill cruise control", variant: plain}
+  - {text: "cancel the cruise", variant: plain}
+  - {text: "disengage cruise", variant: plain}
+  - {text: "take it off cruise", variant: plain}
+  - {text: "stop the cruise control", variant: plain}
+  - {text: "get us off cruise control", variant: plain}
+  - {text: "cruise control off now", variant: plain}
+  - {text: "drop the cruise", variant: plain}
+  - {text: "cut the cruise control", variant: plain}
+  - {text: "end cruise mode", variant: plain}
+  - {text: "shut the cruise off", variant: plain}
+  - {text: "no more cruise control", variant: plain}
+  - {text: "come out of cruise", variant: plain}
+  - {text: "disable the cruise", variant: plain}
+  - {text: "release cruise control", variant: plain}
+  - {text: "knock off the cruise na", variant: plain}
+  - {text: "do one thing cancel cruise control", variant: plain}
+  - {text: "just switch cruise off", variant: plain}
+  - {text: "take the car out of cruise mode", variant: plain}
+  - {text: "off the cruise immediately", variant: plain}
+  - {text: "pull the plug on cruise", variant: plain}
+  - {text: "quit cruise control", variant: plain}
+  - {text: "get rid of the cruise", variant: plain}
+  - {text: "cruise band karo", variant: hinglish}
+  - {text: "cruise control hata do", variant: hinglish}
+  - {text: "cruise off kar do jaldi", variant: hinglish}
+  - {text: "cruise se bahar nikalo", variant: hinglish}
+  - {text: "cruise control band kar do yaar", variant: hinglish}
+  - {text: "cruise ko cancel karo", variant: hinglish}
+  - {text: "cruise off maadu", variant: kannada_english}
+  - {text: "cruise control aarisu", variant: kannada_english}
+  - {text: "cruise cancel maadi guru", variant: kannada_english}
+  - {text: "cruise beda off maadi", variant: kannada_english}
+  - {text: "uh turn off the um cruise control", variant: disfluent}
+  - {text: "the cruise um the cruise thing turn it off", variant: disfluent}
+  - {text: "turn on no turn off the cruise", variant: disfluent}
+  - {text: "er cancel the like cruise thing", variant: disfluent}
+  - {text: "um get it off uh cruise you know", variant: disfluent}
+  - {text: "so the cruise control um kill it", variant: disfluent}
+
+# seed 1 (outcome): traffic is bunching up ahead and the cruise is still on
+"1":
+  - {text: "cars are piling up in front and we're still on cruise", variant: plain}
+  - {text: "cars up front are slowing and cruise is engaged", variant: plain}
+  - {text: "there's a jam forming and the car is still cruising", variant: plain}
+  - {text: "vehicles are bunching ahead but cruise control hasn't let go", variant: plain}
+  - {text: "we're closing in on slow traffic with cruise still engaged", variant: plain}
+  - {text: "the road ahead is getting crowded and cruise is active", variant: plain}
+  - {text: "traffic's thickening up and i'm still on cruise control", variant: plain}
+  - {text: "brake lights everywhere ahead and cruise is holding the speed", variant: plain}
+  - {text: "there's a queue building up and the cruise hasn't disengaged", variant: plain}
+  - {text: "we're about to hit a crowd of cars with cruise on", variant: plain}
+  - {text: "there's a toll plaza queue coming and the car's on cruise", variant: plain}
+  - {text: "the cruise is still running and everyone in front is slowing", variant: plain}
+  - {text: "it's getting congested up front while the cruise keeps going", variant: plain}
+  - {text: "stop and go traffic is coming up on cruise", variant: plain}
+  - {text: "the lanes are filling up and we're still cruising at speed", variant: plain}
+  - {text: "cruise is on and there's a pile of cars ahead", variant: plain}
+  - {text: "the gap to the car ahead is shrinking and cruise is still holding", variant: plain}
+  - {text: "heavy traffic in front yet we're still on cruise control", variant: plain}
+  - {text: "the highway is choking up and i haven't come off cruise", variant: plain}
+  - {text: "traffic in front is bunched together and the car is still on cruise", variant: plain}
+  - {text: "we're on cruise and the vehicles ahead are crawling", variant: plain}
+  - {text: "a jam is starting just ahead and cruise is still engaged", variant: plain}
+  - {text: "the trucks ahead are slowing to a crawl and cruise is on", variant: plain}
+  - {text: "there's a snarl up ahead and the cruise control is still active", variant: plain}
+  - {text: "aage traffic jam ho raha hai aur cruise abhi bhi on hai", variant: hinglish}
+  - {text: "saamne gaadiyan ruk rahi hain cruise chalu hai", variant: hinglish}
+  - {text: "aage bheed hai aur gaadi cruise pe hai", variant: hinglish}
+  - {text: "traffic badh raha hai cruise abhi on hai yaar", variant: hinglish}
+  - {text: "cruise chal raha hai aur aage sab slow ho gaye", variant: hinglish}
+  - {text: "aage gaadiyan ekdum paas paas hain aur cruise on hai", variant: hinglish}
+  - {text: "munde traffic jaasti aagide cruise innu on ide", variant: kannada_english}
+  - {text: "munde gaadi ella slow aagide cruise on ide guru", variant: kannada_english}
+  - {text: "cruise innu on ide munde jam ide", variant: kannada_english}
+  - {text: "munde traffic jam aagta ide cruise haakide", variant: kannada_english}
+  - {text: "uh everyone's like bunching up in front and um we're on cruise", variant: disfluent}
+  - {text: "the cars ahead the cars are slowing and we're still on cruise", variant: disfluent}
+  - {text: "there's a jam no a proper pile up ahead and cruise is still on", variant: disfluent}
+  - {text: "er cruise is still uh engaged and traffic is building", variant: disfluent}
+  - {text: "um the cars ahead are you know crawling and the cruise is still going", variant: disfluent}
+  - {text: "so the uh traffic in front is stacking up and cruise hasn't let go", variant: disfluent}
+
+# seed 2 (question): can you cancel the cruise right now
+"2":
+  - {text: "could you turn off cruise control?", variant: plain}
+  - {text: "would you take us off cruise right away", variant: plain}
+  - {text: "can you switch the cruise off immediately?", variant: plain}
+  - {text: "will you disengage cruise now", variant: plain}
+  - {text: "mind killing the cruise this second?", variant: plain}
+  - {text: "could we come off cruise control now", variant: plain}
+  - {text: "can the cruise be cancelled at once", variant: plain}
+  - {text: "would you drop the cruise quickly", variant: plain}
+  - {text: "any chance you can stop cruise control now?", variant: plain}
+  - {text: "can you get rid of the cruise straight away", variant: plain}
+  - {text: "could you knock off cruise this instant", variant: plain}
+  - {text: "would you mind switching off the cruise right away", variant: plain}
+  - {text: "can i have cruise off now?", variant: plain}
+  - {text: "will you shut off the cruise quick", variant: plain}
+  - {text: "could you end cruise mode now?", variant: plain}
+  - {text: "can you release cruise control immediately", variant: plain}
+  - {text: "you can turn off the cruise na?", variant: plain}
+  - {text: "would you take the car off cruise now", variant: plain}
+  - {text: "can we exit cruise right this moment", variant: plain}
+  - {text: "could the cruise go off now?", variant: plain}
+  - {text: "why don't you cut the cruise right now", variant: plain}
+  - {text: "can you kill cruise control quickly?", variant: plain}
+  - {text: "would you disable the cruise immediately", variant: plain}
+  - {text: "can you take cruise off now i'll handle the speed", variant: plain}
+  - {text: "cruise abhi band kar doge?", variant: hinglish}
+  - {text: "cruise cancel kar sakte ho kya abhi", variant: hinglish}
+  - {text: "jaldi se cruise off kar doge", variant: hinglish}
+  - {text: "kya cruise control hata sakte ho turant", variant: hinglish}
+  - {text: "cruise abhi ke abhi band karoge na?", variant: hinglish}
+  - {text: "cruise hata doge yaar", variant: hinglish}
+  - {text: "cruise eega off maadtira?", variant: kannada_english}
+  - {text: "cruise cancel maadbahuda eega", variant: kannada_english}
+  - {text: "cruise control eega aaristira guru", variant: kannada_english}
+  - {text: "beega cruise off maadtiya", variant: kannada_english}
+  - {text: "uh the cruise um can you cancel it now", variant: disfluent}
+  - {text: "can you can you like get us out of cruise now", variant: disfluent}
+  - {text: "could you set no cancel the cruise right away", variant: disfluent}
+  - {text: "er would you like switch off cruise quick?", variant: disfluent}
+  - {text: "um can you you know kill the cruise now", variant: disfluent}
+  - {text: "so can we uh get off cruise right now", variant: disfluent}
+
+# seed 3 (indirect): the car in front just braked hard and i'm on cruise
+"3":
+  - {text: "that car ahead slammed on its brakes and we're still on cruise", variant: plain}
+  - {text: "the guy in front stopped suddenly and the cruise is engaged", variant: plain}
+  - {text: "whoa the vehicle ahead just hit the brakes and i'm cruising", variant: plain}
+  - {text: "the bus in front braked out of nowhere and cruise is still on", variant: plain}
+  - {text: "the car ahead just jammed its brakes and cruise is still running", variant: plain}
+  - {text: "someone in front stamped on the brakes and we're on cruise", variant: plain}
+  - {text: "that auto just stopped dead ahead and i'm on cruise control", variant: plain}
+  - {text: "the truck ahead braked sharply while i'm still cruising", variant: plain}
+  - {text: "brake lights just lit up in front and cruise is active", variant: plain}
+  - {text: "the suv in front came to a sudden halt and i'm on cruise", variant: plain}
+  - {text: "the guy ahead just did an emergency stop and cruise is on", variant: plain}
+  - {text: "that car braked like crazy and i still have cruise engaged", variant: plain}
+  - {text: "the bike in front just stopped short and the car is on cruise", variant: plain}
+  - {text: "the cab ahead of me just slammed to a stop and we're cruising", variant: plain}
+  - {text: "the car right ahead braked hard and the cruise hasn't let go", variant: plain}
+  - {text: "the tempo in front just stood on its brakes and i'm on cruise", variant: plain}
+  - {text: "i'm on cruise and the vehicle in front just pulled up sharply", variant: plain}
+  - {text: "the van ahead braked all of a sudden and cruise is still holding", variant: plain}
+  - {text: "the fellow in front just braked out of nowhere with us on cruise", variant: plain}
+  - {text: "we're on cruise and the car ahead just screeched to a halt", variant: plain}
+  - {text: "that lorry in front just braked and we haven't left cruise", variant: plain}
+  - {text: "the sedan ahead hit the anchors and i'm cruising along", variant: plain}
+  - {text: "whoa that car stopped suddenly and the cruise is still on", variant: plain}
+  - {text: "the jeep ahead just braked hard and cruise is still controlling the speed", variant: plain}
+  - {text: "aage wali gaadi ne achanak brake maara aur main cruise pe hoon", variant: hinglish}
+  - {text: "saamne wale ne zor se brake lagaya cruise on hai", variant: hinglish}
+  - {text: "aage wala ruk gaya aur gaadi cruise pe hai yaar", variant: hinglish}
+  - {text: "aage bus ne brake maara aur cruise abhi chalu hai", variant: hinglish}
+  - {text: "arre aage wale ne brake lagaya main cruise pe hoon", variant: hinglish}
+  - {text: "saamne ki car ekdum ruk gayi aur cruise on hai", variant: hinglish}
+  - {text: "munde car sudden brake haakitu naanu cruise alli iddini", variant: kannada_english}
+  - {text: "munde gaadi brake hodiyitu cruise on ide", variant: kannada_english}
+  - {text: "munde bus nintubittu cruise innu on ide guru", variant: kannada_english}
+  - {text: "ayyo munde avnu brake haakida naavu cruise alli iddivi", variant: kannada_english}
+  - {text: "the the vehicle in front it just braked and um i'm still cruising", variant: disfluent}
+  - {text: "uh that guy ahead braked hard and um cruise is on", variant: disfluent}
+  - {text: "the bus no the car ahead just slammed its brakes and we're cruising", variant: disfluent}
+  - {text: "er the vehicle in front like stopped dead and i'm on cruise", variant: disfluent}
+  - {text: "um we're on cruise and the uh car ahead just braked", variant: disfluent}
+  - {text: "so the guy in front you know just hit the brakes and cruise is still on", variant: disfluent}
+
+# seed 4 (fragment): cruise off
+"4":
+  - {text: "no cruise", variant: plain}
+  - {text: "cancel cruise", variant: plain}
+  - {text: "kill the cruise", variant: plain}
+  - {text: "cruise control off quickly", variant: plain}
+  - {text: "drop cruise", variant: plain}
+  - {text: "cruise mode off please", variant: plain}
+  - {text: "end cruise", variant: plain}
+  - {text: "off cruise control please", variant: plain}
+  - {text: "cruise disengage", variant: plain}
+  - {text: "stop cruise control", variant: plain}
+  - {text: "cruise out", variant: plain}
+  - {text: "cut the cruise", variant: plain}
+  - {text: "cruise finished", variant: plain}
+  - {text: "cruise off right now", variant: plain}
+  - {text: "switch cruise off now", variant: plain}
+  - {text: "disarm cruise", variant: plain}
+  - {text: "quit cruise", variant: plain}
+  - {text: "halt cruise", variant: plain}
+  - {text: "scrap the cruise", variant: plain}
+  - {text: "abort cruise", variant: plain}
+  - {text: "cruise control done", variant: plain}
+  - {text: "enough cruise", variant: plain}
+  - {text: "off with the cruise now", variant: plain}
+  - {text: "cruise away", variant: plain}
+  - {text: "cruise band", variant: hinglish}
+  - {text: "cruise hatao", variant: hinglish}
+  - {text: "cruise ko off karo", variant: hinglish}
+  - {text: "cruise rok do", variant: hinglish}
+  - {text: "cruise nahi chahiye", variant: hinglish}
+  - {text: "cruise khatam", variant: hinglish}
+  - {text: "cruise beda", variant: kannada_english}
+  - {text: "cruise off maadi beega", variant: kannada_english}
+  - {text: "cruise nillisu", variant: kannada_english}
+  - {text: "cruise aarisi", variant: kannada_english}
+  - {text: "uh the cruise um off", variant: disfluent}
+  - {text: "please the cruise uh kill it", variant: disfluent}
+  - {text: "um cruise uh cancel it", variant: disfluent}
+  - {text: "cruise up no cruise off", variant: disfluent}
+  - {text: "er cruise uh enough", variant: disfluent}
+  - {text: "cruise off um now", variant: disfluent}

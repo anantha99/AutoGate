@@ -1,0 +1,219 @@
+# Paraphrases of the find_parking seeds in data/seeds.yaml.
+# Format and rules: docs/paraphrase-spec.md. One key per seed index (as a string),
+# each a list of {text, variant}; variant is plain, hinglish, kannada_english or
+# disfluent. Check with: python -m autogate_bench.paraphrases validate --strict
+
+# seed 0 (command): find me a parking spot near the {place}
+"0":
+  - {text: "look for parking close to the {place}", variant: plain}
+  - {text: "get me somewhere to park by the {place}", variant: plain}
+  - {text: "search for a parking slot around the {place}", variant: plain}
+  - {text: "show me parking near {place}", variant: plain}
+  - {text: "locate a car park next to the {place}", variant: plain}
+  - {text: "find somewhere i can leave the car at the {place}", variant: plain}
+  - {text: "check for open parking around {place}", variant: plain}
+  - {text: "pull up parking options near the {place}", variant: plain}
+  - {text: "parking at the {place} look it up", variant: plain}
+  - {text: "get a parking space sorted near the {place}", variant: plain}
+  - {text: "search parking near {place} for me", variant: plain}
+  - {text: "do one thing find parking close to {place}", variant: plain}
+  - {text: "point me to a parking lot by the {place}", variant: plain}
+  - {text: "find a place to park the car near {place}", variant: plain}
+  - {text: "check basement parking options in the {place}", variant: plain}
+  - {text: "get me a paid parking near the {place}", variant: plain}
+  - {text: "get me covered parking close to the {place}", variant: plain}
+  - {text: "show parking lots around the {place}", variant: plain}
+  - {text: "hunt for a spot to park near {place}", variant: plain}
+  - {text: "locate the nearest parking to {place}", variant: plain}
+  - {text: "find me some parking before we reach the {place}", variant: plain}
+  - {text: "try and get free parking somewhere near the {place}", variant: plain}
+  - {text: "get me a spot to leave the car near the {place}", variant: plain}
+  - {text: "find a parking area right outside the {place}", variant: plain}
+  - {text: "{place} ke paas parking dhundo", variant: hinglish}
+  - {text: "{place} ke paas koi parking spot dikhao", variant: hinglish}
+  - {text: "{place} ke aas paas gaadi lagane ki jagah dhoondo", variant: hinglish}
+  - {text: "{place} pe parking kahan milegi dhundo zara", variant: hinglish}
+  - {text: "mujhe {place} ke paas parking chahiye dhoondh do", variant: hinglish}
+  - {text: "{place} ke bahar parking dekh lo", variant: hinglish}
+  - {text: "{place} hattira parking hudku", variant: kannada_english}
+  - {text: "{place} hattira ondu parking spot hudki kodi", variant: kannada_english}
+  - {text: "{place} alli gaadi nilsoke jaaga hudku", variant: kannada_english}
+  - {text: "{place} pakka parking torisi", variant: kannada_english}
+  - {text: "find me a uh a spot um where i can park near the {place}", variant: disfluent}
+  - {text: "look for parking near the {place} no wait the {place}", variant: disfluent}
+  - {text: "get me um a place to park by the like {place}", variant: disfluent}
+  - {text: "so um any parking like around the the {place} find me one", variant: disfluent}
+  - {text: "er search for a spot near {place} you know to park", variant: disfluent}
+  - {text: "show me a petrol bunk sorry i mean parking near the {place}", variant: disfluent}
+
+# seed 1 (outcome): there's nowhere to park on this street
+"1":
+  - {text: "this road has no parking at all", variant: plain}
+  - {text: "every spot on this street is taken", variant: plain}
+  - {text: "not a single space to park here", variant: plain}
+  - {text: "the whole lane is packed with parked cars", variant: plain}
+  - {text: "i can't find any place to leave the car on this road", variant: plain}
+  - {text: "this street is completely full no space to stop the car", variant: plain}
+  - {text: "both sides of the road are jammed with parked vehicles", variant: plain}
+  - {text: "there's a no parking board all along this road", variant: plain}
+  - {text: "no room to park anywhere on this stretch", variant: plain}
+  - {text: "all the parking here is full", variant: plain}
+  - {text: "this whole street is no parking", variant: plain}
+  - {text: "i've got no place to put the car on this road", variant: plain}
+  - {text: "the road is lined with cars bumper to bumper", variant: plain}
+  - {text: "even the footpath side is full here", variant: plain}
+  - {text: "there isn't a free spot on this street", variant: plain}
+  - {text: "we can't stop here everything is occupied", variant: plain}
+  - {text: "nowhere on this road to leave the vehicle", variant: plain}
+  - {text: "this street has zero parking space", variant: plain}
+  - {text: "this area is hopeless for parking", variant: plain}
+  - {text: "every gap on this road is filled with bikes and cars", variant: plain}
+  - {text: "i don't see any open space to park along this street", variant: plain}
+  - {text: "the parking on this road is jam packed", variant: plain}
+  - {text: "this narrow road has no room to stop the car", variant: plain}
+  - {text: "the street's chock full and i need to stop the car", variant: plain}
+  - {text: "is road pe parking ki jagah hi nahi hai", variant: hinglish}
+  - {text: "yahan gaadi lagane ki koi jagah nahi", variant: hinglish}
+  - {text: "poori gali full hai yaar", variant: hinglish}
+  - {text: "is street pe kahin bhi park nahi kar sakte", variant: hinglish}
+  - {text: "sab jagah gaadiyan khadi hain parking nahi mil rahi", variant: hinglish}
+  - {text: "idhar toh no parking hi no parking hai", variant: hinglish}
+  - {text: "ee road alli parking jaaga illa", variant: kannada_english}
+  - {text: "illi gaadi nilsoke jaaga ne illa", variant: kannada_english}
+  - {text: "ee street full aagide guru", variant: kannada_english}
+  - {text: "ellu park maadoke aagtha illa illi", variant: kannada_english}
+  - {text: "uh this street like it's got no spot at all to park", variant: disfluent}
+  - {text: "this road is um it's totally full no parking", variant: disfluent}
+  - {text: "every every spot here is taken you know", variant: disfluent}
+  - {text: "the street er this whole lane has no parking", variant: disfluent}
+  - {text: "so um i can't park anywhere on this road", variant: disfluent}
+  - {text: "there's no parking on this road no wait on this whole street", variant: disfluent}
+
+# seed 2 (question): is there any parking free near the mall
+"2":
+  - {text: "any free parking around the mall?", variant: plain}
+  - {text: "can you check if there's parking available by the mall", variant: plain}
+  - {text: "do they have open spots near the mall?", variant: plain}
+  - {text: "is any parking space empty close to the mall", variant: plain}
+  - {text: "are there free slots in the mall parking?", variant: plain}
+  - {text: "could you see if the mall lot has space", variant: plain}
+  - {text: "will i get parking near the mall right now?", variant: plain}
+  - {text: "is the mall parking full or is there room", variant: plain}
+  - {text: "any spots left near the shopping mall?", variant: plain}
+  - {text: "can you find out if parking is free near the mall", variant: plain}
+  - {text: "is there space to park at the mall?", variant: plain}
+  - {text: "does the mall have parking available now", variant: plain}
+  - {text: "where can i park near the mall?", variant: plain}
+  - {text: "how's the parking situation near the mall", variant: plain}
+  - {text: "can i find a free spot at the mall basement?", variant: plain}
+  - {text: "are there empty bays around the mall", variant: plain}
+  - {text: "got any parking near the mall?", variant: plain}
+  - {text: "is the mall car park full right now?", variant: plain}
+  - {text: "do you know if the mall has free parking", variant: plain}
+  - {text: "can we park near the mall or is it packed?", variant: plain}
+  - {text: "is parking available at the mall at this hour", variant: plain}
+  - {text: "are there any vacant spots by the mall?", variant: plain}
+  - {text: "is the mall parking still taking cars", variant: plain}
+  - {text: "could i get a spot near the mall now", variant: plain}
+  - {text: "mall ke paas koi parking khaali hai kya?", variant: hinglish}
+  - {text: "mall mein parking mil jayegi kya", variant: hinglish}
+  - {text: "mall ke aas paas parking free hai?", variant: hinglish}
+  - {text: "kya mall ki parking full hai abhi", variant: hinglish}
+  - {text: "mall pe gaadi lagane ki jagah hai kya", variant: hinglish}
+  - {text: "mall ke paas parking milegi kya yaar", variant: hinglish}
+  - {text: "mall hattira parking free ideya?", variant: kannada_english}
+  - {text: "mall alli parking sigutta?", variant: kannada_english}
+  - {text: "mall parking full aagideya", variant: kannada_english}
+  - {text: "mall pakka gaadi nilsoke jaaga ideya?", variant: kannada_english}
+  - {text: "is there um any any open parking at the mall", variant: disfluent}
+  - {text: "uh are there like free spots at the mall?", variant: disfluent}
+  - {text: "the mall parking er is it full or what?", variant: disfluent}
+  - {text: "is there parking near the market no near the mall", variant: disfluent}
+  - {text: "so um can we get parking at the mall you know", variant: disfluent}
+  - {text: "uh any any free bays near the mall?", variant: disfluent}
+
+# seed 3 (indirect): we've been circling the market for ten minutes
+"3":
+  - {text: "we've gone round the market three times now", variant: plain}
+  - {text: "i keep going round and round this bazaar", variant: plain}
+  - {text: "this is our fourth loop around the market", variant: plain}
+  - {text: "we've been driving in circles around the market forever", variant: plain}
+  - {text: "i've done so many rounds of this market area", variant: plain}
+  - {text: "still going round the market looking for a spot", variant: plain}
+  - {text: "we're stuck looping around the vegetable market", variant: plain}
+  - {text: "another round of the market and still nothing", variant: plain}
+  - {text: "we've wasted a quarter hour going around this market", variant: plain}
+  - {text: "i'm going in circles near the market", variant: plain}
+  - {text: "been doing laps around the market for a while now", variant: plain}
+  - {text: "the market road again we keep coming back here", variant: plain}
+  - {text: "we passed the same fruit stall five times already", variant: plain}
+  - {text: "my wife says we've circled this market enough", variant: plain}
+  - {text: "i'm tired of going round the market lanes", variant: plain}
+  - {text: "every lap around the market ends with nothing", variant: plain}
+  - {text: "we've been round this block near the market for ages", variant: plain}
+  - {text: "the kids are asking why we keep going around the market", variant: plain}
+  - {text: "same market same lanes for the last ten minutes", variant: plain}
+  - {text: "this is taking forever we just keep circling", variant: plain}
+  - {text: "round and round the market we go", variant: plain}
+  - {text: "we've driven past the market entrance like six times", variant: plain}
+  - {text: "we keep coming back to the same market corner", variant: plain}
+  - {text: "half an hour gone just driving around the market", variant: plain}
+  - {text: "market ke chakkar kaat rahe hain dus minute se", variant: hinglish}
+  - {text: "kab se market ke round laga rahe hain yaar", variant: hinglish}
+  - {text: "market ke aas paas ghoom ghoom ke thak gaye", variant: hinglish}
+  - {text: "teesri baar market ka chakkar lag gaya", variant: hinglish}
+  - {text: "hum market ke chaaron taraf ghoom rahe hain", variant: hinglish}
+  - {text: "pichle dus minute se yahi market ghoom rahe hain", variant: hinglish}
+  - {text: "hattu nimisha inda market suttha iddivi", variant: kannada_english}
+  - {text: "market suttu suttu saaku aaythu guru", variant: kannada_english}
+  - {text: "mooru sala market round hodvi", variant: kannada_english}
+  - {text: "innu market sutthane iddivi", variant: kannada_english}
+  - {text: "we've been um going round the market for like ten minutes", variant: disfluent}
+  - {text: "uh this is the the third time around the market", variant: disfluent}
+  - {text: "we've been circling the mall no the market for ages", variant: disfluent}
+  - {text: "so we keep uh looping around the market you know", variant: disfluent}
+  - {text: "i've been going round and round um this market", variant: disfluent}
+  - {text: "er ten minutes now just circling the like the market", variant: disfluent}
+
+# seed 4 (fragment): parking nearby
+"4":
+  - {text: "parking close by", variant: plain}
+  - {text: "somewhere to park", variant: plain}
+  - {text: "nearest parking", variant: plain}
+  - {text: "parking around here", variant: plain}
+  - {text: "a spot to park", variant: plain}
+  - {text: "car park near me", variant: plain}
+  - {text: "any parking here", variant: plain}
+  - {text: "closest parking lot", variant: plain}
+  - {text: "parking please", variant: plain}
+  - {text: "place to park", variant: plain}
+  - {text: "open parking spot", variant: plain}
+  - {text: "free parking around", variant: plain}
+  - {text: "park somewhere close", variant: plain}
+  - {text: "parking spot quick", variant: plain}
+  - {text: "parking options here", variant: plain}
+  - {text: "need parking", variant: plain}
+  - {text: "parking lot near here", variant: plain}
+  - {text: "closest spot to park", variant: plain}
+  - {text: "parking space close", variant: plain}
+  - {text: "a parking slot", variant: plain}
+  - {text: "where to park", variant: plain}
+  - {text: "vacant parking near me", variant: plain}
+  - {text: "basement parking around", variant: plain}
+  - {text: "multilevel parking near", variant: plain}
+  - {text: "paas mein parking", variant: hinglish}
+  - {text: "yahan parking kahan hai", variant: hinglish}
+  - {text: "nazdeek parking", variant: hinglish}
+  - {text: "parking dikhao", variant: hinglish}
+  - {text: "koi parking jagah", variant: hinglish}
+  - {text: "gaadi lagane ki jagah", variant: hinglish}
+  - {text: "hattira parking", variant: kannada_english}
+  - {text: "illi parking yelli", variant: kannada_english}
+  - {text: "parking jaaga beku", variant: kannada_english}
+  - {text: "pakka parking", variant: kannada_english}
+  - {text: "uh parking um nearby", variant: disfluent}
+  - {text: "um a spot uh close by to park", variant: disfluent}
+  - {text: "some parking near uh here", variant: disfluent}
+  - {text: "fuel no parking nearby", variant: disfluent}
+  - {text: "um any any parking around", variant: disfluent}
+  - {text: "er spot to park you know", variant: disfluent}
