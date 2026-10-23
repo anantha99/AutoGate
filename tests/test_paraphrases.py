@@ -4,6 +4,7 @@ from pathlib import Path
 
 import pytest
 
+from autogate_bench.intents import INTENTS
 from autogate_bench.paraphrases import (
     PER_SEED,
     QUOTA,
@@ -285,6 +286,6 @@ def test_status(capsys):
     by = {ln.split()[0]: ln for ln in lines if ln}
     assert by["start_video_call"].endswith("complete")
     assert "no file" in by["call_contact"]
-    assert lines[-1].startswith("2/65 intents complete, 320/")
+    assert lines[-1].startswith(f"2/{len(INTENTS)} intents complete, 320/")
     assert main(["status", "--dir", str(FIXTURE)]) == 0
-    assert "2/65 intents complete" in capsys.readouterr().out
+    assert f"2/{len(INTENTS)} intents complete" in capsys.readouterr().out

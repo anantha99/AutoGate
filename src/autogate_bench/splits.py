@@ -1,10 +1,13 @@
 """Train / val / test / ood assignment, by seed.
 
 Paraphrases of one seed are near-duplicates, so the split unit is the seed:
-every row generated from a seed lands in that seed's split. The six intents
+every row generated from a seed lands in that seed's split. The eight intents
 in the "Suggested OOD holdout" of ``docs/taxonomy.md`` go entirely to
-``ood``. The remaining seeds are split 80/10/10 within each intent group, so
-every group appears in train, val and test.
+``ood``. They are chosen by tag: every value of every tag keeps at least six
+training intents, and the holdout tests every value of every tag at least
+once (checked in ``tests/test_splits.py``). The remaining seeds are split
+80/10/10 within each intent group, so every group appears in train, val and
+test.
 """
 
 from __future__ import annotations
@@ -19,12 +22,14 @@ TRAIN, VAL, TEST, OOD = "train", "val", "test", "ood"
 SPLITS: tuple[str, ...] = (TRAIN, VAL, TEST, OOD)
 
 OOD_INTENTS: tuple[str, ...] = (
-    "disable_child_locks",
-    "add_stop_along_route",
-    "summarize_group_chat",
-    "vehicle_manual_question",
-    "plan_charging_stops",
-    "add_calendar_event",
+    "set_ambient_lighting",
+    "fog_lights_on",
+    "open_fuel_door",
+    "route_avoiding_tolls",
+    "compose_long_email",
+    "read_news_headlines",
+    "estimate_trip_cost",
+    "pair_bluetooth_device",
 )
 
 

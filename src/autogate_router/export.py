@@ -7,7 +7,7 @@ Steps: load the checkpoint with eager attention, merge the LoRA adapter into
 the backbone, trace the three-head model with the TorchScript exporter
 (opset 17; inputs ``input_ids``, ``attention_mask``, ``utterance_mask``, all
 int64 [batch, sequence]; outputs ``route_logits`` [batch, 5],
-``intent_logits`` [batch, 65], ``span_logits`` [batch, sequence, 11], and,
+``intent_logits`` [batch, n_intents], ``span_logits`` [batch, sequence, 11], and,
 when the checkpoint has tag heads, ``capability_logits`` [batch, 4],
 ``distraction_logits`` [batch, 3], ``actuation_logits`` [batch, 4],
 ``consequence_logits`` [batch, 3]; batch and sequence axes dynamic), then

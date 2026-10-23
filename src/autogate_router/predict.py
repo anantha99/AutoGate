@@ -60,7 +60,7 @@ TAG_PREDICTION_FIELDS = ("tags", "tag_probs", "route_e2e", "route_tags", "route_
 
 
 def infer(model: Any, examples: Sequence[dict], batch_size: int, device: Any) -> dict[str, Any]:
-    """Logits for every example: route [N, 5], intent [N, 65], per-example span tag ids,
+    """Logits for every example: route [N, 5], intent [N, n_intents], per-example span tag ids,
     and ``tag_logits`` {tag: [N, n_classes]} when the model has tag heads."""
     import torch
 

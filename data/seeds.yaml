@@ -52,6 +52,24 @@ emergency_call:
   - {text: "can you get the police on the line", style: question}
   - {text: "my father is having chest pains in the back seat", style: indirect}
   - {text: "sos", style: fragment}
+fog_lights_on:
+  - {text: "turn on the fog lights", style: command}
+  - {text: "i can barely see ten metres in this fog", style: outcome}
+  - {text: "can you switch on the fog lamps", style: question}
+  - {text: "we're going down the ghat and the clouds are on the road", style: indirect}
+  - {text: "fog lamps", style: fragment}
+dip_high_beams:
+  - {text: "switch off the high beam", style: command}
+  - {text: "i'm blinding the cars coming the other way", style: outcome}
+  - {text: "can you put the lights on dipper", style: question}
+  - {text: "the lorry ahead is waving at me about my lights", style: indirect}
+  - {text: "high beam off", style: fragment}
+cancel_cruise_control:
+  - {text: "turn off cruise control", style: command}
+  - {text: "traffic is bunching up ahead and the cruise is still on", style: outcome}
+  - {text: "can you cancel the cruise right now", style: question}
+  - {text: "the car in front just braked hard and i'm on cruise", style: indirect}
+  - {text: "cruise off", style: fragment}
 set_cabin_temperature:
   - {text: "set the temperature to {temperature}", style: command}
   - {text: "it's a bit too warm in the cabin", style: outcome}
@@ -142,6 +160,24 @@ fold_mirrors:
   - {text: "can you tuck the mirrors in", style: question}
   - {text: "this lane is really narrow with bikes on both sides", style: indirect}
   - {text: "mirrors in", style: fragment}
+open_fuel_door:
+  - {text: "open the fuel lid", style: command}
+  - {text: "can you pop open the charging port cover", style: question}
+  - {text: "the attendant says the fuel cap won't open from outside", style: outcome}
+  - {text: "we're at the petrol bunk and the boy is waiting", style: indirect}
+  - {text: "fuel flap", style: fragment}
+disable_stability_control:
+  - {text: "turn off the stability control", style: command}
+  - {text: "can you switch off traction control for a bit", style: question}
+  - {text: "the wheels just keep spinning in this sand", style: outcome}
+  - {text: "my friend wants to try some drifting in the empty lot", style: indirect}
+  - {text: "esp off", style: fragment}
+adjust_steering_wheel:
+  - {text: "move the steering wheel up a little", style: command}
+  - {text: "can you pull the steering column closer to me", style: question}
+  - {text: "the steering wheel is blocking my view of the speedometer", style: outcome}
+  - {text: "my husband drove last and left the steering set for him", style: indirect}
+  - {text: "steering lower", style: fragment}
 
 # --------------------------------------------------------------------------- #
 # navigation
@@ -193,6 +229,18 @@ add_stop_along_route:
   - {text: "can we stop at a {place} somewhere along the route", style: question}
   - {text: "the baby needs a diaper change before the expressway", style: indirect}
   - {text: "petrol bunk on the way", style: fragment}
+find_parking:
+  - {text: "find me a parking spot near the {place}", style: command}
+  - {text: "there's nowhere to park on this street", style: outcome}
+  - {text: "is there any parking free near the mall", style: question}
+  - {text: "we've been circling the market for ten minutes", style: indirect}
+  - {text: "parking nearby", style: fragment}
+route_avoiding_tolls:
+  - {text: "avoid toll roads on this route", style: command}
+  - {text: "i don't want to pay any toll today", style: outcome}
+  - {text: "can you find a way without the expressway tolls", style: question}
+  - {text: "my fastag balance is almost zero", style: indirect}
+  - {text: "no tolls", style: fragment}
 
 # --------------------------------------------------------------------------- #
 # communication
@@ -246,6 +294,18 @@ compose_long_email:
   - {text: "can you help me write a proper email to {contact}", style: question}
   - {text: "i need to write up the whole project update for my boss", style: outcome}
   - {text: "the client is expecting a detailed proposal from me today", style: indirect}
+read_email_aloud:
+  - {text: "read my latest emails", style: command}
+  - {text: "did my manager send me any email about the review", style: question}
+  - {text: "i need to catch up on my inbox before the meeting", style: outcome}
+  - {text: "the office has been mailing me nonstop since morning", style: indirect}
+  - {text: "new emails", style: fragment}
+share_live_location:
+  - {text: "share my live location with {contact}", style: command}
+  - {text: "can you send {contact} where i am right now", style: question}
+  - {text: "i want {contact} to track me till i reach", style: outcome}
+  - {text: "{contact} keeps asking where i've reached", style: indirect}
+  - {text: "location to {contact}", style: fragment}
 
 # --------------------------------------------------------------------------- #
 # media
@@ -328,6 +388,30 @@ fuel_range:
   - {text: "the fuel light just came on", style: outcome}
   - {text: "the next bunk is {number} kilometres away", style: indirect}
   - {text: "range left", style: fragment}
+fuel_prices_nearby:
+  - {text: "tell me today's petrol price around here", style: command}
+  - {text: "how much is diesel per litre nearby", style: question}
+  - {text: "i want to know if petrol is cheaper in the next town", style: outcome}
+  - {text: "my colleague said petrol crossed a hundred again", style: indirect}
+  - {text: "petrol rate today", style: fragment}
+place_opening_hours:
+  - {text: "check if the {place} is open now", style: command}
+  - {text: "what time does the pharmacy close tonight", style: question}
+  - {text: "i don't want to drive there and find it shut", style: outcome}
+  - {text: "the bank might have closed early for the holiday", style: indirect}
+  - {text: "{place} timings", style: fragment}
+translate_phrase:
+  - {text: "translate where is the hospital into kannada", style: command}
+  - {text: "how do you say thank you in tamil", style: question}
+  - {text: "i need to tell the watchman something in marathi", style: outcome}
+  - {text: "the parking attendant here only speaks telugu", style: indirect}
+  - {text: "kannada for turn left", style: fragment}
+read_news_headlines:
+  - {text: "read me today's headlines", style: command}
+  - {text: "what's happening in the news this morning", style: question}
+  - {text: "i haven't seen any news since yesterday", style: outcome}
+  - {text: "my father will want to discuss the election at dinner", style: indirect}
+  - {text: "top news", style: fragment}
 
 # --------------------------------------------------------------------------- #
 # planning
@@ -352,6 +436,12 @@ plan_charging_stops:
   - {text: "where should i charge on the way to {city}", style: question}
   - {text: "the battery won't cover the full trip to {city}", style: outcome}
   - {text: "first time taking the ev out on the highway", style: indirect}
+estimate_trip_cost:
+  - {text: "work out the fuel cost for the drive to {city}", style: command}
+  - {text: "how much will petrol cost to {city} and back", style: question}
+  - {text: "i need to split the fuel money with my friends", style: outcome}
+  - {text: "we're sharing the drive to {city} three ways", style: indirect}
+  - {text: "trip cost to {city}", style: fragment}
 
 # --------------------------------------------------------------------------- #
 # productivity
@@ -396,3 +486,9 @@ browse_web:
   - {text: "can you open that news site on the screen", style: question}
   - {text: "i want to read about the election results on screen", style: outcome}
   - {text: "browser", style: fragment}
+pay_bill:
+  - {text: "pay my mobile bill now", style: command}
+  - {text: "can you pay the water bill with the card ending {card}", style: question}
+  - {text: "the broadband gets cut off if i don't pay today", style: outcome}
+  - {text: "the landlord has been asking for the rent since monday", style: indirect}
+  - {text: "pay gas bill", style: fragment}

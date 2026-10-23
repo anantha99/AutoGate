@@ -38,7 +38,7 @@ value of the context.
 | head | input | output | loss |
 | --- | --- | --- | --- |
 | route | pooled utterance representation | 5 logits, `Route` order | cross-entropy, class-weighted (below) |
-| intent | the same pooled vector | 65 logits, `INTENTS` order | cross-entropy, auxiliary |
+| intent | the same pooled vector | one logit per intent (81), `INTENTS` order | cross-entropy, auxiliary |
 | span | every token's hidden state | 11 BIO logits | token cross-entropy, prefix/special/padding ignored |
 | capability, distraction, actuation, consequence | the same pooled vector | 4, 3, 4, 3 logits, schema enum order | cross-entropy, class-weighted (see [Tag heads](#tag-heads)) |
 

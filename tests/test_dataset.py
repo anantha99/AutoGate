@@ -212,7 +212,7 @@ def test_paraphrases_inherit_split_style_and_labels():
         assert spans_from_bio(r.utterance, r.bio) == list(r.spans)
         assert "{" not in r.utterance
     splits = {r.split for r in PROWS if r.intent == "plan_day_itinerary" and r.source != "seed"}
-    assert splits == {"train", "test"}
+    assert splits == {"train", "val"}
     assert {r.split for r in PROWS if r.intent == "start_video_call"} == {"train"}
 
 

@@ -9,6 +9,7 @@ torch = pytest.importorskip("torch")
 pytest.importorskip("transformers")
 pytest.importorskip("peft")
 
+from autogate_bench.intents import INTENTS  # noqa: E402
 from autogate_router.data import (  # noqa: E402
     build_examples,
     class_weights_from_cost_matrix,
@@ -52,7 +53,7 @@ def test_forward_shapes_and_loss(tiny_backbone, tiny_tokenizer, pilot_rows, kw):
     out = model(**batch)
     b, t = batch["input_ids"].shape
     assert out["route_logits"].shape == (b, 5)
-    assert out["intent_logits"].shape == (b, 65)
+    assert out["intent_logits"].shape == (b, len(INTENTS))
     assert out["span_logits"].shape == (b, t, 11)
     for name, n in (("capability", 4), ("distraction", 3), ("actuation", 4), ("consequence", 3)):
         assert out[f"{name}_logits"].shape == (b, n)

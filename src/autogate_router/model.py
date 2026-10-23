@@ -3,7 +3,7 @@
 * ``route``: 5-way over the pooled utterance representation, cross-entropy
   with per-class weights from the cost matrix
   (:func:`autogate_router.data.class_weights_from_cost_matrix`).
-* ``intent``: 65-way over the same pooled representation, plain
+* ``intent``: one logit per intent (81) over the same pooled representation, plain
   cross-entropy (auxiliary).
 * ``span``: per-token BIO over the 11 sensitive-span tags, cross-entropy
   ignoring ``-100`` (prefix, special and padding tokens).

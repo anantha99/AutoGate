@@ -6,7 +6,7 @@ at prediction time. A checkpoint therefore never depends on the order of
 ``Route`` or ``INTENTS`` in whatever version of the code loads it.
 
 * ``ROUTES``: the five routes in ``autogate_bench.schema.Route`` order.
-* ``INTENTS``: the 65 intent names in ``autogate_bench.intents.INTENTS`` order.
+* ``INTENTS``: the intent names (81) in ``autogate_bench.intents.INTENTS`` order.
 * ``BIO_TAGS``: ``O`` then ``B-``/``I-`` for each sensitive span label, in
   the fixed order contact, phone, address, otp, card (11 tags).
 * ``CAPABILITIES``, ``DISTRACTIONS``, ``ACTUATIONS``, ``CONSEQUENCES``: the

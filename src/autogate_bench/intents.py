@@ -1,4 +1,4 @@
-"""The AutoGate intent taxonomy: 65 intents in seven groups.
+"""The AutoGate intent taxonomy: 81 intents in seven groups.
 
 Every benchmark utterance maps to exactly one intent. The intent's three routing tags
 (capability, distraction, actuation) plus the vehicle context fully determine
@@ -42,9 +42,9 @@ from autogate_bench.schema import IntentGroup as G
 
 INTENTS: tuple[Intent, ...] = (
     # ======================================================================= #
-    # vehicle_control (22): all LOCAL_OK, all LOW distraction
+    # vehicle_control (28): all LOCAL_OK, all LOW distraction
     # ======================================================================= #
-    # ---- safety_critical (5): a delay could itself be dangerous ------------ #
+    # ---- safety_critical (8): a delay could itself be dangerous ------------ #
     Intent(
         "defrost_windshield",
         G.VEHICLE_CONTROL,
@@ -90,6 +90,33 @@ INTENTS: tuple[Intent, ...] = (
         "Call emergency services from the car",
         consequence=Q.IRREVERSIBLE,  # irreversible, but safety_critical is exempt from confirmation
     ),  # judgment: an eCall-style vehicle function, so it bypasses every gate and never DEFERs
+    Intent(
+        "fog_lights_on",
+        G.VEHICLE_CONTROL,
+        C.LOCAL_OK,
+        L.LOW,
+        A.SAFETY_CRITICAL,
+        "Turn on the fog lights",
+        consequence=Q.REVERSIBLE,
+    ),
+    Intent(
+        "dip_high_beams",
+        G.VEHICLE_CONTROL,
+        C.LOCAL_OK,
+        L.LOW,
+        A.SAFETY_CRITICAL,
+        "Switch the high beams off and drop to low beam",
+        consequence=Q.REVERSIBLE,
+    ),  # judgment: dazzling oncoming drivers is an immediate hazard; turning high beam on is not
+    Intent(
+        "cancel_cruise_control",
+        G.VEHICLE_CONTROL,
+        C.LOCAL_OK,
+        L.LOW,
+        A.SAFETY_CRITICAL,
+        "Disengage cruise control",
+        consequence=Q.REVERSIBLE,
+    ),  # judgment: handing speed back to the driver must never wait; adjusting the speed is comfort
     # ---- comfort (11): adjusted routinely while moving ---------------------- #
     Intent(
         "set_cabin_temperature",
@@ -190,7 +217,7 @@ INTENTS: tuple[Intent, ...] = (
         "Raise or lower the cruise control set speed",
         consequence=Q.REVERSIBLE,
     ),  # judgment: nudging an engaged system's speed is routine; turning assistance off is not
-    # ---- restricted (6): only when parked ---------------------------------- #
+    # ---- restricted (9): only when parked ---------------------------------- #
     Intent(
         "disable_lane_assist",
         G.VEHICLE_CONTROL,
@@ -245,8 +272,35 @@ INTENTS: tuple[Intent, ...] = (
         "Fold or unfold the side mirrors",
         consequence=Q.REVERSIBLE,
     ),  # judgment: folding removes rear visibility while moving; unfold-only is not split out
+    Intent(
+        "open_fuel_door",
+        G.VEHICLE_CONTROL,
+        C.LOCAL_OK,
+        L.LOW,
+        A.RESTRICTED,
+        "Open the fuel filler door or the charging port cover",
+        consequence=Q.REVERSIBLE,
+    ),
+    Intent(
+        "disable_stability_control",
+        G.VEHICLE_CONTROL,
+        C.LOCAL_OK,
+        L.LOW,
+        A.RESTRICTED,
+        "Turn off electronic stability or traction control",
+        consequence=Q.REVERSIBLE,
+    ),
+    Intent(
+        "adjust_steering_wheel",
+        G.VEHICLE_CONTROL,
+        C.LOCAL_OK,
+        L.LOW,
+        A.RESTRICTED,
+        "Move the steering wheel up, down, closer, or further away",
+        consequence=Q.REVERSIBLE,
+    ),  # judgment: a power column moving under the driver's hands is unsafe while moving
     # ======================================================================= #
-    # navigation (8)
+    # navigation (10)
     # ======================================================================= #
     Intent(
         "next_turn",
@@ -312,8 +366,24 @@ INTENTS: tuple[Intent, ...] = (
         description="Add a stop, such as coffee or a charger, along the current route",
         consequence=Q.REVERSIBLE,
     ),
+    Intent(
+        "find_parking",
+        G.NAVIGATION,
+        C.CLOUD_PREFERRED,
+        L.MEDIUM,
+        description="Find a place to park near here or near the destination",
+        consequence=Q.NONE,
+    ),  # judgment: live occupancy needs the cloud; onboard parking POIs answer offline
+    Intent(
+        "route_avoiding_tolls",
+        G.NAVIGATION,
+        C.CLOUD_PREFERRED,
+        L.LOW,
+        description="Re-route the active navigation to avoid tolls or highways",
+        consequence=Q.REVERSIBLE,
+    ),  # judgment: online routing compares alternatives better; the onboard router can avoid tolls
     # ======================================================================= #
-    # communication (9)
+    # communication (11)
     # ======================================================================= #
     Intent(
         "call_contact",
@@ -387,6 +457,22 @@ INTENTS: tuple[Intent, ...] = (
         description="Dictate and edit a long email",
         consequence=Q.IRREVERSIBLE,  # irreversible once sent
     ),
+    Intent(
+        "read_email_aloud",
+        G.COMMUNICATION,
+        C.NEEDS_SMALL_LOCAL,
+        L.MEDIUM,
+        description="Hear recent emails read out or condensed",
+        consequence=Q.NONE,
+    ),  # judgment: emails are too long to read verbatim, so they are condensed for speech
+    Intent(
+        "share_live_location",
+        G.COMMUNICATION,
+        C.LOCAL_OK,
+        L.LOW,
+        description="Share the car's live location with a contact",
+        consequence=Q.IRREVERSIBLE,  # irreversible: the contact sees where the driver is
+    ),  # judgment: a contact match plus a share command, like placing a call
     # ======================================================================= #
     # media (7)
     # ======================================================================= #
@@ -447,7 +533,7 @@ INTENTS: tuple[Intent, ...] = (
         consequence=Q.NONE,
     ),
     # ======================================================================= #
-    # information (7)
+    # information (11)
     # ======================================================================= #
     Intent(
         "weather_now",
@@ -505,8 +591,40 @@ INTENTS: tuple[Intent, ...] = (
         description="Ask how far the car can go on the remaining fuel or charge",
         consequence=Q.NONE,
     ),
+    Intent(
+        "fuel_prices_nearby",
+        G.INFORMATION,
+        C.CLOUD_PREFERRED,
+        L.LOW,
+        description="Ask what fuel costs at stations nearby",
+        consequence=Q.NONE,
+    ),  # judgment: today's prices are live; last-synced onboard prices still answer offline
+    Intent(
+        "place_opening_hours",
+        G.INFORMATION,
+        C.CLOUD_PREFERRED,
+        L.LOW,
+        description="Ask whether a place is open now or when it closes",
+        consequence=Q.NONE,
+    ),  # judgment: holiday and live hours need the cloud; onboard POI hours answer offline
+    Intent(
+        "translate_phrase",
+        G.INFORMATION,
+        C.NEEDS_SMALL_LOCAL,
+        L.LOW,
+        description="Translate a short phrase into another language",
+        consequence=Q.NONE,
+    ),
+    Intent(
+        "read_news_headlines",
+        G.INFORMATION,
+        C.NEEDS_CLOUD,
+        L.MEDIUM,
+        description="Hear the latest news headlines",
+        consequence=Q.NONE,
+    ),
     # ======================================================================= #
-    # planning (4): all NEEDS_CLOUD, all MEDIUM
+    # planning (5)
     # ======================================================================= #
     Intent(
         "plan_multi_day_trip",
@@ -540,8 +658,16 @@ INTENTS: tuple[Intent, ...] = (
         description="Plan charging stops for an electric-vehicle journey",
         consequence=Q.NONE,
     ),
+    Intent(
+        "estimate_trip_cost",
+        G.PLANNING,
+        C.NEEDS_SMALL_LOCAL,
+        L.LOW,
+        description="Estimate the fuel or charging cost of a trip",
+        consequence=Q.NONE,
+    ),  # judgment: distance, efficiency and a price combined in a short sum fit an 8B model
     # ======================================================================= #
-    # productivity (8)
+    # productivity (9)
     # ======================================================================= #
     Intent(
         "calendar_today",
@@ -607,6 +733,14 @@ INTENTS: tuple[Intent, ...] = (
         description="Open and browse a web page",
         consequence=Q.NONE,
     ),
+    Intent(
+        "pay_bill",
+        G.PRODUCTIVITY,
+        C.NEEDS_CLOUD,
+        L.HIGH,
+        description="Pay a utility, phone, or other bill",
+        consequence=Q.IRREVERSIBLE,  # irreversible: money leaves the account
+    ),  # judgment: HIGH because checking the payee and amount and entering a PIN need the screen
 )
 
 INTENTS_BY_NAME: dict[str, Intent] = {i.name: i for i in INTENTS}

@@ -80,7 +80,7 @@ def test_predict_score_calibrate(smoke_run, pilot_jsonl, tmp_path, capsys):
         ]
     )
     preds = [json.loads(line) for line in preds_path.read_text().splitlines()]
-    assert len(preds) == 213  # pilot test + ood
+    assert len(preds) == 270  # pilot test + ood
     for p in preds:
         assert tuple(p) == PREDICTION_FIELDS + TAG_PREDICTION_FIELDS
         assert p["route"] == p["route_e2e"]  # the default route source
@@ -103,7 +103,7 @@ def test_predict_score_calibrate(smoke_run, pilot_jsonl, tmp_path, capsys):
             }
 
     result = score_main(["--rows", str(pilot_jsonl), "--preds", str(preds_path), "--n-boot", "20"])
-    assert result["n_scored"] == 213
+    assert result["n_scored"] == 270
     assert set(result["route"]["by_split"]) == {"test", "ood"}
     assert "intent" in result and "spans" in result
     assert set(result["tags"]["by_split"]) == {"test", "ood"}
@@ -217,7 +217,7 @@ def test_predict_write_all_schema(smoke_run, pilot_jsonl, pilot_rows, tmp_path):
         for n in names
     }
     rows = {r["id"]: r for r in pilot_rows}
-    assert {len(v) for v in files.values()} == {213}
+    assert {len(v) for v in files.values()} == {270}
     for e2e, tag, comb in zip(files["e2e"], files["tags"], files["combined"], strict=True):
         assert e2e["id"] == tag["id"] == comb["id"]
         assert tuple(e2e) == PREDICTION_FIELDS + TAG_PREDICTION_FIELDS
@@ -259,7 +259,7 @@ def test_old_checkpoint_predicts_without_tags(tmp_path, pilot_jsonl, tiny_backbo
     args = ["--checkpoint", str(ckpt), "--rows", str(pilot_jsonl), "--split", "test"]
     path = predict_main([*args, "--out", str(tmp_path / "p.jsonl")])
     preds = [json.loads(line) for line in path.read_text().splitlines()]
-    assert len(preds) == 108 and all(tuple(p) == PREDICTION_FIELDS for p in preds)
+    assert len(preds) == 129 and all(tuple(p) == PREDICTION_FIELDS for p in preds)
     with pytest.raises(ValueError, match="tag heads"):
         predict_main([*args, "--route-source", "tags", "--out", str(tmp_path / "t.jsonl")])
 
@@ -304,7 +304,7 @@ def test_tags_smoke_end_to_end(tmp_path, pilot_jsonl, tiny_backbone, capsys):
             + ["--n-boot", "10", "--json", str(js)]
         )
         scores[src] = json.loads(js.read_text())
-        assert scores[src]["n_scored"] == 213
+        assert scores[src]["n_scored"] == 270
         assert set(scores[src]["route"]["by_split"]) == {"test", "ood"}
     # the tag report depends on the tags, not on the route source
     assert scores["e2e"]["tags"] == scores["tags"]["tags"] == scores["combined"]["tags"]
@@ -313,7 +313,7 @@ def test_tags_smoke_end_to_end(tmp_path, pilot_jsonl, tiny_backbone, capsys):
 
     table = run_comparison(runs, capsys)
     for src in ("e2e", "tags", "combined"):
-        assert f"| qwen3-0.6b-tags [{src}] | 108 |" in table
+        assert f"| qwen3-0.6b-tags [{src}] | 129 |" in table
     assert "### Tags: qwen3-0.6b-tags" in table and "| ood | actuation |" in table
 
     report = export_main(

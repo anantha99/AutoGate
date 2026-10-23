@@ -28,7 +28,7 @@ SNAKE_CASE = re.compile(r"^[a-z][a-z0-9]*(_[a-z0-9]+)*$")
 
 
 def test_intent_count_in_range():
-    assert 58 <= len(INTENTS) <= 66
+    assert 75 <= len(INTENTS) <= 85
 
 
 def test_names_are_unique():
@@ -125,8 +125,10 @@ def test_irreversible_intents_are_the_ones_another_party_sees():
         "reply_to_message",
         "start_video_call",
         "compose_long_email",
+        "share_live_location",
         "book_restaurant",
         "add_calendar_event",
+        "pay_bill",
     }
 
 

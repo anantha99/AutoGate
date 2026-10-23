@@ -26,9 +26,10 @@ PERSON_TARGETING = (
     "start_video_call",
     "compose_long_email",
     "navigate_to_contact_address",
+    "share_live_location",
 )
 
-RECEIVED_ONLY = ("read_messages", "summarize_group_chat", "play_voicemail")
+RECEIVED_ONLY = ("read_messages", "summarize_group_chat", "play_voicemail", "read_email_aloud")
 
 MAX_WORDS = 12
 

@@ -101,9 +101,9 @@ def test_rules_emit_is_scored(tmp_path, pilot_jsonl, capsys):
     assert preds[0]["confidence"] is None and preds[0]["route_probs"] is None
     result = score_main(["--rows", str(pilot_jsonl), "--preds", str(out), "--n-boot", "20"])
     # same routes as the baseline's own report
-    assert result["route"]["overall"]["accuracy"] == pytest.approx(0.958, abs=1e-3)
-    assert result["intent"]["accuracy"] == pytest.approx(0.992, abs=1e-3)
-    assert "scored 1182 of 1182 rows" in capsys.readouterr().out
+    assert result["route"]["overall"]["accuracy"] == pytest.approx(0.966, abs=1e-3)
+    assert result["intent"]["accuracy"] == pytest.approx(0.994, abs=1e-3)
+    assert "scored 1476 of 1476 rows" in capsys.readouterr().out
 
 
 # --------------------------------------------------------------------------- #

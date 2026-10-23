@@ -37,7 +37,7 @@ from autogate_router.labels import (
 def test_vocabularies():
     assert ROUTES == tuple(str(r) for r in Route)
     assert INTENTS == tuple(i.name for i in BENCH_INTENTS)
-    assert len(INTENTS) == 65
+    assert len(INTENTS) == 81
     assert len(BIO_TAGS) == 11 and BIO_TAGS[0] == "O"
     assert BIO_TAGS[1:3] == ("B-contact", "I-contact")
 

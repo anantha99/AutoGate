@@ -1,6 +1,6 @@
 # Seed-only pilot dataset
 
-The first end-to-end run of the AutoGate data pipeline: the 281 hand-written
+The first end-to-end run of the AutoGate data pipeline: the 361 hand-written
 seeds in `data/seeds.yaml`, filled with synthetic slot values, paired with
 vehicle contexts, labeled by the rulebook, split, and scored with the rules
 baseline. There are no paraphrases yet, so every utterance is a seed with
@@ -19,7 +19,7 @@ uv run python -m autogate_eval.baselines.rules --rows data/generated/pilot/rows.
 `generate` defaults to `--contexts-per-utterance 3 --n-sensitive 2 --n-generic 1`
 and writes `rows.jsonl`, `rows.parquet` and `manifest.json`. Running it twice
 with the same arguments gives a byte-identical `rows.jsonl` (sha256
-`93162f2755a621fa5d7411f3c973d95a13fc69f178d42886c41160a841973519` for this
+`0c7139ace3742cf48bfb2383c649e1ccb3d3dfc7c18a9195749aa80f83634e45` for this
 run). `data/generated/` is gitignored; regenerate rather than download.
 
 ## How rows are made
@@ -38,7 +38,7 @@ run). `data/generated/` is gitignored; regenerate rather than download.
    flippable utterance shows at least two different labels.
 3. **Label** (`autogate_bench.rulebook.route`) with the default policy;
    route, reason and demand are stored.
-4. **Split** (`autogate_bench.splits`) by seed: the six OOD intents from
+4. **Split** (`autogate_bench.splits`) by seed: the eight OOD intents from
    `docs/taxonomy.md` go to `ood`; the rest are split 80/10/10 per intent
    group, keeping at least two train seeds per intent.
 
@@ -46,64 +46,68 @@ Row ids are `{intent}/{seed index}-{fill}-{context}`.
 
 ## Counts
 
-1182 rows = 394 utterances x 3 contexts, from 281 seeds.
+Regenerated 2026-10-23 for the 81-intent taxonomy (16 new intents, 80 new
+seeds, a new OOD holdout); the labels and splits of the 65-intent pilot no
+longer apply.
+
+1476 rows = 492 utterances x 3 contexts, from 361 seeds.
 
 | split | seeds | rows | LOCAL | CLOUD | CLOUD_MASKED | DEFER | REFUSE | sensitive rate |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| train | 204 | 855 | 565 | 77 | 21 | 87 | 105 | 0.161 |
-| val | 26 | 114 | 68 | 14 | 8 | 17 | 7 | 0.263 |
-| test | 26 | 108 | 66 | 9 | 7 | 12 | 14 | 0.167 |
-| ood | 25 | 105 | 38 | 26 | 2 | 17 | 22 | 0.057 |
-| **all** | 281 | 1182 | 737 | 126 | 38 | 133 | 148 | 0.162 |
+| train | 258 | 1068 | 676 | 125 | 27 | 111 | 129 | 0.157 |
+| val | 33 | 138 | 85 | 14 | 5 | 15 | 19 | 0.174 |
+| test | 33 | 129 | 76 | 16 | 4 | 16 | 17 | 0.186 |
+| ood | 37 | 141 | 71 | 24 | 4 | 21 | 21 | 0.085 |
+| **all** | 361 | 1476 | 908 | 179 | 40 | 163 | 186 | 0.154 |
 
-Routes overall: LOCAL 62.4%, CLOUD 10.7%, CLOUD_MASKED 3.2%, DEFER 11.3%,
-REFUSE 12.5%.
+Routes overall: LOCAL 61.5%, CLOUD 12.1%, CLOUD_MASKED 2.7%, DEFER 11.0%,
+REFUSE 12.6%.
 
-Reasons: local_capable 619, no_connectivity 133, cloud_default 126,
-distraction 121, safety_critical 63, sensitive_spans 38, local_fallback 33,
-restricted_actuation 27, strict_privacy 22.
+Reasons: local_capable 708, cloud_default 179, no_connectivity 163,
+distraction 141, safety_critical 108, local_fallback 68,
+restricted_actuation 45, sensitive_spans 40, strict_privacy 24.
 
 | group | rows | train | val | test | ood |
 | --- | --- | --- | --- | --- | --- |
-| vehicle_control | 315 | 240 | 27 | 36 | 12 |
-| communication | 255 | 192 | 27 | 24 | 12 |
-| navigation | 159 | 102 | 21 | 15 | 21 |
-| productivity | 138 | 90 | 12 | 9 | 27 |
-| information | 126 | 90 | 15 | 9 | 12 |
-| media | 117 | 99 | 9 | 9 | 0 |
-| planning | 72 | 42 | 3 | 6 | 21 |
+| vehicle_control | 405 | 285 | 39 | 33 | 48 |
+| communication | 315 | 237 | 18 | 36 | 24 |
+| navigation | 192 | 141 | 21 | 15 | 15 |
+| information | 192 | 141 | 18 | 18 | 15 |
+| productivity | 156 | 114 | 18 | 12 | 12 |
+| media | 117 | 93 | 15 | 9 | 0 |
+| planning | 99 | 57 | 9 | 6 | 27 |
 
 Media has no OOD intent, so no OOD rows.
 
 | slice | rows | routes |
 | --- | --- | --- |
-| context_invariant | 537 | LOCAL 537 |
-| context_flipped | 645 | LOCAL 200, CLOUD 126, CLOUD_MASKED 38, DEFER 133, REFUSE 148 |
-| sensitive | 192 | LOCAL 121, CLOUD_MASKED 38, DEFER 23, REFUSE 10 |
-| adversarial | 72 | LOCAL 12, REFUSE 60 |
+| context_invariant | 627 | LOCAL 627 |
+| context_flipped | 849 | LOCAL 281, CLOUD 179, CLOUD_MASKED 40, DEFER 163, REFUSE 186 |
+| sensitive | 228 | LOCAL 153, CLOUD_MASKED 40, DEFER 25, REFUSE 10 |
+| adversarial | 92 | LOCAL 18, REFUSE 74 |
 
-Sensitive rate: 16.2% of rows (and of utterances) carry at least one span.
-Span labels over rows: contact 162, otp 18, card 12, address 6, phone 6.
+Sensitive rate: 15.4% of rows (and of utterances) carry at least one span.
+Span labels over rows: contact 192, otp 18, card 18, address 6, phone 6.
 
 ## Flip profile
 
 An utterance's flip profile is the set of routes the rulebook gives it over
-all 288 contexts. 179 of 394 utterances (45%) are context-invariant and 215
-(55%) flip.
+all 288 contexts. 209 of 492 utterances (42%) are context-invariant and 283
+(58%) flip.
 
 | distinct routes | utterances | intents (with spans marked) |
 | --- | --- | --- |
-| LOCAL | 179 | 35 intent variants: every safety-critical and comfort command, local_ok low-distraction queries, and local_ok intents with spans (call_contact, lookup_contact_info, add_reminder, take_note) |
-| LOCAL+REFUSE | 57 | restricted actuation (5 + disable_child_locks), local_ok medium/high distraction (calendar_today, play_voicemail, start_video_call, play_video, show_photos, pair_bluetooth_device) |
-| CLOUD+DEFER+REFUSE | 42 | needs_cloud with medium/high distraction: book_restaurant, browse_web, compose_long_email, explain_topic_in_depth, plan_day_itinerary, plan_multi_day_trip, read_document |
-| CLOUD+DEFER+LOCAL | 27 | needs_small_local, low distraction, no spans: add_calendar_event, general_knowledge_question, reply_to_message, send_text_message, vehicle_manual_question |
-| CLOUD+LOCAL+REFUSE | 21 | cloud_preferred, medium distraction: find_nearby_place, add_stop_along_route, plan_charging_stops |
-| CLOUD_MASKED+DEFER+LOCAL | 18 | the same needs_small_local intents with spans |
+| LOCAL | 209 | 35 intents: every safety-critical and comfort command, local_ok low-distraction queries, and local_ok intents with spans (call_contact, lookup_contact_info, share_live_location, add_reminder, take_note) |
+| LOCAL+REFUSE | 72 | restricted actuation (all 9), local_ok medium/high distraction (calendar_today, play_voicemail, start_video_call, play_video, show_photos, pair_bluetooth_device) |
+| CLOUD+DEFER+REFUSE | 51 | needs_cloud with medium/high distraction: book_restaurant, browse_web, compose_long_email, explain_topic_in_depth, pay_bill, plan_day_itinerary, plan_multi_day_trip, read_document, read_news_headlines |
+| CLOUD+DEFER+LOCAL | 41 | needs_small_local, low distraction, no spans: add_calendar_event, estimate_trip_cost, general_knowledge_question, reply_to_message, send_text_message, translate_phrase, vehicle_manual_question |
+| CLOUD+LOCAL+REFUSE | 27 | cloud_preferred, medium distraction: find_nearby_place, find_parking, add_stop_along_route, plan_charging_stops |
+| CLOUD+LOCAL | 21 | cloud_preferred, low distraction, no spans: fuel_prices_nearby, place_opening_hours, route_avoiding_tolls, and navigate_to_contact_address with a relation word |
+| CLOUD_MASKED+DEFER+LOCAL | 18 | the same low-distraction needs_small_local intents with spans: add_calendar_event, reply_to_message, send_text_message |
+| CLOUD+DEFER+LOCAL+REFUSE | 18 | needs_small_local, medium/high distraction: read_messages, read_email_aloud, summarize_group_chat, edit_note |
 | CLOUD+DEFER | 17 | needs_cloud, low distraction: weather_now, sports_score, traffic_on_route |
-| CLOUD+DEFER+LOCAL+REFUSE | 13 | needs_small_local, medium/high distraction: read_messages, summarize_group_chat, edit_note |
 | CLOUD_MASKED+LOCAL | 10 | navigate_to_contact_address with spans |
-| CLOUD_MASKED+DEFER+LOCAL+REFUSE | 6 | compose_long_email and read_messages with spans |
-| CLOUD+LOCAL | 4 | navigate_to_contact_address with a relation word |
+| CLOUD_MASKED+DEFER+LOCAL+REFUSE | 8 | compose_long_email, pay_bill and read_messages with spans |
 
 Every context-invariant utterance is LOCAL: no intent is CLOUD, DEFER or
 REFUSE in all 288 contexts, because every non-local intent flips on
@@ -126,10 +130,11 @@ The matcher has seen every seed, including val, test and OOD ones, and the
 pilot has no paraphrases, so intent matching is close to a lookup. This is
 an upper bound for keyword rules, not a generalisation result.
 
-- Intent accuracy: **0.992** (train 1.000, val 0.921, test 1.000, ood 1.000).
-  The only misses are `{contact} home` (navigate_to_contact_address),
-  whose single content token also matches navigate_home's seed "home".
-- PII detection: recall **0.203**, precision 1.000. It finds numbers
+- Intent accuracy: **0.994** (train 0.992, val 1.000, test 1.000, ood 1.000).
+  The only misses are `{contact} home` (navigate_to_contact_address, now a
+  train seed), whose single content token also matches navigate_home's seed
+  "home".
+- PII detection: recall **0.197**, precision 1.000. It finds numbers
   (OTP, card digits, phones, PIN codes) and misses every lowercase name and
   most addresses.
 
@@ -137,31 +142,32 @@ Overall, per split and per slice:
 
 | subset | n | accuracy | SWE [95% CI] | macro-F1 [95% CI] | MCC | critical miss |
 | --- | --- | --- | --- | --- | --- | --- |
-| overall | 1182 | 0.958 | 0.240 [0.168, 0.319] | 0.812 [0.774, 0.851] | 0.928 | 0.000 (0/211) |
-| split: train | 855 | 0.965 | 0.204 [0.131, 0.290] | 0.800 [0.760, 0.852] | 0.936 | 0.000 (0/153) |
-| split: val | 114 | 0.886 | 0.526 [0.254, 0.860] | 0.733 [0.692, 0.764] | 0.815 | 0.000 (0/16) |
-| split: test | 108 | 0.954 | 0.315 [0.056, 0.611] | 0.875 [0.753, 0.974] | 0.924 | 0.000 (0/20) |
-| split: ood | 105 | 0.981 | 0.152 [0.000, 0.381] | 0.793 [0.781, 1.000] | 0.975 | 0.000 (0/22) |
-| slice: context_invariant | 537 | 1.000 | 0.000 [0.000, 0.000] | 1.000 [1.000, 1.000] | 0.000 | 0.000 (0/63) |
-| slice: context_flipped | 645 | 0.922 | 0.440 [0.313, 0.577] | 0.805 [0.767, 0.844] | 0.903 | 0.000 (0/148) |
-| slice: sensitive | 192 | 0.745 | 1.464 [1.094, 1.860] | 0.630 [0.596, 0.665] | 0.638 | 0.000 (0/10) |
-| slice: adversarial | 72 | 1.000 | 0.000 [0.000, 0.000] | 1.000 [1.000, 1.000] | 1.000 | 0.000 (0/60) |
+| overall | 1476 | 0.966 | 0.192 [0.135, 0.253] | 0.834 [0.797, 0.872] | 0.943 | 0.000 (0/294) |
+| split: train | 1068 | 0.970 | 0.170 [0.109, 0.240] | 0.840 [0.794, 0.883] | 0.947 | 0.000 (0/207) |
+| split: val | 138 | 0.957 | 0.217 [0.043, 0.435] | 0.875 [0.748, 0.977] | 0.928 | 0.000 (0/22) |
+| split: test | 129 | 0.969 | 0.248 [0.062, 0.496] | 0.778 [0.753, 0.795] | 0.950 | 0.000 (0/29) |
+| split: ood | 141 | 0.943 | 0.284 [0.085, 0.525] | 0.766 [0.739, 0.789] | 0.920 | 0.000 (0/36) |
+| slice: context_invariant | 627 | 1.000 | 0.000 [0.000, 0.000] | 1.000 [1.000, 1.000] | 0.000 | 0.000 (0/108) |
+| slice: context_flipped | 849 | 0.941 | 0.335 [0.237, 0.437] | 0.829 [0.789, 0.867] | 0.925 | 0.000 (0/186) |
+| slice: sensitive | 228 | 0.785 | 1.232 [0.895, 1.610] | 0.647 [0.610, 0.680] | 0.661 | 0.000 (0/10) |
+| slice: adversarial | 92 | 1.000 | 0.000 [0.000, 0.000] | 1.000 [1.000, 1.000] | 1.000 | 0.000 (0/74) |
 
 | route | precision | recall | F1 | support | predicted |
 | --- | --- | --- | --- | --- | --- |
-| LOCAL | 0.994 | 0.978 | 0.986 | 737 | 725 |
-| CLOUD | 0.731 | 0.992 | 0.842 | 126 | 171 |
-| CLOUD_MASKED | 1.000 | 0.132 | 0.233 | 38 | 5 |
-| DEFER | 1.000 | 1.000 | 1.000 | 133 | 133 |
-| REFUSE | 1.000 | 1.000 | 1.000 | 148 | 148 |
+| LOCAL | 0.996 | 0.982 | 0.989 | 908 | 896 |
+| CLOUD | 0.795 | 0.994 | 0.883 | 179 | 224 |
+| CLOUD_MASKED | 1.000 | 0.175 | 0.298 | 40 | 7 |
+| DEFER | 1.000 | 1.000 | 1.000 | 163 | 163 |
+| REFUSE | 1.000 | 1.000 | 1.000 | 186 | 186 |
 
 | true \ pred | LOCAL | CLOUD | CLOUD_MASKED | DEFER | REFUSE |
 | --- | --- | --- | --- | --- | --- |
-| LOCAL | 721 | 16 | 0 | 0 | 0 |
-| CLOUD | 1 | 125 | 0 | 0 | 0 |
-| CLOUD_MASKED | 3 | 30 | 5 | 0 | 0 |
-| DEFER | 0 | 0 | 0 | 133 | 0 |
-| REFUSE | 0 | 0 | 0 | 0 | 148 |
+| LOCAL | 892 | 16 | 0 | 0 | 0 |
+| CLOUD | 1 | 178 | 0 | 0 | 0 |
+| CLOUD_MASKED | 3 | 30 | 7 | 0 | 0 |
+| DEFER | 0 | 0 | 0 | 163 | 0 |
+| REFUSE | 0 | 0 | 0 | 0 | 186 |
+wrote 1476 predictions to /tmp/claude-0/-home-user-AutoGate/e370a2f7-7374-53f4-86ce-40b3dcacfedd/scratchpad/emit_all.jsonl
 
 The rulebook is exact once the intent and sensitivity are right, so every
 error comes from the two front ends. Of the 50 wrong routes, 46 are missed
@@ -175,46 +181,48 @@ paraphrases are added.
 
 ### Matcher built from train seeds only (`--train-only`)
 
-The honest version. The matcher sees only the 204 train seeds, so every val
+The honest version. The matcher sees only the 258 train seeds, so every val
 and test utterance is a phrasing it has never seen, and it cannot predict an
 OOD intent at all.
 
-- Intent accuracy: **0.766** (train 1.000, val 0.263, test 0.194, ood 0.000).
-- PII detection: unchanged (recall 0.203, precision 1.000).
+- Intent accuracy: **0.766** (train 0.992, val 0.304, test 0.233, ood 0.000).
+- PII detection: unchanged (recall 0.197, precision 1.000).
 
 | subset | n | accuracy | SWE [95% CI] | macro-F1 [95% CI] | MCC | critical miss |
 | --- | --- | --- | --- | --- | --- | --- |
-| overall | 1182 | 0.848 | 0.602 [0.510, 0.705] | 0.669 [0.635, 0.705] | 0.727 | 0.128 (27/211) |
-| split: train | 855 | 0.965 | 0.204 [0.131, 0.290] | 0.800 [0.760, 0.852] | 0.936 | 0.000 (0/153) |
-| split: val | 114 | 0.623 | 1.500 [1.096, 1.939] | 0.458 [0.364, 0.538] | 0.375 | 0.312 (5/16) |
-| split: test | 108 | 0.593 | 1.241 [0.944, 1.556] | 0.377 [0.270, 0.470] | 0.268 | 0.300 (6/20) |
-| split: ood | 105 | 0.400 | 2.210 [1.781, 2.638] | 0.275 [0.191, 0.392] | 0.142 | 0.727 (16/22) |
-| slice: context_invariant | 537 | 0.950 | 0.209 [0.127, 0.300] | 0.244 [0.241, 0.246] | 0.000 | 0.048 (3/63) |
-| slice: context_flipped | 645 | 0.763 | 0.929 [0.778, 1.078] | 0.652 [0.619, 0.691] | 0.690 | 0.162 (24/148) |
-| slice: sensitive | 192 | 0.693 | 1.417 [1.088, 1.787] | 0.509 [0.442, 0.563] | 0.517 | 0.000 (0/10) |
-| slice: adversarial | 72 | 0.847 | 0.944 [0.472, 1.528] | 0.407 [0.356, 0.867] | 0.654 | 0.167 (10/60) |
+| overall | 1476 | 0.867 | 0.509 [0.430, 0.589] | 0.716 [0.680, 0.757] | 0.765 | 0.102 (30/294) |
+| split: train | 1068 | 0.970 | 0.170 [0.109, 0.240] | 0.840 [0.794, 0.883] | 0.947 | 0.000 (0/207) |
+| split: val | 138 | 0.681 | 0.993 [0.710, 1.268] | 0.468 [0.372, 0.560] | 0.435 | 0.273 (6/22) |
+| split: test | 129 | 0.628 | 1.419 [1.031, 1.884] | 0.437 [0.345, 0.523] | 0.349 | 0.379 (11/29) |
+| split: ood | 141 | 0.482 | 1.766 [1.397, 2.142] | 0.321 [0.243, 0.399] | 0.147 | 0.361 (13/36) |
+| slice: context_invariant | 627 | 0.949 | 0.190 [0.113, 0.276] | 0.243 [0.241, 0.246] | 0.000 | 0.037 (4/108) |
+| slice: context_flipped | 849 | 0.806 | 0.744 [0.628, 0.862] | 0.707 [0.667, 0.747] | 0.743 | 0.140 (26/186) |
+| slice: sensitive | 228 | 0.750 | 1.140 [0.833, 1.465] | 0.530 [0.465, 0.591] | 0.541 | 0.100 (1/10) |
+| slice: adversarial | 92 | 0.826 | 1.130 [0.630, 1.674] | 0.406 [0.360, 0.595] | 0.626 | 0.189 (14/74) |
 
 | route | precision | recall | F1 | support | predicted |
 | --- | --- | --- | --- | --- | --- |
-| LOCAL | 0.886 | 0.924 | 0.904 | 737 | 769 |
-| CLOUD | 0.676 | 0.730 | 0.702 | 126 | 136 |
-| CLOUD_MASKED | 1.000 | 0.053 | 0.100 | 38 | 2 |
-| DEFER | 0.889 | 0.782 | 0.832 | 133 | 117 |
-| REFUSE | 0.778 | 0.831 | 0.804 | 148 | 158 |
+| LOCAL | 0.895 | 0.931 | 0.913 | 908 | 944 |
+| CLOUD | 0.704 | 0.799 | 0.749 | 179 | 203 |
+| CLOUD_MASKED | 1.000 | 0.125 | 0.222 | 40 | 5 |
+| DEFER | 0.901 | 0.779 | 0.836 | 163 | 141 |
+| REFUSE | 0.869 | 0.855 | 0.862 | 186 | 183 |
 
 | true \ pred | LOCAL | CLOUD | CLOUD_MASKED | DEFER | REFUSE |
 | --- | --- | --- | --- | --- | --- |
-| LOCAL | 681 | 20 | 0 | 12 | 24 |
-| CLOUD | 31 | 92 | 0 | 0 | 3 |
-| CLOUD_MASKED | 11 | 23 | 2 | 0 | 2 |
-| DEFER | 23 | 0 | 0 | 104 | 6 |
-| REFUSE | 23 | 1 | 0 | 1 | 123 |
+| LOCAL | 845 | 35 | 0 | 13 | 15 |
+| CLOUD | 32 | 143 | 0 | 0 | 4 |
+| CLOUD_MASKED | 12 | 21 | 5 | 0 | 2 |
+| DEFER | 33 | 0 | 0 | 127 | 3 |
+| REFUSE | 22 | 4 | 0 | 1 | 159 |
 
 Keyword rules do not transfer to unseen phrasings of the same intent. SWE
-goes from 0.20 on train to 1.24 on test and 2.21 on OOD, and the critical
-miss rate is 0.30 on test and 0.73 on OOD. Of the 27 critical misses, 24 are
+goes from 0.17 on train to 1.42 on test and 1.77 on OOD, and the critical
+miss rate is 0.38 on test and 0.36 on OOD. Of the 30 critical misses, 26 are
 REFUSE rows sent to LOCAL or CLOUD because the utterance matched a harmless
-intent. This is the gap the learned router has to close.
+intent. (In the 65-intent pilot OOD was harder for rules, 2.21 SWE and 0.73
+critical miss: the new holdout's intents each have training intents with the
+same tags, so even a wrong keyword match often lands on the right route.) This is the gap the learned router has to close.
 
 ## Example rows
 
@@ -327,7 +335,7 @@ intent. This is the gap the learned router has to close.
   "context_flipped": true,
   "sensitive": true,
   "adversarial": false,
-  "split": "test"
+  "split": "val"
 }
 ```
 
@@ -499,14 +507,14 @@ intent. This is the gap the learned router has to close.
 - **Seed-only.** There are no paraphrases, so val and test differ from train
   only in which seeds they hold, and the default rules matcher has seen
   them all.
-- **CLOUD_MASKED is rare.** It has 38 rows (3.2%), only 2 of them in `ood`,
+- **CLOUD_MASKED is rare.** It has 40 rows (2.7%), only 4 of them in `ood`,
   so its per-class numbers have wide intervals until paraphrasing
   multiplies the sensitive seeds.
-- **Spans rarely change the route.** Of the 192 sensitive rows, the spans
-  decide the route in only 60, all from six intents that can reach the
+- **Spans rarely change the route.** Of the 228 sensitive rows, the spans
+  decide the route in only 64, all from seven intents that can reach the
   cloud (navigate_to_contact_address, send_text_message, reply_to_message,
-  compose_long_email, read_messages, add_calendar_event). The other 132
-  get the same route with or without spans: local_ok intents such as
+  compose_long_email, pay_bill, read_messages, add_calendar_event). The
+  other 164 get the same route with or without spans: local_ok intents such as
   call_contact and take_note, or offline and distraction-refused contexts.
 - **Fill values are generic.** The pools are small (5 to 12 values for
   ordinary slots, 20 to 40 for sensitive ones), and a few fills read

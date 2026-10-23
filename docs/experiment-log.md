@@ -4,7 +4,7 @@ The running memory of the project: what we are trying, why, what each run
 produced, and what is still open. Newest results go at the top of each
 section. Every run gets an entry in "Runs", even a failed one.
 
-Last updated: 2026-10-23. Linked from `CLAUDE.md` so every session reads it.
+Last updated: 2026-10-23 (A5). Linked from `CLAUDE.md` so every session reads it.
 
 ## How to use this file
 
@@ -19,7 +19,8 @@ Last updated: 2026-10-23. Linked from `CLAUDE.md` so every session reads it.
 
 | item | status |
 | --- | --- |
-| Benchmark v0 | done: 65 intents, 281 seeds, 11,240 paraphrases, 53,184 rows (`docs/dataset-v0.md`) |
+| Taxonomy expansion (A5) | done 10-23: 81 intents, 361 seeds, new 8-intent OOD holdout balanced by tag; seed-only pilot regenerated (`docs/pilot.md`). Paraphrases for the 16 new intents **not written yet**, so the full dataset has seed-only rows for them; R1/R2 are not directly comparable with any run on the new splits |
+| Benchmark v0 | done: 65 intents, 281 seeds, 11,240 paraphrases, 53,184 rows (`docs/dataset-v0.md`); superseded for intents and splits by A5 |
 | Rules baseline | done, both all-seeds and fair train-only versions |
 | Router v0 (route + intent + span heads) | trained once on Colab T4; beats rules in distribution, fails on unseen intents (`docs/results-v0.md`) |
 | Router v1 (tag heads + regularisation) | run R2 done 10-23: tags route cuts test critical misses to 3.1% but over-regularised (underfit); OOD still poor because capability does not transfer |
@@ -70,7 +71,8 @@ car's context.
 - 4 deterministic ASR-noise variants per seed.
 - Slots filled from synthetic pools; sensitive spans recorded as offsets.
 - 3 contexts per utterance, sampled toward route boundaries.
-- Splits by seed (80/10/10); 6 intents held out entirely as OOD.
+- Splits by seed (80/10/10); 6 intents held out entirely as OOD (8, chosen
+  by tag, since A5).
 
 ### A3. Router v0: end-to-end route head (done, run 1)
 
@@ -99,6 +101,40 @@ should transfer to unseen intents.
 - Config: `configs/train_qwen3_0.6b_tags.yaml`. Details: `docs/training.md`,
   "Tag heads".
 
+### A5. Taxonomy expansion and OOD re-pick (done, 2026-10-23)
+
+**Why:** R2's capability head failed OOD mostly because of the split:
+`cloud_preferred` had 4 intents and 2 were held out, `needs_small_local` lost
+3 of 8, and the holdout tested no `needs_cloud`, high-distraction, comfort or
+safety-critical intent.
+
+- **16 new intents** (65 -> 81), each a distinct goal with a rationale in
+  `docs/taxonomy.md`: safety_critical `fog_lights_on`, `dip_high_beams`,
+  `cancel_cruise_control`; restricted `open_fuel_door`,
+  `disable_stability_control`, `adjust_steering_wheel`; cloud_preferred
+  `find_parking`, `route_avoiding_tolls`, `fuel_prices_nearby`,
+  `place_opening_hours`; needs_small_local `read_email_aloud`,
+  `translate_phrase`, `estimate_trip_cost`; needs_cloud
+  `read_news_headlines`, `pay_bill`; local_ok `share_live_location`.
+  Totals: cloud_preferred 4 -> 8, needs_small_local 8 -> 11, restricted
+  6 -> 9, safety_critical 5 -> 8, medium 11 -> 14, high 8 -> 9,
+  irreversible 8 -> 10.
+- **5 seeds each** (281 -> 361 seeds), same voice rules; no new slots.
+- **New OOD holdout (8):** `set_ambient_lighting`, `fog_lights_on`,
+  `open_fuel_door`, `route_avoiding_tolls`, `compose_long_email`,
+  `read_news_headlines`, `estimate_trip_cost`, `pair_bluetooth_device`.
+  Every tag value keeps >= 6 training intents and >= 70% of its intents in
+  training (smallest: cloud_preferred 7/8, safety_critical 7/8, high 7/9);
+  the holdout covers every value of all four tags and six of seven groups.
+  Enforced by `tests/test_splits.py`.
+- **Labels changed:** pilot sha256 moved to `0c7139ac...`; splits differ for
+  every intent, so **R0-R2 numbers are not directly comparable** with runs
+  on the new data. Old checkpoints also have a 65-way intent head.
+- **Not done:** paraphrases for the 16 new intents (16 x 5 x 40 = 3,200
+  lines). Until they exist, `generate --paraphrases` gives those intents
+  seed-only rows and the full OOD split is lopsided (6 of 8 OOD intents
+  seed-only); `paraphrases validate` lists them.
+
 ### Ideas not yet tried
 
 Highest priority after R2:
@@ -107,13 +143,11 @@ Highest priority after R2:
   projections, lr 2e-4, 3 epochs, head dropout 0.1, intent weight 0.5; drop
   label smoothing; keep context dropout 0.2; word dropout 0.05. Expect the
   route head to recover R1 numbers and the tag heads to sharpen.
-- **Rebalance the OOD holdout by tag.** Choose OOD intents so every tag value
-  keeps at least 3 training intents (no more holding out half of
-  `cloud_preferred`). Changes splits, so all runs must be redone; decide
-  before the paper's final numbers.
-- **More intents in rare tag values** (cloud_preferred, needs_small_local,
-  high distraction, restricted), so tags have more examples to generalise
-  from.
+- **Paraphrases for the 16 A5 intents**, then regenerate the full dataset
+  and rerun R0c (fair rules) and R4 on the new splits. Needed before any
+  new run is comparable to anything.
+- ~~Rebalance the OOD holdout by tag~~ and ~~more intents in rare tag
+  values~~: done in A5.
 - **Treat capability as policy, not perception** (as on the other branch):
   predict only distraction, actuation, consequence from text; take
   capability from the policy table when the intent is known and default to
@@ -134,10 +168,17 @@ Highest priority after R2:
 
 All numbers on held-out splits. SWE = safety-weighted error, lower is better.
 
+**Comparability:** R0a-R2 use the 65-intent taxonomy and the old 6-intent
+OOD holdout. From A5 (10-23) on, intents, seeds and splits differ, so R1/R2
+are not directly comparable with future runs; R0d/R0e are the first rows on
+the new splits (seed-only pilot).
+
 ### Test split (new phrasings of known intents)
 
 | run | date | macro-F1 | SWE | critical miss | span leak | notes |
 | --- | --- | --- | --- | --- | --- | --- |
+| R0d rules, seeds only (81-intent pilot) | 10-23 | 0.778 | 0.248 | 0% | - | A5 sanity check, all-seeds matcher |
+| R0e rules, train seeds only (81-intent pilot) | 10-23 | 0.437 | 1.419 | 37.9% | - | A5 fair baseline, pilot only |
 | R0a rules, seeds only (pilot) | 09-25 | 0.875 | 0.315 | 0% | - | sanity check; too easy by design |
 | R0b rules, all seeds | 09-25 | 0.627 | 0.919 | 22.5% | 85.7% | matcher saw test seeds; optimistic |
 | R0c rules, train seeds only | 10-07 | 0.430 | 1.256 | 37.1% | - | the fair baseline |
@@ -147,10 +188,14 @@ All numbers on held-out splits. SWE = safety-weighted error, lower is better.
 | R2 router v1, combined | 10-23 | 0.656 | 0.637 | **2.9%** | 50.0%* | most cautious; over-refuses |
 | R3 router v1 tags, no context | pending | | | | | ablation |
 
-### OOD split (6 intents never seen in training)
+### OOD split (intents never seen in training)
+
+6 intents for R0-R2; 8 different intents from R0d on (A5).
 
 | run | macro-F1 | SWE | critical miss | notes |
 | --- | --- | --- | --- | --- |
+| R0d rules, seeds only (81-intent pilot) | 0.766 | 0.284 | 0% | matcher saw OOD seeds |
+| R0e rules, train seeds only (81-intent pilot) | 0.321 | 1.766 | 36.1% | old pilot OOD: 2.21 SWE, 72.7% |
 | R0b rules, all seeds | 0.583 | 1.044 | 34.1% | not fair: saw OOD seeds |
 | R0c rules, train seeds only | 0.231 | 2.231 | 78.6% | |
 | R1 router v0, e2e | 0.442 | 1.312 | 25.7% | defaults to LOCAL on unseen intents |
@@ -161,6 +206,19 @@ All numbers on held-out splits. SWE = safety-weighted error, lower is better.
 \* Span leak is measured on test + OOD combined, on rows the run routed to the cloud, so it is not comparable across rows with different routing.
 
 ## Run details
+
+### R0d/R0e: rules on the 81-intent pilot (2026-10-23)
+
+- After A5. Seed-only pilot (`generate --out data/generated/pilot
+  --rng-seed 0`, sha256 `0c7139ac...`), 1,476 rows, 361 seeds; full tables
+  in `docs/pilot.md`.
+- All seeds: intent accuracy 0.994; test macro-F1 0.778, SWE 0.248; OOD
+  0.766 / 0.284; no critical misses (the matcher has seen every seed).
+- Train seeds only: intent accuracy val 0.304, test 0.233, OOD 0; test
+  macro-F1 0.437, SWE 1.419, critical miss 11/29; OOD 0.321, 1.766, 13/36.
+- OOD SWE for the fair rules fell from 2.21 to 1.77 on the pilot: each new
+  OOD intent has training intents with the same tags, so a wrong keyword
+  match more often lands on the right route.
 
 ### R3: no-context ablation (pending)
 
@@ -240,6 +298,7 @@ All numbers on held-out splits. SWE = safety-weighted error, lower is better.
 
 | date | decision | why |
 | --- | --- | --- |
+| 10-23 | Expand the taxonomy to 81 intents and re-pick an 8-intent OOD holdout balanced by tag (A5) | R2: capability could not transfer with 2 training `cloud_preferred` intents; the old holdout tested no needs_cloud, high, comfort or safety-critical intent |
 | 10-23 | Next run backs off regularisation (R4 above) | R2 underfit: train loss 2.6, val route F1 0.58 |
 | 10-22 | Add tag heads; score three route sources | R1 failed on unseen intents; tags transfer |
 | 10-22 | Regularise run 2 (see A4) | R1 train loss 0.002, val-test gap |
@@ -256,6 +315,16 @@ All numbers on held-out splits. SWE = safety-weighted error, lower is better.
 | 09-21 | Repo and packages named AutoGate | owner's choice |
 
 ## Open questions
+
+- A5 judgment calls to confirm: `pay_bill` as high distraction (PIN and
+  payee review need the screen); `cancel_cruise_control` and
+  `dip_high_beams` as safety_critical; `adjust_steering_wheel` as
+  restricted; `estimate_trip_cost` as needs_small_local; `fuel_prices_nearby`
+  as cloud_preferred (stale onboard prices offline); `share_live_location`
+  as local_ok.
+- Is holding out `fog_lights_on` (headlights_on trains) and `open_fuel_door`
+  (open_trunk trains) a fair OOD test? Argued in `docs/taxonomy.md`: same
+  family, different goal.
 
 - Keep self-correcting paraphrases that name a sibling intent first? Listed
   in `docs/paraphrase-review-notes.md`.

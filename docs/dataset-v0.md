@@ -1,5 +1,7 @@
 # AutoGateBench v0: the paraphrased dataset
 
+Superseded for splits and intents by the 2026-10 taxonomy expansion; numbers below are for the 65-intent version.
+
 Generated from the 281 seeds plus 11,240 hand-written paraphrases
 (`data/paraphrases/`, 40 per seed) and 4 deterministic ASR variants per seed.
 Same pipeline as the seed-only pilot (`docs/pilot.md`); only the input set
