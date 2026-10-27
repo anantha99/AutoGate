@@ -4,7 +4,7 @@ The running memory of the project: what we are trying, why, what each run
 produced, and what is still open. Newest results go at the top of each
 section. Every run gets an entry in "Runs", even a failed one.
 
-Last updated: 2026-10-27 (R4 no-context ablation). Linked from `CLAUDE.md` so every session reads it.
+Last updated: 2026-10-27 (R4 and its no-context ablation). Linked from `CLAUDE.md` so every session reads it.
 
 ## How to use this file
 
@@ -20,7 +20,7 @@ Last updated: 2026-10-27 (R4 no-context ablation). Linked from `CLAUDE.md` so ev
 | item | status |
 | --- | --- |
 | Taxonomy expansion (A5) | done 10-23: 81 intents, 361 seeds, 14,440 paraphrases, 66,414 rows (sha256 `8cc12a4b...`); 8-intent OOD holdout balanced by tag. R1/R2 are not directly comparable with runs on this data |
-| Router R4 (tags, R1 capacity, 81 intents) | config `configs/train_qwen3_0.6b_tags_r4.yaml` and notebook ready; **waiting for the Colab run**; outputs go to `runs-v1/` |
+| Router R4 (tags, R1 capacity, 81 intents) | done 10-27, with and without context. Best so far: test macro-F1 0.82-0.85, SWE 28-30% of fair rules; critical miss 5-6% (under 1% with the 0.85 abstention threshold at 74% coverage). Open: high distraction on unseen intents, adversarial slice, int8 |
 | Benchmark v0 | done: 65 intents, 281 seeds, 11,240 paraphrases, 53,184 rows (`docs/dataset-v0.md`); superseded for intents and splits by A5 |
 | Rules baseline | done, both all-seeds and fair train-only versions |
 | Router v0 (route + intent + span heads) | trained once on Colab T4; beats rules in distribution, fails on unseen intents (`docs/results-v0.md`) |
@@ -182,7 +182,9 @@ the new splits (seed-only pilot).
 
 | run | date | macro-F1 | SWE | critical miss | span leak | notes |
 | --- | --- | --- | --- | --- | --- | --- |
-| R4 router, tags + R1 capacity (81 intents) | pending | | | | | with context; e2e / tags / combined |
+| R4 with context, e2e | 10-27 | 0.821 | 0.360 | 5.6% | 22.9%* | route head now matches the tags route |
+| R4 with context, tags | 10-27 | 0.832 | 0.380 | 6.3% | 19.5%* | |
+| R4 with context, combined | 10-27 | 0.832 | 0.369 | **5.1%** | 19.6%* | |
 | R4nc no context, e2e | 10-27 | 0.359 | 1.105 | 17.4% | 4.3%* | route head blind to speed/signal |
 | R4nc no context, **tags** | 10-27 | **0.850** | **0.342** | 6.0% | 20.5%* | context enters through the rulebook |
 | R4nc no context, combined | 10-27 | 0.657 | 0.759 | **5.0%** | 17.4%* | over-refuses (REFUSE predicted 2x) |
@@ -203,7 +205,9 @@ the new splits (seed-only pilot).
 
 | run | macro-F1 | SWE | critical miss | notes |
 | --- | --- | --- | --- | --- |
-| R4 router (81 intents) | pending | | | |
+| R4 with context, e2e | 0.637 | 1.032 | 22.5% | |
+| R4 with context, tags | 0.628 | 1.057 | 23.0% | |
+| R4 with context, combined | **0.645** | **0.974** | **19.1%** | 55% of fair-rules SWE |
 | R4nc no context, e2e | 0.238 | 1.619 | 36.2% | |
 | R4nc no context, **tags** | **0.640** | **1.038** | 22.9% | capability OOD 0.52 (R2 0.33) |
 | R4nc no context, combined | 0.423 | 1.270 | **19.1%** | |
@@ -221,18 +225,32 @@ the new splits (seed-only pilot).
 
 ## Run details
 
-### R4: tags with R1 capacity, 81 intents (pending)
+### R4: tags with R1 capacity, 81 intents, with context (2026-10-27)
 
-- Config `configs/train_qwen3_0.6b_tags_r4.yaml`: tag heads, LoRA r=16 on
-  all seven projections, lr 2e-4, 3 epochs, LoRA dropout 0.05, head dropout
-  0.1, intent weight 0.5, no label smoothing, context dropout 0.2, word
-  dropout 0.05. Smoke-checked on the tiny model.
-- Notebook: `$CONFIG` and `$RUN_NAME` set in the setup cell; outputs in
-  `runs-v1/` (Drive: `MyDrive/autogate/runs-v1`) so the comparison table
-  never mixes 65-intent and 81-intent runs.
-- Questions it answers: does the route head recover R1-level accuracy with
-  tag heads attached; does the tags route keep R2's low critical misses;
-  does capability now transfer to OOD (R2: 0.33 accuracy).
+- `configs/train_qwen3_0.6b_tags_r4.yaml`, Colab T4, 2h05m training.
+  10.2M of 606M params trained.
+- Val by epoch (route head): SWE 0.452 -> 0.398 -> 0.359; macro-F1 0.747 ->
+  0.817 -> 0.808; critical miss 6.2% -> 9.1% -> 4.9%. Train loss 0.16: no
+  memorisation (R1: 0.002) and no underfit (R2: 2.6).
+- Test: all three route sources land together. e2e 0.821 / SWE 0.360 /
+  5.6%; tags 0.832 / 0.380 / 6.3%; combined 0.832 / 0.369 / 5.1%. SWE is
+  29-31% of the fair rules baseline (PRD target < 40%: met).
+- OOD: combined is best, 0.645 / 0.974 / 19.1% (55% of fair-rules SWE).
+- **Context in the model adds nothing over context in the policy.** The
+  no-context tags route (R4nc) scores test 0.850 / 0.342 / 6.0% and OOD
+  0.640 / 1.038 / 22.9%, within the confidence intervals of every R4
+  source. The simplest design, a context-free tag model plus the rulebook,
+  is as good as the end-to-end route head that reads the context.
+- **Abstention reaches the PRD's critical-miss target.** Calibration
+  temperature 2.19, ECE 0.084 -> 0.014. On val, threshold 0.85 gives 0.9%
+  critical misses on 74% coverage (R1 needed 0.95 for 54%); 0.90 gives
+  0.5% on 66%. This uses the route head's confidence; the tags route has
+  no calibrated confidence yet.
+- Tags, OOD: capability 0.50 (R4nc 0.52), distraction dangerous miss 63.0%
+  (R4nc 73.9%), actuation dangerous miss 18.7%, consequence 73.9%.
+- Weak spots unchanged: adversarial slice macro-F1 0.23-0.25 and critical
+  miss 25-30% for every source; sensitive-slice critical miss 66% (n=32).
+- int8: route agreement 0.795, worse than R4nc (0.888). Still unusable.
 
 ### R0f: fair rules on the full 81-intent dataset (2026-10-23)
 
@@ -360,6 +378,7 @@ the new splits (seed-only pilot).
 
 | date | decision | why |
 | --- | --- | --- |
+| 10-27 | Lead design candidate: context-free tag model + rulebook (R4nc tags) | matches the context-aware route head (R4) within CIs, simpler input, policy swappable without retraining |
 | 10-27 | The no-context ablation is reinterpreted (see R4nc): it tests context in the model, not context in the decision | the tags route reaches 0.85 test macro-F1 with no context in the model |
 | 10-23 | Runs on the 81-intent data write to `runs-v1/`; R4 is the next training run | keep incomparable runs out of one comparison table |
 | 10-23 | Expand the taxonomy to 81 intents and re-pick an 8-intent OOD holdout balanced by tag (A5) | R2: capability could not transfer with 2 training `cloud_preferred` intents; the old holdout tested no needs_cloud, high, comfort or safety-critical intent |
