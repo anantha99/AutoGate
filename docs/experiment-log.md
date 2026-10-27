@@ -143,6 +143,28 @@ safety-critical intent.
 
 ### Ideas not yet tried
 
+From Zomato's natural-language search write-up (blog, 2026-10-23), mapped to
+AutoGate; not started:
+
+- **Tag-conditioned synthetic utterances ("reverse queries").** Generate
+  requests from a target tag combination (e.g. needs_cloud + high
+  distraction + irreversible) instead of only paraphrasing fixed seeds.
+  More distinct intents per rare tag value, aimed at the OOD distraction
+  gap. Generated items need a human audit before use.
+- **Hard-negative minimal pairs.** Utterances that share most words but
+  differ in one tag (set vs cancel cruise; unlock doors vs child locks;
+  read vs summarise messages), plus a loop that turns each run's
+  route-changing tag errors on val into new training pairs. Aimed at the
+  adversarial slice and confusable safety intents.
+- **Fast deterministic lane for safety-critical commands**, run in parallel
+  with the model: a high-precision keyword match that routes LOCAL at once
+  and can only make a decision more cautious.
+- **Multi-constraint and compound requests** ("defrost and read my
+  messages"), with the rule that any refused part refuses the whole.
+- **Manually verified evaluation set** (they use 1,000+ queries with a
+  "critical entity" column): our PRD's 300-item audit, with a critical-tag
+  label per item.
+
 Highest priority after R2:
 
 - **R4: tags with R1's capacity.** Keep tag heads; go back to r=16 on all
