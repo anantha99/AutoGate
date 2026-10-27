@@ -4,7 +4,7 @@ The running memory of the project: what we are trying, why, what each run
 produced, and what is still open. Newest results go at the top of each
 section. Every run gets an entry in "Runs", even a failed one.
 
-Last updated: 2026-10-23 (A5 paraphrases, R0f, R4 config). Linked from `CLAUDE.md` so every session reads it.
+Last updated: 2026-10-27 (R4 no-context ablation). Linked from `CLAUDE.md` so every session reads it.
 
 ## How to use this file
 
@@ -182,7 +182,10 @@ the new splits (seed-only pilot).
 
 | run | date | macro-F1 | SWE | critical miss | span leak | notes |
 | --- | --- | --- | --- | --- | --- | --- |
-| R4 router, tags + R1 capacity (81 intents) | pending | | | | | e2e / tags / combined |
+| R4 router, tags + R1 capacity (81 intents) | pending | | | | | with context; e2e / tags / combined |
+| R4nc no context, e2e | 10-27 | 0.359 | 1.105 | 17.4% | 4.3%* | route head blind to speed/signal |
+| R4nc no context, **tags** | 10-27 | **0.850** | **0.342** | 6.0% | 20.5%* | context enters through the rulebook |
+| R4nc no context, combined | 10-27 | 0.657 | 0.759 | **5.0%** | 17.4%* | over-refuses (REFUSE predicted 2x) |
 | R0f rules, train seeds only (**81-intent full**) | 10-23 | 0.458 | 1.224 | 30.3% | - | **the fair baseline from now on** |
 | R0d rules, seeds only (81-intent pilot) | 10-23 | 0.778 | 0.248 | 0% | - | A5 sanity check, all-seeds matcher |
 | R0e rules, train seeds only (81-intent pilot) | 10-23 | 0.437 | 1.419 | 37.9% | - | A5 fair baseline, pilot only |
@@ -193,7 +196,6 @@ the new splits (seed-only pilot).
 | R2 router v1, e2e | 10-23 | 0.477 | 0.809 | 10.5% | 32.7%* | route head underfit (val F1 0.58) |
 | R2 router v1, tags | 10-23 | 0.728 | 0.504 | **3.1%** | 49.8%* | best critical miss so far |
 | R2 router v1, combined | 10-23 | 0.656 | 0.637 | **2.9%** | 50.0%* | most cautious; over-refuses |
-| R3 router v1 tags, no context | pending | | | | | ablation |
 
 ### OOD split (intents never seen in training)
 
@@ -202,6 +204,9 @@ the new splits (seed-only pilot).
 | run | macro-F1 | SWE | critical miss | notes |
 | --- | --- | --- | --- | --- |
 | R4 router (81 intents) | pending | | | |
+| R4nc no context, e2e | 0.238 | 1.619 | 36.2% | |
+| R4nc no context, **tags** | **0.640** | **1.038** | 22.9% | capability OOD 0.52 (R2 0.33) |
+| R4nc no context, combined | 0.423 | 1.270 | **19.1%** | |
 | R0f rules, train seeds only (**81-intent full**) | 0.324 | 1.771 | 44.3% | the fair baseline from now on |
 | R0d rules, seeds only (81-intent pilot) | 0.766 | 0.284 | 0% | matcher saw OOD seeds |
 | R0e rules, train seeds only (81-intent pilot) | 0.321 | 1.766 | 36.1% | old pilot OOD: 2.21 SWE, 72.7% |
@@ -250,9 +255,36 @@ the new splits (seed-only pilot).
   OOD intent has training intents with the same tags, so a wrong keyword
   match more often lands on the right route.
 
-### R3: no-context ablation (pending)
+### R4nc: no-context ablation of R4 (2026-10-27)
 
-- Same notebook, cell 9. Not run yet.
+- `configs/train_qwen3_0.6b_tags_r4.yaml --no-context`, 81-intent data,
+  Colab T4, 55 min. 10.2M of 606M params trained.
+- Val by epoch (route head): SWE 1.188 -> 1.203 -> 1.143; macro-F1 0.34 ->
+  0.36 -> 0.36. Tag accuracy at the end: capability 0.78, distraction 0.92,
+  actuation 0.95, consequence 0.83.
+- **Key finding: the tags route does not need context in the model.** The
+  route head without context collapses (test macro-F1 0.36): it cannot know
+  speed or signal. The tags route scores test macro-F1 0.850, SWE 0.342
+  (28% of fair rules, meets the PRD's < 40%), because tags are
+  context-free and the rulebook applies the context afterwards.
+  Consequence for the paper: "remove the context" only hurts the end-to-end
+  design. For the decomposed design the ablation has to remove context from
+  the rulebook too, or be framed as "context in the model vs. context in the
+  policy".
+- OOD (8 held-out intents): tags route macro-F1 0.640, SWE 1.038 (59% of
+  fair rules), critical miss 22.9%. Capability OOD accuracy 0.52, up from
+  0.33 in R2: A5 helped.
+- **New safety gap: high distraction on unseen intents.** OOD distraction
+  dangerous-miss rate 73.9% (1,197 of 1,620 high-distraction rows called
+  low or medium), from the two high OOD intents, compose_long_email and
+  pair_bluetooth_device. Test split: 33.9%. These turn REFUSE into an
+  executed task while moving.
+- Consequence dangerous misses on OOD 82.8% (compose_long_email's
+  irreversible); no route effect, but the confirmation step would be skipped.
+- Adversarial slice still weak for the tags route: macro-F1 0.24, critical
+  miss 29.6%.
+- Calibration: temperature 1.55, ECE 0.104 -> 0.028.
+- int8: route agreement 0.888. Still unusable.
 
 ### R2: router v1 with tags (2026-10-23)
 
@@ -328,6 +360,7 @@ the new splits (seed-only pilot).
 
 | date | decision | why |
 | --- | --- | --- |
+| 10-27 | The no-context ablation is reinterpreted (see R4nc): it tests context in the model, not context in the decision | the tags route reaches 0.85 test macro-F1 with no context in the model |
 | 10-23 | Runs on the 81-intent data write to `runs-v1/`; R4 is the next training run | keep incomparable runs out of one comparison table |
 | 10-23 | Expand the taxonomy to 81 intents and re-pick an 8-intent OOD holdout balanced by tag (A5) | R2: capability could not transfer with 2 training `cloud_preferred` intents; the old holdout tested no needs_cloud, high, comfort or safety-critical intent |
 | 10-23 | Next run backs off regularisation (R4 above) | R2 underfit: train loss 2.6, val route F1 0.58 |
