@@ -4,7 +4,7 @@ The running memory of the project: what we are trying, why, what each run
 produced, and what is still open. Newest results go at the top of each
 section. Every run gets an entry in "Runs", even a failed one.
 
-Last updated: 2026-10-28 (A6 augmentation plumbing; R5 set up). Linked from `CLAUDE.md` so every session reads it.
+Last updated: 2026-10-28 (A6 data written; R5 waits for the audit). Linked from `CLAUDE.md` so every session reads it.
 
 ## How to use this file
 
@@ -20,8 +20,8 @@ Last updated: 2026-10-28 (A6 augmentation plumbing; R5 set up). Linked from `CLA
 | item | status |
 | --- | --- |
 | Taxonomy expansion (A5) | done 10-23: 81 intents, 361 seeds, 14,440 paraphrases, 66,414 rows (sha256 `8cc12a4b...`); 8-intent OOD holdout balanced by tag. R1/R2 are not directly comparable with runs on this data |
-| Train-only augmentation (A6) | plumbing done 10-28: `autogate_bench.augment` (validator, stats, review), `generate --augment`, spec `docs/augmentation-spec.md`, 2-goal/3-pair test fixture. **No real goals or pairs written yet**; without `--augment` the dataset is byte-identical (`8cc12a4b...`, pilot `0c7139ac...`) |
-| Router R5 (R4 config + A6 data) | notebook and script ready (`RUN_NAME=qwen3-0.6b-tags-r5`, `AUGMENT=data/augment`, also scores val); waits for `data/augment` |
+| Train-only augmentation (A6) | data done 10-28: 60 synthetic goals (565 utterances; 20 high-distraction) and 290 minimal pairs (580 utterances, 115 intent pairs); strict validation 0 errors. Adds 4,635 train rows (2,067 goal, 2,568 pair); every other row byte-identical (old file is an exact prefix). Review: `docs/augment-review.md` |
+| Router R5 (R4 config + A6 data) | ready to run; **waits for the owner's audit of `docs/augment-review.md`** |
 | Router R4 (tags, R1 capacity, 81 intents) | done 10-27, with and without context. Best so far: test macro-F1 0.82-0.85, SWE 28-30% of fair rules; critical miss 5-6% (under 1% with the 0.85 abstention threshold at 74% coverage). Open: high distraction on unseen intents, adversarial slice, int8 |
 | Benchmark v0 | done: 65 intents, 281 seeds, 11,240 paraphrases, 53,184 rows (`docs/dataset-v0.md`); superseded for intents and splits by A5 |
 | Rules baseline | done, both all-seeds and fair train-only versions |
@@ -143,7 +143,20 @@ safety-critical intent.
   re-checked: labels recompute from the rulebook, spans slice back, no split
   leaks, OOD intents only in OOD.
 
-### A6. Synthetic goals and minimal pairs (train-only augmentation; plumbing done 2026-10-28)
+### A6. Synthetic goals and minimal pairs (train-only augmentation; data written 2026-10-28)
+
+**Data (2026-10-28):** 60 synthetic goals, 565 utterances (high distraction
+20 goals vs 7 training intents; needs_cloud 22; irreversible 12; restricted
+5; safety_critical 4; no comfort). 290 minimal pairs over 115 intent pairs
+(differs in capability 140, distraction 129, consequence 97, actuation 91;
+57 with a restricted command phrased as a casual question). Re-checked by the
+coordinator: route labels recompute from `rulebook.route` / `route_tags`,
+spans slice back, all 4,635 new rows are train, and the 66,414 existing rows
+are an exact byte prefix of the augmented file. Judgment calls flagged for
+the audit: turn_signal_on, spray_windshield_washer and heat_side_mirrors as
+safety_critical; move_driver_seat and fold_rear_seats as restricted;
+30 "how do I X" (vehicle_manual_question) vs "do X" pairs.
+
 
 **Why:** R4's open problems. On the 8 OOD intents 63 to 74% of
 high-distraction rows are predicted low or medium (only 7 training intents

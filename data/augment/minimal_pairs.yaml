@@ -1,0 +1,1744 @@
+# Minimal pairs (hard negatives) for train-only augmentation: two look-alike
+# utterances of two existing intents whose tags differ so that the route changes.
+# Format and rules: docs/augmentation-spec.md section 4. Fix lines in place;
+# never reorder or delete (row ids use positions).
+
+- id: play_music_vs_play_video_01
+  differs_in: [distraction]
+  a: {intent: play_music, text: "play {song} by {artist} for the kids in the back", style: command, variant: plain}
+  b: {intent: play_video, text: "play the {song} video by {artist} for the kids in the back", style: command, variant: plain}
+  note: a song is audio and low distraction; a video needs the screen and is refused while moving
+
+- id: play_music_vs_play_video_02
+  differs_in: [distraction]
+  a: {intent: play_music, text: "can you play some {artist} songs for the kids on this long drive", style: question, variant: plain}
+  b: {intent: play_video, text: "can you play some {artist} videos for the kids on this long drive", style: question, variant: plain}
+  note: a song is audio and low distraction; a video needs the screen and is refused while moving
+
+- id: play_music_vs_play_video_03
+  differs_in: [distraction]
+  a: {intent: play_music, text: "{artist} ke gaane chala do", style: command, variant: hinglish}
+  b: {intent: play_video, text: "{artist} ke video chala do", style: command, variant: hinglish}
+  note: a song is audio and low distraction; a video needs the screen and is refused while moving
+
+- id: play_music_vs_play_video_04
+  differs_in: [distraction]
+  a: {intent: play_music, text: "{song} haadu makkalige play maadi", style: command, variant: kannada_english}
+  b: {intent: play_video, text: "{song} video makkalige screen alli play maadi", style: command, variant: kannada_english}
+  note: a song is audio and low distraction; a video needs the screen and is refused while moving
+
+- id: play_music_vs_play_video_05
+  differs_in: [distraction]
+  a: {intent: play_music, text: "uh put on the um {song} track", style: command, variant: disfluent}
+  b: {intent: play_video, text: "uh put on the um {song} video", style: command, variant: disfluent}
+  note: a song is audio and low distraction; a video needs the screen and is refused while moving
+
+- id: play_music_vs_play_video_06
+  differs_in: [distraction]
+  a: {intent: play_music, text: "the kids want to hear {song} now", style: indirect, variant: plain}
+  b: {intent: play_video, text: "the kids want to watch {song} on the screen now", style: indirect, variant: plain}
+  note: a song is audio and low distraction; a video needs the screen and is refused while moving
+
+- id: play_music_vs_play_video_07
+  differs_in: [distraction]
+  a: {intent: play_music, text: "kya aap {artist} ka naya gaana laga sakte ho", style: question, variant: hinglish}
+  b: {intent: play_video, text: "kya aap {artist} ka naya video screen pe laga sakte ho", style: question, variant: hinglish}
+  note: a song is audio and low distraction; a video needs the screen and is refused while moving
+
+- id: call_contact_vs_start_video_call_01
+  differs_in: [distraction]
+  a: {intent: call_contact, text: "call {contact} on whatsapp right now", style: command, variant: plain}
+  b: {intent: start_video_call, text: "video call {contact} on whatsapp right now", style: command, variant: plain}
+  note: a voice call is low distraction; a video call needs the screen and is refused while moving
+
+- id: call_contact_vs_start_video_call_02
+  differs_in: [distraction]
+  a: {intent: call_contact, text: "could you quickly connect me with {contact} on a voice call", style: question, variant: plain}
+  b: {intent: start_video_call, text: "could you quickly connect me with {contact} on a video call", style: question, variant: plain}
+  note: a voice call is low distraction; a video call needs the screen and is refused while moving
+
+- id: call_contact_vs_start_video_call_03
+  differs_in: [distraction]
+  a: {intent: call_contact, text: "{contact} ko abhi call karo", style: command, variant: hinglish}
+  b: {intent: start_video_call, text: "{contact} ko abhi video call karo", style: command, variant: hinglish}
+  note: a voice call is low distraction; a video call needs the screen and is refused while moving
+
+- id: call_contact_vs_start_video_call_04
+  differs_in: [distraction]
+  a: {intent: call_contact, text: "{contact} ge eega ondu call maadi", style: command, variant: kannada_english}
+  b: {intent: start_video_call, text: "{contact} ge eega ondu video call maadi", style: command, variant: kannada_english}
+  note: a voice call is low distraction; a video call needs the screen and is refused while moving
+
+- id: call_contact_vs_start_video_call_05
+  differs_in: [distraction]
+  a: {intent: call_contact, text: "call um call {contact} for me", style: command, variant: disfluent}
+  b: {intent: start_video_call, text: "video call um video call {contact} for me", style: command, variant: disfluent}
+  note: a voice call is low distraction; a video call needs the screen and is refused while moving
+
+- id: call_contact_vs_start_video_call_06
+  differs_in: [distraction]
+  a: {intent: call_contact, text: "the kids want to hear {contact}'s voice before they sleep", style: indirect, variant: plain}
+  b: {intent: start_video_call, text: "the kids want to see {contact}'s face before they sleep", style: indirect, variant: plain}
+  note: a voice call is low distraction; a video call needs the screen and is refused while moving
+
+- id: take_note_vs_edit_note_01
+  differs_in: [capability, distraction]
+  a: {intent: take_note, text: "make a note about the plumber's visit", style: command, variant: plain}
+  b: {intent: edit_note, text: "edit my note about the plumber's visit", style: command, variant: plain}
+  note: saving a note is a short local command; several edits to a note need the transcript on screen
+
+- id: take_note_vs_edit_note_02
+  differs_in: [capability, distraction]
+  a: {intent: take_note, text: "make a shopping list note with milk and eggs", style: command, variant: plain}
+  b: {intent: edit_note, text: "change milk to curd in my shopping list note", style: command, variant: plain}
+  note: saving a note is a short local command; several edits to a note need the transcript on screen
+
+- id: take_note_vs_edit_note_03
+  differs_in: [capability, distraction]
+  a: {intent: take_note, text: "can you save a note that the car needs servicing", style: question, variant: plain}
+  b: {intent: edit_note, text: "can you rewrite the note that the car needs servicing", style: question, variant: plain}
+  note: saving a note is a short local command; several edits to a note need the transcript on screen
+
+- id: take_note_vs_edit_note_04
+  differs_in: [capability, distraction]
+  a: {intent: take_note, text: "ek naya note likh lo meeting ke baare mein", style: command, variant: hinglish}
+  b: {intent: edit_note, text: "purana note badal do meeting ke baare mein", style: command, variant: hinglish}
+  note: saving a note is a short local command; several edits to a note need the transcript on screen
+
+- id: take_note_vs_edit_note_05
+  differs_in: [capability, distraction]
+  a: {intent: take_note, text: "office meeting bagge ondu note maadi", style: command, variant: kannada_english}
+  b: {intent: edit_note, text: "office meeting note alli swalpa changes maadi", style: command, variant: kannada_english}
+  note: saving a note is a short local command; several edits to a note need the transcript on screen
+
+- id: take_note_vs_edit_note_06
+  differs_in: [capability, distraction]
+  a: {intent: take_note, text: "um jot this down in my notes uh the gate code changed", style: command, variant: disfluent}
+  b: {intent: edit_note, text: "um fix this in my notes uh the gate code line is wrong", style: command, variant: disfluent}
+  note: saving a note is a short local command; several edits to a note need the transcript on screen
+
+- id: take_note_vs_edit_note_07
+  differs_in: [capability, distraction]
+  a: {intent: take_note, text: "save a note with the parking level", style: command, variant: plain}
+  b: {intent: edit_note, text: "correct the parking level in my saved note", style: command, variant: plain}
+  note: saving a note is a short local command; several edits to a note need the transcript on screen
+
+- id: play_podcast_vs_play_video_01
+  differs_in: [distraction]
+  a: {intent: play_podcast, text: "put on the newest {podcast} episode for the kids", style: command, variant: plain}
+  b: {intent: play_video, text: "put on the newest {podcast} episode for the kids on the screen", style: command, variant: plain}
+  note: a podcast episode is audio; the same show as a video needs the screen
+
+- id: play_podcast_vs_play_video_02
+  differs_in: [distraction]
+  a: {intent: play_podcast, text: "can you continue the {podcast} episode from where i left", style: question, variant: plain}
+  b: {intent: play_video, text: "can you continue the {podcast} video from where i left", style: question, variant: plain}
+  note: a podcast episode is audio; the same show as a video needs the screen
+
+- id: play_podcast_vs_play_video_03
+  differs_in: [distraction]
+  a: {intent: play_podcast, text: "{podcast} ka naya episode lagao", style: command, variant: hinglish}
+  b: {intent: play_video, text: "{podcast} ka naya video lagao screen pe", style: command, variant: hinglish}
+  note: a podcast episode is audio; the same show as a video needs the screen
+
+- id: play_podcast_vs_play_video_04
+  differs_in: [distraction]
+  a: {intent: play_podcast, text: "{podcast} hosa episode haaku", style: command, variant: kannada_english}
+  b: {intent: play_video, text: "{podcast} hosa video haaku", style: command, variant: kannada_english}
+  note: a podcast episode is audio; the same show as a video needs the screen
+
+- id: play_podcast_vs_play_video_05
+  differs_in: [distraction]
+  a: {intent: play_podcast, text: "play the uh the {podcast} episode", style: command, variant: disfluent}
+  b: {intent: play_video, text: "play the uh the {podcast} episode as a video", style: command, variant: disfluent}
+  note: a podcast episode is audio; the same show as a video needs the screen
+
+- id: play_music_vs_show_photos_01
+  differs_in: [distraction, consequence]
+  a: {intent: play_music, text: "put on the songs from the wedding for grandma", style: command, variant: plain}
+  b: {intent: show_photos, text: "put up the pictures from the wedding for grandma", style: command, variant: plain}
+  note: songs are audio and low distraction; browsing pictures on the screen is high
+
+- id: play_music_vs_show_photos_02
+  differs_in: [distraction, consequence]
+  a: {intent: play_music, text: "can you bring up the goa trip playlist", style: question, variant: plain}
+  b: {intent: show_photos, text: "can you bring up the goa trip photos", style: question, variant: plain}
+  note: songs are audio and low distraction; browsing pictures on the screen is high
+
+- id: skip_track_vs_show_photos_01
+  differs_in: [distraction, consequence]
+  a: {intent: skip_track, text: "skip to the next song", style: command, variant: plain}
+  b: {intent: show_photos, text: "skip to the next photo on the screen", style: command, variant: plain}
+  note: skipping a track is a transport control; flicking through photos on the screen is high distraction
+
+- id: skip_track_vs_show_photos_02
+  differs_in: [distraction, consequence]
+  a: {intent: skip_track, text: "go back to the previous song", style: command, variant: plain}
+  b: {intent: show_photos, text: "go back to the previous picture on the screen", style: command, variant: plain}
+  note: skipping a track is a transport control; flicking through photos on the screen is high distraction
+
+- id: skip_track_vs_show_photos_03
+  differs_in: [distraction, consequence]
+  a: {intent: skip_track, text: "next song pe jao", style: command, variant: hinglish}
+  b: {intent: show_photos, text: "next photo pe jao screen pe", style: command, variant: hinglish}
+  note: skipping a track is a transport control; flicking through photos on the screen is high distraction
+
+- id: skip_track_vs_show_photos_04
+  differs_in: [distraction, consequence]
+  a: {intent: skip_track, text: "uh skip to the um next track", style: command, variant: disfluent}
+  b: {intent: show_photos, text: "uh skip to the um next picture", style: command, variant: disfluent}
+  note: skipping a track is a transport control; flicking through photos on the screen is high distraction
+
+- id: next_turn_vs_show_photos_01
+  differs_in: [distraction]
+  a: {intent: next_turn, text: "show me the next turn", style: command, variant: plain}
+  b: {intent: show_photos, text: "show me the next photo", style: command, variant: plain}
+  note: the next turn is one short sentence; showing photos is screen browsing and refused while moving
+
+- id: next_turn_vs_show_photos_02
+  differs_in: [distraction]
+  a: {intent: next_turn, text: "can you show me the next turn after this one", style: question, variant: plain}
+  b: {intent: show_photos, text: "can you show me the next photo after this one", style: question, variant: plain}
+  note: the next turn is one short sentence; showing photos is screen browsing and refused while moving
+
+- id: calendar_today_vs_add_reminder_01
+  differs_in: [distraction, consequence]
+  a: {intent: calendar_today, text: "what's on my calendar this afternoon", style: question, variant: plain}
+  b: {intent: add_reminder, text: "remind me about what's on my calendar this afternoon", style: command, variant: plain}
+  note: the read-out is medium distraction and refused at high demand; setting a reminder is low
+
+- id: calendar_today_vs_add_reminder_02
+  differs_in: [distraction, consequence]
+  a: {intent: calendar_today, text: "aaj ki saari meetings bata do", style: command, variant: hinglish}
+  b: {intent: add_reminder, text: "aaj ki saari meetings ka reminder laga do", style: command, variant: hinglish}
+  note: hearing the day's calendar is long output (medium); a reminder is a short command
+
+- id: calendar_today_vs_add_reminder_03
+  differs_in: [distraction, consequence]
+  a: {intent: calendar_today, text: "ivattu meetings bagge heli", style: command, variant: kannada_english}
+  b: {intent: add_reminder, text: "ivattu meetings bagge reminder haaki", style: command, variant: kannada_english}
+  note: hearing the day's calendar is long output (medium); a reminder is a short command
+
+- id: calendar_today_vs_add_reminder_04
+  differs_in: [distraction, consequence]
+  a: {intent: calendar_today, text: "um what do i have on the calendar uh this evening", style: question, variant: disfluent}
+  b: {intent: add_reminder, text: "um remind me what i have on the calendar uh this evening at {time}", style: command, variant: disfluent}
+  note: hearing the day's calendar is long output (medium); a reminder is a short command
+
+- id: calendar_today_vs_read_document_01
+  differs_in: [capability, distraction]
+  a: {intent: calendar_today, text: "go through today's agenda with me", style: command, variant: plain}
+  b: {intent: read_document, text: "go through today's agenda document on the screen", style: command, variant: plain}
+  note: hearing today's calendar is medium; a document on the screen is high distraction and needs the cloud
+
+- id: read_messages_vs_send_text_message_01
+  differs_in: [distraction, consequence]
+  a: {intent: read_messages, text: "read out the whatsapp message from {contact}", style: command, variant: plain}
+  b: {intent: send_text_message, text: "send out a whatsapp message to {contact} saying {message_text}", style: command, variant: plain}
+  note: reading messages aloud is long output (medium); sending a short text is low but goes out to someone
+
+- id: read_messages_vs_send_text_message_02
+  differs_in: [distraction, consequence]
+  a: {intent: read_messages, text: "can you read the new message from {contact}", style: question, variant: plain}
+  b: {intent: send_text_message, text: "can you send a new message to {contact}", style: question, variant: plain}
+  note: reading messages aloud is long output (medium); sending a short text is low but goes out to someone
+
+- id: read_messages_vs_send_text_message_03
+  differs_in: [distraction, consequence]
+  a: {intent: read_messages, text: "{contact} ka whatsapp message jaldi sunao", style: command, variant: hinglish}
+  b: {intent: send_text_message, text: "{contact} ko whatsapp message jaldi bhejo {message_text}", style: command, variant: hinglish}
+  note: reading messages aloud is long output (medium); sending a short text is low but goes out to someone
+
+- id: read_messages_vs_send_text_message_04
+  differs_in: [distraction, consequence]
+  a: {intent: read_messages, text: "{contact} whatsapp message swalpa odi", style: command, variant: kannada_english}
+  b: {intent: send_text_message, text: "{contact} ge whatsapp message swalpa kalsi {message_text}", style: command, variant: kannada_english}
+  note: reading messages aloud is long output (medium); sending a short text is low but goes out to someone
+
+- id: read_messages_vs_send_text_message_05
+  differs_in: [distraction, consequence]
+  a: {intent: read_messages, text: "uh read the um new message from {contact}", style: command, variant: disfluent}
+  b: {intent: send_text_message, text: "uh send a um new message to {contact} saying {message_text}", style: command, variant: disfluent}
+  note: reading messages aloud is long output (medium); sending a short text is low but goes out to someone
+
+- id: read_messages_vs_send_text_message_06
+  differs_in: [distraction, consequence]
+  a: {intent: read_messages, text: "{contact} new message read", style: fragment, variant: plain}
+  b: {intent: send_text_message, text: "{contact} new message send", style: fragment, variant: plain}
+  note: reading messages aloud is long output (medium); sending a short text is low but goes out to someone
+
+- id: read_messages_vs_reply_to_message_01
+  differs_in: [distraction, consequence]
+  a: {intent: read_messages, text: "read out the last message from {contact}", style: command, variant: plain}
+  b: {intent: reply_to_message, text: "reply to the last message from {contact} with {message_text}", style: command, variant: plain}
+  note: reading a message is long output (medium); a short reply is low distraction
+
+- id: read_messages_vs_reply_to_message_02
+  differs_in: [distraction, consequence]
+  a: {intent: read_messages, text: "can you read the message {contact} just sent", style: question, variant: plain}
+  b: {intent: reply_to_message, text: "can you reply to the message {contact} just sent saying {message_text}", style: question, variant: plain}
+  note: reading a message is long output (medium); a short reply is low distraction
+
+- id: read_messages_vs_reply_to_message_03
+  differs_in: [distraction, consequence]
+  a: {intent: read_messages, text: "uh read the uh last message again", style: command, variant: disfluent}
+  b: {intent: reply_to_message, text: "uh reply to the uh last message saying {message_text}", style: command, variant: disfluent}
+  note: reading a message is long output (medium); a short reply is low distraction
+
+- id: summarize_group_chat_vs_send_text_message_01
+  differs_in: [distraction, consequence]
+  a: {intent: summarize_group_chat, text: "summarise the cousins group for me", style: command, variant: plain}
+  b: {intent: send_text_message, text: "message the cousins group for me {message_text}", style: command, variant: plain}
+  note: summarising a group is long output (medium); posting one line is low distraction
+
+- id: summarize_group_chat_vs_send_text_message_02
+  differs_in: [distraction, consequence]
+  a: {intent: summarize_group_chat, text: "can you sum up the school parents group", style: question, variant: plain}
+  b: {intent: send_text_message, text: "can you send {message_text} to the school parents group", style: question, variant: plain}
+  note: summarising a group is long output (medium); posting one line is low distraction
+
+- id: summarize_group_chat_vs_show_photos_01
+  differs_in: [capability, distraction]
+  a: {intent: summarize_group_chat, text: "summarise what came in the family group", style: command, variant: plain}
+  b: {intent: show_photos, text: "show the photos that came in the family group", style: command, variant: plain}
+  note: a spoken summary is medium; browsing the group's photos on the screen is high
+
+- id: summarize_group_chat_vs_show_photos_02
+  differs_in: [capability, distraction]
+  a: {intent: summarize_group_chat, text: "family group mein jo aaya uska summary do", style: command, variant: hinglish}
+  b: {intent: show_photos, text: "family group mein jo aaya uski photos dikhao", style: command, variant: hinglish}
+  note: a spoken summary is medium; browsing the group's photos on the screen is high
+
+- id: play_voicemail_vs_play_music_01
+  differs_in: [distraction, consequence]
+  a: {intent: play_voicemail, text: "play my new voicemails", style: command, variant: plain}
+  b: {intent: play_music, text: "play my new playlist", style: command, variant: plain}
+  note: voicemails are long spoken output (medium); music is low distraction
+
+- id: play_voicemail_vs_play_music_02
+  differs_in: [distraction, consequence]
+  a: {intent: play_voicemail, text: "naye voicemail sunao", style: command, variant: hinglish}
+  b: {intent: play_music, text: "naye gaane sunao", style: command, variant: hinglish}
+  note: voicemails are long spoken output (medium); music is low distraction
+
+- id: play_voicemail_vs_play_music_03
+  differs_in: [distraction, consequence]
+  a: {intent: play_voicemail, text: "hosa voicemail play maadi", style: command, variant: kannada_english}
+  b: {intent: play_music, text: "hosa songs play maadi", style: command, variant: kannada_english}
+  note: voicemails are long spoken output (medium); music is low distraction
+
+- id: play_voicemail_vs_play_music_04
+  differs_in: [distraction, consequence]
+  a: {intent: play_voicemail, text: "um can you play the uh voicemails", style: question, variant: disfluent}
+  b: {intent: play_music, text: "um can you play the uh songs", style: question, variant: disfluent}
+  note: voicemails are long spoken output (medium); music is low distraction
+
+- id: play_voicemail_vs_play_video_01
+  differs_in: [distraction, consequence]
+  a: {intent: play_voicemail, text: "can you play the latest voicemail from the school", style: question, variant: plain}
+  b: {intent: play_video, text: "can you play the latest video from the school", style: question, variant: plain}
+  note: voicemail is spoken (medium, refused only at high demand); a video is high and refused while moving
+
+- id: place_opening_hours_vs_find_nearby_place_01
+  differs_in: [distraction]
+  a: {intent: place_opening_hours, text: "is the {place} near here open now", style: question, variant: plain}
+  b: {intent: find_nearby_place, text: "find a {place} near here that's open now", style: command, variant: plain}
+  note: one fact about one place is low; finding and comparing places is medium
+
+- id: place_opening_hours_vs_find_nearby_place_02
+  differs_in: [distraction]
+  a: {intent: place_opening_hours, text: "check if the pharmacy on this road is open", style: command, variant: plain}
+  b: {intent: find_nearby_place, text: "find an open pharmacy on this road", style: command, variant: plain}
+  note: one fact about one place is low; finding and comparing places is medium
+
+- id: place_opening_hours_vs_find_nearby_place_03
+  differs_in: [distraction]
+  a: {intent: place_opening_hours, text: "paas wala {place} abhi khula hai kya", style: question, variant: hinglish}
+  b: {intent: find_nearby_place, text: "paas wala koi {place} dikhao jo abhi khula ho", style: command, variant: hinglish}
+  note: one fact about one place is low; finding and comparing places is medium
+
+- id: place_opening_hours_vs_find_nearby_place_04
+  differs_in: [distraction]
+  a: {intent: place_opening_hours, text: "illi hattira {place} open ideya", style: question, variant: kannada_english}
+  b: {intent: find_nearby_place, text: "illi hattira open iro {place} hudki", style: command, variant: kannada_english}
+  note: one fact about one place is low; finding and comparing places is medium
+
+- id: place_opening_hours_vs_find_nearby_place_05
+  differs_in: [distraction]
+  a: {intent: place_opening_hours, text: "uh check if the um {place} is still open", style: command, variant: disfluent}
+  b: {intent: find_nearby_place, text: "uh find a um {place} that is still open", style: command, variant: disfluent}
+  note: one fact about one place is low; finding and comparing places is medium
+
+- id: place_opening_hours_vs_find_nearby_place_06
+  differs_in: [distraction]
+  a: {intent: place_opening_hours, text: "{place} open right now", style: fragment, variant: plain}
+  b: {intent: find_nearby_place, text: "any open {place} nearby right now", style: fragment, variant: plain}
+  note: one fact about one place is low; finding and comparing places is medium
+
+- id: navigate_to_contact_address_vs_add_stop_along_route_01
+  differs_in: [distraction]
+  a: {intent: navigate_to_contact_address, text: "drive to {contact}'s house", style: command, variant: plain}
+  b: {intent: add_stop_along_route, text: "stop at {contact}'s house on the way", style: command, variant: plain}
+  note: going to one address is low; adding a stop along the route is a medium decision
+
+- id: navigate_to_contact_address_vs_add_stop_along_route_02
+  differs_in: [distraction]
+  a: {intent: navigate_to_contact_address, text: "{contact} ke office chalo", style: command, variant: hinglish}
+  b: {intent: add_stop_along_route, text: "raaste mein {contact} ke office ruk ke chalo", style: command, variant: hinglish}
+  note: going to one address is low; adding a stop along the route is a medium decision
+
+- id: navigate_to_contact_address_vs_add_stop_along_route_03
+  differs_in: [distraction]
+  a: {intent: navigate_to_contact_address, text: "can you take me to {contact}'s office", style: question, variant: plain}
+  b: {intent: add_stop_along_route, text: "can you take me via {contact}'s office as a stop on the way", style: question, variant: plain}
+  note: going to one address is low; adding a stop along the route is a medium decision
+
+- id: fuel_prices_nearby_vs_add_stop_along_route_01
+  differs_in: [distraction, consequence]
+  a: {intent: fuel_prices_nearby, text: "what's the petrol price at the bunk on the way", style: question, variant: plain}
+  b: {intent: add_stop_along_route, text: "add a petrol stop at the bunk on the way", style: command, variant: plain}
+  note: a price is one fact (low); adding a bunk stop to the route is a medium decision
+
+- id: fuel_prices_nearby_vs_add_stop_along_route_02
+  differs_in: [distraction, consequence]
+  a: {intent: fuel_prices_nearby, text: "raaste wale petrol pump ka rate batao", style: command, variant: hinglish}
+  b: {intent: add_stop_along_route, text: "raaste wale petrol pump ka stop lagao", style: command, variant: hinglish}
+  note: a price is one fact (low); adding a bunk stop to the route is a medium decision
+
+- id: navigate_home_vs_add_stop_along_route_01
+  differs_in: [capability, distraction]
+  a: {intent: navigate_home, text: "take me home the usual way", style: command, variant: plain}
+  b: {intent: add_stop_along_route, text: "add a coffee stop on the usual way home", style: command, variant: plain}
+  note: a saved destination is local and low; adding a stop is a cloud-preferred medium decision
+
+- id: navigate_home_vs_add_stop_along_route_02
+  differs_in: [capability, distraction]
+  a: {intent: navigate_home, text: "mane ge daari haaki", style: command, variant: kannada_english}
+  b: {intent: add_stop_along_route, text: "mane daari alli coffee stop haaki", style: command, variant: kannada_english}
+  note: a saved destination is local and low; adding a stop is a cloud-preferred medium decision
+
+- id: navigate_home_vs_find_parking_01
+  differs_in: [capability, distraction, consequence]
+  a: {intent: navigate_home, text: "get me to the office", style: command, variant: plain}
+  b: {intent: find_parking, text: "get me a parking spot at the office", style: command, variant: plain}
+  note: a saved destination is local and low; searching parking is cloud-preferred and medium
+
+- id: navigate_home_vs_find_parking_02
+  differs_in: [capability, distraction, consequence]
+  a: {intent: navigate_home, text: "uh get me to the um office", style: command, variant: disfluent}
+  b: {intent: find_parking, text: "uh get me a parking spot at the um office", style: command, variant: disfluent}
+  note: a saved destination is local and low; searching parking is cloud-preferred and medium
+
+- id: explain_topic_in_depth_vs_browse_web_01
+  differs_in: [distraction]
+  a: {intent: explain_topic_in_depth, text: "explain {topic} properly for my son in the back seat on the long drive", style: command, variant: plain}
+  b: {intent: browse_web, text: "open a {topic} website for my son in the back seat on the long drive", style: command, variant: plain}
+  note: a long spoken explanation is medium; a web page on the screen is high and refused while moving
+
+- id: explain_topic_in_depth_vs_browse_web_02
+  differs_in: [distraction]
+  a: {intent: explain_topic_in_depth, text: "tell me all about {topic}", style: command, variant: plain}
+  b: {intent: browse_web, text: "open a page all about {topic}", style: command, variant: plain}
+  note: a long spoken explanation is medium; a web page on the screen is high and refused while moving
+
+- id: explain_topic_in_depth_vs_browse_web_03
+  differs_in: [distraction]
+  a: {intent: explain_topic_in_depth, text: "{topic} ke baare mein detail mein samjhao", style: command, variant: hinglish}
+  b: {intent: browse_web, text: "{topic} ke baare mein website kholo", style: command, variant: hinglish}
+  note: a long spoken explanation is medium; a web page on the screen is high and refused while moving
+
+- id: weather_now_vs_browse_web_01
+  differs_in: [distraction]
+  a: {intent: weather_now, text: "what's the weather in {city} this week", style: question, variant: plain}
+  b: {intent: browse_web, text: "open the weather website for {city} this week", style: command, variant: plain}
+  note: a weather sentence is low; a website on the screen is high distraction
+
+- id: weather_now_vs_browse_web_02
+  differs_in: [distraction]
+  a: {intent: weather_now, text: "{city} ka weather abhi batao", style: command, variant: hinglish}
+  b: {intent: browse_web, text: "{city} ka weather website abhi kholo", style: command, variant: hinglish}
+  note: a weather sentence is low; a website on the screen is high distraction
+
+- id: sports_score_vs_browse_web_01
+  differs_in: [distraction]
+  a: {intent: sports_score, text: "what's the latest cricket score", style: question, variant: plain}
+  b: {intent: browse_web, text: "open the latest cricket score website", style: command, variant: plain}
+  note: a score is one sentence; browsing a score site is high distraction
+
+- id: sports_score_vs_browse_web_02
+  differs_in: [distraction]
+  a: {intent: sports_score, text: "give me the {team} match score", style: command, variant: plain}
+  b: {intent: browse_web, text: "open the {team} match score page", style: command, variant: plain}
+  note: a score is one sentence; browsing a score site is high distraction
+
+- id: general_knowledge_question_vs_explain_topic_in_depth_01
+  differs_in: [capability, distraction]
+  a: {intent: general_knowledge_question, text: "how do rainbows form", style: question, variant: plain}
+  b: {intent: explain_topic_in_depth, text: "explain in detail how rainbows form", style: command, variant: plain}
+  note: a short fact fits a small local model; an in-depth explanation needs the cloud and is long output
+
+- id: general_knowledge_question_vs_explain_topic_in_depth_02
+  differs_in: [capability, distraction]
+  a: {intent: general_knowledge_question, text: "why is the sea salty", style: question, variant: plain}
+  b: {intent: explain_topic_in_depth, text: "explain in detail why the sea is salty", style: command, variant: plain}
+  note: a short fact fits a small local model; an in-depth explanation needs the cloud and is long output
+
+- id: general_knowledge_question_vs_explain_topic_in_depth_03
+  differs_in: [capability, distraction]
+  a: {intent: general_knowledge_question, text: "how do bees make honey", style: question, variant: plain}
+  b: {intent: explain_topic_in_depth, text: "walk me through in detail how bees make honey", style: command, variant: plain}
+  note: a short fact fits a small local model; an in-depth explanation needs the cloud and is long output
+
+- id: general_knowledge_question_vs_explain_topic_in_depth_04
+  differs_in: [capability, distraction]
+  a: {intent: general_knowledge_question, text: "chand pe din raat kaise hote hain", style: question, variant: hinglish}
+  b: {intent: explain_topic_in_depth, text: "detail mein samjhao chand pe din raat kaise hote hain", style: question, variant: hinglish}
+  note: a short fact fits a small local model; an in-depth explanation needs the cloud and is long output
+
+- id: general_knowledge_question_vs_explain_topic_in_depth_05
+  differs_in: [capability, distraction]
+  a: {intent: general_knowledge_question, text: "um why do um planes leave white lines", style: question, variant: disfluent}
+  b: {intent: explain_topic_in_depth, text: "um explain in detail why um planes leave white lines", style: command, variant: disfluent}
+  note: a short fact fits a small local model; an in-depth explanation needs the cloud and is long output
+
+- id: add_reminder_vs_pay_bill_01
+  differs_in: [capability, distraction, consequence]
+  a: {intent: add_reminder, text: "remind me to pay the electricity bill tonight", style: command, variant: plain}
+  b: {intent: pay_bill, text: "pay the electricity bill tonight", style: command, variant: plain}
+  note: a reminder is a local command; paying needs the cloud, the screen and goes out for good
+
+- id: add_reminder_vs_pay_bill_02
+  differs_in: [capability, distraction, consequence]
+  a: {intent: add_reminder, text: "bijli ka bill pay karne ka reminder laga do", style: command, variant: hinglish}
+  b: {intent: pay_bill, text: "bijli ka bill pay kar do abhi", style: command, variant: hinglish}
+  note: a reminder is a local command; paying needs the cloud, the screen and goes out for good
+
+- id: add_reminder_vs_pay_bill_03
+  differs_in: [capability, distraction, consequence]
+  a: {intent: add_reminder, text: "current bill pay maadoke remind maadi", style: command, variant: kannada_english}
+  b: {intent: pay_bill, text: "current bill pay maadi", style: command, variant: kannada_english}
+  note: a reminder is a local command; paying needs the cloud, the screen and goes out for good
+
+- id: add_reminder_vs_pay_bill_04
+  differs_in: [capability, distraction, consequence]
+  a: {intent: add_reminder, text: "uh remind me to um pay the phone bill", style: command, variant: disfluent}
+  b: {intent: pay_bill, text: "uh pay the um phone bill", style: command, variant: disfluent}
+  note: a reminder is a local command; paying needs the cloud, the screen and goes out for good
+
+- id: add_reminder_vs_pay_bill_05
+  differs_in: [capability, distraction, consequence]
+  a: {intent: add_reminder, text: "can you remind me to pay the broadband bill today", style: question, variant: plain}
+  b: {intent: pay_bill, text: "can you pay the broadband bill today", style: question, variant: plain}
+  note: a reminder is a local command; paying needs the cloud, the screen and goes out for good
+
+- id: add_reminder_vs_pay_bill_06
+  differs_in: [capability, distraction, consequence]
+  a: {intent: add_reminder, text: "remind me to pay the gas bill with the card ending {card}", style: command, variant: plain}
+  b: {intent: pay_bill, text: "pay the gas bill with the card ending {card}", style: command, variant: plain}
+  note: both carry a card number; the reminder stays local while the payment needs the cloud and the screen
+
+- id: take_note_vs_pay_bill_01
+  differs_in: [capability, distraction, consequence]
+  a: {intent: take_note, text: "note that the water bill is due on {date}", style: command, variant: plain}
+  b: {intent: pay_bill, text: "pay the water bill due on {date}", style: command, variant: plain}
+  note: a note is saved locally; paying a bill needs the cloud and the screen and cannot be undone
+
+- id: take_note_vs_pay_bill_02
+  differs_in: [capability, distraction, consequence]
+  a: {intent: take_note, text: "save the card ending {card} for the electricity bill", style: command, variant: plain}
+  b: {intent: pay_bill, text: "pay the electricity bill with the card ending {card}", style: command, variant: plain}
+  note: the note stays local; with the card masked the payment goes to the cloud only when parked
+
+- id: take_note_vs_pay_bill_03
+  differs_in: [capability, distraction, consequence]
+  a: {intent: take_note, text: "note kar lo pani ka bill {date} ko due hai", style: command, variant: hinglish}
+  b: {intent: pay_bill, text: "pani ka bill pay kar do jo {date} ko due hai", style: command, variant: hinglish}
+  note: a note is saved locally; paying a bill needs the cloud and the screen and cannot be undone
+
+- id: weather_now_vs_plan_multi_day_trip_01
+  differs_in: [distraction]
+  a: {intent: weather_now, text: "what will the weather be like for the weekend trip to the hills", style: question, variant: plain}
+  b: {intent: plan_multi_day_trip, text: "plan the weekend trip to the hills for us", style: command, variant: plain}
+  note: a multi-day plan is long and medium; the weather is one sentence
+
+- id: plan_day_itinerary_vs_traffic_on_route_01
+  differs_in: [distraction]
+  a: {intent: plan_day_itinerary, text: "plan my errands for today", style: command, variant: plain}
+  b: {intent: traffic_on_route, text: "check traffic for my errands today", style: command, variant: plain}
+  note: ordering today's stops is a medium decision; traffic is one sentence
+
+- id: plan_day_itinerary_vs_traffic_on_route_02
+  differs_in: [distraction]
+  a: {intent: plan_day_itinerary, text: "aaj ke saare kaam ka plan bana do", style: command, variant: hinglish}
+  b: {intent: traffic_on_route, text: "aaj ke saare kaam ke raaste ka traffic batao", style: command, variant: hinglish}
+  note: ordering today's stops is a medium decision; traffic is one sentence
+
+- id: place_opening_hours_vs_book_restaurant_01
+  differs_in: [capability, distraction, consequence]
+  a: {intent: place_opening_hours, text: "is {place} open for lunch today", style: question, variant: plain}
+  b: {intent: book_restaurant, text: "book {place} for lunch today", style: command, variant: plain}
+  note: opening hours are one fact; booking is a medium decision that needs the cloud and commits a table
+
+- id: place_opening_hours_vs_book_restaurant_02
+  differs_in: [capability, distraction, consequence]
+  a: {intent: place_opening_hours, text: "{place} mein aaj raat dinner milega kya", style: question, variant: hinglish}
+  b: {intent: book_restaurant, text: "{place} mein aaj raat dinner book karo", style: command, variant: hinglish}
+  note: opening hours are one fact; booking is a medium decision that needs the cloud and commits a table
+
+- id: book_restaurant_vs_find_nearby_place_01
+  differs_in: [capability, consequence]
+  a: {intent: book_restaurant, text: "book a table at a good biryani place near here", style: command, variant: plain}
+  b: {intent: find_nearby_place, text: "find a good biryani place near here", style: command, variant: plain}
+  note: finding a place works offline from onboard POIs; a booking needs the cloud and commits
+
+- id: book_restaurant_vs_find_nearby_place_02
+  differs_in: [capability, consequence]
+  a: {intent: book_restaurant, text: "hattira olle biryani hotel alli table book maadi", style: command, variant: kannada_english}
+  b: {intent: find_nearby_place, text: "hattira olle biryani hotel hudki", style: command, variant: kannada_english}
+  note: finding a place works offline from onboard POIs; a booking needs the cloud and commits
+
+- id: read_email_aloud_vs_read_document_01
+  differs_in: [capability, distraction]
+  a: {intent: read_email_aloud, text: "read the email hr sent about the leave policy", style: command, variant: plain}
+  b: {intent: read_document, text: "open the document hr sent about the leave policy", style: command, variant: plain}
+  note: an email read aloud is medium; a document on the screen is high and needs the cloud
+
+- id: fuel_range_vs_plan_charging_stops_01
+  differs_in: [capability, distraction]
+  a: {intent: fuel_range, text: "is the charge enough to reach {city}", style: question, variant: plain}
+  b: {intent: plan_charging_stops, text: "plan the charge stops to reach {city}", style: command, variant: plain}
+  note: the range is a reading from the car; planning charging stops is medium and cloud preferred
+
+- id: fuel_range_vs_find_nearby_place_01
+  differs_in: [capability, distraction]
+  a: {intent: fuel_range, text: "how far is my range", style: question, variant: plain}
+  b: {intent: find_nearby_place, text: "how far is the nearest bunk", style: question, variant: plain}
+  note: the range is a reading from the car; finding a bunk compares places (medium, cloud preferred)
+
+- id: calendar_today_vs_add_calendar_event_01
+  differs_in: [capability, distraction, consequence]
+  a: {intent: calendar_today, text: "what's on my calendar this evening", style: question, variant: plain}
+  b: {intent: add_calendar_event, text: "put a dinner on my calendar this evening", style: command, variant: plain}
+  note: hearing the calendar is medium; adding an event is low but needs a small model and sends an invite
+
+- id: adjust_window_vs_unlock_doors_01
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "can you open the back window for a second", style: question, variant: plain}
+  b: {intent: unlock_doors, text: "can you open the back door for a second", style: question, variant: plain}
+  note: a window is comfort and always runs; a door is restricted and is refused while moving
+
+- id: adjust_window_vs_unlock_doors_02
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "could you open the window for the guard", style: question, variant: plain}
+  b: {intent: unlock_doors, text: "could you open the door for the guard", style: question, variant: plain}
+  note: a window is comfort and always runs; a door is restricted and is refused while moving
+
+- id: adjust_window_vs_unlock_doors_03
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "piche wala window khol doge kya", style: question, variant: hinglish}
+  b: {intent: unlock_doors, text: "piche wala door khol doge kya", style: question, variant: hinglish}
+  note: a window is comfort and always runs; a door is restricted and is refused while moving
+
+- id: adjust_window_vs_unlock_doors_04
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "hinde window open maadtira", style: question, variant: kannada_english}
+  b: {intent: unlock_doors, text: "hinde door open maadtira", style: question, variant: kannada_english}
+  note: a window is comfort and always runs; a door is restricted and is refused while moving
+
+- id: adjust_window_vs_unlock_doors_05
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "uh can you lower the um passenger window", style: question, variant: disfluent}
+  b: {intent: unlock_doors, text: "uh can you unlock the um passenger door", style: question, variant: disfluent}
+  note: a window is comfort and always runs; a door is restricted and is refused while moving
+
+- id: adjust_window_vs_unlock_doors_06
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "is it possible to open the rear windows for the kids", style: question, variant: plain}
+  b: {intent: unlock_doors, text: "is it possible to unlock the rear doors for the kids", style: question, variant: plain}
+  note: a window is comfort and always runs; a door is restricted and is refused while moving
+
+- id: adjust_window_vs_unlock_doors_07
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "my friend outside wants to talk through the window", style: indirect, variant: plain}
+  b: {intent: unlock_doors, text: "my friend outside wants to get in through the back door", style: indirect, variant: plain}
+  note: a window is comfort and always runs; a door is restricted and is refused while moving
+
+- id: adjust_window_vs_open_trunk_01
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "can you pop the window open for a sec", style: question, variant: plain}
+  b: {intent: open_trunk, text: "can you pop the boot open for a sec", style: question, variant: plain}
+  note: a window is comfort and always runs; an open boot is restricted and refused while moving
+
+- id: adjust_window_vs_open_trunk_02
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "khidki khol doge zara", style: question, variant: hinglish}
+  b: {intent: open_trunk, text: "dikki khol doge zara", style: question, variant: hinglish}
+  note: a window is comfort and always runs; an open boot is restricted and refused while moving
+
+- id: adjust_window_vs_open_trunk_03
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "window swalpa open maadtira", style: question, variant: kannada_english}
+  b: {intent: open_trunk, text: "dickey swalpa open maadtira", style: question, variant: kannada_english}
+  note: a window is comfort and always runs; an open boot is restricted and refused while moving
+
+- id: adjust_window_vs_open_trunk_04
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "um could you open the uh the back windows", style: question, variant: disfluent}
+  b: {intent: open_trunk, text: "um could you open the uh the back hatch", style: question, variant: disfluent}
+  note: a window is comfort and always runs; an open boot is restricted and refused while moving
+
+- id: adjust_window_vs_fold_mirrors_01
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "can you shut both side windows before this gate", style: question, variant: plain}
+  b: {intent: fold_mirrors, text: "can you shut both side mirrors before this gate", style: question, variant: plain}
+  note: a window is comfort and always runs; folded mirrors remove the side view and are refused while moving
+
+- id: adjust_window_vs_fold_mirrors_02
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "dono side window band kar do", style: command, variant: hinglish}
+  b: {intent: fold_mirrors, text: "dono side mirror band kar do", style: command, variant: hinglish}
+  note: a window is comfort and always runs; folded mirrors remove the side view and are refused while moving
+
+- id: adjust_window_vs_fold_mirrors_03
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "side windows mucchi", style: command, variant: kannada_english}
+  b: {intent: fold_mirrors, text: "side mirrors mucchi", style: command, variant: kannada_english}
+  note: a window is comfort and always runs; folded mirrors remove the side view and are refused while moving
+
+- id: adjust_window_vs_fold_mirrors_04
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "uh can you shut the um windows on both sides", style: question, variant: disfluent}
+  b: {intent: fold_mirrors, text: "uh can you fold the um mirrors on both sides", style: question, variant: disfluent}
+  note: a window is comfort and always runs; folded mirrors remove the side view and are refused while moving
+
+- id: adjust_window_vs_adjust_steering_wheel_01
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "can you move the window up a bit", style: question, variant: plain}
+  b: {intent: adjust_steering_wheel, text: "can you move the steering wheel up a bit", style: question, variant: plain}
+  note: a window is comfort; a power steering column moving under the driver's hands is restricted
+
+- id: adjust_window_vs_adjust_steering_wheel_02
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "window thoda upar kar do na", style: command, variant: hinglish}
+  b: {intent: adjust_steering_wheel, text: "steering wheel thoda upar kar do na", style: command, variant: hinglish}
+  note: a window is comfort; a power steering column moving under the driver's hands is restricted
+
+- id: adjust_window_vs_adjust_steering_wheel_03
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "window swalpa kelage maadi", style: command, variant: kannada_english}
+  b: {intent: adjust_steering_wheel, text: "steering wheel swalpa kelage maadi", style: command, variant: kannada_english}
+  note: a window is comfort; a power steering column moving under the driver's hands is restricted
+
+- id: adjust_window_vs_adjust_steering_wheel_04
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "could you lower the window a little", style: question, variant: plain}
+  b: {intent: adjust_steering_wheel, text: "could you lower the steering a little", style: question, variant: plain}
+  note: a window is comfort; a power steering column moving under the driver's hands is restricted
+
+- id: adjust_window_vs_adjust_steering_wheel_05
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "um bring the uh window down a little", style: command, variant: disfluent}
+  b: {intent: adjust_steering_wheel, text: "um bring the uh steering down a little", style: command, variant: disfluent}
+  note: a window is comfort; a power steering column moving under the driver's hands is restricted
+
+- id: set_fan_speed_vs_adjust_steering_wheel_01
+  differs_in: [actuation]
+  a: {intent: set_fan_speed, text: "can you bring the fan down a little", style: question, variant: plain}
+  b: {intent: adjust_steering_wheel, text: "can you bring the steering down a little", style: question, variant: plain}
+  note: the fan is comfort and always runs; moving the steering column is restricted
+
+- id: adjust_window_vs_disable_child_locks_01
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "grandpa in the back wants some air from his window", style: indirect, variant: plain}
+  b: {intent: disable_child_locks, text: "grandpa in the back wants to open his own door from inside", style: indirect, variant: plain}
+  note: a window is comfort; turning off the child lock lets a rear door open and is restricted
+
+- id: climate_on_off_vs_disable_lane_assist_01
+  differs_in: [actuation]
+  a: {intent: climate_on_off, text: "can you turn off the ac for a bit", style: question, variant: plain}
+  b: {intent: disable_lane_assist, text: "can you turn off lane assist for a bit", style: question, variant: plain}
+  note: the ac is comfort and always runs; switching off lane assist is restricted and refused while moving
+
+- id: climate_on_off_vs_disable_lane_assist_02
+  differs_in: [actuation]
+  a: {intent: climate_on_off, text: "ac band kar doge kya abhi", style: question, variant: hinglish}
+  b: {intent: disable_lane_assist, text: "lane assist band kar doge kya abhi", style: question, variant: hinglish}
+  note: the ac is comfort and always runs; switching off lane assist is restricted and refused while moving
+
+- id: climate_on_off_vs_disable_lane_assist_03
+  differs_in: [actuation]
+  a: {intent: climate_on_off, text: "ac swalpa off maadi", style: command, variant: kannada_english}
+  b: {intent: disable_lane_assist, text: "lane assist swalpa off maadi", style: command, variant: kannada_english}
+  note: the ac is comfort and always runs; switching off lane assist is restricted and refused while moving
+
+- id: climate_on_off_vs_disable_lane_assist_04
+  differs_in: [actuation]
+  a: {intent: climate_on_off, text: "um can you switch off the uh the ac", style: question, variant: disfluent}
+  b: {intent: disable_lane_assist, text: "um can you switch off the uh the lane assist", style: question, variant: disfluent}
+  note: the ac is comfort and always runs; switching off lane assist is restricted and refused while moving
+
+- id: climate_on_off_vs_disable_lane_assist_05
+  differs_in: [actuation]
+  a: {intent: climate_on_off, text: "is there a way to switch off the ac thing", style: question, variant: plain}
+  b: {intent: disable_lane_assist, text: "is there a way to switch off the lane thing", style: question, variant: plain}
+  note: the ac is comfort and always runs; switching off lane assist is restricted and refused while moving
+
+- id: climate_on_off_vs_disable_stability_control_01
+  differs_in: [actuation]
+  a: {intent: climate_on_off, text: "could you turn the ac off for now", style: question, variant: plain}
+  b: {intent: disable_stability_control, text: "could you turn the traction control off for now", style: question, variant: plain}
+  note: the ac is comfort and always runs; switching off traction control is restricted
+
+- id: climate_on_off_vs_disable_stability_control_02
+  differs_in: [actuation]
+  a: {intent: climate_on_off, text: "ac abhi off karo", style: command, variant: hinglish}
+  b: {intent: disable_stability_control, text: "traction control abhi off karo", style: command, variant: hinglish}
+  note: the ac is comfort and always runs; switching off traction control is restricted
+
+- id: climate_on_off_vs_disable_stability_control_03
+  differs_in: [actuation]
+  a: {intent: climate_on_off, text: "ac off maadbahuda", style: question, variant: kannada_english}
+  b: {intent: disable_stability_control, text: "esp off maadbahuda", style: question, variant: kannada_english}
+  note: the ac is comfort and always runs; switching off traction control is restricted
+
+- id: climate_on_off_vs_disable_stability_control_04
+  differs_in: [actuation]
+  a: {intent: climate_on_off, text: "uh can you turn off the um the climate", style: question, variant: disfluent}
+  b: {intent: disable_stability_control, text: "uh can you turn off the um the stability control", style: question, variant: disfluent}
+  note: the ac is comfort and always runs; switching off traction control is restricted
+
+- id: climate_on_off_vs_disable_child_locks_01
+  differs_in: [actuation]
+  a: {intent: climate_on_off, text: "can you put the ac off at the back", style: question, variant: plain}
+  b: {intent: disable_child_locks, text: "can you put the child lock off at the back", style: question, variant: plain}
+  note: the ac is comfort; the child lock is restricted and stays on while moving
+
+- id: climate_on_off_vs_disable_child_locks_02
+  differs_in: [actuation]
+  a: {intent: climate_on_off, text: "piche ka ac band kar doge kya", style: question, variant: hinglish}
+  b: {intent: disable_child_locks, text: "piche ka child lock band kar doge kya", style: question, variant: hinglish}
+  note: the ac is comfort; the child lock is restricted and stays on while moving
+
+- id: cancel_cruise_control_vs_disable_lane_assist_01
+  differs_in: [actuation]
+  a: {intent: cancel_cruise_control, text: "can you turn the cruise off on this stretch", style: question, variant: plain}
+  b: {intent: disable_lane_assist, text: "can you turn the lane assist off on this stretch", style: question, variant: plain}
+  note: cancelling cruise is safety-critical and always runs; lane assist off is restricted and refused while moving
+
+- id: cancel_cruise_control_vs_disable_lane_assist_02
+  differs_in: [actuation]
+  a: {intent: cancel_cruise_control, text: "cruise control band karo jaldi", style: command, variant: hinglish}
+  b: {intent: disable_lane_assist, text: "lane assist band karo jaldi", style: command, variant: hinglish}
+  note: cancelling cruise is safety-critical and always runs; lane assist off is restricted and refused while moving
+
+- id: cancel_cruise_control_vs_disable_lane_assist_03
+  differs_in: [actuation]
+  a: {intent: cancel_cruise_control, text: "cruise control off maadtira eega", style: question, variant: kannada_english}
+  b: {intent: disable_lane_assist, text: "lane assist off maadtira eega", style: question, variant: kannada_english}
+  note: cancelling cruise is safety-critical and always runs; lane assist off is restricted and refused while moving
+
+- id: cancel_cruise_control_vs_disable_lane_assist_04
+  differs_in: [actuation]
+  a: {intent: cancel_cruise_control, text: "um can you just um cancel the cruise thing", style: question, variant: disfluent}
+  b: {intent: disable_lane_assist, text: "um can you just um cancel the lane assist thing", style: question, variant: disfluent}
+  note: cancelling cruise is safety-critical and always runs; lane assist off is restricted and refused while moving
+
+- id: cancel_cruise_control_vs_disable_stability_control_01
+  differs_in: [actuation]
+  a: {intent: cancel_cruise_control, text: "could you get rid of the cruise on this ghat", style: question, variant: plain}
+  b: {intent: disable_stability_control, text: "could you get rid of the stability control on this ghat", style: question, variant: plain}
+  note: cancelling cruise is safety-critical and always runs; stability control off is restricted
+
+- id: cancel_cruise_control_vs_disable_stability_control_02
+  differs_in: [actuation]
+  a: {intent: cancel_cruise_control, text: "cruise hata do jaldi", style: command, variant: hinglish}
+  b: {intent: disable_stability_control, text: "traction control hata do jaldi", style: command, variant: hinglish}
+  note: cancelling cruise is safety-critical and always runs; stability control off is restricted
+
+- id: dip_high_beams_vs_disable_stability_control_01
+  differs_in: [actuation]
+  a: {intent: dip_high_beams, text: "can you switch the high beam off quickly", style: question, variant: plain}
+  b: {intent: disable_stability_control, text: "can you switch the stability control off quickly", style: question, variant: plain}
+  note: dipping the beams is safety-critical and immediate; stability control off is restricted
+
+- id: dip_high_beams_vs_disable_stability_control_02
+  differs_in: [actuation]
+  a: {intent: dip_high_beams, text: "high beam band karo jaldi", style: command, variant: hinglish}
+  b: {intent: disable_stability_control, text: "stability control band karo jaldi", style: command, variant: hinglish}
+  note: dipping the beams is safety-critical and immediate; stability control off is restricted
+
+- id: dip_high_beams_vs_disable_lane_assist_01
+  differs_in: [actuation]
+  a: {intent: dip_high_beams, text: "could you turn off the high beams now", style: question, variant: plain}
+  b: {intent: disable_lane_assist, text: "could you turn off lane assist now", style: question, variant: plain}
+  note: dipping the beams is safety-critical and immediate; lane assist off is restricted
+
+- id: hazard_lights_on_vs_set_parking_brake_01
+  differs_in: [actuation]
+  a: {intent: hazard_lights_on, text: "can you put the hazard on while we wait", style: question, variant: plain}
+  b: {intent: set_parking_brake, text: "can you put the handbrake on while we wait", style: question, variant: plain}
+  note: hazards are safety-critical and always run; the parking brake is restricted and refused while moving
+
+- id: hazard_lights_on_vs_set_parking_brake_02
+  differs_in: [actuation]
+  a: {intent: hazard_lights_on, text: "hazard laga do yahan ruk rahe hain", style: command, variant: hinglish}
+  b: {intent: set_parking_brake, text: "handbrake laga do yahan ruk rahe hain", style: command, variant: hinglish}
+  note: hazards are safety-critical and always run; the parking brake is restricted and refused while moving
+
+- id: hazard_lights_on_vs_set_parking_brake_03
+  differs_in: [actuation]
+  a: {intent: hazard_lights_on, text: "hazard haaku illi nilsthini", style: command, variant: kannada_english}
+  b: {intent: set_parking_brake, text: "handbrake haaku illi nilsthini", style: command, variant: kannada_english}
+  note: hazards are safety-critical and always run; the parking brake is restricted and refused while moving
+
+- id: hazard_lights_on_vs_set_parking_brake_04
+  differs_in: [actuation]
+  a: {intent: hazard_lights_on, text: "um can you put on the uh hazards we're stopping", style: question, variant: disfluent}
+  b: {intent: set_parking_brake, text: "um can you put on the uh handbrake we're stopping", style: question, variant: disfluent}
+  note: hazards are safety-critical and always run; the parking brake is restricted and refused while moving
+
+- id: set_drive_mode_vs_disable_stability_control_01
+  differs_in: [actuation]
+  a: {intent: set_drive_mode, text: "can you put it in sport for the ghat", style: question, variant: plain}
+  b: {intent: disable_stability_control, text: "can you put stability off for the ghat", style: question, variant: plain}
+  note: a drive mode is comfort; turning stability control off is restricted
+
+- id: vehicle_manual_question_vs_set_parking_brake_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how does the electronic parking brake work", style: question, variant: plain}
+  b: {intent: set_parking_brake, text: "can you release the electronic parking brake", style: question, variant: plain}
+  note: asking how it works is read-only and needs a small model; actuating the brake is restricted
+
+- id: vehicle_manual_question_vs_set_parking_brake_02
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "um how do i release the uh parking brake", style: question, variant: disfluent}
+  b: {intent: set_parking_brake, text: "um can you release the uh parking brake", style: question, variant: disfluent}
+  note: asking how it works is read-only and needs a small model; actuating the brake is restricted
+
+- id: vehicle_manual_question_vs_disable_lane_assist_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how does lane keep assist work", style: question, variant: plain}
+  b: {intent: disable_lane_assist, text: "can you turn lane keep assist off", style: question, variant: plain}
+  note: asking how it works is read-only and needs a small model; turning lane assist off is restricted
+
+- id: vehicle_manual_question_vs_disable_lane_assist_02
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how do i switch off the lane keeping on this car", style: question, variant: plain}
+  b: {intent: disable_lane_assist, text: "can you switch off the lane keeping on this car", style: question, variant: plain}
+  note: asking how it works is read-only and needs a small model; turning lane assist off is restricted
+
+- id: vehicle_manual_question_vs_disable_stability_control_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "what happens if i turn the esp off on a ghat", style: question, variant: plain}
+  b: {intent: disable_stability_control, text: "can you turn the esp off on this ghat", style: question, variant: plain}
+  note: asking about the feature is read-only; switching esp off is restricted
+
+- id: vehicle_manual_question_vs_adjust_steering_wheel_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how do i adjust the steering wheel height", style: question, variant: plain}
+  b: {intent: adjust_steering_wheel, text: "can you adjust the steering wheel height for me", style: question, variant: plain}
+  note: asking how is read-only; moving the steering column is restricted
+
+- id: vehicle_manual_question_vs_adjust_steering_wheel_02
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "um how does the uh steering column move", style: question, variant: disfluent}
+  b: {intent: adjust_steering_wheel, text: "um can you move the uh steering column closer", style: question, variant: disfluent}
+  note: asking how is read-only; moving the steering column is restricted
+
+- id: vehicle_manual_question_vs_fold_mirrors_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how do the side mirrors fold on this car", style: question, variant: plain}
+  b: {intent: fold_mirrors, text: "can you fold the side mirrors on this car", style: question, variant: plain}
+  note: asking how is read-only; folding the mirrors is restricted while moving
+
+- id: vehicle_manual_question_vs_unlock_doors_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how do i unlock the doors from inside", style: question, variant: plain}
+  b: {intent: unlock_doors, text: "can you unlock the doors from inside", style: question, variant: plain}
+  note: asking how is read-only; unlocking is restricted while moving
+
+- id: vehicle_manual_question_vs_open_trunk_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how do i open the dickey from the driver seat", style: question, variant: plain}
+  b: {intent: open_trunk, text: "can you open the dickey from the driver seat", style: question, variant: plain}
+  note: asking how is read-only; opening the dickey is restricted while moving
+
+- id: vehicle_manual_question_vs_defrost_windshield_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how do i turn on the rear defrost", style: question, variant: plain}
+  b: {intent: defrost_windshield, text: "turn on the rear defrost", style: command, variant: plain}
+  note: asking how needs a small model; the defrost itself is safety-critical and local
+
+- id: vehicle_manual_question_vs_hazard_lights_on_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "where is the button for the hazard lights", style: question, variant: plain}
+  b: {intent: hazard_lights_on, text: "press the button for the hazard lights", style: command, variant: plain}
+  note: asking how needs a small model; switching the hazards on is safety-critical and local
+
+- id: vehicle_manual_question_vs_wipers_on_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how do i make the wipers go faster", style: question, variant: plain}
+  b: {intent: wipers_on, text: "make the wipers go faster", style: command, variant: plain}
+  note: asking how needs a small model; the wipers are safety-critical and local
+
+- id: vehicle_manual_question_vs_set_drive_mode_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "what does eco mode actually do", style: question, variant: plain}
+  b: {intent: set_drive_mode, text: "put it in eco mode", style: command, variant: plain}
+  note: asking what a mode does needs a small model; selecting it is a local comfort command
+
+- id: vehicle_manual_question_vs_climate_on_off_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how do i switch on the rear ac", style: question, variant: plain}
+  b: {intent: climate_on_off, text: "switch on the rear ac", style: command, variant: plain}
+  note: asking how needs a small model; switching the ac is a local comfort command
+
+- id: vehicle_manual_question_vs_set_cabin_temperature_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how do i set the temperature for each side", style: question, variant: plain}
+  b: {intent: set_cabin_temperature, text: "set the temperature for each side to {temperature}", style: command, variant: plain}
+  note: asking how needs a small model; setting the temperature is local
+
+- id: vehicle_manual_question_vs_headlights_on_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how do i turn on the auto headlights", style: question, variant: plain}
+  b: {intent: headlights_on, text: "turn on the auto headlights", style: command, variant: plain}
+  note: asking how needs a small model; the headlights are safety-critical and local
+
+- id: current_time_vs_weather_now_01
+  differs_in: [capability]
+  a: {intent: current_time, text: "tell me the time right now", style: command, variant: plain}
+  b: {intent: weather_now, text: "tell me the weather right now", style: command, variant: plain}
+  note: the clock is onboard; the weather needs the cloud and waits when offline
+
+- id: current_time_vs_weather_now_02
+  differs_in: [capability]
+  a: {intent: current_time, text: "what's the date tomorrow", style: question, variant: plain}
+  b: {intent: weather_now, text: "what's the weather tomorrow", style: question, variant: plain}
+  note: the clock is onboard; the weather needs the cloud and waits when offline
+
+- id: current_time_vs_weather_now_03
+  differs_in: [capability]
+  a: {intent: current_time, text: "abhi ka time batao", style: command, variant: hinglish}
+  b: {intent: weather_now, text: "abhi ka mausam batao", style: command, variant: hinglish}
+  note: the clock is onboard; the weather needs the cloud and waits when offline
+
+- id: current_time_vs_weather_now_04
+  differs_in: [capability]
+  a: {intent: current_time, text: "eega time heli", style: command, variant: kannada_english}
+  b: {intent: weather_now, text: "eega weather heli", style: command, variant: kannada_english}
+  note: the clock is onboard; the weather needs the cloud and waits when offline
+
+- id: current_time_vs_weather_now_05
+  differs_in: [capability]
+  a: {intent: current_time, text: "uh what's the um time now", style: question, variant: disfluent}
+  b: {intent: weather_now, text: "uh what's the um weather now", style: question, variant: disfluent}
+  note: the clock is onboard; the weather needs the cloud and waits when offline
+
+- id: current_time_vs_weather_now_06
+  differs_in: [capability]
+  a: {intent: current_time, text: "my phone died and i can't see the time", style: outcome, variant: plain}
+  b: {intent: weather_now, text: "my phone died and i can't check the weather", style: outcome, variant: plain}
+  note: the clock is onboard; the weather needs the cloud and waits when offline
+
+- id: current_time_vs_sports_score_01
+  differs_in: [capability]
+  a: {intent: current_time, text: "what's the time at the moment", style: question, variant: plain}
+  b: {intent: sports_score, text: "what's the score at the moment", style: question, variant: plain}
+  note: the clock is onboard; a live score needs the cloud and waits when offline
+
+- id: current_time_vs_sports_score_02
+  differs_in: [capability]
+  a: {intent: current_time, text: "time batao abhi ka", style: command, variant: hinglish}
+  b: {intent: sports_score, text: "score batao abhi ka", style: command, variant: hinglish}
+  note: the clock is onboard; a live score needs the cloud and waits when offline
+
+- id: current_time_vs_sports_score_03
+  differs_in: [capability]
+  a: {intent: current_time, text: "eega time eshtu aagide", style: question, variant: kannada_english}
+  b: {intent: sports_score, text: "eega score eshtu aagide", style: question, variant: kannada_english}
+  note: the clock is onboard; a live score needs the cloud and waits when offline
+
+- id: current_time_vs_place_opening_hours_01
+  differs_in: [capability]
+  a: {intent: current_time, text: "what time is it now", style: question, variant: plain}
+  b: {intent: place_opening_hours, text: "what time does the {place} close", style: question, variant: plain}
+  note: the clock is onboard; a place's hours need the cloud, with onboard hours as the offline fallback
+
+- id: current_time_vs_place_opening_hours_02
+  differs_in: [capability]
+  a: {intent: current_time, text: "is it past nine already", style: question, variant: plain}
+  b: {intent: place_opening_hours, text: "is the {place} open past nine", style: question, variant: plain}
+  note: the clock is onboard; a place's hours need the cloud, with onboard hours as the offline fallback
+
+- id: current_time_vs_place_opening_hours_03
+  differs_in: [capability]
+  a: {intent: current_time, text: "uh what um what time is it", style: question, variant: disfluent}
+  b: {intent: place_opening_hours, text: "uh what um what time does the {place} shut", style: question, variant: disfluent}
+  note: the clock is onboard; a place's hours need the cloud, with onboard hours as the offline fallback
+
+- id: navigate_home_vs_navigate_to_contact_address_01
+  differs_in: [capability]
+  a: {intent: navigate_home, text: "drive me home from here", style: command, variant: plain}
+  b: {intent: navigate_to_contact_address, text: "drive me to {contact}'s home from here", style: command, variant: plain}
+  note: a saved place is local; a contact's address is geocoded in the cloud and masked
+
+- id: navigate_home_vs_navigate_to_contact_address_02
+  differs_in: [capability]
+  a: {intent: navigate_home, text: "can you get me back to the office", style: question, variant: plain}
+  b: {intent: navigate_to_contact_address, text: "can you get me to {contact}'s office", style: question, variant: plain}
+  note: a saved place is local; a contact's address is geocoded in the cloud and masked
+
+- id: navigate_home_vs_navigate_to_contact_address_03
+  differs_in: [capability]
+  a: {intent: navigate_home, text: "ghar ka rasta lagao", style: command, variant: hinglish}
+  b: {intent: navigate_to_contact_address, text: "{contact} ke ghar ka rasta lagao", style: command, variant: hinglish}
+  note: a saved place is local; a contact's address is geocoded in the cloud and masked
+
+- id: navigate_home_vs_navigate_to_contact_address_04
+  differs_in: [capability]
+  a: {intent: navigate_home, text: "mane kade hogona eega", style: command, variant: kannada_english}
+  b: {intent: navigate_to_contact_address, text: "{contact} mane kade hogona eega", style: command, variant: kannada_english}
+  note: a saved place is local; a contact's address is geocoded in the cloud and masked
+
+- id: navigate_home_vs_navigate_to_contact_address_05
+  differs_in: [capability]
+  a: {intent: navigate_home, text: "uh take me to the um office", style: command, variant: disfluent}
+  b: {intent: navigate_to_contact_address, text: "uh take me to um {contact}'s office", style: command, variant: disfluent}
+  note: a saved place is local; a contact's address is geocoded in the cloud and masked
+
+- id: navigate_home_vs_navigate_to_contact_address_06
+  differs_in: [capability]
+  a: {intent: navigate_home, text: "set the route for home", style: fragment, variant: plain}
+  b: {intent: navigate_to_contact_address, text: "set the route for {contact}'s home", style: fragment, variant: plain}
+  note: a saved place is local; a contact's address is geocoded in the cloud and masked
+
+- id: navigate_home_vs_navigate_to_contact_address_07
+  differs_in: [capability]
+  a: {intent: navigate_home, text: "start directions to work", style: command, variant: plain}
+  b: {intent: navigate_to_contact_address, text: "start directions to {contact}'s work", style: command, variant: plain}
+  note: a saved place is local; a contact's address is geocoded in the cloud and masked
+
+- id: lookup_contact_info_vs_navigate_to_contact_address_01
+  differs_in: [capability, consequence]
+  a: {intent: lookup_contact_info, text: "tell me {contact}'s home address", style: command, variant: plain}
+  b: {intent: navigate_to_contact_address, text: "take me to {contact}'s home address", style: command, variant: plain}
+  note: the phonebook answers locally; navigating there geocodes in the cloud with the address masked
+
+- id: lookup_contact_info_vs_navigate_to_contact_address_02
+  differs_in: [capability, consequence]
+  a: {intent: lookup_contact_info, text: "can you read out the address of {contact}'s shop", style: question, variant: plain}
+  b: {intent: navigate_to_contact_address, text: "can you drive me to the address of {contact}'s shop", style: question, variant: plain}
+  note: the phonebook answers locally; navigating there geocodes in the cloud with the address masked
+
+- id: lookup_contact_info_vs_navigate_to_contact_address_03
+  differs_in: [capability, consequence]
+  a: {intent: lookup_contact_info, text: "uh what's {contact}'s um address", style: question, variant: disfluent}
+  b: {intent: navigate_to_contact_address, text: "uh navigate to {contact}'s um address", style: command, variant: disfluent}
+  note: the phonebook answers locally; navigating there geocodes in the cloud with the address masked
+
+- id: take_note_vs_translate_phrase_01
+  differs_in: [capability, consequence]
+  a: {intent: take_note, text: "note buy milk and eggs", style: command, variant: plain}
+  b: {intent: translate_phrase, text: "translate buy milk and eggs into telugu", style: command, variant: plain}
+  note: a note is saved verbatim locally; a translation needs a small model
+
+- id: take_note_vs_translate_phrase_02
+  differs_in: [capability, consequence]
+  a: {intent: take_note, text: "note the gate is locked", style: command, variant: plain}
+  b: {intent: translate_phrase, text: "say the gate is locked in tamil", style: command, variant: plain}
+  note: a note is saved verbatim locally; a translation needs a small model
+
+- id: fuel_range_vs_fuel_prices_nearby_01
+  differs_in: [capability]
+  a: {intent: fuel_range, text: "how much petrol is left", style: question, variant: plain}
+  b: {intent: fuel_prices_nearby, text: "how much is petrol around here", style: question, variant: plain}
+  note: the range comes from the car; prices need the cloud, with last-synced prices offline
+
+- id: fuel_range_vs_fuel_prices_nearby_02
+  differs_in: [capability]
+  a: {intent: fuel_range, text: "petrol kitna bacha hai", style: question, variant: hinglish}
+  b: {intent: fuel_prices_nearby, text: "petrol ka rate kitna hai yahan", style: question, variant: hinglish}
+  note: the range comes from the car; prices need the cloud, with last-synced prices offline
+
+- id: fuel_range_vs_fuel_prices_nearby_03
+  differs_in: [capability]
+  a: {intent: fuel_range, text: "petrol eshtu ide", style: question, variant: kannada_english}
+  b: {intent: fuel_prices_nearby, text: "petrol rate eshtu ide", style: question, variant: kannada_english}
+  note: the range comes from the car; prices need the cloud, with last-synced prices offline
+
+- id: fuel_range_vs_fuel_prices_nearby_04
+  differs_in: [capability]
+  a: {intent: fuel_range, text: "uh how much diesel is um left", style: question, variant: disfluent}
+  b: {intent: fuel_prices_nearby, text: "uh how much is diesel um nearby", style: question, variant: disfluent}
+  note: the range comes from the car; prices need the cloud, with last-synced prices offline
+
+- id: fuel_range_vs_fuel_prices_nearby_05
+  differs_in: [capability]
+  a: {intent: fuel_range, text: "is the diesel enough to reach the next town", style: question, variant: plain}
+  b: {intent: fuel_prices_nearby, text: "is diesel cheaper in the next town", style: question, variant: plain}
+  note: the range comes from the car; prices need the cloud, with last-synced prices offline
+
+- id: eta_to_destination_vs_traffic_on_route_01
+  differs_in: [capability]
+  a: {intent: eta_to_destination, text: "how much time is left on this route", style: question, variant: plain}
+  b: {intent: traffic_on_route, text: "how much delay is there on this route", style: question, variant: plain}
+  note: the ETA is read from the running navigation; traffic is live cloud data
+
+- id: eta_to_destination_vs_traffic_on_route_02
+  differs_in: [capability]
+  a: {intent: eta_to_destination, text: "raaste mein kitna time aur hai", style: question, variant: hinglish}
+  b: {intent: traffic_on_route, text: "raaste mein kitna traffic hai", style: question, variant: hinglish}
+  note: the ETA is read from the running navigation; traffic is live cloud data
+
+- id: eta_to_destination_vs_traffic_on_route_03
+  differs_in: [capability]
+  a: {intent: eta_to_destination, text: "uh how long till we reach um", style: question, variant: disfluent}
+  b: {intent: traffic_on_route, text: "uh how much traffic till we reach um", style: question, variant: disfluent}
+  note: the ETA is read from the running navigation; traffic is live cloud data
+
+- id: next_turn_vs_traffic_on_route_01
+  differs_in: [capability]
+  a: {intent: next_turn, text: "what's coming up after this signal", style: question, variant: plain}
+  b: {intent: traffic_on_route, text: "what's the traffic like after this signal", style: question, variant: plain}
+  note: the next turn comes from the running navigation; traffic is live cloud data
+
+- id: call_contact_vs_send_text_message_01
+  differs_in: [capability]
+  a: {intent: call_contact, text: "quickly call {contact} on whatsapp", style: command, variant: plain}
+  b: {intent: send_text_message, text: "quickly text {contact} on whatsapp", style: command, variant: plain}
+  note: a call is placed locally; a text must be rephrased by a small model and goes to the cloud masked
+
+- id: call_contact_vs_send_text_message_02
+  differs_in: [capability]
+  a: {intent: call_contact, text: "ring {contact} from my work phone", style: command, variant: plain}
+  b: {intent: send_text_message, text: "text {contact} from my work phone", style: command, variant: plain}
+  note: a call is placed locally; a text must be rephrased by a small model and goes to the cloud masked
+
+- id: call_contact_vs_send_text_message_03
+  differs_in: [capability]
+  a: {intent: call_contact, text: "{contact} ko abhi phone karo", style: command, variant: hinglish}
+  b: {intent: send_text_message, text: "{contact} ko abhi message karo", style: command, variant: hinglish}
+  note: a call is placed locally; a text must be rephrased by a small model and goes to the cloud masked
+
+- id: call_contact_vs_send_text_message_04
+  differs_in: [capability]
+  a: {intent: call_contact, text: "{contact} ge eega call maadi", style: command, variant: kannada_english}
+  b: {intent: send_text_message, text: "{contact} ge eega message maadi", style: command, variant: kannada_english}
+  note: a call is placed locally; a text must be rephrased by a small model and goes to the cloud masked
+
+- id: call_contact_vs_send_text_message_05
+  differs_in: [capability]
+  a: {intent: call_contact, text: "call uh call {contact} real quick", style: command, variant: disfluent}
+  b: {intent: send_text_message, text: "text uh text {contact} real quick", style: command, variant: disfluent}
+  note: a call is placed locally; a text must be rephrased by a small model and goes to the cloud masked
+
+- id: call_contact_vs_send_text_message_06
+  differs_in: [capability]
+  a: {intent: call_contact, text: "call this number {phone} right now", style: command, variant: plain}
+  b: {intent: send_text_message, text: "text this number {phone} right now", style: command, variant: plain}
+  note: the call dials locally; the text with a phone number needs a small model and goes to the cloud masked
+
+- id: call_contact_vs_reply_to_message_01
+  differs_in: [capability]
+  a: {intent: call_contact, text: "call {contact} back right away", style: command, variant: plain}
+  b: {intent: reply_to_message, text: "write back to {contact} right away", style: command, variant: plain}
+  note: calling back is local; a dictated reply needs a small model and goes to the cloud masked
+
+- id: call_contact_vs_reply_to_message_02
+  differs_in: [capability]
+  a: {intent: call_contact, text: "{contact} ko wapas call karo", style: command, variant: hinglish}
+  b: {intent: reply_to_message, text: "{contact} ko wapas reply karo {message_text}", style: command, variant: hinglish}
+  note: calling back is local; a dictated reply needs a small model and goes to the cloud masked
+
+- id: share_live_location_vs_send_text_message_01
+  differs_in: [capability]
+  a: {intent: share_live_location, text: "send my location to {contact} on whatsapp", style: command, variant: plain}
+  b: {intent: send_text_message, text: "send a message to {contact} on whatsapp", style: command, variant: plain}
+  note: sharing location is a local command; a text needs a small model and is masked in the cloud
+
+- id: share_live_location_vs_send_text_message_02
+  differs_in: [capability]
+  a: {intent: share_live_location, text: "{contact} ko meri location abhi bhejo", style: command, variant: hinglish}
+  b: {intent: send_text_message, text: "{contact} ko abhi ye message bhejo {message_text}", style: command, variant: hinglish}
+  note: sharing location is a local command; a text needs a small model and is masked in the cloud
+
+- id: share_live_location_vs_send_text_message_03
+  differs_in: [capability]
+  a: {intent: share_live_location, text: "{contact} ge nanna location kalsi", style: command, variant: kannada_english}
+  b: {intent: send_text_message, text: "{contact} ge message kalsi {message_text}", style: command, variant: kannada_english}
+  note: sharing location is a local command; a text needs a small model and is masked in the cloud
+
+- id: add_reminder_vs_add_calendar_event_01
+  differs_in: [capability, consequence]
+  a: {intent: add_reminder, text: "put a reminder for the dentist on {date}", style: command, variant: plain}
+  b: {intent: add_calendar_event, text: "put the dentist on my calendar for {date}", style: command, variant: plain}
+  note: a reminder is local; an event with date and time needs a small model and invites others
+
+- id: add_reminder_vs_add_calendar_event_02
+  differs_in: [capability, consequence]
+  a: {intent: add_reminder, text: "{date} dentist reminder set karo", style: command, variant: hinglish}
+  b: {intent: add_calendar_event, text: "{date} dentist calendar mein set karo", style: command, variant: hinglish}
+  note: a reminder is local; an event with date and time needs a small model and invites others
+
+- id: add_reminder_vs_add_calendar_event_03
+  differs_in: [capability, consequence]
+  a: {intent: add_reminder, text: "can you remind me of the team lunch on {date}", style: question, variant: plain}
+  b: {intent: add_calendar_event, text: "can you put the team lunch on my calendar on {date}", style: question, variant: plain}
+  note: a reminder is local; an event with date and time needs a small model and invites others
+
+- id: add_reminder_vs_add_calendar_event_04
+  differs_in: [capability, consequence]
+  a: {intent: add_reminder, text: "uh set a reminder for um the parents meeting on {date}", style: command, variant: disfluent}
+  b: {intent: add_calendar_event, text: "uh add um the parents meeting on {date} to the calendar", style: command, variant: disfluent}
+  note: a reminder is local; an event with date and time needs a small model and invites others
+
+- id: weather_now_vs_fuel_prices_nearby_01
+  differs_in: [capability]
+  a: {intent: weather_now, text: "what's the weather like around here today", style: question, variant: plain}
+  b: {intent: fuel_prices_nearby, text: "what's the petrol price around here today", style: question, variant: plain}
+  note: prices fall back to onboard data offline; the weather has no onboard fallback and waits
+
+- id: current_time_vs_general_knowledge_question_01
+  differs_in: [capability]
+  a: {intent: current_time, text: "what date is it today", style: question, variant: plain}
+  b: {intent: general_knowledge_question, text: "what date is independence day", style: question, variant: plain}
+  note: the date is the system clock; a fact needs a small model
+
+- id: current_time_vs_general_knowledge_question_02
+  differs_in: [capability]
+  a: {intent: current_time, text: "aaj kaun si date hai", style: question, variant: hinglish}
+  b: {intent: general_knowledge_question, text: "republic day kaun si date ko hai", style: question, variant: hinglish}
+  note: the date is the system clock; a fact needs a small model
+
+- id: general_knowledge_question_vs_sports_score_01
+  differs_in: [capability]
+  a: {intent: general_knowledge_question, text: "who won the first ipl final", style: question, variant: plain}
+  b: {intent: sports_score, text: "who won the ipl final last night", style: question, variant: plain}
+  note: a past result fits a small local model; a live result needs the cloud
+
+- id: general_knowledge_question_vs_weather_now_01
+  differs_in: [capability]
+  a: {intent: general_knowledge_question, text: "why does it rain so heavily in {city}", style: question, variant: plain}
+  b: {intent: weather_now, text: "will it rain heavily in {city} this evening", style: question, variant: plain}
+  note: why it rains is a fact for a small model; today's rain needs live cloud data
+
+- id: lookup_contact_info_vs_read_messages_01
+  differs_in: [capability, distraction]
+  a: {intent: lookup_contact_info, text: "read me {contact}'s number", style: command, variant: plain}
+  b: {intent: read_messages, text: "read me {contact}'s message", style: command, variant: plain}
+  note: a number is a short local lookup; reading messages is long output from a small model
+
+- id: lookup_contact_info_vs_read_messages_02
+  differs_in: [capability, distraction]
+  a: {intent: lookup_contact_info, text: "what's {contact}'s new number", style: question, variant: plain}
+  b: {intent: read_messages, text: "what's {contact}'s new message", style: question, variant: plain}
+  note: a number is a short local lookup; reading messages is long output from a small model
+
+- id: take_note_vs_send_text_message_01
+  differs_in: [capability, consequence]
+  a: {intent: take_note, text: "note {otp} as the delivery otp", style: command, variant: plain}
+  b: {intent: send_text_message, text: "text {contact} {otp} as the delivery otp", style: command, variant: plain}
+  note: a note stays on the head unit; a text with the value goes out, masked in the cloud
+
+- id: take_note_vs_send_text_message_02
+  differs_in: [capability, consequence]
+  a: {intent: take_note, text: "save a quick note {note_text}", style: command, variant: plain}
+  b: {intent: send_text_message, text: "send a quick note to {contact} {note_text}", style: command, variant: plain}
+  note: a note stays on the head unit; a text with the value goes out, masked in the cloud
+
+- id: add_reminder_vs_send_text_message_01
+  differs_in: [capability, consequence]
+  a: {intent: add_reminder, text: "remind me to message {contact} {message_text} after lunch", style: command, variant: plain}
+  b: {intent: send_text_message, text: "message {contact} {message_text} after lunch", style: command, variant: plain}
+  note: a reminder stays local; sending the text needs a small model and is masked in the cloud
+
+- id: tune_radio_station_vs_play_video_01
+  differs_in: [distraction]
+  a: {intent: tune_radio_station, text: "put on the live cricket match on {station}", style: command, variant: plain}
+  b: {intent: play_video, text: "put on the live cricket match video on the screen", style: command, variant: plain}
+  note: radio is audio; a match on the screen is video and refused while moving
+
+- id: tune_radio_station_vs_play_video_02
+  differs_in: [distraction]
+  a: {intent: tune_radio_station, text: "{station} pe cricket ki live commentary lagao", style: command, variant: hinglish}
+  b: {intent: play_video, text: "screen pe cricket ka live video lagao", style: command, variant: hinglish}
+  note: radio is audio; a match on the screen is video and refused while moving
+
+- id: next_turn_vs_play_video_01
+  differs_in: [distraction, consequence]
+  a: {intent: next_turn, text: "show me the next turn on the screen", style: command, variant: plain}
+  b: {intent: play_video, text: "show me the next episode on the screen", style: command, variant: plain}
+  note: the next turn is one short prompt; an episode on the screen is video
+
+- id: set_audio_volume_vs_play_video_01
+  differs_in: [distraction, actuation]
+  a: {intent: set_audio_volume, text: "make the cartoon louder for the kids", style: command, variant: plain}
+  b: {intent: play_video, text: "put on the cartoon for the kids", style: command, variant: plain}
+  note: the volume is a comfort control; starting a cartoon on the screen is high distraction
+
+- id: set_audio_volume_vs_play_video_02
+  differs_in: [distraction, actuation]
+  a: {intent: set_audio_volume, text: "bachon ke liye cartoon ki awaaz badha do", style: command, variant: hinglish}
+  b: {intent: play_video, text: "bachon ke liye cartoon laga do", style: command, variant: hinglish}
+  note: the volume is a comfort control; starting a cartoon on the screen is high distraction
+
+- id: pause_playback_vs_play_video_01
+  differs_in: [distraction]
+  a: {intent: pause_playback, text: "pause the cartoon for a bit", style: command, variant: plain}
+  b: {intent: play_video, text: "play the cartoon for a bit", style: command, variant: plain}
+  note: pausing is a transport control; playing a video on the screen is refused while moving
+
+- id: pause_playback_vs_play_video_02
+  differs_in: [distraction]
+  a: {intent: pause_playback, text: "cartoon thodi der rok do", style: command, variant: hinglish}
+  b: {intent: play_video, text: "cartoon thodi der chala do", style: command, variant: hinglish}
+  note: pausing is a transport control; playing a video on the screen is refused while moving
+
+- id: pause_playback_vs_play_video_03
+  differs_in: [distraction]
+  a: {intent: pause_playback, text: "cartoon swalpa nilsi", style: command, variant: kannada_english}
+  b: {intent: play_video, text: "cartoon swalpa haaki", style: command, variant: kannada_english}
+  note: pausing is a transport control; playing a video on the screen is refused while moving
+
+- id: place_opening_hours_vs_find_parking_01
+  differs_in: [distraction]
+  a: {intent: place_opening_hours, text: "is the parking at the {place} open now", style: question, variant: plain}
+  b: {intent: find_parking, text: "find parking at the {place} that's open now", style: command, variant: plain}
+  note: one place's hours is low; finding a parking spot is a medium decision
+
+- id: adjust_window_vs_unlock_doors_08
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "would you open the left rear window", style: question, variant: plain}
+  b: {intent: unlock_doors, text: "would you open the left rear door", style: question, variant: plain}
+  note: a window is comfort and always runs; a door is restricted and is refused while moving
+
+- id: adjust_window_vs_open_trunk_05
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "could you open the rear windows for the dog", style: question, variant: plain}
+  b: {intent: open_trunk, text: "could you open the tailgate for the dog", style: question, variant: plain}
+  note: a window is comfort and always runs; an open boot is restricted and refused while moving
+
+- id: adjust_window_vs_open_trunk_06
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "piche ki khidki khol do na", style: command, variant: hinglish}
+  b: {intent: open_trunk, text: "piche ki dikki khol do na", style: command, variant: hinglish}
+  note: a window is comfort and always runs; an open boot is restricted and refused while moving
+
+- id: adjust_window_vs_fold_mirrors_05
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "will you pull the windows up for this gate", style: question, variant: plain}
+  b: {intent: fold_mirrors, text: "will you pull the mirrors in for this gate", style: question, variant: plain}
+  note: a window is comfort and always runs; folded mirrors remove the side view and are refused while moving
+
+- id: climate_on_off_vs_set_parking_brake_01
+  differs_in: [actuation]
+  a: {intent: climate_on_off, text: "can you turn the ac off", style: question, variant: plain}
+  b: {intent: set_parking_brake, text: "can you turn the handbrake off", style: question, variant: plain}
+  note: the ac is comfort and always runs; the parking brake is restricted and refused while moving
+
+- id: climate_on_off_vs_set_parking_brake_02
+  differs_in: [actuation]
+  a: {intent: climate_on_off, text: "uh can you um switch off the ac now", style: question, variant: disfluent}
+  b: {intent: set_parking_brake, text: "uh can you um switch off the handbrake now", style: question, variant: disfluent}
+  note: the ac is comfort and always runs; the parking brake is restricted and refused while moving
+
+- id: set_drive_mode_vs_disable_stability_control_02
+  differs_in: [actuation]
+  a: {intent: set_drive_mode, text: "can you switch to sand mode", style: question, variant: plain}
+  b: {intent: disable_stability_control, text: "can you switch off traction for the sand", style: question, variant: plain}
+  note: a drive mode is comfort; turning stability control off is restricted
+
+- id: set_audio_volume_vs_adjust_steering_wheel_01
+  differs_in: [actuation]
+  a: {intent: set_audio_volume, text: "can you bring the volume down a notch while i drive", style: question, variant: plain}
+  b: {intent: adjust_steering_wheel, text: "can you bring the steering down a notch while i drive", style: question, variant: plain}
+  note: the volume is comfort and always runs; moving the steering column is restricted
+
+- id: seat_ventilation_on_vs_adjust_steering_wheel_01
+  differs_in: [actuation]
+  a: {intent: seat_ventilation_on, text: "can you move the seat cooling up a level", style: question, variant: plain}
+  b: {intent: adjust_steering_wheel, text: "can you move the steering up a level", style: question, variant: plain}
+  note: seat cooling is comfort; moving the steering column is restricted while driving
+
+- id: seat_heater_on_vs_unlock_doors_01
+  differs_in: [actuation]
+  a: {intent: seat_heater_on, text: "piche wali seat garam kar doge kya", style: question, variant: hinglish}
+  b: {intent: unlock_doors, text: "piche wala door unlock kar doge kya", style: question, variant: hinglish}
+  note: the seat heater is comfort; unlocking a door is restricted while moving
+
+- id: set_recirculation_vs_open_trunk_01
+  differs_in: [actuation]
+  a: {intent: set_recirculation, text: "recirculation on maadtira swalpa", style: question, variant: kannada_english}
+  b: {intent: open_trunk, text: "dickey open maadtira swalpa", style: question, variant: kannada_english}
+  note: recirculation is comfort; opening the dickey is restricted while moving
+
+- id: set_cabin_temperature_vs_fold_mirrors_01
+  differs_in: [actuation]
+  a: {intent: set_cabin_temperature, text: "uh can you uh bring the temperature down", style: question, variant: disfluent}
+  b: {intent: fold_mirrors, text: "uh can you uh bring the mirrors in", style: question, variant: disfluent}
+  note: the temperature is comfort; folding the mirrors is restricted while moving
+
+- id: vehicle_manual_question_vs_set_fan_speed_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how do i make the fan blow harder", style: question, variant: plain}
+  b: {intent: set_fan_speed, text: "make the fan blow harder", style: command, variant: plain}
+  note: asking how needs a small model; changing the fan is a local comfort command
+
+- id: vehicle_manual_question_vs_seat_ventilation_on_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how do the cooled seats work", style: question, variant: plain}
+  b: {intent: seat_ventilation_on, text: "turn on the cooled seats", style: command, variant: plain}
+  note: asking how the cooled seats work needs a small model; switching them on is local
+
+- id: vehicle_manual_question_vs_set_recirculation_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "what does the recirculation button do", style: question, variant: plain}
+  b: {intent: set_recirculation, text: "press the recirculation button", style: command, variant: plain}
+  note: asking what the button does needs a small model; pressing it is a local comfort command
+
+- id: vehicle_manual_question_vs_set_cruise_speed_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how do i raise the cruise speed", style: question, variant: plain}
+  b: {intent: set_cruise_speed, text: "raise the cruise speed a bit", style: command, variant: plain}
+  note: asking how needs a small model; raising the set speed is local
+
+- id: vehicle_manual_question_vs_dip_high_beams_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how do i switch to low beam", style: question, variant: plain}
+  b: {intent: dip_high_beams, text: "switch to low beam now", style: command, variant: plain}
+  note: asking how needs a small model; dipping the beams is safety-critical and local
+
+- id: vehicle_manual_question_vs_cancel_cruise_control_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how do i cancel cruise control", style: question, variant: plain}
+  b: {intent: cancel_cruise_control, text: "cancel cruise control right away", style: command, variant: plain}
+  note: asking how needs a small model; cancelling cruise is safety-critical and local
+
+- id: vehicle_manual_question_vs_cancel_cruise_control_02
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "cruise control kaise band karte hain", style: question, variant: hinglish}
+  b: {intent: cancel_cruise_control, text: "chalo cruise control band karte hain abhi", style: command, variant: hinglish}
+  note: asking how needs a small model; cancelling cruise is safety-critical and local
+
+- id: vehicle_manual_question_vs_seat_heater_on_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "how does the seat warmer work", style: question, variant: plain}
+  b: {intent: seat_heater_on, text: "switch the seat warmer on", style: command, variant: plain}
+  note: asking how needs a small model; the seat heater is a local comfort command
+
+- id: navigate_home_vs_traffic_on_route_01
+  differs_in: [capability, consequence]
+  a: {intent: navigate_home, text: "show me the route home", style: command, variant: plain}
+  b: {intent: traffic_on_route, text: "how's the traffic on the route home", style: question, variant: plain}
+  note: the saved route home is local; live traffic needs the cloud
+
+- id: eta_to_destination_vs_weather_now_01
+  differs_in: [capability]
+  a: {intent: eta_to_destination, text: "will we reach before dark", style: question, variant: plain}
+  b: {intent: weather_now, text: "will it rain before dark", style: question, variant: plain}
+  note: the ETA is onboard navigation data; the weather is live cloud data
+
+- id: eta_to_destination_vs_weather_now_02
+  differs_in: [capability]
+  a: {intent: eta_to_destination, text: "andhere se pehle pahunch jayenge kya", style: question, variant: hinglish}
+  b: {intent: weather_now, text: "andhere se pehle baarish hogi kya", style: question, variant: hinglish}
+  note: the ETA is onboard navigation data; the weather is live cloud data
+
+- id: add_reminder_vs_place_opening_hours_01
+  differs_in: [capability, consequence]
+  a: {intent: add_reminder, text: "remind me when the {place} opens", style: command, variant: plain}
+  b: {intent: place_opening_hours, text: "tell me when the {place} opens", style: command, variant: plain}
+  note: a reminder is local; when a place opens needs the cloud, with onboard hours offline
+
+- id: add_reminder_vs_place_opening_hours_02
+  differs_in: [capability, consequence]
+  a: {intent: add_reminder, text: "uh remind me um when the {place} opens tomorrow", style: command, variant: disfluent}
+  b: {intent: place_opening_hours, text: "uh tell me um when the {place} opens tomorrow", style: command, variant: disfluent}
+  note: a reminder is local; when a place opens needs the cloud, with onboard hours offline
+
+- id: add_reminder_vs_weather_now_01
+  differs_in: [capability, consequence]
+  a: {intent: add_reminder, text: "remind me to take an umbrella tomorrow", style: command, variant: plain}
+  b: {intent: weather_now, text: "will i need an umbrella tomorrow", style: question, variant: plain}
+  note: a reminder is local; whether it will rain needs live cloud data
+
+- id: read_email_aloud_vs_pay_bill_01
+  differs_in: [capability, distraction, consequence]
+  a: {intent: read_email_aloud, text: "read the electricity bill email", style: command, variant: plain}
+  b: {intent: pay_bill, text: "pay the electricity bill", style: command, variant: plain}
+  note: hearing the bill email is medium and fits a small model; paying needs the cloud, the screen and cannot be undone
+
+- id: read_email_aloud_vs_pay_bill_02
+  differs_in: [capability, distraction, consequence]
+  a: {intent: read_email_aloud, text: "can you read the email about the phone bill", style: question, variant: plain}
+  b: {intent: pay_bill, text: "can you pay the phone bill from the email", style: question, variant: plain}
+  note: hearing the bill email is medium and fits a small model; paying needs the cloud, the screen and cannot be undone
+
+- id: plan_day_itinerary_vs_add_reminder_01
+  differs_in: [capability, distraction, consequence]
+  a: {intent: plan_day_itinerary, text: "plan my errands for this evening", style: command, variant: plain}
+  b: {intent: add_reminder, text: "remind me of my errands this evening", style: command, variant: plain}
+  note: ordering today's errands is a cloud medium decision; a reminder is a local command
+
+- id: navigate_to_contact_address_vs_find_parking_01
+  differs_in: [distraction, consequence]
+  a: {intent: navigate_to_contact_address, text: "get me to {contact}'s place", style: command, variant: plain}
+  b: {intent: find_parking, text: "get me a parking spot near {contact}'s place", style: command, variant: plain}
+  note: going to an address is low; searching parking near it is a medium decision
+
+- id: navigate_to_contact_address_vs_find_parking_02
+  differs_in: [distraction, consequence]
+  a: {intent: navigate_to_contact_address, text: "{contact} ke ghar ke paas chalo", style: command, variant: hinglish}
+  b: {intent: find_parking, text: "{contact} ke ghar ke paas parking dhoondo", style: command, variant: hinglish}
+  note: going to an address is low; searching parking near it is a medium decision
+
+- id: summarize_group_chat_vs_reply_to_message_01
+  differs_in: [distraction, consequence]
+  a: {intent: summarize_group_chat, text: "summarise the office group", style: command, variant: plain}
+  b: {intent: reply_to_message, text: "reply to the office group with {message_text}", style: command, variant: plain}
+  note: a group summary is long output (medium); a one-line reply is low and goes out
+
+- id: calendar_today_vs_read_messages_01
+  differs_in: [capability]
+  a: {intent: calendar_today, text: "read out today's meetings once more", style: command, variant: plain}
+  b: {intent: read_messages, text: "read out today's messages once more", style: command, variant: plain}
+  note: both are long output; the calendar read-out is templated locally, messages need a small model
+
+- id: calendar_today_vs_read_messages_02
+  differs_in: [capability]
+  a: {intent: calendar_today, text: "uh go through um today's meetings", style: command, variant: disfluent}
+  b: {intent: read_messages, text: "uh go through um today's messages", style: command, variant: disfluent}
+  note: both are long output; the calendar read-out is templated locally, messages need a small model
+
+- id: calendar_today_vs_read_email_aloud_01
+  differs_in: [capability]
+  a: {intent: calendar_today, text: "read out today's meeting list", style: command, variant: plain}
+  b: {intent: read_email_aloud, text: "read out today's email list", style: command, variant: plain}
+  note: the calendar read-out is local; condensing emails needs a small model
+
+- id: calendar_today_vs_plan_day_itinerary_01
+  differs_in: [capability]
+  a: {intent: calendar_today, text: "read me today's appointments", style: command, variant: plain}
+  b: {intent: plan_day_itinerary, text: "plan the route for today's appointments", style: command, variant: plain}
+  note: reading the synced calendar is local; planning today's stops needs live cloud data
+
+- id: take_note_vs_edit_note_08
+  differs_in: [capability, distraction]
+  a: {intent: take_note, text: "uh add a note um about the car insurance", style: command, variant: disfluent}
+  b: {intent: edit_note, text: "uh edit the note um about the car insurance", style: command, variant: disfluent}
+  note: saving a note is a short local command; several edits to a note need the transcript on screen
+
+- id: start_video_call_vs_call_contact_01
+  differs_in: [distraction]
+  a: {intent: start_video_call, text: "{contact} jothe video call maadtira", style: question, variant: kannada_english}
+  b: {intent: call_contact, text: "{contact} jothe call maadtira", style: question, variant: kannada_english}
+  note: a video call needs the screen and is refused while moving; a voice call is low
+
+- id: play_video_vs_play_music_01
+  differs_in: [distraction]
+  a: {intent: play_video, text: "play the {song} video for the baby", style: command, variant: plain}
+  b: {intent: play_music, text: "play the {song} lullaby for the baby", style: command, variant: plain}
+  note: a video needs the screen and is refused while moving; audio is low distraction
+
+- id: show_photos_vs_play_music_01
+  differs_in: [distraction, consequence]
+  a: {intent: show_photos, text: "goa trip ki photos lagao", style: command, variant: hinglish}
+  b: {intent: play_music, text: "goa trip ke gaane lagao", style: command, variant: hinglish}
+  note: a slideshow on the screen is high distraction; the playlist is audio
+
+- id: browse_web_vs_weather_now_01
+  differs_in: [distraction]
+  a: {intent: browse_web, text: "uh open the um weather site for {city}", style: command, variant: disfluent}
+  b: {intent: weather_now, text: "uh tell me the um weather for {city}", style: command, variant: disfluent}
+  note: a website on the screen is high distraction; a weather sentence is low
+
+- id: add_reminder_vs_book_restaurant_01
+  differs_in: [capability, distraction, consequence]
+  a: {intent: add_reminder, text: "remind me to book a table at {place}", style: command, variant: plain}
+  b: {intent: book_restaurant, text: "book a table at {place}", style: command, variant: plain}
+  note: a reminder is a local command; booking needs the cloud, is a medium decision and commits a table
+
+- id: add_reminder_vs_book_restaurant_02
+  differs_in: [capability, distraction, consequence]
+  a: {intent: add_reminder, text: "uh remind me to um book dinner at {place}", style: command, variant: disfluent}
+  b: {intent: book_restaurant, text: "uh um book dinner at {place}", style: command, variant: disfluent}
+  note: a reminder is a local command; booking needs the cloud, is a medium decision and commits a table
+
+- id: fuel_prices_nearby_vs_find_nearby_place_01
+  differs_in: [distraction]
+  a: {intent: fuel_prices_nearby, text: "what's the cheapest petrol price nearby", style: question, variant: plain}
+  b: {intent: find_nearby_place, text: "find the cheapest petrol bunk nearby", style: command, variant: plain}
+  note: one price is low; finding and comparing bunks is a medium decision
+
+- id: fuel_prices_nearby_vs_find_nearby_place_02
+  differs_in: [distraction]
+  a: {intent: fuel_prices_nearby, text: "uh what's the um diesel rate nearby", style: question, variant: disfluent}
+  b: {intent: find_nearby_place, text: "uh find a um diesel bunk nearby", style: command, variant: disfluent}
+  note: one price is low; finding and comparing bunks is a medium decision
+
+- id: vehicle_manual_question_vs_emergency_call_01
+  differs_in: [capability, actuation, consequence]
+  a: {intent: vehicle_manual_question, text: "what does the sos button do", style: question, variant: plain}
+  b: {intent: emergency_call, text: "press the sos button", style: command, variant: plain}
+  note: asking what the button does needs a small model; the sos call is safety-critical and local
+
+- id: call_contact_vs_start_video_call_07
+  differs_in: [distraction]
+  a: {intent: call_contact, text: "call {contact} on the car speaker", style: command, variant: plain}
+  b: {intent: start_video_call, text: "video call {contact} on the car screen", style: command, variant: plain}
+  note: a voice call is low distraction; a video call needs the screen and is refused while moving
+
+- id: navigate_home_vs_navigate_to_contact_address_08
+  differs_in: [capability]
+  a: {intent: navigate_home, text: "ghar wapas le chaloge kya abhi", style: question, variant: hinglish}
+  b: {intent: navigate_to_contact_address, text: "{contact} ke ghar le chaloge kya abhi", style: question, variant: hinglish}
+  note: a saved place is local; a contact's address is geocoded in the cloud and masked
+
+- id: climate_on_off_vs_disable_lane_assist_06
+  differs_in: [actuation]
+  a: {intent: climate_on_off, text: "can you shut off the air con for a while", style: question, variant: plain}
+  b: {intent: disable_lane_assist, text: "can you shut off the lane keeping for a while", style: question, variant: plain}
+  note: the ac is comfort and always runs; switching off lane assist is restricted and refused while moving
+
+- id: climate_on_off_vs_disable_lane_assist_07
+  differs_in: [actuation]
+  a: {intent: climate_on_off, text: "ac off maadbahuda swalpa hottu", style: question, variant: kannada_english}
+  b: {intent: disable_lane_assist, text: "lane assist off maadbahuda swalpa hottu", style: question, variant: kannada_english}
+  note: the ac is comfort and always runs; switching off lane assist is restricted and refused while moving
+
+- id: climate_on_off_vs_disable_stability_control_05
+  differs_in: [actuation]
+  a: {intent: climate_on_off, text: "can you kill the ac for this steep climb", style: question, variant: plain}
+  b: {intent: disable_stability_control, text: "can you kill the traction control for this steep climb", style: question, variant: plain}
+  note: the ac is comfort and always runs; switching off traction control is restricted
+
+- id: hazard_lights_on_vs_set_parking_brake_05
+  differs_in: [actuation]
+  a: {intent: hazard_lights_on, text: "the car's stopped on the slope put the hazards on", style: command, variant: plain}
+  b: {intent: set_parking_brake, text: "the car's stopped on the slope put the handbrake on", style: command, variant: plain}
+  note: hazards are safety-critical and always run; the parking brake is restricted and refused while moving
+
+- id: add_reminder_vs_add_calendar_event_05
+  differs_in: [capability, consequence]
+  a: {intent: add_reminder, text: "naale dentist reminder haaki", style: command, variant: kannada_english}
+  b: {intent: add_calendar_event, text: "naale dentist calendar alli haaki", style: command, variant: kannada_english}
+  note: a reminder is local; an event with date and time needs a small model and invites others
+
+- id: call_contact_vs_send_text_message_07
+  differs_in: [capability]
+  a: {intent: call_contact, text: "can you quickly phone {contact} from the car", style: question, variant: plain}
+  b: {intent: send_text_message, text: "can you quickly text {contact} from the car", style: question, variant: plain}
+  note: a call is placed locally; a text must be rephrased by a small model and goes to the cloud masked
+
+- id: share_live_location_vs_send_text_message_04
+  differs_in: [capability]
+  a: {intent: share_live_location, text: "uh send my um live location to {contact}", style: command, variant: disfluent}
+  b: {intent: send_text_message, text: "uh send a um quick message to {contact}", style: command, variant: disfluent}
+  note: sharing location is a local command; a text needs a small model and is masked in the cloud
+
+- id: explain_topic_in_depth_vs_browse_web_04
+  differs_in: [distraction]
+  a: {intent: explain_topic_in_depth, text: "uh explain um {topic} to the kids properly", style: command, variant: disfluent}
+  b: {intent: browse_web, text: "uh open a um {topic} website for the kids", style: command, variant: disfluent}
+  note: a long spoken explanation is medium; a web page on the screen is high and refused while moving

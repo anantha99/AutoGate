@@ -1,0 +1,1178 @@
+# Synthetic in-car goals for train-only augmentation (A6). Format and rules:
+# docs/augmentation-spec.md (section 3). Each goal is a new user goal, not one of the
+# 81 intents, and never near an OOD intent. Its tags are its labels.
+# Fix lines in place; do not reorder or delete (row ids use positions).
+# Check with: python -m autogate_bench.augment validate --dir data/augment --strict
+
+# ---------------------------------------------------------------- high distraction
+
+- name: set_up_driver_profile
+  description: Create a new driver profile with its own name and saved settings
+  group: productivity
+  capability: local_ok
+  distraction: high
+  actuation: none
+  consequence: reversible
+  rationale: a multi-step setup flow with a name typed on the keyboard, which UX_RESTRICTIONS_NO_SETUP and NO_KEYBOARD block while moving; profiles are stored in the car
+  utterances:
+    - {text: "create a new driver profile for my wife", style: command, variant: plain}
+    - {text: "add my son as a second driver with his own settings", style: command, variant: plain}
+    - {text: "can you set up a profile for my brother so his seat and music are saved?", style: question, variant: plain}
+    - {text: "how do i add another person as a driver in this system", style: question, variant: plain}
+    - {text: "my dad drives this car on weekends and keeps messing up my settings", style: outcome, variant: plain}
+    - {text: "every time my sister takes the car she has to redo everything from scratch", style: indirect, variant: plain}
+    - {text: "new user profile", style: fragment, variant: plain}
+    - {text: "papa ke liye alag profile bana do", style: command, variant: hinglish}
+    - {text: "amma ge hosa profile maadi", style: command, variant: kannada_english}
+    - {text: "add a uh new no a second profile for the driver who um comes on mondays", style: command, variant: disfluent}
+
+- name: sign_in_streaming_account
+  description: Sign in to a music or video streaming account on the head unit
+  group: media
+  capability: needs_cloud
+  distraction: high
+  actuation: none
+  consequence: reversible
+  rationale: typing account credentials needs the on-screen keyboard (UX_RESTRICTIONS_NO_KEYBOARD) and a login against the provider's servers
+  utterances:
+    - {text: "log me into my music streaming account on the car screen", style: command, variant: plain}
+    - {text: "sign in to the music app with my premium account", style: command, variant: plain}
+    - {text: "could you get my streaming account logged in here?", style: question, variant: plain}
+    - {text: "the music app here keeps saying i'm a guest and plays ads", style: outcome, variant: plain}
+    - {text: "none of my saved playlists show up on this screen", style: outcome, variant: plain}
+    - {text: "my brother's premium works in his car but nobody has set it up in mine", style: indirect, variant: plain}
+    - {text: "streaming login", style: fragment, variant: plain}
+    - {text: "music app mein mera account login karo", style: command, variant: hinglish}
+    - {text: "ee screen alli music account login maadi", style: command, variant: kannada_english}
+    - {text: "log into the uh the video no the music streaming app", style: command, variant: disfluent}
+
+- name: install_head_unit_app
+  description: Find an app in the car's app store and install it
+  group: productivity
+  capability: needs_cloud
+  distraction: high
+  actuation: none
+  consequence: reversible
+  rationale: browsing a store and accepting permissions is a setup flow (UX_RESTRICTIONS_NO_SETUP, LIMIT_CONTENT); the store and the download need the cloud
+  utterances:
+    - {text: "install a cricket app on the car display", style: command, variant: plain}
+    - {text: "get the meditation app onto this head unit", style: command, variant: plain}
+    - {text: "find a good audiobook app in the store and download it", style: command, variant: plain}
+    - {text: "can you put the office attendance app on this screen?", style: question, variant: plain}
+    - {text: "there's no app here for ordering coffee and i'd like one", style: outcome, variant: plain}
+    - {text: "my friend's car has this nice radio app that ours is missing", style: indirect, variant: plain}
+    - {text: "open the app store", style: fragment, variant: plain}
+    - {text: "car mein ek naya app install karo", style: command, variant: hinglish}
+    - {text: "app store alli ondu hosa app haaku", style: command, variant: kannada_english}
+    - {text: "um install that that app the one with the um audiobooks", style: command, variant: disfluent}
+
+- name: play_screen_game
+  description: Play an interactive game on the touchscreen
+  group: media
+  capability: local_ok
+  distraction: high
+  actuation: none
+  consequence: reversible
+  rationale: an interactive game on the display is sustained visual interaction, blocked by UX_RESTRICTIONS_NO_VIDEO; built-in games run offline
+  utterances:
+    - {text: "start a game on the touchscreen", style: command, variant: plain}
+    - {text: "open the snake game on the screen for the kids", style: command, variant: plain}
+    - {text: "put a puzzle game on the display while we wait", style: command, variant: plain}
+    - {text: "can we play something on the screen?", style: question, variant: plain}
+    - {text: "we're stuck waiting here for ages and i'm bored out of my mind", style: outcome, variant: plain}
+    - {text: "the kids want something to play with on the big screen", style: indirect, variant: plain}
+    - {text: "games on screen", style: fragment, variant: plain}
+    - {text: "screen pe koi game lagao yaar", style: command, variant: hinglish}
+    - {text: "makkalige screen alli game haaku", style: command, variant: kannada_english}
+    - {text: "open the uh the chess no the cards game on the display", style: command, variant: disfluent}
+
+- name: explore_satellite_map
+  description: Pan and zoom around a map or satellite view of an area
+  group: navigation
+  capability: cloud_preferred
+  distraction: high
+  actuation: none
+  consequence: none
+  rationale: panning and zooming a map is sustained screen interaction (LIMIT_CONTENT); satellite tiles stream from the cloud, but the onboard map can still be browsed offline
+  utterances:
+    - {text: "show the satellite view of this area and let me scroll around", style: command, variant: plain}
+    - {text: "zoom the map out so i can look around {city}", style: command, variant: plain}
+    - {text: "switch the map to satellite and move it over to {place}", style: command, variant: plain}
+    - {text: "could you open a map of {city} that i can drag around?", style: question, variant: plain}
+    - {text: "i want to see what the land around {place} looks like from above", style: outcome, variant: plain}
+    - {text: "my cousin says there's a lake somewhere behind this layout and i want to look", style: indirect, variant: plain}
+    - {text: "satellite map please", style: fragment, variant: plain}
+    - {text: "map ko satellite mode mein karo aur {city} dikhao", style: command, variant: hinglish}
+    - {text: "{place} hattira map swalpa zoom maadi", style: command, variant: kannada_english}
+    - {text: "show me the the map on satellite er the aerial one around {place}", style: command, variant: disfluent}
+
+- name: browse_restaurant_menu
+  description: Scroll through a restaurant's full menu with photos on the screen
+  group: information
+  capability: needs_cloud
+  distraction: high
+  actuation: none
+  consequence: none
+  rationale: a menu is long scrolling text and photos, capped by UX_RESTRICTIONS_LIMIT_CONTENT and LIMIT_STRING_LENGTH; menus come from an online listing, not the onboard POI data
+  utterances:
+    - {text: "show me the menu of {place} on the screen", style: command, variant: plain}
+    - {text: "pull up the full menu with photos for the place we're heading to", style: command, variant: plain}
+    - {text: "can you put {place}'s menu up so i can scroll through it?", style: question, variant: plain}
+    - {text: "i want to see what dishes they serve before we walk in", style: outcome, variant: plain}
+    - {text: "my wife wants to check whether {place} has anything vegetarian", style: indirect, variant: plain}
+    - {text: "menu for {place}", style: fragment, variant: plain}
+    - {text: "{place} ka menu screen pe dikhao", style: command, variant: hinglish}
+    - {text: "{place} menu screen alli torisi", style: command, variant: kannada_english}
+    - {text: "show the uh the menu card for um {place}", style: command, variant: disfluent}
+
+- name: order_food_delivery
+  description: Order food from a restaurant for delivery, choosing dishes and paying
+  group: planning
+  capability: needs_cloud
+  distraction: high
+  actuation: none
+  consequence: irreversible
+  rationale: picking dishes into a cart and paying is a browse-and-checkout screen flow (NO_KEYBOARD, LIMIT_CONTENT), unlike book_restaurant's spoken confirmation; the restaurant receives the order
+  utterances:
+    - {text: "order dinner from {place} to be delivered home", style: command, variant: plain}
+    - {text: "get biryani sent to the house by the time we reach", style: command, variant: plain}
+    - {text: "place a food delivery order for tonight", style: command, variant: plain}
+    - {text: "can you get food delivered to my place by {time}?", style: question, variant: plain}
+    - {text: "nobody will feel like cooking when we get home tonight", style: outcome, variant: plain}
+    - {text: "the kids are already asking what's for dinner and the fridge is empty", style: indirect, variant: plain}
+    - {text: "food delivery home", style: fragment, variant: plain}
+    - {text: "{place} se ghar pe khana order kar do", style: command, variant: hinglish}
+    - {text: "manege oota order maadi", style: command, variant: kannada_english}
+    - {text: "order uh order some food from the um that pizza place to home", style: command, variant: disfluent}
+
+- name: file_insurance_claim
+  description: Start and submit a motor insurance claim for damage to the car
+  group: productivity
+  capability: needs_cloud
+  distraction: high
+  actuation: none
+  consequence: irreversible
+  rationale: a claim is a long form with photos and policy details (NO_KEYBOARD, NO_SETUP); it is submitted to the insurer, who acts on it
+  utterances:
+    - {text: "start an insurance claim for the dent on the rear bumper", style: command, variant: plain}
+    - {text: "file a claim with my car insurance for this scratch", style: command, variant: plain}
+    - {text: "raise a claim on my motor policy for the broken tail lamp", style: command, variant: plain}
+    - {text: "can you open the insurance claim form for the accident on {date}?", style: question, variant: plain}
+    - {text: "someone reversed into my door at the mall and i need it covered", style: outcome, variant: plain}
+    - {text: "the body shop won't start work until the insurer approves it", style: indirect, variant: plain}
+    - {text: "insurance claim for the bumper", style: fragment, variant: plain}
+    - {text: "gaadi ke dent ka insurance claim daal do", style: command, variant: hinglish}
+    - {text: "bumper damage ge insurance claim haaku", style: command, variant: kannada_english}
+    - {text: "register a uh a claim for the er the windshield crack with insurance", style: command, variant: disfluent}
+
+- name: edit_saved_places
+  description: Rename, reorder or delete saved places in the navigation app
+  group: navigation
+  capability: local_ok
+  distraction: high
+  actuation: none
+  consequence: reversible
+  rationale: renaming and deleting entries is list editing with a keyboard (UX_RESTRICTIONS_NO_KEYBOARD, LIMIT_CONTENT); the list is stored in the car
+  utterances:
+    - {text: "let me edit my saved places list", style: command, variant: plain}
+    - {text: "rename the saved place called office to old office", style: command, variant: plain}
+    - {text: "delete the old favourites from navigation and tidy up the list", style: command, variant: plain}
+    - {text: "can you open my saved locations so i can clean them up?", style: question, variant: plain}
+    - {text: "my favourites list is full of places i don't go to any more", style: outcome, variant: plain}
+    - {text: "we moved houses months ago and the old flat is still saved in the car", style: indirect, variant: plain}
+    - {text: "manage saved places", style: fragment, variant: plain}
+    - {text: "saved places ki list theek karo", style: command, variant: hinglish}
+    - {text: "saved places list swalpa clean maadi", style: command, variant: kannada_english}
+    - {text: "go to the um saved places and uh let me rearrange them", style: command, variant: disfluent}
+
+- name: watch_live_match_stream
+  description: Watch a live sports match as video on the screen
+  group: media
+  capability: needs_cloud
+  distraction: high
+  actuation: none
+  consequence: reversible
+  rationale: live video is blocked by UX_RESTRICTIONS_NO_VIDEO and the stream needs the cloud; unlike sports_score it is the match itself, not a one-line score
+  utterances:
+    - {text: "stream the {team} match live on the screen", style: command, variant: plain}
+    - {text: "put the live cricket telecast on the display", style: command, variant: plain}
+    - {text: "show me the second innings live", style: command, variant: plain}
+    - {text: "can you play the match video while we wait at the charger?", style: question, variant: plain}
+    - {text: "i really don't want to miss the last few overs", style: outcome, variant: plain}
+    - {text: "everyone at home is watching the final except me", style: indirect, variant: plain}
+    - {text: "live match on screen", style: fragment, variant: plain}
+    - {text: "{team} ka match screen pe live dikhao", style: command, variant: hinglish}
+    - {text: "match live screen alli haaku", style: command, variant: kannada_english}
+    - {text: "start the uh highlights no the live stream of the {team} game", style: command, variant: disfluent}
+
+- name: edit_playlist
+  description: Reorder, rename or prune a playlist on the screen
+  group: media
+  capability: local_ok
+  distraction: high
+  actuation: none
+  consequence: reversible
+  rationale: dragging tracks and renaming a playlist is list editing on screen (LIMIT_CONTENT, NO_KEYBOARD); the playlist is stored locally
+  utterances:
+    - {text: "open my road songs playlist so i can reorder it", style: command, variant: plain}
+    - {text: "rename my long drive playlist and drag the new songs to the top", style: command, variant: plain}
+    - {text: "let me go through the workout playlist and remove the slow tracks", style: command, variant: plain}
+    - {text: "can you let me edit the songs in my morning playlist?", style: question, variant: plain}
+    - {text: "half the songs in my mix are ones i skip every single time", style: outcome, variant: plain}
+    - {text: "my daughter wants her songs moved to the top of the family list", style: indirect, variant: plain}
+    - {text: "edit playlist", style: fragment, variant: plain}
+    - {text: "playlist mein se purane gaane hata ke order badlo", style: command, variant: hinglish}
+    - {text: "playlist alli haadu order change maadi", style: command, variant: kannada_english}
+    - {text: "take {song} out of the er the playlist the uh party one and move the rest around", style: command, variant: disfluent}
+
+- name: show_driving_score_charts
+  description: View charts of the driver's braking, acceleration and efficiency
+  group: information
+  capability: local_ok
+  distraction: high
+  actuation: none
+  consequence: none
+  rationale: charts are dense visual content (UX_RESTRICTIONS_LIMIT_CONTENT); they are computed from the car's own trip logs
+  utterances:
+    - {text: "show me my driving score charts for this week", style: command, variant: plain}
+    - {text: "open the graphs of my braking and acceleration from the last few drives", style: command, variant: plain}
+    - {text: "pull up the drive analysis dashboard", style: command, variant: plain}
+    - {text: "can you put up the efficiency charts for this month?", style: question, variant: plain}
+    - {text: "i want to see whether my driving got smoother since last month", style: outcome, variant: plain}
+    - {text: "my insurer keeps talking about rewarding safe drivers and i'm curious how i'm doing", style: indirect, variant: plain}
+    - {text: "driving stats graphs", style: fragment, variant: plain}
+    - {text: "meri driving ka report graph mein dikhao", style: command, variant: hinglish}
+    - {text: "nanna driving score graph torisi", style: command, variant: kannada_english}
+    - {text: "show the um the charts the ones with my uh harsh braking", style: command, variant: disfluent}
+
+- name: view_home_security_camera
+  description: Watch the live feed of a home security camera
+  group: information
+  capability: needs_cloud
+  distraction: high
+  actuation: none
+  consequence: none
+  rationale: a live camera feed is video, blocked by UX_RESTRICTIONS_NO_VIDEO; it streams over the internet from the home
+  utterances:
+    - {text: "show the live feed from the camera at the front gate", style: command, variant: plain}
+    - {text: "open the home security camera on the car screen", style: command, variant: plain}
+    - {text: "put the baby room camera on the display", style: command, variant: plain}
+    - {text: "can you let me see the doorbell camera?", style: question, variant: plain}
+    - {text: "i want to check who's standing outside the house right now", style: outcome, variant: plain}
+    - {text: "the watchman says some delivery guy has been waiting at our gate", style: indirect, variant: plain}
+    - {text: "home cctv live", style: fragment, variant: plain}
+    - {text: "ghar ka cctv screen pe dikhao", style: command, variant: hinglish}
+    - {text: "mane camera feed torisi", style: command, variant: kannada_english}
+    - {text: "open the um the gate camera no the backyard one at home", style: command, variant: disfluent}
+
+- name: submit_expense_claim
+  description: Fill in and submit a work expense or reimbursement claim
+  group: productivity
+  capability: needs_cloud
+  distraction: high
+  actuation: none
+  consequence: irreversible
+  rationale: an expense form with amounts, categories and a receipt photo is keyboard entry (UX_RESTRICTIONS_NO_KEYBOARD); it goes to the employer's system, where approvers see it
+  utterances:
+    - {text: "file an expense claim for today's client lunch", style: command, variant: plain}
+    - {text: "submit my travel reimbursement for the visit to {city}", style: command, variant: plain}
+    - {text: "can you raise a claim for the hotel stay on {date}?", style: question, variant: plain}
+    - {text: "i paid for the team dinner and need the money back from the company", style: outcome, variant: plain}
+    - {text: "accounts wants my receipts from last week's site visit by tonight", style: indirect, variant: plain}
+    - {text: "expense claim for lunch", style: fragment, variant: plain}
+    - {text: "office ka expense claim submit kar do", style: command, variant: hinglish}
+    - {text: "ivattu lunch expense claim haaku", style: command, variant: kannada_english}
+    - {text: "put in a um a reimbursement for the er the cab rides this week", style: command, variant: disfluent}
+
+- name: merge_duplicate_contacts
+  description: Find and merge duplicate entries in the phonebook
+  group: communication
+  capability: needs_small_local
+  distraction: high
+  actuation: none
+  consequence: reversible
+  rationale: matching duplicates across spelling variants needs more than a tiny model, and checking each merge on a list is screen work (UX_RESTRICTIONS_LIMIT_CONTENT)
+  utterances:
+    - {text: "clean up the duplicate contacts in the car's phonebook", style: command, variant: plain}
+    - {text: "merge the contacts that show up twice", style: command, variant: plain}
+    - {text: "tidy my address book so each person appears once", style: command, variant: plain}
+    - {text: "can you go through my contacts and combine the repeated ones?", style: question, variant: plain}
+    - {text: "{contact} shows up three times whenever i search the phonebook", style: outcome, variant: plain}
+    - {text: "since the last sync every name seems to be listed twice", style: indirect, variant: plain}
+    - {text: "fix duplicate contacts", style: fragment, variant: plain}
+    - {text: "contacts mein jo double hain unko merge karo", style: command, variant: hinglish}
+    - {text: "duplicate contacts ella ondu maadi", style: command, variant: kannada_english}
+    - {text: "merge the uh the double entries in my um contact list", style: command, variant: disfluent}
+
+- name: send_money_to_contact
+  description: Send money to a person by UPI
+  group: communication
+  capability: needs_cloud
+  distraction: high
+  actuation: none
+  consequence: irreversible
+  rationale: a UPI transfer needs the payee and amount checked on screen and a PIN typed (UX_RESTRICTIONS_NO_KEYBOARD), like pay_bill but to a person; money leaves the account
+  utterances:
+    - {text: "send {number} rupees to {contact} on upi", style: command, variant: plain}
+    - {text: "transfer money to {contact} for the groceries", style: command, variant: plain}
+    - {text: "can you pay {contact} back for the movie?", style: question, variant: plain}
+    - {text: "i still owe {contact} for last weekend's dinner", style: outcome, variant: plain}
+    - {text: "{contact} keeps reminding me about the money i borrowed", style: indirect, variant: plain}
+    - {text: "upi to {contact}", style: fragment, variant: plain}
+    - {text: "{contact} ko {number} rupaye bhej do", style: command, variant: hinglish}
+    - {text: "{contact} ge duddu kalsu", style: command, variant: kannada_english}
+    - {text: "send uh send {contact} the the money for the cab", style: command, variant: disfluent}
+
+- name: book_movie_seats
+  description: Book cinema tickets, choosing seats on a seat map
+  group: planning
+  capability: needs_cloud
+  distraction: high
+  actuation: none
+  consequence: irreversible
+  rationale: choosing seats on a seat map and paying is a screen flow (LIMIT_CONTENT, NO_KEYBOARD), unlike book_restaurant's spoken party size; the cinema holds the seats
+  utterances:
+    - {text: "book two seats for the evening show at {place}", style: command, variant: plain}
+    - {text: "get us tickets for the {time} movie and pick seats in the middle", style: command, variant: plain}
+    - {text: "can you book cinema tickets for tonight?", style: question, variant: plain}
+    - {text: "we want to catch a film after dinner", style: outcome, variant: plain}
+    - {text: "the kids have been begging to see the new animated film this weekend", style: indirect, variant: plain}
+    - {text: "movie tickets tonight", style: fragment, variant: plain}
+    - {text: "aaj raat ki movie ke tickets book karo", style: command, variant: hinglish}
+    - {text: "ivattu movie ge ticket book maadi", style: command, variant: kannada_english}
+    - {text: "book the uh the {time} no the late show tickets", style: command, variant: disfluent}
+
+- name: show_service_history_log
+  description: View the car's full service and repair history on the screen
+  group: information
+  capability: local_ok
+  distraction: high
+  actuation: none
+  consequence: none
+  rationale: a table of past services, parts and invoices is long on-screen content (LIMIT_CONTENT, LIMIT_STRING_LENGTH); the log is stored in the car
+  utterances:
+    - {text: "show me the full service history of the car", style: command, variant: plain}
+    - {text: "open the list of every service and part replaced so far", style: command, variant: plain}
+    - {text: "can you put the maintenance records on the screen?", style: question, variant: plain}
+    - {text: "i want to see when the brake pads were last changed and what else was done", style: outcome, variant: plain}
+    - {text: "the buyer wants to look at the car's records before he decides", style: indirect, variant: plain}
+    - {text: "service records", style: fragment, variant: plain}
+    - {text: "gaadi ki service history screen pe dikhao", style: command, variant: hinglish}
+    - {text: "car service history ella torisi", style: command, variant: kannada_english}
+    - {text: "show the um the maintenance log the whole er history", style: command, variant: disfluent}
+
+- name: rearrange_home_screen
+  description: Customise the head unit's home screen widgets and wallpaper
+  group: productivity
+  capability: local_ok
+  distraction: high
+  actuation: none
+  consequence: reversible
+  rationale: moving widgets and choosing a wallpaper is a customisation flow (UX_RESTRICTIONS_NO_SETUP); the layout is stored locally
+  utterances:
+    - {text: "let me rearrange the widgets on the home screen", style: command, variant: plain}
+    - {text: "change the wallpaper on the car display to a different picture", style: command, variant: plain}
+    - {text: "move the music widget to the left and make the map tile bigger", style: command, variant: plain}
+    - {text: "can i customise the home screen layout?", style: question, variant: plain}
+    - {text: "the home screen is cluttered with stuff i never use", style: outcome, variant: plain}
+    - {text: "my wife says our display looks boring compared to her car", style: indirect, variant: plain}
+    - {text: "edit home screen", style: fragment, variant: plain}
+    - {text: "home screen ka layout badal do", style: command, variant: hinglish}
+    - {text: "home screen widgets swalpa change maadi", style: command, variant: kannada_english}
+    - {text: "put the uh the clock widget no the calendar widget at the top", style: command, variant: disfluent}
+
+- name: browse_rental_listings
+  description: Browse rental flats and houses with photos on the screen
+  group: information
+  capability: needs_cloud
+  distraction: high
+  actuation: none
+  consequence: none
+  rationale: listings are photo galleries and long descriptions (UX_RESTRICTIONS_LIMIT_CONTENT); live listings come from an online portal
+  utterances:
+    - {text: "show flats for rent around {place} with photos", style: command, variant: plain}
+    - {text: "open house listings in this area on the screen", style: command, variant: plain}
+    - {text: "can you pull up two bedroom apartments for rent near {place}?", style: question, variant: plain}
+    - {text: "we're looking to move closer to the kids' school", style: outcome, variant: plain}
+    - {text: "my colleague found a nice place in this layout and i want to see what else is going", style: indirect, variant: plain}
+    - {text: "rental flats near {place}", style: fragment, variant: plain}
+    - {text: "{place} ke paas kiraye ke flats dikhao", style: command, variant: hinglish}
+    - {text: "{place} hattira baadige mane torisi", style: command, variant: kannada_english}
+    - {text: "show me uh houses no flats for rent um nearby", style: command, variant: disfluent}
+
+# -------------------------------------------------------------- medium distraction
+
+- name: recap_audiobook_story
+  description: Summarise what has happened so far in the audiobook being played
+  group: media
+  capability: needs_small_local
+  distraction: medium
+  actuation: none
+  consequence: none
+  rationale: condensing the chapters heard so far needs a small model; the recap is long spoken output
+  utterances:
+    - {text: "recap what's happened so far in the audiobook", style: command, variant: plain}
+    - {text: "give me a summary of the last few chapters i listened to", style: command, variant: plain}
+    - {text: "summarise the book up to where i paused", style: command, variant: plain}
+    - {text: "can you remind me what happened in the story before this chapter?", style: question, variant: plain}
+    - {text: "i've lost track of who all the characters in this book are", style: outcome, variant: plain}
+    - {text: "we stopped listening a week ago and nobody remembers the plot", style: indirect, variant: plain}
+    - {text: "audiobook recap", style: fragment, variant: plain}
+    - {text: "kitaab mein ab tak kya hua short mein batao", style: command, variant: hinglish}
+    - {text: "audiobook alli ellivaregu enu aaytu heli", style: command, variant: kannada_english}
+    - {text: "what uh what happened before the um the chapter we're on", style: question, variant: disfluent}
+
+- name: tell_bedtime_story
+  description: Make up and tell a story for children in the car
+  group: media
+  capability: needs_small_local
+  distraction: medium
+  actuation: none
+  consequence: none
+  rationale: making up a story needs a small generative model; a story is long spoken output
+  utterances:
+    - {text: "tell the kids a story about a tiger who loves mangoes", style: command, variant: plain}
+    - {text: "make up a bedtime story for my daughter", style: command, variant: plain}
+    - {text: "can you tell a short story about {topic} for the little one?", style: question, variant: plain}
+    - {text: "the baby just won't settle down in the back seat", style: outcome, variant: plain}
+    - {text: "my son keeps asking for a story like the ones his grandma tells", style: indirect, variant: plain}
+    - {text: "story for the kids", style: fragment, variant: plain}
+    - {text: "bachchon ko ek kahani sunao", style: command, variant: hinglish}
+    - {text: "makkalige ondu kathe heli", style: command, variant: kannada_english}
+    - {text: "tell a um a story about uh dinosaurs for the kids", style: command, variant: disfluent}
+
+- name: play_audio_quiz
+  description: Run a spoken trivia quiz for the people in the car
+  group: media
+  capability: needs_small_local
+  distraction: medium
+  actuation: none
+  consequence: none
+  rationale: asking questions and judging spoken answers needs a small model; a quiz is sustained back-and-forth, not one reply
+  utterances:
+    - {text: "start a general knowledge quiz for everyone in the car", style: command, variant: plain}
+    - {text: "quiz us on capital cities", style: command, variant: plain}
+    - {text: "can we play a trivia game out loud on {topic}?", style: question, variant: plain}
+    - {text: "we have hours of highway ahead and need something to pass the time", style: outcome, variant: plain}
+    - {text: "the kids want to test each other on animals", style: indirect, variant: plain}
+    - {text: "quiz time", style: fragment, variant: plain}
+    - {text: "chalo cricket pe ek quiz khelte hain", style: command, variant: hinglish}
+    - {text: "namge ondu quiz kelu", style: command, variant: kannada_english}
+    - {text: "ask us uh ask us questions like um a quiz show", style: command, variant: disfluent}
+
+- name: stock_portfolio_rundown
+  description: Hear how the driver's investments moved today
+  group: information
+  capability: needs_cloud
+  distraction: medium
+  actuation: none
+  consequence: none
+  rationale: live market data from the broker; a rundown of several holdings is long spoken output
+  utterances:
+    - {text: "give me a rundown of how my stocks did today", style: command, variant: plain}
+    - {text: "go through my portfolio and tell me the big movers", style: command, variant: plain}
+    - {text: "read out my holdings with gains and losses", style: command, variant: plain}
+    - {text: "how are my mutual funds doing this week?", style: question, variant: plain}
+    - {text: "i want to know if the market crash hurt my investments", style: outcome, variant: plain}
+    - {text: "my brother says the markets were all over the place today", style: indirect, variant: plain}
+    - {text: "portfolio update", style: fragment, variant: plain}
+    - {text: "mere shares ka aaj ka haal batao", style: command, variant: hinglish}
+    - {text: "nanna shares ivattu hege ide heli", style: command, variant: kannada_english}
+    - {text: "how did um how did my portfolio do er today overall", style: question, variant: disfluent}
+
+- name: book_hotel_room
+  description: Find and reserve a hotel room for tonight or a given date
+  group: planning
+  capability: needs_cloud
+  distraction: medium
+  actuation: none
+  consequence: irreversible
+  rationale: live room availability and a booking service; choosing between a few hotels and confirming the date is a spoken decision like book_restaurant; the hotel sees the booking
+  utterances:
+    - {text: "book a hotel room in {city} for tonight", style: command, variant: plain}
+    - {text: "find and reserve a decent hotel near {place} for {date}", style: command, variant: plain}
+    - {text: "can you get us a room somewhere on the way for the night?", style: question, variant: plain}
+    - {text: "we won't make it to {city} before dark and need somewhere to sleep", style: outcome, variant: plain}
+    - {text: "i'm too tired to keep going and the kids need a proper bed", style: indirect, variant: plain}
+    - {text: "hotel room tonight", style: fragment, variant: plain}
+    - {text: "{city} mein aaj raat ke liye hotel book karo", style: command, variant: hinglish}
+    - {text: "{city} alli ivattu raatri ge room book maadi", style: command, variant: kannada_english}
+    - {text: "book a um a room at the uh the hotel near {place}", style: command, variant: disfluent}
+
+- name: language_practice_lesson
+  description: Take a spoken lesson in an Indian language with practice and corrections
+  group: information
+  capability: needs_small_local
+  distraction: medium
+  actuation: none
+  consequence: none
+  rationale: a lesson with prompts and corrections is sustained interaction and long output; a small model handles common Indian languages; unlike translate_phrase it is not one phrase
+  utterances:
+    - {text: "teach me some basic kannada while i drive", style: command, variant: plain}
+    - {text: "start a hindi speaking lesson for beginners", style: command, variant: plain}
+    - {text: "run a vocabulary drill in malayalam", style: command, variant: plain}
+    - {text: "can you practise tamil conversation with me?", style: question, variant: plain}
+    - {text: "i just moved here and can't talk to the local shopkeepers", style: outcome, variant: plain}
+    - {text: "my wife's parents only speak marathi and i want to surprise them", style: indirect, variant: plain}
+    - {text: "kannada lesson", style: fragment, variant: plain}
+    - {text: "mujhe thodi telugu sikhao", style: command, variant: hinglish}
+    - {text: "nanage swalpa kannada kalisi", style: command, variant: kannada_english}
+    - {text: "do the um the lesson where you uh quiz me on words", style: command, variant: disfluent}
+
+- name: meeting_briefing
+  description: Get a spoken briefing on the next meeting's people, agenda and history
+  group: productivity
+  capability: needs_small_local
+  distraction: medium
+  actuation: none
+  consequence: none
+  rationale: pulling attendees, agenda and the last thread together for one meeting needs a small model to condense; the briefing is long spoken output, deeper than calendar_today's list
+  utterances:
+    - {text: "brief me on my next meeting", style: command, variant: plain}
+    - {text: "give me the background for the {event_title} before i walk in", style: command, variant: plain}
+    - {text: "what should i know before the {time} meeting?", style: question, variant: plain}
+    - {text: "i'm going into the {event_title} without having read anything", style: outcome, variant: plain}
+    - {text: "my manager will grill me in the review and i haven't prepared at all", style: indirect, variant: plain}
+    - {text: "prep for next meeting", style: fragment, variant: plain}
+    - {text: "agli meeting ke baare mein short mein bata do", style: command, variant: hinglish}
+    - {text: "next meeting bagge swalpa heli", style: command, variant: kannada_english}
+    - {text: "brief me on the uh the {event_title} er the agenda and who's coming", style: command, variant: disfluent}
+
+- name: vehicle_health_report
+  description: Hear a full health report on the car's tyres, oil, brakes and warnings
+  group: information
+  capability: local_ok
+  distraction: medium
+  actuation: none
+  consequence: none
+  rationale: a templated read-out of vehicle properties (TIRE_PRESSURE, ENGINE_OIL_LEVEL, warning states), so local_ok; a full report is long spoken output
+  utterances:
+    - {text: "give me a full health check of the car", style: command, variant: plain}
+    - {text: "run through the tyre pressures oil and brakes for me", style: command, variant: plain}
+    - {text: "is everything okay with the car before the long drive?", style: question, variant: plain}
+    - {text: "i want to be sure the car is in good shape before we head out of town", style: outcome, variant: plain}
+    - {text: "the mechanic said to keep an eye on things after the last service", style: indirect, variant: plain}
+    - {text: "car health report", style: fragment, variant: plain}
+    - {text: "gaadi ki poori checkup report sunao", style: command, variant: hinglish}
+    - {text: "car condition ella heli", style: command, variant: kannada_english}
+    - {text: "tell me the um the status of uh everything tyres oil all that", style: command, variant: disfluent}
+
+- name: recipe_walkthrough
+  description: Hear a recipe read out step by step
+  group: information
+  capability: needs_small_local
+  distraction: medium
+  actuation: none
+  consequence: none
+  rationale: a small model can recite a common dish's recipe reliably where a tiny one cannot; the steps are long spoken output
+  utterances:
+    - {text: "walk me through a recipe for dal tadka step by step", style: command, variant: plain}
+    - {text: "tell me how to make chicken curry from start to finish", style: command, variant: plain}
+    - {text: "can you explain how to cook {topic} at home?", style: question, variant: plain}
+    - {text: "i have to cook dinner tonight and have no idea where to start", style: outcome, variant: plain}
+    - {text: "my wife is out of town and the kids want her pulao", style: indirect, variant: plain}
+    - {text: "paneer recipe", style: fragment, variant: plain}
+    - {text: "rajma banane ka tareeka batao", style: command, variant: hinglish}
+    - {text: "bisibele bath maadodu hege heli", style: command, variant: kannada_english}
+    - {text: "how do you um make er that egg curry the kerala one", style: question, variant: disfluent}
+
+- name: landmark_commentary
+  description: Hear tour-guide commentary about the places being driven past
+  group: navigation
+  capability: cloud_preferred
+  distraction: medium
+  actuation: none
+  consequence: none
+  rationale: narration about passing places is long spoken output; online sources are richer, but the onboard POI database describes major landmarks offline
+  utterances:
+    - {text: "tell me about the places we're passing", style: command, variant: plain}
+    - {text: "be my tour guide for this part of {city}", style: command, variant: plain}
+    - {text: "what's the story behind that old fort on the left?", style: question, variant: plain}
+    - {text: "i'd love to know more about the history of this area as we drive", style: outcome, variant: plain}
+    - {text: "my parents are visiting and keep asking what each building is", style: indirect, variant: plain}
+    - {text: "tour guide mode", style: fragment, variant: plain}
+    - {text: "is jagah ke baare mein kuch batao", style: command, variant: hinglish}
+    - {text: "ee area history bagge heli", style: command, variant: kannada_english}
+    - {text: "tell me um about that uh the temple we just passed", style: command, variant: disfluent}
+
+- name: prioritise_todo_list
+  description: Rank pending tasks and hear which to do first
+  group: productivity
+  capability: needs_small_local
+  distraction: medium
+  actuation: none
+  consequence: none
+  rationale: ranking tasks by deadline and effort needs a small model; walking through the ranked list is long output with decisions
+  utterances:
+    - {text: "go through my to do list and tell me what to do first", style: command, variant: plain}
+    - {text: "rank my pending tasks for today", style: command, variant: plain}
+    - {text: "which of my tasks is the most urgent?", style: question, variant: plain}
+    - {text: "i have too many things pending and don't know where to begin", style: outcome, variant: plain}
+    - {text: "my boss wants three things done by evening and i've lost track of the rest", style: indirect, variant: plain}
+    - {text: "sort my tasks", style: fragment, variant: plain}
+    - {text: "mere pending kaam ka order bata do", style: command, variant: hinglish}
+    - {text: "nanna tasks yaavudu modalu maadbeku heli", style: command, variant: kannada_english}
+    - {text: "help me um figure out what to er tackle first on my list", style: command, variant: disfluent}
+
+- name: mock_interview_practice
+  description: Practise a job interview with the assistant playing the interviewer
+  group: productivity
+  capability: needs_cloud
+  distraction: medium
+  actuation: none
+  consequence: none
+  rationale: playing an interviewer and critiquing answers needs a frontier model; it is sustained back-and-forth spoken interaction
+  utterances:
+    - {text: "do a mock interview with me for a product manager role", style: command, variant: plain}
+    - {text: "ask me practice questions for my bank job interview", style: command, variant: plain}
+    - {text: "can you grill me like an interviewer before the {event_title}?", style: question, variant: plain}
+    - {text: "i have a big job interview tomorrow and i'm really nervous", style: outcome, variant: plain}
+    - {text: "my friend said practising answers out loud really helped him", style: indirect, variant: plain}
+    - {text: "interview practice", style: fragment, variant: plain}
+    - {text: "mera interview practice karwao", style: command, variant: hinglish}
+    - {text: "interview ge practice maadisi", style: command, variant: kannada_english}
+    - {text: "ask me uh some questions like an um hr round", style: command, variant: disfluent}
+
+- name: weigh_a_decision
+  description: Talk through a personal decision with its pros and cons
+  group: information
+  capability: needs_cloud
+  distraction: medium
+  actuation: none
+  consequence: none
+  rationale: reasoning through a personal trade-off needs a frontier model; the discussion is long spoken output that invites a decision
+  utterances:
+    - {text: "help me think through whether to take the new job offer", style: command, variant: plain}
+    - {text: "talk me through the pros and cons of buying versus renting", style: command, variant: plain}
+    - {text: "should i move my parents in with us or get them a flat nearby?", style: question, variant: plain}
+    - {text: "i can't make up my mind between the two schools for my daughter", style: outcome, variant: plain}
+    - {text: "my wife and i keep going back and forth about selling the old car", style: indirect, variant: plain}
+    - {text: "pros and cons please", style: fragment, variant: plain}
+    - {text: "naya job lun ya nahi samjhao", style: command, variant: hinglish}
+    - {text: "ee decision bagge swalpa help maadi", style: command, variant: kannada_english}
+    - {text: "should i uh should i take the loan or um wait a year", style: question, variant: disfluent}
+
+- name: book_cab_for_someone
+  description: Book a taxi or auto for another person to a pickup point
+  group: planning
+  capability: needs_cloud
+  distraction: medium
+  actuation: none
+  consequence: irreversible
+  rationale: live cab availability and fares; choosing between ride types is a spoken decision like book_restaurant; the booking dispatches a driver
+  utterances:
+    - {text: "book a cab for my parents from the station to home", style: command, variant: plain}
+    - {text: "get an auto for {contact} from {place}", style: command, variant: plain}
+    - {text: "can you arrange a taxi to pick up my mother at {time}?", style: question, variant: plain}
+    - {text: "my parents land at {time} and i can't reach the airport", style: outcome, variant: plain}
+    - {text: "our cook has no way to get home this late", style: indirect, variant: plain}
+    - {text: "cab for amma", style: fragment, variant: plain}
+    - {text: "papa ke liye cab book kar do", style: command, variant: hinglish}
+    - {text: "amma ge {place} inda cab book maadi", style: command, variant: kannada_english}
+    - {text: "book a um a cab no an auto for {contact}", style: command, variant: disfluent}
+
+- name: spending_summary
+  description: Hear a breakdown of recent spending by category
+  group: information
+  capability: needs_cloud
+  distraction: medium
+  actuation: none
+  consequence: none
+  rationale: transactions come from the bank's online service; a category breakdown is long spoken output
+  utterances:
+    - {text: "break down my card spending by category this month", style: command, variant: plain}
+    - {text: "tell me where all my money went this week", style: command, variant: plain}
+    - {text: "how much did we spend on eating out this month?", style: question, variant: plain}
+    - {text: "i feel like the salary vanished way too fast this month", style: outcome, variant: plain}
+    - {text: "my wife thinks we're overspending on groceries", style: indirect, variant: plain}
+    - {text: "monthly spends", style: fragment, variant: plain}
+    - {text: "is mahine kitna kharcha hua batao", style: command, variant: hinglish}
+    - {text: "ee tingalu eshtu kharchu aaytu heli", style: command, variant: kannada_english}
+    - {text: "go through um my spends for the uh the last month", style: command, variant: disfluent}
+
+# --------------------------------------------------------- low distraction, rare tags
+
+- name: identify_song_playing
+  description: Identify the song currently playing
+  group: media
+  capability: needs_cloud
+  distraction: low
+  actuation: none
+  consequence: none
+  rationale: audio fingerprinting against an online catalogue; the answer is one line
+  utterances:
+    - {text: "tell me the name of this track", style: command, variant: plain}
+    - {text: "find out which song this is", style: command, variant: plain}
+    - {text: "can you figure out who sings this?", style: question, variant: plain}
+    - {text: "i love this tune but have no clue what it's called", style: outcome, variant: plain}
+    - {text: "my daughter wants to know the name of the song that's on", style: indirect, variant: plain}
+    - {text: "name this song", style: fragment, variant: plain}
+    - {text: "yeh kaunsa gaana hai pata karo", style: command, variant: hinglish}
+    - {text: "ee haadu yaavudu kandu hidi", style: command, variant: kannada_english}
+    - {text: "who's the um who is singing this uh this one", style: question, variant: disfluent}
+
+- name: flight_status_check
+  description: Check whether a flight is on time, delayed or landed
+  group: information
+  capability: needs_cloud
+  distraction: low
+  actuation: none
+  consequence: none
+  rationale: live airline data; the answer is one sentence
+  utterances:
+    - {text: "check whether my flight is on time", style: command, variant: plain}
+    - {text: "find out when the evening flight from {city} lands", style: command, variant: plain}
+    - {text: "is the {time} flight to {city} delayed?", style: question, variant: plain}
+    - {text: "which gate is my flight leaving from", style: question, variant: plain}
+    - {text: "i need to know if i'll still make my flight", style: outcome, variant: plain}
+    - {text: "flight status", style: fragment, variant: plain}
+    - {text: "flight late hai kya check karo", style: command, variant: hinglish}
+    - {text: "flight time ge barutta check maadi", style: command, variant: kannada_english}
+    - {text: "tell me if the uh the flight from {city} has um landed", style: command, variant: disfluent}
+
+- name: report_road_hazard
+  description: Report a pothole, accident or flooding on a shared live map
+  group: navigation
+  capability: needs_cloud
+  distraction: low
+  actuation: none
+  consequence: irreversible
+  rationale: posts to a shared online map that other drivers see, so irreversible; one short command
+  utterances:
+    - {text: "report a pothole here", style: command, variant: plain}
+    - {text: "mark an accident at this spot on the map for others", style: command, variant: plain}
+    - {text: "flag a waterlogged stretch right here", style: command, variant: plain}
+    - {text: "can you warn other drivers about the broken signal here?", style: question, variant: plain}
+    - {text: "there's a huge crater in the road that others should know about", style: outcome, variant: plain}
+    - {text: "pothole here", style: fragment, variant: plain}
+    - {text: "yahan gaddha hai report kar do", style: command, variant: hinglish}
+    - {text: "illi road damage ide report maadi", style: command, variant: kannada_english}
+    - {text: "report a uh a stalled no a broken down bus here", style: command, variant: disfluent}
+
+- name: request_roadside_assistance
+  description: Ask a breakdown or towing service to come to the car
+  group: communication
+  capability: needs_cloud
+  distraction: low
+  actuation: none
+  consequence: irreversible
+  rationale: sends the car's location and problem to a service that dispatches someone, so irreversible; not an emergency, so not emergency_call's safety class
+  utterances:
+    - {text: "send for a tow truck we have a flat tyre", style: command, variant: plain}
+    - {text: "get breakdown help to this location", style: command, variant: plain}
+    - {text: "request roadside assistance", style: command, variant: plain}
+    - {text: "can you get a mechanic to come out here?", style: question, variant: plain}
+    - {text: "the car won't start and we're stuck by the highway", style: outcome, variant: plain}
+    - {text: "my husband says the battery is dead again", style: indirect, variant: plain}
+    - {text: "need a tow", style: fragment, variant: plain}
+    - {text: "gaadi kharab ho gayi help bhejo", style: command, variant: hinglish}
+    - {text: "towing van illige kalsi", style: command, variant: kannada_english}
+    - {text: "get the um the roadside people no a tow truck out here", style: command, variant: disfluent}
+
+- name: respond_to_meeting_invite
+  description: Accept or decline a meeting invitation
+  group: productivity
+  capability: local_ok
+  distraction: low
+  actuation: none
+  consequence: irreversible
+  rationale: one command on an invite already synced to the car; the organiser sees the reply, so irreversible like a sent message
+  utterances:
+    - {text: "accept the invite for {event_title}", style: command, variant: plain}
+    - {text: "say yes to the {time} meeting request", style: command, variant: plain}
+    - {text: "decline {contact}'s meeting this afternoon", style: command, variant: plain}
+    - {text: "can you tell them i'll attend the {event_title}?", style: question, variant: plain}
+    - {text: "i can make the {event_title} after all", style: outcome, variant: plain}
+    - {text: "rsvp yes", style: fragment, variant: plain}
+    - {text: "{event_title} ka invite accept kar do", style: command, variant: hinglish}
+    - {text: "meeting invite accept maadi", style: command, variant: kannada_english}
+    - {text: "accept the um no decline the {event_title} invite", style: command, variant: disfluent}
+
+- name: split_bill_amount
+  description: Work out each person's share of a shared expense
+  group: information
+  capability: needs_small_local
+  distraction: low
+  actuation: none
+  consequence: none
+  rationale: a short spoken word problem; a small model handles it reliably where a tiny model slips; one number spoken back
+  utterances:
+    - {text: "split {number} rupees between five people", style: command, variant: plain}
+    - {text: "work out each person's share of the dinner", style: command, variant: plain}
+    - {text: "how much does each of us owe if it came to {number}?", style: question, variant: plain}
+    - {text: "four of us shared the cab and i paid {number}", style: outcome, variant: plain}
+    - {text: "my friends want to know how much to send me for the snacks", style: indirect, variant: plain}
+    - {text: "{number} divided by four", style: fragment, variant: plain}
+    - {text: "{number} ko teen logon mein baanto", style: command, variant: hinglish}
+    - {text: "{number} na naalku jana ge divide maadi", style: command, variant: kannada_english}
+    - {text: "split the uh the {number} um equally among us", style: command, variant: disfluent}
+
+- name: create_location_routine
+  description: Create a routine that runs an action when arriving at or leaving a place
+  group: productivity
+  capability: needs_small_local
+  distraction: low
+  actuation: none
+  consequence: reversible
+  rationale: turning a spoken if-then into a saved routine (place, trigger, action) needs a small model to parse; one command, undone by deleting it
+  utterances:
+    - {text: "whenever i reach office put my phone on silent", style: command, variant: plain}
+    - {text: "every time i leave home start my morning playlist", style: command, variant: plain}
+    - {text: "can you make a routine that turns on do not disturb at the gym?", style: question, variant: plain}
+    - {text: "i keep forgetting to silence my phone when i get to the clinic", style: outcome, variant: plain}
+    - {text: "home arrival routine", style: fragment, variant: plain}
+    - {text: "jab ghar pahunchu tab gaana band ho jaye aisa routine bana do", style: command, variant: hinglish}
+    - {text: "office talupidaaga dnd haaku anta routine maadi", style: command, variant: kannada_english}
+    - {text: "make a um a rule that whenever i er reach the gym it plays {artist}", style: command, variant: disfluent}
+
+- name: speed_limit_here
+  description: Ask the speed limit on the current road
+  group: navigation
+  capability: cloud_preferred
+  distraction: low
+  actuation: none
+  consequence: none
+  rationale: onboard map data stores speed limits; cloud data covers recent changes, so LOCAL rather than DEFER offline
+  utterances:
+    - {text: "what's the speed limit on this road", style: question, variant: plain}
+    - {text: "tell me the limit on this stretch", style: command, variant: plain}
+    - {text: "am i allowed to go faster here?", style: question, variant: plain}
+    - {text: "i don't want a speeding challan on this highway", style: outcome, variant: plain}
+    - {text: "my friend got fined on this road for overspeeding", style: indirect, variant: plain}
+    - {text: "speed limit here", style: fragment, variant: plain}
+    - {text: "yahan ki speed limit kya hai", style: question, variant: hinglish}
+    - {text: "illi speed limit eshtu", style: question, variant: kannada_english}
+    - {text: "what's the uh the max speed um allowed here", style: question, variant: disfluent}
+
+- name: navigate_to_nearest_hospital
+  description: Start navigation straight to the closest hospital
+  group: navigation
+  capability: cloud_preferred
+  distraction: low
+  actuation: none
+  consequence: reversible
+  rationale: onboard POIs find the closest hospital offline and live data (which casualty is open) is better; one command with no comparison, so low unlike find_nearby_place
+  utterances:
+    - {text: "take me to the nearest hospital", style: command, variant: plain}
+    - {text: "get me to a hospital as fast as possible", style: command, variant: plain}
+    - {text: "can you route us to the closest emergency ward?", style: question, variant: plain}
+    - {text: "my father is having chest pain and we need a doctor now", style: outcome, variant: plain}
+    - {text: "my son fell and his arm is badly swollen", style: indirect, variant: plain}
+    - {text: "nearest hospital", style: fragment, variant: plain}
+    - {text: "sabse paas wale hospital le chalo", style: command, variant: hinglish}
+    - {text: "hattira iro hospital ge hogona", style: command, variant: kannada_english}
+    - {text: "take us to the uh the nearest no the children's hospital", style: command, variant: disfluent}
+
+- name: call_nearby_business
+  description: Phone a nearby shop or business found by category
+  group: communication
+  capability: cloud_preferred
+  distraction: low
+  actuation: none
+  consequence: irreversible
+  rationale: the number comes from the onboard POI database or fresher online data, so LOCAL offline; placing the call is irreversible like call_contact
+  utterances:
+    - {text: "call the nearest pharmacy", style: command, variant: plain}
+    - {text: "phone the tyre shop closest to us", style: command, variant: plain}
+    - {text: "ring up the sweet shop near the junction", style: command, variant: plain}
+    - {text: "can you call the medical store near home?", style: question, variant: plain}
+    - {text: "i need to ask the bakery near here if the cake is ready", style: outcome, variant: plain}
+    - {text: "ring the nearest chemist", style: fragment, variant: plain}
+    - {text: "paas wali medical shop ko phone lagao", style: command, variant: hinglish}
+    - {text: "hattira iro garage ge call maadi", style: command, variant: kannada_english}
+    - {text: "call the um that hardware shop er the one near the signal", style: command, variant: disfluent}
+
+- name: next_rest_area_distance
+  description: Ask how far the next rest area on the highway is
+  group: navigation
+  capability: cloud_preferred
+  distraction: low
+  actuation: none
+  consequence: none
+  rationale: one distance on the current road from onboard POIs, fresher online; a single fact, not a comparison of places like find_nearby_place
+  utterances:
+    - {text: "how far is the next rest stop on this highway", style: question, variant: plain}
+    - {text: "tell me the distance to the next food court on the expressway", style: command, variant: plain}
+    - {text: "is there a rest area coming up soon?", style: question, variant: plain}
+    - {text: "the kids will need a loo break before long", style: outcome, variant: plain}
+    - {text: "distance to next dhaba", style: fragment, variant: plain}
+    - {text: "agla dhaba kitni door hai", style: question, variant: hinglish}
+    - {text: "mundina rest stop eshtu doora", style: question, variant: kannada_english}
+    - {text: "how many uh kilometres to the um next rest area", style: question, variant: disfluent}
+
+- name: where_am_i_now
+  description: Ask which area or road the car is on right now
+  group: navigation
+  capability: cloud_preferred
+  distraction: low
+  actuation: none
+  consequence: none
+  rationale: reverse geocoding of the current position; the onboard map names the road and area, online data is more precise
+  utterances:
+    - {text: "where exactly are we right now", style: question, variant: plain}
+    - {text: "tell me what area this is", style: command, variant: plain}
+    - {text: "what's the name of this road we're on?", style: question, variant: plain}
+    - {text: "i have no idea where we've ended up", style: outcome, variant: plain}
+    - {text: "my friend on the phone is asking which locality we're in", style: indirect, variant: plain}
+    - {text: "current locality", style: fragment, variant: plain}
+    - {text: "hum abhi kahan hain", style: question, variant: hinglish}
+    - {text: "naavu eega yelli iddeevi", style: question, variant: kannada_english}
+    - {text: "what's the uh the name of this um area we're in", style: question, variant: disfluent}
+
+- name: radio_programme_guide
+  description: Ask what programme is on a radio station now or next
+  group: media
+  capability: cloud_preferred
+  distraction: low
+  actuation: none
+  consequence: none
+  rationale: broadcast programme data (RDS and DAB programme guides) arrives with the signal onboard; online schedules are fuller, so LOCAL offline
+  utterances:
+    - {text: "what show is on {station} next", style: question, variant: plain}
+    - {text: "when does the cricket commentary start on {station}", style: question, variant: plain}
+    - {text: "tell me the {station} schedule for this evening", style: command, variant: plain}
+    - {text: "i don't want to miss the old songs hour on the radio", style: outcome, variant: plain}
+    - {text: "my dad wants to know what's coming up on his favourite station", style: indirect, variant: plain}
+    - {text: "{station} schedule", style: fragment, variant: plain}
+    - {text: "{station} pe aage kya aane wala hai", style: question, variant: hinglish}
+    - {text: "{station} alli mundhe enu program", style: question, variant: kannada_english}
+    - {text: "what's on um {station} after the uh the current show", style: question, variant: disfluent}
+
+- name: check_pending_challans
+  description: Check for unpaid traffic fines against the car
+  group: information
+  capability: needs_cloud
+  distraction: low
+  actuation: none
+  consequence: none
+  rationale: traffic fines live in an online government database; the answer is short
+  utterances:
+    - {text: "check if there are any pending traffic fines", style: command, variant: plain}
+    - {text: "look up challans on this car", style: command, variant: plain}
+    - {text: "are there any traffic tickets against my number plate?", style: question, variant: plain}
+    - {text: "i think a camera caught me jumping a signal last week", style: outcome, variant: plain}
+    - {text: "my colleague just found out he had a pile of unpaid fines", style: indirect, variant: plain}
+    - {text: "pending challans", style: fragment, variant: plain}
+    - {text: "gaadi pe koi challan hai kya check karo", style: command, variant: hinglish}
+    - {text: "nanna car mele challan ideya nodi", style: command, variant: kannada_english}
+    - {text: "check if uh there are any um fines on the car", style: command, variant: disfluent}
+
+- name: notify_on_arrival
+  description: Have a contact told automatically when the driver arrives somewhere
+  group: communication
+  capability: needs_small_local
+  distraction: low
+  actuation: none
+  consequence: irreversible
+  rationale: a conditional message (place trigger plus addressing) needs a small model; the contact receives it, so irreversible like send_text_message
+  utterances:
+    - {text: "let {contact} know automatically when i reach home", style: command, variant: plain}
+    - {text: "text {contact} once i get to the office", style: command, variant: plain}
+    - {text: "can you message {contact} when we're ten minutes away?", style: question, variant: plain}
+    - {text: "{contact} worries until she hears i've reached", style: outcome, variant: plain}
+    - {text: "{contact} always asks me to ping her when i get there", style: indirect, variant: plain}
+    - {text: "arrival alert to {contact}", style: fragment, variant: plain}
+    - {text: "ghar pahunchte hi {contact} ko bata dena", style: command, variant: hinglish}
+    - {text: "office talupidaaga {contact} ge message kalsu", style: command, variant: kannada_english}
+    - {text: "tell {contact} um when i uh when i reach the hotel", style: command, variant: disfluent}
+
+- name: set_speed_alert
+  description: Set a warning that sounds above a chosen speed
+  group: navigation
+  capability: local_ok
+  distraction: low
+  actuation: none
+  consequence: reversible
+  rationale: a threshold stored in the navigation app, not a vehicle actuation; one command
+  utterances:
+    - {text: "warn me if i go above {speed}", style: command, variant: plain}
+    - {text: "beep whenever i cross {speed} on this highway", style: command, variant: plain}
+    - {text: "can you alert me whenever i'm over the limit?", style: question, variant: plain}
+    - {text: "i keep creeping over the limit without noticing", style: outcome, variant: plain}
+    - {text: "my wife says i drive way too fast on the expressway", style: indirect, variant: plain}
+    - {text: "speed alert at {speed}", style: fragment, variant: plain}
+    - {text: "{speed} ke upar jaun to bata dena", style: command, variant: hinglish}
+    - {text: "{speed} mele hodre alert maadi", style: command, variant: kannada_english}
+    - {text: "set a uh a warning at um {speed} no make it {speed}", style: command, variant: disfluent}
+
+# ---------------------------------------------------------------- vehicle_control
+
+- name: open_hood
+  description: Release the bonnet latch
+  group: vehicle_control
+  capability: local_ok
+  distraction: low
+  actuation: restricted
+  consequence: reversible
+  rationale: DOOR_POS on the HOOD door area (VehicleAreaDoor.HOOD); an unlatched bonnet at speed can fly up and block the view, so parked-only like open_trunk
+  utterances:
+    - {text: "pop the bonnet", style: command, variant: plain}
+    - {text: "release the hood i want to check the coolant", style: command, variant: plain}
+    - {text: "can you open the bonnet for the mechanic?", style: question, variant: plain}
+    - {text: "could you just pop the hood real quick", style: question, variant: plain}
+    - {text: "i need to top up the water under the front", style: outcome, variant: plain}
+    - {text: "the mechanic wants to look at the engine", style: indirect, variant: plain}
+    - {text: "bonnet open", style: fragment, variant: plain}
+    - {text: "bonnet khol do", style: command, variant: hinglish}
+    - {text: "mechanic ge bonnet tegi", style: command, variant: kannada_english}
+    - {text: "uh pop the um the bonnet i mean the front one", style: command, variant: disfluent}
+
+- name: move_driver_seat
+  description: Slide, raise or recline the driver's power seat
+  group: vehicle_control
+  capability: local_ok
+  distraction: low
+  actuation: restricted
+  consequence: reversible
+  rationale: SEAT_FORE_AFT_MOVE and SEAT_BACKREST_ANGLE_1_MOVE on the driver seat; a seat moving under the driver changes reach to the pedals and wheel, so parked-only like adjust_steering_wheel (judgment)
+  utterances:
+    - {text: "slide my seat back a bit", style: command, variant: plain}
+    - {text: "move the driver seat forward", style: command, variant: plain}
+    - {text: "recline my seat a little more", style: command, variant: plain}
+    - {text: "can you push my seat back some?", style: question, variant: plain}
+    - {text: "hey can you just tilt my seat back a bit", style: question, variant: plain}
+    - {text: "my knees are hitting the dashboard", style: outcome, variant: plain}
+    - {text: "driver seat forward", style: fragment, variant: plain}
+    - {text: "meri seat thoda peeche karo", style: command, variant: hinglish}
+    - {text: "nanna seat swalpa hinde maadi", style: command, variant: kannada_english}
+    - {text: "move my seat up no back um backwards", style: command, variant: disfluent}
+
+- name: disable_emergency_braking
+  description: Turn off automatic emergency braking
+  group: vehicle_control
+  capability: local_ok
+  distraction: low
+  actuation: restricted
+  consequence: reversible
+  rationale: AUTOMATIC_EMERGENCY_BRAKING_ENABLED; switching off collision braking mid-drive removes a safety net, like disable_lane_assist
+  utterances:
+    - {text: "turn off automatic emergency braking", style: command, variant: plain}
+    - {text: "switch off the collision braking system", style: command, variant: plain}
+    - {text: "can you disable the auto brake thing?", style: question, variant: plain}
+    - {text: "could you turn off the automatic braking for a bit", style: question, variant: plain}
+    - {text: "the car keeps slamming the brakes for parked bikes", style: outcome, variant: plain}
+    - {text: "this thing panics every time an auto cuts in", style: indirect, variant: plain}
+    - {text: "aeb off", style: fragment, variant: plain}
+    - {text: "auto braking band karo", style: command, variant: hinglish}
+    - {text: "auto brake off maadi", style: command, variant: kannada_english}
+    - {text: "switch off the uh lane no the emergency braking", style: command, variant: disfluent}
+
+- name: disable_drowsiness_alert
+  description: Turn off the driver drowsiness and attention monitor
+  group: vehicle_control
+  capability: local_ok
+  distraction: low
+  actuation: restricted
+  consequence: reversible
+  rationale: DRIVER_DROWSINESS_ATTENTION_SYSTEM_ENABLED; turning off the attention monitor mid-drive removes a safety net, like disable_lane_assist (judgment)
+  utterances:
+    - {text: "turn off the drowsiness alert", style: command, variant: plain}
+    - {text: "disable the driver attention warning", style: command, variant: plain}
+    - {text: "can you stop the tiredness monitor?", style: question, variant: plain}
+    - {text: "can you switch off that coffee cup warning", style: question, variant: plain}
+    - {text: "the car keeps telling me to take a break when i'm wide awake", style: outcome, variant: plain}
+    - {text: "this thing beeps every time i glance at the mirror", style: indirect, variant: plain}
+    - {text: "attention warning off", style: fragment, variant: plain}
+    - {text: "neend wala alert band karo", style: command, variant: hinglish}
+    - {text: "drowsiness alert aarisu", style: command, variant: kannada_english}
+    - {text: "turn off the uh the camera that watches me the um attention thing", style: command, variant: disfluent}
+
+- name: fold_rear_seats
+  description: Power-fold the rear seatbacks flat
+  group: vehicle_control
+  capability: local_ok
+  distraction: low
+  actuation: restricted
+  consequence: reversible
+  rationale: SEAT_BACKREST_ANGLE_1_MOVE on the rear rows; a seatback folding under a passenger or shifting cargo while moving is unsafe, so parked-only (judgment)
+  utterances:
+    - {text: "fold down the back seats", style: command, variant: plain}
+    - {text: "flatten the rear seats for the luggage", style: command, variant: plain}
+    - {text: "can you drop the second row?", style: question, variant: plain}
+    - {text: "hey can you fold the back seats real quick", style: question, variant: plain}
+    - {text: "we need room for the new fridge", style: outcome, variant: plain}
+    - {text: "the cot won't fit with the seats up", style: indirect, variant: plain}
+    - {text: "rear seats down", style: fragment, variant: plain}
+    - {text: "peeche ki seats fold karo", style: command, variant: hinglish}
+    - {text: "hinde seat fold maadi", style: command, variant: kannada_english}
+    - {text: "fold the um the third row no the second row", style: command, variant: disfluent}
+
+- name: flash_headlights
+  description: Flash the headlights to warn another road user
+  group: vehicle_control
+  capability: local_ok
+  distraction: low
+  actuation: safety_critical
+  consequence: reversible
+  rationale: HIGH_BEAM_LIGHTS_SWITCH pulsed briefly; a warning flash only helps if immediate, like hazard_lights_on (judgment)
+  utterances:
+    - {text: "flash the headlights at that truck", style: command, variant: plain}
+    - {text: "give a pass light", style: command, variant: plain}
+    - {text: "blink the high beam to warn him", style: command, variant: plain}
+    - {text: "can you flash the lights quickly?", style: question, variant: plain}
+    - {text: "that bus is pulling out without seeing us", style: outcome, variant: plain}
+    - {text: "the guy ahead doesn't know we're overtaking", style: indirect, variant: plain}
+    - {text: "flash lights now", style: fragment, variant: plain}
+    - {text: "jaldi light maaro", style: command, variant: hinglish}
+    - {text: "headlight flash maadi bega", style: command, variant: kannada_english}
+    - {text: "flash the uh the high no just flash the lights", style: command, variant: disfluent}
+
+- name: spray_windshield_washer
+  description: Spray washer fluid and wipe the windscreen clean
+  group: vehicle_control
+  capability: local_ok
+  distraction: low
+  actuation: safety_critical
+  consequence: reversible
+  rationale: washer spray with a wipe; mud or droppings on the glass are a visibility hazard like rain for wipers_on, so it cannot wait (judgment; no public washer property)
+  utterances:
+    - {text: "spray the windscreen and wipe it", style: command, variant: plain}
+    - {text: "squirt some washer fluid on the glass", style: command, variant: plain}
+    - {text: "clean the windshield now", style: command, variant: plain}
+    - {text: "can you wash the front glass?", style: question, variant: plain}
+    - {text: "a truck just splashed mud all over the windscreen", style: outcome, variant: plain}
+    - {text: "i can't see a thing through this dirt", style: outcome, variant: plain}
+    - {text: "washer on", style: fragment, variant: plain}
+    - {text: "jaldi sheesha saaf karo", style: command, variant: hinglish}
+    - {text: "glass ge water haaku", style: command, variant: kannada_english}
+    - {text: "wipe the uh spray no spray and then wipe the glass", style: command, variant: disfluent}
+
+- name: heat_side_mirrors
+  description: Turn on the side mirror heaters to clear water off them
+  group: vehicle_control
+  capability: local_ok
+  distraction: low
+  actuation: safety_critical
+  consequence: reversible
+  rationale: HVAC_SIDE_MIRROR_HEAT; droplets on the side mirrors block the rear view needed for a lane change, a visibility hazard like defrost_windshield (judgment)
+  utterances:
+    - {text: "turn on the mirror heaters", style: command, variant: plain}
+    - {text: "clear the side mirrors", style: command, variant: plain}
+    - {text: "heat the outside mirrors so the water dries off", style: command, variant: plain}
+    - {text: "can you warm up the wing mirrors?", style: question, variant: plain}
+    - {text: "i can't see anything in the side mirrors with all these droplets", style: outcome, variant: plain}
+    - {text: "the left mirror is completely blurry", style: outcome, variant: plain}
+    - {text: "mirror heat on", style: fragment, variant: plain}
+    - {text: "side mirror garam karo", style: command, variant: hinglish}
+    - {text: "mirror heater haaku", style: command, variant: kannada_english}
+    - {text: "heat the um the rear glass no the side mirrors", style: command, variant: disfluent}
+
+- name: turn_signal_on
+  description: Switch on the left or right turn indicator
+  group: vehicle_control
+  capability: local_ok
+  distraction: low
+  actuation: safety_critical
+  consequence: reversible
+  rationale: TURN_SIGNAL_SWITCH; signalling a lane change or a stop only helps if it is immediate (judgment)
+  utterances:
+    - {text: "put the left indicator on", style: command, variant: plain}
+    - {text: "signal right i'm pulling over", style: command, variant: plain}
+    - {text: "switch on the indicator for the exit", style: command, variant: plain}
+    - {text: "can you turn on the right blinker?", style: question, variant: plain}
+    - {text: "i'm moving over to the left lane now and the truck behind has no clue", style: outcome, variant: plain}
+    - {text: "the guy behind doesn't know i'm turning", style: indirect, variant: plain}
+    - {text: "left indicator", style: fragment, variant: plain}
+    - {text: "left wala indicator de do", style: command, variant: hinglish}
+    - {text: "right indicator bega haaku", style: command, variant: kannada_english}
+    - {text: "indicate uh right no left left", style: command, variant: disfluent}
