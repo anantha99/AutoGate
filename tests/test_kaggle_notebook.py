@@ -54,9 +54,18 @@ def test_notebook_steps():
     assert "/kaggle/working" in text and "/content" in text  # platform detection
     assert "drive.mount" in text and "pip uninstall -y -q torchao" in text
     assert "configs/train_qwen3_0.6b_tags_r4.yaml" in text
+    assert 'os.environ["RUN_NAME"] = "qwen3-0.6b-tags-r5"' in text
+    assert 'os.environ["AUGMENT"] = "data/augment"' in text
+    assert '[ -d "$AUGMENT" ]' in text and '--augment "$AUGMENT"' in text
     assert '"$RUNS/$RUN_NAME"' in text and '"$RUNS/$RUN_NAME-no-context"' in text
-    assert text.count("--write-all") == 2 and text.count("autogate_router.export") == 2
+    # test + ood for both runs, val for the main run only
+    assert text.count("--write-all") == 3 and text.count("autogate_router.export") == 2
     assert "--split test,ood --json" in text
+    (main_run,) = _code(lambda s: '"$RUNS/$RUN_NAME";' in s)
+    assert '--split val --batch-size 128 --write-all "$OUT/predictions_val"' in main_run
+    assert '--split val --json "$OUT/score_val_$src.json"' in main_run
+    (ablation,) = _code(lambda s: '"$RUNS/$RUN_NAME-no-context";' in s)
+    assert "predictions_val" not in ablation
     kinds = [k for k, _ in _cells()]
     i_main = next(i for i, (_, s) in enumerate(_cells()) if '"$RUNS/$RUN_NAME";' in s)
     assert kinds[i_main - 1] == "markdown"  # what the tags run tests
@@ -65,6 +74,10 @@ def test_notebook_steps():
     assert comparison_source() in script
     assert 'run "$RUN_NAME-no-context" --no-context' in script
     assert "--write-all" in script and "for src in e2e tags combined" in script
+    assert "RUN_NAME=${RUN_NAME:-qwen3-0.6b-tags-r5}" in script
+    assert "AUGMENT=${AUGMENT:-data/augment}" in script
+    assert 'GEN_ARGS+=(--augment "$AUGMENT")' in script
+    assert '--write-all "$out/predictions_val"' in script and "score_val_$src.json" in script
 
 
 def run_comparison(runs: Path, capsys) -> str:

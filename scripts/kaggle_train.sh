@@ -19,8 +19,10 @@
 #   RUN_EXPORT    default 1 (ONNX fp32 + int8 for each run)
 #   GITHUB_TOKEN  token for a private clone
 #   CONFIG        default configs/train_qwen3_0.6b_tags_r4.yaml
-#   RUN_NAME      default qwen3-0.6b-tags-r4
-#   ROWS          default data/generated/full/rows.jsonl (generated if missing)
+#   RUN_NAME      default qwen3-0.6b-tags-r5
+#   AUGMENT       default data/augment (train-only synthetic goals and minimal pairs; used when
+#                 the directory exists)
+#   ROWS          a prebuilt rows.jsonl; default: generate data/generated/full/rows.jsonl
 #   TRAIN_ARGS    extra flags for every training run (e.g. "--batch-size 16 --grad-accum 2")
 set -euo pipefail
 
@@ -36,7 +38,8 @@ EPOCHS=${EPOCHS:-3}
 RUN_ABLATION=${RUN_ABLATION:-1}
 RUN_EXPORT=${RUN_EXPORT:-1}
 CONFIG=${CONFIG:-configs/train_qwen3_0.6b_tags_r4.yaml}
-RUN_NAME=${RUN_NAME:-qwen3-0.6b-tags-r4}
+RUN_NAME=${RUN_NAME:-qwen3-0.6b-tags-r5}
+AUGMENT=${AUGMENT:-data/augment}
 TRAIN_ARGS=${TRAIN_ARGS:-}
 RUNS=${RUNS:-$WORK/runs-v1}
 mkdir -p "$RUNS"
@@ -71,11 +74,19 @@ print("transformers", transformers.__version__, "peft", peft.__version__)
 PY
 
 # ---------------------------------------------------------------- data
-ROWS=${ROWS:-data/generated/full/rows.jsonl}
-if [ ! -f "$ROWS" ]; then
+if [ -z "${ROWS:-}" ]; then
+    # always regenerate (about a minute), so a reused clone never trains on stale rows
+    ROWS=data/generated/full/rows.jsonl
+    GEN_ARGS=(--out data/generated/full --rng-seed 0 --paraphrases data/paraphrases)
+    if [ -d "$AUGMENT" ]; then
+        log "validating the augmentation in $AUGMENT"
+        python -m autogate_bench.augment validate --dir "$AUGMENT" --no-warnings
+        GEN_ARGS+=(--augment "$AUGMENT")
+    else
+        log "no $AUGMENT: generating without augmentation"
+    fi
     log "generating the full dataset"
-    python -m autogate_bench.generate --out data/generated/full --rng-seed 0 \
-        --paraphrases data/paraphrases
+    python -m autogate_bench.generate "${GEN_ARGS[@]}"
 fi
 wc -l "$ROWS"
 
@@ -112,6 +123,16 @@ run() {
         python -m autogate_eval.score --rows "$ROWS" --preds "$out/predictions_test_ood_$src.jsonl" \
             --split test,ood --json "$out/score_test_ood_$src.json" | tee "$out/score_test_ood_$src.txt"
     done
+
+    if [ "$name" = "$RUN_NAME" ]; then
+        log "[$name] predict + score val (for mining the next round's confusions)"
+        python -m autogate_router.predict --checkpoint "$out/best" --rows "$ROWS" \
+            --split val --batch-size 128 --write-all "$out/predictions_val"
+        for src in e2e tags combined; do
+            python -m autogate_eval.score --rows "$ROWS" --preds "$out/predictions_val_$src.jsonl" \
+                --split val --json "$out/score_val_$src.json" | tee "$out/score_val_$src.txt"
+        done
+    fi
 
     if [ "$RUN_EXPORT" = 1 ]; then
         log "[$name] export ONNX + int8"
@@ -209,6 +230,8 @@ Where things are (per run directory under $RUNS):
                              rulebook on the predicted tags (tags), or the more cautious (combined)
   score_test_ood_{e2e,tags,combined}.{txt,json}
                              route report, intent accuracy, span F1, leak rate, per-tag report
+  predictions_val_*.jsonl, score_val_*.{txt,json}
+                             the same on val, main run only (mine its confusions for new pairs)
   onnx/                      router.onnx (+ .data), router.int8.onnx (+ .data), export_report.json
 $RUNS/rules holds the rules baseline scored the same way; $RUNS/comparison.md has the tables.
 TXT
