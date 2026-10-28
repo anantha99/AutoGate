@@ -21,6 +21,11 @@ Span labels (subword BIO)
     get ``-100`` and are ignored by the loss. :func:`spans_from_tags` inverts
     this through the same offsets.
 
+Intent labels
+    The index of the row's ``intent``, or ``-100`` (ignored by the loss) for
+    a synthetic-goal row (``is_synthetic``, see ``autogate_bench.augment``)
+    or an intent outside the label vocabulary.
+
 Tag labels
     Each row's ``capability``, ``distraction``, ``actuation`` and
     ``consequence`` strings become indices into the tag vocabularies of
@@ -257,7 +262,12 @@ def encode_row(
     if row.get("route") is not None:
         ex["route_label"] = labels.route_index[row["route"]]
     if row.get("intent") is not None:
-        ex["intent_label"] = labels.intent_index.get(row["intent"], IGNORE_INDEX)
+        # a synthetic goal (train-only augmentation) is not an intent class: its
+        # rows teach the route and tag heads, never the intent head
+        synthetic = bool(row.get("is_synthetic"))
+        ex["intent_label"] = (
+            IGNORE_INDEX if synthetic else labels.intent_index.get(row["intent"], IGNORE_INDEX)
+        )
     tag_labels = {
         name: labels.tag_index[name].get(str(row[name]), IGNORE_INDEX)
         for name in labels.tags

@@ -1,0 +1,44 @@
+# Synthetic goals for the augmentation tests (tests/test_augment.py). They are a worked
+# example of the format in docs/augmentation-spec.md, not training data.
+# Check with: python -m autogate_bench.augment validate --dir tests/fixtures/augment --strict
+
+- name: start_karaoke_session
+  description: Start a karaoke session with the lyrics scrolling on the screen
+  group: media
+  capability: local_ok
+  distraction: high
+  actuation: none
+  consequence: reversible
+  rationale: on-screen lyrics are sustained visual content, which CarUxRestrictions blocks while moving (UX_RESTRICTIONS_NO_VIDEO)
+  utterances:
+    - {text: "start karaoke with the lyrics on the screen", style: command, variant: plain}
+    - {text: "put up the words for {song} so we can all sing", style: command, variant: plain}
+    - {text: "we want to sing along to {song} and need the lyrics", style: outcome, variant: plain}
+    - {text: "could you open karaoke mode for {artist}", style: question, variant: plain}
+    - {text: "the kids keep asking for a singalong with words on the display", style: indirect, variant: plain}
+    - {text: "karaoke mode on", style: fragment, variant: plain}
+    - {text: "lyrics on screen for {song}", style: fragment, variant: plain}
+    - {text: "karaoke chalu karo lyrics screen pe dikhao", style: command, variant: hinglish}
+    - {text: "{song} ka karaoke lagao yaar", style: command, variant: hinglish}
+    - {text: "karaoke haaku lyrics display alli beku", style: command, variant: kannada_english}
+    - {text: "uh put the karaoke um the one with lyrics on", style: command, variant: disfluent}
+
+- name: open_sunroof
+  description: Open, close or tilt the sunroof
+  group: vehicle_control
+  capability: local_ok
+  distraction: low
+  actuation: comfort
+  consequence: reversible
+  rationale: WINDOW_POS on the roof window areas (ROOF_TOP_1 and ROOF_TOP_2) in VehiclePropertyIds, a comfort control like adjust_window
+  utterances:
+    - {text: "open the sunroof", style: command, variant: plain}
+    - {text: "slide the roof glass back halfway", style: command, variant: plain}
+    - {text: "tilt the sunroof up a little", style: command, variant: plain}
+    - {text: "i want some sky above me", style: outcome, variant: plain}
+    - {text: "can you shut the sunroof it's getting dusty", style: question, variant: plain}
+    - {text: "the kids want to see the stars through the roof", style: indirect, variant: plain}
+    - {text: "sunroof halfway", style: fragment, variant: plain}
+    - {text: "sunroof band karo", style: command, variant: hinglish}
+    - {text: "sunroof swalpa open maadu", style: command, variant: kannada_english}
+    - {text: "open the uh the roof no the sunroof", style: command, variant: disfluent}

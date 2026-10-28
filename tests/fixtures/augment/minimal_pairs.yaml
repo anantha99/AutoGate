@@ -1,0 +1,21 @@
+# Minimal pairs for the augmentation tests (tests/test_augment.py). They are a worked
+# example of the format in docs/augmentation-spec.md, not training data.
+# Check with: python -m autogate_bench.augment validate --dir tests/fixtures/augment --strict
+
+- id: rear_window_vs_rear_door_01
+  differs_in: [actuation]
+  a: {intent: adjust_window, text: "open the rear left window for my friend", style: command, variant: plain}
+  b: {intent: unlock_doors, text: "open the rear left door for my friend", style: command, variant: plain}
+  note: a window is comfort and always runs; a door is restricted and is refused while moving
+
+- id: music_vs_music_video_01
+  differs_in: [distraction]
+  a: {intent: play_music, text: "put on {song} for the kids in the back", style: command, variant: plain}
+  b: {intent: play_video, text: "put on the {song} music video for the kids in the back", style: command, variant: plain}
+  note: audio is low distraction; a video on the screen is high and is refused while moving
+
+- id: voice_vs_video_call_01
+  differs_in: [distraction]
+  a: {intent: call_contact, text: "ring {contact} on whatsapp quickly", style: command, variant: plain}
+  b: {intent: start_video_call, text: "ring {contact} on whatsapp video quickly", style: command, variant: plain}
+  note: a voice call is low distraction; a video call needs the screen and is refused while moving

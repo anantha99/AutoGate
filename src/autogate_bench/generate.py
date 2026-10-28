@@ -2,11 +2,16 @@
 
     python -m autogate_bench.generate --out data/generated/pilot --rng-seed 0
     python -m autogate_bench.generate --out data/generated/full --paraphrases data/paraphrases
+    python -m autogate_bench.generate --out data/generated/full --paraphrases data/paraphrases \
+        --augment data/augment
 
 writes ``rows.jsonl``, ``rows.parquet`` and ``manifest.json`` to ``--out``.
 Without ``--paraphrases`` the dataset is seed-only (the pilot). With it, every
-paraphrase and ``--asr-per-seed`` ASR copies per seed are added. The same
-arguments always give a byte-identical ``rows.jsonl``.
+paraphrase and ``--asr-per-seed`` ASR copies per seed are added. With
+``--augment`` (off by default) the synthetic-goal and minimal-pair rows of
+that directory are appended, all in train (``autogate_bench.augment``); every
+other line of ``rows.jsonl`` stays byte-identical to the run without it. The
+same arguments always give a byte-identical ``rows.jsonl``.
 """
 
 from __future__ import annotations
@@ -15,6 +20,7 @@ import argparse
 import json
 from pathlib import Path
 
+from autogate_bench.augment import load_augmentation
 from autogate_bench.dataset import build_rows, write_jsonl, write_manifest, write_parquet
 from autogate_bench.paraphrases import load_paraphrases
 from autogate_bench.policy import DEFAULT_POLICY, Policy
@@ -47,9 +53,18 @@ def main(argv: list[str] | None = None) -> dict:
         default=4,
         help="ASR copies per seed, made from its plain paraphrases (needs --paraphrases)",
     )
+    p.add_argument(
+        "--augment",
+        type=Path,
+        default=None,
+        help="augmentation directory, e.g. data/augment: synthetic goals and minimal pairs, "
+        "appended to train (default: none)",
+    )
     a = p.parse_args(argv)
     if a.paraphrases is not None and not a.paraphrases.is_dir():
         p.error(f"--paraphrases: no such directory {a.paraphrases}")
+    if a.augment is not None and not a.augment.is_dir():
+        p.error(f"--augment: no such directory {a.augment}")
 
     policy = Policy.load(a.policy) if a.policy else DEFAULT_POLICY
     rows = build_rows(
@@ -61,6 +76,7 @@ def main(argv: list[str] | None = None) -> dict:
         policy=policy,
         paraphrases=load_paraphrases(a.paraphrases) if a.paraphrases else None,
         asr_per_seed=a.asr_per_seed,
+        augment=load_augmentation(a.augment) if a.augment else None,
     )
     a.out.mkdir(parents=True, exist_ok=True)
     jsonl = a.out / "rows.jsonl"
@@ -76,12 +92,24 @@ def main(argv: list[str] | None = None) -> dict:
         "paraphrases": _rel(a.paraphrases) if a.paraphrases else None,
         "asr_per_seed": a.asr_per_seed if a.paraphrases else 0,
     }
+    if a.augment:  # only then, so a manifest without augmentation keeps its keys
+        args["augment"] = _rel(a.augment)
     manifest = write_manifest(rows, a.out / "manifest.json", args, jsonl)
     print(
         json.dumps(
             {
                 k: manifest[k]
-                for k in ("n_rows", "n_utterances", "split", "route", "slice", "source", "variant")
+                for k in (
+                    "n_rows",
+                    "n_utterances",
+                    "split",
+                    "route",
+                    "slice",
+                    "source",
+                    "variant",
+                    "augment",
+                )
+                if k in manifest
             },
             indent=2,
         )

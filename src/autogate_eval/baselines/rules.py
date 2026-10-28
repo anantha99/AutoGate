@@ -158,6 +158,10 @@ def _get(row: Any, name: str) -> Any:
     return row[name] if isinstance(row, Mapping) else getattr(row, name)
 
 
+def _opt(row: Any, name: str) -> Any:
+    return row.get(name) if isinstance(row, Mapping) else getattr(row, name, None)
+
+
 def row_context(row: Any) -> Context:
     return Context(
         SpeedBucket(_get(row, "speed_bucket")),
@@ -205,12 +209,16 @@ def evaluate_baseline(rows: Sequence[Any], baseline: RulesBaseline, n_boot: int 
     detected = [detect_sensitive(_get(r, "utterance")) for r in rows]
     truth = [bool(_get(r, "has_sensitive_spans")) for r in rows]
     splits = sorted({_get(r, "split") for r in rows}, key=["train", "val", "test", "ood"].index)
-    correct = [i == _get(r, "intent") for i, r in zip(intents, rows, strict=True)]
+    # synthetic-goal rows (train-only augmentation) have no taxonomy intent to match
+    scored = [
+        (i == _get(r, "intent"), r)
+        for i, r in zip(intents, rows, strict=True)
+        if not _opt(r, "is_synthetic")
+    ]
     return {
-        "intent_accuracy": _rate(correct),
+        "intent_accuracy": _rate([c for c, _ in scored]),
         "intent_accuracy_by_split": {
-            s: _rate([c for c, r in zip(correct, rows, strict=True) if _get(r, "split") == s])
-            for s in splits
+            s: _rate([c for c, r in scored if _get(r, "split") == s]) for s in splits
         },
         "pii_detection": {
             "recall": _rate([d for d, t in zip(detected, truth, strict=True) if t]),

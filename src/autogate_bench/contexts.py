@@ -45,13 +45,19 @@ def _intent(intent: Intent | str) -> Intent:
 def route_map(
     intent: Intent | str, has_sensitive_spans: bool, policy: Policy = DEFAULT_POLICY
 ) -> dict[Context, Decision]:
-    """The rulebook's decision for this utterance under every context."""
+    """The rulebook's decision for this utterance under every context.
+
+    ``intent`` may also be an ``Intent`` outside the taxonomy (a synthetic
+    goal); only taxonomy intents are cached, since a goal name is not a
+    stable key for its tags.
+    """
     intent = _intent(intent)
     key = (intent.name, has_sensitive_spans)
-    if policy is DEFAULT_POLICY and key in _CACHE:
+    cacheable = policy is DEFAULT_POLICY and INTENTS_BY_NAME.get(intent.name) == intent
+    if cacheable and key in _CACHE:
         return _CACHE[key]
     result = {c: route(intent, c, has_sensitive_spans, policy) for c in ALL_CONTEXTS}
-    if policy is DEFAULT_POLICY:
+    if cacheable:
         _CACHE[key] = result
     return result
 

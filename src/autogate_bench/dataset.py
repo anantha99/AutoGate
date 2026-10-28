@@ -16,6 +16,12 @@ one seed or paraphrase never changes another utterance's rows, and the same
 arguments always give a byte-identical ``rows.jsonl``. A seed-only run
 writes no ``source`` / ``variant`` columns to ``rows.jsonl`` (they would be
 constant), so its bytes are those of the original seed-only pipeline.
+
+Augmentation rows (``autogate_bench.augment``: synthetic goals and minimal
+pairs, train only) are appended after every other row and carry two extra
+columns, ``is_synthetic`` and ``pair_id``. Those columns, and ``source`` /
+``variant``, are written only on the augmentation lines, so the lines of a
+run without augmentation are byte-for-byte a prefix of the same run with it.
 """
 
 from __future__ import annotations
@@ -38,9 +44,13 @@ from autogate_bench.policy import DEFAULT_POLICY, Policy
 from autogate_bench.rulebook import route
 from autogate_bench.schema import (
     ActuationClass,
+    Capability,
     Connectivity,
+    Consequence,
     Context,
+    DistractionLevel,
     Intent,
+    IntentGroup,
     LocalModelTier,
     PrivacyMode,
     Route,
@@ -53,8 +63,10 @@ from autogate_bench.splits import OOD_INTENTS, SPLITS, assign_splits, seed_id
 
 SLICES: tuple[str, ...] = ("context_invariant", "context_flipped", "sensitive", "adversarial")
 SOURCES: tuple[str, ...] = ("seed", "paraphrase", "asr")
+AUGMENT_SOURCES: tuple[str, ...] = ("synthetic_goal", "minimal_pair")
 VARIANTS: tuple[str, ...] = tuple(str(v) for v in Variant)
 SOURCE_FIELDS: tuple[str, ...] = ("source", "variant")
+AUGMENT_FIELDS: tuple[str, ...] = ("is_synthetic", "pair_id")
 REPO_ROOT = Path(__file__).resolve().parents[2]
 
 
@@ -95,9 +107,18 @@ class Row:
     sensitive: bool
     adversarial: bool
     split: str
-    # provenance: "seed" | "paraphrase" | "asr", and the Variant ("plain" for seeds)
+    # provenance: "seed" | "paraphrase" | "asr" | "synthetic_goal" | "minimal_pair",
+    # and the Variant ("plain" for seeds)
     source: str = "seed"
     variant: str = "plain"
+    # augmentation: a synthetic goal's row (its ``intent`` is the goal name, not a
+    # taxonomy intent) and the minimal pair a row belongs to
+    is_synthetic: bool = False
+    pair_id: str | None = None
+
+    @property
+    def is_augmented(self) -> bool:
+        return self.source in AUGMENT_SOURCES
 
     def context(self) -> Context:
         return Context(
@@ -109,8 +130,15 @@ class Row:
             LocalModelTier(self.local_model_tier),
         )
 
-    def to_dict(self, include_source: bool = True) -> dict[str, Any]:
-        """The flat record. ``include_source=False`` leaves out ``source`` and ``variant``."""
+    def to_dict(
+        self, include_source: bool = True, include_augment: bool | None = None
+    ) -> dict[str, Any]:
+        """The flat record.
+
+        ``include_source=False`` leaves out ``source`` and ``variant``;
+        ``include_augment`` (default: only on augmentation rows) keeps
+        ``is_synthetic`` and ``pair_id``.
+        """
         d = asdict(self)
         d["tokens"] = list(self.tokens)
         d["spans"] = [s.to_dict() for s in self.spans]
@@ -118,14 +146,21 @@ class Row:
         if not include_source:
             for k in SOURCE_FIELDS:
                 del d[k]
+        if not (self.is_augmented if include_augment is None else include_augment):
+            for k in AUGMENT_FIELDS:
+                del d[k]
         return d
 
     @classmethod
     def from_dict(cls, d: Mapping[str, Any]) -> Row:
-        """Inverse of ``to_dict``; a record without ``source``/``variant`` is a seed row."""
-        kw = {f.name: d[f.name] for f in fields(cls) if f.name not in SOURCE_FIELDS}
+        """Inverse of ``to_dict``; a record without ``source``/``variant`` is a seed row,
+        one without ``is_synthetic``/``pair_id`` is not an augmentation row."""
+        optional = SOURCE_FIELDS + AUGMENT_FIELDS
+        kw = {f.name: d[f.name] for f in fields(cls) if f.name not in optional}
         kw["source"] = d.get("source", "seed")
         kw["variant"] = d.get("variant", "plain")
+        kw["is_synthetic"] = bool(d.get("is_synthetic") or False)
+        kw["pair_id"] = d.get("pair_id")
         kw["tokens"] = tuple(d["tokens"])
         kw["spans"] = tuple(Span.from_dict(s) for s in d["spans"])
         kw["bio"] = tuple(d["bio"])
@@ -250,6 +285,7 @@ def build_rows(
     ood_intents: Iterable[str] = OOD_INTENTS,
     paraphrases: Mapping[str, Mapping[int, Sequence[Paraphrase]]] | None = None,
     asr_per_seed: int = 4,
+    augment: Any = None,
 ) -> list[Row]:
     """Generate every row, in seed-file order.
 
@@ -258,6 +294,11 @@ def build_rows(
     ``autogate_bench.paraphrases.load_paraphrases``) is optional; without it
     the dataset is seed-only and ``asr_per_seed`` has no effect. Paraphrases
     must pass ``validate`` without errors (quota not enforced).
+
+    ``augment`` (an ``autogate_bench.augment.Augmentation``) appends its
+    synthetic-goal and minimal-pair rows, all in train, after every other
+    row; it must pass ``augment.validate`` without errors. Each of its
+    utterances draws from its own rng, so the rows before it are unchanged.
     """
     seeds = load_seeds() if seeds is None else seeds
     paraphrases = paraphrases or {}
@@ -320,6 +361,12 @@ def build_rows(
                     str(Variant.ASR),
                     **common,
                 )
+    if augment is not None:
+        from autogate_bench.augment import augment_rows  # augment imports this module
+
+        rows += augment_rows(
+            augment, seeds, paraphrases, rng_seed=rng_seed, ood_intents=ood_intents, **common
+        )
     return rows
 
 
@@ -330,12 +377,15 @@ def build_rows(
 
 def write_jsonl(rows: Iterable[Row], path: str | Path) -> None:
     """One JSON record per line. ``source``/``variant`` are written only when
-    some row is not a seed, so a seed-only file keeps its original bytes."""
+    some non-augmentation row is not a seed, so a seed-only file keeps its
+    original bytes; augmentation rows always carry them and ``is_synthetic``
+    / ``pair_id`` (see the module docstring)."""
     rows = list(rows)
-    include = any(r.source != "seed" for r in rows)
+    include = any(r.source != "seed" for r in rows if not r.is_augmented)
     with Path(path).open("w", encoding="utf-8", newline="\n") as f:
         for row in rows:
-            f.write(json.dumps(row.to_dict(include_source=include), ensure_ascii=True) + "\n")
+            rec = row.to_dict(include_source=include or row.is_augmented)
+            f.write(json.dumps(rec, ensure_ascii=True) + "\n")
 
 
 def read_jsonl(path: str | Path) -> list[Row]:
@@ -343,7 +393,7 @@ def read_jsonl(path: str | Path) -> list[Row]:
         return [Row.from_dict(json.loads(line)) for line in f if line.strip()]
 
 
-def _arrow_schema():
+def _arrow_schema(include_augment: bool = True):
     import pyarrow as pa
 
     span = pa.struct(
@@ -356,6 +406,8 @@ def _arrow_schema():
     }
     out = []
     for f in fields(Row):
+        if f.name in AUGMENT_FIELDS and not include_augment:
+            continue
         if f.name in types:
             out.append((f.name, types[f.name]))
         elif f.type == "bool":
@@ -369,7 +421,11 @@ def write_parquet(rows: Iterable[Row], path: str | Path) -> None:
     import pyarrow as pa
     import pyarrow.parquet as pq
 
-    table = pa.Table.from_pylist([r.to_dict() for r in rows], schema=_arrow_schema())
+    rows = list(rows)
+    aug = any(r.is_augmented for r in rows)  # without augmentation the schema is unchanged
+    table = pa.Table.from_pylist(
+        [r.to_dict(include_augment=aug) for r in rows], schema=_arrow_schema(aug)
+    )
     pq.write_table(table, str(path))
 
 
@@ -393,15 +449,49 @@ def utterance_key(row: Row) -> str:
     return row.id.rsplit("-", 1)[0]
 
 
+def row_intent(row: Row) -> Intent:
+    """The row's taxonomy intent, or for a synthetic goal an ``Intent`` built from its tags."""
+    known = INTENTS_BY_NAME.get(row.intent)
+    if known is not None and not row.is_synthetic:
+        return known
+    return Intent(
+        row.intent,
+        IntentGroup(row.group),
+        Capability(row.capability),
+        DistractionLevel(row.distraction),
+        ActuationClass(row.actuation),
+        consequence=Consequence(row.consequence),
+    )
+
+
 def summarize(rows: Sequence[Row]) -> dict[str, Any]:
-    """Counts used by the manifest and ``docs/pilot.md``."""
+    """Counts used by the manifest and ``docs/pilot.md``.
+
+    Augmentation sources appear in ``source`` / ``utterances_by_source``,
+    with an ``augment`` block, only when some row comes from one.
+    """
     utterances: dict[str, Row] = {}
     for r in rows:
         utterances.setdefault(utterance_key(r), r)
     profiles = Counter(
-        "+".join(sorted(flip_profile(u.intent, u.has_sensitive_spans))) for u in utterances.values()
+        "+".join(sorted(flip_profile(row_intent(u), u.has_sensitive_spans)))
+        for u in utterances.values()
     )
     n = len(rows)
+    aug = [r for r in rows if r.is_augmented]
+    sources = SOURCES + (AUGMENT_SOURCES if aug else ())
+    extra: dict[str, Any] = {}
+    if aug:
+        extra["augment"] = {
+            "rows": len(aug),
+            "synthetic_goals": len({r.intent for r in aug if r.is_synthetic}),
+            "synthetic_goal_rows": sum(r.is_synthetic for r in aug),
+            "minimal_pairs": len({r.pair_id for r in aug if r.pair_id}),
+            "minimal_pair_rows": sum(r.source == "minimal_pair" for r in aug),
+            "utterances": len({utterance_key(r) for r in aug}),
+            "split": _count(r.split for r in aug),
+            "route": {str(x): sum(r.route == x for r in aug) for x in Route},
+        }
     return {
         "n_rows": n,
         "n_seeds": len({r.seed_id for r in rows}),
@@ -418,10 +508,10 @@ def summarize(rows: Sequence[Row]) -> dict[str, Any]:
         "reason": _count(r.reason for r in rows),
         "group": _count(r.group for r in rows),
         "style": _count(r.style for r in rows),
-        "source": {s: sum(r.source == s for r in rows) for s in SOURCES},
+        "source": {s: sum(r.source == s for r in rows) for s in sources},
         "variant": {v: sum(r.variant == v for r in rows) for v in VARIANTS},
         "utterances_by_source": {
-            s: sum(u.source == s for u in utterances.values()) for s in SOURCES
+            s: sum(u.source == s for u in utterances.values()) for s in sources
         },
         "utterances_by_variant": {
             v: sum(u.variant == v for u in utterances.values()) for v in VARIANTS
@@ -436,6 +526,7 @@ def summarize(rows: Sequence[Row]) -> dict[str, Any]:
             "flipped": sum(u.context_flipped for u in utterances.values()),
             "flip_profiles": dict(sorted(profiles.items(), key=lambda kv: (-kv[1], kv[0]))),
         },
+        **extra,
     }
 
 
