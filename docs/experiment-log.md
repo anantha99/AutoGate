@@ -4,7 +4,7 @@ The running memory of the project: what we are trying, why, what each run
 produced, and what is still open. Newest results go at the top of each
 section. Every run gets an entry in "Runs", even a failed one.
 
-Last updated: 2026-10-27 (R4 and its no-context ablation). Linked from `CLAUDE.md` so every session reads it.
+Last updated: 2026-10-28 (A6 augmentation plumbing; R5 set up). Linked from `CLAUDE.md` so every session reads it.
 
 ## How to use this file
 
@@ -20,6 +20,8 @@ Last updated: 2026-10-27 (R4 and its no-context ablation). Linked from `CLAUDE.m
 | item | status |
 | --- | --- |
 | Taxonomy expansion (A5) | done 10-23: 81 intents, 361 seeds, 14,440 paraphrases, 66,414 rows (sha256 `8cc12a4b...`); 8-intent OOD holdout balanced by tag. R1/R2 are not directly comparable with runs on this data |
+| Train-only augmentation (A6) | plumbing done 10-28: `autogate_bench.augment` (validator, stats, review), `generate --augment`, spec `docs/augmentation-spec.md`, 2-goal/3-pair test fixture. **No real goals or pairs written yet**; without `--augment` the dataset is byte-identical (`8cc12a4b...`, pilot `0c7139ac...`) |
+| Router R5 (R4 config + A6 data) | notebook and script ready (`RUN_NAME=qwen3-0.6b-tags-r5`, `AUGMENT=data/augment`, also scores val); waits for `data/augment` |
 | Router R4 (tags, R1 capacity, 81 intents) | done 10-27, with and without context. Best so far: test macro-F1 0.82-0.85, SWE 28-30% of fair rules; critical miss 5-6% (under 1% with the 0.85 abstention threshold at 74% coverage). Open: high distraction on unseen intents, adversarial slice, int8 |
 | Benchmark v0 | done: 65 intents, 281 seeds, 11,240 paraphrases, 53,184 rows (`docs/dataset-v0.md`); superseded for intents and splits by A5 |
 | Rules baseline | done, both all-seeds and fair train-only versions |
@@ -141,10 +143,53 @@ safety-critical intent.
   re-checked: labels recompute from the rulebook, spans slice back, no split
   leaks, OOD intents only in OOD.
 
+### A6. Synthetic goals and minimal pairs (train-only augmentation; plumbing done 2026-10-28)
+
+**Why:** R4's open problems. On the 8 OOD intents 63 to 74% of
+high-distraction rows are predicted low or medium (only 7 training intents
+are high); the adversarial slice (restricted commands asked as questions)
+has 25 to 30% critical misses; capability is 0.50 on OOD. The first two
+Zomato ideas below, made concrete.
+
+- **Synthetic goals ("reverse queries"):** new in-car goals invented for a
+  tag combination, 8 to 12 utterances each, in
+  `data/augment/synthetic_goals.yaml`. Labels come from the rulebook on the
+  goal's own tags (`route_tags`); the intent head ignores these rows
+  (`IGNORE_INDEX`), the tag and route heads learn from them. Aim: more
+  distinct goals per rare tag value.
+- **Minimal pairs (hard negatives):** two look-alike utterances (token
+  Jaccard >= 0.4) of two existing, non-OOD intents whose tags differ so that
+  some context routes them apart, in `data/augment/minimal_pairs.yaml`.
+  Each side is an ordinary row of its intent.
+- **Train only, nothing else moves.** Rows are appended after all others,
+  every utterance with its own rng; the extra columns (`is_synthetic`,
+  `pair_id`) appear only on augmentation lines. Checked on the real data:
+  without `--augment` the full set is still sha256 `8cc12a4b...` (pilot
+  `0c7139ac...`); with the test fixture the old file is a byte prefix of the
+  new one (66,414 lines + 114 train lines). Labels of existing rows did not
+  change.
+- **Leak guards (validator errors):** goal utterance vs any OOD seed or
+  paraphrase token Jaccard <= 0.5 (rules-baseline tokenizer); goal name or
+  description may not contain an OOD intent's key words (ambient, mood
+  light, fog, fuel door/flap/lid/cap, petrol/tank flap or lid, filler, toll,
+  long/compose/draft/write email, news, headline, trip/journey/drive cost,
+  bluetooth, pair); pairs may not use OOD intents; any augmentation
+  utterance vs any val/test seed or paraphrase <= 0.7; no exact duplicate of
+  any seed or paraphrase. Goal tags must satisfy the `Intent` invariants.
+- **Review:** `python -m autogate_bench.augment review --out
+  docs/augment-review.md` lists every goal and pair, risk-sorted, with the
+  nearest existing intent (and whether its tags differ) and the highest
+  Jaccard to OOD and val/test.
+- **Next:** generation agents write the data against
+  `docs/augmentation-spec.md`, a human audits the review page, then R5
+  (R4's config on the augmented data). R5 also writes val predictions so
+  the following round can turn val route-changing tag errors into new
+  pairs.
+
 ### Ideas not yet tried
 
 From Zomato's natural-language search write-up (blog, 2026-10-23), mapped to
-AutoGate; not started:
+AutoGate; the first two are now A6 (plumbing only), the rest not started:
 
 - **Tag-conditioned synthetic utterances ("reverse queries").** Generate
   requests from a target tag combination (e.g. needs_cloud + high
@@ -400,6 +445,7 @@ the new splits (seed-only pilot).
 
 | date | decision | why |
 | --- | --- | --- |
+| 10-28 | Add synthetic goals and minimal pairs as train-only augmentation (A6); R5 = R4's config on that data, scored on val too | R4's gaps (OOD high distraction, adversarial slice, OOD capability) come from too few distinct goals per tag value and no look-alike negatives; train-only keeps every eval split and all R4 numbers comparable |
 | 10-27 | Lead design candidate: context-free tag model + rulebook (R4nc tags) | matches the context-aware route head (R4) within CIs, simpler input, policy swappable without retraining |
 | 10-27 | The no-context ablation is reinterpreted (see R4nc): it tests context in the model, not context in the decision | the tags route reaches 0.85 test macro-F1 with no context in the model |
 | 10-23 | Runs on the 81-intent data write to `runs-v1/`; R4 is the next training run | keep incomparable runs out of one comparison table |
@@ -440,6 +486,12 @@ the new splits (seed-only pilot).
   Table 4)?
 - Create a `main` branch before release.
 - Which "ask the driver" threshold to ship (scan in R1 details).
+- A6: pairs whose tags differ but whose route never does (set vs cancel
+  cruise: comfort vs safety_critical, both always LOCAL) are rejected as
+  routing hard negatives. Should a second file accept them as tag-only
+  negatives for the actuation head?
+- A6: synthetic-goal tags are labels nobody else checks; who audits
+  `docs/augment-review.md` before R5?
 
 ## Where things are
 
@@ -448,7 +500,8 @@ the new splits (seed-only pilot).
 | intents and tags | `src/autogate_bench/intents.py`, `docs/taxonomy.md` |
 | policy tables and rulebook | `src/autogate_bench/policy.py`, `rulebook.py` |
 | seeds and paraphrases | `data/seeds.yaml`, `data/paraphrases/` |
-| dataset generation | `python -m autogate_bench.generate` |
+| dataset generation | `python -m autogate_bench.generate` (`--augment data/augment` for A6) |
+| augmentation (A6) | `data/augment/` (not written yet), `src/autogate_bench/augment.py`, `docs/augmentation-spec.md` |
 | rules baseline | `python -m autogate_eval.baselines.rules` |
 | training, predict, score | `src/autogate_router/`, `src/autogate_eval/score.py`, `docs/training.md` |
 | training notebook | `notebooks/kaggle_train.ipynb` |
