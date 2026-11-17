@@ -42,6 +42,11 @@ Reported:
     from the predicted tags on those rows, ``route_changing_cost_if_corrected``
     the same with the tag corrected. Consequence is not read by the
     rulebook, so it never changes the route.
+
+  A prediction may carry a boolean ``sensitive`` (a router that answers
+  "is there sensitive content" without predicting spans, e.g.
+  ``autogate_decide``). Where present it is the sensitivity the tag routes
+  use; otherwise sensitivity is "any predicted span".
 """
 
 from __future__ import annotations
@@ -161,6 +166,13 @@ def _macro_f1(true: Sequence[str], pred: Sequence[str]) -> float | None:
     return sum(f1s) / len(f1s)
 
 
+def predicted_sensitive(pred: Mapping[str, Any]) -> bool:
+    """The prediction's ``sensitive`` field if it has one, else whether it predicted any span."""
+    if pred.get("sensitive") is not None:
+        return bool(pred["sensitive"])
+    return bool(pred.get("spans"))
+
+
 def _tag_routes(row: Mapping[str, Any], tags: Mapping[str, str], sensitive: bool) -> str:
     from autogate_bench.rulebook import route_tags
     from autogate_eval.baselines.rules import row_context
@@ -190,7 +202,7 @@ def _one_tag(
     for r, p, route_pred, t, q in zip(rows, preds, routes, true, pred, strict=True):
         if t == q:
             continue
-        fixed = _tag_routes(r, {**p["tags"], name: t}, bool(p.get("spans")))
+        fixed = _tag_routes(r, {**p["tags"], name: t}, predicted_sensitive(p))
         if fixed != route_pred:
             sc = r["actuation"] == "safety_critical"
             changing += 1
@@ -221,7 +233,7 @@ def tag_scores(
     cm = cost_matrix or default_cost_matrix()
     names = [t for t in TAG_NAMES if all(t in p["tags"] for p in preds)]
     routes = [
-        _tag_routes(r, p["tags"], bool(p.get("spans"))) for r, p in zip(rows, preds, strict=True)
+        _tag_routes(r, p["tags"], predicted_sensitive(p)) for r, p in zip(rows, preds, strict=True)
     ]
 
     def block(idx: Sequence[int]) -> dict[str, Any]:

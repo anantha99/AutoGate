@@ -19,3 +19,6 @@ checkpoints/
 .idea/
 .vscode/
 .DS_Store
+
+# A7 run outputs (predictions, reports; generated)
+runs/

@@ -28,6 +28,11 @@ train = [
     "peft>=0.13",
     "accelerate>=1.0",
 ]
+# Decision-encoder router (autogate_decide): EmbeddingGemma 2 needs transformers >= 5.18.
+decide = [
+    "torch>=2.4",
+    "transformers>=5.18",
+]
 # ONNX export and int8 quantization (autogate_router.export).
 export = [
     "onnx>=1.16",
@@ -51,6 +56,7 @@ packages = [
     "src/autogate_bench",
     "src/autogate_router",
     "src/autogate_eval",
+    "src/autogate_decide",
 ]
 
 [tool.pytest.ini_options]

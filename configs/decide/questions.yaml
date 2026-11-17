@@ -1,0 +1,31 @@
+# Zero-shot option descriptions for run R6z (autogate_decide.zeroshot).
+# One plain-language description per answer, written from docs/taxonomy.md and the
+# README. No OOD intent's name or key words may appear (checked by
+# tests/test_decide.py against autogate_bench.augment.OOD_KEYWORDS).
+# Frozen for R6z once committed: never edit it after R6z has been scored.
+
+capability:
+  local_ok: "a simple request the car can handle by itself, like switching something on or off or playing saved media"
+  needs_small_local: "a request that needs a capable on-board language model, like summarising, rephrasing or reading a message aloud"
+  needs_cloud: "a request that cannot be answered without the internet, like a web search, an online payment or a live booking"
+  cloud_preferred: "a request answered better with live internet data, like nearby places, opening hours or traffic, but with an offline fallback"
+
+distraction:
+  low: "a quick request that needs only a word or two of attention from the driver"
+  medium: "a request with a short back-and-forth or a list the driver has to listen to and choose from"
+  high: "a request that needs the driver to read, watch a screen, type, or concentrate for a long time"
+
+actuation:
+  none: "a question or information request that does not move or switch anything on the vehicle"
+  safety_critical: "an urgent command for visibility or safety, like defrost, wipers, hazard warning lights, headlights or an emergency call"
+  comfort: "a command that changes cabin comfort, like temperature, fan, seats, windows or music volume"
+  restricted: "a command that operates a vehicle part that is unsafe to use while moving, like doors, trunk, seats folding or stability settings"
+
+consequence:
+  none: "nothing changes in the world, the request only reads or answers"
+  reversible: "a change the driver can easily undo with another request"
+  irreversible: "an action other people see or that cannot be undone, like sending a message, placing a call or making a payment"
+
+sensitive:
+  "no": "an utterance with no personal details"
+  "yes": "an utterance that contains a person's name, a phone number, a home address, a one-time password or card digits"
