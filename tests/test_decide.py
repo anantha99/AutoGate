@@ -394,3 +394,29 @@ def test_layer_mix_head_and_blend_selection(tmp_path, fake_cache, pilot_jsonl):
         if (t["weight_decay"], t["epochs"]) == (sel["weight_decay"], sel["epochs"])
     )
     assert chosen["score"] <= best + max(t["score_se"] for t in trials)
+
+
+def test_finetune_lora_saves_a_loadable_encoder(tmp_path, tiny_backbone, pilot_jsonl):
+    pytest.importorskip("peft")
+    from autogate_decide.encoders import load_encoder
+    from autogate_decide.finetune import finetune
+
+    out = tmp_path / "ft"
+    rep = finetune(
+        pilot_jsonl,
+        out,
+        model_id=str(tiny_backbone),
+        revision=None,
+        prefix="",
+        text_only=False,
+        lora_rank=4,
+        epochs=2,
+        batch_size=32,
+        lr=1e-3,
+        limit_train=200,
+    )
+    assert [h["epoch"] for h in rep["history"]] == [1, 2]
+    assert rep["best"]["swe"] == min(h["swe"] for h in rep["history"])
+    enc = load_encoder(str(out / "encoder"))
+    v = enc.encode(["turn on the wipers", "call mom"])
+    assert v.shape[0] == 2 and np.allclose(np.linalg.norm(v, axis=1), 1.0)

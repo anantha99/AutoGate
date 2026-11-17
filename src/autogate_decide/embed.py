@@ -252,7 +252,11 @@ def build_cache(
 
 def main(argv: list[str] | None = None) -> dict:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawTextHelpFormatter)
-    p.add_argument("--encoder", choices=sorted(ENCODERS), required=True)
+    p.add_argument(
+        "--encoder",
+        required=True,
+        help=f"one of {sorted(ENCODERS)}, or the encoder/ directory of a fine-tuned run",
+    )
     p.add_argument("--rows", type=Path, nargs="+", required=True)
     p.add_argument("--out", type=Path, required=True)
     p.add_argument("--device", default="cpu")

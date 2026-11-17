@@ -204,7 +204,25 @@ class HFEncoder:
         return out
 
 
+def spec_for_path(path: str) -> EncoderSpec:
+    """The spec of a fine-tuned encoder saved by ``autogate_decide.finetune``."""
+    import json
+    from pathlib import Path
+
+    meta = json.loads((Path(path) / "autogate_encoder.json").read_text(encoding="utf-8"))
+    return EncoderSpec(
+        name=f"finetuned:{Path(path).parent.name}",
+        model_id=str(path),
+        revision=None,
+        prefix=meta["prefix"],
+        dim=int(meta["dim"]),
+    )
+
+
 def load_encoder(name: str, device: str = "cpu", batch_size: int = 64) -> Encoder:
+    """An encoder by spec name (:data:`ENCODERS`) or by the path of a fine-tuned one."""
+    if name not in ENCODERS:
+        return HFEncoder(spec_for_path(name), device=device, batch_size=batch_size)
     spec = ENCODERS[name]
     if name == "fake":
         return FakeEncoder(spec)
