@@ -1,0 +1,82 @@
+{
+  "run": "R6a-ctl",
+  "frozen_from": "runs/R6a-ctl-val",
+  "encoder": {
+    "name": "e5-small",
+    "model_id": "intfloat/multilingual-e5-small",
+    "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+    "prefix": "query: ",
+    "dim": 384,
+    "text_only": false,
+    "max_length": 128
+  },
+  "rows_sha256": "8cc12a4b2cf15293a7a918273ff79d48f1db0c2d9684f710815462d2d2b63b2c",
+  "config": {
+    "method": "heads",
+    "score": [
+      "val",
+      "test",
+      "ood"
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "hidden_grid": [
+      0,
+      256
+    ],
+    "weight_decay_grid": [
+      0.01,
+      0.1,
+      1.0
+    ],
+    "steps": 300,
+    "lr": 0.01,
+    "folds": 5,
+    "lambda_grid": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "sensitive_threshold": 0.5,
+    "abstain_target": 0.01,
+    "n_boot": 1000,
+    "selected": {
+      "capability": {
+        "hidden": 0,
+        "weight_decay": 0.1
+      },
+      "distraction": {
+        "hidden": 0,
+        "weight_decay": 0.1
+      },
+      "actuation": {
+        "hidden": 256,
+        "weight_decay": 1.0
+      },
+      "consequence": {
+        "hidden": 0,
+        "weight_decay": 0.1
+      },
+      "sensitive": {
+        "hidden": 256,
+        "weight_decay": 1.0
+      },
+      "joint": {
+        "hidden": 0,
+        "weight_decay": 0.1
+      }
+    },
+    "lam": 0.75
+  },
+  "val_thresholds_seed0": {
+    "conservative": 0.06272147459371277,
+    "expected_cost": 0.06226146182324099
+  }
+}

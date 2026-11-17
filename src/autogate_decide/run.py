@@ -844,6 +844,7 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
         cfg.hidden_grid, cfg.weight_decay_grid = (0,), (0.01, 0.1)
     if a.config:
         old = json.loads(a.config.read_text(encoding="utf-8"))
+        old = old.get("config", old)  # a frozen configs/decide/<run>.json nests it
         cfg.selected = old["selected"]
         cfg.lam = old["lam"]
         cfg.tau = old.get("tau")

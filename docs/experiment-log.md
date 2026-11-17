@@ -228,6 +228,63 @@ on-device encoder.
 - The local generative model (for example Gemma 4 E2B) stays a separate
   model, called only for routes that need an answer written.
 
+**Phase 0 (11-17): verified.** Model card, config and weights were read on
+Hugging Face; the encoder loads and the licence allows our use (Gate 0
+passed).
+
+| claim | plan said (search) | verified 11-17 |
+| --- | --- | --- |
+| Model id | `google/embeddinggemma-2` | same; revision `f9972ac22e696a105c482202646979e33e4b5a1e`; **not gated** |
+| Text tower size | 270M (130M + 140M) | 271,002,624 parameters loaded text-only (vision and audio configs dropped); card: 130M backbone + 140M embedder; 740M with all encoders |
+| Memory at 4-bit | about 191 MB | not on the card; not checked (Phase 5) |
+| Output | 768-d, mean pooled, truncatable | 768-d; mean pooling over every non-padding token incl. the prefix (`include_prompt: true`), then L2; MRL to 512/256/128 |
+| Context | 8,192 tokens | same (card); 24 layers, d=512, sliding window 512 in the config (1,024 on the card) |
+| Licence | Apache 2.0, maybe Gemma policy | Apache 2.0, and deployments must follow the Gemma Prohibited Use Policy; commercial use allowed |
+| Half precision | fp16 NaN | confirmed by the card: use bf16 or fp32, never fp16 |
+| Task prefix (classification) | - | `task: classification \| query: ` (symmetric tasks use the same prefix for all inputs) |
+| Library | - | needs `transformers >= 5.18` (class `EmbeddingGemma2Model`); locked at 5.23.0 |
+| On-device runtime, latency | MediaPipe, 60-80 ms | not checked yet (Phase 5) |
+
+- Control encoder: `intfloat/multilingual-e5-small` (revision `614241f6`,
+  118M, ungated), prefix `query: `, mean pooling + L2.
+- Embedding cache (`python -m autogate_decide.embed`): 23,682 unique texts
+  (22,137 in the 66,414-row set plus the A6 rows, kept only for the
+  minimal-pair probe) on 4 CPU cores, fp32: Gemma 460 s (768-d), e5 53 s
+  (384-d). All finite. Re-embedding 10 texts in a different batch changes
+  values by at most 3e-7 (padding), not a determinism problem.
+- Network: this needed a personal cloud environment "AutoGate" allowing
+  Hugging Face (incl. `us.aws.cdn.hf.co`) and the PyTorch CPU index.
+
+**Implementation choices made before any test scoring** (after an
+independent review by a second model; see the decision log):
+
+- Heads train on the 16,018 unique train utterances, not on rows (each
+  utterance has three contexts).
+- Head shape (linear or one hidden layer of 256) and weight decay are
+  chosen per question by NLL on **held-out training intents** (5
+  tag-balanced leave-intents-out folds), not on val: val holds only
+  training intents, so val loss rewards memorising intents. The MLP wins
+  on val and loses badly on held-out intents (e5 capability: val NLL 0.85
+  against held-out 2.07).
+- Two sets of heads: weighted (R4's class weights) for the conservative
+  decoder, unweighted for expected cost and the risk score (a temperature
+  cannot undo a class-weight prior shift).
+- A joint head over the 14 (capability, distraction, actuation)
+  combinations seen in training is mixed with the product of the
+  marginals (weight lambda on held-out intents), because tags are fixed
+  per intent and the product puts mass on combinations no intent has.
+- Expected cost is restricted to routes the rulebook can produce in the
+  row's context. Gate 2 stays on the pre-registered conservative decoder;
+  expected cost is reported beside it.
+- Risk score for abstention = p(the chosen route is a critical miss), not
+  the minimum expected cost (which spends coverage on cheap CLOUD vs
+  CLOUD_MASKED confusions). Threshold: largest val coverage with covered
+  critical miss <= 1%; a Wilson 95% upper bound is reported too.
+- Intervals: a bootstrap over **intents** is reported beside the row-level
+  one (OOD has 8 intents; rows of one intent are correlated).
+- Gate 2 parity excludes masking: the sensitive head is a yes/no answer
+  with no spans, so the span leak rate is not measured.
+
 ### Ideas not yet tried
 
 From Zomato's natural-language search write-up (blog, 2026-10-23), mapped to
