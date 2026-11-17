@@ -420,3 +420,19 @@ def test_finetune_lora_saves_a_loadable_encoder(tmp_path, tiny_backbone, pilot_j
     enc = load_encoder(str(out / "encoder"))
     v = enc.encode(["turn on the wipers", "call mom"])
     assert v.shape[0] == 2 and np.allclose(np.linalg.norm(v, axis=1), 1.0)
+
+
+def test_selection_resumes_from_checkpoint(tmp_path, fake_cache, pilot_rows):
+    from autogate_decide.data import joint_vocab
+    from autogate_decide.run import RunConfig, select_heads
+
+    utts = build_utterances(pilot_rows)
+    x = EmbeddingCache.load(fake_cache).lookup(utts.texts)
+    cfg = RunConfig(hidden_grid=(0,), weight_decay_grid=(0.1,), steps=10, folds=2)
+    jv = joint_vocab(utts, utts.mask("train"))
+    ck = tmp_path / "selection"
+    first, oof = select_heads(utts, x, cfg, jv, ck)
+    assert (ck / "actuation.json").exists() and (ck / "joint_oof.npy").exists()
+    again, oof2 = select_heads(utts, x, cfg, jv, ck)
+    assert again == json.loads(json.dumps(first))
+    assert np.allclose(oof2["actuation"], oof["actuation"])

@@ -135,7 +135,11 @@ def _weights(utts: Utterances, mask: np.ndarray, q: str) -> list[float] | None:
 
 
 def select_heads(
-    utts: Utterances, x: np.ndarray, cfg: RunConfig, jvocab: Sequence
+    utts: Utterances,
+    x: np.ndarray,
+    cfg: RunConfig,
+    jvocab: Sequence,
+    checkpoint: Path | None = None,
 ) -> tuple[dict[str, dict[str, Any]], dict[str, np.ndarray]]:
     """Grid search on train-only folds; returns the choice per question and its OOF logits.
 
@@ -158,6 +162,12 @@ def select_heads(
         return -np.log(np.clip(p[np.arange(len(p)), y[keep]], 1e-12, None))
 
     for q in (*QUESTIONS, "joint"):
+        done = checkpoint / f"{q}.json" if checkpoint else None
+        if done is not None and done.exists():  # resume after an interruption
+            selected[q] = json.loads(done.read_text(encoding="utf-8"))
+            oof_logits[q] = np.load(checkpoint / f"{q}_oof.npy")
+            print(f"  select {q}: resumed from {done}")
+            continue
         y, k = _labels(utts, q, jvocab)
         trials = []
         for h in cfg.hidden_grid:
@@ -214,6 +224,10 @@ def select_heads(
             "epochs": best["epochs"],
             "trials": trials,
         }
+        if checkpoint is not None:
+            checkpoint.mkdir(parents=True, exist_ok=True)
+            np.save(checkpoint / f"{q}_oof.npy", oof_logits[q])
+            (checkpoint / f"{q}.json").write_text(json.dumps(selected[q], indent=2), "utf-8")
     return selected, oof_logits
 
 
@@ -522,7 +536,7 @@ def run(
     seed_runs = []
     if cfg.method in ("heads", "tokens"):
         if not cfg.selected:
-            cfg.selected, oof = select_heads(utts, x, cfg, jvocab)
+            cfg.selected, oof = select_heads(utts, x, cfg, jvocab, out / "selection")
             cfg.lam, lam_scores = pick_lambda(utts, oof, cfg, jvocab)
         else:
             lam_scores = {}
