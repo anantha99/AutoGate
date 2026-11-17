@@ -4,7 +4,11 @@ A phased plan for an implementing agent. It builds a Jev-style router (one
 forward pass, typed answers with probabilities, no text generation) on a small
 on-device encoder, and tests whether it can replace the R4 router.
 
-Status: **planned, nothing run.** Written 2026-11-17.
+Status: written 2026-11-17. **Phases 0-2 run the same day: Gate 2 outcome B**
+(R6a test 0.800 / 0.562 / 9.7%, OOD 1.015 / 21.7%); Phase 2b (R6a2) in
+progress. Results, verified facts and every deviation from this plan are
+in `docs/experiment-log.md` (A7 and the R6 run details). Code:
+`src/autogate_decide/`; frozen configurations: `configs/decide/`.
 
 ## 1. What we are testing
 
