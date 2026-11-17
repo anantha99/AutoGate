@@ -458,6 +458,21 @@ the new splits (seed-only pilot).
   criterion trading in-intent fit for OOD; the rest (R4 val SWE 0.36) is
   not closed by capacity on pooled vectors.
 
+**Phase 5 preview (11-17; facts only, not run R6q).** Google ships the
+text tower for LiteRT-LM as `litert-community/embeddinggemma-2-text-270m-litert-lm`
+(revision `9be6e8b9`, Apache 2.0, not gated): **int4 QAT** (transformer and
+embedder), 165 MB for the CPU/GPU build plus per-chip NPU builds. It
+returns only pooled vectors (128-768 d): pooled heads (R6a) can run on it;
+heads that read token states or intermediate layers (R6a2) cannot. The
+model card's own CPU latencies at the 128-token signature: S26 Ultra 27 ms,
+Arm Linux 105 ms, Raspberry Pi 5 161 ms; TPU/NPU builds 8-14 ms. Here
+(`litert-lm` 0.19.2, dev CPU shared with a training job, so an upper
+bound): p50 97 ms, p95 110 ms on one thread. On 300 utterances its vectors
+have cosine 0.968 on average (min 0.86) with our fp32 vectors, so heads
+must be retrained on the artifact's own vectors (plan step 5.2) and U5's
+"8-bit" becomes "int4 as shipped". U5 latency (p95 <= 50 ms) is out of
+reach on a generic CPU; it needs a phone-class CPU or an accelerator.
+
 **R6a2 pre-registration (11-17, before any R6a2 scoring).** After the
 second review: (1) heads read a learned mix of encoder layers 6, 12, 18 and
 23 (each 512-d, layer-normalised) with two attention queries plus the mean;
