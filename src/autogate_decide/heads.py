@@ -33,6 +33,8 @@ class HeadConfig:
     lr: float = 1e-2
     steps: int = 300
     dropout: float = 0.0
+    epochs: int = 6
+    """minibatch epochs, attention-pooling heads only"""
 
 
 @dataclass
@@ -41,8 +43,13 @@ class Head:
     config: HeadConfig
     params: dict[str, np.ndarray] = field(default_factory=dict)
     temperature: float = 1.0
+    kind: str = "vector"
 
-    def logits(self, x: np.ndarray) -> np.ndarray:
+    def logits(self, x) -> np.ndarray:
+        if self.kind == "tokens":
+            from autogate_decide.token_heads import token_logits
+
+            return token_logits(self.params, x)
         h = x
         if "w1" in self.params:
             h = np.maximum(h @ self.params["w1"] + self.params["b1"], 0.0)
@@ -67,10 +74,19 @@ def train_head(
     class_weights: Sequence[float] | None = None,
     seed: int = 0,
 ) -> Head:
-    """Fit one head on rows of ``x`` with labels ``y`` (rows with ``y < 0`` are ignored)."""
+    """Fit one head on rows of ``x`` with labels ``y`` (rows with ``y < 0`` are ignored).
+
+    ``x`` is a vector array, or a :class:`autogate_decide.embed.TokenStates` for an
+    attention-pooling head (:mod:`autogate_decide.token_heads`)."""
     import torch
 
+    from autogate_decide.embed import TokenStates
+
     config = config or HeadConfig()
+    if isinstance(x, TokenStates):
+        from autogate_decide.token_heads import train_token_head
+
+        return train_token_head(x, y, n_classes, config, class_weights, seed)
     keep = y >= 0
     xt = torch.tensor(x[keep], dtype=torch.float32)
     yt = torch.tensor(y[keep], dtype=torch.long)

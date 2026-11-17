@@ -31,6 +31,11 @@ Method ``heads`` (runs R6a, R6a-ctl)
     5. **Abstention**: per decoder, the largest-coverage risk threshold with
        val critical miss <= 1% on covered rows, applied unchanged elsewhere.
 
+Method ``tokens`` (run R6a2)
+    As ``heads``, on per-token states (``<cache>/tokens``, written by
+    ``autogate_decide.embed --tokens``) with attention-pooling heads
+    (:mod:`autogate_decide.token_heads`); linear only, weight decay 0.01 or 0.1.
+
 Method ``zeroshot`` (run R6z)
     Cosine similarity of the utterance vector to each option description in
     ``configs/decide/questions.yaml`` (embedded with the same encoder and
@@ -87,6 +92,7 @@ class RunConfig:
     hidden_grid: tuple[int, ...] = (0, 256)
     weight_decay_grid: tuple[float, ...] = (0.01, 0.1, 1.0)
     steps: int = 300
+    epochs: int = 6
     lr: float = 1e-2
     folds: int = 5
     lambda_grid: tuple[float, ...] = (0.0, 0.25, 0.5, 0.75, 1.0)
@@ -131,7 +137,9 @@ def select_heads(
         trials = []
         for h in cfg.hidden_grid:
             for wd in cfg.weight_decay_grid:
-                hc = HeadConfig(hidden=h, weight_decay=wd, lr=cfg.lr, steps=cfg.steps)
+                hc = HeadConfig(
+                    hidden=h, weight_decay=wd, lr=cfg.lr, steps=cfg.steps, epochs=cfg.epochs
+                )
                 oof = np.zeros((len(utts), k))
                 for held in folds:
                     fit = train & ~held
@@ -211,7 +219,11 @@ def fit_heads(
         y, k = _labels(utts, q, jvocab)
         s = cfg.selected[q]
         hc = HeadConfig(
-            hidden=s["hidden"], weight_decay=s["weight_decay"], lr=cfg.lr, steps=cfg.steps
+            hidden=s["hidden"],
+            weight_decay=s["weight_decay"],
+            lr=cfg.lr,
+            steps=cfg.steps,
+            epochs=cfg.epochs,
         )
         plain[q] = train_head(x[train], y[train], k, hc, seed=seed)
         fit_temperature(plain[q], x[val], y[val])
@@ -441,7 +453,12 @@ def run(
     cache = EmbeddingCache.load(cache_dir)
     rows = load_rows(rows_path)
     utts = build_utterances(rows)
-    x = cache.lookup(utts.texts)
+    lookup: Any = cache
+    if cfg.method == "tokens":
+        from autogate_decide.embed import TokenCache
+
+        lookup = TokenCache.load(Path(cache_dir) / "tokens")
+    x = lookup.lookup(utts.texts)
     ctx = np.array([rt.context_index(r) for r in rows])
     train = utts.mask("train")
     jvocab = joint_vocab(utts, train)
@@ -451,7 +468,7 @@ def run(
 
     seeds_out: dict[int, Any] = {}
     seed_runs = []
-    if cfg.method == "heads":
+    if cfg.method in ("heads", "tokens"):
         if not cfg.selected:
             cfg.selected, oof = select_heads(utts, x, cfg, jvocab)
             cfg.lam, lam_scores = pick_lambda(utts, oof, cfg, jvocab)
@@ -532,7 +549,7 @@ def run(
                     for p in ps:
                         f.write(json.dumps({k: v for k, v in p.items() if k != "_split"}) + "\n")
             if pairs_rows_path is not None:
-                probe = minimal_pairs(pairs_rows_path, cache, prob_fn, cfg)
+                probe = minimal_pairs(pairs_rows_path, lookup, prob_fn, cfg)
         seeds_out[seed] = {
             "temperatures": temps,
             "ece_val_before": raw_ece_val,
@@ -571,7 +588,7 @@ def _config_dict(cfg: RunConfig) -> dict[str, Any]:
 
 
 def minimal_pairs(
-    pairs_rows_path: Path, cache: EmbeddingCache, prob_fn: Any, cfg: RunConfig
+    pairs_rows_path: Path, cache: Any, prob_fn: Any, cfg: RunConfig
 ) -> dict[str, Any] | None:
     """Conservative tags for the minimal-pair utterances (never trained on), and the probe."""
     from autogate_bench.augment import DEFAULT_AUGMENT_DIR, PAIRS_FILE, load_pairs
@@ -723,7 +740,7 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
     p.add_argument("--rows", type=Path, required=True)
     p.add_argument("--pairs-rows", type=Path, default=None)
     p.add_argument("--out", type=Path, required=True)
-    p.add_argument("--method", choices=("heads", "zeroshot"), default="heads")
+    p.add_argument("--method", choices=("heads", "tokens", "zeroshot"), default="heads")
     p.add_argument("--score", default="val", help="comma-separated splits to score")
     p.add_argument("--seeds", default="0,1,2,3,4")
     p.add_argument(
@@ -740,6 +757,8 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
         seeds=tuple(int(s) for s in a.seeds.split(",")),
         n_boot=a.n_boot,
     )
+    if a.method == "tokens":  # attention pooling: linear only, a smaller grid
+        cfg.hidden_grid, cfg.weight_decay_grid = (0,), (0.01, 0.1)
     if a.config:
         old = json.loads(a.config.read_text(encoding="utf-8"))
         cfg.selected = old["selected"]

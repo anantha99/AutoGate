@@ -74,6 +74,10 @@ class Encoder(Protocol):
         """``[len(texts), dim]`` float32, L2-normalised rows."""
         ...
 
+    def token_states(self, texts: Sequence[str]) -> list[np.ndarray]:
+        """Per text, ``[n_tokens, dim]`` float32 states (no padding; prefix included)."""
+        ...
+
 
 def _l2(x: np.ndarray) -> np.ndarray:
     n = np.linalg.norm(x, axis=-1, keepdims=True)
@@ -106,6 +110,18 @@ class FakeEncoder:
                 out[i, k] += s
         return _l2(out)
 
+    def token_states(self, texts: Sequence[str]) -> list[np.ndarray]:
+        out = []
+        for t in texts:
+            words = _TOKEN.findall(t.lower()) or [""]
+            m = np.zeros((len(words), self.spec.dim))
+            for i, w in enumerate(words):
+                for f in (f"w:{w}", f"c:{w[:3]}"):
+                    k, s = self._bucket(f)
+                    m[i, k] += s
+            out.append(m.astype(np.float32))
+        return out
+
 
 class HFEncoder:
     """A Hugging Face encoder with mean pooling over the attention mask, fp32, CPU or GPU."""
@@ -134,12 +150,12 @@ class HFEncoder:
         out = self.model(**batch)
         return out.last_hidden_state
 
-    def encode(self, texts: Sequence[str]) -> np.ndarray:
+    def _batches(self, texts: Sequence[str]):
+        """Yield ``(indices, states [b, L, D], attention_mask [b, L])`` in length order."""
         import torch
 
         texts = [self.spec.prefix + t for t in texts]
         order = np.argsort([len(t) for t in texts], kind="stable")
-        out = np.zeros((len(texts), self.spec.dim), dtype=np.float32)
         with torch.inference_mode():
             for i in range(0, len(texts), self.batch_size):
                 idx = order[i : i + self.batch_size]
@@ -151,12 +167,25 @@ class HFEncoder:
                     return_tensors="pt",
                 ).to(self.device)
                 states = self._states(batch).float()
-                mask = batch["attention_mask"].unsqueeze(-1).float()
-                pooled = (states * mask).sum(1) / mask.sum(1).clamp(min=1.0)
-                out[idx] = pooled.cpu().numpy()
-        if not np.isfinite(out).all():
-            raise FloatingPointError(f"{self.spec.name}: non-finite embeddings")
+                if not torch.isfinite(states).all():
+                    raise FloatingPointError(f"{self.spec.name}: non-finite states")
+                yield idx, states, batch["attention_mask"]
+
+    def encode(self, texts: Sequence[str]) -> np.ndarray:
+        out = np.zeros((len(texts), self.spec.dim), dtype=np.float32)
+        for idx, states, attn in self._batches(texts):
+            mask = attn.unsqueeze(-1).float()
+            pooled = (states * mask).sum(1) / mask.sum(1).clamp(min=1.0)
+            out[idx] = pooled.cpu().numpy()
         return _l2(out)
+
+    def token_states(self, texts: Sequence[str]) -> list[np.ndarray]:
+        out: list[np.ndarray] = [np.zeros((0, self.spec.dim), np.float32)] * len(texts)
+        for idx, states, attn in self._batches(texts):
+            s, m = states.cpu().numpy(), attn.cpu().numpy().astype(bool)
+            for k, j in enumerate(idx):
+                out[j] = s[k][m[k]].astype(np.float32)
+        return out
 
 
 def load_encoder(name: str, device: str = "cpu", batch_size: int = 64) -> Encoder:

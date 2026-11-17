@@ -220,3 +220,58 @@ def test_zeroshot_run_with_fake_encoder(tmp_path, fake_cache, pilot_jsonl):
     cfg = RunConfig(method="zeroshot", score=("val",), n_boot=10)
     rep = run(fake_cache, pilot_jsonl, tmp_path / "zs", cfg)
     assert set(rep["seeds"][0]["temperatures"]["zeroshot"]) == set(QUESTIONS)
+
+
+@pytest.fixture(scope="module")
+def fake_token_cache(fake_cache):
+    from autogate_decide.embed import build_token_cache
+
+    cache = EmbeddingCache.load(fake_cache)
+    build_token_cache(FakeEncoder(), cache.texts, cache.manifest).save(fake_cache / "tokens")
+    return fake_cache
+
+
+def test_token_cache_roundtrip_and_views(fake_token_cache):
+    from autogate_decide.embed import TokenCache
+
+    tc = TokenCache.load(fake_token_cache / "tokens")
+    view = tc.lookup(tc.texts[:5])
+    assert len(view) == 5
+    sub = view[np.array([True, False, True, False, False])]
+    x, mask = sub.padded([0, 1])
+    assert x.shape[0] == 2 and mask.any(1).all()
+    a, b = tc.offsets[2], tc.offsets[3]
+    assert np.array_equal(x[1, : b - a], tc.states[a:b])
+
+
+def test_attention_head_trains_and_predicts(fake_token_cache, pilot_rows):
+    from autogate_decide.embed import TokenCache
+    from autogate_decide.heads import HeadConfig, train_head
+
+    utts = build_utterances(pilot_rows)
+    x = TokenCache.load(fake_token_cache / "tokens").lookup(utts.texts)
+    y = utts.answers["actuation"]
+    head = train_head(x, y, 4, HeadConfig(epochs=3, weight_decay=0.01), seed=0)
+    again = train_head(x, y, 4, HeadConfig(epochs=3, weight_decay=0.01), seed=0)
+    p = head.probs(x[:20])
+    assert p.shape == (20, 4) and np.allclose(p.sum(1), 1.0)
+    assert np.allclose(head.logits(x[:20]), again.logits(x[:20]))  # deterministic per seed
+    assert (head.probs(x).argmax(1) == y).mean() > 0.5
+
+
+def test_tokens_run_with_fake_encoder(tmp_path, fake_token_cache, pilot_jsonl):
+    from autogate_decide.run import RunConfig, run
+
+    cfg = RunConfig(
+        method="tokens",
+        score=("val",),
+        seeds=(0,),
+        hidden_grid=(0,),
+        weight_decay_grid=(0.1,),
+        epochs=1,
+        folds=2,
+        lambda_grid=(0.5,),
+        n_boot=10,
+    )
+    rep = run(fake_token_cache, pilot_jsonl, tmp_path / "tok", cfg)
+    assert rep["seeds"][0]["splits"]["val"]["conservative"]["gate"]["n"] > 0
