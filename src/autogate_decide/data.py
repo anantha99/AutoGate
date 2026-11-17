@@ -51,6 +51,7 @@ class Utterances:
     split: np.ndarray
     intent: np.ndarray
     variant: np.ndarray
+    seed_id: np.ndarray
     answers: dict[str, np.ndarray]
     """question -> answer index per utterance."""
     row_utt: np.ndarray
@@ -89,6 +90,7 @@ def build_utterances(rows: Sequence[Mapping[str, Any]]) -> Utterances:
         split=np.array([r["split"] for r in first]),
         intent=np.array([r["intent"] for r in first]),
         variant=np.array([r.get("variant", "plain") for r in first]),
+        seed_id=np.array([r.get("seed_id", r["intent"]) for r in first]),
         answers=answers,
         row_utt=row_utt,
     )
@@ -133,4 +135,16 @@ def intent_folds(utts: Utterances, mask: np.ndarray, k: int = 5, seed: int = 0) 
         order += g
     fold_of = {name: j % k for j, name in enumerate(order)}
     fold = np.array([fold_of.get(n, -1) for n in utts.intent])
+    return [mask & (fold == f) for f in range(k)]
+
+
+def seed_folds(utts: Utterances, mask: np.ndarray, k: int = 3, seed: int = 0) -> list[np.ndarray]:
+    """Held-out-seed folds over the utterances under ``mask``: every utterance of a seed
+    (its paraphrases and ASR copies) is held out together, so the intents are seen in
+    training but the phrasing is new, like the val and test splits."""
+    rng = np.random.default_rng(seed)
+    seeds = np.array(sorted(set(utts.seed_id[mask])))
+    rng.shuffle(seeds)
+    fold_of = {s: j % k for j, s in enumerate(seeds)}
+    fold = np.array([fold_of.get(s, -1) for s in utts.seed_id])
     return [mask & (fold == f) for f in range(k)]

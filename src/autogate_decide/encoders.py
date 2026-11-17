@@ -74,8 +74,13 @@ class Encoder(Protocol):
         """``[len(texts), dim]`` float32, L2-normalised rows."""
         ...
 
-    def token_states(self, texts: Sequence[str]) -> list[np.ndarray]:
-        """Per text, ``[n_tokens, dim]`` float32 states (no padding; prefix included)."""
+    def token_states(
+        self, texts: Sequence[str], layers: Sequence[int] | None = None
+    ) -> list[np.ndarray]:
+        """Per text, ``[n_tokens, dim]`` float32 states (no padding; prefix included).
+
+        ``layers`` picks entries of the model's ``hidden_states`` (0 = embeddings) and
+        concatenates them along the last axis; ``None`` is the encoder's output."""
         ...
 
 
@@ -110,7 +115,9 @@ class FakeEncoder:
                 out[i, k] += s
         return _l2(out)
 
-    def token_states(self, texts: Sequence[str]) -> list[np.ndarray]:
+    def token_states(
+        self, texts: Sequence[str], layers: Sequence[int] | None = None
+    ) -> list[np.ndarray]:
         out = []
         for t in texts:
             words = _TOKEN.findall(t.lower()) or [""]
@@ -119,7 +126,10 @@ class FakeEncoder:
                 for f in (f"w:{w}", f"c:{w[:3]}"):
                     k, s = self._bucket(f)
                     m[i, k] += s
-            out.append(m.astype(np.float32))
+            m = m.astype(np.float32)
+            if layers:  # fake "layers": scaled copies, enough to exercise the layer mix
+                m = np.concatenate([m * (k + 1) for k in range(len(layers))], axis=1)
+            out.append(m)
         return out
 
 
@@ -146,11 +156,15 @@ class HFEncoder:
         self.tokenizer = AutoTokenizer.from_pretrained(spec.model_id, **kw)
         self.n_params = sum(p.numel() for p in self.model.parameters())
 
-    def _states(self, batch: dict) -> Any:
-        out = self.model(**batch)
-        return out.last_hidden_state
+    def _states(self, batch: dict, layers: Sequence[int] | None = None) -> Any:
+        import torch
 
-    def _batches(self, texts: Sequence[str]):
+        if not layers:
+            return self.model(**batch).last_hidden_state
+        hs = self.model(**batch, output_hidden_states=True).hidden_states
+        return torch.cat([hs[i] for i in layers], dim=-1)
+
+    def _batches(self, texts: Sequence[str], layers: Sequence[int] | None = None):
         """Yield ``(indices, states [b, L, D], attention_mask [b, L])`` in length order."""
         import torch
 
@@ -166,7 +180,7 @@ class HFEncoder:
                     max_length=self.spec.max_length,
                     return_tensors="pt",
                 ).to(self.device)
-                states = self._states(batch).float()
+                states = self._states(batch, layers).float()
                 if not torch.isfinite(states).all():
                     raise FloatingPointError(f"{self.spec.name}: non-finite states")
                 yield idx, states, batch["attention_mask"]
@@ -179,9 +193,11 @@ class HFEncoder:
             out[idx] = pooled.cpu().numpy()
         return _l2(out)
 
-    def token_states(self, texts: Sequence[str]) -> list[np.ndarray]:
+    def token_states(
+        self, texts: Sequence[str], layers: Sequence[int] | None = None
+    ) -> list[np.ndarray]:
         out: list[np.ndarray] = [np.zeros((0, self.spec.dim), np.float32)] * len(texts)
-        for idx, states, attn in self._batches(texts):
+        for idx, states, attn in self._batches(texts, layers):
             s, m = states.cpu().numpy(), attn.cpu().numpy().astype(bool)
             for k, j in enumerate(idx):
                 out[j] = s[k][m[k]].astype(np.float32)

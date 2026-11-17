@@ -4,7 +4,7 @@ The running memory of the project: what we are trying, why, what each run
 produced, and what is still open. Newest results go at the top of each
 section. Every run gets an entry in "Runs", even a failed one.
 
-Last updated: 2026-11-17 (A7 planned; A6 data written; R5 waits for the audit). Linked from `CLAUDE.md` so every session reads it.
+Last updated: 2026-11-17 (A7 Phases 0-2 run: Gate 2 outcome B for R6a; Phase 2b next; R5 waits for the audit). Linked from `CLAUDE.md` so every session reads it.
 
 ## How to use this file
 
@@ -21,7 +21,7 @@ Last updated: 2026-11-17 (A7 planned; A6 data written; R5 waits for the audit). 
 | --- | --- |
 | Taxonomy expansion (A5) | done 10-23: 81 intents, 361 seeds, 14,440 paraphrases, 66,414 rows (sha256 `8cc12a4b...`); 8-intent OOD holdout balanced by tag. R1/R2 are not directly comparable with runs on this data |
 | Train-only augmentation (A6) | data done 10-28: 60 synthetic goals (565 utterances; 20 high-distraction) and 290 minimal pairs (580 utterances, 115 intent pairs); strict validation 0 errors. Adds 4,635 train rows (2,067 goal, 2,568 pair); every other row byte-identical (old file is an exact prefix). Review: `docs/augment-review.md` |
-| Decision-encoder router (A7) | **planned 11-17, nothing run.** Frozen small encoder + five heads + rulebook; phased plan with gates in `docs/plan-a7-decision-router.md`. Model facts are from web search only and unverified |
+| Decision-encoder router (A7) | **Phases 0-2 run 11-17; Gate 2 outcome B.** Frozen EmbeddingGemma 2 + heads (R6a): test 0.800 / SWE 0.562 / 9.7% (fails), OOD 1.015 / 21.7% (passes, on par with R4nc). Code in `src/autogate_decide/`; Phase 2b (token-state heads, R6a2) next, then Phase 4 if needed. Model facts verified (below) |
 | Router R5 (R4 config + A6 data) | ready to run; **waits for the owner's audit of `docs/augment-review.md`** |
 | Router R4 (tags, R1 capacity, 81 intents) | done 10-27, with and without context. Best so far: test macro-F1 0.82-0.85, SWE 28-30% of fair rules; critical miss 5-6% (under 1% with the 0.85 abstention threshold at 74% coverage). Open: high distraction on unseen intents, adversarial slice, int8 |
 | Benchmark v0 | done: 65 intents, 281 seeds, 11,240 paraphrases, 53,184 rows (`docs/dataset-v0.md`); superseded for intents and splits by A5 |
@@ -200,7 +200,7 @@ Zomato ideas below, made concrete.
   the following round can turn val route-changing tag errors into new
   pairs.
 
-### A7. Decision-encoder router (planned 2026-11-17, nothing run)
+### A7. Decision-encoder router (planned and Phases 0-2 run 2026-11-17)
 
 **Why:** R4nc showed the model only has to predict context-free tags. That
 is the interface of the "decision models" released since September 2026
@@ -348,6 +348,12 @@ the new splits (seed-only pilot).
 
 | run | date | macro-F1 | SWE | critical miss | span leak | notes |
 | --- | --- | --- | --- | --- | --- | --- |
+| R6a EmbeddingGemma 2 frozen + heads, conservative | 11-17 | 0.800 | 0.562 | 9.7% | n/a | **Gate 2 fails** (needs 0.83 / 0.37 / 7.0%); 5 seeds, sd <= 0.003 |
+| R6a, expected cost | 11-17 | 0.808 | 0.471 | 11.3% | n/a | lower SWE, more critical misses |
+| R6a, conservative + abstention | 11-17 | 0.838* | 0.409* | 0.5%* | n/a | *answered rows, 80% coverage; abstains on 32% of safety-critical rows |
+| R6a-ctl e5-small frozen + heads, conservative | 11-17 | 0.744 | 0.659 | 14.0% | n/a | control encoder: worse everywhere |
+| R6z-gemma zero-shot, conservative / expected cost | 11-17 | 0.320 / 0.259 | 1.531 / 1.462 | 22.6% / 16.0% | n/a | Gate 1 (informational): prompting alone is not enough |
+| R6z-e5 zero-shot, conservative / expected cost | 11-17 | 0.264 / 0.222 | 1.703 / 1.458 | 41.2% / 10.6% | n/a | |
 | R4 with context, e2e | 10-27 | 0.821 | 0.360 | 5.6% | 22.9%* | route head now matches the tags route |
 | R4 with context, tags | 10-27 | 0.832 | 0.380 | 6.3% | 19.5%* | |
 | R4 with context, combined | 10-27 | 0.832 | 0.369 | **5.1%** | 19.6%* | |
@@ -371,6 +377,12 @@ the new splits (seed-only pilot).
 
 | run | macro-F1 | SWE | critical miss | notes |
 | --- | --- | --- | --- | --- |
+| R6a EmbeddingGemma 2 frozen + heads, conservative | 0.621 | **1.015** | 21.7% | passes Gate 2's OOD bars (1.12 / 25%); intent-bootstrap crit CI [6%, 50%] |
+| R6a, expected cost | 0.584 | 1.129 | 29.3% | |
+| R6a, conservative + abstention | 0.653* | 0.734* | 4.2%* | *82% coverage (U3a needs <= 5% at >= 50%) |
+| R6a-ctl e5-small, conservative | 0.575 | 1.255 | 33.1% | |
+| R6z-gemma zero-shot, conservative / expected cost | 0.294 / 0.224 | 1.734 / 1.658 | 30.0% / 28.6% | |
+| R6z-e5 zero-shot, conservative / expected cost | 0.324 / 0.219 | 1.691 / 1.565 | 38.8% / 13.9% | |
 | R4 with context, e2e | 0.637 | 1.032 | 22.5% | |
 | R4 with context, tags | 0.628 | 1.057 | 23.0% | |
 | R4 with context, combined | **0.645** | **0.974** | **19.1%** | 55% of fair-rules SWE |
@@ -390,6 +402,75 @@ the new splits (seed-only pilot).
 \* Span leak is measured on test + OOD combined, on rows the run routed to the cloud, so it is not comparable across rows with different routing.
 
 ## Run details
+
+### R6a, R6a-ctl, R6z: A7 Phases 1-2 (2026-11-17)
+
+- Code: `src/autogate_decide/` (commit `ba33c44` froze R6a's
+  configuration before test/OOD scoring; R6a-ctl and R6z frozen in
+  `8c14a2b`). Frozen choices: `configs/decide/R6a.json`,
+  `R6a-ctl.json`, `R6z-*.json`; option texts `configs/decide/questions.yaml`.
+  Dataset sha256 `8cc12a4b...` (no `--augment`). CPU only, 4 cores.
+- Command: `python -m autogate_decide.run --cache
+  data/generated/decide/<encoder> --rows data/generated/full/rows.jsonl
+  --pairs-rows data/generated/full_aug/rows.jsonl --out runs/<run>
+  --score val,test,ood [--config configs/decide/<run>.json]`.
+- **R6a (EmbeddingGemma 2 `f9972ac2`, frozen):** selection took 22 min
+  (36 head fits per question). Chosen: linear heads, weight decay 1.0 for
+  capability, distraction, consequence and the joint head (the edge of
+  the grid), 0.01 for actuation, a 256-unit MLP for sensitive; mixing
+  weight 0.5. Five seeds differ by sd <= 0.003 on every gate metric
+  (convex heads), so the intent bootstrap is the honest interval.
+- **Gate 2: outcome B.** Test fails on all three bars (0.800 / 0.562 /
+  9.7% against 0.83 / 0.37 / 7.0%); OOD passes both (SWE 1.015, critical
+  miss 21.7%; R4nc 1.038 / 22.9%). The frozen encoder generalises to unseen
+  intents about as well as R4 but loses on known ones: test tag accuracy
+  capability 0.78, distraction 0.86, actuation 0.84, consequence 0.81
+  (R4nc val: 0.78 / 0.92 / 0.95 / 0.83).
+- Diagnostics (conservative, seed 0):
+  - adversarial slice critical miss: test 11.4% (R4 25-30%), OOD 44.5%;
+  - distraction dangerous miss: test 42%, OOD 80% (R4nc 74%); actuation
+    dangerous miss test 2.2%, OOD 16% (R4 18.7%);
+  - per variant, test critical miss: plain 7.6%, ASR 9.2%, disfluent
+    11.3%, Hinglish 12.8%, Kannada-English 16.2% (2.1x plain: U6 fails);
+  - sensitive: recall 0.89 test / 0.85 OOD, precision 0.99 (U7 needs 0.95);
+  - ECE after val temperature: test <= 0.04 per question; OOD capability
+    and distraction 0.20 (overconfident on unseen intents);
+  - OOD per intent: fog_lights_on 1% critical miss, open_fuel_door 27%,
+    compose_long_email 53%, pair_bluetooth_device 58%;
+  - minimal-pair probe: 35% of 290 pairs have every routing tag right on
+    both sides (actuation pairs 47%, capability pairs 14%).
+- **Expected cost vs conservative:** expected cost lowers SWE (test 0.471)
+  but raises critical misses (11.3%; OOD 29.3%), as predicted: it needs
+  p(safety_critical) > 0.55 to prefer LOCAL over REFUSE.
+- **Abstention** (p(critical miss) threshold 0.044 chosen on val): test
+  0.5% critical miss on 80% coverage (U1 needs >= 85%), OOD 4.2% on 82%.
+  But it abstains on 32% of test safety-critical rows (U4 needs <= 1%):
+  a safety command that is asked again is itself a delay.
+- **R6a-ctl (e5-small):** test 0.744 / 0.659 / 14.0%, OOD 0.575 / 1.255 /
+  33.1%. The approach depends on the encoder; Gemma is better on every
+  metric, most on OOD and on the adversarial slice.
+- **R6z (zero-shot):** test macro-F1 0.32 at best; prompting alone is far
+  below R4, as expected (Gate 1 informational; no leak suspected).
+- **Post-hoc diagnostic (val only, not a gate run):** R6a with the head
+  shapes val NLL prefers (MLPs, lower weight decay) scores val 0.716 /
+  0.619 / 12.3% (expected cost 0.739 / 0.496 / 8.4%), against 0.659 /
+  0.771 / 14.5% as selected. Part of the test gap is the held-out-intent
+  criterion trading in-intent fit for OOD; the rest (R4 val SWE 0.36) is
+  not closed by capacity on pooled vectors.
+
+**R6a2 pre-registration (11-17, before any R6a2 scoring).** After the
+second review: (1) heads read a learned mix of encoder layers 6, 12, 18 and
+23 (each 512-d, layer-normalised) with two attention queries plus the mean;
+this goes beyond the plan's "attention pooling" and means Phase 5 needs a
+runtime exposing those layers; (2) selection criterion `blend`: mean of
+held-out-intent and held-out-seed NLL on train-only folds (3 each), then
+the most regularised configuration within one standard error; (3) grid
+widened to weight decay 0.01 / 0.1 / 1 / 10 and 3 or 6 epochs, because
+R6a's choice sat at the grid edge (a train-only fact). Temperatures and
+abstention thresholds still come from val; the conservative decoder uses
+the val temperature. R6a is not re-scored for the gate. The BIO span head
+is not built: Gate 2 does not score masking, and it is only needed if the
+approach survives.
 
 ### R4: tags with R1 capacity, 81 intents, with context (2026-10-27)
 
@@ -544,6 +625,9 @@ the new splits (seed-only pilot).
 
 | date | decision | why |
 | --- | --- | --- |
+| 11-17 | A7 Gate 2 outcome B for R6a (test fails, OOD passes); go to Phase 2b (token-state heads, R6a2) as the plan says | test 0.800 / 0.562 / 9.7% vs bars 0.83 / 0.37 / 7.0% |
+| 11-17 | Owner confirmed the proposed A7 verdict thresholds (plan section 7) as written, before any test scoring | plan requires it before Phase 2 test scoring |
+| 11-17 | A7 heads: choose head shape and weight decay on held-out training intents, not val; two head sets (weighted for conservative, plain for expected cost); joint-combination head; p(critical miss) as the abstention score; Gate 2 stays on the conservative decoder | independent review: val holds only training intents; class weights distort expected cost; product of marginals puts mass on tag combinations no intent has |
 | 11-17 | Plan A7: test a Jev-style decision router on a small frozen encoder, in phases with pre-set gates | one-pass typed decisions match what R4nc needs; a 270M encoder fits the size and latency targets where a shared 2B+ assistant model cannot; frozen-first makes iteration minutes and sidesteps int8 |
 | 10-28 | Add synthetic goals and minimal pairs as train-only augmentation (A6); R5 = R4's config on that data, scored on val too | R4's gaps (OOD high distraction, adversarial slice, OOD capability) come from too few distinct goals per tag value and no look-alike negatives; train-only keeps every eval split and all R4 numbers comparable |
 | 10-27 | Lead design candidate: context-free tag model + rulebook (R4nc tags) | matches the context-aware route head (R4) within CIs, simpler input, policy swappable without retraining |
@@ -590,10 +674,12 @@ the new splits (seed-only pilot).
   cruise: comfort vs safety_critical, both always LOCAL) are rejected as
   routing hard negatives. Should a second file accept them as tag-only
   negatives for the actuation head?
-- A7: confirm the proposed verdict thresholds (coverage, OOD bars,
-  sensitive recall) in `docs/plan-a7-decision-router.md` section 7 before
-  the first test scoring; Hugging Face access if the model is gated; a
-  reference device for latency.
+- A7: a reference device for Phase 5 latency; Colab run of Phase 4 if
+  Phase 2b also fails Gate 2 (thresholds confirmed 11-17; the model is not
+  gated).
+- A7: abstention as tuned on val abstains on a third of safety-critical
+  commands. Should safety-critical-looking rows be exempt from abstention
+  (answer LOCAL), or is "ask again" acceptable for them?
 - A6: synthetic-goal tags are labels nobody else checks; who audits
   `docs/augment-review.md` before R5?
 
@@ -606,6 +692,7 @@ the new splits (seed-only pilot).
 | seeds and paraphrases | `data/seeds.yaml`, `data/paraphrases/` |
 | dataset generation | `python -m autogate_bench.generate` (`--augment data/augment` for A6) |
 | decision-encoder router plan (A7) | `docs/plan-a7-decision-router.md` |
+| decision-encoder router code and frozen configs (A7) | `src/autogate_decide/`, `configs/decide/`; outputs `runs/` (gitignored) |
 | augmentation (A6) | `data/augment/`, `src/autogate_bench/augment.py`, `docs/augmentation-spec.md` |
 | rules baseline | `python -m autogate_eval.baselines.rules` |
 | training, predict, score | `src/autogate_router/`, `src/autogate_eval/score.py`, `docs/training.md` |

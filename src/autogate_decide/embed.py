@@ -99,20 +99,28 @@ class EmbeddingCache:
 class TokenStates:
     """An indexable view of per-text token states: ``x[mask]`` / ``x[idx]`` select texts."""
 
-    def __init__(self, states: np.ndarray, offsets: np.ndarray, sel: np.ndarray | None = None):
+    def __init__(
+        self,
+        states: np.ndarray,
+        offsets: np.ndarray,
+        sel: np.ndarray | None = None,
+        n_layers: int = 1,
+    ):
         self.states = states
         self.offsets = offsets
         self.sel = np.arange(len(offsets) - 1) if sel is None else sel
+        self.n_layers = n_layers
+        """the last axis is ``n_layers`` concatenated layers of equal width"""
 
     def __len__(self) -> int:
         return len(self.sel)
 
     def __getitem__(self, key) -> TokenStates:
         if isinstance(key, slice):
-            return TokenStates(self.states, self.offsets, self.sel[key])
+            return TokenStates(self.states, self.offsets, self.sel[key], self.n_layers)
         key = np.asarray(key)
         sel = self.sel[np.flatnonzero(key)] if key.dtype == bool else self.sel[key]
-        return TokenStates(self.states, self.offsets, sel)
+        return TokenStates(self.states, self.offsets, sel, self.n_layers)
 
     @property
     def dim(self) -> int:
@@ -145,7 +153,8 @@ class TokenCache:
         missing = [t for t in texts if t not in self.index]
         if missing:
             raise KeyError(f"{len(missing)} texts not in the token cache, e.g. {missing[:3]}")
-        return TokenStates(self.states, self.offsets, np.array([self.index[t] for t in texts]))
+        sel = np.array([self.index[t] for t in texts])
+        return TokenStates(self.states, self.offsets, sel, len(self.manifest.get("layers") or [0]))
 
     def save(self, out: str | Path) -> Path:
         out = Path(out)
@@ -177,12 +186,16 @@ def pooled_from_tokens(tc: TokenCache) -> np.ndarray:
 
 
 def build_token_cache(
-    encoder: Encoder, texts: Sequence[str], manifest: dict, log_every: int = 2000
+    encoder: Encoder,
+    texts: Sequence[str],
+    manifest: dict,
+    log_every: int = 2000,
+    layers: Sequence[int] | None = None,
 ) -> TokenCache:
     t0 = time.time()
     states: list[np.ndarray] = []
     for i in range(0, len(texts), log_every):
-        states += encoder.token_states(texts[i : i + log_every])
+        states += encoder.token_states(texts[i : i + log_every], layers)
         done = min(i + log_every, len(texts))
         print(f"  token states {done}/{len(texts)} ({time.time() - t0:.0f}s)")
     offsets = np.zeros(len(texts) + 1, dtype=np.int64)
@@ -191,6 +204,7 @@ def build_token_cache(
     m = {
         **manifest,
         "kind": "token_states",
+        "layers": list(layers) if layers else None,
         "n_tokens": int(len(flat)),
         "token_seconds": round(time.time() - t0, 1),
     }
@@ -245,22 +259,30 @@ def main(argv: list[str] | None = None) -> dict:
     p.add_argument("--batch-size", type=int, default=64)
     p.add_argument("--tokens", action="store_true", help="also write per-token states")
     p.add_argument(
+        "--layers",
+        default=None,
+        help="comma-separated hidden_states indices to cache per token (default: the output)",
+    )
+    p.add_argument(
         "--tokens-only",
         action="store_true",
         help="write only tokens/ (for an existing --out cache, reusing its texts)",
     )
     a = p.parse_args(argv)
+    layers = [int(x) for x in a.layers.split(",")] if a.layers else None
     encoder = load_encoder(a.encoder, a.device, a.batch_size)
     if a.tokens_only:
         cache = EmbeddingCache.load(a.out)
-        tc = build_token_cache(encoder, cache.texts, cache.manifest)
+        tc = build_token_cache(encoder, cache.texts, cache.manifest, layers=layers)
         tc.save(a.out / "tokens")
         print(f"wrote {tc.manifest['n_tokens']} token states to {a.out / 'tokens'}")
         return tc.manifest
     cache = build_cache(encoder, a.rows)
     cache.save(a.out)
     if a.tokens:
-        build_token_cache(encoder, cache.texts, cache.manifest).save(a.out / "tokens")
+        build_token_cache(encoder, cache.texts, cache.manifest, layers=layers).save(
+            a.out / "tokens"
+        )
     m = cache.manifest
     print(
         f"wrote {m['n_texts']} x {m['dim']} to {a.out} in {m['seconds']}s; "

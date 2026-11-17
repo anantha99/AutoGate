@@ -33,8 +33,12 @@ Method ``heads`` (runs R6a, R6a-ctl)
 
 Method ``tokens`` (run R6a2)
     As ``heads``, on per-token states (``<cache>/tokens``, written by
-    ``autogate_decide.embed --tokens``) with attention-pooling heads
-    (:mod:`autogate_decide.token_heads`); linear only, weight decay 0.01 or 0.1.
+    ``autogate_decide.embed --tokens-only --layers 6,12,18,23``) with
+    attention-pooling heads over a learned mix of those layers
+    (:mod:`autogate_decide.token_heads`). Pre-registered before scoring:
+    linear heads, weight decay 0.01 / 0.1 / 1 / 10, 3 or 6 epochs, chosen by
+    the ``blend`` criterion (:func:`select_heads`) on 3 held-out-intent and
+    3 held-out-seed folds of train.
 
 Method ``zeroshot`` (run R6z)
     Cosine similarity of the utterance vector to each option description in
@@ -73,6 +77,7 @@ from autogate_decide.data import (
     intent_folds,
     joint_answers,
     joint_vocab,
+    seed_folds,
 )
 from autogate_decide.embed import EmbeddingCache, sha256_file
 from autogate_decide.heads import Head, HeadConfig, ece, fit_temperature, nll, softmax, train_head
@@ -93,6 +98,9 @@ class RunConfig:
     weight_decay_grid: tuple[float, ...] = (0.01, 0.1, 1.0)
     steps: int = 300
     epochs: int = 6
+    epochs_grid: tuple[int, ...] = ()
+    selection: str = "intent"  # intent (R6a) | blend (R6a2 on; see select_heads)
+    seed_folds: int = 3
     lr: float = 1e-2
     folds: int = 5
     lambda_grid: tuple[float, ...] = (0.0, 0.25, 0.5, 0.75, 1.0)
@@ -129,46 +137,81 @@ def _weights(utts: Utterances, mask: np.ndarray, q: str) -> list[float] | None:
 def select_heads(
     utts: Utterances, x: np.ndarray, cfg: RunConfig, jvocab: Sequence
 ) -> tuple[dict[str, dict[str, Any]], dict[str, np.ndarray]]:
-    """Grid search on held-out intents; returns the choice per question and its OOF logits."""
+    """Grid search on train-only folds; returns the choice per question and its OOF logits.
+
+    ``cfg.selection == "intent"`` (R6a, R6a-ctl): lowest NLL on held-out intents.
+    ``"blend"`` (R6a2 on): score = mean of the held-out-intent NLL and the
+    held-out-seed NLL (intents seen, phrasing new, like val and test), and
+    among the configurations within one standard error of the best, the most
+    regularised one (no hidden layer, then larger weight decay, then fewer
+    epochs). Val is never used for the choice; its NLL is recorded."""
     train = utts.mask("train")
     val = utts.mask("val")
     folds = intent_folds(utts, train, cfg.folds, seed=0)
+    sfolds = seed_folds(utts, train, cfg.seed_folds, seed=0) if cfg.selection == "blend" else []
     selected: dict[str, dict[str, Any]] = {}
     oof_logits: dict[str, np.ndarray] = {}
+
+    def per_example_nll(logits: np.ndarray, y: np.ndarray, m: np.ndarray) -> np.ndarray:
+        keep = m & (y >= 0)
+        p = softmax(logits[keep])
+        return -np.log(np.clip(p[np.arange(len(p)), y[keep]], 1e-12, None))
+
     for q in (*QUESTIONS, "joint"):
         y, k = _labels(utts, q, jvocab)
         trials = []
         for h in cfg.hidden_grid:
             for wd in cfg.weight_decay_grid:
-                hc = HeadConfig(
-                    hidden=h, weight_decay=wd, lr=cfg.lr, steps=cfg.steps, epochs=cfg.epochs
-                )
-                oof = np.zeros((len(utts), k))
-                for held in folds:
-                    fit = train & ~held
-                    head = train_head(x[fit], y[fit], k, hc, seed=0)
-                    oof[held] = head.logits(x[held])
-                held_all = train & np.any(folds, axis=0)
-                oof_nll = nll(softmax(oof[held_all]), y[held_all])
-                full = train_head(x[train], y[train], k, hc, seed=0)
-                val_nll = nll(full.probs(x[val], calibrated=False), y[val])
-                trials.append(
-                    {
+                for ep in cfg.epochs_grid or (cfg.epochs,):
+                    hc = HeadConfig(
+                        hidden=h, weight_decay=wd, lr=cfg.lr, steps=cfg.steps, epochs=ep
+                    )
+                    oof = np.zeros((len(utts), k))
+                    for held in folds:
+                        head = train_head(x[train & ~held], y[train & ~held], k, hc, seed=0)
+                        oof[held] = head.logits(x[held])
+                    li = per_example_nll(oof, y, train & np.any(folds, axis=0))
+                    t = {
                         "hidden": h,
                         "weight_decay": wd,
-                        "oof_nll": oof_nll,
-                        "val_nll": val_nll,
+                        "epochs": ep,
+                        "oof_nll": float(li.mean()),
                         "_oof": oof,
                     }
-                )
-                print(f"  select {q}: hidden {h} wd {wd}: oof {oof_nll:.4f} val {val_nll:.4f}")
-        best = min(trials, key=lambda t: t["oof_nll"])
-        oof_logits[q] = best.pop("_oof")
+                    if sfolds:
+                        oof_s = np.zeros((len(utts), k))
+                        for held in sfolds:
+                            head = train_head(x[train & ~held], y[train & ~held], k, hc, seed=0)
+                            oof_s[held] = head.logits(x[held])
+                        ls = per_example_nll(oof_s, y, train & np.any(sfolds, axis=0))
+                        t["seed_nll"] = float(ls.mean())
+                        t["score"] = 0.5 * (li.mean() + ls.mean())
+                        t["score_se"] = float(
+                            0.5 * np.sqrt(li.var() / len(li) + ls.var() / len(ls))
+                        )
+                    else:
+                        t["score"], t["score_se"] = (
+                            float(li.mean()),
+                            float(li.std() / np.sqrt(len(li))),
+                        )
+                    full = train_head(x[train], y[train], k, hc, seed=0)
+                    t["val_nll"] = nll(full.probs(x[val], calibrated=False), y[val])
+                    trials.append(t)
+                    print(
+                        f"  select {q}: hidden {h} wd {wd} ep {ep}: intent {t['oof_nll']:.4f} "
+                        f"seed {t.get('seed_nll', float('nan')):.4f} val {t['val_nll']:.4f}"
+                    )
+        best = min(trials, key=lambda t: t["score"])
+        if cfg.selection == "blend":
+            close = [t for t in trials if t["score"] <= best["score"] + best["score_se"]]
+            best = min(close, key=lambda t: (t["hidden"], -t["weight_decay"], t["epochs"]))
+        oof_logits[q] = best["_oof"]
         for t in trials:
             t.pop("_oof", None)
         selected[q] = {
             "hidden": best["hidden"],
             "weight_decay": best["weight_decay"],
+            "epochs": best["epochs"],
             "trials": trials,
         }
     return selected, oof_logits
@@ -226,7 +269,7 @@ def fit_heads(
             weight_decay=s["weight_decay"],
             lr=cfg.lr,
             steps=cfg.steps,
-            epochs=cfg.epochs,
+            epochs=s.get("epochs", cfg.epochs),
         )
         plain[q] = train_head(x[train], y[train], k, hc, seed=seed)
         fit_temperature(plain[q], x[val], y[val])
@@ -840,8 +883,12 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
         registry=a.registry,
         lane=a.lane,
     )
-    if a.method == "tokens":  # attention pooling: linear only, a smaller grid
-        cfg.hidden_grid, cfg.weight_decay_grid = (0,), (0.01, 0.1)
+    if a.method == "tokens":  # R6a2, pre-registered 11-17 (docs/experiment-log.md)
+        cfg.hidden_grid = (0,)
+        cfg.weight_decay_grid = (0.01, 0.1, 1.0, 10.0)
+        cfg.epochs_grid = (3, 6)
+        cfg.selection = "blend"
+        cfg.folds = 3
     if a.config:
         old = json.loads(a.config.read_text(encoding="utf-8"))
         old = old.get("config", old)  # a frozen configs/decide/<run>.json nests it

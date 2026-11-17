@@ -340,3 +340,57 @@ def test_registered_run_with_lane(tmp_path, fake_cache, pilot_rows):
     n_ood = sum(r["split"] == "ood" for r in pilot_rows)
     n_scored = rep["seeds"][0]["splits"]["ood"]["conservative"]["gate"]["n"]
     assert 0 < n_scored < n_ood  # the registered OOD seeds are not scored
+
+
+def test_seed_folds_keep_intents_and_hold_out_whole_seeds(pilot_rows):
+    from autogate_decide.data import seed_folds
+
+    utts = build_utterances(pilot_rows)
+    train = utts.mask("train")
+    folds = seed_folds(utts, train, k=3)
+    assert np.array_equal(np.sum(folds, axis=0)[train], np.ones(train.sum()))
+    for held in folds:
+        assert not set(utts.seed_id[held]) & set(utts.seed_id[train & ~held])
+
+
+def test_layer_mix_head_and_blend_selection(tmp_path, fake_cache, pilot_jsonl):
+    from autogate_decide.embed import TokenCache, build_token_cache
+    from autogate_decide.heads import HeadConfig, train_head
+    from autogate_decide.run import RunConfig, run
+
+    cache = EmbeddingCache.load(fake_cache)
+    tc = build_token_cache(FakeEncoder(), cache.texts, cache.manifest, layers=[1, 2])
+    d = tmp_path / "c"
+    cache.save(d)
+    tc.save(d / "tokens")
+    x = TokenCache.load(d / "tokens").lookup(cache.texts[:40])
+    assert x.n_layers == 2 and x.dim == 2 * ENCODERS["fake"].dim
+    y = np.arange(40) % 3
+    head = train_head(x, y, 3, HeadConfig(epochs=2), seed=0)
+    assert head.params["mix"].shape == (2,)
+    assert np.allclose(head.probs(x).sum(1), 1.0)
+
+    cfg = RunConfig(
+        method="tokens",
+        score=("val",),
+        seeds=(0,),
+        hidden_grid=(0,),
+        weight_decay_grid=(0.01, 1.0),
+        epochs_grid=(1, 2),
+        selection="blend",
+        folds=2,
+        seed_folds=2,
+        lambda_grid=(0.5,),
+        n_boot=10,
+    )
+    rep = run(d, pilot_jsonl, tmp_path / "blend", cfg)
+    sel = rep["config"]["selected"]["actuation"]
+    trials = rep["config"]["selection_trials"]["actuation"]
+    assert len(trials) == 4 and all("seed_nll" in t for t in trials)
+    best = min(t["score"] for t in trials)
+    chosen = next(
+        t
+        for t in trials
+        if (t["weight_decay"], t["epochs"]) == (sel["weight_decay"], sel["epochs"])
+    )
+    assert chosen["score"] <= best + max(t["score_se"] for t in trials)
