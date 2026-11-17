@@ -4,7 +4,7 @@ The running memory of the project: what we are trying, why, what each run
 produced, and what is still open. Newest results go at the top of each
 section. Every run gets an entry in "Runs", even a failed one.
 
-Last updated: 2026-10-28 (A6 data written; R5 waits for the audit). Linked from `CLAUDE.md` so every session reads it.
+Last updated: 2026-11-17 (A7 planned; A6 data written; R5 waits for the audit). Linked from `CLAUDE.md` so every session reads it.
 
 ## How to use this file
 
@@ -21,6 +21,7 @@ Last updated: 2026-10-28 (A6 data written; R5 waits for the audit). Linked from 
 | --- | --- |
 | Taxonomy expansion (A5) | done 10-23: 81 intents, 361 seeds, 14,440 paraphrases, 66,414 rows (sha256 `8cc12a4b...`); 8-intent OOD holdout balanced by tag. R1/R2 are not directly comparable with runs on this data |
 | Train-only augmentation (A6) | data done 10-28: 60 synthetic goals (565 utterances; 20 high-distraction) and 290 minimal pairs (580 utterances, 115 intent pairs); strict validation 0 errors. Adds 4,635 train rows (2,067 goal, 2,568 pair); every other row byte-identical (old file is an exact prefix). Review: `docs/augment-review.md` |
+| Decision-encoder router (A7) | **planned 11-17, nothing run.** Frozen small encoder + five heads + rulebook; phased plan with gates in `docs/plan-a7-decision-router.md`. Model facts are from web search only and unverified |
 | Router R5 (R4 config + A6 data) | ready to run; **waits for the owner's audit of `docs/augment-review.md`** |
 | Router R4 (tags, R1 capacity, 81 intents) | done 10-27, with and without context. Best so far: test macro-F1 0.82-0.85, SWE 28-30% of fair rules; critical miss 5-6% (under 1% with the 0.85 abstention threshold at 74% coverage). Open: high distraction on unseen intents, adversarial slice, int8 |
 | Benchmark v0 | done: 65 intents, 281 seeds, 11,240 paraphrases, 53,184 rows (`docs/dataset-v0.md`); superseded for intents and splits by A5 |
@@ -198,6 +199,34 @@ Zomato ideas below, made concrete.
   (R4's config on the augmented data). R5 also writes val predictions so
   the following round can turn val route-changing tag errors into new
   pairs.
+
+### A7. Decision-encoder router (planned 2026-11-17, nothing run)
+
+**Why:** R4nc showed the model only has to predict context-free tags. That
+is the interface of the "decision models" released since September 2026
+(TypeSafe's Jev and open reproductions; Google's Gemini Decision 1 and
+MediaPipe Decision Maker): one forward pass, typed answers with
+probabilities, no generation. Hosted ones cannot route (the router must
+decide before anything leaves the car), so the candidate is a small
+on-device encoder.
+
+- **Design:** frozen EmbeddingGemma 2 text tower (reported 270M, about
+  191 MB at 4-bit) -> five heads (four tags + sensitive) -> expected-cost
+  routing through the rulebook and `configs/cost_matrix.json` -> abstain
+  above a risk threshold. Optional intent registry (nearest registered
+  example phrase; tags from the table) and a keyword safety lane.
+- **Why frozen first:** heads train in minutes on cached vectors, and the
+  shipped encoder can be Google's quantized file unchanged, which avoids
+  our broken int8 export.
+- **Runs:** R6z zero-shot, R6a frozen + heads, R6a2 token-state heads, R6b
+  registry, R6l safety lane, R6c fine-tuned, R6q 8-bit and latency. No
+  augmentation data in reported runs, so they compare with R4.
+- **Gates and verdict conditions:** `docs/plan-a7-decision-router.md`.
+- **Caveat:** every model fact (size, memory, licence, latency) comes from
+  web search summaries on 11-17; no page was opened. Phase 0 of the plan
+  verifies them.
+- The local generative model (for example Gemma 4 E2B) stays a separate
+  model, called only for routes that need an answer written.
 
 ### Ideas not yet tried
 
@@ -458,6 +487,7 @@ the new splits (seed-only pilot).
 
 | date | decision | why |
 | --- | --- | --- |
+| 11-17 | Plan A7: test a Jev-style decision router on a small frozen encoder, in phases with pre-set gates | one-pass typed decisions match what R4nc needs; a 270M encoder fits the size and latency targets where a shared 2B+ assistant model cannot; frozen-first makes iteration minutes and sidesteps int8 |
 | 10-28 | Add synthetic goals and minimal pairs as train-only augmentation (A6); R5 = R4's config on that data, scored on val too | R4's gaps (OOD high distraction, adversarial slice, OOD capability) come from too few distinct goals per tag value and no look-alike negatives; train-only keeps every eval split and all R4 numbers comparable |
 | 10-27 | Lead design candidate: context-free tag model + rulebook (R4nc tags) | matches the context-aware route head (R4) within CIs, simpler input, policy swappable without retraining |
 | 10-27 | The no-context ablation is reinterpreted (see R4nc): it tests context in the model, not context in the decision | the tags route reaches 0.85 test macro-F1 with no context in the model |
@@ -503,6 +533,10 @@ the new splits (seed-only pilot).
   cruise: comfort vs safety_critical, both always LOCAL) are rejected as
   routing hard negatives. Should a second file accept them as tag-only
   negatives for the actuation head?
+- A7: confirm the proposed verdict thresholds (coverage, OOD bars,
+  sensitive recall) in `docs/plan-a7-decision-router.md` section 7 before
+  the first test scoring; Hugging Face access if the model is gated; a
+  reference device for latency.
 - A6: synthetic-goal tags are labels nobody else checks; who audits
   `docs/augment-review.md` before R5?
 
@@ -514,7 +548,8 @@ the new splits (seed-only pilot).
 | policy tables and rulebook | `src/autogate_bench/policy.py`, `rulebook.py` |
 | seeds and paraphrases | `data/seeds.yaml`, `data/paraphrases/` |
 | dataset generation | `python -m autogate_bench.generate` (`--augment data/augment` for A6) |
-| augmentation (A6) | `data/augment/` (not written yet), `src/autogate_bench/augment.py`, `docs/augmentation-spec.md` |
+| decision-encoder router plan (A7) | `docs/plan-a7-decision-router.md` |
+| augmentation (A6) | `data/augment/`, `src/autogate_bench/augment.py`, `docs/augmentation-spec.md` |
 | rules baseline | `python -m autogate_eval.baselines.rules` |
 | training, predict, score | `src/autogate_router/`, `src/autogate_eval/score.py`, `docs/training.md` |
 | training notebook | `notebooks/kaggle_train.ipynb` |
