@@ -1,0 +1,82 @@
+{
+  "run": "R6a",
+  "frozen_from": "runs/R6a-val",
+  "encoder": {
+    "name": "embeddinggemma-2",
+    "model_id": "google/embeddinggemma-2",
+    "revision": "f9972ac22e696a105c482202646979e33e4b5a1e",
+    "prefix": "task: classification | query: ",
+    "dim": 768,
+    "text_only": true,
+    "max_length": 128
+  },
+  "rows_sha256": "8cc12a4b2cf15293a7a918273ff79d48f1db0c2d9684f710815462d2d2b63b2c",
+  "config": {
+    "method": "heads",
+    "score": [
+      "val",
+      "test",
+      "ood"
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "hidden_grid": [
+      0,
+      256
+    ],
+    "weight_decay_grid": [
+      0.01,
+      0.1,
+      1.0
+    ],
+    "steps": 300,
+    "epochs": 6,
+    "lr": 0.01,
+    "folds": 5,
+    "lambda_grid": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "sensitive_threshold": 0.5,
+    "abstain_target": 0.01,
+    "n_boot": 1000,
+    "selected": {
+      "capability": {
+        "hidden": 0,
+        "weight_decay": 1.0
+      },
+      "distraction": {
+        "hidden": 0,
+        "weight_decay": 1.0
+      },
+      "actuation": {
+        "hidden": 0,
+        "weight_decay": 0.01
+      },
+      "consequence": {
+        "hidden": 0,
+        "weight_decay": 1.0
+      },
+      "sensitive": {
+        "hidden": 256,
+        "weight_decay": 1.0
+      },
+      "joint": {
+        "hidden": 0,
+        "weight_decay": 1.0
+      }
+    },
+    "lam": 0.5,
+    "registry": "none",
+    "lane": false,
+    "tau": null
+  }
+}
