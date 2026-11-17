@@ -275,3 +275,68 @@ def test_tokens_run_with_fake_encoder(tmp_path, fake_token_cache, pilot_jsonl):
     )
     rep = run(fake_token_cache, pilot_jsonl, tmp_path / "tok", cfg)
     assert rep["seeds"][0]["splits"]["val"]["conservative"]["gate"]["n"] > 0
+
+
+def test_safety_lane_is_built_from_train_seeds_and_never_fires_on_refuse(pilot_rows):
+    from autogate_decide.registry import build_lane
+
+    lane = build_lane(pilot_rows)
+    assert lane.keywords
+    for r in pilot_rows:
+        if r["split"] in ("train", "val") and r["route"] == "REFUSE":
+            assert not lane.fires([r["utterance"]])[0]
+    sc_train = [
+        r["utterance"]
+        for r in pilot_rows
+        if r["split"] == "train" and r["actuation"] == "safety_critical"
+    ]
+    assert lane.fires(sc_train).mean() > 0.5
+
+
+def test_registry_replaces_tags_of_matched_utterances(fake_cache, pilot_rows):
+    from autogate_decide.registry import apply_registry, build_registry, choose_tau
+
+    utts = build_utterances(pilot_rows)
+    x = EmbeddingCache.load(fake_cache).lookup(utts.texts)
+    tau, scan = choose_tau(pilot_rows, utts, x, folds=2)
+    assert tau > 1.0 or tau in [s["tau"] for s in scan]  # all-seed pilot: no queries
+    reg = build_registry(pilot_rows, utts, x, 0.999, "fair")
+    probs = {q: np.full((len(utts), len(v)), 1.0 / len(v)) for q, v in QUESTIONS.items()}
+    out, hit = apply_registry(probs, reg, x)
+    seeds = [utts.row_utt[i] for i, r in enumerate(pilot_rows) if r["split"] == "train"]
+    assert hit[seeds].all()  # every training seed matches itself
+    i = seeds[0]
+    assert QUESTIONS["actuation"][out["actuation"][i].argmax()] == pilot_rows[0]["actuation"]
+    assert np.allclose(out["sensitive"], probs["sensitive"])  # heads keep sensitivity
+    reg_ood = build_registry(pilot_rows, utts, x, 0.999, "registered")
+    assert len(reg_ood.intents) > len(reg.intents)
+
+
+def test_registered_run_with_lane(tmp_path, fake_cache, pilot_rows):
+    from autogate_decide.run import RunConfig, run
+
+    # half the seeds stand in for paraphrases, so registered mode has OOD rows left to score
+    rows = tmp_path / "rows.jsonl"
+    with rows.open("w", encoding="utf-8") as f:
+        for r in pilot_rows:
+            odd = int(r["seed_id"].rsplit("/", 1)[1]) % 2
+            f.write(json.dumps({**r, "source": "paraphrase" if odd else "seed"}) + "\n")
+
+    cfg = RunConfig(
+        score=("ood",),
+        seeds=(0,),
+        hidden_grid=(0,),
+        weight_decay_grid=(0.1,),
+        steps=20,
+        folds=2,
+        lambda_grid=(0.5,),
+        n_boot=10,
+        registry="registered",
+        lane=True,
+    )
+    rep = run(fake_cache, rows, tmp_path / "reg", cfg)
+    assert rep["phase3"]["registry_hit_rate"]["ood"] > 0
+    assert rep["phase3"]["lane"]["val"]["fired_on_refuse"] == 0
+    n_ood = sum(r["split"] == "ood" for r in pilot_rows)
+    n_scored = rep["seeds"][0]["splits"]["ood"]["conservative"]["gate"]["n"]
+    assert 0 < n_scored < n_ood  # the registered OOD seeds are not scored

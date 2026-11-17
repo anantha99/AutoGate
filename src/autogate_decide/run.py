@@ -101,6 +101,9 @@ class RunConfig:
     n_boot: int = 1000
     selected: dict[str, dict[str, Any]] = field(default_factory=dict)
     lam: float | None = None
+    registry: str = "none"  # none | fair | registered (Phase 3, R6b)
+    lane: bool = False  # safety lane (Phase 3, R6l)
+    tau: float | None = None
 
 
 # --------------------------------------------------------------------------- #
@@ -295,10 +298,15 @@ def decode(
     jvocab: Sequence,
     lam: float,
     sensitive_threshold: float,
+    force_product: np.ndarray | None = None,
 ) -> dict[str, Decoded]:
     tables = rt.route_tables()
     joint = plain.get("joint")
     pc_utt = rt.combo_probs(plain, mode, joint, jvocab, lam)
+    if force_product is not None and force_product.any():
+        pc_utt[force_product] = rt.combo_probs(
+            {q: p[force_product] for q, p in plain.items()}, "product"
+        )
     pc = pc_utt[utts.row_utt]
     out = {}
     combo, tags = rt.conservative_combo(weighted, sensitive_threshold)
@@ -398,7 +406,8 @@ def score_split(
 ) -> dict[str, Any]:
     from autogate_eval.score import score
 
-    idx = np.array([i for i, r in enumerate(rows) if r["split"] == split])
+    predicted = {p["id"] for p in next(iter(preds_all.values())) if p["_split"] == split}
+    idx = np.array([i for i, r in enumerate(rows) if r["split"] == split and r["id"] in predicted])
     sub = [rows[i] for i in idx]
     out: dict[str, Any] = {}
     for name, dec in decoded.items():
@@ -510,9 +519,48 @@ def run(
     val_idx = np.array([i for i, r in enumerate(rows) if r["split"] == "val"])
     val_rows = [rows[i] for i in val_idx]
     probe = None
+    phase3: dict[str, Any] = {}
+    reg = lane = None
+    if cfg.registry != "none":
+        from autogate_decide.registry import build_registry, choose_tau
+
+        xv = cache.lookup(utts.texts)  # the registry always matches pooled vectors
+        if cfg.tau is None:
+            cfg.tau, phase3["tau_scan"] = choose_tau(rows, utts, xv)
+        reg = build_registry(rows, utts, xv, cfg.tau, cfg.registry)
+        phase3["registry_size"] = len(reg.intents)
+    if cfg.lane:
+        from autogate_decide.registry import build_lane
+
+        lane = build_lane(rows)
+        phase3["lane_keywords"] = sorted(lane.keywords)
+        phase3["lane_dropped"] = list(lane.dropped)
     for seed, plain, weighted, temps, raw_ece_val, prob_fn in seed_runs:
+        fired = None
+        if reg is not None:
+            from autogate_decide.registry import apply_registry
+
+            plain, hit = apply_registry(plain, reg, xv, jvocab)
+            weighted, _ = apply_registry(weighted, reg, xv, jvocab)
+            phase3["registry_hit_rate"] = {
+                s_: float(hit[utts.mask(s_)].mean()) for s_ in ("train", "val", "test", "ood")
+            }
+        if lane is not None:
+            from autogate_decide.registry import apply_lane
+
+            fired = lane.fires(utts.texts)
+            plain, weighted = apply_lane(plain, fired), apply_lane(weighted, fired)
+            phase3["lane"] = lane_report(rows, utts, fired)
         decoded = decode(
-            utts, ctx, plain, weighted, mode, jvocab, cfg.lam or 0.0, cfg.sensitive_threshold
+            utts,
+            ctx,
+            plain,
+            weighted,
+            mode,
+            jvocab,
+            cfg.lam or 0.0,
+            cfg.sensitive_threshold,
+            fired,
         )
         thresholds = {
             name: rt.pick_threshold(
@@ -523,7 +571,17 @@ def run(
             )
             for name, d in decoded.items()
         }
-        score_idx = np.array([i for i, r in enumerate(rows) if r["split"] in cfg.score])
+        score_idx = np.array(
+            [
+                i
+                for i, r in enumerate(rows)
+                if r["split"] in cfg.score
+                # registered mode: the OOD seeds are in the registry, so they are not scored
+                and not (
+                    cfg.registry == "registered" and r["split"] == "ood" and r["source"] == "seed"
+                )
+            ]
+        )
         preds = {}
         for name, d in decoded.items():
             ps = predictions(rows, score_idx, utts, d, name, thresholds[name])
@@ -566,6 +624,7 @@ def run(
         "lambda_scores": lam_scores,
         "joint_vocab": [list(c) for c in jvocab],
         "seeds": seeds_out,
+        "phase3": phase3,
         "seed_summary": seed_summary(seeds_out),
         "minimal_pairs": probe,
         "git": git_commit(),
@@ -576,6 +635,26 @@ def run(
     (out / "report.md").write_text(format_report(report), encoding="utf-8")
     print(format_report(report))
     return report
+
+
+def lane_report(
+    rows: Sequence[Mapping[str, Any]], utts: Utterances, fired: np.ndarray
+) -> dict[str, Any]:
+    """Per split: rows the lane fires on, how many are true REFUSE (must be 0) and its
+    recall on true safety-critical rows."""
+    out = {}
+    for split in ("train", "val", "test", "ood"):
+        idx = [i for i, r in enumerate(rows) if r["split"] == split]
+        f = fired[utts.row_utt[idx]]
+        refuse = np.array([rows[i]["route"] == "REFUSE" for i in idx])
+        sc = np.array([rows[i]["actuation"] == "safety_critical" for i in idx])
+        out[split] = {
+            "rows_fired": int(f.sum()),
+            "fired_on_refuse": int((f & refuse).sum()),
+            "fired_on_non_safety_critical": int((f & ~sc).sum()),
+            "recall_safety_critical": float(f[sc].mean()) if sc.any() else None,
+        }
+    return out
 
 
 def _config_dict(cfg: RunConfig) -> dict[str, Any]:
@@ -750,12 +829,16 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
         help="config.json of an earlier run: reuse its selection (no re-search)",
     )
     p.add_argument("--n-boot", type=int, default=1000)
+    p.add_argument("--registry", choices=("none", "fair", "registered"), default="none")
+    p.add_argument("--lane", action="store_true", help="safety lane (Phase 3)")
     a = p.parse_args(argv)
     cfg = RunConfig(
         method=a.method,
         score=tuple(s.strip() for s in a.score.split(",")),
         seeds=tuple(int(s) for s in a.seeds.split(",")),
         n_boot=a.n_boot,
+        registry=a.registry,
+        lane=a.lane,
     )
     if a.method == "tokens":  # attention pooling: linear only, a smaller grid
         cfg.hidden_grid, cfg.weight_decay_grid = (0,), (0.01, 0.1)
@@ -763,6 +846,7 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
         old = json.loads(a.config.read_text(encoding="utf-8"))
         cfg.selected = old["selected"]
         cfg.lam = old["lam"]
+        cfg.tau = old.get("tau")
     return run(a.cache, a.rows, a.out, cfg, a.pairs_rows)
 
 
