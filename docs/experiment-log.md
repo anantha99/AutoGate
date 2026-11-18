@@ -435,6 +435,26 @@ After a third independent review. `python -m autogate_decide.finetune`:
   on val cannot see a collapse on unseen intents, and OOD is first seen at
   the single test scoring.
 
+**R6c fine-tunes (11-18; val only, in-model heads, conservative decoder).**
+CPU, torch 2.14.0+cpu, 4 threads; 16,018 train utterances, batch 32.
+
+| run | epoch | train loss | val SWE | val macro-F1 | val critical miss | elapsed |
+| --- | --- | --- | --- | --- | --- | --- |
+| lora16 | 1 | 1.591 | 0.432 | 0.751 | 7.6% | 18 min |
+| lora16 | 2 | 0.369 | 0.413 | 0.795 | 9.0% | 36 min |
+| lora16 | 3 | 0.195 | 0.408 | 0.782 | 7.8% | 53 min |
+| full | 1 | 1.066 | 0.340 | 0.845 | 6.9% | 26 min |
+| full | 2 | 0.082 | 0.333 | 0.833 | 6.7% | 53 min |
+| full | 3 | 0.009 | 0.341 | 0.833 | 7.7% | 80 min |
+
+Kept: LoRA epoch 3 (val SWE 0.408) and full epoch 2 (val SWE 0.333); **full goes on**, as pre-registered.
+For scale, R4's route head on val reached SWE 0.359 / macro-F1 0.808 /
+critical miss 4.9% at its last epoch. Full fine-tuning drives train loss to
+0.01 by epoch 3 and val SWE turns up: memorisation, which held-out
+intents (OOD) will show if anything does. The merged encoders reproduce
+the training-time vectors of five probe sentences (max difference 2e-8
+full, 2e-7 LoRA).
+
 ### R6a2: A7 Phase 2b, layer-mix token heads (2026-11-17/18)
 
 - Frozen EmbeddingGemma 2, per-token states of layers 6, 12, 18, 23
