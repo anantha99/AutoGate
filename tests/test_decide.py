@@ -436,3 +436,23 @@ def test_selection_resumes_from_checkpoint(tmp_path, fake_cache, pilot_rows):
     again, oof2 = select_heads(utts, x, cfg, jv, ck)
     assert again == json.loads(json.dumps(first))
     assert np.allclose(oof2["actuation"], oof["actuation"])
+
+
+def test_finetune_resumes_at_the_next_epoch(tmp_path, tiny_backbone, pilot_jsonl):
+    pytest.importorskip("peft")
+    from autogate_decide.finetune import finetune
+
+    kw = dict(
+        model_id=str(tiny_backbone),
+        revision=None,
+        prefix="",
+        text_only=False,
+        lora_rank=4,
+        batch_size=32,
+        lr=1e-3,
+        limit_train=120,
+    )
+    out = tmp_path / "ft"
+    finetune(pilot_jsonl, out, epochs=1, **kw)  # "interrupted" after epoch 1
+    rep = finetune(pilot_jsonl, out, epochs=2, **kw)
+    assert [h["epoch"] for h in rep["history"]] == [1, 2]

@@ -177,8 +177,23 @@ def finetune(
     best: dict[str, Any] | None = None
     best_state: dict[str, Any] = {}
     out.mkdir(parents=True, exist_ok=True)
+    ckpt = out / "resume.pt"
+    start = 1
+    if ckpt.exists():  # resume after an interruption, at the next epoch boundary
+        st = torch.load(ckpt, weights_only=False)
+        named = dict(backbone.named_parameters())
+        with torch.no_grad():
+            for n, v in st["trainable"].items():
+                named[n].copy_(v)
+        heads.load_state_dict(st["heads"])
+        opt.load_state_dict(st["opt"])
+        sched.load_state_dict(st["sched"])
+        rng.bit_generator.state = st["rng"]
+        torch.set_rng_state(st["torch_rng"])
+        history, best, best_state, start = st["history"], st["best"], st["best_state"], st["next"]
+        print(f"resumed at epoch {start} from {ckpt}")
     t0 = time.time()
-    for epoch in range(1, epochs + 1):
+    for epoch in range(start, epochs + 1):
         backbone.train()
         order = rng.permutation(train)
         total = 0.0
@@ -215,6 +230,23 @@ def finetune(
             best_state = {
                 n: p.detach().clone() for n, p in backbone.named_parameters() if p.requires_grad
             }
+        torch.save(
+            {
+                "trainable": {
+                    n: p.detach().clone() for n, p in backbone.named_parameters() if p.requires_grad
+                },
+                "heads": heads.state_dict(),
+                "opt": opt.state_dict(),
+                "sched": sched.state_dict(),
+                "rng": rng.bit_generator.state,
+                "torch_rng": torch.get_rng_state(),
+                "history": history,
+                "best": best,
+                "best_state": best_state,
+                "next": epoch + 1,
+            },
+            ckpt,
+        )
     if best_state:
         with torch.no_grad():
             named = dict(backbone.named_parameters())
