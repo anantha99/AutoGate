@@ -1,0 +1,10 @@
+{
+  "beta": 0.027601,
+  "r6c_mean_drift_1_minus_cos": 0.740608,
+  "r6c_train_loss_kept_epoch": 0.081767,
+  "r6c_kept_epoch": 2,
+  "share_of_loss": 0.25,
+  "n_train_texts": 16017,
+  "rule": "beta * drift = 0.25 * R6c's train loss at its kept epoch (docs/plan-a8-finetune-a6.md section 5)",
+  "computed": "2026-11-18, before any A8 run; no A6 labels used"
+}

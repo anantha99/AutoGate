@@ -4,9 +4,19 @@ A phased plan for an implementing agent. It follows A7
 (`docs/plan-a7-decision-router.md`), which was dropped by its own stop rule,
 and reuses A7's code (`src/autogate_decide/`).
 
-Status: **planned, nothing run.** Written 2026-11-18 and revised the same
-day after an independent review. **Blocked** on the owner's audit of
-`docs/augment-review.md` (A6 data may not be trained on before it).
+Status: **Phase 0 prepared, nothing trained.** Written 2026-11-18 and
+revised the same day after an independent review. **Blocked** on the
+owner's audit of `docs/augment-review.md` (A6 data may not be trained on
+before it). The owner chose CPU (2026-11-18): once the audit is done,
+`scripts/a8_phase1.sh` runs Phase 1 end to end and stops where this plan
+says stop.
+
+Prepared (committed before any A8 run): `configs/decide/a8_holdout.yaml`
+(proxy pick with seed 0: read_document, send_text_message, emergency_call,
+disable_lane_assist, play_video, book_restaurant, fuel_prices_nearby,
+adjust_window; key words; 59 probe pairs), `configs/decide/a8_beta.json`
+(beta 0.0276), `autogate_decide.holdout`, `autogate_decide.a8` (the
+selection rules) and the fine-tune options, with tests.
 
 ## 1. What we are testing
 
@@ -146,7 +156,7 @@ warmup 6%; 3 epochs.
 
 | id | what | role |
 | --- | --- | --- |
-| R7-frz | frozen encoder + heads (A7's R6a recipe), A6 data, proxy held out | the unseen-intent level Gate 2 needs (minutes, from the cache) |
+| R7-frz | frozen encoder, heads trained through the same fine-tune path (`--freeze-encoder`, vectors from the frozen cache), A6 data, proxy held out | the unseen-intent level Gate 2 needs; scored by the same decoder as the others (minutes) |
 | R7-ctl | R6c recipe, **no** A6, proxy held out | where R6c already stood on the proxy |
 | R7a | R6c recipe + A6 | the data effect alone |
 | R7b | R6c recipe + A6 + distillation | data plus a pull towards the frozen geometry |

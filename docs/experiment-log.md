@@ -22,7 +22,7 @@ Last updated: 2026-11-18 (A7 dropped by its stop rule; A8 planned: fine-tune on 
 | Taxonomy expansion (A5) | done 10-23: 81 intents, 361 seeds, 14,440 paraphrases, 66,414 rows (sha256 `8cc12a4b...`); 8-intent OOD holdout balanced by tag. R1/R2 are not directly comparable with runs on this data |
 | Train-only augmentation (A6) | data done 10-28: 60 synthetic goals (565 utterances; 20 high-distraction) and 290 minimal pairs (580 utterances, 115 intent pairs); strict validation 0 errors. Adds 4,635 train rows (2,067 goal, 2,568 pair); every other row byte-identical (old file is an exact prefix). Review: `docs/augment-review.md` |
 | Decision-encoder router (A7) | **Dropped 11-18 by the plan's stop rule** (Gate 2 failed after Phase 4). No configuration passes test and OOD together: frozen R6a passes OOD (1.015 / 21.7%) but not test (0.562 / 9.7%); fully fine-tuned R6c beats R4 on test (0.867 / 0.308 / 4.8%) but fails OOD (1.166 / 30.5%). Code kept in `src/autogate_decide/` |
-| Fine-tune on A6 data (A8) | **planned 11-18, nothing run; blocked on the A6 audit.** R6c's recipe on the augmented data, plus a distillation and a LoRA variant, selected on val and a proxy holdout of 8 training intents; one final model scored once. Plan: `docs/plan-a8-finetune-a6.md` |
+| Fine-tune on A6 data (A8) | **Phase 0 prepared 11-18, nothing trained; blocked on the A6 audit; then runs on CPU here (`scripts/a8_phase1.sh`).** R6c's recipe on the augmented data, plus a distillation and a LoRA variant, selected on val and a proxy holdout of 8 training intents; one final model scored once. Plan: `docs/plan-a8-finetune-a6.md` |
 | Router R5 (R4 config + A6 data) | ready to run; **waits for the owner's audit of `docs/augment-review.md`** |
 | Router R4 (tags, R1 capacity, 81 intents) | done 10-27, with and without context. Best so far: test macro-F1 0.82-0.85, SWE 28-30% of fair rules; critical miss 5-6% (under 1% with the 0.85 abstention threshold at 74% coverage). Open: high distraction on unseen intents, adversarial slice, int8 |
 | Benchmark v0 | done: 65 intents, 281 seeds, 11,240 paraphrases, 53,184 rows (`docs/dataset-v0.md`); superseded for intents and splits by A5 |
@@ -311,6 +311,24 @@ training intents) and 290 minimal pairs are the fix it was built for.
   the verdict thresholds as in A7.
 - **Blocked** on the owner's audit of `docs/augment-review.md`; R5 (R4 on
   the same data) is the comparison that tells whether A6 helps any router.
+- **Phase 0 prepared (11-18), nothing trained:**
+  - Proxy holdout (seed 0): read_document, send_text_message,
+    emergency_call, disable_lane_assist, play_video, book_restaurant,
+    fuel_prices_nearby, adjust_window. Same capability, distraction and
+    actuation as the 8 OOD intents.
+  - On the current A6 data, selection runs move 5,535 proxy rows out of
+    train and val and drop 102 of the 290 pairs (pairs touching a proxy
+    intent). They also drop 7 of the 60 goals: 6 on key words, among them
+    two video-streaming goals and a movie one; 1 on token overlap, a
+    send-a-message phrasing.
+  - 59 probe pairs (465 rows) are held out in every phase.
+  - Selection therefore runs on a smaller A6 than the final model; that is
+    the price of a clean unseen-intent proxy.
+  - Distillation weight beta = 0.0276, from R6c's drift: the fine-tuned
+    vectors have mean cosine 0.26 with the frozen ones, so R6c rewrote the
+    geometry almost entirely.
+  - R7-frz trains its heads through the same fine-tune path with the
+    encoder frozen, so all proxy comparisons share one decoder.
 
 ### Ideas not yet tried
 
@@ -787,6 +805,7 @@ approach survives.
 
 | date | decision | why |
 | --- | --- | --- |
+| 11-18 | A8 runs on this CPU, started by `scripts/a8_phase1.sh` as soon as the owner reports the A6 audit done | owner's instruction; about 9 hours, resumable after container restarts |
 | 11-18 | Plan A8: fine-tune the decision encoder on the A6 data, selected on a proxy holdout of training intents | owner asked for this follow-up; R6c failed only on unseen intents, which A6 targets; A7's selection could not see unseen intents |
 | 11-18 | **Drop A7** (the plan's stop rule: Gate 2 failed after Phase 4) and return to R5 | R6c (full fine-tune) passes every test bar and beats R4, but OOD critical miss 30.5% and SWE 1.166 fail; no A7 configuration passes test and OOD together |
 | 11-18 | R6c: full fine-tune goes on over LoRA (val SWE 0.333 vs 0.408); score only the winner on test | pre-registered; keeps A7 to three uses of the test set |

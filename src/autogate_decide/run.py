@@ -110,6 +110,8 @@ class RunConfig:
     selected: dict[str, dict[str, Any]] = field(default_factory=dict)
     lam: float | None = None
     registry: str = "none"  # none | fair | registered (Phase 3, R6b)
+    holdout: str | None = None  # A8: configs/decide/a8_holdout.yaml
+    holdout_mode: str = "proxy"  # proxy (selection runs) | final
     lane: bool = False  # safety lane (Phase 3, R6l)
     tau: float | None = None
 
@@ -559,6 +561,13 @@ def run(
     out.mkdir(parents=True, exist_ok=True)
     cache = EmbeddingCache.load(cache_dir)
     rows = load_rows(rows_path)
+    holdout_report = None
+    if cfg.holdout:
+        from autogate_decide.holdout import Holdout, apply, goal_texts
+
+        rows, holdout_report = apply(
+            rows, Holdout.load(cfg.holdout), goal_texts(), proxy=cfg.holdout_mode == "proxy"
+        )
     utts = build_utterances(rows)
     lookup: Any = cache
     if cfg.method == "tokens":
@@ -707,7 +716,11 @@ def run(
                 with (out / f"pred_{name}.jsonl").open("w", encoding="utf-8") as f:
                     for p in ps:
                         f.write(json.dumps({k: v for k, v in p.items() if k != "_split"}) + "\n")
-            if pairs_rows_path is not None:
+            if cfg.holdout:  # A8: only the held-out probe pairs, from these rows
+                probe = minimal_pairs(
+                    None, lookup, prob_fn, cfg, [r for r in rows if r["split"] == "probe"]
+                )
+            elif pairs_rows_path is not None:
                 probe = minimal_pairs(pairs_rows_path, lookup, prob_fn, cfg)
         seeds_out[seed] = {
             "temperatures": temps,
@@ -721,6 +734,7 @@ def run(
         "method": cfg.method,
         "cache": cache.manifest,
         "rows": {"path": str(rows_path), "sha256": sha256_file(rows_path)},
+        "holdout": holdout_report,
         "config": _config_dict(cfg),
         "lambda_scores": lam_scores,
         "joint_vocab": [list(c) for c in jvocab],
@@ -768,13 +782,19 @@ def _config_dict(cfg: RunConfig) -> dict[str, Any]:
 
 
 def minimal_pairs(
-    pairs_rows_path: Path, cache: Any, prob_fn: Any, cfg: RunConfig
+    pairs_rows_path: Path | None,
+    cache: Any,
+    prob_fn: Any,
+    cfg: RunConfig,
+    pair_rows: list[dict] | None = None,
 ) -> dict[str, Any] | None:
     """Conservative tags for the minimal-pair utterances (never trained on), and the probe."""
     from autogate_bench.augment import DEFAULT_AUGMENT_DIR, PAIRS_FILE, load_pairs
     from autogate_router.data import load_rows
 
-    pair_rows = [r for r in load_rows(pairs_rows_path) if r.get("pair_id")]
+    if pair_rows is None:
+        pair_rows = [r for r in load_rows(pairs_rows_path) if r.get("pair_id")]
+    pair_rows = [r for r in pair_rows if r.get("pair_id")]
     if not pair_rows:
         return None
     texts = list(dict.fromkeys(r["utterance"] for r in pair_rows))
@@ -939,6 +959,8 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
     )
     p.add_argument("--registry", choices=("none", "fair", "registered"), default="none")
     p.add_argument("--lane", action="store_true", help="safety lane (Phase 3)")
+    p.add_argument("--holdout", default=None, help="A8: configs/decide/a8_holdout.yaml")
+    p.add_argument("--holdout-mode", choices=("proxy", "final"), default="proxy")
     a = p.parse_args(argv)
     cfg = RunConfig(
         method=a.method,
@@ -947,6 +969,8 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
         n_boot=a.n_boot,
         registry=a.registry,
         lane=a.lane,
+        holdout=a.holdout,
+        holdout_mode=a.holdout_mode,
     )
     if a.method == "tokens":  # R6a2, pre-registered 11-17 (docs/experiment-log.md)
         cfg.hidden_grid = (0,)

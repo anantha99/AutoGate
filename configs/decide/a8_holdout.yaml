@@ -1,0 +1,84 @@
+# A8 proxy holdout and probe pairs (docs/plan-a8-finetune-a6.md section 4).
+# proxy and probe_pairs: `python -m autogate_decide.holdout pick --seed 0` on the augmented rows
+# (2026-11-18, before the A6 audit). keywords: hand-written after the pick, like
+# autogate_bench.augment.OOD_KEYWORDS (a goal whose name or description has every word of an
+# entry, as word prefixes, is dropped during selection runs). Never edit after the first A8 run.
+seed: 0
+proxy:  # real OOD intent: proxy training intent (same capability, distraction, actuation)
+  compose_long_email: read_document
+  estimate_trip_cost: send_text_message
+  fog_lights_on: emergency_call
+  open_fuel_door: disable_lane_assist
+  pair_bluetooth_device: play_video
+  read_news_headlines: book_restaurant
+  route_avoiding_tolls: fuel_prices_nearby
+  set_ambient_lighting: adjust_window
+keywords:
+  read_document: [["document"], ["pdf"], ["read", "file"]]
+  send_text_message: [["text", "message"], ["send", "text"], ["sms"], ["whatsapp"]]
+  emergency_call: [["emergency"], ["ambulance"], ["112"], ["police"]]
+  disable_lane_assist: [["lane"]]
+  play_video: [["video"], ["movie"]]
+  book_restaurant: [["restaurant"], ["reserve", "table"], ["book", "table"]]
+  fuel_prices_nearby: [["fuel", "price"], ["petrol", "price"], ["diesel", "price"]]
+  adjust_window: [["window"]]
+probe_pairs:
+  - add_reminder_vs_weather_now_01
+  - calendar_today_vs_add_calendar_event_01
+  - calendar_today_vs_add_reminder_01
+  - calendar_today_vs_add_reminder_02
+  - calendar_today_vs_add_reminder_03
+  - calendar_today_vs_add_reminder_04
+  - calendar_today_vs_read_email_aloud_01
+  - call_contact_vs_reply_to_message_01
+  - call_contact_vs_reply_to_message_02
+  - cancel_cruise_control_vs_disable_stability_control_01
+  - cancel_cruise_control_vs_disable_stability_control_02
+  - climate_on_off_vs_disable_stability_control_01
+  - climate_on_off_vs_disable_stability_control_02
+  - climate_on_off_vs_disable_stability_control_03
+  - climate_on_off_vs_disable_stability_control_04
+  - climate_on_off_vs_disable_stability_control_05
+  - current_time_vs_weather_now_01
+  - current_time_vs_weather_now_02
+  - current_time_vs_weather_now_03
+  - current_time_vs_weather_now_04
+  - current_time_vs_weather_now_05
+  - current_time_vs_weather_now_06
+  - dip_high_beams_vs_disable_stability_control_01
+  - dip_high_beams_vs_disable_stability_control_02
+  - eta_to_destination_vs_traffic_on_route_01
+  - eta_to_destination_vs_traffic_on_route_02
+  - eta_to_destination_vs_traffic_on_route_03
+  - explain_topic_in_depth_vs_browse_web_01
+  - explain_topic_in_depth_vs_browse_web_02
+  - explain_topic_in_depth_vs_browse_web_03
+  - explain_topic_in_depth_vs_browse_web_04
+  - lookup_contact_info_vs_read_messages_01
+  - lookup_contact_info_vs_read_messages_02
+  - navigate_home_vs_add_stop_along_route_01
+  - navigate_home_vs_add_stop_along_route_02
+  - navigate_to_contact_address_vs_add_stop_along_route_01
+  - navigate_to_contact_address_vs_add_stop_along_route_02
+  - navigate_to_contact_address_vs_add_stop_along_route_03
+  - next_turn_vs_show_photos_01
+  - next_turn_vs_show_photos_02
+  - plan_day_itinerary_vs_traffic_on_route_01
+  - plan_day_itinerary_vs_traffic_on_route_02
+  - play_voicemail_vs_play_music_01
+  - play_voicemail_vs_play_music_02
+  - play_voicemail_vs_play_music_03
+  - play_voicemail_vs_play_music_04
+  - seat_ventilation_on_vs_adjust_steering_wheel_01
+  - set_audio_volume_vs_adjust_steering_wheel_01
+  - set_cabin_temperature_vs_fold_mirrors_01
+  - set_drive_mode_vs_disable_stability_control_01
+  - set_drive_mode_vs_disable_stability_control_02
+  - vehicle_manual_question_vs_cancel_cruise_control_01
+  - vehicle_manual_question_vs_cancel_cruise_control_02
+  - vehicle_manual_question_vs_headlights_on_01
+  - vehicle_manual_question_vs_set_cruise_speed_01
+  - vehicle_manual_question_vs_set_recirculation_01
+  - vehicle_manual_question_vs_unlock_doors_01
+  - vehicle_manual_question_vs_wipers_on_01
+  - weather_now_vs_plan_multi_day_trip_01
