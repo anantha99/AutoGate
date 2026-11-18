@@ -176,6 +176,13 @@ def select_heads(
                     hc = HeadConfig(
                         hidden=h, weight_decay=wd, lr=cfg.lr, steps=cfg.steps, epochs=ep
                     )
+                    tag = f"{q}__h{h}_wd{wd}_ep{ep}"
+                    if checkpoint is not None and (checkpoint / f"{tag}.json").exists():
+                        t = json.loads((checkpoint / f"{tag}.json").read_text(encoding="utf-8"))
+                        t["_oof"] = np.load(checkpoint / f"{tag}_oof.npy")
+                        trials.append(t)
+                        print(f"  select {tag}: resumed")
+                        continue
                     oof = np.zeros((len(utts), k))
                     for held in folds:
                         head = train_head(x[train & ~held], y[train & ~held], k, hc, seed=0)
@@ -207,6 +214,11 @@ def select_heads(
                     full = train_head(x[train], y[train], k, hc, seed=0)
                     t["val_nll"] = nll(full.probs(x[val], calibrated=False), y[val])
                     trials.append(t)
+                    if checkpoint is not None:
+                        checkpoint.mkdir(parents=True, exist_ok=True)
+                        np.save(checkpoint / f"{tag}_oof.npy", t["_oof"])
+                        body = {k_: v for k_, v in t.items() if k_ != "_oof"}
+                        (checkpoint / f"{tag}.json").write_text(json.dumps(body), "utf-8")
                     print(
                         f"  select {q}: hidden {h} wd {wd} ep {ep}: intent {t['oof_nll']:.4f} "
                         f"seed {t.get('seed_nll', float('nan')):.4f} val {t['val_nll']:.4f}"
