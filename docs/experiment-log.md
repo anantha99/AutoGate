@@ -4,7 +4,7 @@ The running memory of the project: what we are trying, why, what each run
 produced, and what is still open. Newest results go at the top of each
 section. Every run gets an entry in "Runs", even a failed one.
 
-Last updated: 2026-11-18 (A7 dropped by its own stop rule after Phase 4: R6c beats R4 on test, fails on OOD; R5 waits for the audit). Linked from `CLAUDE.md` so every session reads it.
+Last updated: 2026-11-18 (A7 dropped by its stop rule; A8 planned: fine-tune on the A6 data; R5 and A8 wait for the audit). Linked from `CLAUDE.md` so every session reads it.
 
 ## How to use this file
 
@@ -22,6 +22,7 @@ Last updated: 2026-11-18 (A7 dropped by its own stop rule after Phase 4: R6c bea
 | Taxonomy expansion (A5) | done 10-23: 81 intents, 361 seeds, 14,440 paraphrases, 66,414 rows (sha256 `8cc12a4b...`); 8-intent OOD holdout balanced by tag. R1/R2 are not directly comparable with runs on this data |
 | Train-only augmentation (A6) | data done 10-28: 60 synthetic goals (565 utterances; 20 high-distraction) and 290 minimal pairs (580 utterances, 115 intent pairs); strict validation 0 errors. Adds 4,635 train rows (2,067 goal, 2,568 pair); every other row byte-identical (old file is an exact prefix). Review: `docs/augment-review.md` |
 | Decision-encoder router (A7) | **Dropped 11-18 by the plan's stop rule** (Gate 2 failed after Phase 4). No configuration passes test and OOD together: frozen R6a passes OOD (1.015 / 21.7%) but not test (0.562 / 9.7%); fully fine-tuned R6c beats R4 on test (0.867 / 0.308 / 4.8%) but fails OOD (1.166 / 30.5%). Code kept in `src/autogate_decide/` |
+| Fine-tune on A6 data (A8) | **planned 11-18, nothing run; blocked on the A6 audit.** R6c's recipe on the augmented data, plus a distillation and a LoRA variant, selected on val and a proxy holdout of 8 training intents; one final model scored once. Plan: `docs/plan-a8-finetune-a6.md` |
 | Router R5 (R4 config + A6 data) | ready to run; **waits for the owner's audit of `docs/augment-review.md`** |
 | Router R4 (tags, R1 capacity, 81 intents) | done 10-27, with and without context. Best so far: test macro-F1 0.82-0.85, SWE 28-30% of fair rules; critical miss 5-6% (under 1% with the 0.85 abstention threshold at 74% coverage). Open: high distraction on unseen intents, adversarial slice, int8 |
 | Benchmark v0 | done: 65 intents, 281 seeds, 11,240 paraphrases, 53,184 rows (`docs/dataset-v0.md`); superseded for intents and splits by A5 |
@@ -284,6 +285,29 @@ independent review by a second model; see the decision log):
   one (OOD has 8 intents; rows of one intent are correlated).
 - Gate 2 parity excludes masking: the sensitive head is a yes/no answer
   with no spans, so the span leak rate is not measured.
+
+### A8. Fine-tune the decision encoder on the A6 data (planned 2026-11-18, nothing run)
+
+**Why:** A7's fine-tuned encoder (R6c) beat R4 on test (0.867 / 0.308 /
+4.8%) but collapsed on unseen intents (OOD 1.166 / 30.5%; high distraction
+missed 88%). The bet: the collapse comes from too few distinct goals per
+tag value. A6's 60 synthetic goals (20 high distraction, against 7 such
+training intents) and 290 minimal pairs are the fix it was built for.
+
+- **Design:** R6c's recipe on `generate --augment data/augment`, three
+  variants: full fine-tune (R7a), full fine-tune plus distillation towards
+  the frozen encoder's vectors (R7b), and attention-only LoRA (R7c). The
+  control is R6c's recipe without A6 (R7-ctl).
+- **Selection sees unseen intents:** a tag-balanced proxy holdout of 8
+  training intents is removed during selection; 20% of the minimal pairs
+  are a probe never trained on. Rule: pass a val filter (Gate 2's test bars
+  on val), then lowest proxy-holdout critical miss; go on only if that
+  beats the control by >= 3 points.
+- **One final model** (R7), retrained on all training data, scored once
+  (the fourth use of the test set; stated beside the result). Gate 2 and
+  the verdict thresholds as in A7.
+- **Blocked** on the owner's audit of `docs/augment-review.md`; R5 (R4 on
+  the same data) is the comparison that tells whether A6 helps any router.
 
 ### Ideas not yet tried
 
@@ -760,6 +784,7 @@ approach survives.
 
 | date | decision | why |
 | --- | --- | --- |
+| 11-18 | Plan A8: fine-tune the decision encoder on the A6 data, selected on a proxy holdout of training intents | owner asked for this follow-up; R6c failed only on unseen intents, which A6 targets; A7's selection could not see unseen intents |
 | 11-18 | **Drop A7** (the plan's stop rule: Gate 2 failed after Phase 4) and return to R5 | R6c (full fine-tune) passes every test bar and beats R4, but OOD critical miss 30.5% and SWE 1.166 fail; no A7 configuration passes test and OOD together |
 | 11-18 | R6c: full fine-tune goes on over LoRA (val SWE 0.333 vs 0.408); score only the winner on test | pre-registered; keeps A7 to three uses of the test set |
 | 11-18 | A7 Gate 2 outcome B for R6a2 too (test SWE 0.467, critical miss 10.7%; OOD critical miss 27.3%); go to Phase 4 (fine-tune, R6c) as the plan says | frozen encoders, pooled or token-level, do not reach R4 on known intents |
@@ -833,6 +858,7 @@ approach survives.
 | seeds and paraphrases | `data/seeds.yaml`, `data/paraphrases/` |
 | dataset generation | `python -m autogate_bench.generate` (`--augment data/augment` for A6) |
 | decision-encoder router plan (A7) | `docs/plan-a7-decision-router.md` |
+| fine-tune on A6 plan (A8) | `docs/plan-a8-finetune-a6.md` |
 | decision-encoder router code and frozen configs (A7) | `src/autogate_decide/`, `configs/decide/`; outputs `runs/` (gitignored) |
 | augmentation (A6) | `data/augment/`, `src/autogate_bench/augment.py`, `docs/augmentation-spec.md` |
 | rules baseline | `python -m autogate_eval.baselines.rules` |
