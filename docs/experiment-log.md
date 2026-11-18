@@ -294,15 +294,18 @@ missed 88%). The bet: the collapse comes from too few distinct goals per
 tag value. A6's 60 synthetic goals (20 high distraction, against 7 such
 training intents) and 290 minimal pairs are the fix it was built for.
 
-- **Design:** R6c's recipe on `generate --augment data/augment`, three
-  variants: full fine-tune (R7a), full fine-tune plus distillation towards
-  the frozen encoder's vectors (R7b), and attention-only LoRA (R7c). The
-  control is R6c's recipe without A6 (R7-ctl).
-- **Selection sees unseen intents:** a tag-balanced proxy holdout of 8
-  training intents is removed during selection; 20% of the minimal pairs
-  are a probe never trained on. Rule: pass a val filter (Gate 2's test bars
-  on val), then lowest proxy-holdout critical miss; go on only if that
-  beats the control by >= 3 points.
+- **Design:** R6c's recipe on `generate --augment data/augment`, with and
+  without distillation towards the frozen encoder's vectors (R7a, R7b).
+  Controls: R6c's recipe without A6 (R7-ctl) and the frozen encoder
+  (R7-frz). LoRA is cut (it lost on val in A7).
+- **Selection sees unseen intents:** a proxy holdout of 8 training intents
+  with the real OOD set's tag tuples is removed from train and val during
+  selection (with A6's leak guards against it); 58 minimal pairs are a
+  report-only probe never trained on. The proxy must first reproduce A7's
+  ordering (frozen beats fine-tuned). Rule: a val filter relative to
+  R7-ctl, then the lowest proxy critical miss. Go on only if the winner
+  beats R7-ctl and matches R7-frz on the proxy, on two fine-tune seeds,
+  under an intent-clustered paired bootstrap.
 - **One final model** (R7), retrained on all training data, scored once
   (the fourth use of the test set; stated beside the result). Gate 2 and
   the verdict thresholds as in A7.

@@ -4,9 +4,9 @@ A phased plan for an implementing agent. It follows A7
 (`docs/plan-a7-decision-router.md`), which was dropped by its own stop rule,
 and reuses A7's code (`src/autogate_decide/`).
 
-Status: **planned, nothing run.** Written 2026-11-18. **Blocked** on the
-owner's audit of `docs/augment-review.md` (A6 data may not be trained on
-before it).
+Status: **planned, nothing run.** Written 2026-11-18 and revised the same
+day after an independent review. **Blocked** on the owner's audit of
+`docs/augment-review.md` (A6 data may not be trained on before it).
 
 ## 1. What we are testing
 
@@ -26,9 +26,9 @@ probabilities are confidently wrong (ECE 0.34 and 0.32).
 **Hypothesis.** The OOD collapse comes from training on too few distinct
 goals per tag value (only 7 training intents are high distraction). A6 adds
 60 synthetic goals (20 of them high distraction) and 290 minimal pairs.
-Fine-tuning on that data, with a guard against drifting away from the
-frozen encoder, keeps R6c's test results and brings OOD back to at least
-R4's level.
+Fine-tuning on that data, with or without a pull towards the frozen
+encoder, keeps R6c's test results and brings unseen intents back to at
+least the frozen encoder's level, which Gate 2 needs.
 
 **Why it could fail.**
 
@@ -36,15 +36,17 @@ R4's level.
   "distraction" as a property rather than a list of phrasings.
 - The A6 labels are judgement calls that nobody but the owner checks.
 - The collapse may come from supervised fine-tuning itself, not from the
-  data. That is why the plan has an anti-drift variant (section 5) and a
-  no-A6 control.
-- Selection still cannot see the real OOD set. The proxy holdout
-  (section 4) is a guess at what OOD looks like.
+  data. That is why there is an anti-drift variant (R7b) and two controls
+  (section 5).
+- Selection cannot see the real OOD set. The proxy holdout (section 4) is a
+  stand-in, and Phase 1 checks it reproduces A7's known ordering before
+  any comparison counts.
 
 **What it does not prove.** As in A7: synthetic benchmark, not real
-drivers. It also does not separate "A6 helps" from "A6 helps this
-encoder". R5 (R4's Qwen router on the same data) answers the first
-question, and A8 reports beside it when R5 exists.
+drivers. It also does not show whether A6 helps routers in general. R5
+(R4's Qwen router on the same data) answers that, and A8 reports beside it
+when R5 exists. **R5 trains on all 290 pairs, A8 on 232 of them** (section
+4): say so wherever the two appear together.
 
 ## 2. Rules for the implementing agent
 
@@ -57,9 +59,9 @@ Everything in section 3 of the A7 plan still applies, in particular:
 - **The audit comes first.** Do not train on `data/augment` until the
   owner has audited `docs/augment-review.md`. Use any corrections the audit
   makes; regenerate and re-record the sha256.
-- **Pre-register, then score once.** Fit on train. Select on val and on
-  the proxy holdout (section 4). Commit the frozen configuration, then
-  score test and OOD **once**.
+- **Pre-register, then score once.** Fit on train. Select on the
+  selection sets of section 4. Commit the frozen configuration, then score
+  test and OOD **once**.
 - **Test reuse.** A7 used the test and OOD sets three times (R6a, R6a2,
   R6c). A8 adds exactly one more use, for the single final configuration.
   State that count next to the result. Nothing is tuned after it.
@@ -74,72 +76,99 @@ Everything in section 3 of the A7 plan still applies, in particular:
 **Stop and ask the owner when:**
 
 - the audit is not done, or its corrections change more than a handful of
-  labels (that is a new A6, and the minimal-pair probe in section 4 must be
-  re-split);
-- the selection step (Phase 2) finds no configuration that beats the
-  no-A6 control on the proxy holdout (outcome C below);
-- Phase 5 needs a quantised artefact of a fine-tuned encoder (section 7).
+  labels (that is a new A6; redo the section 4 lists);
+- the proxy holdout fails its validity check (Phase 1, step 2);
+- no configuration passes the val filter (outcome C);
+- Phase 4 needs a quantised artefact of a fine-tuned encoder and neither
+  route in section 6 works.
 
 ## 3. Reference numbers
 
-Use the A7 table above. A8 is compared with R6c (same recipe, no A6) and
-R6a (frozen), and with R5 when it exists. Gate 2 and the verdict
-thresholds are unchanged from the A7 plan. The owner confirmed the
-"proposed" ones on 2026-11-17.
+Use the A7 table above. Gate 2 and the verdict thresholds are unchanged
+from the A7 plan; the owner confirmed the "proposed" ones on 2026-11-17.
 
 ## 4. Held-out data for selection
 
 A7's selection saw only val, which holds training intents, so it could not
-see the OOD collapse. A8 adds two held-out sets, both carved out of
-training data and never trained on during selection.
+see the OOD collapse. A8 carves two held-out sets out of the training
+intents. Neither is trained on during selection.
 
-**Proxy holdout (8 training intents).** Pick 8 training intents the way
-`autogate_bench.splits` picked the real OOD set: balanced by tag, covering
-every value of every tag, at least one high-distraction intent and one
-safety-critical intent. During selection runs, their seeds, paraphrases and
-ASR copies are removed from training. So are A6 minimal pairs that use them,
-and synthetic goals within token Jaccard 0.5 of any of their seeds (the
-same guard A6 used against the real OOD set). Write the pick as a fixed
-list in `configs/decide/a8_proxy_holdout.yaml`, with a test that checks the
-balance. Commit it before any run.
+**Proxy holdout (8 training intents).** For each of the 8 real OOD intents,
+take one training intent with the same capability, distraction and
+actuation tags. Every such tuple has at least 3 training intents (checked
+2026-11-18). So the proxy has the real OOD set's composition: two
+high-distraction intents (needs_cloud and local_ok, both actuation none),
+one medium, one safety-critical, one restricted, one comfort, one
+cloud_preferred and one needs_small_local/low. Five of the 7
+high-distraction training intents stay in training. Among candidates, pick
+with a fixed seed.
 
-**Probe pairs (20% of the minimal pairs).** Hold out 58 of the 290 pairs,
-stratified by `differs_in`. Pick whole intent pairs, so that no intent pair
-has some pairs trained and some probed. Never train on them, in any phase.
-They replace A7's minimal-pair probe, which A6 training contaminates.
-Commit the list in `configs/decide/a8_probe_pairs.yaml`.
+During selection runs, remove from training and from val:
+
+- the proxy intents' seeds, paraphrases and ASR copies (train and val
+  rows);
+- A6 minimal pairs that use a proxy intent;
+- synthetic goals that would leak, under the same guards `augment.py`
+  applies to the real OOD set: token Jaccard > 0.5 against any proxy seed
+  or paraphrase, or a proxy intent's key words in the goal's name or
+  description (write the key words beside the list, as `OOD_KEYWORDS`
+  does).
+
+The **proxy set** is the proxy intents' train and val rows. Their test rows
+are never used in selection, so the test split is touched only once, by
+the final model. Write the
+pick, the key words and the dropped goals and pairs to
+`configs/decide/a8_proxy_holdout.yaml`, with a test that checks the tuple
+match and the leak guards. Commit it before any run.
+
+**Probe pairs (58 of the 290 minimal pairs).** Hold them out in every
+phase, stratified by `differs_in`. Take whole intent pairs, and only from
+intent pairs that touch no proxy intent. Probe scores are **report-only**:
+they never enter selection. They replace A7's minimal-pair probe, which A6
+training would contaminate. Commit the list in
+`configs/decide/a8_probe_pairs.yaml`.
 
 Selection scores, per epoch and per configuration:
 
-- **val** (training intents, new phrasings): conservative-decoder SWE and
-  critical miss, as in A7;
-- **proxy holdout** (unseen intents): the same metrics, plus distraction
-  dangerous-miss rate and capability accuracy;
-- **probe pairs:** share of pairs with every routing tag right on both sides.
+- **val minus proxy rows** (training intents, new phrasings):
+  conservative-decoder SWE and critical miss, as in A7;
+- **proxy set** (unseen intents): SWE, critical miss, distraction
+  dangerous-miss rate, capability accuracy;
+- **probe pairs** (report-only): share with every routing tag right on
+  both sides.
 
 ## 5. Configurations
 
 Fine-tune recipe from R6c unless stated: EmbeddingGemma 2 text tower
-`f9972ac2`, mean pooling, heads for the four tags, sensitive and joint;
-loss weights as R6c; batch 32; heads lr 1e-3; warmup 6%; 3 epochs.
+`f9972ac2`, full fine-tune at lr 2e-5, mean pooling, heads for the four
+tags, sensitive and joint; loss weights as R6c; batch 32; heads lr 1e-3;
+warmup 6%; 3 epochs.
 
-| id | encoder update | A6 data | anti-drift | role |
-| --- | --- | --- | --- | --- |
-| R7-ctl | full, lr 2e-5 | no | no | control: R6c's recipe with the proxy holdout removed. Measures where R6c already stood on unseen intents |
-| R7a | full, lr 2e-5 | yes | no | the data effect alone |
-| R7b | full, lr 2e-5 | yes | distillation, beta = 1 | data plus a pull towards the frozen geometry |
-| R7c | LoRA r16 (q, k, v, o), lr 1e-4 | yes | no | smaller change to the encoder |
+| id | what | role |
+| --- | --- | --- |
+| R7-frz | frozen encoder + heads (A7's R6a recipe), A6 data, proxy held out | the unseen-intent level Gate 2 needs (minutes, from the cache) |
+| R7-ctl | R6c recipe, **no** A6, proxy held out | where R6c already stood on the proxy |
+| R7a | R6c recipe + A6 | the data effect alone |
+| R7b | R6c recipe + A6 + distillation | data plus a pull towards the frozen geometry |
+
+LoRA is cut: it lost to the full fine-tune on val in A7 (0.408 vs 0.333).
+The compute goes on second fine-tune seeds instead (Phase 1, step 5).
 
 **Distillation (R7b).** Add `beta * (1 - cos(z_ft, z_frozen))` to the loss,
 where `z_frozen` is the frozen encoder's pooled vector for the same text
-(already in the A7 embedding cache). It keeps unseen inputs where the frozen
-encoder put them. R6a showed that geometry generalised as well as R4's.
-Beta is fixed at 1 and not tuned. Add it to `finetune.py` with a test.
+(in the A7 embedding cache). Set beta before any run, without labels:
+
+1. Compute R6c's drift from the two existing caches: the mean
+   `1 - cos(z_R6c, z_frozen)` on the training texts.
+2. Choose beta so that the term equals 25% of R6c's final train loss at
+   that drift.
+
+Record both numbers in the configuration. Beta is not tuned afterwards.
 
 **Synthetic goals in the loss.** They have no intent and train the tag,
 sensitive and joint heads only, as in A6. The joint vocabulary is
-rebuilt from train plus goals: goals add combinations no intent has. Goal
-rows count once per utterance, like every other row.
+rebuilt from train plus goals, because goals add combinations no intent
+has. Goal rows count once per utterance, like every other row.
 
 ## 6. Phases
 
@@ -148,49 +177,65 @@ rows count once per utterance, like every other row.
 1. Owner audit of `docs/augment-review.md` done; corrections applied;
    augmented file regenerated; prefix and sha256 checks pass.
 2. Proxy holdout and probe-pair lists committed, with their tests.
-3. `finetune.py` takes the augmented rows, an intent holdout list, an
-   excluded-pairs list and `--distill-weight`. It reports proxy-holdout and
-   probe-pair metrics per epoch. Tests on the tiny backbone; no downloads.
-4. Embed the augmented texts with the frozen encoder if the A7 cache lacks
-   any (it was built from both rows files, so it should not).
+3. `finetune.py` takes the augmented rows, the proxy list (removed from
+   train and val), the probe list and `--distill-weight`. It reports the
+   section 4 scores per epoch. Tests on the tiny backbone; no downloads.
+4. Beta for R7b computed and committed (section 5).
 
-### Phase 1: selection runs (R7-ctl, R7a, R7b, R7c)
+### Phase 1: controls, proxy check, selection (R7-frz, R7-ctl, R7a, R7b)
 
-Each run trains for three epochs with the proxy holdout and probe pairs
-removed. It records every epoch's val, proxy and probe scores. On CPU, a
-full fine-tune took about 26 minutes an epoch in A7, so expect roughly 6
-hours for all four. A Colab T4 is much faster; the owner chooses which.
+1. Run R7-frz and R7-ctl.
+2. **Proxy validity check.** The proxy must reproduce what A7 saw on the
+   real OOD set: R7-frz better than R7-ctl on proxy critical miss and on
+   distraction dangerous miss, each by a clear margin (paired intent
+   bootstrap, step 4). If it does not, the proxy is not a stand-in: stop
+   and ask the owner.
+3. Run R7a and R7b.
+4. **Selection rule (pre-registered).**
+   - Each fine-tuned run's epoch is chosen by the same rule. R7-ctl is
+     treated the same way, so the comparison is best-epoch against
+     best-epoch.
+   - **Val filter:** val SWE (proxy rows removed) no worse than R7-ctl's
+     best epoch + 0.03, and val critical miss no worse than R7-ctl's +1
+     point.
+   - Among epochs that pass, take the lowest proxy critical miss. Break
+     ties (within 1 point) by the lower proxy SWE.
+   - Between R7a and R7b, the same rule picks the winner.
+5. Run a **second fine-tune seed** of R7-ctl and of the winner, with the
+   same epochs. Outcome A is checked on both seeds.
 
-**Selection rule (pre-registered).** Over every (configuration, epoch)
-except R7-ctl:
-
-1. Keep those whose val SWE is at most 0.37 and val critical miss at most
-   7.0% (Gate 2's test bars, applied to val).
-2. Among them, take the lowest proxy-holdout critical miss. Break ties
-   (within 1 point) by the lower proxy-holdout SWE.
-
-**Outcomes:**
+**Outcomes.** All comparisons on the proxy set use a paired bootstrap of
+(winner minus control), resampling **intents**. The proxy's eligible rows
+come from about five intents, so row-level intervals would be far too
+narrow.
 
 | outcome | condition | next |
 | --- | --- | --- |
-| A | the selected run beats R7-ctl on proxy-holdout critical miss by at least 3 points and on proxy SWE | Phase 2 |
-| B | something is selected but it does not beat R7-ctl on the proxy holdout | stop: A6 does not fix the collapse for this encoder. Log it; R5 decides whether A6 helps at all |
+| A | On both seeds: the winner beats R7-ctl on proxy critical miss and proxy SWE (95% interval of the difference excludes 0), and is no worse than R7-frz on either | Phase 2 |
+| B | a winner passes the val filter but misses A | stop: A6 does not fix the collapse for this encoder. Log it; R5 decides whether A6 helps at all |
 | C | nothing passes the val filter | stop and ask the owner |
 
 ### Phase 2: final model (R7)
 
-1. Retrain the selected configuration on **all** training data: the proxy
-   holdout returns, the probe pairs stay out. Use the selected number of
-   epochs and no further selection.
-2. Re-embed the dataset with the merged encoder. Check that the five probe
+1. Retrain the winner on **all** training data: the proxy intents return,
+   the probe pairs stay out. Use the selected epochs and seed 0, with no
+   further selection.
+2. **Stop check:** the final run's val scores on non-proxy rows must be
+   within the val-filter tolerances of the selection run's. If not, stop
+   without scoring test.
+3. Re-embed the dataset with the merged encoder. Check that the five probe
    sentences reproduce their training-time vectors.
-3. `run --method heads --selection val` on the augmented rows: linear
+4. `run --method heads --selection val` on the augmented rows: linear
    heads, weight decay by val NLL, lambda 0.5, temperatures and abstention
    threshold on val. Commit the frozen configuration.
-4. Score test and OOD once. Apply Gate 2 (A7 plan) on the conservative
-   decoder without abstention, and report expected cost beside it. Report
-   the probe-pair score, the per-variant table, OOD per intent, and the
-   intent-bootstrap intervals, as in A7.
+5. Score test and OOD once. Apply Gate 2 (A7 plan) to the conservative
+   decoder without abstention, and report expected cost beside it. Also
+   report:
+   - the probe-pair score;
+   - the per-variant table;
+   - OOD per intent;
+   - the intent-bootstrap intervals, as in A7;
+   - the test-use count (4).
 
 **If Gate 2 fails: stop.** Log A8 as dropped with the numbers. A third
 fine-tuning plan would need new data, not new knobs.
@@ -227,23 +272,28 @@ How to read the result:
   agreement >= 0.99:** the result stands for fp32 only. Phase 4 becomes
   its own plan.
 
-## 8. Run ids
+## 8. Run ids and compute
 
 | id | what |
 | --- | --- |
-| R7-ctl | R6c recipe, no A6, proxy holdout removed (selection control) |
-| R7a, R7b, R7c | selection runs (section 5) |
+| R7-frz, R7-ctl | controls on the proxy holdout (R7-ctl in two seeds) |
+| R7a, R7b | selection runs (winner in two seeds) |
 | R7 | final model, scored once on test and OOD |
 | R7q | quantised artefact and latency (Phase 4) |
 
-For each: a runs-table row, a "Run details" entry with config, commit,
-encoder revision, augmented-data sha256, device, and a decision-log line at
-each outcome.
+Compute on this 4-core CPU, from A7's timings: a full fine-tune is about
+26 minutes an epoch, so about 80 minutes a run. Phase 1 is five fine-tune
+runs (R7-ctl and the winner twice each, the loser once), about 7 hours.
+Phase 2 adds about 1.5 hours. A Colab T4 is much faster.
+
+For each run: a runs-table row, and a "Run details" entry with config,
+commit, encoder revision, augmented-data sha256 and device. Add a
+decision-log line at each outcome.
 
 ## 9. Open items for the owner
 
 - **The A6 audit** (blocking).
-- CPU (about 6 hours for Phase 1, run here) or Colab T4.
+- CPU (about 9 hours in total, run here) or Colab T4.
 - Whether a fourth use of the test set is acceptable, or a fresh test set
   should be generated first. That would mean new paraphrases of the
   test seeds, which changes no labels but costs a paraphrase round.
