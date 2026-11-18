@@ -408,6 +408,33 @@ the new splits (seed-only pilot).
 
 ## Run details
 
+### R6c: A7 Phase 4 pre-registration (2026-11-18, before any fine-tuning)
+
+After a third independent review. `python -m autogate_decide.finetune`:
+- EmbeddingGemma 2 text tower (`f9972ac2`), fp32, mean pooling, heads for
+  the four tags, sensitive and the 14-way joint; loss weights actuation 1,
+  distraction 1, capability 0.5, consequence 0.3, sensitive 0.5, joint 0.5;
+  tag class weights as R4. Batch 32, 3 epochs, seed 0.
+- **LoRA r16** (alpha 32, dropout 0.05) on q, k, v, o only, encoder lr
+  1e-4; **full fine-tune** encoder lr 2e-5. Heads in their own group at lr
+  1e-3; 6% warmup, then linear decay.
+- Per run, the epoch with the lowest val SWE (in-model heads, conservative
+  decoder) is kept. **Between LoRA and full, the lower val SWE goes on; only
+  that one is scored on test and OOD** (so the A7 test set is used three
+  times in all: R6a, R6a2, R6c).
+- The kept encoder is saved merged; the dataset is re-embedded with it and
+  scored by `run --method heads --selection val`: linear heads, weight
+  decay 0.01 / 0.1 / 1 / 10 chosen by **val NLL** (train-only folds are
+  leaky once the encoder has fitted every training seed, so val is the only
+  unfitted data; picking one of three epochs on val is a mild reuse of it),
+  lambda fixed at 0.5, temperatures and abstention threshold on val.
+- Deviations from the plan: CPU (4 cores, fp32) instead of a Colab T4 (no
+  difference in precision; torch version and thread count are recorded);
+  LoRA on attention only, not "all projections". The reviewer's suggested
+  held-out-intent diagnostic fold (about an hour) is not run: epoch choice
+  on val cannot see a collapse on unseen intents, and OOD is first seen at
+  the single test scoring.
+
 ### R6a2: A7 Phase 2b, layer-mix token heads (2026-11-17/18)
 
 - Frozen EmbeddingGemma 2, per-token states of layers 6, 12, 18, 23

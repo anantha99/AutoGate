@@ -13,7 +13,10 @@ Model
     attention mask, L2, then one linear head per question (capability,
     distraction, actuation, consequence, sensitive) and the joint
     (capability, distraction, actuation) head. LoRA (rank ``r``, alpha 2r,
-    dropout 0.05) on the attention and MLP projections, or ``--full``.
+    dropout 0.05) on the attention projections (q, k, v, o), or ``--full``.
+    AdamW: encoder lr 1e-4 (LoRA) or 2e-5 (full), heads in their own group
+    at 1e-3, 6% linear warmup then linear decay. Pre-registered for R6c
+    after an independent review (``docs/experiment-log.md``).
 
 Loss
     Sum of cross-entropies weighted per question as R4 weighted its tags
@@ -36,6 +39,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import time
 from pathlib import Path
 from typing import Any
@@ -53,7 +57,16 @@ LOSS_WEIGHTS = {
     "sensitive": 0.5,
     "joint": 0.5,
 }
-LORA_TARGETS = ("q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj")
+LORA_TARGETS = ("q_proj", "k_proj", "v_proj", "o_proj")  # attention only (R6c pre-registration)
+HEAD_LR = 1e-3
+PROBE_TEXTS = (
+    "turn on the wipers",
+    "how do I open the trunk",
+    "open the trunk",
+    "read my last message from Asha",
+    "AC thoda kam karo",
+)
+WARMUP = 0.06
 
 
 def _load_backbone(model_id: str, revision: str | None, text_only: bool):
@@ -144,10 +157,24 @@ def finetune(
         )
         for q in sizes
     }
-    params = [p for p in backbone.parameters() if p.requires_grad] + list(heads.parameters())
-    opt = torch.optim.AdamW(params, lr=lr, weight_decay=0.01)
+    enc_params = [p for p in backbone.parameters() if p.requires_grad]
+    params = enc_params + list(heads.parameters())
+    opt = torch.optim.AdamW(
+        [
+            {"params": enc_params, "lr": lr},
+            {"params": list(heads.parameters()), "lr": HEAD_LR},
+        ],
+        weight_decay=0.01,
+    )
     n_steps = epochs * ((len(train) + batch_size - 1) // batch_size)
-    sched = torch.optim.lr_scheduler.LambdaLR(opt, lambda s: max(0.0, 1.0 - s / max(n_steps, 1)))
+    n_warm = max(1, int(WARMUP * n_steps))
+
+    def schedule(s: int) -> float:  # linear warmup, then linear decay to 0
+        if s < n_warm:
+            return (s + 1) / n_warm
+        return max(0.0, (n_steps - s) / max(n_steps - n_warm, 1))
+
+    sched = torch.optim.lr_scheduler.LambdaLR(opt, schedule)
 
     def pooled(texts: list[str]) -> Any:
         b = tok(
@@ -245,13 +272,18 @@ def finetune(
                 "best_state": best_state,
                 "next": epoch + 1,
             },
-            ckpt,
+            ckpt.with_suffix(".tmp"),
         )
+        os.replace(ckpt.with_suffix(".tmp"), ckpt)  # atomic: a restart never leaves half a file
     if best_state:
         with torch.no_grad():
             named = dict(backbone.named_parameters())
             for n, v in best_state.items():
                 named[n].copy_(v)
+    backbone.eval()
+    with torch.inference_mode():  # what training saw, to check serving reproduces it
+        probe = (pooled(list(PROBE_TEXTS)) / 10.0).numpy()
+    np.save(out / "probe_vectors.npy", probe)
     enc = backbone if full else backbone.merge_and_unload()
     enc.save_pretrained(out / "encoder")
     tok.save_pretrained(out / "encoder")
@@ -263,6 +295,11 @@ def finetune(
         "epochs": epochs,
         "batch_size": batch_size,
         "lr": lr,
+        "head_lr": HEAD_LR,
+        "warmup": WARMUP,
+        "lora_targets": list(LORA_TARGETS) if not full else None,
+        "torch": torch.__version__,
+        "threads": torch.get_num_threads(),
         "seed": seed,
         "n_train_utterances": int(len(train)),
         "history": history,
@@ -285,10 +322,12 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
     p.add_argument("--full", action="store_true")
     p.add_argument("--epochs", type=int, default=3)
     p.add_argument("--batch-size", type=int, default=32)
-    p.add_argument("--lr", type=float, default=None, help="default 2e-4 (LoRA), 2e-5 (full)")
+    p.add_argument(
+        "--lr", type=float, default=None, help="encoder lr; default 1e-4 (LoRA), 2e-5 (full)"
+    )
     p.add_argument("--seed", type=int, default=0)
     a = p.parse_args(argv)
-    lr = a.lr if a.lr is not None else (2e-5 if a.full else 2e-4)
+    lr = a.lr if a.lr is not None else (2e-5 if a.full else 1e-4)
     return finetune(
         a.rows,
         a.out,

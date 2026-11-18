@@ -456,3 +456,47 @@ def test_finetune_resumes_at_the_next_epoch(tmp_path, tiny_backbone, pilot_jsonl
     finetune(pilot_jsonl, out, epochs=1, **kw)  # "interrupted" after epoch 1
     rep = finetune(pilot_jsonl, out, epochs=2, **kw)
     assert [h["epoch"] for h in rep["history"]] == [1, 2]
+
+
+def test_finetuned_encoder_serves_the_vectors_training_saw(tmp_path, tiny_backbone, pilot_jsonl):
+    pytest.importorskip("peft")
+    from autogate_decide.encoders import load_encoder
+    from autogate_decide.finetune import PROBE_TEXTS, finetune
+
+    out = tmp_path / "ft"
+    finetune(
+        pilot_jsonl,
+        out,
+        model_id=str(tiny_backbone),
+        revision=None,
+        prefix="q: ",
+        text_only=False,
+        lora_rank=4,
+        epochs=1,
+        batch_size=32,
+        lr=1e-3,
+        limit_train=100,
+    )
+    served = load_encoder(str(out / "encoder")).encode(list(PROBE_TEXTS))
+    trained = np.load(out / "probe_vectors.npy")
+    assert np.allclose(served, trained, atol=1e-5)
+
+
+def test_val_selection_for_finetuned_encoders(tmp_path, fake_cache, pilot_jsonl):
+    from autogate_decide.run import RunConfig, run
+
+    cfg = RunConfig(
+        selection="val",
+        score=("val",),
+        seeds=(0,),
+        hidden_grid=(0,),
+        weight_decay_grid=(0.01, 1.0),
+        steps=20,
+        lambda_grid=(0.5,),
+        n_boot=10,
+    )
+    rep = run(fake_cache, pilot_jsonl, tmp_path / "v", cfg)
+    assert rep["config"]["lam"] == 0.5
+    trials = rep["config"]["selection_trials"]["actuation"]
+    best = min(trials, key=lambda t: t["val_nll"])
+    assert rep["config"]["selected"]["actuation"]["weight_decay"] == best["weight_decay"]

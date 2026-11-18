@@ -151,6 +151,8 @@ def select_heads(
     epochs). Val is never used for the choice; its NLL is recorded."""
     train = utts.mask("train")
     val = utts.mask("val")
+    if cfg.selection == "val":
+        return _select_on_val(utts, x, cfg, jvocab), {}
     folds = intent_folds(utts, train, cfg.folds, seed=0)
     sfolds = seed_folds(utts, train, cfg.seed_folds, seed=0) if cfg.selection == "blend" else []
     selected: dict[str, dict[str, Any]] = {}
@@ -241,6 +243,33 @@ def select_heads(
             np.save(checkpoint / f"{q}_oof.npy", oof_logits[q])
             (checkpoint / f"{q}.json").write_text(json.dumps(selected[q], indent=2), "utf-8")
     return selected, oof_logits
+
+
+def _select_on_val(
+    utts: Utterances, x: Any, cfg: RunConfig, jvocab: Sequence
+) -> dict[str, dict[str, Any]]:
+    """``selection == "val"`` (R6c): after fine-tuning, train-only folds are leaky (the
+    encoder has fitted every training seed), so the head shape and weight decay are
+    chosen by val NLL; val is the only data the encoder has not fitted."""
+    train, val = utts.mask("train"), utts.mask("val")
+    selected = {}
+    for q in (*QUESTIONS, "joint"):
+        y, k = _labels(utts, q, jvocab)
+        trials = []
+        for h in cfg.hidden_grid:
+            for wd in cfg.weight_decay_grid:
+                hc = HeadConfig(hidden=h, weight_decay=wd, lr=cfg.lr, steps=cfg.steps)
+                head = train_head(x[train], y[train], k, hc, seed=0)
+                v = nll(head.probs(x[val], calibrated=False), y[val])
+                trials.append({"hidden": h, "weight_decay": wd, "val_nll": v})
+                print(f"  select {q}: hidden {h} wd {wd}: val {v:.4f}")
+        best = min(trials, key=lambda t: t["val_nll"])
+        selected[q] = {
+            "hidden": best["hidden"],
+            "weight_decay": best["weight_decay"],
+            "trials": trials,
+        }
+    return selected
 
 
 def pick_lambda(
@@ -549,7 +578,10 @@ def run(
     if cfg.method in ("heads", "tokens"):
         if not cfg.selected:
             cfg.selected, oof = select_heads(utts, x, cfg, jvocab, out / "selection")
-            cfg.lam, lam_scores = pick_lambda(utts, oof, cfg, jvocab)
+            if cfg.selection == "val":
+                cfg.lam, lam_scores = cfg.lambda_grid[0], {}
+            else:
+                cfg.lam, lam_scores = pick_lambda(utts, oof, cfg, jvocab)
         else:
             lam_scores = {}
         mode = "mix"
@@ -898,6 +930,13 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
         help="config.json of an earlier run: reuse its selection (no re-search)",
     )
     p.add_argument("--n-boot", type=int, default=1000)
+    p.add_argument(
+        "--selection",
+        choices=("intent", "blend", "val"),
+        default=None,
+        help="head selection (default: intent for heads, blend for tokens); "
+        "val = R6c after fine-tuning: linear heads, weight decay by val NLL, lambda 0.5",
+    )
     p.add_argument("--registry", choices=("none", "fair", "registered"), default="none")
     p.add_argument("--lane", action="store_true", help="safety lane (Phase 3)")
     a = p.parse_args(argv)
@@ -915,6 +954,13 @@ def main(argv: list[str] | None = None) -> dict[str, Any]:
         cfg.epochs_grid = (3, 6)
         cfg.selection = "blend"
         cfg.folds = 3
+    if a.selection == "val":  # R6c, pre-registered 11-18 (docs/experiment-log.md)
+        cfg.selection = "val"
+        cfg.hidden_grid = (0,)
+        cfg.weight_decay_grid = (0.01, 0.1, 1.0, 10.0)
+        cfg.lambda_grid = (0.5,)
+    elif a.selection:
+        cfg.selection = a.selection
     if a.config:
         old = json.loads(a.config.read_text(encoding="utf-8"))
         old = old.get("config", old)  # a frozen configs/decide/<run>.json nests it
