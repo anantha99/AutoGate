@@ -348,6 +348,9 @@ the new splits (seed-only pilot).
 
 | run | date | macro-F1 | SWE | critical miss | span leak | notes |
 | --- | --- | --- | --- | --- | --- | --- |
+| R6a2 Gemma frozen, layer-mix token heads, conservative | 11-18 | 0.834 | 0.467 | 10.7% | n/a | **Gate 2 fails** again; 5-seed mean 0.825 / 0.457 / 8.7% (sd 0.019 / 0.019 / 1.8 pts) |
+| R6a2, expected cost | 11-18 | 0.804 | 0.461 | 8.3% | n/a | |
+| R6a2, conservative + abstention | 11-18 | 0.876* | 0.270* | 0.4%* | n/a | *88.5% coverage (U1's bar met); abstains on 11% of safety-critical rows (U4 fails) |
 | R6a EmbeddingGemma 2 frozen + heads, conservative | 11-17 | 0.800 | 0.562 | 9.7% | n/a | **Gate 2 fails** (needs 0.83 / 0.37 / 7.0%); 5 seeds, sd <= 0.003 |
 | R6a, expected cost | 11-17 | 0.808 | 0.471 | 11.3% | n/a | lower SWE, more critical misses |
 | R6a, conservative + abstention | 11-17 | 0.838* | 0.409* | 0.5%* | n/a | *answered rows, 80% coverage; abstains on 32% of safety-critical rows |
@@ -377,6 +380,8 @@ the new splits (seed-only pilot).
 
 | run | macro-F1 | SWE | critical miss | notes |
 | --- | --- | --- | --- | --- |
+| R6a2 layer-mix token heads, conservative | 0.638 | 1.089 | 27.3% | OOD crit fails Gate 2 (25%); 5-seed mean 1.089 / 26.3% |
+| R6a2, conservative + abstention | 0.675* | 0.786* | 9.6%* | *83% coverage (U3a needs <= 5% at >= 50%) |
 | R6a EmbeddingGemma 2 frozen + heads, conservative | 0.621 | **1.015** | 21.7% | passes Gate 2's OOD bars (1.12 / 25%); intent-bootstrap crit CI [6%, 50%] |
 | R6a, expected cost | 0.584 | 1.129 | 29.3% | |
 | R6a, conservative + abstention | 0.653* | 0.734* | 4.2%* | *82% coverage (U3a needs <= 5% at >= 50%) |
@@ -402,6 +407,34 @@ the new splits (seed-only pilot).
 \* Span leak is measured on test + OOD combined, on rows the run routed to the cloud, so it is not comparable across rows with different routing.
 
 ## Run details
+
+### R6a2: A7 Phase 2b, layer-mix token heads (2026-11-17/18)
+
+- Frozen EmbeddingGemma 2, per-token states of layers 6, 12, 18, 23
+  (407,151 tokens, 3.3 GB fp32 cache, 7.5 min to build); heads as
+  pre-registered (commit `7598b2e`); configuration frozen in `072d35f`
+  (`configs/decide/R6a2.json`). Selection on CPU took about 2 hours over two
+  container restarts (resumed from per-trial checkpoints; the first
+  attempt's numbers reproduced exactly).
+- Chosen: weight decay 10 (grid edge again) for capability, distraction,
+  consequence, sensitive and joint; 1.0 for actuation; 3 or 6 epochs;
+  lambda 0.5. The one-standard-error rule pushed most heads to the
+  strongest decay.
+- **Gate 2: outcome B.** Test 0.834 / 0.467 / 10.7% (five-seed mean 0.825 /
+  0.457 / 8.7%): macro-F1 reaches the bar on seed 0 but not on the mean;
+  SWE and critical miss fail. OOD 1.089 / 27.3% (mean 1.089 / 26.3%):
+  SWE passes, critical miss fails (R6a passed both OOD bars). Seeds now
+  differ (sd 1.8 points of test critical miss): the attention heads are
+  not convex.
+- Gains over R6a: test SWE 0.562 -> 0.467; sensitive recall 0.89 -> 1.00
+  on test and OOD (U7 met); minimal pairs 35% -> 46% both sides right;
+  test actuation dangerous miss 2.2% -> 0.6%; with val-chosen abstention,
+  test critical miss 0.4% on 88.5% coverage (U1's numbers), abstaining on
+  11% of safety-critical rows (R6a: 32%).
+- Unchanged weak spots: distraction dangerous miss test 41%, OOD 83%;
+  OOD capability 0.51 (ECE 0.29); Kannada-English test critical miss 18.8%
+  vs plain 9.4% (2.0x: U6 borderline); OOD abstention leaves 9.6% critical
+  misses on 83% coverage.
 
 ### R6a, R6a-ctl, R6z: A7 Phases 1-2 (2026-11-17)
 
@@ -640,6 +673,7 @@ approach survives.
 
 | date | decision | why |
 | --- | --- | --- |
+| 11-18 | A7 Gate 2 outcome B for R6a2 too (test SWE 0.467, critical miss 10.7%; OOD critical miss 27.3%); go to Phase 4 (fine-tune, R6c) as the plan says | frozen encoders, pooled or token-level, do not reach R4 on known intents |
 | 11-17 | A7 Gate 2 outcome B for R6a (test fails, OOD passes); go to Phase 2b (token-state heads, R6a2) as the plan says | test 0.800 / 0.562 / 9.7% vs bars 0.83 / 0.37 / 7.0% |
 | 11-17 | Owner confirmed the proposed A7 verdict thresholds (plan section 7) as written, before any test scoring | plan requires it before Phase 2 test scoring |
 | 11-17 | A7 heads: choose head shape and weight decay on held-out training intents, not val; two head sets (weighted for conservative, plain for expected cost); joint-combination head; p(critical miss) as the abstention score; Gate 2 stays on the conservative decoder | independent review: val holds only training intents; class weights distort expected cost; product of marginals puts mass on tag combinations no intent has |
