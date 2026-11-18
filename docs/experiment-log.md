@@ -4,7 +4,7 @@ The running memory of the project: what we are trying, why, what each run
 produced, and what is still open. Newest results go at the top of each
 section. Every run gets an entry in "Runs", even a failed one.
 
-Last updated: 2026-11-17 (A7 Phases 0-2 run: Gate 2 outcome B for R6a; Phase 2b next; R5 waits for the audit). Linked from `CLAUDE.md` so every session reads it.
+Last updated: 2026-11-18 (A7 dropped by its own stop rule after Phase 4: R6c beats R4 on test, fails on OOD; R5 waits for the audit). Linked from `CLAUDE.md` so every session reads it.
 
 ## How to use this file
 
@@ -21,7 +21,7 @@ Last updated: 2026-11-17 (A7 Phases 0-2 run: Gate 2 outcome B for R6a; Phase 2b 
 | --- | --- |
 | Taxonomy expansion (A5) | done 10-23: 81 intents, 361 seeds, 14,440 paraphrases, 66,414 rows (sha256 `8cc12a4b...`); 8-intent OOD holdout balanced by tag. R1/R2 are not directly comparable with runs on this data |
 | Train-only augmentation (A6) | data done 10-28: 60 synthetic goals (565 utterances; 20 high-distraction) and 290 minimal pairs (580 utterances, 115 intent pairs); strict validation 0 errors. Adds 4,635 train rows (2,067 goal, 2,568 pair); every other row byte-identical (old file is an exact prefix). Review: `docs/augment-review.md` |
-| Decision-encoder router (A7) | **Phases 0-2 run 11-17; Gate 2 outcome B.** Frozen EmbeddingGemma 2 + heads (R6a): test 0.800 / SWE 0.562 / 9.7% (fails), OOD 1.015 / 21.7% (passes, on par with R4nc). Code in `src/autogate_decide/`; Phase 2b (token-state heads, R6a2) next, then Phase 4 if needed. Model facts verified (below) |
+| Decision-encoder router (A7) | **Dropped 11-18 by the plan's stop rule** (Gate 2 failed after Phase 4). No configuration passes test and OOD together: frozen R6a passes OOD (1.015 / 21.7%) but not test (0.562 / 9.7%); fully fine-tuned R6c beats R4 on test (0.867 / 0.308 / 4.8%) but fails OOD (1.166 / 30.5%). Code kept in `src/autogate_decide/` |
 | Router R5 (R4 config + A6 data) | ready to run; **waits for the owner's audit of `docs/augment-review.md`** |
 | Router R4 (tags, R1 capacity, 81 intents) | done 10-27, with and without context. Best so far: test macro-F1 0.82-0.85, SWE 28-30% of fair rules; critical miss 5-6% (under 1% with the 0.85 abstention threshold at 74% coverage). Open: high distraction on unseen intents, adversarial slice, int8 |
 | Benchmark v0 | done: 65 intents, 281 seeds, 11,240 paraphrases, 53,184 rows (`docs/dataset-v0.md`); superseded for intents and splits by A5 |
@@ -200,7 +200,7 @@ Zomato ideas below, made concrete.
   the following round can turn val route-changing tag errors into new
   pairs.
 
-### A7. Decision-encoder router (planned and Phases 0-2 run 2026-11-17)
+### A7. Decision-encoder router (run 2026-11-17/18; dropped by its stop rule)
 
 **Why:** R4nc showed the model only has to predict context-free tags. That
 is the interface of the "decision models" released since September 2026
@@ -348,6 +348,9 @@ the new splits (seed-only pilot).
 
 | run | date | macro-F1 | SWE | critical miss | span leak | notes |
 | --- | --- | --- | --- | --- | --- | --- |
+| R6c Gemma fully fine-tuned + heads, conservative | 11-18 | **0.867** | **0.308** | **4.8%** | n/a | passes Gate 2's test bars, beats R4nc; 5 seeds identical to 0.002; intent-bootstrap crit CI [0.3%, 9.7%] |
+| R6c, expected cost | 11-18 | 0.868 | 0.302 | 4.7% | n/a | |
+| R6c, conservative + abstention | 11-18 | 0.884* | 0.233* | 0.8%* | n/a | *87.9% coverage (U1 met); abstains on 4.6% of safety-critical rows (U4 fails) |
 | R6a2 Gemma frozen, layer-mix token heads, conservative | 11-18 | 0.834 | 0.467 | 10.7% | n/a | **Gate 2 fails** again; 5-seed mean 0.825 / 0.457 / 8.7% (sd 0.019 / 0.019 / 1.8 pts) |
 | R6a2, expected cost | 11-18 | 0.804 | 0.461 | 8.3% | n/a | |
 | R6a2, conservative + abstention | 11-18 | 0.876* | 0.270* | 0.4%* | n/a | *88.5% coverage (U1's bar met); abstains on 11% of safety-critical rows (U4 fails) |
@@ -380,6 +383,8 @@ the new splits (seed-only pilot).
 
 | run | macro-F1 | SWE | critical miss | notes |
 | --- | --- | --- | --- | --- |
+| R6c fully fine-tuned, conservative | 0.611 | 1.166 | 30.5% | **fails Gate 2's OOD bars**; worse than frozen R6a: fine-tuning collapsed unseen intents onto training tag clusters |
+| R6c, conservative + abstention | 0.655* | 0.796* | 10.1%* | *82% coverage |
 | R6a2 layer-mix token heads, conservative | 0.638 | 1.089 | 27.3% | OOD crit fails Gate 2 (25%); 5-seed mean 1.089 / 26.3% |
 | R6a2, conservative + abstention | 0.675* | 0.786* | 9.6%* | *83% coverage (U3a needs <= 5% at >= 50%) |
 | R6a EmbeddingGemma 2 frozen + heads, conservative | 0.621 | **1.015** | 21.7% | passes Gate 2's OOD bars (1.12 / 25%); intent-bootstrap crit CI [6%, 50%] |
@@ -407,6 +412,41 @@ the new splits (seed-only pilot).
 \* Span leak is measured on test + OOD combined, on rows the run routed to the cloud, so it is not comparable across rows with different routing.
 
 ## Run details
+
+### R6c: A7 Phase 4 result and the end of A7 (2026-11-18)
+
+- Full fine-tune (epoch 2) re-embedded the dataset (412 s); fresh linear
+  heads chosen on val NLL (weight decay 1.0 for capability, distraction,
+  consequence and joint, 0.1 actuation, 0.01 sensitive); configuration
+  frozen in `43088be` (`configs/decide/R6c.json`), then scored once. The
+  test set was used for the third time in A7 (R6a, R6a2, R6c).
+- **Test: 0.867 / 0.308 / 4.8%** (conservative), better than R4nc tags
+  (0.850 / 0.342 / 6.0%) and every earlier run; tag accuracy capability
+  0.85, distraction 0.94, actuation 0.92, consequence 0.89; adversarial
+  slice critical miss 8.8% (R4 25-30%); minimal pairs 69% right on both
+  sides (R6a 35%); per variant critical miss plain 3.9%, ASR 3.4%,
+  disfluent 4.5%, Hinglish 7.6%, Kannada-English 8.5% (2.2x plain).
+  Sensitive recall 0.997, precision 1.0.
+- **OOD: 0.611 / 1.166 / 30.5%**: fails both Gate 2 OOD bars and is
+  worse than the frozen encoder (R6a 1.015 / 21.7%). Distraction dangerous
+  miss 88% (R6a 80%); OOD ECE capability 0.34, distraction 0.32
+  (confidently wrong on unseen intents). Per intent: pair_bluetooth_device
+  98% critical miss, compose_long_email 52%, read_news_headlines 27%,
+  open_fuel_door 26%, fog_lights_on 4%.
+- Abstention (val threshold 0.024): test 0.8% critical miss on 87.9%
+  coverage, abstaining on 4.6% of safety-critical rows; OOD 10.1% on 82%.
+- **Gate 2 outcome B after Phase 4: the plan says stop.** A7 is dropped
+  and the project returns to R5 (waiting for the A6 audit). Verdict table
+  (section 7) is therefore not evaluated as such; for the record, on R6c
+  U1's numbers are met on test, U7 is met (0.997 / 0.956), and U3a, U4 and
+  U6 fail. Phase 3 (registry, lane) and Phase 5 (artifact retraining,
+  latency) were built or previewed but not run, as the plan only reaches
+  them after a passing gate.
+- What A7 showed: the trade-off is in the encoder, not the heads. A frozen
+  general-purpose encoder keeps unseen intents apart as well as R4 but
+  cannot separate known look-alikes; supervised fine-tuning fixes known
+  intents and erases what helped on unseen ones. Nothing in A7 closes the
+  OOD distraction gap; that is what A6's synthetic goals are for.
 
 ### R6c: A7 Phase 4 pre-registration (2026-11-18, before any fine-tuning)
 
@@ -720,6 +760,8 @@ approach survives.
 
 | date | decision | why |
 | --- | --- | --- |
+| 11-18 | **Drop A7** (the plan's stop rule: Gate 2 failed after Phase 4) and return to R5 | R6c (full fine-tune) passes every test bar and beats R4, but OOD critical miss 30.5% and SWE 1.166 fail; no A7 configuration passes test and OOD together |
+| 11-18 | R6c: full fine-tune goes on over LoRA (val SWE 0.333 vs 0.408); score only the winner on test | pre-registered; keeps A7 to three uses of the test set |
 | 11-18 | A7 Gate 2 outcome B for R6a2 too (test SWE 0.467, critical miss 10.7%; OOD critical miss 27.3%); go to Phase 4 (fine-tune, R6c) as the plan says | frozen encoders, pooled or token-level, do not reach R4 on known intents |
 | 11-17 | A7 Gate 2 outcome B for R6a (test fails, OOD passes); go to Phase 2b (token-state heads, R6a2) as the plan says | test 0.800 / 0.562 / 9.7% vs bars 0.83 / 0.37 / 7.0% |
 | 11-17 | Owner confirmed the proposed A7 verdict thresholds (plan section 7) as written, before any test scoring | plan requires it before Phase 2 test scoring |
@@ -770,9 +812,12 @@ approach survives.
   cruise: comfort vs safety_critical, both always LOCAL) are rejected as
   routing hard negatives. Should a second file accept them as tag-only
   negatives for the actuation head?
-- A7: a reference device for Phase 5 latency; Colab run of Phase 4 if
-  Phase 2b also fails Gate 2 (thresholds confirmed 11-17; the model is not
-  gated).
+- A7 is dropped by its stop rule, but the owner may want to look before
+  closing it: the fine-tuned encoder (R6c) is the best test router so far
+  (0.867 / 0.308 / 4.8%) and the frozen one (R6a) is the best OOD SWE
+  among learned routers. A follow-up would need a new plan, e.g. R5's A6
+  data for the fine-tune, or keeping the frozen encoder for out-of-registry
+  inputs. Not done here: the plan says stop.
 - A7: abstention as tuned on val abstains on a third of safety-critical
   commands. Should safety-critical-looking rows be exempt from abstention
   (answer LOCAL), or is "ask again" acceptable for them?
