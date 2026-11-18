@@ -1,0 +1,100 @@
+{
+  "run": "R6c",
+  "frozen_from": "runs/R6c-val",
+  "encoder": {
+    "name": "finetuned:R6c-full",
+    "model_id": "checkpoints/R6c-full/encoder",
+    "revision": null,
+    "prefix": "task: classification | query: ",
+    "dim": 768,
+    "text_only": false,
+    "max_length": 128
+  },
+  "finetune": {
+    "mode": "full",
+    "epochs": 3,
+    "lr": 2e-05,
+    "head_lr": 0.001,
+    "warmup": 0.06,
+    "batch_size": 32,
+    "seed": 0,
+    "best": {
+      "epoch": 2,
+      "train_loss": 0.08176739924418147,
+      "swe": 0.33301127214170695,
+      "macro_f1": 0.8332782268716725,
+      "critical_miss_rate": 0.06666666666666667,
+      "seconds": 3196.6
+    },
+    "torch": "2.14.0+cpu",
+    "threads": 4
+  },
+  "rows_sha256": "8cc12a4b2cf15293a7a918273ff79d48f1db0c2d9684f710815462d2d2b63b2c",
+  "config": {
+    "method": "heads",
+    "score": [
+      "val",
+      "test",
+      "ood"
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "hidden_grid": [
+      0
+    ],
+    "weight_decay_grid": [
+      0.01,
+      0.1,
+      1.0,
+      10.0
+    ],
+    "steps": 300,
+    "epochs": 6,
+    "epochs_grid": [],
+    "selection": "val",
+    "seed_folds": 3,
+    "lr": 0.01,
+    "folds": 5,
+    "lambda_grid": [
+      0.5
+    ],
+    "sensitive_threshold": 0.5,
+    "abstain_target": 0.01,
+    "n_boot": 1000,
+    "selected": {
+      "capability": {
+        "hidden": 0,
+        "weight_decay": 1.0
+      },
+      "distraction": {
+        "hidden": 0,
+        "weight_decay": 1.0
+      },
+      "actuation": {
+        "hidden": 0,
+        "weight_decay": 0.1
+      },
+      "consequence": {
+        "hidden": 0,
+        "weight_decay": 1.0
+      },
+      "sensitive": {
+        "hidden": 0,
+        "weight_decay": 0.01
+      },
+      "joint": {
+        "hidden": 0,
+        "weight_decay": 1.0
+      }
+    },
+    "lam": 0.5,
+    "registry": "none",
+    "lane": false,
+    "tau": null
+  }
+}
