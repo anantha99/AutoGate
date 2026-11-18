@@ -22,7 +22,7 @@ Last updated: 2026-11-18 (A7 dropped by its stop rule; A8 planned: fine-tune on 
 | Taxonomy expansion (A5) | done 10-23: 81 intents, 361 seeds, 14,440 paraphrases, 66,414 rows (sha256 `8cc12a4b...`); 8-intent OOD holdout balanced by tag. R1/R2 are not directly comparable with runs on this data |
 | Train-only augmentation (A6) | data done 10-28: 60 synthetic goals (565 utterances; 20 high-distraction) and 290 minimal pairs (580 utterances, 115 intent pairs); strict validation 0 errors. Adds 4,635 train rows (2,067 goal, 2,568 pair); every other row byte-identical (old file is an exact prefix). Review: `docs/augment-review.md` |
 | Decision-encoder router (A7) | **Dropped 11-18 by the plan's stop rule** (Gate 2 failed after Phase 4). No configuration passes test and OOD together: frozen R6a passes OOD (1.015 / 21.7%) but not test (0.562 / 9.7%); fully fine-tuned R6c beats R4 on test (0.867 / 0.308 / 4.8%) but fails OOD (1.166 / 30.5%). Code kept in `src/autogate_decide/` |
-| Fine-tune on A6 data (A8) | **Phase 1 running on CPU since 11-18** (`scripts/a8_phase1.sh`); A6 audit done, no corrections. R6c's recipe on the augmented data, plus a distillation and a LoRA variant, selected on val and a proxy holdout of 8 training intents; one final model scored once. Plan: `docs/plan-a8-finetune-a6.md` |
+| Fine-tune on A6 data (A8) | **Phase 1 stopped 11-18 at the proxy validity check** (pre-registered): the proxy reproduces the distraction collapse (-27 pts) but not the critical-miss gap; waiting for the owner. A6 audit done, no corrections. R6c's recipe on the augmented data, plus a distillation and a LoRA variant, selected on val and a proxy holdout of 8 training intents; one final model scored once. Plan: `docs/plan-a8-finetune-a6.md` |
 | Router R5 (R4 config + A6 data) | ready to run on Colab; the A6 audit is done (11-18, no corrections) |
 | Router R4 (tags, R1 capacity, 81 intents) | done 10-27, with and without context. Best so far: test macro-F1 0.82-0.85, SWE 28-30% of fair rules; critical miss 5-6% (under 1% with the 0.85 abstention threshold at 74% coverage). Open: high distraction on unseen intents, adversarial slice, int8 |
 | Benchmark v0 | done: 65 intents, 281 seeds, 11,240 paraphrases, 53,184 rows (`docs/dataset-v0.md`); superseded for intents and splits by A5 |
@@ -458,6 +458,30 @@ the new splits (seed-only pilot).
 
 ## Run details
 
+### A8 Phase 1, controls and the proxy check (2026-11-18): STOP, owner asked
+
+- Augmented data regenerated; base set still `8cc12a4b...` and an exact
+  prefix (audit made no corrections). Frozen cache for the augmented texts
+  rebuilt (501 s). `scripts/a8_phase1.sh`, outputs in `runs/a8/`.
+- **R7-frz** (frozen encoder, heads only; epochs 1-3): val SWE 0.81 /
+  0.73 / 0.73; proxy critical miss 24.2% / 24.1% / 23.4%, distraction
+  dangerous miss 20.8% / 23.3% / 22.5%.
+- **R7-ctl** (R6c recipe, no A6; 30 min an epoch): val SWE 0.386 / 0.326 /
+  0.344, val critical miss 7.8% / 6.4% / 9.2%; proxy critical miss 26.6% /
+  23.6% / 24.0%, distraction dangerous miss 62.8% / 49.7% / 46.4%.
+- **Proxy validity check failed** (pre-registered rule: the frozen control
+  better than R7-ctl on proxy critical miss *and* distraction dangerous
+  miss). R7-frz epoch 3 against R7-ctl epoch 2: distraction dangerous miss
+  -27 points (95% intent-bootstrap interval -30 to -25), but critical miss
+  -0.2 points (interval -12 to +14). Per proxy intent, critical miss frozen
+  vs fine-tuned: play_video 9.1% vs 25.3%, read_document 17.0% vs 33.3%
+  (the A7 collapse, reproduced); disable_lane_assist 69.4% vs 38.2% (the
+  frozen encoder fails this restricted command); book_restaurant 61.3% vs
+  58.7%; emergency_call 2.0% vs 1.1%. The real OOD set had no such
+  restricted-intent reversal (open_fuel_door 27% vs 26%).
+- As the plan says, Phase 1 stopped before any A6 candidate (R7a, R7b)
+  was trained; the owner decides how to go on.
+
 ### R6c: A7 Phase 4 result and the end of A7 (2026-11-18)
 
 - Full fine-tune (epoch 2) re-embedded the dataset (412 s); fresh linear
@@ -805,6 +829,7 @@ approach survives.
 
 | date | decision | why |
 | --- | --- | --- |
+| 11-18 | A8 Phase 1 stopped at the proxy validity check (distraction collapse reproduced, critical-miss gap not); owner asked | pre-registered stop |
 | 11-18 | Owner reports the A6 audit of `docs/augment-review.md` done, with no corrections (no change to `data/augment` on any branch); A8 Phase 1 starts. R5 is unblocked too (Colab) | owner's word in the session |
 | 11-18 | A8 runs on this CPU, started by `scripts/a8_phase1.sh` as soon as the owner reports the A6 audit done | owner's instruction; about 9 hours, resumable after container restarts |
 | 11-18 | Plan A8: fine-tune the decision encoder on the A6 data, selected on a proxy holdout of training intents | owner asked for this follow-up; R6c failed only on unseen intents, which A6 targets; A7's selection could not see unseen intents |
